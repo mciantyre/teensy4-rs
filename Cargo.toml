@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    #################
+    # TEENSY4 RUNTIME
+    #################
+    "teensy4-rt",
+    # Examples
+    "teensy4-examples",
+    ###############
+    # IMXRT1060 PAC
+    ###############
+    "imxrt1060-pac",
+    "imxrt1060-pac/imxrt1060-core",
+    # IMXRT1060 Peripherals
+    "imxrt1060-pac/imxrt1060-gpio1",
+    "imxrt1060-pac/imxrt1060-pit",
+]

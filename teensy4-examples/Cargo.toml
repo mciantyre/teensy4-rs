@@ -1,0 +1,28 @@
+[package]
+name = "teensy4-examples"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+cortex-m = "0.6.1"
+imxrt1060-pac = { path = "../imxrt1060-pac" }
+teensy4-rt = { path = "../teensy4-rt" }
+
+[[bin]]
+name = "led"
+path = "src/led.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "pit"
+path = "src/pit.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "systick"
+path = "src/systick.rs"
+test = false
+bench = false
