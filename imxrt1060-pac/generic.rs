@@ -168,8 +168,7 @@ where
 #[doc = "Result of the [`read`](Reg::read) method of a register."]
 #[doc = "Also it can be used in the [`modify`](Reg::read) method"]
 pub struct R<U, T> {
-    /// Bits of the read type
-    pub bits: U,
+    pub(crate) bits: U,
     _reg: marker::PhantomData<T>,
 }
 impl<U, T> R<U, T>
@@ -222,7 +221,7 @@ impl<FI> R<bool, FI> {
 #[doc = "Used as an argument to the closures in the [`write`](Reg::write) and [`modify`](Reg::modify) methods of the register"]
 pub struct W<U, REG> {
     #[doc = "Writable bits"]
-    pub bits: U,
+    pub(crate) bits: U,
     _reg: marker::PhantomData<REG>,
 }
 impl<U, REG> W<U, REG> {
