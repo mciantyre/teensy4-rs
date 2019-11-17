@@ -1,8 +1,11 @@
+#![allow(non_camel_case_types)]
 #![no_std]
 
 pub use imxrt1060_core::*;
 
 // Re-export peripherals
+pub use imxrt1060_ccm as ccm;
+pub use imxrt1060_ccm_analog as ccm_analog;
 pub use imxrt1060_gpio1 as gpio1;
 pub use imxrt1060_pit as pit;
 
@@ -432,26 +435,25 @@ impl Deref for PIT {
 // }
 // #[doc = "SNVS"]
 // pub mod snvs;
-// #[doc = "CCM_ANALOG"]
-// pub struct CCM_ANALOG {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for CCM_ANALOG {}
-// impl CCM_ANALOG {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const ccm_analog::RegisterBlock {
-//         0x400d_8000 as *const _
-//     }
-// }
-// impl Deref for CCM_ANALOG {
-//     type Target = ccm_analog::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*CCM_ANALOG::ptr() }
-//     }
-// }
-// #[doc = "CCM_ANALOG"]
-// pub mod ccm_analog;
+#[doc = "CCM_ANALOG"]
+pub struct CCM_ANALOG {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for CCM_ANALOG {}
+impl CCM_ANALOG {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const ccm_analog::RegisterBlock {
+        0x400d_8000 as *const _
+    }
+}
+impl Deref for CCM_ANALOG {
+    type Target = ccm_analog::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*CCM_ANALOG::ptr() }
+    }
+}
+
 // #[doc = "PMU"]
 // pub struct PMU {
 //     _marker: PhantomData<*const ()>,
@@ -710,26 +712,25 @@ impl Deref for PIT {
 // }
 // #[doc = "SRC"]
 // pub mod src;
-// #[doc = "CCM"]
-// pub struct CCM {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for CCM {}
-// impl CCM {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const ccm::RegisterBlock {
-//         0x400f_c000 as *const _
-//     }
-// }
-// impl Deref for CCM {
-//     type Target = ccm::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*CCM::ptr() }
-//     }
-// }
-// #[doc = "CCM"]
-// pub mod ccm;
+#[doc = "CCM"]
+pub struct CCM {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for CCM {}
+impl CCM {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const ccm::RegisterBlock {
+        0x400f_c000 as *const _
+    }
+}
+impl Deref for CCM {
+    type Target = ccm::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*CCM::ptr() }
+    }
+}
+
 // #[doc = "ROMC"]
 // pub struct ROMC {
 //     _marker: PhantomData<*const ()>,
@@ -2212,8 +2213,8 @@ pub struct Peripherals {
     // pub TRNG: TRNG,
     // #[doc = "SNVS"]
     // pub SNVS: SNVS,
-    // #[doc = "CCM_ANALOG"]
-    // pub CCM_ANALOG: CCM_ANALOG,
+    #[doc = "CCM_ANALOG"]
+    pub CCM_ANALOG: CCM_ANALOG,
     // #[doc = "PMU"]
     // pub PMU: PMU,
     // #[doc = "TEMPMON"]
@@ -2240,8 +2241,8 @@ pub struct Peripherals {
     // pub PGC: PGC,
     // #[doc = "SRC"]
     // pub SRC: SRC,
-    // #[doc = "CCM"]
-    // pub CCM: CCM,
+    #[doc = "CCM"]
+    pub CCM: CCM,
     // #[doc = "ROMC"]
     // pub ROMC: ROMC,
     // #[doc = "LPUART1"]
@@ -2477,9 +2478,9 @@ impl Peripherals {
             // SNVS: SNVS {
             //     _marker: PhantomData,
             // },
-            // CCM_ANALOG: CCM_ANALOG {
-            //     _marker: PhantomData,
-            // },
+            CCM_ANALOG: CCM_ANALOG {
+                _marker: PhantomData,
+            },
             // PMU: PMU {
             //     _marker: PhantomData,
             // },
@@ -2519,9 +2520,9 @@ impl Peripherals {
             // SRC: SRC {
             //     _marker: PhantomData,
             // },
-            // CCM: CCM {
-            //     _marker: PhantomData,
-            // },
+            CCM: CCM {
+                _marker: PhantomData,
+            },
             // ROMC: ROMC {
             //     _marker: PhantomData,
             // },

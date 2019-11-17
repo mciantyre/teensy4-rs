@@ -178,7 +178,7 @@ where
 {
     #[doc = "Create new instance of reader"]
     #[inline(always)]
-    pub fn new(bits: U) -> Self {
+    pub(crate) fn new(bits: U) -> Self {
         Self {
             bits,
             _reg: marker::PhantomData,
