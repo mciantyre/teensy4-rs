@@ -15,6 +15,11 @@ cortex-m = "0.6.1"
 vcell = "0.1.2"
 "#;
 
+static CARGO_NO_TESTS_BENCH: &str = r#"[lib]
+bench = false
+test = false
+"#;
+
 fn add_deps(crate_path: &Path) {
     let mut cargo_toml = fs::OpenOptions::new()
         .append(true)
@@ -23,6 +28,10 @@ fn add_deps(crate_path: &Path) {
 
     cargo_toml
         .write_all(CARGO_TOML_DEPENDENCIES.as_bytes())
+        .expect("Failed to update Cargo.toml");
+
+    cargo_toml
+        .write_all(CARGO_NO_TESTS_BENCH.as_bytes())
         .expect("Failed to update Cargo.toml");
 }
 
@@ -63,8 +72,8 @@ fn copy_contents<I: Iterator<Item = io::Result<fs::DirEntry>>>(crate_path: &Path
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 
-    if args.len() < 2 {
-        println!("usage: path/to/svd2rust/output module_name ...");
+    if args.len() < 3 {
+        println!("usage: path/to/svd2rust/output path/to/output/pac module_name ...");
         process::exit(1);
     }
 
@@ -74,7 +83,13 @@ fn main() {
         process::exit(1);
     }
 
-    for module_name in args.iter().skip(1) {
+    let output_pac = PathBuf::from(&args[1]);
+    if !output_pac.exists() || !output_pac.is_dir() {
+        println!("Cannot find output PAC directory {}", output_pac.display());
+        process::exit(1);
+    }
+
+    for module_name in args.iter().skip(2) {
         let peripheral_module_src = fs::File::open(
             svd_crate_path
                 .join("src")
@@ -86,7 +101,7 @@ fn main() {
         );
 
         let peripheral_crate_path =
-            PathBuf::from(format!("imxrt1060-pac/imxrt1060-{}", module_name));
+            output_pac.join(format!("imxrt1060-{}", module_name.replace("_", "-")));
         if peripheral_crate_path.exists() {
             println!(
                 "{} peripheral crate seems to already exist! Skipping...",
@@ -99,6 +114,8 @@ fn main() {
                 "new",
                 "--lib",
                 &format!("{}", peripheral_crate_path.display()),
+                "--vcs",
+                "none",
             ])
             .output()
             .expect(&format!(

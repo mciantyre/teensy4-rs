@@ -11,6 +11,8 @@ imxrt1060-core = { path = "./imxrt1060-core" }
 imxrt1060-ccm = { path = "./imxrt1060-ccm" }
 imxrt1060-ccm-analog = { path = "./imxrt1060-ccm-analog" }
 imxrt1060-gpio1 = { path = "./imxrt1060-gpio1" }
+imxrt1060-gpt1 = { path = "./imxrt1060-gpt1" }
+imxrt1060-iomuxc = { path = "./imxrt1060-iomuxc" }
 imxrt1060-pit = { path = "./imxrt1060-pit" }
 
 [lib]

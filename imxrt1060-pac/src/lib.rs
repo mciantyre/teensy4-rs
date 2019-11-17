@@ -7,6 +7,7 @@ pub use imxrt1060_core::*;
 pub use imxrt1060_ccm as ccm;
 pub use imxrt1060_ccm_analog as ccm_analog;
 pub use imxrt1060_gpio1 as gpio1;
+pub use imxrt1060_gpt1 as gpt1;
 pub use imxrt1060_pit as pit;
 
 use core::marker::PhantomData;
@@ -1248,44 +1249,43 @@ impl Deref for GPIO9 {
 //         unsafe { &*TMR4::ptr() }
 //     }
 // }
-// #[doc = "GPT"]
-// pub struct GPT1 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for GPT1 {}
-// impl GPT1 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const gpt1::RegisterBlock {
-//         0x401e_c000 as *const _
-//     }
-// }
-// impl Deref for GPT1 {
-//     type Target = gpt1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*GPT1::ptr() }
-//     }
-// }
-// #[doc = "GPT"]
-// pub mod gpt1;
-// #[doc = "GPT"]
-// pub struct GPT2 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for GPT2 {}
-// impl GPT2 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const gpt1::RegisterBlock {
-//         0x401f_0000 as *const _
-//     }
-// }
-// impl Deref for GPT2 {
-//     type Target = gpt1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*GPT2::ptr() }
-//     }
-// }
+#[doc = "GPT"]
+pub struct GPT1 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for GPT1 {}
+impl GPT1 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const gpt1::RegisterBlock {
+        0x401e_c000 as *const _
+    }
+}
+impl Deref for GPT1 {
+    type Target = gpt1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*GPT1::ptr() }
+    }
+}
+
+#[doc = "GPT"]
+pub struct GPT2 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for GPT2 {}
+impl GPT2 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const gpt1::RegisterBlock {
+        0x401f_0000 as *const _
+    }
+}
+impl Deref for GPT2 {
+    type Target = gpt1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*GPT2::ptr() }
+    }
+}
 // #[doc = "OCOTP"]
 // pub struct OCOTP {
 //     _marker: PhantomData<*const ()>,
@@ -2299,10 +2299,10 @@ pub struct Peripherals {
     // pub TMR3: TMR3,
     // #[doc = "TMR4"]
     // pub TMR4: TMR4,
-    // #[doc = "GPT1"]
-    // pub GPT1: GPT1,
-    // #[doc = "GPT2"]
-    // pub GPT2: GPT2,
+    #[doc = "GPT1"]
+    pub GPT1: GPT1,
+    #[doc = "GPT2"]
+    pub GPT2: GPT2,
     // #[doc = "OCOTP"]
     // pub OCOTP: OCOTP,
     // #[doc = "IOMUXC"]
@@ -2607,12 +2607,12 @@ impl Peripherals {
             // TMR4: TMR4 {
             //     _marker: PhantomData,
             // },
-            // GPT1: GPT1 {
-            //     _marker: PhantomData,
-            // },
-            // GPT2: GPT2 {
-            //     _marker: PhantomData,
-            // },
+            GPT1: GPT1 {
+                _marker: PhantomData,
+            },
+            GPT2: GPT2 {
+                _marker: PhantomData,
+            },
             // OCOTP: OCOTP {
             //     _marker: PhantomData,
             // },

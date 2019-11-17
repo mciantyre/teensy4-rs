@@ -15,8 +15,10 @@ members = [
     "imxrt1060-pac/imxrt1060-ccm",
     "imxrt1060-pac/imxrt1060-ccm-analog",
     "imxrt1060-pac/imxrt1060-gpio1",
+    "imxrt1060-pac/imxrt1060-gpt1",
+    "imxrt1060-pac/imxrt1060-iomuxc",
     "imxrt1060-pac/imxrt1060-pit",
-
-    # Extras
+]
+exclude = [
     "tools",
 ]
