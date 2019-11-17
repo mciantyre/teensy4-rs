@@ -105,7 +105,7 @@ After we evaluate whether or not this is a good or bad approach to developing Ru
 
 ## Acknowledgements and References
 
-- The [Teensy 4](https://www.pjrc.com/store/teensy40.html) is wonderful, and that's thanks to the hard work of Paul Stoffregen and friends. We can find the Teensy code used in the Arduino plugins [here](https://github.com/PaulStoffregen/cores). The code greatly influenced this library.
+- The [Teensy 4](https://www.pjrc.com/store/teensy40.html) is wonderful, and that's thanks to the hard work of PJRC and friends. We can find the Teensy code used in the Arduino plugins [here](https://github.com/PaulStoffregen/cores). The code greatly influenced this library.
 - I'm not the only developer tackling the "Rust on Teensy 4" challenge. Check out mpasternacki's work [here](https://gitlab.com/teensy-rs/teensy-4) as an alternative approach towards the same problem.
 - The Rust Cortex M team, specifically the [`cortex-m-rt`](https://github.com/rust-embedded/cortex-m-rt) crate.
 
