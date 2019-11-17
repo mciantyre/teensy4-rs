@@ -48,12 +48,8 @@ SECTIONS
         KEEP(*(.boot.tcm));
         KEEP(*(.HardFaultTrampoline));
         KEEP(*(.HardFault.*));
-    } > FLASH
-
-    /* Contains the reset vectors, exceptions, and interrupts. */
-    /* It must be 1024-byte aligned */
-    .vector_table :
-    {
+        /* Contains the reset vectors, exceptions, and interrupts. */
+        /* It must be 1024-byte aligned */
         . = ALIGN(1024);
         __svectors = .;
         KEEP(*(.vector_table));
@@ -107,7 +103,7 @@ SECTIONS
     }
 
     /* The length of flash is required for the boot data */
-    __lflash = SIZEOF(.boot) + SIZEOF(.vectors) + SIZEOF(.text) + SIZEOF(.rodata) + SIZEOF(.data);
+    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.rodata) + SIZEOF(.data);
 
     /* The following are used to compute the FlexRAM banks for ITCM / DTCM */
     _itcm_block_count = (SIZEOF(.text) + 0x7FFE) >> 15;
