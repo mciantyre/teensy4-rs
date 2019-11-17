@@ -4,6 +4,8 @@ A collection of crates that support the development of Rust applications and lib
 
 Status: prototype. We can blink the LED, register exceptions, and register interrupts. No one has measured anything. No one has built a fully-fledged application with these crates, yet...
 
+[![Build Status](https://travis-ci.org/mciantyre/teensy4-rs.svg?branch=master)](https://travis-ci.org/mciantyre/teensy4-rs)
+
 ## Dependencies
 
 - A Rust installation. We use the latest, stable Rust compiler. Last tested on Rust 1.39.0. Recommended installation via `rustup`.
