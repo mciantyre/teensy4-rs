@@ -43,7 +43,7 @@ Once the crate is available, follow these manual steps:
 [workspace]
 members = [
     # Existing members...
-    imxrt1060-pac/imxrt1060-adc1,
+    "imxrt1060-pac/imxrt1060-adc1",
     # ...
 ]
 ```
