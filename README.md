@@ -83,7 +83,7 @@ The `imxrt1060-core` subcrate defines the interrupt table and interrupt handlers
 
 ## Contributing
 
-We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop applications for the Teensy 4. Submit an issue to help us identify bugs, feature requests, or documentation gaps. If you would like a peripheral crate, let us know.
+We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop applications for the Teensy 4. Submit an issue to help us identify bugs, feature requests, or documentation gaps. If you would like a peripheral crate, let us know, or follow the instructions [here](imxrt1060-pac/README.md) to add the peripheral.
 
 ## Q/A
 
