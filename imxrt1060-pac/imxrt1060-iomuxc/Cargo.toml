@@ -10,6 +10,7 @@ edition = "2018"
 bare-metal = "0.2.5"
 cortex-m = "0.6.1"
 vcell = "0.1.2"
+
 [lib]
 bench = false
 test = false

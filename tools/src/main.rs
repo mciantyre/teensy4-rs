@@ -15,7 +15,8 @@ cortex-m = "0.6.1"
 vcell = "0.1.2"
 "#;
 
-static CARGO_NO_TESTS_BENCH: &str = r#"[lib]
+static CARGO_NO_TESTS_BENCH: &str = r#"
+[lib]
 bench = false
 test = false
 "#;
