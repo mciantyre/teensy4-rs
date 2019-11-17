@@ -6,7 +6,7 @@ The rest of the README describes the full, semi-automated process of adding a ne
 
 ## Requirements
 
-Before adding a peripheral, ensure that you have the iMXRT1060 SVD file. SVD files may be found via searching [here](https://developer.arm.com/tools-and-software/embedded/cmsis). After acquiring the iMXRT1060 SVD, follow the [`svd2rust` instructions](https://docs.rs/svd2rust/0.16.1/svd2rust/). As recommended in the `svd2rust` documentation, use `form` to split out the peripherals into their own modules.
+Before adding a peripheral, ensure that you have the iMXRT1060 SVD file. SVD files may be found by searching for the iMXRT1060 [here](https://developer.arm.com/tools-and-software/embedded/cmsis). After acquiring the iMXRT1060 SVD, follow the [`svd2rust` instructions](https://docs.rs/svd2rust/0.16.1/svd2rust/). As recommended in the `svd2rust` documentation, use `form` to split out the peripherals into their own modules.
 
 ## Adding a peripheral crate
 
