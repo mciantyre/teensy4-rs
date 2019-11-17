@@ -83,7 +83,7 @@ The `imxrt1060-core` subcrate defines the interrupt table and interrupt handlers
 
 ## Contributing
 
-We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop applications for the Teensy 4. Submit an issue to help us identify bugs, feature requests, or documentation gaps.
+We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop applications for the Teensy 4. Submit an issue to help us identify bugs, feature requests, or documentation gaps. If you would like a peripheral crate, let us know.
 
 ## Q/A
 
@@ -98,6 +98,10 @@ Not yet! That could be built using the various PACs in the `imxrt1060-pac` crate
 *Where's the Teensy 4 Rust BSP?*
 
 That doesn't exist yet! The crates provided in this repository may be the foundation for such a BSP crate. Or, a BSP crate would be founded on an iMXRT1060 HAL crate (see above).
+
+*When will this be on crates.io?*
+
+After we evaluate whether or not this is a good or bad approach to developing Rust applications for the Teensy 4, we will either release these crates to crates.io, or recommend an alternative solution.
 
 ## Acknowledgements and References
 
