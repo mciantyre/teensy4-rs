@@ -28,7 +28,7 @@ The best way to test our setup is to use the `hardware-test.sh` script to compil
 
 If all goes well, the `systick` example should begin blinking our Teensy 4's LED at ~1Hz.
 
-To begin building our own applications with these crates, include both the `teensy4-rt` and `imxrt1060-pac` crates in a `Cargo.toml`:
+To build new applications with these crates, include both the `teensy4-rt` and `imxrt1060-pac` crates in a `Cargo.toml`:
 
 ```
 [dependencies] # Or, specify the git repos to these crates
@@ -48,7 +48,9 @@ any other targets.
 
 ## Project Structure
 
-The project has a model similar to other embedded Rust projects. However, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
+The project has a model similar to other embedded Rust projects. We have a runtime crate, similar to the `cortex-m-rt` crate, that allows us to write a `main()` function, as well as register interrupts and exception handlers with `#[interrupt]` and `#[exception]` macros, respectively. For concrete examples of what this looks like, check out the examples in the `teensy4-examples` crate. Also check out the [`cortex-m-rt` documentation](https://crates.io/crates/cortex-m-rt) for more information. We also provide peripheral access crates (PAC) that help us interact with the processor registers. The PAC is auto-generate with [`svd2rust`; see the docs](https://docs.rs/svd2rust/0.16.1/svd2rust/) for more information on interacting with registers.
+
+Although we strive for compatibility with existing crates and frameworks, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
 
 ### Runtime
 
