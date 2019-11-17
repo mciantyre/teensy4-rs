@@ -8,6 +8,7 @@ pub use imxrt1060_ccm as ccm;
 pub use imxrt1060_ccm_analog as ccm_analog;
 pub use imxrt1060_gpio1 as gpio1;
 pub use imxrt1060_gpt1 as gpt1;
+pub use imxrt1060_iomuxc as iomuxc;
 pub use imxrt1060_pit as pit;
 
 use core::marker::PhantomData;
@@ -1306,26 +1307,25 @@ impl Deref for GPT2 {
 // }
 // #[doc = "OCOTP"]
 // pub mod ocotp;
-// #[doc = "IOMUXC"]
-// pub struct IOMUXC {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for IOMUXC {}
-// impl IOMUXC {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const iomuxc::RegisterBlock {
-//         0x401f_8000 as *const _
-//     }
-// }
-// impl Deref for IOMUXC {
-//     type Target = iomuxc::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*IOMUXC::ptr() }
-//     }
-// }
-// #[doc = "IOMUXC"]
-// pub mod iomuxc;
+#[doc = "IOMUXC"]
+pub struct IOMUXC {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for IOMUXC {}
+impl IOMUXC {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const iomuxc::RegisterBlock {
+        0x401f_8000 as *const _
+    }
+}
+impl Deref for IOMUXC {
+    type Target = iomuxc::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*IOMUXC::ptr() }
+    }
+}
+
 // #[doc = "KPP Registers"]
 // pub struct KPP {
 //     _marker: PhantomData<*const ()>,
@@ -2305,8 +2305,8 @@ pub struct Peripherals {
     pub GPT2: GPT2,
     // #[doc = "OCOTP"]
     // pub OCOTP: OCOTP,
-    // #[doc = "IOMUXC"]
-    // pub IOMUXC: IOMUXC,
+    #[doc = "IOMUXC"]
+    pub IOMUXC: IOMUXC,
     // #[doc = "KPP"]
     // pub KPP: KPP,
     // #[doc = "FLEXSPI"]
@@ -2616,9 +2616,9 @@ impl Peripherals {
             // OCOTP: OCOTP {
             //     _marker: PhantomData,
             // },
-            // IOMUXC: IOMUXC {
-            //     _marker: PhantomData,
-            // },
+            IOMUXC: IOMUXC {
+                _marker: PhantomData,
+            },
             // KPP: KPP {
             //     _marker: PhantomData,
             // },
