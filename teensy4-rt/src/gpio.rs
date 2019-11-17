@@ -2,10 +2,6 @@
 //!
 //! Configures fast GPIOs for GPIO6, GPIO7, GPIO8, GPIO9. Provides
 //! a function for enabling / disabling the LED.
-//!
-//! Note: inline(never) directives are only for ensuring that we
-//! can branch into ITCM. They can -- and probably should -- be removed
-//! in the future...
 
 use crate::iomuxc::*;
 use core::ptr;
