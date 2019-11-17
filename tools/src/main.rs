@@ -38,6 +38,7 @@ fn add_deps(crate_path: &Path) {
 
 static LIB_PRELUDE: &str = r#"#![deny(warnings)]
 #![allow(non_camel_case_types)]
+#![allow(clippy::all)]
 #![no_std]
 
 include!("../../generic.rs");
