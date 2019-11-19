@@ -7,7 +7,6 @@ edition = "2018"
 [dependencies]
 bare-metal = "0.2.5"
 cortex-m = "0.6.1"
-panic-halt = "0.2.0"
 r0 = "0.2.2"
 
 # TODO if the changes in the cortex-m-rt-macros

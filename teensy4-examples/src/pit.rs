@@ -3,6 +3,8 @@
 #![no_std]
 #![no_main]
 
+extern crate panic_halt;
+
 use imxrt1060_pac as pac;
 use pac::interrupt;
 use teensy4_rt::{disable_led, enable_led, entry, interrupt};

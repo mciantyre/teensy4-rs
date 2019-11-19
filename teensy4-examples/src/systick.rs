@@ -3,6 +3,7 @@
 
 #![no_std]
 #![no_main]
+extern crate panic_halt;
 
 use teensy4_rt::{disable_led, enable_led, entry, exception};
 

@@ -7,6 +7,7 @@ edition = "2018"
 [dependencies]
 cortex-m = "0.6.1"
 imxrt1060-pac = { path = "../imxrt1060-pac" }
+panic-halt = "0.2.0"
 teensy4-rt = { path = "../teensy4-rt" }
 
 [[bin]]

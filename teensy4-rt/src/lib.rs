@@ -2,9 +2,6 @@
 
 #![no_std]
 
-// Use the default panic handler from panic_halt.
-extern crate panic_halt;
-
 #[macro_use]
 mod iomuxc;
 
