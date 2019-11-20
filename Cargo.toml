@@ -7,6 +7,10 @@ members = [
     # Examples
     "teensy4-examples",
     ###############
+    # IMXRT1060 HAL
+    ###############
+    "imxrt1060-hal",
+    ###############
     # IMXRT1060 PAC
     ###############
     "imxrt1060-pac",

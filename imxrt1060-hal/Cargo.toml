@@ -1,13 +1,13 @@
 [package]
-name = "imxrt1060-ccm"
+name = "imxrt1060-hal"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-bare-metal = "0.2.5"
 cortex-m = "0.6.1"
-vcell = "0.1.2"
+embedded-hal = "0.2.3"
+imxrt1060-pac = { path = "../imxrt1060-pac" }
 
 [lib]
 bench = false
