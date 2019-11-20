@@ -11,11 +11,18 @@ Status: prototype. We can blink the LED, register exceptions, and register inter
 - A Rust installation. We use the latest, stable Rust compiler. Last tested on Rust 1.39.0. Recommended installation via `rustup`.
 - The `thumbv7-none-eabihf` Rust target, which may be installed via `rustup`:
 
-```
+```bash
 $ rustup target add thumbv7em-none-eabihf
 ```
 
-- The [GNU ARM Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm) for compiling the few C sources we need to bootstrap startup (in `teensy4-rt`). Specifically, we need the C compiler and archiver available on our path to build the runtime crate.
+- [`cargo-binutils`](https://github.com/rust-embedded/cargo-binutils) and the LLVM tools component, installed by `rustup`:
+
+```bash
+$ cargo install cargo-binutils
+
+$ rustup component add llvm-tools-preview
+```
+
 - Optionally, a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli) available on our path. We have a script to rapidly test example programs in the `teensy4-examples`, and it makes use of `teensy_loader_cli`. To load applications onto the Teensy 4, we may also use the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html), which is also available with the Teensyduino add-ons.
 
 ## Getting started
