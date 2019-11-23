@@ -9,6 +9,7 @@ pub use imxrt1060_ccm_analog as ccm_analog;
 pub use imxrt1060_gpio1 as gpio1;
 pub use imxrt1060_gpt1 as gpt1;
 pub use imxrt1060_iomuxc as iomuxc;
+pub use imxrt1060_iomuxc_gpr as iomuxc_gpr;
 pub use imxrt1060_pit as pit;
 
 use core::marker::PhantomData;
@@ -241,26 +242,25 @@ impl Deref for PIT {
 // }
 // #[doc = "IOMUXC_SNVS"]
 // pub mod iomuxc_snvs;
-// #[doc = "IOMUXC_GPR"]
-// pub struct IOMUXC_GPR {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for IOMUXC_GPR {}
-// impl IOMUXC_GPR {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const iomuxc_gpr::RegisterBlock {
-//         0x400a_c000 as *const _
-//     }
-// }
-// impl Deref for IOMUXC_GPR {
-//     type Target = iomuxc_gpr::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*IOMUXC_GPR::ptr() }
-//     }
-// }
-// #[doc = "IOMUXC_GPR"]
-// pub mod iomuxc_gpr;
+#[doc = "IOMUXC_GPR"]
+pub struct IOMUXC_GPR {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for IOMUXC_GPR {}
+impl IOMUXC_GPR {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const iomuxc_gpr::RegisterBlock {
+        0x400a_c000 as *const _
+    }
+}
+impl Deref for IOMUXC_GPR {
+    type Target = iomuxc_gpr::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*IOMUXC_GPR::ptr() }
+    }
+}
+
 // #[doc = "FLEXRAM"]
 // pub struct FLEXRAM {
 //     _marker: PhantomData<*const ()>,
@@ -2193,8 +2193,8 @@ pub struct Peripherals {
     // pub IOMUXC_SNVS_GPR: IOMUXC_SNVS_GPR,
     // #[doc = "IOMUXC_SNVS"]
     // pub IOMUXC_SNVS: IOMUXC_SNVS,
-    // #[doc = "IOMUXC_GPR"]
-    // pub IOMUXC_GPR: IOMUXC_GPR,
+    #[doc = "IOMUXC_GPR"]
+    pub IOMUXC_GPR: IOMUXC_GPR,
     // #[doc = "FLEXRAM"]
     // pub FLEXRAM: FLEXRAM,
     // #[doc = "EWM"]
@@ -2448,9 +2448,9 @@ impl Peripherals {
             // IOMUXC_SNVS: IOMUXC_SNVS {
             //     _marker: PhantomData,
             // },
-            // IOMUXC_GPR: IOMUXC_GPR {
-            //     _marker: PhantomData,
-            // },
+            IOMUXC_GPR: IOMUXC_GPR {
+                _marker: PhantomData,
+            },
             // FLEXRAM: FLEXRAM {
             //     _marker: PhantomData,
             // },
