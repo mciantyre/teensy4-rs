@@ -2,6 +2,9 @@ use imxrt1060_pac as pac;
 
 use core::marker::PhantomData;
 
+pub use pac::GPIO2;
+pub use pac::GPIO7;
+
 #[doc(hidden)]
 pub trait Init {
     fn init(&mut self);
@@ -24,23 +27,25 @@ impl IntoRegisterBlock for pac::GPIO7 {
     }
 }
 
-pub struct Ctl<Mux, Pad> {
-    mux: Mux,
-    pad: Pad,
+pub struct Ctl<'a, Mux, Pad> {
+    mux: &'a Mux,
+    pad: &'a Pad,
 }
 
-impl Init for Ctl<pac::iomuxc::SW_MUX_CTL_PAD_GPIO_B0_03, pac::iomuxc::SW_PAD_CTL_PAD_GPIO_B0_03> {
+impl<'a> Init
+    for Ctl<'a, pac::iomuxc::SW_MUX_CTL_PAD_GPIO_B0_03, pac::iomuxc::SW_PAD_CTL_PAD_GPIO_B0_03>
+{
     fn init(&mut self) {
         self.mux.write(|reg| reg.mux_mode().alt5());
         self.pad.write(|reg| reg.dse().dse_7_r0_7());
     }
 }
 
-impl<Mux, Pad> From<(Mux, Pad)> for Ctl<Mux, Pad>
+impl<'a, Mux, Pad> From<(&'a Mux, &'a Pad)> for Ctl<'a, Mux, Pad>
 where
-    Ctl<Mux, Pad>: Init,
+    Ctl<'a, Mux, Pad>: Init,
 {
-    fn from((mux, pad): (Mux, Pad)) -> Ctl<Mux, Pad> {
+    fn from((mux, pad): (&'a Mux, &'a Pad)) -> Ctl<'a, Mux, Pad> {
         Ctl { mux, pad }
     }
 }
@@ -63,12 +68,12 @@ impl<Mux, Pad, Reg> PinBuilder<Mux, Pad, Reg> {
     }
 }
 
-impl<Mux, Pad, Reg> PinBuilder<Mux, Pad, Reg>
+impl<'a, Mux: 'a, Pad: 'a, Reg> PinBuilder<Mux, Pad, Reg>
 where
-    Ctl<Mux, Pad>: Init,
+    Ctl<'a, Mux, Pad>: Init,
     Reg: IntoRegisterBlock,
 {
-    pub fn build<C: Into<Ctl<Mux, Pad>>>(self, ctl: C) -> Pin<Reg> {
+    pub fn build<C: Into<Ctl<'a, Mux, Pad>>>(self, ctl: C) -> Pin<Reg> {
         let mut ctl = ctl.into();
         ctl.init();
         Pin::new(self.offset)
@@ -82,13 +87,20 @@ pub struct Pin<Reg> {
 
 impl<Reg> Pin<Reg>
 where
-    Reg: IntoRegisterBlock
+    Reg: IntoRegisterBlock,
 {
     fn new(offset: u32) -> Self {
         // TODO this modify could race if there's an interrupt in between the read and
         // writes. Consider an API that could prevent this from happening (accepting a critical section?)
-        unsafe { (*Reg::into()).gdir.modify(|state, reg| reg.bits(offset | state.bits())) };
-        Pin { _reg: PhantomData, offset }
+        unsafe {
+            (*Reg::into())
+                .gdir
+                .modify(|state, reg| reg.bits(offset | state.bits()))
+        };
+        Pin {
+            _reg: PhantomData,
+            offset,
+        }
     }
 
     /// Toggle the internal state of the pin
@@ -108,7 +120,7 @@ where
 
     /// Returns `true` if logically high, else `false` if logically low
     pub fn state(&self) -> bool {
-        unsafe { (*Reg::into()).psr.read().bits() & self.offset > 0}
+        unsafe { (*Reg::into()).psr.read().bits() & self.offset > 0 }
     }
 }
 
@@ -116,7 +128,7 @@ const fn off(off: u32) -> u32 {
     1 << off
 }
 
-pub struct GPIO2 {
+pub struct GPIO2Pins {
     pub io3: PinBuilder<
         pac::iomuxc::SW_MUX_CTL_PAD_GPIO_B0_03,
         pac::iomuxc::SW_PAD_CTL_PAD_GPIO_B0_03,
@@ -124,9 +136,9 @@ pub struct GPIO2 {
     >,
 }
 
-impl GPIO2 {
+impl GPIO2Pins {
     pub(crate) fn new() -> Self {
-        GPIO2 {
+        GPIO2Pins {
             io3: PinBuilder::new(off(3)),
         }
     }
@@ -134,9 +146,9 @@ impl GPIO2 {
 
 impl Pin<pac::GPIO2> {
     /// Promote the pin to a fast GPIO pin
-    /// 
+    ///
     /// The "fast GPIO" bank for GPIO2 is GPIO7.
-    pub fn fast_gpio7(self, gpr: &mut pac::iomuxc_gpr::GPR27) -> Pin<pac::GPIO7> {
+    pub fn fast_gpio7(self, gpr: &pac::iomuxc_gpr::GPR27) -> Pin<pac::GPIO7> {
         unsafe { gpr.modify(|state, reg| reg.bits(self.offset | state.bits())) };
         Pin::new(self.offset)
     }

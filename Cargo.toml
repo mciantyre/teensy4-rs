@@ -4,6 +4,10 @@ members = [
     # TEENSY4 RUNTIME
     #################
     "teensy4-rt",
+    #############
+    # TEENSY4 BSP
+    #############
+    "teensy4-bsp",
     # Examples
     "teensy4-examples",
     ###############
