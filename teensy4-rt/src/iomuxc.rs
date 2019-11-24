@@ -16,12 +16,6 @@ macro_rules! const_assert {
     };
 }
 
-/// Base I/O mux control port
-pub const IMXRT_IOMUXC: u32 = 0x401F_8000;
-
-pub const IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03: u32 = IMXRT_IOMUXC + 0x148;
-pub const IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03: u32 = IMXRT_IOMUXC + 0x338;
-
 /// The macro generates a pointer to a GPR register N. Ensures that we're not
 /// creating invalid GPR registers.
 ///

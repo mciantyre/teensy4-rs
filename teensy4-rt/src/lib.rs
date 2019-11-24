@@ -8,12 +8,10 @@ mod iomuxc;
 mod fault;
 mod fcb;
 mod fpu;
-mod gpio;
 mod nvic;
 mod tcm;
 
 pub use cortex_m_rt_macros::{entry, exception, interrupt};
-pub use gpio::{disable_led, enable_led};
 pub use nvic::exception;
 
 use cortex_m::register;
@@ -59,7 +57,6 @@ pub unsafe extern "C" fn _reset() -> ! {
 
     nvic::init();
     fpu::init();
-    gpio::init();
     cache_init();
 
     extern "Rust" {

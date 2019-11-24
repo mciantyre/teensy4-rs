@@ -8,6 +8,7 @@ edition = "2018"
 cortex-m = "0.6.1"
 imxrt1060-pac = { path = "../imxrt1060-pac" }
 panic-halt = "0.2.0"
+teensy4-bsp = { path = "../teensy4-bsp" }
 teensy4-rt = { path = "../teensy4-rt" }
 
 [[bin]]

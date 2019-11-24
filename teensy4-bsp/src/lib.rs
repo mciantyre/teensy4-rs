@@ -2,10 +2,14 @@
 
 use imxrt1060_hal as hal;
 
+pub use hal::{interrupt, CCM, PIT};
 pub type LED = hal::gpio::Pin<hal::gpio::GPIO7>;
 
 pub struct Peripherals {
     pub led: LED,
+    pub systick: hal::SYST,
+    pub ccm: hal::CCM,
+    pub pit: hal::PIT,
 }
 
 impl Peripherals {
@@ -23,6 +27,9 @@ impl Peripherals {
                 ));
                 pin.fast_gpio7(&p.iomuxc_gpr.gpr27)
             },
+            systick: p.systick,
+            ccm: p.ccm,
+            pit: p.pit,
         }
     }
 }

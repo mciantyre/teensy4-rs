@@ -5,17 +5,18 @@
 #![no_main]
 extern crate panic_halt;
 
-use teensy4_rt::{disable_led, enable_led, entry, exception};
+use teensy4_bsp as bsp;
+use teensy4_rt::{entry, exception};
 
 const LED_PERIOD_MS: u32 = 1_000;
+
+static mut LED: Option<bsp::LED> = None;
 
 #[exception]
 fn SysTick() {
     static mut COUNT: u32 = 0;
-    if LED_PERIOD_MS == *COUNT {
-        enable_led();
-    } else if *COUNT > LED_PERIOD_MS * 2 {
-        disable_led();
+    if *COUNT > LED_PERIOD_MS {
+        unsafe { LED.as_mut().unwrap().toggle() };
         *COUNT = 0;
     }
     *COUNT += 1;
@@ -28,14 +29,15 @@ const SYSTICK_EXT_FREQ: u32 = 100_000;
 
 #[entry]
 fn main() -> ! {
-    let mut cm = cortex_m::Peripherals::take().unwrap();
-    cm.SYST.disable_counter();
-    cm.SYST
+    let mut p = bsp::Peripherals::take().unwrap();
+    unsafe { LED = Some(p.led) };
+    p.systick.disable_counter();
+    p.systick
         .set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
-    cm.SYST.set_reload((SYSTICK_EXT_FREQ / 1000) - 1);
-    cm.SYST.clear_current();
-    cm.SYST.enable_counter();
-    cm.SYST.enable_interrupt();
+    p.systick.set_reload((SYSTICK_EXT_FREQ / 1000) - 1);
+    p.systick.clear_current();
+    p.systick.enable_counter();
+    p.systick.enable_interrupt();
     loop {
         core::sync::atomic::spin_loop_hint();
     }

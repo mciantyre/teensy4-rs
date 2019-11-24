@@ -4,6 +4,8 @@
 # If the teensy_loader_cli is available, we will use it to
 # automatically deploy the program to a connected Teensy4.
 
+set -e
+
 cargo build --release -p teensy4-examples --bin $1 && \
     mkdir -p out && \
     cp target/thumbv7em-none-eabihf/release/$1 out/$1 && \

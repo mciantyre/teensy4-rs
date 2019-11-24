@@ -5,36 +5,32 @@
 
 extern crate panic_halt;
 
-use imxrt1060_pac as pac;
-use pac::interrupt;
-use teensy4_rt::{disable_led, enable_led, entry, interrupt};
+use bsp::interrupt;
+use teensy4_bsp as bsp;
+use teensy4_rt::{entry, interrupt};
+
+static mut LED: Option<bsp::LED> = None;
 
 #[interrupt]
 fn PIT() {
-    static mut ON: bool = false;
-    if !*ON {
-        enable_led();
-    } else {
-        disable_led();
-    }
-    *ON = !*ON;
+    unsafe { LED.as_mut().unwrap().toggle() };
     // Rearm the timer
     unsafe {
-        (*pac::PIT::ptr()).timer[1]
+        (*bsp::PIT::ptr()).timer[1]
             .tflg
             .write(|reg| reg.tif().tif_1());
     }
 }
 
 #[inline(always)]
-fn configure_clocks(ccm: &mut pac::CCM) {
-    ccm.cscmr1.modify(|_, reg: &mut pac::ccm::cscmr1::W| {
+fn configure_clocks(ccm: &mut bsp::CCM) {
+    ccm.cscmr1.modify(|_, reg| {
         reg.perclk_podf()
             .divide_1()
             .perclk_clk_sel()
             .perclk_clk_sel_1()
     });
-    ccm.ccgr1.modify(|_, reg: &mut pac::ccm::ccgr1::W| {
+    ccm.ccgr1.modify(|_, reg| {
         unsafe {
             reg.cg6().bits(0x3);
         } // Enable PIT timers
@@ -50,7 +46,7 @@ const fn ms_to_ticks(ms: u32) -> u32 {
 const BLINK_PERIOD_TICKS: u32 = ms_to_ticks(500);
 
 #[inline(always)]
-fn enable_pit(pit: &mut pac::PIT) {
+fn enable_pit(pit: &mut bsp::PIT) {
     pit.mcr.write(|reg| {
         reg.mdis().mdis_0() // Enable PIT
     });
@@ -66,13 +62,13 @@ fn enable_pit(pit: &mut pac::PIT) {
 
 #[entry]
 fn main() -> ! {
-    disable_led();
-    let mut periphs = pac::Peripherals::take().unwrap();
+    let mut periphs = bsp::Peripherals::take().unwrap();
     unsafe {
-        cortex_m::peripheral::NVIC::unmask(pac::interrupt::PIT);
+        LED = Some(periphs.led);
+        cortex_m::peripheral::NVIC::unmask(bsp::interrupt::PIT);
     }
-    configure_clocks(&mut periphs.CCM);
-    enable_pit(&mut periphs.PIT);
+    configure_clocks(&mut periphs.ccm);
+    enable_pit(&mut periphs.pit);
     loop {
         cortex_m::asm::wfi();
     }
