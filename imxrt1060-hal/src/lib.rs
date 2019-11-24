@@ -2,10 +2,11 @@
 
 use imxrt1060_pac as pac;
 
-pub struct GPIO;
+pub mod gpio;
 
 pub struct Peripherals {
-    pub gpio: GPIO,
+    pub gpio2: gpio::GPIO2,
+    pub iomuxc: pac::IOMUXC,
 }
 
 impl Peripherals {
@@ -15,9 +16,10 @@ impl Peripherals {
         Some(Peripherals::new(p, cp))
     }
 
-    fn new(p: pac::Peripherals, cp: pac::CorePeripherals) -> Self {
+    fn new(p: pac::Peripherals, _cp: pac::CorePeripherals) -> Self {
         Peripherals {
-            gpio: GPIO,
+            gpio2: gpio::GPIO2::new(),
+            iomuxc: p.IOMUXC,
         }
     }
 }
