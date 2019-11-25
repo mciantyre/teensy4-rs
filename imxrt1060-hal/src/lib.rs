@@ -3,14 +3,13 @@
 use imxrt1060_pac as pac;
 
 pub mod gpio;
+pub mod iomuxc;
 
 pub use pac::interrupt;
 pub use pac::{CCM, PIT, SYST};
 
 pub struct Peripherals {
-    pub gpio2: gpio::GPIO2Pins,
-    pub iomuxc: pac::IOMUXC,
-    pub iomuxc_gpr: pac::IOMUXC_GPR,
+    pub iomuxc: iomuxc::IOMUXC,
     pub systick: pac::SYST,
     pub ccm: pac::CCM,
     pub pit: pac::PIT,
@@ -25,9 +24,7 @@ impl Peripherals {
 
     fn new(p: pac::Peripherals, cp: pac::CorePeripherals) -> Self {
         Peripherals {
-            gpio2: gpio::GPIO2Pins::new(),
-            iomuxc: p.IOMUXC,
-            iomuxc_gpr: p.IOMUXC_GPR,
+            iomuxc: iomuxc::IOMUXC::new(p.IOMUXC),
             systick: cp.SYST,
             ccm: p.CCM,
             pit: p.PIT,

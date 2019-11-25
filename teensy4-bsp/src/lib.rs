@@ -3,7 +3,7 @@
 use imxrt1060_hal as hal;
 
 pub use hal::{interrupt, CCM, PIT};
-pub type LED = hal::gpio::Pin<hal::gpio::GPIO7>;
+pub type LED = hal::gpio::IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
 pub struct Peripherals {
     pub led: LED,
@@ -18,14 +18,11 @@ impl Peripherals {
         Some(Peripherals::new(p))
     }
 
-    fn new(p: hal::Peripherals) -> Peripherals {
+    fn new(mut p: hal::Peripherals) -> Peripherals {
         Peripherals {
             led: {
-                let pin = p.gpio2.io3.build((
-                    &p.iomuxc.sw_mux_ctl_pad_gpio_b0_03,
-                    &p.iomuxc.sw_pad_ctl_pad_gpio_b0_03,
-                ));
-                pin.fast_gpio7(&p.iomuxc_gpr.gpr27)
+                let pad = p.iomuxc.gpio_b0_03;
+                hal::gpio::IO03::gpio2(pad).output().fast(&mut p.iomuxc.gpr)
             },
             systick: p.systick,
             ccm: p.ccm,
