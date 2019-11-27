@@ -12,3 +12,6 @@ imxrt1060-pac = { path = "../imxrt1060-pac" }
 [lib]
 bench = false
 test = false
+
+[features]
+default = ["embedded-hal/unproven"] # Allows us to access the new digital pin traits

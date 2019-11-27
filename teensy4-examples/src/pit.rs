@@ -6,6 +6,7 @@
 extern crate panic_halt;
 
 use bsp::interrupt;
+use embedded_hal::digital::v2::ToggleableOutputPin;
 use teensy4_bsp as bsp;
 use teensy4_rt::{entry, interrupt};
 
@@ -13,7 +14,7 @@ static mut LED: Option<bsp::LED> = None;
 
 #[interrupt]
 fn PIT() {
-    unsafe { LED.as_mut().unwrap().toggle() };
+    unsafe { LED.as_mut().unwrap().toggle().unwrap() };
     // Rearm the timer
     unsafe {
         (*bsp::PIT::ptr()).timer[1]

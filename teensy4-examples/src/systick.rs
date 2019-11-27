@@ -5,6 +5,7 @@
 #![no_main]
 extern crate panic_halt;
 
+use embedded_hal::digital::v2::ToggleableOutputPin;
 use teensy4_bsp as bsp;
 use teensy4_rt::{entry, exception};
 
@@ -16,7 +17,7 @@ static mut LED: Option<bsp::LED> = None;
 fn SysTick() {
     static mut COUNT: u32 = 0;
     if *COUNT > LED_PERIOD_MS {
-        unsafe { LED.as_mut().unwrap().toggle() };
+        unsafe { LED.as_mut().unwrap().toggle().unwrap() };
         *COUNT = 0;
     }
     *COUNT += 1;

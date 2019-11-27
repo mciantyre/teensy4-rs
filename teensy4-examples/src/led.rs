@@ -9,11 +9,13 @@ use cortex_m::asm::wfi;
 use teensy4_bsp as bsp;
 use teensy4_rt::entry;
 
+use embedded_hal::digital::v2::OutputPin;
+
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     loop {
-        peripherals.led.high();
+        peripherals.led.set_high().unwrap();
         wfi();
     }
 }

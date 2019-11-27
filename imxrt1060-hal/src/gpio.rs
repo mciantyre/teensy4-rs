@@ -1,3 +1,5 @@
+use embedded_hal::digital::v2::{OutputPin, StatefulOutputPin, ToggleableOutputPin};
+
 /// Denotes that a pin is configured as an input
 pub struct Input;
 /// Denotes that a pin is configured as an output
@@ -39,27 +41,38 @@ macro_rules! _ios_impl {
                 }
             }
 
-            impl<GPIO: IntoRegister> $io<GPIO, Output> {
-                /// Toggle the internal state of the pin
-                pub fn toggle(&mut self) {
-                    unsafe { (*GPIO::into_reg()).dr_toggle.write(|reg| reg.bits(self.offset)) }
+            impl<GPIO: IntoRegister> OutputPin for $io<GPIO, Output> {
+                type Error = core::convert::Infallible; // '!' Not available on stable
+
+                fn set_low(&mut self) -> Result<(), Self::Error> {
+                    unsafe { (*GPIO::into_reg()).dr_clear.write(|reg| reg.bits(self.offset)) };
+                    Ok(())
                 }
 
-                /// Drive the pin logically low. Note: this may not be electrically low
-                pub fn low(&mut self) {
-                    unsafe { (*GPIO::into_reg()).dr_clear.write(|reg| reg.bits(self.offset)) }
-                }
-
-                /// Drive the pin to logical high. Note: this may not be electrically high
-                pub fn high(&mut self) {
-                    unsafe { (*GPIO::into_reg()).dr_set.write(|reg| reg.bits(self.offset)) }
-                }
-
-                /// Returns `true` if logically high, else `false` if logically low
-                pub fn state(&self) -> bool {
-                    unsafe { (*GPIO::into_reg()).psr.read().bits() & self.offset > 0 }
+                fn set_high(&mut self) -> Result<(), Self::Error> {
+                    unsafe { (*GPIO::into_reg()).dr_set.write(|reg| reg.bits(self.offset)) };
+                    Ok(())
                 }
             }
+
+            impl<GPIO: IntoRegister> StatefulOutputPin for $io<GPIO, Output> {
+                fn is_set_high(&self) -> Result<bool, Self::Error> {
+                    Ok(unsafe { (*GPIO::into_reg()).psr.read().bits() & self.offset > 0 })
+                }
+
+                fn is_set_low(&self) -> Result<bool, Self::Error> {
+                    self.is_set_high().map(|res| !res)
+                }
+            }
+
+            impl<GPIO: IntoRegister> ToggleableOutputPin for $io<GPIO, Output> {
+                type Error = core::convert::Infallible;
+                fn toggle(&mut self) -> Result<(), Self::Error> {
+                    unsafe { (*GPIO::into_reg()).dr_toggle.write(|reg| reg.bits(self.offset)) };
+                    Ok(())
+                }
+            }
+
         )+
     };
 }
