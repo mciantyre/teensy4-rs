@@ -83,15 +83,15 @@ macro_rules! _ios_ctor {
 macro_rules! _ios_fast {
     ($($io:ident, $slow:ty, $fast:ty, $gprfn:ident)+) => {
         $(
-            impl $io<$slow, Output> {
-                pub fn fast(self, gpr: &mut $crate::iomuxc::GPR) -> $io<$fast, Output> {
+            impl $io<$slow, Input> {
+                pub fn fast(self, gpr: &mut $crate::iomuxc::GPR) -> $io<$fast, Input> {
                     let reg = gpr.$gprfn();
                     reg.modify(|r, w| unsafe { w.bits(self.offset | r.bits()) });
                     $io {
                         _gpio: core::marker::PhantomData,
                         _dir: core::marker::PhantomData,
                         offset: self.offset
-                    }.output() // sets gdir
+                    }
                 }
             }
         )+

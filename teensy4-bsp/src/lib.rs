@@ -22,7 +22,7 @@ impl Peripherals {
         Peripherals {
             led: {
                 let pad = p.iomuxc.gpio_b0_03;
-                hal::gpio::IO03::gpio2(pad).output().fast(&mut p.iomuxc.gpr)
+                hal::gpio::IO03::gpio2(pad).fast(&mut p.iomuxc.gpr).output()
             },
             systick: p.systick,
             ccm: p.ccm,
