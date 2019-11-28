@@ -1,18 +1,17 @@
 #![no_std]
 
-use imxrt1060_pac as pac;
+pub use imxrt1060_pac as pac;
 
+pub mod ccm;
 pub mod gpio;
 pub mod iomuxc;
-
-pub use pac::interrupt;
-pub use pac::{CCM, PIT, SYST};
+pub mod pit;
 
 pub struct Peripherals {
     pub iomuxc: iomuxc::IOMUXC,
     pub systick: pac::SYST,
-    pub ccm: pac::CCM,
-    pub pit: pac::PIT,
+    pub ccm: ccm::CCM,
+    pub pit: pit::PIT<pit::Unclocked>,
 }
 
 impl Peripherals {
@@ -26,8 +25,8 @@ impl Peripherals {
         Peripherals {
             iomuxc: iomuxc::IOMUXC::new(p.IOMUXC),
             systick: cp.SYST,
-            ccm: p.CCM,
-            pit: p.PIT,
+            ccm: ccm::CCM::new(p.CCM, p.CCM_ANALOG),
+            pit: pit::PIT::new(p.PIT),
         }
     }
 }

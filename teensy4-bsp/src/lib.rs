@@ -1,15 +1,19 @@
 #![no_std]
 
-use imxrt1060_hal as hal;
+pub use imxrt1060_hal as hal;
 
-pub use hal::{interrupt, CCM, PIT};
+pub use hal::pac::interrupt;
 pub type LED = hal::gpio::IO03<hal::gpio::GPIO7, hal::gpio::Output>;
+
+pub use hal::ccm::CCM;
+pub use hal::pac::PIT;
+pub use hal::pac::SYST;
 
 pub struct Peripherals {
     pub led: LED,
-    pub systick: hal::SYST,
-    pub ccm: hal::CCM,
-    pub pit: hal::PIT,
+    pub systick: hal::pac::SYST,
+    pub ccm: hal::ccm::CCM,
+    pub pit: hal::pit::PIT<hal::pit::Unclocked>,
 }
 
 impl Peripherals {
