@@ -35,6 +35,26 @@ fn main() -> ! {
         LED = Some(periphs.led);
         cortex_m::peripheral::NVIC::unmask(bsp::interrupt::PIT);
     }
+
+    periphs.ccm.pll2.set(
+        &mut periphs.ccm.handle,
+        [
+            Some(bsp::hal::ccm::pll2::MHZ_352),
+            Some(bsp::hal::ccm::pll2::MHZ_594),
+            Some(bsp::hal::ccm::pll2::MHZ_396),
+            Some(bsp::hal::ccm::pll2::MHZ_297),
+        ],
+    );
+    periphs.ccm.pll3.set(
+        &mut periphs.ccm.handle,
+        [
+            Some(bsp::hal::ccm::pll3::MHZ_720),
+            Some(bsp::hal::ccm::pll3::MHZ_664),
+            Some(bsp::hal::ccm::pll3::MHZ_508),
+            Some(bsp::hal::ccm::pll3::MHZ_454),
+        ],
+    );
+
     let cfg = periphs.ccm.perclk.configure(
         &mut periphs.ccm.handle,
         bsp::hal::ccm::perclk::PODF::DIVIDE_1,
