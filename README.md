@@ -53,6 +53,19 @@ Note that, as of this writing:
 These crates are guaranteed to build when targeting `thumbv7em-none-eabihf`; we do not support
 any other targets.
 
+To build this with docker, use the following:
+
+```
+$ cd docker
+$ docker build -t rust_teensy . 
+```
+
+Run the docker image with the following. Note that this uses the led as an example. 
+
+```
+$ docker run -it --rm -v $PWD:/build rust_teensy led
+```
+
 ## Project Structure
 
 The project has a model similar to other embedded Rust projects. We have a runtime crate, similar to the `cortex-m-rt` crate, that allows us to write a `main()` function, as well as register interrupts and exception handlers with `#[interrupt]` and `#[exception]` macros, respectively. For concrete examples of what this looks like, check out the examples in the `teensy4-examples` crate. Also check out the [`cortex-m-rt` documentation](https://crates.io/crates/cortex-m-rt) for more information. We also provide peripheral access crates (PAC) that help us interact with the processor registers. The PAC is auto-generate with [`svd2rust`; see the docs](https://docs.rs/svd2rust/0.16.1/svd2rust/) for more information on interacting with registers.
