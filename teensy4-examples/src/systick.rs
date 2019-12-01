@@ -29,6 +29,9 @@ const SYSTICK_EXT_FREQ: u32 = 100_000;
 #[entry]
 fn main() -> ! {
     let mut cm = cortex_m::Peripherals::take().unwrap();
+    unsafe {
+        cortex_m::interrupt::enable();
+    }
     cm.SYST.disable_counter();
     cm.SYST
         .set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
