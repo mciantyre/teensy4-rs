@@ -75,6 +75,9 @@ pub struct Rearm(&'static pac::pit::TIMER);
 impl Rearm {
     #[inline(always)]
     pub fn rearm(&mut self) {
-        self.0.tflg.write(|w| w.tif().tif_1())
+        self.0.tflg.write(|w| w.tif().tif_1());
+        while !self.0.tflg.read().tif().is_tif_1() {
+            core::sync::atomic::spin_loop_hint();
+        }
     }
 }

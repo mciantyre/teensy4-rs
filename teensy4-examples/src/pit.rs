@@ -33,6 +33,7 @@ fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
     unsafe {
         LED = Some(periphs.led);
+        cortex_m::interrupt::enable();
         cortex_m::peripheral::NVIC::unmask(bsp::interrupt::PIT);
     }
 

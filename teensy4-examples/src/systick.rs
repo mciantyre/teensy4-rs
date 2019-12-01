@@ -31,7 +31,10 @@ const SYSTICK_EXT_FREQ: u32 = 100_000;
 #[entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
-    unsafe { LED = Some(p.led) };
+    unsafe {
+        LED = Some(p.led);
+        cortex_m::interrupt::enable();
+    }
     p.systick.disable_counter();
     p.systick
         .set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
