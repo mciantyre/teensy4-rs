@@ -10,8 +10,8 @@ use teensy4_rt::{enable_led, entry};
 
 #[entry]
 fn main() -> ! {
+    enable_led();
     loop {
-        enable_led();
         wfi();
     }
 }

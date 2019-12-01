@@ -20,9 +20,12 @@ fn PIT() {
     *ON = !*ON;
     // Rearm the timer
     unsafe {
-        (*pac::PIT::ptr()).timer[1]
-            .tflg
-            .write(|reg| reg.tif().tif_1());
+        let pit = &*pac::PIT::ptr();
+        pit.timer[1].tflg.write(|reg| reg.tif().tif_1());
+
+        while !pit.timer[1].tflg.read().tif().is_tif_1() {
+            core::sync::atomic::spin_loop_hint();
+        }
     }
 }
 
@@ -69,6 +72,7 @@ fn main() -> ! {
     disable_led();
     let mut periphs = pac::Peripherals::take().unwrap();
     unsafe {
+        cortex_m::interrupt::enable();
         cortex_m::peripheral::NVIC::unmask(pac::interrupt::PIT);
     }
     configure_clocks(&mut periphs.CCM);

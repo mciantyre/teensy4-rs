@@ -4,7 +4,7 @@ use std::io::Write;
 use std::path::PathBuf;
 
 /// Files to watch for changes
-static RERUN_IF_CHANGED: &[&str] = &["build.rs", "memory.x"];
+static RERUN_IF_CHANGED: &[&str] = &["build.rs", "memory.x", "../boot/boot.a"];
 
 static MISSING_LIBBOOT: &str = "Unable to find boot/boot.a! Run 'make' inside the boot directory";
 

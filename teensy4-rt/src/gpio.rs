@@ -33,7 +33,6 @@ pub unsafe fn init() {
         IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03 as *mut u32,
         IOMUXC_PAD_DSE!(7),
     );
-    ptr::write_volatile(IOMUXC_GPR_GPR!(27), 0xFFFF_FFFF);
     let gdir = ptr::read_volatile(GPIO7_GDIR);
     ptr::write_volatile(GPIO7_GDIR, gdir | (1 << 3));
 }
