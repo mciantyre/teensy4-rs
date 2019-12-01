@@ -14,18 +14,8 @@
 #define IOMUXC_GPR_GPR(N) (*(IMXRT_IOMUXC_GPR + (N)))
 
 extern uint32_t __flexram_bank_config;
-extern uint32_t __sbss;
-extern uint32_t __ebss;
-extern uint32_t __stext;
-extern uint32_t __etext;
-extern uint32_t __sitext;
-extern uint32_t __sdata;
-extern uint32_t __edata;
-extern uint32_t __sidata;
-extern uint32_t __estack;
-extern void _start(void);
 
-__attribute__((always_inline)) inline static void
+__attribute__((section(".boot.init_data"))) void
 init_data(uint32_t *sdata, const uint32_t *const edata,
           const uint32_t *sidata) {
   while (sdata < edata) {
@@ -33,28 +23,17 @@ init_data(uint32_t *sdata, const uint32_t *const edata,
   }
 }
 
-__attribute__((always_inline)) inline static void
+__attribute__((section(".boot.zero_bss"))) void
 zero_bss(uint32_t *sbss, const uint32_t *const ebss) {
   while (sbss < ebss) {
     *sbss++ = 0;
   }
 }
 
-__attribute__((section(".boot.reset"), naked)) void _reset(void) {
+__attribute((section(".boot.tcm"))) void
+tcm_init(void) {
   // Initialize TCM regions
   IOMUXC_GPR_GPR(17) = (uint32_t)&__flexram_bank_config;
   IOMUXC_GPR_GPR(16) = 0x00000007;
   IOMUXC_GPR_GPR(14) = 0x00AA0000;
-
-  // Copy text and data into TCM regions
-  init_data(&__stext, &__etext, &__sitext);
-  init_data(&__sdata, &__edata, &__sidata);
-  zero_bss(&__sbss, &__ebss);
-
-  // Reconfigure the stack pointer(s) based on the DTCM / ITCM separation
-  __asm__ volatile("msr MSP, %0" : : "r"((uint32_t)&__estack) :);
-  __asm__ volatile("msr PSP, %0" : : "r"((uint32_t)&__estack) :);
-
-  // Jump into Rust
-  _start();
 }
