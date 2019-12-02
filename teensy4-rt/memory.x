@@ -45,8 +45,7 @@ SECTIONS
         KEEP(*(.boot.ivt));
         KEEP(*(.boot.data));
         KEEP(*(.boot.reset));
-        KEEP(*(.boot.init_data));
-        KEEP(*(.boot.zero_bss));
+        KEEP(*(.boot.start));
         KEEP(*(.boot.tcm));
         KEEP(*(.HardFaultTrampoline));
         KEEP(*(.HardFault.*));
