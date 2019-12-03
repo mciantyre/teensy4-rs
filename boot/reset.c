@@ -46,14 +46,14 @@ __attribute__((section(".boot.reset"), naked)) void _reset(void) {
   IOMUXC_GPR_GPR(16) = 0x00000007;
   IOMUXC_GPR_GPR(14) = 0x00AA0000;
 
+  // Reconfigure the stack pointer(s) based on the DTCM / ITCM separation
+  __asm__ volatile("msr MSP, %0" : : "r"((uint32_t)&__estack) :);
+  __asm__ volatile("msr PSP, %0" : : "r"((uint32_t)&__estack) :);
+
   // Copy text and data into TCM regions
   init_data(&__stext, &__etext, &__sitext);
   init_data(&__sdata, &__edata, &__sidata);
   zero_bss(&__sbss, &__ebss);
-
-  // Reconfigure the stack pointer(s) based on the DTCM / ITCM separation
-  __asm__ volatile("msr MSP, %0" : : "r"((uint32_t)&__estack) :);
-  __asm__ volatile("msr PSP, %0" : : "r"((uint32_t)&__estack) :);
 
   // Jump into Rust
   _start();
