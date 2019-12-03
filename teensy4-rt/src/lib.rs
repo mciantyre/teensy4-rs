@@ -21,7 +21,6 @@ pub use nvic::exception;
 ///
 /// The function is unsafe since it directly modifies registers, and invokes
 /// other functions that do the same.
-#[link_section = ".boot.start"]
 #[no_mangle]
 pub unsafe extern "C" fn _start() -> ! {
     extern "C" {
