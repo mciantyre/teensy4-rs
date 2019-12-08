@@ -11,6 +11,7 @@ use teensy4_usb_sys as usbsys;
 
 pub use hal::pac::interrupt;
 use rt::exception;
+pub use usbsys::serial_write;
 pub type LED = hal::gpio::IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
 pub use hal::ccm::CCM;
@@ -42,11 +43,11 @@ impl Peripherals {
         p.systick.clear_current();
         p.systick.enable_counter();
         p.systick.enable_interrupt();
-        // unsafe {
-        //     usbsys::usb_pll_start();
-        //     usbsys::usb_init();
-        //     cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1);
-        // }
+        unsafe {
+            usbsys::usb_pll_start();
+            usbsys::usb_init();
+            cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1);
+        }
         Peripherals {
             led: {
                 let pad = p.iomuxc.gpio_b0_03;

@@ -28,3 +28,9 @@ name = "systick"
 path = "src/systick.rs"
 test = false
 bench = false
+
+[[bin]]
+name = "usb"
+path = "src/usb.rs"
+test = false
+bench = false
