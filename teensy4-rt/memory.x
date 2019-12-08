@@ -71,15 +71,10 @@ SECTIONS
 
     __sitext = LOADADDR(.text);
 
-    .rodata :
-    {
-        *(.rodata .rodata.*);
-        . = ALIGN(4);
-    } > DTCM AT> FLASH
-
     .data :
     {
         __sdata = .;
+        *(.rodata .rodata.*);
         *(.data .data.*);
         . = ALIGN(16);
         __edata = .;
@@ -111,7 +106,7 @@ SECTIONS
     }
 
     /* The length of flash is required for the boot data */
-    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.rodata) + SIZEOF(.data);
+    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
 
     /* The following are used to compute the FlexRAM banks for ITCM / DTCM */
     _itcm_block_count = (SIZEOF(.text) + 0x7FFE) >> 15;
