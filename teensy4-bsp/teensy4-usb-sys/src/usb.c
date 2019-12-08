@@ -2,10 +2,10 @@
 #define USB_DESC_LIST_DEFINE
 #include "usb_desc.h"
 #include "usb_serial.h"
-#include "core_pins.h" // for delay()
-// #include "avr/pgmspace.h"
 #include <string.h>
 #include "debug/printf.h"
+
+void delay(uint32_t);
 
 //#define LOG_SIZE  20
 //uint32_t transfer_log_head=0;

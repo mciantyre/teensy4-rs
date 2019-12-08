@@ -1,8 +1,6 @@
 static C_SRCS: &[&str] = &[
     "./src/nonstd.c",
     "./src/usb_desc.c",
-    "./src/usb_rawhid.c",
-    "./src/usb_seremu.c",
     "./src/usb_serial.c",
     "./src/usb_startup.c",
     "./src/usb.c",
