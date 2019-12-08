@@ -5,7 +5,7 @@
 
 #![no_std]
 
-mod log;
+pub mod log;
 
 pub use hal::pac::interrupt;
 pub use imxrt1060_hal as hal;

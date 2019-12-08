@@ -13,7 +13,8 @@ use embedded_hal::digital::v2::ToggleableOutputPin;
 #[rt::entry]
 fn main() -> ! {
     let p = bsp::Peripherals::take().unwrap();
-    p.log.init(); // Initialize logging
+    // Initialize logging with the default settings
+    p.log.init(Default::default());
     let mut led = p.led;
     loop {
         bsp::delay(1000);
