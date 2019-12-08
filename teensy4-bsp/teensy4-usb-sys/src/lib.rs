@@ -12,10 +12,14 @@ extern "C" {
     pub fn isr();
 
     fn usb_serial_write(buffer: *const u8, size: u32) -> i32;
+
+    /// Flush the serial buffer
+    pub fn usb_serial_flush_output();
 }
 
-pub fn serial_write(buffer: &[u8]) {
+pub fn serial_write<B: AsRef<[u8]>>(buffer: &B) {
     unsafe {
+        let buffer = buffer.as_ref();
         usb_serial_write(buffer.as_ptr(), buffer.len() as u32);
     }
 }

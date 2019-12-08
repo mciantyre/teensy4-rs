@@ -13,10 +13,15 @@ use embedded_hal::digital::v2::ToggleableOutputPin;
 #[rt::entry]
 fn main() -> ! {
     let p = bsp::Peripherals::take().unwrap();
+    p.log.init(); // Initialize logging
     let mut led = p.led;
     loop {
         bsp::delay(1000);
-        bsp::serial_write(b"hello world\r\n");
+        log::error!("Something terrible happened!");
+        log::warn!("Something happened, but we fixed it");
+        log::info!("It's 31'C outside");
+        log::debug!("Sleeping for 1 second...");
+        log::trace!("{} + {} = {}", 3, 2, 3 + 2);
         led.toggle().unwrap();
     }
 }

@@ -5,13 +5,12 @@
 
 #![no_std]
 
-pub use imxrt1060_hal as hal;
-pub use teensy4_rt as rt;
-use teensy4_usb_sys as usbsys;
+mod log;
 
 pub use hal::pac::interrupt;
-use rt::exception;
-pub use usbsys::serial_write;
+pub use imxrt1060_hal as hal;
+pub use teensy4_rt as rt;
+pub use teensy4_usb_sys::serial_write;
 pub type LED = hal::gpio::IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
 pub use hal::ccm::CCM;
@@ -22,6 +21,7 @@ pub struct Peripherals {
     pub led: LED,
     pub ccm: hal::ccm::CCM,
     pub pit: hal::pit::PIT<hal::pit::Unclocked>,
+    pub log: log::Logging,
 }
 
 // See Section 12.3.2.1 of the reference manual. The note
@@ -43,11 +43,6 @@ impl Peripherals {
         p.systick.clear_current();
         p.systick.enable_counter();
         p.systick.enable_interrupt();
-        unsafe {
-            usbsys::usb_pll_start();
-            usbsys::usb_init();
-            cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1);
-        }
         Peripherals {
             led: {
                 let pad = p.iomuxc.gpio_b0_03;
@@ -55,12 +50,10 @@ impl Peripherals {
             },
             ccm: p.ccm,
             pit: p.pit,
+            log: log::Logging::new(),
         }
     }
 }
-
-#[no_mangle]
-static mut systick_millis_count: u32 = 0;
 
 // /// TODO(mciantyre) Not this...
 #[no_mangle]
@@ -68,29 +61,33 @@ pub extern "C" fn delay(millis: u32) {
     if 0 == millis {
         return;
     }
-    let start = unsafe { core::ptr::read_volatile(&systick_millis_count) };
+    let start = systick::read();
     let target = start + millis;
     loop {
-        let count = unsafe { core::ptr::read_volatile(&systick_millis_count) };
+        let count = systick::read();
         if count >= target {
             return;
         }
     }
 }
 
-#[rt::interrupt]
-fn USB_OTG1() {
-    unsafe {
-        usbsys::isr();
-    }
-}
+mod systick {
+    use teensy4_rt::exception;
 
-#[rt::exception]
-fn SysTick() {
-    unsafe {
-        let ms = core::ptr::read_volatile(&systick_millis_count);
-        let ms = ms.wrapping_add(1);
-        core::ptr::write_volatile(&mut systick_millis_count, ms);
+    #[no_mangle]
+    static mut systick_millis_count: u32 = 0;
+
+    #[exception]
+    fn SysTick() {
+        unsafe {
+            let ms = core::ptr::read_volatile(&systick_millis_count);
+            let ms = ms.wrapping_add(1);
+            core::ptr::write_volatile(&mut systick_millis_count, ms);
+        }
+    }
+
+    pub fn read() -> u32 {
+        unsafe { core::ptr::read_volatile(&systick_millis_count) }
     }
 }
 

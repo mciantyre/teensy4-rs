@@ -8,6 +8,7 @@ edition = "2018"
 cortex-m = "0.6.1"
 embedded-hal = "0.2.3"
 imxrt1060-pac = { path = "../imxrt1060-pac" }
+log = { version = "0.4.8", features = ["release_max_level_info"] }
 panic-halt = "0.2.0"
 teensy4-bsp = { path = "../teensy4-bsp" }
 
