@@ -10,7 +10,6 @@ embedded-hal = "0.2.3"
 imxrt1060-pac = { path = "../imxrt1060-pac" }
 panic-halt = "0.2.0"
 teensy4-bsp = { path = "../teensy4-bsp" }
-teensy4-rt = { path = "../teensy4-rt" }
 
 [[bin]]
 name = "led"

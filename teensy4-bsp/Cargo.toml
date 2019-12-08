@@ -5,7 +5,10 @@ authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+cortex-m = "0.6"
 imxrt1060-hal = { path = "../imxrt1060-hal" }
+teensy4-usb-sys = { path = "teensy4-usb-sys" }
+teensy4-rt = { path = "../teensy4-rt" }
 
 [lib]
 bench = false

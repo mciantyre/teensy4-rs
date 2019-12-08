@@ -8,6 +8,7 @@ members = [
     # TEENSY4 BSP
     #############
     "teensy4-bsp",
+    "teensy4-bsp/teensy4-usb-sys",
     # Examples
     "teensy4-examples",
     ###############

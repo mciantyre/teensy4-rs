@@ -6,9 +6,9 @@
 extern crate panic_halt;
 
 use bsp::interrupt;
+use bsp::rt::{entry, interrupt};
 use embedded_hal::digital::v2::ToggleableOutputPin;
 use teensy4_bsp as bsp;
-use teensy4_rt::{entry, interrupt};
 
 static mut LED: Option<bsp::LED> = None;
 static mut REARM: Option<bsp::hal::pit::Rearm> = None;

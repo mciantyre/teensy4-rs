@@ -55,9 +55,11 @@ SECTIONS
         KEEP(*(.vector_table));
         KEEP(*(.vector_table.exceptions));
         KEEP(*(.vector_table.interrupts));
+        *(.flashmem); /* Compatibility with USB stack */
+        *(.progmem); /* Compat with USB stack */
         . = ALIGN(16);
     } > FLASH
-    
+
     .text :
     {
         __stext = .;
@@ -94,6 +96,12 @@ SECTIONS
         . = . + 32; /* MPU TRAP TODO */
         __ebss = .;
     } > DTCM
+
+    .dma (NOLOAD) :
+    {
+        *(.dmabuffers); /* Compat with USB */
+        . = ALIGN(16);
+    } > RAM
 
     /DISCARD/ :
     {

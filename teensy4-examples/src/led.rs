@@ -5,9 +5,9 @@
 
 extern crate panic_halt;
 
+use bsp::rt::entry;
 use cortex_m::asm::wfi;
 use teensy4_bsp as bsp;
-use teensy4_rt::entry;
 
 use embedded_hal::digital::v2::OutputPin;
 
