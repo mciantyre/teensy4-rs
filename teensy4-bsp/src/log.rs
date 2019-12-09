@@ -1,7 +1,25 @@
+//! A [`log`]() implementation for logging over USB
+//!
+//! This is `Serial.println()` in Rust. Use the macros of the
+//! [`log`] crate to write data over USB. Messages can be read
+//! back using `screen` or `PuTTY`.
+//!
+//! [`log`]: https://crates.io/crates/log
+
 use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
 use core::fmt;
 use teensy4_usb_sys as usbsys;
 
+/// Logging configuration
+///
+/// Allows a user to specify certain configurations of the logging
+/// system. By default, the max log level is the log level set at
+/// compile time. See the [compile time filters](https://docs.rs/log/0.4.8/log/#compile-time-filters)
+/// section for more information. We also enable logging for all targets.
+/// Set the `filters` collection to specify log targets of interest.
+///
+/// If the default configuration is good for you, use `Default::default()`
+/// as the argument to `init()`.
 pub struct Config {
     /// The max log level
     ///
@@ -26,6 +44,10 @@ impl Default for Config {
     }
 }
 
+/// A handle that enables logging
+///
+/// Calling `init()` will initialize the USB stack and enable the USB interrupt.
+/// Once initialized, messages will be written over USB.
 pub struct Logging(&'static mut Logger);
 
 impl Logging {
@@ -34,8 +56,8 @@ impl Logging {
     /// To select the default logger behavior, specify `Default::default()` as the
     /// argument for `config`.
     ///
-    /// This may only be called once, as enforced by self-by-value.
-    /// If this is not called, we do not initialize the logger.
+    /// This may only be called once. If this is not called, we do not initialize the logger,
+    /// and log messages will not be written to the USB host.
     pub fn init(self, config: Config) {
         self.0.enabled = true;
         self.0.filters = config.filters;
@@ -113,10 +135,10 @@ impl ::log::Log for Logger {
             // Stack space for writing
             let mut buffer = [0; 256];
             let mut cursor = Cursor::new(&mut buffer);
-            write!(&mut cursor, "[{} {}]: ", record.level(), record.target()).expect("infallibe");
+            write!(&mut cursor, "[{} {}]: ", record.level(), record.target()).expect("infallible");
             usbsys::serial_write(&cursor);
             cursor.clear();
-            write!(&mut cursor, "{}\r\n", record.args()).expect("infallibe");
+            write!(&mut cursor, "{}\r\n", record.args()).expect("infallible");
             usbsys::serial_write(&cursor);
             cursor.clear();
         }
