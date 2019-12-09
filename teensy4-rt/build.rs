@@ -27,6 +27,7 @@ static CFLAGS: &[&str] = &[
     "-mthumb",
     "-mfloat-abi=hard",
     "-mfpu=fpv5-d16",
+    "-std=gnu11",
 ];
 
 /// Files to watch for changes
