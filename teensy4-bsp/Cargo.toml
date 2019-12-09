@@ -1,0 +1,16 @@
+[package]
+name = "teensy4-bsp"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+cortex-m = "0.6"
+imxrt1060-hal = { path = "../imxrt1060-hal" }
+log = "0.4.8"
+teensy4-usb-sys = { path = "teensy4-usb-sys" }
+teensy4-rt = { path = "../teensy4-rt" }
+
+[lib]
+bench = false
+test = false

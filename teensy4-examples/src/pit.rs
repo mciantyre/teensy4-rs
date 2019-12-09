@@ -5,44 +5,20 @@
 
 extern crate panic_halt;
 
-use imxrt1060_pac as pac;
-use pac::interrupt;
-use teensy4_rt::{disable_led, enable_led, entry, interrupt};
+use bsp::interrupt;
+use bsp::rt::{entry, interrupt};
+use embedded_hal::digital::v2::ToggleableOutputPin;
+use teensy4_bsp as bsp;
+
+static mut LED: Option<bsp::LED> = None;
+static mut REARM: Option<bsp::hal::pit::Rearm> = None;
 
 #[interrupt]
 fn PIT() {
-    static mut ON: bool = false;
-    if !*ON {
-        enable_led();
-    } else {
-        disable_led();
-    }
-    *ON = !*ON;
-    // Rearm the timer
     unsafe {
-        let pit = &*pac::PIT::ptr();
-        pit.timer[1].tflg.write(|reg| reg.tif().tif_1());
-
-        while !pit.timer[1].tflg.read().tif().is_tif_1() {
-            core::sync::atomic::spin_loop_hint();
-        }
+        LED.as_mut().unwrap().toggle().unwrap();
+        REARM.as_mut().unwrap().rearm();
     }
-}
-
-#[inline(always)]
-fn configure_clocks(ccm: &mut pac::CCM) {
-    ccm.cscmr1.modify(|_, reg: &mut pac::ccm::cscmr1::W| {
-        reg.perclk_podf()
-            .divide_1()
-            .perclk_clk_sel()
-            .perclk_clk_sel_1()
-    });
-    ccm.ccgr1.modify(|_, reg: &mut pac::ccm::ccgr1::W| {
-        unsafe {
-            reg.cg6().bits(0x3);
-        } // Enable PIT timers
-        reg
-    })
 }
 
 const fn ms_to_ticks(ms: u32) -> u32 {
@@ -52,31 +28,45 @@ const fn ms_to_ticks(ms: u32) -> u32 {
 }
 const BLINK_PERIOD_TICKS: u32 = ms_to_ticks(500);
 
-#[inline(always)]
-fn enable_pit(pit: &mut pac::PIT) {
-    pit.mcr.write(|reg| {
-        reg.mdis().mdis_0() // Enable PIT
-    });
-    pit.timer[1].ldval.write(|reg| {
-        unsafe {
-            reg.tsv().bits(BLINK_PERIOD_TICKS);
-        }
-        reg
-    });
-    pit.timer[1].tctrl.write(|reg| reg.tie().tie_1());
-    pit.timer[1].tctrl.modify(|_, reg| reg.ten().ten_1());
-}
-
 #[entry]
 fn main() -> ! {
-    disable_led();
-    let mut periphs = pac::Peripherals::take().unwrap();
+    let mut periphs = bsp::Peripherals::take().unwrap();
     unsafe {
+        LED = Some(periphs.led);
         cortex_m::interrupt::enable();
-        cortex_m::peripheral::NVIC::unmask(pac::interrupt::PIT);
+        cortex_m::peripheral::NVIC::unmask(bsp::interrupt::PIT);
     }
-    configure_clocks(&mut periphs.CCM);
-    enable_pit(&mut periphs.PIT);
+
+    periphs.ccm.pll2.set(
+        &mut periphs.ccm.handle,
+        [
+            Some(bsp::hal::ccm::pll2::MHZ_352),
+            Some(bsp::hal::ccm::pll2::MHZ_594),
+            Some(bsp::hal::ccm::pll2::MHZ_396),
+            Some(bsp::hal::ccm::pll2::MHZ_297),
+        ],
+    );
+    periphs.ccm.pll3.set(
+        &mut periphs.ccm.handle,
+        [
+            Some(bsp::hal::ccm::pll3::MHZ_720),
+            Some(bsp::hal::ccm::pll3::MHZ_664),
+            Some(bsp::hal::ccm::pll3::MHZ_508),
+            Some(bsp::hal::ccm::pll3::MHZ_454),
+        ],
+    );
+
+    let cfg = periphs.ccm.perclk.configure(
+        &mut periphs.ccm.handle,
+        bsp::hal::ccm::perclk::PODF::DIVIDE_1,
+        bsp::hal::ccm::perclk::CLKSEL::PERCLK_CLK_SEL_1,
+    );
+
+    let mut pit = periphs.pit.clock(cfg);
+    let (mut timer, rearm) = pit.timer::<bsp::hal::pit::T1>();
+    unsafe { REARM = Some(rearm) };
+    timer.load(BLINK_PERIOD_TICKS).enable();
+
     loop {
         cortex_m::asm::wfi();
     }
