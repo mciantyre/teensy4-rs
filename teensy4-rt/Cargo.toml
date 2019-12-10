@@ -8,7 +8,7 @@ edition = "2018"
 # crate are accepted upstream, use the normal
 # dependency.
 [dependencies.cortex-m-rt-macros]
-git = "https://github.com/mciantyre/cortex-m-rt.git"
+git = "https://github.com/rust-embedded/cortex-m-rt.git"
 
 [build-dependencies]
 cc = "1.0.47"
