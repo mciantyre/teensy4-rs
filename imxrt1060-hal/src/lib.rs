@@ -23,7 +23,7 @@ pub struct Peripherals {
     pub iomuxc: iomuxc::IOMUXC,
     pub systick: pac::SYST,
     pub ccm: ccm::CCM,
-    pub pit: pit::PIT<pit::Unclocked>,
+    pub pit: pit::UnclockedPIT,
 }
 
 impl Peripherals {
@@ -38,7 +38,7 @@ impl Peripherals {
             iomuxc: iomuxc::IOMUXC::new(p.IOMUXC),
             systick: cp.SYST,
             ccm: ccm::CCM::new(p.CCM, p.CCM_ANALOG),
-            pit: pit::PIT::new(p.PIT),
+            pit: pit::UnclockedPIT::new(p.PIT),
         }
     }
 }
