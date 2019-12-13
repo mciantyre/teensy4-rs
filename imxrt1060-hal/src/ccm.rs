@@ -48,7 +48,6 @@ pub mod perclk {
             Multiplexer
         }
 
-        #[inline(always)] // TODO why does this need to be inlined?
         pub fn configure(self, h: &mut Handle, podf: PODF, clksel: CLKSEL) -> Configured {
             h.base.cscmr1.modify(|_, w| {
                 w.perclk_podf()

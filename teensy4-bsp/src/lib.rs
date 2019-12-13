@@ -63,7 +63,7 @@ pub struct Peripherals {
     /// Clock control module (forwarded from the HAL)
     pub ccm: hal::ccm::CCM,
     /// PIT timers (forwarded from the HAL)
-    pub pit: hal::pit::PIT<hal::pit::Unclocked>,
+    pub pit: hal::pit::UnclockedPIT,
     /// The USB logger
     pub log: log::Logging,
 }
