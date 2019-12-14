@@ -204,11 +204,17 @@ pub mod pll2 {
     pub const MHZ_271: Frequency = Frequency(35);
 }
 
+use core::convert::TryFrom;
+pub trait TicksRepr: TryFrom<u64> {}
+
+impl TicksRepr for u32 {}
+impl TicksRepr for u64 {}
+
 /// An opaque duration representing the number of clock ticks
 ///
 /// See the `ticks` function to derive a `Ticks` value.
 #[derive(Clone, Copy)]
-pub struct Ticks(pub(crate) u32);
+pub struct Ticks<R: TicksRepr>(pub(crate) R);
 
 /// Possible errors that could result during a computation of `ticks`
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -225,13 +231,16 @@ pub enum TicksError {
 /// the clock frequency and clock divider. If there is no divider, use `Divider::default()`
 /// to specify an unused divider. Returns `Ok(ticks)` when the computation of
 /// clock ticks succeeds, or an error.
-pub fn ticks(dur: Duration, freq: Frequency, div: Divider) -> Result<Ticks, TicksError> {
+pub fn ticks<R: TicksRepr>(
+    dur: Duration,
+    freq: Frequency,
+    div: Divider,
+) -> Result<Ticks<R>, TicksError> {
     // Ticks computed as
     //
     //  ticks = (duration / clock_period) - 1
     //
     // where `clock_period` is the effective clock period: `freq / div`
-    use core::convert::TryFrom;
     let delay_ns = u64::try_from(dur.as_nanos()).map_err(|_| TicksError::DurationOverflow)?;
     let effective_freq = freq
         .0
@@ -244,7 +253,7 @@ pub fn ticks(dur: Duration, freq: Frequency, div: Divider) -> Result<Ticks, Tick
     delay_ns
         .checked_div(clock_period_ns)
         .and_then(|ticks| ticks.checked_sub(1))
-        .and_then(|ticks| u32::try_from(ticks).ok())
+        .and_then(|ticks| R::try_from(ticks).ok())
         .map(Ticks)
         .ok_or(TicksError::TicksOverflow)
 }
