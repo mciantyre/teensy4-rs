@@ -6,6 +6,7 @@ pub use imxrt1060_core::*;
 // Re-export peripherals
 pub use imxrt1060_ccm as ccm;
 pub use imxrt1060_ccm_analog as ccm_analog;
+pub use imxrt1060_dcdc as dcdc;
 pub use imxrt1060_gpio1 as gpio1;
 pub use imxrt1060_gpt1 as gpt1;
 pub use imxrt1060_iomuxc as iomuxc;
@@ -89,26 +90,25 @@ use core::ops::Deref;
 //         unsafe { &*AIPSTZ4::ptr() }
 //     }
 // }
-// #[doc = "DCDC"]
-// pub struct DCDC {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for DCDC {}
-// impl DCDC {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const dcdc::RegisterBlock {
-//         0x4008_0000 as *const _
-//     }
-// }
-// impl Deref for DCDC {
-//     type Target = dcdc::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*DCDC::ptr() }
-//     }
-// }
-// #[doc = "DCDC"]
-// pub mod dcdc;
+#[doc = "DCDC"]
+pub struct DCDC {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for DCDC {}
+impl DCDC {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const dcdc::RegisterBlock {
+        0x4008_0000 as *const _
+    }
+}
+impl Deref for DCDC {
+    type Target = dcdc::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*DCDC::ptr() }
+    }
+}
+
 #[doc = "PIT"]
 pub struct PIT {
     _marker: PhantomData<*const ()>,
@@ -2177,8 +2177,8 @@ pub struct Peripherals {
     // pub AIPSTZ3: AIPSTZ3,
     // #[doc = "AIPSTZ4"]
     // pub AIPSTZ4: AIPSTZ4,
-    // #[doc = "DCDC"]
-    // pub DCDC: DCDC,
+    #[doc = "DCDC"]
+    pub DCDC: DCDC,
     #[doc = "PIT"]
     pub PIT: PIT,
     // #[doc = "CMP1"]
@@ -2424,9 +2424,9 @@ impl Peripherals {
             // AIPSTZ4: AIPSTZ4 {
             //     _marker: PhantomData,
             // },
-            // DCDC: DCDC {
-            //     _marker: PhantomData,
-            // },
+            DCDC: DCDC {
+                _marker: PhantomData,
+            },
             PIT: PIT {
                 _marker: PhantomData,
             },

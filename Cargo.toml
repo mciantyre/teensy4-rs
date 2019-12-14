@@ -23,6 +23,7 @@ members = [
     # IMXRT1060 Peripherals
     "imxrt1060-pac/imxrt1060-ccm",
     "imxrt1060-pac/imxrt1060-ccm-analog",
+    "imxrt1060-pac/imxrt1060-dcdc",
     "imxrt1060-pac/imxrt1060-gpio1",
     "imxrt1060-pac/imxrt1060-gpt1",
     "imxrt1060-pac/imxrt1060-iomuxc",
