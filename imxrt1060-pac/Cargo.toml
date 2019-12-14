@@ -10,6 +10,7 @@ imxrt1060-core = { path = "imxrt1060-core" }
 # Peripherals
 imxrt1060-ccm = { path = "imxrt1060-ccm" }
 imxrt1060-ccm-analog = { path = "imxrt1060-ccm-analog" }
+imxrt1060-dcdc = { path = "imxrt1060-dcdc" }
 imxrt1060-gpio1 = { path = "imxrt1060-gpio1" }
 imxrt1060-gpt1 = { path = "imxrt1060-gpt1" }
 imxrt1060-iomuxc = { path = "imxrt1060-iomuxc" }
