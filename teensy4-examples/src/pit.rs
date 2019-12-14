@@ -34,7 +34,7 @@ fn main() -> ! {
     let cfg = periphs.ccm.perclk.configure(
         &mut periphs.ccm.handle,
         bsp::hal::ccm::perclk::PODF::DIVIDE_3,
-        bsp::hal::ccm::perclk::CLKSEL::PERCLK_CLK_SEL_1,
+        bsp::hal::ccm::perclk::CLKSEL::OSC,
     );
 
     let (_, _, timer2, timer3) = periphs.pit.clock(cfg);

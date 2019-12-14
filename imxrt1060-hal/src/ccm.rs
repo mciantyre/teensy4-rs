@@ -38,7 +38,22 @@ pub mod perclk {
     use super::{pac, Divider, Frequency, Handle};
 
     pub type PODF = pac::ccm::cscmr1::PERCLK_PODF_A;
-    pub type CLKSEL = pac::ccm::cscmr1::PERCLK_CLK_SEL_A;
+    use pac::ccm::cscmr1::PERCLK_CLK_SEL_A;
+
+    #[derive(Clone, Copy, PartialEq, Eq, Debug)]
+    pub enum CLKSEL {
+        /// 24MHz oscillator
+        OSC,
+        // TODO IPG
+    }
+
+    impl From<CLKSEL> for PERCLK_CLK_SEL_A {
+        fn from(sel: CLKSEL) -> Self {
+            match sel {
+                CLKSEL::OSC => PERCLK_CLK_SEL_A::PERCLK_CLK_SEL_1,
+            }
+        }
+    }
 
     pub struct Multiplexer;
     pub struct Configured<'a> {
@@ -57,7 +72,7 @@ pub mod perclk {
                 w.perclk_podf()
                     .variant(podf)
                     .perclk_clk_sel()
-                    .variant(clksel)
+                    .variant(From::from(clksel))
             });
             Configured {
                 handle,
@@ -82,9 +97,7 @@ pub mod perclk {
         fn from(clksel: CLKSEL) -> Frequency {
             match clksel {
                 // 24MHz oscillator
-                CLKSEL::PERCLK_CLK_SEL_1 => Frequency(24_000_000),
-                // TODO figure out IPG clock speed
-                CLKSEL::PERCLK_CLK_SEL_0 => Frequency(1),
+                CLKSEL::OSC => Frequency(24_000_000),
             }
         }
     }
