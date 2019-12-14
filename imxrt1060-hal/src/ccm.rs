@@ -1,5 +1,6 @@
 //! Clock Configuration Module (CCM)
 
+use core::time::Duration;
 use imxrt1060_pac as pac;
 
 pub struct Handle {
@@ -34,28 +35,63 @@ impl CCM {
 }
 
 pub mod perclk {
-    use super::pac;
-    use super::Handle;
+    use super::{pac, Divider, Frequency, Handle};
 
     pub type PODF = pac::ccm::cscmr1::PERCLK_PODF_A;
     pub type CLKSEL = pac::ccm::cscmr1::PERCLK_CLK_SEL_A;
 
     pub struct Multiplexer;
-    pub struct Configured<'a>(pub(crate) &'a mut Handle);
+    pub struct Configured<'a> {
+        handle: &'a mut Handle,
+        divider: Divider,
+        clock_hz: Frequency,
+    }
 
     impl Multiplexer {
         pub(super) fn new() -> Self {
             Multiplexer
         }
 
-        pub fn configure(self, h: &mut Handle, podf: PODF, clksel: CLKSEL) -> Configured {
-            h.base.cscmr1.modify(|_, w| {
+        pub fn configure(self, handle: &mut Handle, podf: PODF, clksel: CLKSEL) -> Configured {
+            handle.base.cscmr1.modify(|_, w| {
                 w.perclk_podf()
                     .variant(podf)
                     .perclk_clk_sel()
                     .variant(clksel)
             });
-            Configured(h)
+            Configured {
+                handle,
+                divider: Divider::from(podf),
+                clock_hz: Frequency::from(clksel),
+            }
+        }
+    }
+
+    impl<'a> Configured<'a> {
+        pub(crate) fn enable(self) -> (Frequency, Divider) {
+            self.handle
+                .base
+                .ccgr1
+                // Safety: CG6 is two bits wide
+                .modify(|_, w| unsafe { w.cg6().bits(0x3) });
+            (self.clock_hz, self.divider)
+        }
+    }
+
+    impl From<CLKSEL> for Frequency {
+        fn from(clksel: CLKSEL) -> Frequency {
+            match clksel {
+                // 24MHz oscillator
+                CLKSEL::PERCLK_CLK_SEL_1 => Frequency(24_000_000),
+                // TODO figure out IPG clock speed
+                CLKSEL::PERCLK_CLK_SEL_0 => Frequency(1),
+            }
+        }
+    }
+
+    impl From<PODF> for Divider {
+        fn from(podf: PODF) -> Divider {
+            Divider((u8::from(podf) + 1) as u32)
         }
     }
 }
@@ -70,8 +106,7 @@ macro_rules! pfd {
                 PFD
             }
 
-            #[inline(always)]
-            pub fn set(self, handle: &mut Handle, pfds: [Option<Frequency>; 4]) {
+            pub fn set(&mut self, handle: &mut Handle, pfds: [Option<Frequency>; 4]) {
                 handle.analog.$setter.write(|w| {
                     w.pfd0_clkgate()
                         .bit(pfds[0].is_some())
@@ -83,6 +118,9 @@ macro_rules! pfd {
                         .bit(pfds[3].is_some())
                 });
 
+                // Safety: PDFx_FRAC is 6 bits wide. By the implementations
+                // of the `Frequency(..)` newtypes, the wrapped values will
+                // never exceed a 6 bit value.
                 handle.analog.$value.write(|w| unsafe {
                     if let Some(bits) = &pfds[0] {
                         w.pfd0_frac().bits(bits.0);
@@ -164,4 +202,63 @@ pub mod pll2 {
     pub const MHZ_288: Frequency = Frequency(33);
     pub const MHZ_279: Frequency = Frequency(34);
     pub const MHZ_271: Frequency = Frequency(35);
+}
+
+/// An opaque duration representing the number of clock ticks
+///
+/// See the `ticks` function to derive a `Ticks` value.
+#[derive(Clone, Copy)]
+pub struct Ticks(pub(crate) u32);
+
+/// Possible errors that could result during a computation of `ticks`
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum TicksError {
+    /// The duration cannot be expressed in a `u64`.
+    DurationOverflow,
+    /// The number of ticks cannot be expressed in a `u32`
+    TicksOverflow,
+    /// Computation would divide by zero
+    DivideByZero,
+}
+
+/// Computes the number of clock ticks that span the provide duration, given
+/// the clock frequency and clock divider. If there is no divider, use `Divider::default()`
+/// to specify an unused divider. Returns `Ok(ticks)` when the computation of
+/// clock ticks succeeds, or an error.
+pub fn ticks(dur: Duration, freq: Frequency, div: Divider) -> Result<Ticks, TicksError> {
+    // Ticks computed as
+    //
+    //  ticks = (duration / clock_period) - 1
+    //
+    // where `clock_period` is the effective clock period: `freq / div`
+    use core::convert::TryFrom;
+    let delay_ns = u64::try_from(dur.as_nanos()).map_err(|_| TicksError::DurationOverflow)?;
+    let effective_freq = freq
+        .0
+        .checked_div(div.0)
+        .ok_or(TicksError::DurationOverflow)?;
+    let clock_period_ns = 1_000_000_000u32
+        .checked_div(effective_freq)
+        .map(u64::from)
+        .ok_or(TicksError::DivideByZero)?;
+    delay_ns
+        .checked_div(clock_period_ns)
+        .and_then(|ticks| ticks.checked_sub(1))
+        .and_then(|ticks| u32::try_from(ticks).ok())
+        .map(Ticks)
+        .ok_or(TicksError::TicksOverflow)
+}
+
+/// An opaque value representing a clock frequency
+#[derive(Clone, Copy)]
+pub struct Frequency(u32);
+
+/// An opaque value representing a clock phase divider
+#[derive(Clone, Copy)]
+pub struct Divider(u32);
+
+impl Default for Divider {
+    fn default() -> Divider {
+        Divider(1)
+    }
 }
