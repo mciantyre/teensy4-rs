@@ -37,12 +37,13 @@ fn main() -> ! {
         bsp::hal::ccm::perclk::CLKSEL::PERCLK_CLK_SEL_1,
     );
 
-    let [_, _, _, mut timer3] = periphs.pit.clock(cfg);
+    let (_, _, timer2, timer3) = periphs.pit.clock(cfg);
+    let mut timer = bsp::hal::pit::chain(timer2, timer3);
     let mut led = periphs.led;
 
-    timer3.start(core::time::Duration::from_millis(125));
+    timer.start(core::time::Duration::from_millis(250));
     loop {
-        nb::block!(timer3.wait()).unwrap();
+        nb::block!(timer.wait()).unwrap();
         led.toggle().unwrap();
     }
 }
