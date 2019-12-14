@@ -1,6 +1,6 @@
 //! Periodic Interrupt Timer (PIT)
 
-use crate::ccm::perclk;
+use crate::ccm::{perclk, ticks, Divider, Frequency, Ticks, TicksError};
 use embedded_hal::timer::{CountDown, Periodic};
 use imxrt1060_pac as pac;
 
@@ -18,52 +18,58 @@ impl UnclockedPIT {
     /// Activate the PIT module after enabling the clock for the
     /// module.
     pub fn clock(self, configured: perclk::Configured) -> [PIT; 4] {
-        configured
-            .0
-            .base
-            .ccgr1
-            .modify(|_, w| unsafe { w.cg6().bits(0x3) });
+        let (clock_hz, divider) = configured.enable();
         self.0.mcr.write(|w| w.mdis().mdis_0());
-        [PIT::new(0), PIT::new(1), PIT::new(2), PIT::new(3)]
+        [
+            PIT::new(0, clock_hz, divider),
+            PIT::new(1, clock_hz, divider),
+            PIT::new(2, clock_hz, divider),
+            PIT::new(3, clock_hz, divider),
+        ]
     }
 }
 
 /// A periodic interrupt timer (PIT)
-pub struct PIT(&'static pac::pit::TIMER);
+pub struct PIT {
+    timer: &'static pac::pit::TIMER,
+    clock_hz: Frequency,
+    divider: Divider,
+}
 
 impl PIT {
-    fn new(idx: usize) -> PIT {
-        unsafe { PIT(&(*pac::PIT::ptr()).timer[idx]) }
-    }
-}
-
-/// A milliseconds period used for PIT time keeping
-#[derive(Clone, Copy)]
-pub struct Milliseconds(u32);
-
-pub trait U32Ext {
-    fn ms(self) -> Milliseconds;
-}
-
-impl U32Ext for u32 {
-    fn ms(self) -> Milliseconds {
-        Milliseconds(self)
+    fn new(idx: usize, clock_hz: Frequency, divider: Divider) -> PIT {
+        PIT {
+            // Safety: register is static; index is within half-closed range [0,4)
+            // in `UnclockedPIT::clock()`
+            timer: unsafe { &(*pac::PIT::ptr()).timer[idx] },
+            clock_hz,
+            divider,
+        }
     }
 }
 
 impl CountDown for PIT {
-    type Time = Milliseconds;
-    fn start<T: Into<Self::Time>>(&mut self, count: T) {
-        self.0.tctrl.write(|w| w.ten().clear_bit());
-        self.0
-            .ldval
-            .write(|w| unsafe { w.tsv().bits(count.into().0) });
-        self.0.tctrl.write(|w| w.ten().set_bit());
+    type Time = core::time::Duration;
+    fn start<T: Into<Self::Time>>(&mut self, ms: T) {
+        let ticks = match ticks(ms.into(), self.clock_hz, self.divider) {
+            Ok(ticks) => ticks,
+            // Saturate the load value
+            Err(TicksError::TicksOverflow) | Err(TicksError::DurationOverflow) => {
+                Ticks(core::u32::MAX)
+            }
+            // Ratio of freq / div was zero, or divider was zero
+            Err(TicksError::DivideByZero) => Ticks(1),
+        };
+        self.timer.tctrl.write(|w| w.ten().clear_bit());
+        // Safety: TSV register is 32 bits wide
+        self.timer.ldval.write(|w| unsafe { w.tsv().bits(ticks.0) });
+        self.timer.tctrl.write(|w| w.ten().set_bit());
     }
 
     fn wait(&mut self) -> nb::Result<(), void::Void> {
-        if self.0.tflg.read().tif().bit_is_set() {
-            self.0.tflg.write(|w| w.tif().set_bit());
+        if self.timer.tflg.read().tif().bit_is_set() {
+            // Timer complete. W1C...
+            self.timer.tflg.write(|w| w.tif().set_bit());
             Ok(())
         } else {
             Err(nb::Error::WouldBlock)
