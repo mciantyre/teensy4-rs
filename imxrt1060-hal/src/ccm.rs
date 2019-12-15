@@ -9,8 +9,8 @@ pub struct Handle {
 }
 
 impl Handle {
-    pub fn raw(self) -> (pac::CCM, pac::CCM_ANALOG) {
-        (self.base, self.analog)
+    pub fn raw(&self) -> (&pac::CCM, &pac::CCM_ANALOG) {
+        (&self.base, &self.analog)
     }
 }
 

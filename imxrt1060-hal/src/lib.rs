@@ -15,15 +15,29 @@
 pub use imxrt1060_pac as pac;
 
 pub mod ccm;
+mod clockspeed;
 pub mod gpio;
 pub mod iomuxc;
 pub mod pit;
+
+pub use clockspeed::set_arm_clock;
+
+pub mod dcdc {
+    use imxrt1060_pac as pac;
+    pub struct DCDC(pub(crate) pac::DCDC);
+    impl DCDC {
+        pub fn raw(&self) -> &pac::DCDC {
+            &self.0
+        }
+    }
+}
 
 pub struct Peripherals {
     pub iomuxc: iomuxc::IOMUXC,
     pub systick: pac::SYST,
     pub ccm: ccm::CCM,
     pub pit: pit::UnclockedPIT,
+    pub dcdc: dcdc::DCDC,
 }
 
 impl Peripherals {
@@ -39,6 +53,7 @@ impl Peripherals {
             systick: cp.SYST,
             ccm: ccm::CCM::new(p.CCM, p.CCM_ANALOG),
             pit: pit::UnclockedPIT::new(p.PIT),
+            dcdc: dcdc::DCDC(p.DCDC),
         }
     }
 }

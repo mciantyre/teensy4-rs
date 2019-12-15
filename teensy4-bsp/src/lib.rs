@@ -66,6 +66,8 @@ pub struct Peripherals {
     pub pit: hal::pit::UnclockedPIT,
     /// The USB logger
     pub log: log::Logging,
+    /// DCDC converters
+    pub dcdc: hal::dcdc::DCDC,
 }
 
 /// SYSTICK external clock frequency
@@ -98,6 +100,7 @@ impl Peripherals {
             ccm: p.ccm,
             pit: p.pit,
             log: log::Logging::new(),
+            dcdc: p.dcdc,
         }
     }
 }
