@@ -12,19 +12,17 @@ impl crate::ResetValue for super::MASK {
 }
 #[doc = "PWM_X Masks\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MASKX_A {
     #[doc = "0: PWM_X output normal."]
-    MASKX_0,
+    MASKX_0 = 0,
     #[doc = "1: PWM_X output masked."]
-    MASKX_1,
+    MASKX_1 = 1,
 }
 impl From<MASKX_A> for u8 {
     #[inline(always)]
     fn from(variant: MASKX_A) -> Self {
-        match variant {
-            MASKX_A::MASKX_0 => 0,
-            MASKX_A::MASKX_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MASKX`"]
@@ -80,19 +78,17 @@ impl<'a> MASKX_W<'a> {
 }
 #[doc = "PWM_B Masks\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MASKB_A {
     #[doc = "0: PWM_B output normal."]
-    MASKB_0,
+    MASKB_0 = 0,
     #[doc = "1: PWM_B output masked."]
-    MASKB_1,
+    MASKB_1 = 1,
 }
 impl From<MASKB_A> for u8 {
     #[inline(always)]
     fn from(variant: MASKB_A) -> Self {
-        match variant {
-            MASKB_A::MASKB_0 => 0,
-            MASKB_A::MASKB_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MASKB`"]
@@ -148,19 +144,17 @@ impl<'a> MASKB_W<'a> {
 }
 #[doc = "PWM_A Masks\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MASKA_A {
     #[doc = "0: PWM_A output normal."]
-    MASKA_0,
+    MASKA_0 = 0,
     #[doc = "1: PWM_A output masked."]
-    MASKA_1,
+    MASKA_1 = 1,
 }
 impl From<MASKA_A> for u8 {
     #[inline(always)]
     fn from(variant: MASKA_A) -> Self {
-        match variant {
-            MASKA_A::MASKA_0 => 0,
-            MASKA_A::MASKA_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MASKA`"]
@@ -216,19 +210,17 @@ impl<'a> MASKA_W<'a> {
 }
 #[doc = "Update Mask Bits Immediately\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum UPDATE_MASK_AW {
     #[doc = "0: Normal operation. MASK* bits within the corresponding submodule are not updated until a FORCE_OUT event occurs within the submodule."]
-    UPDATE_MASK_0,
+    UPDATE_MASK_0 = 0,
     #[doc = "1: Immediate operation. MASK* bits within the corresponding submodule are updated on the following clock edge after setting this bit."]
-    UPDATE_MASK_1,
+    UPDATE_MASK_1 = 1,
 }
 impl From<UPDATE_MASK_AW> for u8 {
     #[inline(always)]
     fn from(variant: UPDATE_MASK_AW) -> Self {
-        match variant {
-            UPDATE_MASK_AW::UPDATE_MASK_0 => 0,
-            UPDATE_MASK_AW::UPDATE_MASK_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Write proxy for field `UPDATE_MASK`"]

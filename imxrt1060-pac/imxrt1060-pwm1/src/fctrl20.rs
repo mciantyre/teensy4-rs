@@ -12,19 +12,17 @@ impl crate::ResetValue for super::FCTRL20 {
 }
 #[doc = "No Combinational Path From Fault Input To PWM Output\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum NOCOMB_A {
     #[doc = "0: There is a combinational link from the fault inputs to the PWM outputs. The fault inputs are combined with the filtered and latched fault signals to disable the PWM outputs."]
-    NOCOMB_0,
+    NOCOMB_0 = 0,
     #[doc = "1: The direct combinational path from the fault inputs to the PWM outputs is disabled and the filtered and latched fault signals are used to disable the PWM outputs."]
-    NOCOMB_1,
+    NOCOMB_1 = 1,
 }
 impl From<NOCOMB_A> for u8 {
     #[inline(always)]
     fn from(variant: NOCOMB_A) -> Self {
-        match variant {
-            NOCOMB_A::NOCOMB_0 => 0,
-            NOCOMB_A::NOCOMB_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `NOCOMB`"]

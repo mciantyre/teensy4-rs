@@ -12,19 +12,17 @@ impl crate::ResetValue for super::FCTRL0 {
 }
 #[doc = "Fault Interrupt Enables\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FIE_A {
     #[doc = "0: FAULTx CPU interrupt requests disabled."]
-    FIE_0,
+    FIE_0 = 0,
     #[doc = "1: FAULTx CPU interrupt requests enabled."]
-    FIE_1,
+    FIE_1 = 1,
 }
 impl From<FIE_A> for u8 {
     #[inline(always)]
     fn from(variant: FIE_A) -> Self {
-        match variant {
-            FIE_A::FIE_0 => 0,
-            FIE_A::FIE_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FIE`"]
@@ -80,19 +78,17 @@ impl<'a> FIE_W<'a> {
 }
 #[doc = "Fault Safety Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FSAFE_A {
     #[doc = "0: Normal mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\] without regard to the state of FSTS\\[FFPINx\\]. The PWM outputs disabled by this fault input will not be re-enabled until the actual FAULTx input signal de-asserts since the fault input will combinationally disable the PWM outputs (as programmed in DISMAPn)."]
-    FSAFE_0,
+    FSAFE_0 = 0,
     #[doc = "1: Safe mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear and FSTS\\[FFPINx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]."]
-    FSAFE_1,
+    FSAFE_1 = 1,
 }
 impl From<FSAFE_A> for u8 {
     #[inline(always)]
     fn from(variant: FSAFE_A) -> Self {
-        match variant {
-            FSAFE_A::FSAFE_0 => 0,
-            FSAFE_A::FSAFE_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FSAFE`"]
@@ -148,19 +144,17 @@ impl<'a> FSAFE_W<'a> {
 }
 #[doc = "Automatic Fault Clearing\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FAUTO_A {
     #[doc = "0: Manual fault clearing. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear at the start of a half cycle or full cycle depending the state of FSTS\\[FFULL\\]. This is further controlled by FCTRL\\[FSAFE\\]."]
-    FAUTO_0,
+    FAUTO_0 = 0,
     #[doc = "1: Automatic fault clearing. PWM outputs disabled by this fault are enabled when FSTS\\[FFPINx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\] without regard to the state of FSTS\\[FFLAGx\\]."]
-    FAUTO_1,
+    FAUTO_1 = 1,
 }
 impl From<FAUTO_A> for u8 {
     #[inline(always)]
     fn from(variant: FAUTO_A) -> Self {
-        match variant {
-            FAUTO_A::FAUTO_0 => 0,
-            FAUTO_A::FAUTO_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FAUTO`"]
@@ -216,19 +210,17 @@ impl<'a> FAUTO_W<'a> {
 }
 #[doc = "Fault Level\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLVL_A {
     #[doc = "0: A logic 0 on the fault input indicates a fault condition."]
-    FLVL_0,
+    FLVL_0 = 0,
     #[doc = "1: A logic 1 on the fault input indicates a fault condition."]
-    FLVL_1,
+    FLVL_1 = 1,
 }
 impl From<FLVL_A> for u8 {
     #[inline(always)]
     fn from(variant: FLVL_A) -> Self {
-        match variant {
-            FLVL_A::FLVL_0 => 0,
-            FLVL_A::FLVL_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLVL`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::FTST0 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FTEST_A {
     #[doc = "0: No fault"]
-    FTEST_0,
+    FTEST_0 = 0,
     #[doc = "1: Cause a simulated fault"]
-    FTEST_1,
+    FTEST_1 = 1,
 }
 impl From<FTEST_A> for bool {
     #[inline(always)]
     fn from(variant: FTEST_A) -> Self {
-        match variant {
-            FTEST_A::FTEST_0 => false,
-            FTEST_A::FTEST_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FTEST`"]

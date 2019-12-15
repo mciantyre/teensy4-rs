@@ -12,64 +12,61 @@ impl crate::ResetValue for super::SWCOUT {
 }
 #[doc = "Submodule 0 Software Controlled Output 45\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SM0OUT45_A {
+pub enum SMOUT45_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 0 instead of PWM45."]
-    SM0OUT45_0,
+    SMOUT45_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 0 instead of PWM45."]
-    SM0OUT45_1,
+    SMOUT45_1 = 1,
 }
-impl From<SM0OUT45_A> for bool {
+impl From<SMOUT45_A> for bool {
     #[inline(always)]
-    fn from(variant: SM0OUT45_A) -> Self {
-        match variant {
-            SM0OUT45_A::SM0OUT45_0 => false,
-            SM0OUT45_A::SM0OUT45_1 => true,
-        }
+    fn from(variant: SMOUT45_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Reader of field `SM0OUT45`"]
-pub type SM0OUT45_R = crate::R<bool, SM0OUT45_A>;
-impl SM0OUT45_R {
+#[doc = "Reader of field `SMOUT45`"]
+pub type SMOUT45_R = crate::R<bool, SMOUT45_A>;
+impl SMOUT45_R {
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> SM0OUT45_A {
+    pub fn variant(&self) -> SMOUT45_A {
         match self.bits {
-            false => SM0OUT45_A::SM0OUT45_0,
-            true => SM0OUT45_A::SM0OUT45_1,
+            false => SMOUT45_A::SMOUT45_0,
+            true => SMOUT45_A::SMOUT45_1,
         }
     }
-    #[doc = "Checks if the value of the field is `SM0OUT45_0`"]
+    #[doc = "Checks if the value of the field is `SMOUT45_0`"]
     #[inline(always)]
-    pub fn is_sm0out45_0(&self) -> bool {
-        *self == SM0OUT45_A::SM0OUT45_0
+    pub fn is_smout45_0(&self) -> bool {
+        *self == SMOUT45_A::SMOUT45_0
     }
-    #[doc = "Checks if the value of the field is `SM0OUT45_1`"]
+    #[doc = "Checks if the value of the field is `SMOUT45_1`"]
     #[inline(always)]
-    pub fn is_sm0out45_1(&self) -> bool {
-        *self == SM0OUT45_A::SM0OUT45_1
+    pub fn is_smout45_1(&self) -> bool {
+        *self == SMOUT45_A::SMOUT45_1
     }
 }
-#[doc = "Write proxy for field `SM0OUT45`"]
-pub struct SM0OUT45_W<'a> {
+#[doc = "Write proxy for field `SMOUT45`"]
+pub struct SMOUT45_W<'a> {
     w: &'a mut W,
 }
-impl<'a> SM0OUT45_W<'a> {
+impl<'a> SMOUT45_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: SM0OUT45_A) -> &'a mut W {
+    pub fn variant(self, variant: SMOUT45_A) -> &'a mut W {
         {
             self.bit(variant.into())
         }
     }
     #[doc = "A logic 0 is supplied to the deadtime generator of submodule 0 instead of PWM45."]
     #[inline(always)]
-    pub fn sm0out45_0(self) -> &'a mut W {
-        self.variant(SM0OUT45_A::SM0OUT45_0)
+    pub fn smout45_0(self) -> &'a mut W {
+        self.variant(SMOUT45_A::SMOUT45_0)
     }
     #[doc = "A logic 1 is supplied to the deadtime generator of submodule 0 instead of PWM45."]
     #[inline(always)]
-    pub fn sm0out45_1(self) -> &'a mut W {
-        self.variant(SM0OUT45_A::SM0OUT45_1)
+    pub fn smout45_1(self) -> &'a mut W {
+        self.variant(SMOUT45_A::SMOUT45_1)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -90,64 +87,61 @@ impl<'a> SM0OUT45_W<'a> {
 }
 #[doc = "Submodule 0 Software Controlled Output 23\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SM0OUT23_A {
+pub enum SMOUT23_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 0 instead of PWM23."]
-    SM0OUT23_0,
+    SMOUT23_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 0 instead of PWM23."]
-    SM0OUT23_1,
+    SMOUT23_1 = 1,
 }
-impl From<SM0OUT23_A> for bool {
+impl From<SMOUT23_A> for bool {
     #[inline(always)]
-    fn from(variant: SM0OUT23_A) -> Self {
-        match variant {
-            SM0OUT23_A::SM0OUT23_0 => false,
-            SM0OUT23_A::SM0OUT23_1 => true,
-        }
+    fn from(variant: SMOUT23_A) -> Self {
+        variant as u8 != 0
     }
 }
-#[doc = "Reader of field `SM0OUT23`"]
-pub type SM0OUT23_R = crate::R<bool, SM0OUT23_A>;
-impl SM0OUT23_R {
+#[doc = "Reader of field `SMOUT23`"]
+pub type SMOUT23_R = crate::R<bool, SMOUT23_A>;
+impl SMOUT23_R {
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> SM0OUT23_A {
+    pub fn variant(&self) -> SMOUT23_A {
         match self.bits {
-            false => SM0OUT23_A::SM0OUT23_0,
-            true => SM0OUT23_A::SM0OUT23_1,
+            false => SMOUT23_A::SMOUT23_0,
+            true => SMOUT23_A::SMOUT23_1,
         }
     }
-    #[doc = "Checks if the value of the field is `SM0OUT23_0`"]
+    #[doc = "Checks if the value of the field is `SMOUT23_0`"]
     #[inline(always)]
-    pub fn is_sm0out23_0(&self) -> bool {
-        *self == SM0OUT23_A::SM0OUT23_0
+    pub fn is_smout23_0(&self) -> bool {
+        *self == SMOUT23_A::SMOUT23_0
     }
-    #[doc = "Checks if the value of the field is `SM0OUT23_1`"]
+    #[doc = "Checks if the value of the field is `SMOUT23_1`"]
     #[inline(always)]
-    pub fn is_sm0out23_1(&self) -> bool {
-        *self == SM0OUT23_A::SM0OUT23_1
+    pub fn is_smout23_1(&self) -> bool {
+        *self == SMOUT23_A::SMOUT23_1
     }
 }
-#[doc = "Write proxy for field `SM0OUT23`"]
-pub struct SM0OUT23_W<'a> {
+#[doc = "Write proxy for field `SMOUT23`"]
+pub struct SMOUT23_W<'a> {
     w: &'a mut W,
 }
-impl<'a> SM0OUT23_W<'a> {
+impl<'a> SMOUT23_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
-    pub fn variant(self, variant: SM0OUT23_A) -> &'a mut W {
+    pub fn variant(self, variant: SMOUT23_A) -> &'a mut W {
         {
             self.bit(variant.into())
         }
     }
     #[doc = "A logic 0 is supplied to the deadtime generator of submodule 0 instead of PWM23."]
     #[inline(always)]
-    pub fn sm0out23_0(self) -> &'a mut W {
-        self.variant(SM0OUT23_A::SM0OUT23_0)
+    pub fn smout23_0(self) -> &'a mut W {
+        self.variant(SMOUT23_A::SMOUT23_0)
     }
     #[doc = "A logic 1 is supplied to the deadtime generator of submodule 0 instead of PWM23."]
     #[inline(always)]
-    pub fn sm0out23_1(self) -> &'a mut W {
-        self.variant(SM0OUT23_A::SM0OUT23_1)
+    pub fn smout23_1(self) -> &'a mut W {
+        self.variant(SMOUT23_A::SMOUT23_1)
     }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -170,17 +164,14 @@ impl<'a> SM0OUT23_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SM1OUT45_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 1 instead of PWM45."]
-    SM1OUT45_0,
+    SM1OUT45_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 1 instead of PWM45."]
-    SM1OUT45_1,
+    SM1OUT45_1 = 1,
 }
 impl From<SM1OUT45_A> for bool {
     #[inline(always)]
     fn from(variant: SM1OUT45_A) -> Self {
-        match variant {
-            SM1OUT45_A::SM1OUT45_0 => false,
-            SM1OUT45_A::SM1OUT45_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SM1OUT45`"]
@@ -248,17 +239,14 @@ impl<'a> SM1OUT45_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SM1OUT23_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 1 instead of PWM23."]
-    SM1OUT23_0,
+    SM1OUT23_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 1 instead of PWM23."]
-    SM1OUT23_1,
+    SM1OUT23_1 = 1,
 }
 impl From<SM1OUT23_A> for bool {
     #[inline(always)]
     fn from(variant: SM1OUT23_A) -> Self {
-        match variant {
-            SM1OUT23_A::SM1OUT23_0 => false,
-            SM1OUT23_A::SM1OUT23_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SM1OUT23`"]
@@ -326,17 +314,14 @@ impl<'a> SM1OUT23_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SM2OUT45_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 2 instead of PWM45."]
-    SM2OUT45_0,
+    SM2OUT45_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 2 instead of PWM45."]
-    SM2OUT45_1,
+    SM2OUT45_1 = 1,
 }
 impl From<SM2OUT45_A> for bool {
     #[inline(always)]
     fn from(variant: SM2OUT45_A) -> Self {
-        match variant {
-            SM2OUT45_A::SM2OUT45_0 => false,
-            SM2OUT45_A::SM2OUT45_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SM2OUT45`"]
@@ -404,17 +389,14 @@ impl<'a> SM2OUT45_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SM2OUT23_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 2 instead of PWM23."]
-    SM2OUT23_0,
+    SM2OUT23_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 2 instead of PWM23."]
-    SM2OUT23_1,
+    SM2OUT23_1 = 1,
 }
 impl From<SM2OUT23_A> for bool {
     #[inline(always)]
     fn from(variant: SM2OUT23_A) -> Self {
-        match variant {
-            SM2OUT23_A::SM2OUT23_0 => false,
-            SM2OUT23_A::SM2OUT23_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SM2OUT23`"]
@@ -482,17 +464,14 @@ impl<'a> SM2OUT23_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SM3OUT45_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 3 instead of PWM45."]
-    SM3OUT45_0,
+    SM3OUT45_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 3 instead of PWM45."]
-    SM3OUT45_1,
+    SM3OUT45_1 = 1,
 }
 impl From<SM3OUT45_A> for bool {
     #[inline(always)]
     fn from(variant: SM3OUT45_A) -> Self {
-        match variant {
-            SM3OUT45_A::SM3OUT45_0 => false,
-            SM3OUT45_A::SM3OUT45_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SM3OUT45`"]
@@ -560,17 +539,14 @@ impl<'a> SM3OUT45_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SM3OUT23_A {
     #[doc = "0: A logic 0 is supplied to the deadtime generator of submodule 3 instead of PWM23."]
-    SM3OUT23_0,
+    SM3OUT23_0 = 0,
     #[doc = "1: A logic 1 is supplied to the deadtime generator of submodule 3 instead of PWM23."]
-    SM3OUT23_1,
+    SM3OUT23_1 = 1,
 }
 impl From<SM3OUT23_A> for bool {
     #[inline(always)]
     fn from(variant: SM3OUT23_A) -> Self {
-        match variant {
-            SM3OUT23_A::SM3OUT23_0 => false,
-            SM3OUT23_A::SM3OUT23_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SM3OUT23`"]
@@ -637,13 +613,13 @@ impl<'a> SM3OUT23_W<'a> {
 impl R {
     #[doc = "Bit 0 - Submodule 0 Software Controlled Output 45"]
     #[inline(always)]
-    pub fn sm0out45(&self) -> SM0OUT45_R {
-        SM0OUT45_R::new((self.bits & 0x01) != 0)
+    pub fn smout45(&self) -> SMOUT45_R {
+        SMOUT45_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Submodule 0 Software Controlled Output 23"]
     #[inline(always)]
-    pub fn sm0out23(&self) -> SM0OUT23_R {
-        SM0OUT23_R::new(((self.bits >> 1) & 0x01) != 0)
+    pub fn smout23(&self) -> SMOUT23_R {
+        SMOUT23_R::new(((self.bits >> 1) & 0x01) != 0)
     }
     #[doc = "Bit 2 - Submodule 1 Software Controlled Output 45"]
     #[inline(always)]
@@ -679,13 +655,13 @@ impl R {
 impl W {
     #[doc = "Bit 0 - Submodule 0 Software Controlled Output 45"]
     #[inline(always)]
-    pub fn sm0out45(&mut self) -> SM0OUT45_W {
-        SM0OUT45_W { w: self }
+    pub fn smout45(&mut self) -> SMOUT45_W {
+        SMOUT45_W { w: self }
     }
     #[doc = "Bit 1 - Submodule 0 Software Controlled Output 23"]
     #[inline(always)]
-    pub fn sm0out23(&mut self) -> SM0OUT23_W {
-        SM0OUT23_W { w: self }
+    pub fn smout23(&mut self) -> SMOUT23_W {
+        SMOUT23_W { w: self }
     }
     #[doc = "Bit 2 - Submodule 1 Software Controlled Output 45"]
     #[inline(always)]
