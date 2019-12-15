@@ -18,6 +18,7 @@ pub mod ccm;
 pub mod gpio;
 pub mod iomuxc;
 pub mod pit;
+pub mod pwm;
 
 pub mod dcdc {
     use imxrt1060_pac as pac;

@@ -7,6 +7,7 @@
 mod macros;
 
 pub mod gpio;
+pub mod pwm;
 
 // IOMUXC section of docs originally state that there are up to 8
 // alternative modes. However, some have up to 10 (like GPIO_AD_B1_00)
@@ -34,6 +35,8 @@ pub struct Alt9;
 
 pub struct IOMUXC {
     pub gpio_b0_03: gpio::GPIO_B0_03<Alt5>,
+    pub gpio_b0_10: gpio::GPIO_B0_10<Alt5>,
+    pub gpio_b0_11: gpio::GPIO_B0_11<Alt5>,
     pub gpr: GPR,
 }
 
@@ -41,6 +44,8 @@ impl IOMUXC {
     pub(crate) fn new(iomuxc: crate::pac::IOMUXC) -> Self {
         Self {
             gpio_b0_03: gpio::GPIO_B0_03::new(&iomuxc),
+            gpio_b0_10: gpio::GPIO_B0_10::new(&iomuxc),
+            gpio_b0_11: gpio::GPIO_B0_11::new(&iomuxc),
             gpr: GPR(()),
         }
     }
