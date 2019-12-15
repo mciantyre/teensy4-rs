@@ -28,7 +28,7 @@ pub struct CCM {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ArmFrequency(Frequency);
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct IPGFrequency(Frequency);
+pub struct IPGFrequency(pub(crate) Frequency);
 
 pub struct PLL1(());
 impl PLL1 {
@@ -310,7 +310,7 @@ pub fn ticks<R: TicksRepr>(
 
 /// An opaque value representing a clock frequency
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Frequency(u32);
+pub struct Frequency(pub(crate) u32);
 
 /// An opaque value representing a clock phase divider
 #[derive(Debug, Clone, Copy)]
