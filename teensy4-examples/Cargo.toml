@@ -14,12 +14,6 @@ panic-halt = "0.2.0"
 teensy4-bsp = { path = "../teensy4-bsp" }
 
 [[bin]]
-name = "arm_clk"
-path = "src/arm_clk.rs"
-test = false
-bench = false
-
-[[bin]]
 name = "led"
 path = "src/led.rs"
 test = false
