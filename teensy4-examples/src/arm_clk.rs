@@ -16,10 +16,10 @@ const ARM_HZ: u32 = 600_000_000;
 
 #[rt::entry]
 fn main() -> ! {
-    let p = bsp::Peripherals::take().unwrap();
-    let (ccm, ccm_analog) = p.ccm.handle.raw();
-    let dcdc = p.dcdc.raw();
-    bsp::hal::set_arm_clock(ARM_HZ, ccm, ccm_analog, dcdc);
+    let mut p = bsp::Peripherals::take().unwrap();
+    p.ccm
+        .pll1
+        .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
     let mut led = p.led;
     loop {
         cortex_m::asm::delay(ARM_HZ);

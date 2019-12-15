@@ -15,18 +15,15 @@
 pub use imxrt1060_pac as pac;
 
 pub mod ccm;
-mod clockspeed;
 pub mod gpio;
 pub mod iomuxc;
 pub mod pit;
-
-pub use clockspeed::set_arm_clock;
 
 pub mod dcdc {
     use imxrt1060_pac as pac;
     pub struct DCDC(pub(crate) pac::DCDC);
     impl DCDC {
-        pub fn raw(&self) -> &pac::DCDC {
+        pub fn raw(&mut self) -> &pac::DCDC {
             &self.0
         }
     }

@@ -12,6 +12,11 @@ use teensy4_bsp as bsp;
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
+    let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
+        bsp::hal::ccm::PLL1::ARM_HZ,
+        &mut periphs.ccm.handle,
+        &mut periphs.dcdc,
+    );
     periphs.ccm.pll2.set(
         &mut periphs.ccm.handle,
         [
@@ -34,7 +39,7 @@ fn main() -> ! {
     let cfg = periphs.ccm.perclk.configure(
         &mut periphs.ccm.handle,
         bsp::hal::ccm::perclk::PODF::DIVIDE_3,
-        bsp::hal::ccm::perclk::CLKSEL::OSC,
+        bsp::hal::ccm::perclk::CLKSEL::IPG(ipg_hz),
     );
 
     let (_, _, timer2, timer3) = periphs.pit.clock(cfg);
