@@ -12,19 +12,17 @@ impl crate::ResetValue for super::MCTRL {
 }
 #[doc = "Load Okay\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LDOK_A {
     #[doc = "0: Do not load new values."]
-    LDOK_0,
+    LDOK_0 = 0,
     #[doc = "1: Load prescaler, modulus, and PWM values of the corresponding submodule."]
-    LDOK_1,
+    LDOK_1 = 1,
 }
 impl From<LDOK_A> for u8 {
     #[inline(always)]
     fn from(variant: LDOK_A) -> Self {
-        match variant {
-            LDOK_A::LDOK_0 => 0,
-            LDOK_A::LDOK_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LDOK`"]
@@ -94,19 +92,17 @@ impl<'a> CLDOK_W<'a> {
 }
 #[doc = "Run\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum RUN_A {
     #[doc = "0: PWM generator is disabled in the corresponding submodule."]
-    RUN_0,
+    RUN_0 = 0,
     #[doc = "1: PWM generator is enabled in the corresponding submodule."]
-    RUN_1,
+    RUN_1 = 1,
 }
 impl From<RUN_A> for u8 {
     #[inline(always)]
     fn from(variant: RUN_A) -> Self {
-        match variant {
-            RUN_A::RUN_0 => 0,
-            RUN_A::RUN_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `RUN`"]
@@ -162,19 +158,17 @@ impl<'a> RUN_W<'a> {
 }
 #[doc = "Current Polarity\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum IPOL_A {
     #[doc = "0: PWM23 is used to generate complementary PWM pair in the corresponding submodule."]
-    IPOL_0,
+    IPOL_0 = 0,
     #[doc = "1: PWM45 is used to generate complementary PWM pair in the corresponding submodule."]
-    IPOL_1,
+    IPOL_1 = 1,
 }
 impl From<IPOL_A> for u8 {
     #[inline(always)]
     fn from(variant: IPOL_A) -> Self {
-        match variant {
-            IPOL_A::IPOL_0 => 0,
-            IPOL_A::IPOL_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `IPOL`"]

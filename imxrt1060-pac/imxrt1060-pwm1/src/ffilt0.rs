@@ -42,17 +42,14 @@ impl<'a> FILT_CNT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum GSTR_A {
     #[doc = "0: Fault input glitch stretching is disabled."]
-    GSTR_0,
+    GSTR_0 = 0,
     #[doc = "1: Input fault signals will be stretched to at least 2 IPBus clock cycles."]
-    GSTR_1,
+    GSTR_1 = 1,
 }
 impl From<GSTR_A> for bool {
     #[inline(always)]
     fn from(variant: GSTR_A) -> Self {
-        match variant {
-            GSTR_A::GSTR_0 => false,
-            GSTR_A::GSTR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `GSTR`"]

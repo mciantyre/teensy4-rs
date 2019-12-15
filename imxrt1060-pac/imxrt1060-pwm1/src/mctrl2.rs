@@ -12,25 +12,21 @@ impl crate::ResetValue for super::MCTRL2 {
 }
 #[doc = "Monitor PLL State\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MONPLL_A {
     #[doc = "0: Not locked. Do not monitor PLL operation. Resetting of the fractional delay block in case of PLL losing lock will be controlled by software."]
-    MONPLL_0,
+    MONPLL_0 = 0,
     #[doc = "1: Not locked. Monitor PLL operation to automatically disable the fractional delay block when the PLL encounters problems."]
-    MONPLL_1,
+    MONPLL_1 = 1,
     #[doc = "2: Locked. Do not monitor PLL operation. Resetting of the fractional delay block in case of PLL losing lock will be controlled by software. These bits are write protected until the next reset."]
-    MONPLL_2,
+    MONPLL_2 = 2,
     #[doc = "3: Locked. Monitor PLL operation to automatically disable the fractional delay block when the PLL encounters problems. These bits are write protected until the next reset."]
-    MONPLL_3,
+    MONPLL_3 = 3,
 }
 impl From<MONPLL_A> for u8 {
     #[inline(always)]
     fn from(variant: MONPLL_A) -> Self {
-        match variant {
-            MONPLL_A::MONPLL_0 => 0,
-            MONPLL_A::MONPLL_1 => 1,
-            MONPLL_A::MONPLL_2 => 2,
-            MONPLL_A::MONPLL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MONPLL`"]

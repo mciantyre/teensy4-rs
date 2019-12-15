@@ -12,19 +12,17 @@ impl crate::ResetValue for super::OUTEN {
 }
 #[doc = "PWM_X Output Enables\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PWMX_EN_A {
     #[doc = "0: PWM_X output disabled."]
-    PWMX_EN_0,
+    PWMX_EN_0 = 0,
     #[doc = "1: PWM_X output enabled."]
-    PWMX_EN_1,
+    PWMX_EN_1 = 1,
 }
 impl From<PWMX_EN_A> for u8 {
     #[inline(always)]
     fn from(variant: PWMX_EN_A) -> Self {
-        match variant {
-            PWMX_EN_A::PWMX_EN_0 => 0,
-            PWMX_EN_A::PWMX_EN_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PWMX_EN`"]
@@ -80,19 +78,17 @@ impl<'a> PWMX_EN_W<'a> {
 }
 #[doc = "PWM_B Output Enables\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PWMB_EN_A {
     #[doc = "0: PWM_B output disabled."]
-    PWMB_EN_0,
+    PWMB_EN_0 = 0,
     #[doc = "1: PWM_B output enabled."]
-    PWMB_EN_1,
+    PWMB_EN_1 = 1,
 }
 impl From<PWMB_EN_A> for u8 {
     #[inline(always)]
     fn from(variant: PWMB_EN_A) -> Self {
-        match variant {
-            PWMB_EN_A::PWMB_EN_0 => 0,
-            PWMB_EN_A::PWMB_EN_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PWMB_EN`"]
@@ -148,19 +144,17 @@ impl<'a> PWMB_EN_W<'a> {
 }
 #[doc = "PWM_A Output Enables\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PWMA_EN_A {
     #[doc = "0: PWM_A output disabled."]
-    PWMA_EN_0,
+    PWMA_EN_0 = 0,
     #[doc = "1: PWM_A output enabled."]
-    PWMA_EN_1,
+    PWMA_EN_1 = 1,
 }
 impl From<PWMA_EN_A> for u8 {
     #[inline(always)]
     fn from(variant: PWMA_EN_A) -> Self {
-        match variant {
-            PWMA_EN_A::PWMA_EN_0 => 0,
-            PWMA_EN_A::PWMA_EN_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PWMA_EN`"]

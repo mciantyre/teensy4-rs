@@ -12,19 +12,17 @@ impl crate::ResetValue for super::FSTS0 {
 }
 #[doc = "Fault Flags\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FFLAG_A {
     #[doc = "0: No fault on the FAULTx pin."]
-    FFLAG_0,
+    FFLAG_0 = 0,
     #[doc = "1: Fault on the FAULTx pin."]
-    FFLAG_1,
+    FFLAG_1 = 1,
 }
 impl From<FFLAG_A> for u8 {
     #[inline(always)]
     fn from(variant: FFLAG_A) -> Self {
-        match variant {
-            FFLAG_A::FFLAG_0 => 0,
-            FFLAG_A::FFLAG_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FFLAG`"]
@@ -80,19 +78,17 @@ impl<'a> FFLAG_W<'a> {
 }
 #[doc = "Full Cycle\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FFULL_A {
     #[doc = "0: PWM outputs are not re-enabled at the start of a full cycle"]
-    FFULL_0,
+    FFULL_0 = 0,
     #[doc = "1: PWM outputs are re-enabled at the start of a full cycle"]
-    FFULL_1,
+    FFULL_1 = 1,
 }
 impl From<FFULL_A> for u8 {
     #[inline(always)]
     fn from(variant: FFULL_A) -> Self {
-        match variant {
-            FFULL_A::FFULL_0 => 0,
-            FFULL_A::FFULL_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FFULL`"]
@@ -150,19 +146,17 @@ impl<'a> FFULL_W<'a> {
 pub type FFPIN_R = crate::R<u8, u8>;
 #[doc = "Half Cycle Fault Recovery\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FHALF_A {
     #[doc = "0: PWM outputs are not re-enabled at the start of a half cycle."]
-    FHALF_0,
+    FHALF_0 = 0,
     #[doc = "1: PWM outputs are re-enabled at the start of a half cycle (as defined by VAL0)."]
-    FHALF_1,
+    FHALF_1 = 1,
 }
 impl From<FHALF_A> for u8 {
     #[inline(always)]
     fn from(variant: FHALF_A) -> Self {
-        match variant {
-            FHALF_A::FHALF_0 => 0,
-            FHALF_A::FHALF_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FHALF`"]
