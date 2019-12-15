@@ -12,6 +12,7 @@ pub use imxrt1060_gpt1 as gpt1;
 pub use imxrt1060_iomuxc as iomuxc;
 pub use imxrt1060_iomuxc_gpr as iomuxc_gpr;
 pub use imxrt1060_pit as pit;
+pub use imxrt1060_pwm1 as pwm1;
 
 use core::marker::PhantomData;
 use core::ops::Deref;
@@ -1976,80 +1977,78 @@ impl Deref for IOMUXC {
 //         unsafe { &*ENC4::ptr() }
 //     }
 // }
-// #[doc = "PWM"]
-// pub struct PWM1 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for PWM1 {}
-// impl PWM1 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const pwm1::RegisterBlock {
-//         0x403d_c000 as *const _
-//     }
-// }
-// impl Deref for PWM1 {
-//     type Target = pwm1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*PWM1::ptr() }
-//     }
-// }
-// #[doc = "PWM"]
-// pub mod pwm1;
-// #[doc = "PWM"]
-// pub struct PWM2 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for PWM2 {}
-// impl PWM2 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const pwm1::RegisterBlock {
-//         0x403e_0000 as *const _
-//     }
-// }
-// impl Deref for PWM2 {
-//     type Target = pwm1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*PWM2::ptr() }
-//     }
-// }
-// #[doc = "PWM"]
-// pub struct PWM3 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for PWM3 {}
-// impl PWM3 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const pwm1::RegisterBlock {
-//         0x403e_4000 as *const _
-//     }
-// }
-// impl Deref for PWM3 {
-//     type Target = pwm1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*PWM3::ptr() }
-//     }
-// }
-// #[doc = "PWM"]
-// pub struct PWM4 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for PWM4 {}
-// impl PWM4 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const pwm1::RegisterBlock {
-//         0x403e_8000 as *const _
-//     }
-// }
-// impl Deref for PWM4 {
-//     type Target = pwm1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*PWM4::ptr() }
-//     }
-// }
+#[doc = "PWM"]
+pub struct PWM1 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for PWM1 {}
+impl PWM1 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const pwm1::RegisterBlock {
+        0x403d_c000 as *const _
+    }
+}
+impl Deref for PWM1 {
+    type Target = pwm1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*PWM1::ptr() }
+    }
+}
+#[doc = "PWM"]
+pub struct PWM2 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for PWM2 {}
+impl PWM2 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const pwm1::RegisterBlock {
+        0x403e_0000 as *const _
+    }
+}
+impl Deref for PWM2 {
+    type Target = pwm1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*PWM2::ptr() }
+    }
+}
+#[doc = "PWM"]
+pub struct PWM3 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for PWM3 {}
+impl PWM3 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const pwm1::RegisterBlock {
+        0x403e_4000 as *const _
+    }
+}
+impl Deref for PWM3 {
+    type Target = pwm1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*PWM3::ptr() }
+    }
+}
+#[doc = "PWM"]
+pub struct PWM4 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for PWM4 {}
+impl PWM4 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const pwm1::RegisterBlock {
+        0x403e_8000 as *const _
+    }
+}
+impl Deref for PWM4 {
+    type Target = pwm1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*PWM4::ptr() }
+    }
+}
 // #[doc = "Bus Encryption Engine"]
 // pub struct BEE {
 //     _marker: PhantomData<*const ()>,
@@ -2375,14 +2374,14 @@ pub struct Peripherals {
     // pub ENC3: ENC3,
     // #[doc = "ENC4"]
     // pub ENC4: ENC4,
-    // #[doc = "PWM1"]
-    // pub PWM1: PWM1,
-    // #[doc = "PWM2"]
-    // pub PWM2: PWM2,
-    // #[doc = "PWM3"]
-    // pub PWM3: PWM3,
-    // #[doc = "PWM4"]
-    // pub PWM4: PWM4,
+    #[doc = "PWM1"]
+    pub PWM1: PWM1,
+    #[doc = "PWM2"]
+    pub PWM2: PWM2,
+    #[doc = "PWM3"]
+    pub PWM3: PWM3,
+    #[doc = "PWM4"]
+    pub PWM4: PWM4,
     // #[doc = "BEE"]
     // pub BEE: BEE,
     // #[doc = "LPI2C1"]
@@ -2721,18 +2720,18 @@ impl Peripherals {
             // ENC4: ENC4 {
             //     _marker: PhantomData,
             // },
-            // PWM1: PWM1 {
-            //     _marker: PhantomData,
-            // },
-            // PWM2: PWM2 {
-            //     _marker: PhantomData,
-            // },
-            // PWM3: PWM3 {
-            //     _marker: PhantomData,
-            // },
-            // PWM4: PWM4 {
-            //     _marker: PhantomData,
-            // },
+            PWM1: PWM1 {
+                _marker: PhantomData,
+            },
+            PWM2: PWM2 {
+                _marker: PhantomData,
+            },
+            PWM3: PWM3 {
+                _marker: PhantomData,
+            },
+            PWM4: PWM4 {
+                _marker: PhantomData,
+            },
             // BEE: BEE {
             //     _marker: PhantomData,
             // },

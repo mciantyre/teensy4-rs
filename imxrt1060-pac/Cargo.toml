@@ -16,6 +16,7 @@ imxrt1060-gpt1 = { path = "imxrt1060-gpt1" }
 imxrt1060-iomuxc = { path = "imxrt1060-iomuxc" }
 imxrt1060-iomuxc-gpr = { path = "imxrt1060-iomuxc-gpr" }
 imxrt1060-pit = { path = "imxrt1060-pit" }
+imxrt1060-pwm1 = { path = "imxrt1060-pwm1" }
 
 [lib]
 test = false
