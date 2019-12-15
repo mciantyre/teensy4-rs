@@ -55,9 +55,11 @@ SECTIONS
         KEEP(*(.vector_table));
         KEEP(*(.vector_table.exceptions));
         KEEP(*(.vector_table.interrupts));
+        *(.flashmem); /* Compatibility with USB stack */
+        *(.progmem); /* Compat with USB stack */
         . = ALIGN(16);
     } > FLASH
-    
+
     .text :
     {
         __stext = .;
@@ -69,15 +71,10 @@ SECTIONS
 
     __sitext = LOADADDR(.text);
 
-    .rodata :
-    {
-        *(.rodata .rodata.*);
-        . = ALIGN(4);
-    } > DTCM AT> FLASH
-
     .data :
     {
         __sdata = .;
+        *(.rodata .rodata.*);
         *(.data .data.*);
         . = ALIGN(16);
         __edata = .;
@@ -95,6 +92,12 @@ SECTIONS
         __ebss = .;
     } > DTCM
 
+    .dma (NOLOAD) :
+    {
+        *(.dmabuffers); /* Compat with USB */
+        . = ALIGN(16);
+    } > RAM
+
     /DISCARD/ :
     {
         *(.ARM.exidx);
@@ -103,7 +106,7 @@ SECTIONS
     }
 
     /* The length of flash is required for the boot data */
-    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.rodata) + SIZEOF(.data);
+    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
 
     /* The following are used to compute the FlexRAM banks for ITCM / DTCM */
     _itcm_block_count = (SIZEOF(.text) + 0x7FFE) >> 15;

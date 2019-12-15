@@ -4,8 +4,17 @@ members = [
     # TEENSY4 RUNTIME
     #################
     "teensy4-rt",
+    #############
+    # TEENSY4 BSP
+    #############
+    "teensy4-bsp",
+    "teensy4-bsp/teensy4-usb-sys",
     # Examples
     "teensy4-examples",
+    ###############
+    # IMXRT1060 HAL
+    ###############
+    "imxrt1060-hal",
     ###############
     # IMXRT1060 PAC
     ###############
@@ -17,6 +26,7 @@ members = [
     "imxrt1060-pac/imxrt1060-gpio1",
     "imxrt1060-pac/imxrt1060-gpt1",
     "imxrt1060-pac/imxrt1060-iomuxc",
+    "imxrt1060-pac/imxrt1060-iomuxc-gpr",
     "imxrt1060-pac/imxrt1060-pit",
 ]
 exclude = [

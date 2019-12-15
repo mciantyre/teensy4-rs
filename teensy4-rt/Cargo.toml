@@ -4,16 +4,11 @@ version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 
-[dependencies]
-bare-metal = "0.2.5"
-cortex-m = "0.6.1"
-r0 = "0.2.2"
-
 # TODO if the changes in the cortex-m-rt-macros
 # crate are accepted upstream, use the normal
 # dependency.
 [dependencies.cortex-m-rt-macros]
-git = "https://github.com/mciantyre/cortex-m-rt.git"
+git = "https://github.com/rust-embedded/cortex-m-rt.git"
 
 [build-dependencies]
 cc = "1.0.47"

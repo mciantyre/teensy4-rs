@@ -5,13 +5,17 @@
 
 extern crate panic_halt;
 
+use bsp::rt::entry;
 use cortex_m::asm::wfi;
-use teensy4_rt::{enable_led, entry};
+use teensy4_bsp as bsp;
+
+use embedded_hal::digital::v2::OutputPin;
 
 #[entry]
 fn main() -> ! {
+    let mut peripherals = bsp::Peripherals::take().unwrap();
     loop {
-        enable_led();
+        peripherals.led.set_high().unwrap();
         wfi();
     }
 }
