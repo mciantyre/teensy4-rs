@@ -29,6 +29,57 @@
 //! For simplicity, there may be other choice APIs from either crate that
 //! are re-exported in the BSP namespace.
 //!
+//! ## Physical Pins to Pads
+//!
+//! The list below describes the mapping between a Teensy 4 pin and its pad.
+//! Parentheticals describe possible alternatives of the pins. Alternatives
+//! are not listed in any particular order, and they may be incomplete. See
+//! the reference manual for the mapping of alternative to functionality.
+//!
+//! 0. `AD_B0_03`  (`FlexPWM1_1_X`)
+//! 1. `AD_B0_02`  (`FlexPWM1_0_X`)
+//! 2. `EMC_04`  (`FlexPWM4_2_A`)
+//! 3. `EMC_05`  (`FlexPWM4_2_B`)
+//! 4. `EMC_06`  (`FlexPWM2_0_A`)
+//! 5. `EMC_08`  (`FlexPWM2_1_A`)
+//! 6. `B0_10` (`FlexPWM2_2_A`)
+//! 7. `B1_01`  (`FlexPWM1_3_B`)
+//! 8. `B1_00`  (`FlexPWM1_3_A`)
+//! 9. `B0_11`  (`FlexPWM2_2_B`)
+//! 10. `B0_00`  (`QuadTimer1_0`)
+//! 11. `B0_02`  (`QuadTimer1_2`)
+//! 12. `B0_01`  (`QuadTimer1_1`)
+//! 13. `B0_03`  (`QuadTimer2_0`, `GPIO2_3` (`LED`))
+//! 14. `AD_B1_02` (`QuadTimer3_2`)
+//! 15. `AD_B1_03` (`QuadTimer3_3`)
+//! 16. `AD_B1_07`
+//! 17. `AD_B1_06`
+//! 18. `AD_B1_01` (`QuadTimer3_1`)
+//! 19. `AD_B1_00` (`QuadTimer3_0`)
+//! 20. `AD_B1_10
+//! 21. `AD_B1_11`
+//! 22. `AD_B1_08` (`FlexPWM4_0_A`)
+//! 23. `AD_B1_09` (`FlexPWM4_1_A`)
+//! 24. `AD_B0_12` (`FlexPWM1_2_X`)
+//! 25. `AD_B0_13` (`FlexPWM1_3_X`)
+//! 26. `AD_B0_14`
+//! 27. `AD_B0_15`
+//! 28. `EMC_32` (`FlexPWM3_1_B`)
+//! 29. `EMC_31` (`FlexPWM3_1_A`)
+//! 30. `EMC_37`
+//! 31. `EMC_36`
+//! 32. `B0_12`
+//! 33. `EMC_07` (`FlexPWM2_0_B`)
+//! 34. `SD_B0_03` (`FlexPWM1_1_B`)
+//! 35. `SD_B0_02` (`FlexPWM1_1_A`)
+//! 36. `SD_B0_01` (`FlexPWM1_0_B`)
+//! 37. `SD_B0_00` (`FlexPWM1_0_A`)
+//! 38. `SD_B0_05` (`FlexPWM1_2_B`)
+//! 39. `SD_B0_04` (`FlexPWM1_2_A`)
+//!
+//! References:
+//! - [Teensy 4.0 Schematic Diagram](https://www.pjrc.com/teensy/schematic.html)
+//!
 //! ## Examples
 //!
 //! See the `teensy4-examples` crate for build-able, run-able
