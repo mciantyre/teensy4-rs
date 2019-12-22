@@ -121,7 +121,7 @@ where
 
             sm.smval0.reset();
             // Safety: val1 is 16 bits
-            sm.smval1.write(|w| unsafe { w.val1().bits(33464) });
+            sm.smval1.write(|w| unsafe { w.val1().bits(10_000) });
             sm.smval2.reset();
             sm.smval3.reset();
             sm.smval4.reset();
