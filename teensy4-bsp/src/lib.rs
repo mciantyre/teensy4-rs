@@ -107,6 +107,12 @@ pub use hal::ccm::CCM;
 pub use hal::pac::PIT;
 pub use hal::pac::SYST;
 
+/// Teensy pins that do not have a function allocation.
+pub struct Pins {
+    pub p6: hal::iomuxc::gpio::GPIO_B0_10<hal::iomuxc::Alt5>,
+    pub p9: hal::iomuxc::gpio::GPIO_B0_11<hal::iomuxc::Alt5>,
+}
+
 /// All peripherals available on the Teensy4
 pub struct Peripherals {
     /// The LED (AKA, pin 13)
@@ -119,6 +125,10 @@ pub struct Peripherals {
     pub log: log::Logging,
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
+    /// PWM2 controller
+    pub pwm2: hal::pwm::UnclockedPWMController<hal::pwm::module::_2>,
+    /// Teensy pin
+    pub pins: Pins,
 }
 
 /// SYSTICK external clock frequency
@@ -152,6 +162,11 @@ impl Peripherals {
             pit: p.pit,
             log: log::Logging::new(),
             dcdc: p.dcdc,
+            pwm2: p.pwm2,
+            pins: Pins {
+                p6: p.iomuxc.gpio_b0_10,
+                p9: p.iomuxc.gpio_b0_11,
+            },
         }
     }
 }

@@ -26,6 +26,12 @@ test = false
 bench = false
 
 [[bin]]
+name = "pwm"
+path = "src/pwm.rs"
+test = false
+bench = false
+
+[[bin]]
 name = "systick"
 path = "src/systick.rs"
 test = false

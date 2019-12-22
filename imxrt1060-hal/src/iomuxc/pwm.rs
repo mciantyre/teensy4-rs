@@ -35,24 +35,38 @@ pub mod module {
 /// Each PWM modules has four submodules, each having
 /// two output pins.
 pub mod submodule {
+    use crate::pac::pwm1;
     pub trait Submodule {
         const IDX: usize;
+        fn submodule(pwm: &pwm1::RegisterBlock) -> &pwm1::SM;
     }
     pub struct _0;
     impl Submodule for _0 {
         const IDX: usize = 0;
+        fn submodule(pwm: &pwm1::RegisterBlock) -> &pwm1::SM {
+            &pwm.sm0
+        }
     }
     pub struct _1;
     impl Submodule for _1 {
         const IDX: usize = 1;
+        fn submodule(pwm: &pwm1::RegisterBlock) -> &pwm1::SM {
+            &pwm.sm1
+        }
     }
     pub struct _2;
     impl Submodule for _2 {
         const IDX: usize = 2;
+        fn submodule(pwm: &pwm1::RegisterBlock) -> &pwm1::SM {
+            &pwm.sm2
+        }
     }
     pub struct _3;
     impl Submodule for _3 {
         const IDX: usize = 3;
+        fn submodule(pwm: &pwm1::RegisterBlock) -> &pwm1::SM {
+            &pwm.sm3
+        }
     }
 }
 
