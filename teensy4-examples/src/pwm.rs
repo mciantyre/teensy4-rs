@@ -16,12 +16,26 @@ fn percent(duty: u16) -> f32 {
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
-    p.ccm
-        .pll1
-        .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
     p.log.init(Default::default());
+    bsp::delay(5000);
+    let (_, ipg_hz) =
+        p.ccm
+            .pll1
+            .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
+    bsp::delay(100);
     let mut pwm2 = p.pwm2.clock(&mut p.ccm.handle);
-    let (mut pin_a, mut pin_b) = pwm2.outputs(p.pins.p6.alt2(), p.pins.p9.alt2()).split();
+    let (mut pin_a, mut pin_b) = pwm2
+        .outputs(
+            p.pins.p6.alt2(),
+            p.pins.p9.alt2(),
+            bsp::hal::pwm::Timing {
+                clock_select: bsp::hal::ccm::pwm::ClockSelect::IPG(ipg_hz),
+                prescalar: bsp::hal::ccm::pwm::Prescalar::PRSC_5,
+                switching_period: core::time::Duration::from_micros(1000),
+            },
+        )
+        .unwrap()
+        .split();
 
     let (mut duty1, mut duty2) = (core::u16::MAX / 4, core::u16::MAX / 2);
     loop {
@@ -36,10 +50,13 @@ fn main() -> ! {
         pin_b.set_duty(duty2);
         bsp::delay(200);
 
-        log::info!("Disabling PWMs...");
-        pin_a.disable();
+        log::info!("Disabling 'B' PWM...");
         pin_b.disable();
-        bsp::delay(500);
+        bsp::delay(200);
+
+        log::info!("Disabling 'A' PWM...");
+        pin_a.disable();
+        bsp::delay(200);
 
         log::info!("Swapping duty cycles...");
         core::mem::swap(&mut duty1, &mut duty2);

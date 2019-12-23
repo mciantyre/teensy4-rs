@@ -19,15 +19,25 @@ pub mod output {
 
 /// Type tags that designate a PWM module
 pub mod module {
-    pub trait Module {}
+    pub trait Module {
+        const IDX: usize;
+    }
     pub struct _1;
-    impl Module for _1 {}
+    impl Module for _1 {
+        const IDX: usize = 1;
+    }
     pub struct _2;
-    impl Module for _2 {}
+    impl Module for _2 {
+        const IDX: usize = 2;
+    }
     pub struct _3;
-    impl Module for _3 {}
+    impl Module for _3 {
+        const IDX: usize = 3;
+    }
     pub struct _4;
-    impl Module for _4 {}
+    impl Module for _4 {
+        const IDX: usize = 4;
+    }
 }
 
 /// Type tags for PWM submodules
