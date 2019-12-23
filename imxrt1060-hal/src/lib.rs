@@ -36,7 +36,7 @@ pub struct Peripherals {
     pub ccm: ccm::CCM,
     pub pit: pit::UnclockedPIT,
     pub dcdc: dcdc::DCDC,
-    pub pwm2: pwm::UnclockedPWMController<pwm::module::_2>,
+    pub pwm2: pwm::UnclockedController<pwm::module::_2>,
 }
 
 impl Peripherals {
@@ -53,7 +53,7 @@ impl Peripherals {
             ccm: ccm::CCM::new(p.CCM, p.CCM_ANALOG),
             pit: pit::UnclockedPIT::new(p.PIT),
             dcdc: dcdc::DCDC(p.DCDC),
-            pwm2: pwm::UnclockedPWMController::new(),
+            pwm2: pwm::UnclockedController::new(),
         }
     }
 }

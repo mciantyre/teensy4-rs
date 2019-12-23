@@ -1,4 +1,56 @@
 //! Pulse Width Modulation (PWM)
+//!
+//! The PWM module provides abstractions for using
+//! the iMXRT1060's PWM capabilities. It relies on
+//! a user mutliplexing appropriate pins from.
+//! IOMUXC. It also relies on some of the timing
+//! functionality available in the CCM. See those
+//! modules for details.
+//!
+//! # Usage
+//!
+//! In the list below, we describe the typical usage of
+//! the PWM abstractions:
+//!
+//! 1. The system starts up with unclocked PWM controllers,
+//! represented as `UnclockedController`. Enable clocking
+//! to the controller by providing the CCM's handle. This
+//! returns a `Controller` type that can be used to allocate
+//! PWM pins. The example below shows how to enable clocks for the PWM2
+//! module.
+//!
+//! ```
+//! use imxrt1060_hal as hal;
+//!
+//! let mut peripherals = hal::Peripherals::take().unwrap();
+//! let pwm2 = peripherals.pwm2.clock(&mut p.ccm.handle);
+//! ```
+//!
+//! 2. Obtain PWM pin pairs by providing processor pads to
+//! the PWM controller. As of this writing, we only provide output
+//! PWM pins, and complementary PWM pins (PWM23 and PWM45 in processor
+//! parlance) are not implemented. Use `output()` to transform PWM pins
+//! into output PWM pairs, then use `split()` to make the pins independent
+//! instances:
+//!
+//! ```
+//! #use imxrt1060_hal as hal;
+//! #let mut peripherals = hal::Peripherals::take().unwrap();
+//! #let pwm2 = peripherals.pwm2.clock(&mut p.ccm.handle);
+//! let (_, ipg_hz) =
+//!     peripherals.ccm
+//!     .pll1
+//!     .set_arm_clock(hal::ccm::PLL1::ARM_HZ, &mut peripherals.ccm.handle, &mut peripherals.dcdc);
+//! let (mut pin_a, mut pin_b) = pwm2.output(
+//!     peripherals.iomuxc.gpio_b0_10,
+//!     peripherals.iomuxc.gpio_b0_11,
+//!     hal::pwm::Timing {
+//!         clock_select: hal::ccm::pwm::ClockSelect::IPG(ipg_hz),
+//!         prescalar: hal::ccm::pwm::Prescalar::PRSC_1,
+//!         switching_period: core::time::Duration::from_micros(40),
+//!     }
+//! ).split();
+//! ```
 
 use core::marker::PhantomData;
 
@@ -8,16 +60,16 @@ pub use crate::iomuxc::pwm::{module, output, submodule};
 use embedded_hal::PwmPin;
 use imxrt1060_pac as pac;
 
-pub struct UnclockedPWMController<M> {
+pub struct UnclockedController<M> {
     _module: PhantomData<M>,
 }
 
-impl<M> UnclockedPWMController<M>
+impl<M> UnclockedController<M>
 where
     M: module::Module,
 {
     pub(crate) fn new() -> Self {
-        UnclockedPWMController {
+        UnclockedController {
             _module: PhantomData,
         }
     }
@@ -25,12 +77,12 @@ where
 
 macro_rules! clock_impl {
     ($module:path, $cg:ident, $pwm:ty) => {
-        impl UnclockedPWMController<$module> {
-            pub fn clock(self, handle: &mut ccm::Handle) -> PWMController<$module> {
+        impl UnclockedController<$module> {
+            pub fn clock(self, handle: &mut ccm::Handle) -> Controller<$module> {
                 let (ccm, _) = handle.raw();
                 // Safety: field is 2 bits
                 ccm.ccgr4.write(|w| unsafe { w.$cg().bits(0x3) });
-                PWMController::new(<$pwm>::ptr())
+                Controller::new(<$pwm>::ptr())
             }
         }
     };
@@ -71,17 +123,24 @@ impl Reg {
     }
 }
 
-pub struct PWMController<M> {
+#[derive(Clone, Copy)]
+pub struct Timing {
+    pub clock_select: ccm::pwm::ClockSelect,
+    pub prescalar: ccm::pwm::Prescalar,
+    pub switching_period: core::time::Duration,
+}
+
+pub struct Controller<M> {
     reg: Reg,
     _module: PhantomData<M>,
 }
 
-impl<M> PWMController<M>
+impl<M> Controller<M>
 where
     M: module::Module,
 {
     fn new(reg: *const pac::pwm1::RegisterBlock) -> Self {
-        let pwm = PWMController {
+        let pwm = Controller {
             reg: unsafe { Reg(&(*reg)) },
             _module: PhantomData,
         };
@@ -98,45 +157,66 @@ where
         pwm
     }
 
-    pub fn outputs<A, B>(&mut self, pin_a: A, pin_b: B) -> PWMPairs<M, <A as Pin>::Submodule>
+    pub fn outputs<A, B>(
+        &mut self,
+        pin_a: A,
+        pin_b: B,
+        timing: Timing,
+    ) -> Result<Pairs<M, <A as Pin>::Submodule>, ccm::TicksError>
     where
         A: Pin<Module = M, Output = output::A>,
         B: Pin<Module = M, Output = output::B, Submodule = <A as Pin>::Submodule>,
     {
+        let idx = <<A as Pin>::Submodule as submodule::Submodule>::IDX;
         self.reg.outen.modify(|r, w| unsafe {
             // Safety: each bits() is 4 bits
-            let idx = <<A as Pin>::Submodule as submodule::Submodule>::IDX;
             w.pwma_en()
                 .bits((1 << idx) | r.pwma_en().bits())
                 .pwmb_en()
                 .bits((1 << idx) | r.pwmb_en().bits())
         });
-        self.reg.reset_ok::<<A as Pin>::Submodule, _, ()>(|sm| {
-            sm.smctrl2.write(|w| w.waiten().set_bit().dbgen().set_bit());
-            sm.smctrl.write(|w| w.full().set_bit());
+        self.reg.reset_ok::<<A as Pin>::Submodule, _, _>(|sm| {
+            sm.smctrl2.write(|w| {
+                w.waiten()
+                    .set_bit()
+                    .dbgen()
+                    .set_bit()
+                    .clk_sel()
+                    .variant(timing.clock_select.into())
+            });
+            sm.smctrl
+                .write(|w| w.full().set_bit().prsc().variant(timing.prescalar));
 
             sm.smoctrl.write_with_zero(|w| w);
             sm.smdtcnt0.write_with_zero(|w| w);
-            sm.sminit.write_with_zero(|w| w);
 
+            sm.sminit.write_with_zero(|w| w);
             sm.smval0.reset();
-            // Safety: val1 is 16 bits
-            sm.smval1.write(|w| unsafe { w.val1().bits(10_000) });
+            let ticks: ccm::Ticks<u16> = ccm::ticks(
+                timing.switching_period,
+                timing.clock_select.into(),
+                timing.prescalar.into(),
+            )?;
+            sm.smval1.write(|w| unsafe {
+                // Safety: val1 is 16 bits
+                w.val1().bits(ticks.0)
+            });
             sm.smval2.reset();
             sm.smval3.reset();
             sm.smval4.reset();
             sm.smval5.reset();
-        });
-        PWMPairs::new(self.reg, pin_a, pin_b)
+            Ok(())
+        })?;
+        Ok(Pairs::new(self.reg, pin_a, pin_b))
     }
 }
 
-pub struct PWMPairs<M, S> {
+pub struct Pairs<M, S> {
     pin_a: PWM<M, S, output::A>,
     pin_b: PWM<M, S, output::B>,
 }
 
-impl<M, S> PWMPairs<M, S>
+impl<M, S> Pairs<M, S>
 where
     M: module::Module,
     S: submodule::Submodule,
@@ -146,7 +226,7 @@ where
         A: Pin<Module = M, Submodule = S, Output = output::A>,
         B: Pin<Module = M, Submodule = S, Output = output::B>,
     {
-        PWMPairs {
+        Pairs {
             pin_a: PWM::new(reg, pin_a),
             pin_b: PWM::new(reg, pin_b),
         }

@@ -257,6 +257,7 @@ pub mod pll2 {
 use core::convert::TryFrom;
 pub trait TicksRepr: TryFrom<u64> {}
 
+impl TicksRepr for u16 {}
 impl TicksRepr for u32 {}
 impl TicksRepr for u64 {}
 
@@ -461,4 +462,42 @@ fn set_arm_clock(
     }
 
     (hz, hz / div_ipg)
+}
+
+/// Timing configurations for PWM
+pub mod pwm {
+    use super::{pac::pwm1, Divider, Frequency, IPGFrequency};
+
+    /// PWM submodule clock selection
+    #[derive(Clone, Copy)]
+    #[non_exhaustive] // not all variants are added
+    pub enum ClockSelect {
+        /// IPG clock frequency, available via `set_arm_clock`
+        IPG(IPGFrequency),
+    }
+
+    /// PWM prescalar
+    pub type Prescalar = pwm1::sm::smctrl::PRSC_A;
+
+    impl From<Prescalar> for Divider {
+        fn from(pre: Prescalar) -> Divider {
+            Divider(1u32 << u8::from(pre))
+        }
+    }
+
+    impl From<ClockSelect> for Frequency {
+        fn from(clksel: ClockSelect) -> Frequency {
+            match clksel {
+                ClockSelect::IPG(IPGFrequency(hz)) => hz,
+            }
+        }
+    }
+
+    impl From<ClockSelect> for pwm1::sm::smctrl2::CLK_SEL_A {
+        fn from(clksel: ClockSelect) -> Self {
+            match clksel {
+                ClockSelect::IPG(_) => pwm1::sm::smctrl2::CLK_SEL_A::CLK_SEL_0,
+            }
+        }
+    }
 }

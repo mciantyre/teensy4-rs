@@ -126,7 +126,7 @@ pub struct Peripherals {
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
     /// PWM2 controller
-    pub pwm2: hal::pwm::UnclockedPWMController<hal::pwm::module::_2>,
+    pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
     /// Teensy pin
     pub pins: Pins,
 }
