@@ -107,9 +107,11 @@ pub use hal::ccm::CCM;
 pub use hal::pac::PIT;
 pub use hal::pac::SYST;
 
-/// Teensy pins that do not have a function allocation.
+/// Teensy pins that do not yet have a function
 pub struct Pins {
+    /// Pin 6
     pub p6: hal::iomuxc::gpio::GPIO_B0_10<hal::iomuxc::Alt5>,
+    /// Pin 9
     pub p9: hal::iomuxc::gpio::GPIO_B0_11<hal::iomuxc::Alt5>,
 }
 
