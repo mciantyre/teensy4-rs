@@ -19,7 +19,9 @@ pub mod output {
 
 /// Type tags that designate a PWM module
 pub mod module {
+    /// Describes a PWM pin's associated module
     pub trait Module {
+        /// Numeric value (1, 2, 3, 4) representing the module
         const IDX: usize;
     }
     pub struct _1;
@@ -46,8 +48,15 @@ pub mod module {
 /// two output pins.
 pub mod submodule {
     use crate::pac::pwm1;
+
+    /// Describes a PWM pin's associated submodule
+    ///
+    /// Each PWM module contains four submodules, 0 through 3 (inclusive).
     pub trait Submodule {
+        /// The submodule's number represented as a value
         const IDX: usize;
+        /// Returns the submodule register block associated with this
+        /// PWM module.
         fn submodule(pwm: &pwm1::RegisterBlock) -> &pwm1::SM;
     }
     pub struct _0;

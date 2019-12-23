@@ -9,6 +9,10 @@
 //! In some cases, the HAL simply re-exports peripherals from the peripheral access
 //! crates (PAC). If they are not re-exported, all PAC components are available
 //! in the `pac` module.
+//!
+//! To see examples of the HAL, check out the `teensy4-bsp` and the `teensy4-examples` crates.
+//! We will skip documentation example and tests, since we cannot yet test them as part
+//! of the `cargo test` workflow...
 
 #![no_std]
 

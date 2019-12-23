@@ -10,7 +10,8 @@
 //! # Usage
 //!
 //! In the list below, we describe the typical usage of
-//! the PWM abstractions:
+//! the PWM abstractions. For example code, please consult
+//! the examples in the `teensy4-examples` crate.
 //!
 //! 1. The system starts up with unclocked PWM controllers,
 //! represented as `UnclockedController`. Enable clocking
@@ -19,38 +20,18 @@
 //! PWM pins. The example below shows how to enable clocks for the PWM2
 //! module.
 //!
-//! ```
-//! use imxrt1060_hal as hal;
-//!
-//! let mut peripherals = hal::Peripherals::take().unwrap();
-//! let pwm2 = peripherals.pwm2.clock(&mut p.ccm.handle);
-//! ```
-//!
 //! 2. Obtain PWM pin pairs by providing processor pads to
 //! the PWM controller. As of this writing, we only provide output
 //! PWM pins, and complementary PWM pins (PWM23 and PWM45 in processor
 //! parlance) are not implemented. Use `output()` to transform PWM pins
 //! into output PWM pairs, then use `split()` to make the pins independent
-//! instances:
+//! instances. It's at this stage that we specify the PWM driving period
+//! (frequency), the prescalar, and the clock selection. We may only
+//! select the IPG clock; new variants will be added as necessary.
 //!
-//! ```
-//! #use imxrt1060_hal as hal;
-//! #let mut peripherals = hal::Peripherals::take().unwrap();
-//! #let pwm2 = peripherals.pwm2.clock(&mut p.ccm.handle);
-//! let (_, ipg_hz) =
-//!     peripherals.ccm
-//!     .pll1
-//!     .set_arm_clock(hal::ccm::PLL1::ARM_HZ, &mut peripherals.ccm.handle, &mut peripherals.dcdc);
-//! let (mut pin_a, mut pin_b) = pwm2.output(
-//!     peripherals.iomuxc.gpio_b0_10,
-//!     peripherals.iomuxc.gpio_b0_11,
-//!     hal::pwm::Timing {
-//!         clock_select: hal::ccm::pwm::ClockSelect::IPG(ipg_hz),
-//!         prescalar: hal::ccm::pwm::Prescalar::PRSC_1,
-//!         switching_period: core::time::Duration::from_micros(40),
-//!     }
-//! ).split();
-//! ```
+//! 3. The two `PWM` instances returned from `split()` implement the
+//! `embedded_hal::PwmPin` trait, and they may be used to control
+//! duty cycles.
 
 use core::marker::PhantomData;
 
@@ -60,6 +41,10 @@ pub use crate::iomuxc::pwm::{module, output, submodule};
 use embedded_hal::PwmPin;
 use imxrt1060_pac as pac;
 
+/// A PWM module that is not receiving a clock input
+///
+/// An `UnclockedController` transitions to a `Controller`
+/// by calling `clock()`.
 pub struct UnclockedController<M> {
     _module: PhantomData<M>,
 }
@@ -78,6 +63,8 @@ where
 macro_rules! clock_impl {
     ($module:path, $cg:ident, $pwm:ty) => {
         impl UnclockedController<$module> {
+            /// Enable the input clock for this PWM module. Returns a PWM `Controller`
+            /// that can allocated PWM outputs.
             pub fn clock(self, handle: &mut ccm::Handle) -> Controller<$module> {
                 let (ccm, _) = handle.raw();
                 // Safety: field is 2 bits
@@ -123,13 +110,22 @@ impl Reg {
     }
 }
 
+/// Specifies the timing-related parameters for a PWM submodule
 #[derive(Clone, Copy)]
 pub struct Timing {
+    /// The clock selection for the PWM submodule
     pub clock_select: ccm::pwm::ClockSelect,
+    /// The clock divider for the PWM submodule
     pub prescalar: ccm::pwm::Prescalar,
+    /// The driving (switching) frequency, expressed as a period
     pub switching_period: core::time::Duration,
 }
 
+/// A PWM controller
+///
+/// There's one PWM controller per module. The controller allows a user
+/// to allocated PWM outputs. It allows a user to perform module-level
+/// configurations.
 pub struct Controller<M> {
     reg: Reg,
     _module: PhantomData<M>,
@@ -157,6 +153,16 @@ where
         pwm
     }
 
+    /// Allocates a `Pair` of complementary PWM output pins containing pins `A` and `B`.
+    ///
+    /// `pin_a` and `pin_b` may be obtained from the IOMUXC. Pins may need
+    /// to be set to a certain alternative in order to be passed into the
+    /// `outputs` method. The two pins must be associated with this controller's
+    /// module, and the submodules of each pin must match.
+    ///
+    /// Specify the timings for the PWM module / submodule with the `Timing`
+    /// parameter. If the provided timings cannot define a representable
+    /// driving frequency, `outputs` returns an error.
     pub fn outputs<A, B>(
         &mut self,
         pin_a: A,
@@ -209,6 +215,10 @@ where
     }
 }
 
+/// PWM complementary pairs
+///
+/// The struct doesn't have value right now. Use `split()` to turn
+/// the two pins into independent PWM outputs.
 pub struct Pairs<M, S> {
     pin_a: PWM<M, S, output::A>,
     pin_b: PWM<M, S, output::B>,
@@ -230,6 +240,8 @@ where
         }
     }
 
+    /// Consumes the complementary pairs, and sets the two PWM outputs for
+    /// use as independent outputs.
     pub fn split(mut self) -> (PWM<M, S, output::A>, PWM<M, S, output::B>) {
         self.pin_a.reg.reset_ok::<S, _, ()>(|sm| {
             sm.smctrl2.modify(|_, w| w.indep().set_bit());
@@ -238,6 +250,9 @@ where
     }
 }
 
+/// A PWM output instance. It has a module, submodule, and output type.
+///
+/// Implements the `embedded_hal::PwmPin` interface.
 pub struct PWM<M, S, O> {
     reg: Reg,
     _module: PhantomData<M>,
