@@ -56,9 +56,8 @@ fn main() -> ! {
 
         log::info!("Disabling 'A' PWM...");
         pin_a.disable();
-        bsp::delay(200);
+        bsp::delay(400);
 
-        log::info!("Swapping duty cycles...");
         core::mem::swap(&mut duty1, &mut duty2);
     }
 }

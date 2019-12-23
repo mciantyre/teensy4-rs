@@ -168,13 +168,6 @@ where
         B: Pin<Module = M, Output = output::B, Submodule = <A as Pin>::Submodule>,
     {
         let idx = <<A as Pin>::Submodule as submodule::Submodule>::IDX;
-        self.reg.outen.modify(|r, w| unsafe {
-            // Safety: each bits() is 4 bits
-            w.pwma_en()
-                .bits((1 << idx) | r.pwma_en().bits())
-                .pwmb_en()
-                .bits((1 << idx) | r.pwmb_en().bits())
-        });
         self.reg.reset_ok::<<A as Pin>::Submodule, _, _>(|sm| {
             sm.smctrl2.write(|w| {
                 w.waiten()
@@ -207,6 +200,11 @@ where
             sm.smval5.reset();
             Ok(())
         })?;
+        self.reg.mctrl.modify(|r, w| unsafe {
+            let mask = (1 << idx) & 0xF;
+            // Safety: four bits
+            w.run().bits(mask | r.run().bits())
+        });
         Ok(Pairs::new(self.reg, pin_a, pin_b))
     }
 }
@@ -274,20 +272,20 @@ where
     type Duty = u16;
 
     fn disable(&mut self) {
-        let idx = <S as submodule::Submodule>::IDX;
-        let mask = !(1 << idx) & 0xF;
-        self.reg.mctrl.modify(|r, w| unsafe {
-            // Safety: four bits
-            w.run().bits(mask & r.run().bits())
+        self.reg.outen.modify(|r, w| unsafe {
+            let idx = <S as submodule::Submodule>::IDX;
+            let mask = !(1 << idx) & 0xF;
+            // Safety: each bits() is 4 bits
+            w.pwma_en().bits(mask & r.pwma_en().bits())
         });
     }
 
     fn enable(&mut self) {
-        let idx = <S as submodule::Submodule>::IDX;
-        let mask = (1 << idx) & 0xF;
-        self.reg.mctrl.modify(|r, w| unsafe {
-            // Safety: four bits
-            w.run().bits(mask | r.run().bits())
+        self.reg.outen.modify(|r, w| unsafe {
+            let idx = <S as submodule::Submodule>::IDX;
+            let mask = (1 << idx) & 0xF;
+            // Safety: each bits() is 4 bits
+            w.pwma_en().bits(mask | r.pwma_en().bits())
         });
     }
 
@@ -326,20 +324,20 @@ where
     type Duty = u16;
 
     fn disable(&mut self) {
-        let idx = <S as submodule::Submodule>::IDX;
-        let mask = !(1 << idx) & 0xF;
-        self.reg.mctrl.modify(|r, w| unsafe {
-            // Safety: four bits
-            w.run().bits(mask & r.run().bits())
+        self.reg.outen.modify(|r, w| unsafe {
+            let idx = <S as submodule::Submodule>::IDX;
+            let mask = !(1 << idx) & 0xF;
+            // Safety: each bits() is 4 bits
+            w.pwmb_en().bits(mask & r.pwmb_en().bits())
         });
     }
 
     fn enable(&mut self) {
-        let idx = <S as submodule::Submodule>::IDX;
-        let mask = (1 << idx) & 0xF;
-        self.reg.mctrl.modify(|r, w| unsafe {
-            // Safety: four bits
-            w.run().bits(mask | r.run().bits())
+        self.reg.outen.modify(|r, w| unsafe {
+            let idx = <S as submodule::Submodule>::IDX;
+            let mask = (1 << idx) & 0xF;
+            // Safety: each bits() is 4 bits
+            w.pwmb_en().bits(mask | r.pwmb_en().bits())
         });
     }
 
