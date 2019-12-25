@@ -57,16 +57,16 @@
 //! 13. `B0_03`  (`QuadTimer2_0`, `GPIO2_3` (`LED`))
 //! 14. `AD_B1_02` (`QuadTimer3_2`)
 //! 15. `AD_B1_03` (`QuadTimer3_3`)
-//! 16. `AD_B1_07`
-//! 17. `AD_B1_06`
-//! 18. `AD_B1_01` (`QuadTimer3_1`)
-//! 19. `AD_B1_00` (`QuadTimer3_0`)
+//! 16. `AD_B1_07` (`I2C3_SCL`)
+//! 17. `AD_B1_06` (`I2C3_SDA`)
+//! 18. `AD_B1_01` (`QuadTimer3_1`, `I2C1_SDA`)
+//! 19. `AD_B1_00` (`QuadTimer3_0`, `I2C1_SCL`)
 //! 20. `AD_B1_10
 //! 21. `AD_B1_11`
 //! 22. `AD_B1_08` (`FlexPWM4_0_A`)
 //! 23. `AD_B1_09` (`FlexPWM4_1_A`)
-//! 24. `AD_B0_12` (`FlexPWM1_2_X`)
-//! 25. `AD_B0_13` (`FlexPWM1_3_X`)
+//! 24. `AD_B0_12` (`FlexPWM1_2_X`, `I2C4_SCL`)
+//! 25. `AD_B0_13` (`FlexPWM1_3_X`, `I2C4_SDA`)
 //! 26. `AD_B0_14`
 //! 27. `AD_B0_15`
 //! 28. `EMC_32` (`FlexPWM3_1_B`)
@@ -77,8 +77,8 @@
 //! 33. `EMC_07` (`FlexPWM2_0_B`)
 //! 34. `SD_B0_03` (`FlexPWM1_1_B`)
 //! 35. `SD_B0_02` (`FlexPWM1_1_A`)
-//! 36. `SD_B0_01` (`FlexPWM1_0_B`)
-//! 37. `SD_B0_00` (`FlexPWM1_0_A`)
+//! 36. `SD_B0_01` (`FlexPWM1_0_B`, `I2C3_SDA`)
+//! 37. `SD_B0_00` (`FlexPWM1_0_A`, `I2C3_SCL`)
 //! 38. `SD_B0_05` (`FlexPWM1_2_B`)
 //! 39. `SD_B0_04` (`FlexPWM1_2_A`)
 //!
