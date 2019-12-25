@@ -6,7 +6,9 @@
 #[macro_use]
 mod macros;
 
+pub mod daisy;
 pub mod gpio;
+pub mod i2c;
 pub mod pwm;
 
 // IOMUXC section of docs originally state that there are up to 8
