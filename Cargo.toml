@@ -25,6 +25,7 @@ members = [
     "imxrt1062-pac/imxrt1062-gpt1",
     "imxrt1062-pac/imxrt1062-iomuxc",
     "imxrt1062-pac/imxrt1062-iomuxc-gpr",
+    "imxrt1062-pac/imxrt1062-lpi2c1",
     "imxrt1062-pac/imxrt1062-pit",
     "imxrt1062-pac/imxrt1062-pwm1",
     "teensy4-fcb",

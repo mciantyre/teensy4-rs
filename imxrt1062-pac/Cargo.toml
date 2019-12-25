@@ -15,6 +15,7 @@ imxrt1062-gpio1 = { path = "imxrt1062-gpio1" }
 imxrt1062-gpt1 = { path = "imxrt1062-gpt1" }
 imxrt1062-iomuxc = { path = "imxrt1062-iomuxc" }
 imxrt1062-iomuxc-gpr = { path = "imxrt1062-iomuxc-gpr" }
+imxrt1062-lpi2c1 = { path = "imxrt1062-lpi2c1" }
 imxrt1062-pit = { path = "imxrt1062-pit" }
 imxrt1062-pwm1 = { path = "imxrt1062-pwm1" }
 

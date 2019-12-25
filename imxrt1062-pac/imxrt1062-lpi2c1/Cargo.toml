@@ -1,0 +1,12 @@
+[package]
+name = "imxrt1062-lpi2c1"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+vcell = "0.1.2"
+
+[lib]
+bench = false
+test = false

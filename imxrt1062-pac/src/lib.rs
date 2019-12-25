@@ -11,6 +11,7 @@ pub use imxrt1062_gpio1 as gpio1;
 pub use imxrt1062_gpt1 as gpt1;
 pub use imxrt1062_iomuxc as iomuxc;
 pub use imxrt1062_iomuxc_gpr as iomuxc_gpr;
+pub use imxrt1062_lpi2c1 as lpi2c1;
 pub use imxrt1062_pit as pit;
 pub use imxrt1062_pwm1 as pwm1;
 
@@ -2069,80 +2070,78 @@ impl Deref for PWM4 {
 // }
 // #[doc = "Bus Encryption Engine"]
 // pub mod bee;
-// #[doc = "LPI2C"]
-// pub struct LPI2C1 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for LPI2C1 {}
-// impl LPI2C1 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const lpi2c1::RegisterBlock {
-//         0x403f_0000 as *const _
-//     }
-// }
-// impl Deref for LPI2C1 {
-//     type Target = lpi2c1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*LPI2C1::ptr() }
-//     }
-// }
-// #[doc = "LPI2C"]
-// pub mod lpi2c1;
-// #[doc = "LPI2C"]
-// pub struct LPI2C2 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for LPI2C2 {}
-// impl LPI2C2 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const lpi2c1::RegisterBlock {
-//         0x403f_4000 as *const _
-//     }
-// }
-// impl Deref for LPI2C2 {
-//     type Target = lpi2c1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*LPI2C2::ptr() }
-//     }
-// }
-// #[doc = "LPI2C"]
-// pub struct LPI2C3 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for LPI2C3 {}
-// impl LPI2C3 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const lpi2c1::RegisterBlock {
-//         0x403f_8000 as *const _
-//     }
-// }
-// impl Deref for LPI2C3 {
-//     type Target = lpi2c1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*LPI2C3::ptr() }
-//     }
-// }
-// #[doc = "LPI2C"]
-// pub struct LPI2C4 {
-//     _marker: PhantomData<*const ()>,
-// }
-// unsafe impl Send for LPI2C4 {}
-// impl LPI2C4 {
-//     #[doc = r"Returns a pointer to the register block"]
-//     #[inline(always)]
-//     pub const fn ptr() -> *const lpi2c1::RegisterBlock {
-//         0x403f_c000 as *const _
-//     }
-// }
-// impl Deref for LPI2C4 {
-//     type Target = lpi2c1::RegisterBlock;
-//     fn deref(&self) -> &Self::Target {
-//         unsafe { &*LPI2C4::ptr() }
-//     }
-// }
+#[doc = "LPI2C"]
+pub struct LPI2C1 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for LPI2C1 {}
+impl LPI2C1 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const lpi2c1::RegisterBlock {
+        0x403f_0000 as *const _
+    }
+}
+impl Deref for LPI2C1 {
+    type Target = lpi2c1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*LPI2C1::ptr() }
+    }
+}
+#[doc = "LPI2C"]
+pub struct LPI2C2 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for LPI2C2 {}
+impl LPI2C2 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const lpi2c1::RegisterBlock {
+        0x403f_4000 as *const _
+    }
+}
+impl Deref for LPI2C2 {
+    type Target = lpi2c1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*LPI2C2::ptr() }
+    }
+}
+#[doc = "LPI2C"]
+pub struct LPI2C3 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for LPI2C3 {}
+impl LPI2C3 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const lpi2c1::RegisterBlock {
+        0x403f_8000 as *const _
+    }
+}
+impl Deref for LPI2C3 {
+    type Target = lpi2c1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*LPI2C3::ptr() }
+    }
+}
+#[doc = "LPI2C"]
+pub struct LPI2C4 {
+    _marker: PhantomData<*const ()>,
+}
+unsafe impl Send for LPI2C4 {}
+impl LPI2C4 {
+    #[doc = r"Returns a pointer to the register block"]
+    #[inline(always)]
+    pub const fn ptr() -> *const lpi2c1::RegisterBlock {
+        0x403f_c000 as *const _
+    }
+}
+impl Deref for LPI2C4 {
+    type Target = lpi2c1::RegisterBlock;
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*LPI2C4::ptr() }
+    }
+}
 // #[doc = "System Control Block"]
 // pub struct SYSTEMCONTROL {
 //     _marker: PhantomData<*const ()>,
@@ -2384,14 +2383,14 @@ pub struct Peripherals {
     pub PWM4: PWM4,
     // #[doc = "BEE"]
     // pub BEE: BEE,
-    // #[doc = "LPI2C1"]
-    // pub LPI2C1: LPI2C1,
-    // #[doc = "LPI2C2"]
-    // pub LPI2C2: LPI2C2,
-    // #[doc = "LPI2C3"]
-    // pub LPI2C3: LPI2C3,
-    // #[doc = "LPI2C4"]
-    // pub LPI2C4: LPI2C4,
+    #[doc = "LPI2C1"]
+    pub LPI2C1: LPI2C1,
+    #[doc = "LPI2C2"]
+    pub LPI2C2: LPI2C2,
+    #[doc = "LPI2C3"]
+    pub LPI2C3: LPI2C3,
+    #[doc = "LPI2C4"]
+    pub LPI2C4: LPI2C4,
     // #[doc = "SYSTEMCONTROL"]
     // pub SYSTEMCONTROL: SYSTEMCONTROL,
 }
@@ -2735,18 +2734,18 @@ impl Peripherals {
             // BEE: BEE {
             //     _marker: PhantomData,
             // },
-            // LPI2C1: LPI2C1 {
-            //     _marker: PhantomData,
-            // },
-            // LPI2C2: LPI2C2 {
-            //     _marker: PhantomData,
-            // },
-            // LPI2C3: LPI2C3 {
-            //     _marker: PhantomData,
-            // },
-            // LPI2C4: LPI2C4 {
-            //     _marker: PhantomData,
-            // },
+            LPI2C1: LPI2C1 {
+                _marker: PhantomData,
+            },
+            LPI2C2: LPI2C2 {
+                _marker: PhantomData,
+            },
+            LPI2C3: LPI2C3 {
+                _marker: PhantomData,
+            },
+            LPI2C4: LPI2C4 {
+                _marker: PhantomData,
+            },
             // SYSTEMCONTROL: SYSTEMCONTROL {
             //     _marker: PhantomData,
             // },
