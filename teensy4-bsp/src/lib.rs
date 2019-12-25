@@ -40,48 +40,48 @@
 //! for each pin. We add entries to the table as we add capabilities to the underlying HAL crate. Contributions to complete
 //! this table are welcome! If a pad's alternatives are not listed here, consult the iMXRT1060 reference manual.
 //!
-//! | Pin  | Pad ID     |  Alt0    |  Alt1        |  Alt2        |  Alt3    |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
-//! | ---- | ---------- | -------- | ------------ | ------------ | -------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
-//! |  0   | `AD_B0_03` |          |              |              |          |`FlexPWM1_1_X`|                  |              |         |         |         |
-//! |  1   | `AD_B0_02` |          |              |              |          |`FlexPWM1_0_X`|                  |              |         |         |         |
-//! |  2   | `EMC_04`   |          |`FlexPWM4_2_A`|              |          |              |                  |              |         |         |         |
-//! |  3   | `EMC_05`   |          |`FlexPWM4_2_B`|              |          |              |                  |              |         |         |         |
-//! |  4   | `EMC_06`   |          |`FlexPWM2_0_A`|              |          |              |                  |              |         |         |         |
-//! |  5   | `EMC_08`   |          |`FlexPWM2_1_A`|              |          |              |                  |              |         |         |         |
-//! |  6   | `B0_10`    |          |              |`FlexPWM2_2_A`|          |              |                  |              |         |         |         |
-//! |  7   | `B1_01`    |          |              |              |          |              |                  |`FlexPWM1_3_B`|         |         |         |
-//! |  8   | `B1_00`    |          |              |              |          |              |                  |`FlexPWM1_3_A`|         |         |         |
-//! |  9   | `B0_11`    |          |              |`FlexPWM2_2_B`|          |              |                  |              |         |         |         |
-//! |  10  | `B0_00`    |          |              |              |          |              |                  |              |         |         |         |
-//! |  11  | `B0_02`    |          |              |              |          |              |                  |              |         |         |         |
-//! |  12  | `B0_01`    |          |              |              |          |              |                  |              |         |         |         |
-//! |  13  | `B0_03`    |          |              |              |          |              |`GPIO2_3` (`LED`) |              |         |         |         |
-//! |  14  | `AD_B1_02` |          |              |              |          |              |                  |              |         |         |         |
-//! |  15  | `AD_B1_03` |          |              |              |          |              |                  |              |         |         |         |
-//! |  16  | `AD_B1_07` |          |`I2C3_SCL`    |              |          |              |                  |              |         |         |         |
-//! |  17  | `AD_B1_06` |          |`I2C3_SDA`    |              |          |              |                  |              |         |         |         |
-//! |  18  | `AD_B1_01` |          |              |              |`I2C1_SDA`|              |                  |              |         |         |         |
-//! |  19  | `AD_B1_00` |          |              |              |`I2C1_SCL`|              |                  |              |         |         |         |
-//! |  20  | `AD_B1_10` |          |              |              |          |              |                  |              |         |         |         |
-//! |  21  | `AD_B1_11` |          |              |              |          |              |                  |              |         |         |         |
-//! |  22  | `AD_B1_08` |          |`FlexPWM4_0_A`|              |          |              |                  |              |         |         |         |
-//! |  23  | `AD_B1_09` |          |`FlexPWM4_1_A`|              |          |              |                  |              |         |         |         |
-//! |  24  | `AD_B0_12` |`I2C4_SCL`|              |              |          |`FlexPWM1_2_X`|                  |              |         |         |         |
-//! |  25  | `AD_B0_13` |`I2C4_SDA`|              |              |          |`FlexPWM1_3_X`|                  |              |         |         |         |
-//! |  26  | `AD_B0_14` |          |              |              |          |              |                  |              |         |         |         |
-//! |  27  | `AD_B0_15` |          |              |              |          |              |                  |              |         |         |         |
-//! |  28  | `EMC_32`   |          |`FlexPWM3_1_B`|              |          |              |                  |              |         |         |         |
-//! |  29  | `EMC_31`   |          |`FlexPWM3_1_A`|              |          |              |                  |              |         |         |         |
-//! |  30  | `EMC_37`   |          |              |              |          |              |                  |              |         |         |         |
-//! |  31  | `EMC_36`   |          |              |              |          |              |                  |              |         |         |         |
-//! |  32  | `B0_12`    |          |              |              |          |              |                  |              |         |         |         |
-//! |  33  | `EMC_07`   |          |`FlexPWM2_0_B`|              |          |              |                  |              |         |         |         |
-//! |  34  | `SD_B0_03` |          |`FlexPWM1_1_B`|              |          |              |                  |              |         |         |         |
-//! |  35  | `SD_B0_02` |          |`FlexPWM1_1_A`|              |          |              |                  |              |         |         |         |
-//! |  36  | `SD_B0_01` |          |`FlexPWM1_0_B`|`I2C3_SDA`    |          |              |                  |              |         |         |         |
-//! |  37  | `SD_B0_00` |          |`FlexPWM1_0_A`|`I2C3_SCL`    |          |              |                  |              |         |         |         |
-//! |  38  | `SD_B0_05` |          |`FlexPWM1_2_B`|              |          |              |                  |              |         |         |         |
-//! |  39  | `SD_B0_04` |          |`FlexPWM1_2_A`|              |          |              |                  |              |         |         |         |
+//! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3    |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
+//! | ---- | -------- | -------- | ------------ | ------------ | -------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
+//! |  0   |`AD_B0_03`|          |              |              |          |`FlexPWM1_1_X`|                  |              |         |         |         |
+//! |  1   |`AD_B0_02`|          |              |              |          |`FlexPWM1_0_X`|                  |              |         |         |         |
+//! |  2   |`EMC_04`  |          |`FlexPWM4_2_A`|              |          |              |                  |              |         |         |         |
+//! |  3   |`EMC_05`  |          |`FlexPWM4_2_B`|              |          |              |                  |              |         |         |         |
+//! |  4   |`EMC_06`  |          |`FlexPWM2_0_A`|              |          |              |                  |              |         |         |         |
+//! |  5   |`EMC_08`  |          |`FlexPWM2_1_A`|              |          |              |                  |              |         |         |         |
+//! |  6   |`B0_10`   |          |              |`FlexPWM2_2_A`|          |              |                  |              |         |         |         |
+//! |  7   |`B1_01`   |          |              |              |          |              |                  |`FlexPWM1_3_B`|         |         |         |
+//! |  8   |`B1_00`   |          |              |              |          |              |                  |`FlexPWM1_3_A`|         |         |         |
+//! |  9   |`B0_11`   |          |              |`FlexPWM2_2_B`|          |              |                  |              |         |         |         |
+//! |  10  |`B0_00`   |          |              |              |          |              |                  |              |         |         |         |
+//! |  11  |`B0_02`   |          |              |              |          |              |                  |              |         |         |         |
+//! |  12  |`B0_01`   |          |              |              |          |              |                  |              |         |         |         |
+//! |  13  |`B0_03`   |          |              |              |          |              |`GPIO2_3` (`LED`) |              |         |         |         |
+//! |  14  |`AD_B1_02`|          |              |              |          |              |                  |              |         |         |         |
+//! |  15  |`AD_B1_03`|          |              |              |          |              |                  |              |         |         |         |
+//! |  16  |`AD_B1_07`|          |`I2C3_SCL`    |              |          |              |                  |              |         |         |         |
+//! |  17  |`AD_B1_06`|          |`I2C3_SDA`    |              |          |              |                  |              |         |         |         |
+//! |  18  |`AD_B1_01`|          |              |              |`I2C1_SDA`|              |                  |              |         |         |         |
+//! |  19  |`AD_B1_00`|          |              |              |`I2C1_SCL`|              |                  |              |         |         |         |
+//! |  20  |`AD_B1_10`|          |              |              |          |              |                  |              |         |         |         |
+//! |  21  |`AD_B1_11`|          |              |              |          |              |                  |              |         |         |         |
+//! |  22  |`AD_B1_08`|          |`FlexPWM4_0_A`|              |          |              |                  |              |         |         |         |
+//! |  23  |`AD_B1_09`|          |`FlexPWM4_1_A`|              |          |              |                  |              |         |         |         |
+//! |  24  |`AD_B0_12`|`I2C4_SCL`|              |              |          |`FlexPWM1_2_X`|                  |              |         |         |         |
+//! |  25  |`AD_B0_13`|`I2C4_SDA`|              |              |          |`FlexPWM1_3_X`|                  |              |         |         |         |
+//! |  26  |`AD_B0_14`|          |              |              |          |              |                  |              |         |         |         |
+//! |  27  |`AD_B0_15`|          |              |              |          |              |                  |              |         |         |         |
+//! |  28  |`EMC_32`  |          |`FlexPWM3_1_B`|              |          |              |                  |              |         |         |         |
+//! |  29  |`EMC_31`  |          |`FlexPWM3_1_A`|              |          |              |                  |              |         |         |         |
+//! |  30  |`EMC_37`  |          |              |              |          |              |                  |              |         |         |         |
+//! |  31  |`EMC_36`  |          |              |              |          |              |                  |              |         |         |         |
+//! |  32  |`B0_12`   |          |              |              |          |              |                  |              |         |         |         |
+//! |  33  |`EMC_07`  |          |`FlexPWM2_0_B`|              |          |              |                  |              |         |         |         |
+//! |  34  |`SD_B0_03`|          |`FlexPWM1_1_B`|              |          |              |                  |              |         |         |         |
+//! |  35  |`SD_B0_02`|          |`FlexPWM1_1_A`|              |          |              |                  |              |         |         |         |
+//! |  36  |`SD_B0_01`|          |`FlexPWM1_0_B`|`I2C3_SDA`    |          |              |                  |              |         |         |         |
+//! |  37  |`SD_B0_00`|          |`FlexPWM1_0_A`|`I2C3_SCL`    |          |              |                  |              |         |         |         |
+//! |  38  |`SD_B0_05`|          |`FlexPWM1_2_B`|              |          |              |                  |              |         |         |         |
+//! |  39  |`SD_B0_04`|          |`FlexPWM1_2_A`|              |          |              |                  |              |         |         |         |
 //!
 //! References:
 //! - [Teensy 4.0 Schematic Diagram](https://www.pjrc.com/teensy/schematic.html)
@@ -117,11 +117,30 @@ pub use hal::pac::PIT;
 pub use hal::pac::SYST;
 
 /// Teensy pins that do not yet have a function
+///
+/// Note that pin 13 is not exposed, as it is already allocated
+/// as the `LED`.
 pub struct Pins {
     /// Pin 6
     pub p6: hal::iomuxc::gpio::GPIO_B0_10<hal::iomuxc::Alt5>,
     /// Pin 9
     pub p9: hal::iomuxc::gpio::GPIO_B0_11<hal::iomuxc::Alt5>,
+    /// Pin 16
+    pub p16: hal::iomuxc::gpio::GPIO_AD_B1_07<hal::iomuxc::Alt5>,
+    /// Pin 17
+    pub p17: hal::iomuxc::gpio::GPIO_AD_B1_06<hal::iomuxc::Alt5>,
+    /// Pin 18
+    pub p18: hal::iomuxc::gpio::GPIO_AD_B1_01<hal::iomuxc::Alt5>,
+    /// pin 19
+    pub p19: hal::iomuxc::gpio::GPIO_AD_B1_00<hal::iomuxc::Alt5>,
+    /// Pin 24
+    pub p24: hal::iomuxc::gpio::GPIO_AD_B0_12<hal::iomuxc::Alt5>,
+    /// Pin 25
+    pub p25: hal::iomuxc::gpio::GPIO_AD_B0_13<hal::iomuxc::Alt5>,
+    /// Pin 36
+    pub p36: hal::iomuxc::gpio::GPIO_SD_B0_01<hal::iomuxc::Alt5>,
+    /// Pin 37
+    pub p37: hal::iomuxc::gpio::GPIO_SD_B0_00<hal::iomuxc::Alt5>,
 }
 
 /// All peripherals available on the Teensy4
@@ -138,7 +157,7 @@ pub struct Peripherals {
     pub dcdc: hal::dcdc::DCDC,
     /// PWM2 controller
     pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
-    /// Teensy pin
+    /// Teensy pins
     pub pins: Pins,
 }
 
@@ -177,6 +196,14 @@ impl Peripherals {
             pins: Pins {
                 p6: p.iomuxc.gpio_b0_10,
                 p9: p.iomuxc.gpio_b0_11,
+                p16: p.iomuxc.gpio_ad_b1_07,
+                p17: p.iomuxc.gpio_ad_b1_06,
+                p18: p.iomuxc.gpio_ad_b1_01,
+                p19: p.iomuxc.gpio_ad_b1_00,
+                p24: p.iomuxc.gpio_ad_b0_12,
+                p25: p.iomuxc.gpio_ad_b0_13,
+                p36: p.iomuxc.gpio_sd_b0_01,
+                p37: p.iomuxc.gpio_sd_b0_00,
             },
         }
     }
