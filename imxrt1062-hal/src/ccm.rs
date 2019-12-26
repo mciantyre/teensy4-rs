@@ -501,3 +501,24 @@ pub mod pwm {
         }
     }
 }
+
+/// Timing configurations for I2C peripherals
+pub mod i2c {
+    use super::pac::ccm;
+    #[derive(Clone, Copy)]
+    #[non_exhaustive] // Not all variants added
+    pub enum ClockSelect {
+        /// Derive clock from oscillator
+        OSC,
+    }
+
+    impl From<ClockSelect> for ccm::cscdr2::LPI2C_CLK_SEL_A {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::OSC => ccm::cscdr2::LPI2C_CLK_SEL_A::LPI2C_CLK_SEL_1,
+            }
+        }
+    }
+
+    pub type Divider = ccm::cscdr2::LPI2C_CLK_PODF_A;
+}

@@ -68,7 +68,7 @@ macro_rules! clock_impl {
             pub fn clock(self, handle: &mut ccm::Handle) -> Controller<$module> {
                 let (ccm, _) = handle.raw();
                 // Safety: field is 2 bits
-                ccm.ccgr4.write(|w| unsafe { w.$cg().bits(0x3) });
+                ccm.ccgr4.modify(|_, w| unsafe { w.$cg().bits(0x3) });
                 Controller::new(<$pwm>::ptr())
             }
         }
@@ -137,6 +137,7 @@ where
 {
     fn new(reg: *const pac::pwm1::RegisterBlock) -> Self {
         let pwm = Controller {
+            // Safety: pointer points to static memory
             reg: unsafe { Reg(&(*reg)) },
             _module: PhantomData,
         };

@@ -20,6 +20,7 @@ pub use imxrt1062_pac as pac;
 
 pub mod ccm;
 pub mod gpio;
+pub mod i2c;
 pub mod iomuxc;
 pub mod pit;
 pub mod pwm;
@@ -41,6 +42,7 @@ pub struct Peripherals {
     pub pit: pit::UnclockedPIT,
     pub dcdc: dcdc::DCDC,
     pub pwm2: pwm::UnclockedController<pwm::module::_2>,
+    pub i2c: i2c::Unclocked,
 }
 
 impl Peripherals {
@@ -58,6 +60,7 @@ impl Peripherals {
             pit: pit::UnclockedPIT::new(p.PIT),
             dcdc: dcdc::DCDC(p.DCDC),
             pwm2: pwm::UnclockedController::new(),
+            i2c: i2c::Unclocked::new(),
         }
     }
 }

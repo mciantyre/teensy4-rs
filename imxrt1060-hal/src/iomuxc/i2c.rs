@@ -31,6 +31,9 @@ impl Wire for SDA {}
 pub trait Pin {
     type Wire: Wire;
     type Module: module::Module;
+
+    /// Perform IOMUXC configurations for this pin
+    fn configure(&mut self);
 }
 
 use crate::iomuxc::{
@@ -42,9 +45,34 @@ use crate::iomuxc::{
     Alt0, Alt1, Alt2, Alt3,
 };
 
+macro_rules! pin_config {
+    ($w:expr) => {
+        $w.ode()
+            .ode_1_open_drain_enabled()
+            .sre()
+            .sre_1_fast_slew_rate()
+            .dse()
+            .dse_4_r0_4()
+            .speed()
+            .speed_2_medium_100mhz()
+            .pke()
+            .pke_1_pull_keeper_enabled()
+            .pue()
+            .pue_1_pull()
+            .pus()
+            .pus_3_22k_ohm_pull_up()
+    };
+}
+
 impl Pin for GPIO_AD_B1_07<Alt1> {
     type Wire = SCL;
     type Module = module::_3;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_ad_b1_07
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_AD_B1_07<Alt1> {
@@ -59,6 +87,12 @@ impl IntoDaisy for GPIO_AD_B1_07<Alt1> {
 impl Pin for GPIO_AD_B1_06<Alt1> {
     type Wire = SDA;
     type Module = module::_3;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_ad_b1_06
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_AD_B1_06<Alt1> {
@@ -73,6 +107,12 @@ impl IntoDaisy for GPIO_AD_B1_06<Alt1> {
 impl Pin for GPIO_AD_B1_01<Alt3> {
     type Wire = SDA;
     type Module = module::_1;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_ad_b1_01
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_AD_B1_01<Alt3> {
@@ -87,6 +127,12 @@ impl IntoDaisy for GPIO_AD_B1_01<Alt3> {
 impl Pin for GPIO_AD_B1_00<Alt3> {
     type Wire = SCL;
     type Module = module::_1;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_ad_b1_00
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_AD_B1_00<Alt3> {
@@ -101,6 +147,12 @@ impl IntoDaisy for GPIO_AD_B1_00<Alt3> {
 impl Pin for GPIO_AD_B0_12<Alt0> {
     type Wire = SCL;
     type Module = module::_4;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_ad_b0_12
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_AD_B0_12<Alt0> {
@@ -115,6 +167,12 @@ impl IntoDaisy for GPIO_AD_B0_12<Alt0> {
 impl Pin for GPIO_AD_B0_13<Alt0> {
     type Wire = SDA;
     type Module = module::_4;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_ad_b0_13
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_AD_B0_13<Alt0> {
@@ -129,6 +187,12 @@ impl IntoDaisy for GPIO_AD_B0_13<Alt0> {
 impl Pin for GPIO_SD_B0_01<Alt2> {
     type Wire = SDA;
     type Module = module::_3;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_sd_b0_01
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_SD_B0_01<Alt2> {
@@ -143,6 +207,12 @@ impl IntoDaisy for GPIO_SD_B0_01<Alt2> {
 impl Pin for GPIO_SD_B0_00<Alt2> {
     type Wire = SCL;
     type Module = module::_3;
+
+    fn configure(&mut self) {
+        self.iomuxc()
+            .sw_pad_ctl_pad_gpio_sd_b0_00
+            .write(|w| pin_config!(w));
+    }
 }
 
 impl IntoDaisy for GPIO_SD_B0_00<Alt2> {
