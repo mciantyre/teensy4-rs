@@ -69,7 +69,7 @@ impl CCM {
 }
 
 pub mod perclk {
-    use super::{pac, Divider, Frequency, Handle};
+    use super::{pac, Divider, Frequency, Handle, OSCILLATOR_FREQUENCY};
 
     pub type PODF = pac::ccm::cscmr1::PERCLK_PODF_A;
     use pac::ccm::cscmr1::PERCLK_CLK_SEL_A;
@@ -133,7 +133,7 @@ pub mod perclk {
         fn from(clksel: CLKSEL) -> Frequency {
             match clksel {
                 // 24MHz oscillator
-                CLKSEL::OSC => Frequency(24_000_000),
+                CLKSEL::OSC => OSCILLATOR_FREQUENCY,
                 CLKSEL::IPG(ipg_freq) => ipg_freq.0,
             }
         }
@@ -256,7 +256,7 @@ pub mod pll2 {
 
 use core::convert::TryFrom;
 pub trait TicksRepr: TryFrom<u64> {}
-
+impl TicksRepr for u8 {}
 impl TicksRepr for u16 {}
 impl TicksRepr for u32 {}
 impl TicksRepr for u64 {}
@@ -264,7 +264,7 @@ impl TicksRepr for u64 {}
 /// An opaque duration representing the number of clock ticks
 ///
 /// See the `ticks` function to derive a `Ticks` value.
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Ticks<R: TicksRepr>(pub(crate) R);
 
 /// Possible errors that could result during a computation of `ticks`
@@ -311,7 +311,42 @@ pub fn ticks<R: TicksRepr>(
 
 /// An opaque value representing a clock frequency
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Frequency(pub(crate) u32);
+pub struct Frequency(u32);
+
+impl From<Frequency> for Ticks<u32> {
+    fn from(hz: Frequency) -> Ticks<u32> {
+        Ticks(hz.0)
+    }
+}
+
+impl core::ops::Add for Ticks<u32> {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self {
+        Ticks(self.0 + rhs.0)
+    }
+}
+
+impl core::ops::Div<Divider> for Ticks<u32> {
+    type Output = Self;
+    fn div(self, rhs: Divider) -> Self {
+        Ticks(self.0 / rhs.0)
+    }
+}
+
+impl core::ops::Div for Ticks<u32> {
+    type Output = Self;
+    fn div(self, rhs: Self) -> Self {
+        Ticks(self.0 / rhs.0)
+    }
+}
+
+impl core::ops::Sub for Ticks<u32> {
+    type Output = Self;
+    fn sub(self, rhs: Self) -> Self {
+        Ticks(self.0 - rhs.0)
+    }
+}
 
 /// An opaque value representing a clock phase divider
 #[derive(Debug, Clone, Copy)]
@@ -320,6 +355,23 @@ pub struct Divider(u32);
 impl Default for Divider {
     fn default() -> Divider {
         Divider(1)
+    }
+}
+
+/// High speed oscillator frequency
+const OSCILLATOR_FREQUENCY: Frequency = Frequency(24_000_000 /* 24MHz */);
+
+impl core::ops::Div<Divider> for Frequency {
+    type Output = Frequency;
+
+    fn div(self, rhs: Divider) -> Frequency {
+        Frequency(self.0 / rhs.0)
+    }
+}
+
+impl core::ops::DivAssign<Divider> for Frequency {
+    fn div_assign(&mut self, rhs: Divider) {
+        self.0 /= rhs.0;
     }
 }
 
@@ -504,7 +556,10 @@ pub mod pwm {
 
 /// Timing configurations for I2C peripherals
 pub mod i2c {
-    use super::pac::ccm;
+    use super::{
+        pac::{ccm, lpi2c1},
+        Divider, Frequency, OSCILLATOR_FREQUENCY,
+    };
     #[derive(Clone, Copy)]
     #[non_exhaustive] // Not all variants added
     pub enum ClockSelect {
@@ -520,5 +575,43 @@ pub mod i2c {
         }
     }
 
-    pub type Divider = ccm::cscdr2::LPI2C_CLK_PODF_A;
+    pub type PrescalarSelect = ccm::cscdr2::LPI2C_CLK_PODF_A;
+
+    impl From<ClockSelect> for Frequency {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::OSC => OSCILLATOR_FREQUENCY,
+            }
+        }
+    }
+
+    impl From<PrescalarSelect> for Divider {
+        fn from(prescalar_select: PrescalarSelect) -> Self {
+            Divider((u8::from(prescalar_select) as u32) + 1)
+        }
+    }
+
+    impl From<lpi2c1::mcfgr1::PRESCALE_A> for Divider {
+        fn from(prescale: lpi2c1::mcfgr1::PRESCALE_A) -> Self {
+            Divider(1u32 << u8::from(prescale))
+        }
+    }
+
+    impl From<Divider> for lpi2c1::mcfgr1::PRESCALE_A {
+        fn from(div: Divider) -> Self {
+            use lpi2c1::mcfgr1::PRESCALE_A::*;
+            // Dividers are always powers of two, bound from [0, 8)
+            match (div.0 - 1).count_ones() {
+                0 => PRESCALE_0,
+                1 => PRESCALE_1,
+                2 => PRESCALE_2,
+                3 => PRESCALE_3,
+                4 => PRESCALE_4,
+                5 => PRESCALE_5,
+                6 => PRESCALE_6,
+                7 => PRESCALE_7,
+                _ => unreachable!(),
+            }
+        }
+    }
 }

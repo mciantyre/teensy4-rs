@@ -26,7 +26,7 @@ impl Unclocked {
         self,
         handle: &mut ccm::Handle,
         clock_select: ccm::i2c::ClockSelect,
-        divider: ccm::i2c::Divider,
+        divider: ccm::i2c::PrescalarSelect,
     ) -> (
         Builder<module::_1>,
         Builder<module::_2>,
@@ -34,12 +34,23 @@ impl Unclocked {
         Builder<module::_4>,
     ) {
         let (ccm, _) = handle.raw();
+        // First, disable clocks
+        ccm.ccgr2.modify(|_, w| unsafe {
+            // Safety: each field is 2 bits
+            w.cg3().bits(0x0).cg4().bits(0x0).cg5().bits(0x0)
+        });
+        ccm.ccgr6.modify(|_, w| unsafe {
+            // Safety: field is 2 bits
+            w.cg12().bits(0x0)
+        });
+        // Select clock, and commit prescalar
         ccm.cscdr2.modify(|_, w| {
             w.lpi2c_clk_podf()
                 .variant(divider)
                 .lpi2c_clk_sel()
                 .variant(clock_select.into())
         });
+        // Enable clocks
         ccm.ccgr2.modify(|_, w| unsafe {
             // Safety: each field is 2 bits
             w.cg3().bits(0x3).cg4().bits(0x3).cg5().bits(0x3)
@@ -48,11 +59,12 @@ impl Unclocked {
             // Safety: field is 2 bits
             w.cg12().bits(0x3)
         });
+        let source_clock = ccm::Frequency::from(clock_select) / ccm::Divider::from(divider);
         (
-            Builder::new(pac::LPI2C1::ptr()),
-            Builder::new(pac::LPI2C2::ptr()),
-            Builder::new(pac::LPI2C3::ptr()),
-            Builder::new(pac::LPI2C4::ptr()),
+            Builder::new(source_clock, pac::LPI2C1::ptr()),
+            Builder::new(source_clock, pac::LPI2C2::ptr()),
+            Builder::new(source_clock, pac::LPI2C3::ptr()),
+            Builder::new(source_clock, pac::LPI2C4::ptr()),
         )
     }
 }
@@ -61,17 +73,21 @@ impl Unclocked {
 pub struct Builder<M> {
     _module: PhantomData<M>,
     reg: &'static pac::lpi2c1::RegisterBlock,
+    /// Frequency of the LPI2C source clock. This
+    /// accounts for the divider.
+    source_clock: ccm::Frequency,
 }
 
 impl<M> Builder<M>
 where
     M: module::Module,
 {
-    fn new(reg: *const pac::lpi2c1::RegisterBlock) -> Self {
+    fn new(source_clock: ccm::Frequency, reg: *const pac::lpi2c1::RegisterBlock) -> Self {
         Builder {
             _module: PhantomData,
             // Safety: pointer points to static memory
             reg: unsafe { &*reg },
+            source_clock,
         }
     }
 
@@ -86,17 +102,8 @@ where
         sda.configure();
         let _ = scl.into_daisy();
         let _ = sda.into_daisy();
-        I2C::new(self.reg)
+        I2C::new(self.source_clock, self.reg)
     }
-}
-
-/// An I2C master
-///
-/// By default, the I2C master runs at 100KHz, Use `set_clock_speed` to vary
-/// the I2C bus speed.
-pub struct I2C<M> {
-    reg: &'static pac::lpi2c1::RegisterBlock,
-    _module: PhantomData<M>,
 }
 
 /// I2C Clock speed
@@ -110,126 +117,207 @@ pub enum ClockSpeed {
     MHz1,
 }
 
+impl Default for ClockSpeed {
+    fn default() -> Self {
+        ClockSpeed::KHz100
+    }
+}
+
 impl ClockSpeed {
     /// Sets the clock speed parameters
     ///
     /// # Safety
     ///
     /// The function touches I2C registers that should only be touched
-    /// while the I2C master is disabled. Enabling the I2C master outside
-    /// of the `MasterDisabled` sentinel is a violation of the API.
-    unsafe fn set(self, reg: &pac::lpi2c1::RegisterBlock) {
-        match self {
-            ClockSpeed::KHz100 => {
-                reg.mccr0.write(|w| {
-                    // Safety: 6 bits for all fields
-                    w.clkhi()
-                        .bits(55)
-                        .clklo()
-                        .bits(59)
-                        .datavd()
-                        .bits(25)
-                        .sethold()
-                        .bits(40)
-                });
-                reg.mcfgr1.write(|w| w.prescale().prescale_1());
-                reg.mcfgr2.write(|w| {
-                    // Safety: 4 bits for filter fields, 12 for busidle
-                    w.filtsda().bits(5).filtscl().bits(5).busidle().bits(3900)
-                });
-            }
-            ClockSpeed::KHz400 => {
-                reg.mccr0.write(|w| {
-                    // Safety: 6 bits for all fields
-                    w.clkhi()
-                        .bits(26)
-                        .clklo()
-                        .bits(28)
-                        .datavd()
-                        .bits(12)
-                        .sethold()
-                        .bits(18)
-                });
-                reg.mcfgr1.write(|w| w.prescale().prescale_0());
-                reg.mcfgr2.write(|w| {
-                    // Safety: 4 bits for filter fields, 12 for busidle
-                    w.filtsda().bits(2).filtscl().bits(2).busidle().bits(3900)
-                });
-            }
-            ClockSpeed::MHz1 => {
-                reg.mccr0.write(|w| {
-                    // Safety: 6 bits for all fields
-                    w.clkhi()
-                        .bits(9)
-                        .clklo()
-                        .bits(10)
-                        .datavd()
-                        .bits(4)
-                        .sethold()
-                        .bits(7)
-                });
-                reg.mcfgr1.write(|w| w.prescale().prescale_0());
-                reg.mcfgr2.write(|w| {
-                    // Safety: 4 bits for filter fields, 12 for busidle
-                    w.filtsda().bits(1).filtscl().bits(1).busidle().bits(3900)
-                });
-            }
+    /// while the I2C master is disabled.
+    unsafe fn set(self, source_clock: ccm::Frequency, reg: &pac::lpi2c1::RegisterBlock) {
+        // Baud rate = (source_clock/2^prescale)/(CLKLO+1+CLKHI+1 + FLOOR((2+FILTSCL)/2^prescale)
+        // Assume CLKLO = 2*CLKHI, SETHOLD = CLKHI, DATAVD = CLKHI/2, FILTSCL = FILTSDA = 0,
+        // and that risetime is negligible (less than 1 cycle).
+        use core::cmp;
+        use pac::lpi2c1::mcfgr1::PRESCALE_A;
+
+        const PRESCALARS: [PRESCALE_A; 8] = [
+            PRESCALE_A::PRESCALE_0,
+            PRESCALE_A::PRESCALE_1,
+            PRESCALE_A::PRESCALE_2,
+            PRESCALE_A::PRESCALE_3,
+            PRESCALE_A::PRESCALE_4,
+            PRESCALE_A::PRESCALE_5,
+            PRESCALE_A::PRESCALE_6,
+            PRESCALE_A::PRESCALE_7,
+        ];
+
+        struct ByError {
+            prescalar: PRESCALE_A,
+            clkhi: u8,
+            error: u32,
         }
-        let mccr0 = reg.mccr0.read().bits();
-        reg.mccr1.write(|w| {
-            // Safety: registers are of the same size and fields, just for different purposes
-            w.bits(mccr0)
+
+        let baud_rate = match self {
+            Self::KHz100 => ccm::Ticks(100_000),
+            Self::KHz400 => ccm::Ticks(400_000),
+            Self::MHz1 => ccm::Ticks(1_000_000),
+        };
+
+        // prescale = 1, 2, 4, 8, ... 128
+        // divider = 2 ^ prescale
+        let dividers = PRESCALARS.into_iter().copied().map(ccm::Divider::from);
+        let clkhis = (1u32..32u32).map(ccm::Ticks);
+        // possibilities = every divider with every clkhi (8 * 30 == 240 possibilities)
+        let possibilities =
+            dividers.flat_map(|divider| core::iter::repeat(divider).zip(clkhis.clone()));
+        let errors = possibilities.map(|(divider, clkhi)| {
+            let computed_rate = if ccm::Ticks(1) == clkhi {
+                // See below for justification on magic numbers.
+                // In the 1 == clkhi case, the + 3 is the minimum allowable CLKLO value
+                // + 1 is CLKHI itself
+                ccm::Ticks::from(source_clock / divider) / (ccm::Ticks(1 + 3 + 2 + 2) / divider)
+            } else {
+                // CLKLO = 2 * CLKHI, allows us to do 3 * CLKHI
+                // + 2 accounts for the CLKLOW + 1 and CLKHI + 1
+                // + 2 accounts for the FLOOR((2 + FILTSCL)) factor
+                ccm::Ticks::from(source_clock / divider)
+                    / (ccm::Ticks(3 * clkhi.0 + 2 + 2) / divider)
+            };
+            let error = cmp::max(computed_rate, baud_rate) - cmp::min(computed_rate, baud_rate);
+            ByError {
+                prescalar: PRESCALE_A::from(divider),
+                clkhi: clkhi.0 as u8, /* (1..32) in u8 range */
+                error: error.0,
+            }
         });
+
+        let ByError {
+            prescalar, clkhi, ..
+        } = errors.min_by(|lhs, rhs| lhs.error.cmp(&rhs.error)).unwrap();
+
+        reg.mccr0.modify(|_, w| {
+            // Safety: fields are 6 bits
+            w.clkhi().bits(clkhi);
+            if clkhi < 2 {
+                w.clklo().bits(3).sethold().bits(2).datavd().bits(1)
+            } else {
+                w.clklo()
+                    .bits(clkhi * 2)
+                    .sethold()
+                    .bits(clkhi)
+                    .datavd()
+                    .bits(clkhi / 2)
+            }
+        });
+        reg.mcfgr1.modify(|_, w| w.prescale().variant(prescalar));
     }
 }
+
+/// An I2C master
+///
+/// By default, the I2C master runs at 100KHz, Use `set_clock_speed` to vary
+/// the I2C bus speed.
+pub struct I2C<M> {
+    reg: &'static pac::lpi2c1::RegisterBlock,
+    _module: PhantomData<M>,
+    /// LPI2C effective input clock frequency
+    source_clock: ccm::Frequency,
+}
+
+/// Indicates an error when computing the parameters that control
+/// the clock speed.
+#[derive(Debug)]
+pub struct ClockSpeedError;
+/// Indicates an error when computing the parameters that control
+/// the pin low timeout
+#[derive(Debug)]
+pub struct PinLowTimeoutError;
+/// Indicates an error when computing the parameters that control
+/// the bus idle timeout
+#[derive(Debug)]
+pub struct BusIdleTimeoutError;
 
 impl<M> I2C<M>
 where
     M: module::Module,
 {
-    fn new(reg: &'static pac::lpi2c1::RegisterBlock) -> Self {
-        let i2c = I2C {
+    fn new(source_clock: ccm::Frequency, reg: &'static pac::lpi2c1::RegisterBlock) -> Self {
+        let mut i2c = I2C {
             reg,
             _module: PhantomData,
+            source_clock,
         };
-
-        i2c.reg.mcr.modify(|_, w| w.men().clear_bit());
-        // Safety: modified while master is diabled
-        unsafe {
-            ClockSpeed::KHz100.set(&i2c.reg);
-        }
-        i2c.reg.mcfgr3.write(|w| unsafe {
-            // Safety: pinlow is 12 bits
-            w.pinlow().bits(3900)
-        });
-        i2c.reg.mfcr.write(|w| unsafe {
-            // Safety: water marks are 2 bits
-            w.rxwater().bits(1).txwater().bits(0)
-        });
-
-        // Enable I2C master
-        i2c.reg.mcr.modify(|_, w| w.men().set_bit());
+        // Enables I2C master
+        i2c.set_clock_speed(ClockSpeed::KHz100).unwrap();
         i2c
     }
 
-    /// Set the I2C clock speed to the specified rate
-    pub fn set_clock_speed(&mut self, clock_speed: ClockSpeed) {
+    fn with_master_disabled<F: FnMut() -> R, R>(&self, mut act: F) -> R {
         self.reg.mcr.modify(|_, w| w.men().clear_bit());
-        // Safety: called while master is disabled
-        unsafe {
-            clock_speed.set(&self.reg);
-        }
+        let res = act();
         self.reg.mcr.modify(|_, w| w.men().set_bit());
+        res
+    }
+
+    /// Set the I2C master clock speed
+    pub fn set_clock_speed(&mut self, clock_speed: ClockSpeed) -> Result<(), ClockSpeedError> {
+        self.with_master_disabled(|| unsafe {
+            // Safety: master is disabled
+            clock_speed.set(self.source_clock, self.reg);
+            Ok(())
+        })
+    }
+
+    /// Set the pin low timeout
+    ///
+    /// If SCL or, either SCL or SDA, is low for longer than the specified duration, then the
+    /// I2C hardware indicates an error. If the timeout is `0`, then the detection is disabled.
+    pub fn set_pin_low_timeout(
+        &mut self,
+        timeout: core::time::Duration,
+    ) -> Result<(), PinLowTimeoutError> {
+        let divider = self.reg.mcfgr1.read().prescale().variant().into();
+        let pin_low_ticks: ccm::Ticks<u16> = ccm::ticks(timeout, self.source_clock, divider)
+            .map(|ticks: ccm::Ticks<u16>| ccm::Ticks(ticks.0 / 256))
+            .map_err(|_| PinLowTimeoutError)?;
+        self.with_master_disabled(|| {
+            self.reg.mcfgr3.modify(|_, w| unsafe {
+                // Safety: pinlow is 12 bits
+                w.pinlow()
+                    .bits(core::cmp::min(pin_low_ticks, ccm::Ticks(0xFFF)).0)
+            });
+            Ok(())
+        })
+    }
+
+    /// Set the bus idle timeout
+    ///
+    /// If both SCL and SDA are high for longer than the timeout, then the I2C bus is assumed to be
+    /// idle and the master can generate a START condition. If the timeout is `0`, then the idle is
+    /// disabled.
+    pub fn set_bus_idle_timeout(
+        &mut self,
+        timeout: core::time::Duration,
+    ) -> Result<(), BusIdleTimeoutError> {
+        let divider = self.reg.mcfgr1.read().prescale().variant().into();
+        let bus_idle_ticks: ccm::Ticks<u16> =
+            ccm::ticks(timeout, self.source_clock, divider).map_err(|_| BusIdleTimeoutError)?;
+        self.with_master_disabled(|| {
+            self.reg.mcfgr2.modify(|_, w| unsafe {
+                // Safety: busidle is 12 bits
+                w.busidle()
+                    .bits(core::cmp::min(bus_idle_ticks, ccm::Ticks(0xFFF)).0)
+            });
+            Ok(())
+        })
     }
 
     #[inline(always)]
     fn wait_idle(&mut self) {
         loop {
             let status = self.reg.msr.read();
-            if status.bbf().bit_is_clear() // Bus is idle
+            // Bus is idle
+            if status.bbf().bit_is_clear()
+            // Master is busy; we already have the bus
             || status.mbf().bit_is_set()
             {
-                // Master is busy; we already have the bus
                 break;
             }
         }
@@ -291,7 +379,6 @@ where
     where
         C: Iterator<Item = Command>,
     {
-
         const FIFO_SIZE: u8 = 4;
 
         commands.try_for_each(|command| loop {
