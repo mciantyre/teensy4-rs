@@ -1,11 +1,14 @@
 //! I2C support
 
-use core::marker::PhantomData;
+pub use crate::iomuxc::i2c::module;
 
 use crate::ccm;
-pub use crate::iomuxc::i2c::module;
 use crate::iomuxc::{daisy, i2c};
+use core::convert::TryFrom;
+use core::marker::PhantomData;
+use embedded_hal::blocking;
 use imxrt1060_pac as pac;
+use pac::lpi2c1::mtdr::CMD_AW;
 
 /// Unclocked I2C modules
 ///
@@ -220,7 +223,7 @@ where
             });
             i2c.reg.mfcr.write(|w| unsafe {
                 // Safety: water marks are 2 bits
-                w.rxwater().bits(1).txwater().bits(1)
+                w.rxwater().bits(1).txwater().bits(0)
             });
         }
 
@@ -233,5 +236,267 @@ where
     pub fn set_clock_speed(&mut self, clock_speed: ClockSpeed) {
         let mdis = MasterDisabled::new(&self.reg);
         clock_speed.set(&mdis, &self.reg);
+    }
+
+    #[inline(always)]
+    fn wait_idle(&mut self) {
+        loop {
+            let status = self.reg.msr.read();
+            if status.bbf().bit_is_clear() // Bus is idle
+            || status.mbf().bit_is_set()
+            {
+                // Master is busy; we already have the bus
+                break;
+            }
+        }
+    }
+
+    #[inline(always)]
+    fn wait_stop(&mut self) {
+        loop {
+            let status = self.reg.msr.read();
+            if status.sdf().bit_is_set() {
+                break;
+            }
+        }
+    }
+
+    /// Clears all master status flags that are required to be
+    /// low before acting as an I2C master.
+    ///
+    /// All flags are W1C.
+    #[inline(always)]
+    fn clear_status(&mut self) {
+        self.reg.msr.write(|w| {
+            w.epf()
+                .epf_1()
+                .sdf()
+                .sdf_1()
+                .ndf()
+                .ndf_1()
+                .alf()
+                .alf_1()
+                .fef()
+                .fef_1()
+                .pltf()
+                .pltf_1()
+                .dmf()
+                .dmf_1()
+        });
+    }
+
+    /// Check master status flags for erroneous conditions
+    #[inline(always)]
+    fn check_errors(&mut self) -> Result<(), Error> {
+        let status = self.reg.msr.read();
+        if status.pltf().bit_is_set() {
+            Err(Error::PinLowTimeout)
+        } else if status.alf().bit_is_set() {
+            Err(Error::LostBusArbitration)
+        } else if status.ndf().bit_is_set() {
+            Err(Error::UnexpectedNACK)
+        } else if status.fef().bit_is_set() {
+            Err(Error::FIFO)
+        } else {
+            Ok(())
+        }
+    }
+
+    // Enqueues all the commands in the MTDR FIFO
+    fn enqueue_mtdr<C>(&mut self, mut commands: C) -> Result<(), Error>
+    where
+        C: Iterator<Item = Command>,
+    {
+        commands.try_for_each(|command| loop {
+            self.check_errors()?;
+            let fifo_used = self.reg.mfsr.read().txcount().bits();
+            if fifo_used < FIFO_SIZE {
+                self.reg.mtdr.write(|w| {
+                    w.cmd().variant(command.into());
+                    match command {
+                        Command::Start(data)   |
+                        Command::Data(data)    |
+                        Command::Receive(data) => unsafe {
+                            // Safety: data field is 8 bits
+                            w.data().bits(data)
+                        },
+                        Command::Stop => w,
+                    }
+                });
+                return Ok(());
+            }
+        })
+    }
+
+    /// Retrieves data from the MRDR FIFO, placing each byte in the buffer
+    fn retrieve_mrdr<'a, C>(&mut self, mut buffer: C) -> Result<(), Error>
+    where
+        C: Iterator<Item = &'a mut u8>,
+    {
+        buffer.try_for_each(|slot| loop {
+            self.check_errors()?;
+            let mrdr = self.reg.mrdr.read();
+            if mrdr.rxempty().bit_is_clear() {
+                *slot = mrdr.data().bits();
+                return Ok(());
+            }
+        })
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Error {
+    /// Master has lost arbitration
+    LostBusArbitration,
+    /// SCL and / or SDA went low for too long, despite our control
+    PinLowTimeout,
+    /// Detected a NACK when sending an address or data
+    UnexpectedNACK,
+    /// Sending or receiving data without a START
+    FIFO,
+    /// Requesting too much data in a receive; upper limit is `u8::MAX`
+    RequestTooMuchData,
+}
+
+const FIFO_SIZE: u8 = 4;
+const READ: u8 = 1;
+const WRITE: u8 = 0;
+
+#[derive(Clone, Copy)]
+enum Command {
+    Start(u8),
+    Data(u8),
+    Receive(u8),
+    Stop,
+}
+
+impl Command {
+    fn start(addr: u8, direction: u8) -> Self {
+        Command::Start(addr << 1 | direction)
+    }
+    fn receive(len: u8) -> Self {
+        // Receive commands are for the value + 1, so we subtract
+        // 1 to account for the off-by-one
+        Command::Receive(len.saturating_sub(1))
+    }
+}
+
+impl From<Command> for CMD_AW {
+    fn from(cmd: Command) -> Self {
+        match cmd {
+            Command::Start(..) => CMD_AW::CMD_4,
+            Command::Data(..) => CMD_AW::CMD_0,
+            Command::Receive(_) => CMD_AW::CMD_1,
+            Command::Stop => CMD_AW::CMD_2,
+        }
+    }
+}
+
+impl<M> blocking::i2c::Write for I2C<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+
+    fn write(&mut self, addr: u8, bytes: &[u8]) -> Result<(), Self::Error> {
+        <Self as blocking::i2c::WriteIter>::write(self, addr, bytes.iter().cloned())
+    }
+}
+
+impl<M> blocking::i2c::WriteIter for I2C<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+
+    fn write<I>(&mut self, addr: u8, bytes: I) -> Result<(), Self::Error>
+    where
+        I: IntoIterator<Item = u8>,
+    {
+        self.wait_idle();
+        self.clear_status();
+
+        let transmission = core::iter::once(Command::start(addr, WRITE))
+            .chain(bytes.into_iter().map(Command::Data))
+            .chain(core::iter::once(Command::Stop));
+
+        self.enqueue_mtdr(transmission)?;
+        self.wait_stop();
+        Ok(())
+    }
+}
+
+impl<M> blocking::i2c::WriteRead for I2C<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+    fn write_read(
+        &mut self,
+        address: u8,
+        bytes: &[u8],
+        buffer: &mut [u8],
+    ) -> Result<(), Self::Error> {
+        use blocking::i2c::WriteIterRead;
+        self.write_iter_read(address, bytes.iter().cloned(), buffer)
+    }
+}
+
+impl<M> blocking::i2c::WriteIterRead for I2C<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+
+    fn write_iter_read<B>(
+        &mut self,
+        address: u8,
+        bytes: B,
+        buffer: &mut [u8],
+    ) -> Result<(), Self::Error>
+    where
+        B: IntoIterator<Item = u8>,
+    {
+        let receive_len = u8::try_from(buffer.len()).map_err(|_| Error::RequestTooMuchData)?;
+
+        self.wait_idle();
+        self.clear_status();
+
+        self.enqueue_mtdr(
+            core::iter::once(Command::start(address, WRITE))
+                .chain(bytes.into_iter().map(Command::Data)),
+        )?;
+
+        if receive_len > 0 {
+            let recv_cmds = [Command::start(address, READ), Command::receive(receive_len)];
+            self.enqueue_mtdr(recv_cmds.iter().cloned())?;
+            self.retrieve_mrdr(buffer.iter_mut())?;
+        }
+        self.enqueue_mtdr(core::iter::once(Command::Stop))?;
+        self.wait_stop();
+        Ok(())
+    }
+}
+
+impl<M> blocking::i2c::Read for I2C<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+
+    fn read(&mut self, address: u8, buffer: &mut [u8]) -> Result<(), Self::Error> {
+        let receive_len = u8::try_from(buffer.len()).map_err(|_| Error::RequestTooMuchData)?;
+        if receive_len == 0 {
+            return Ok(());
+        }
+
+        self.wait_idle();
+        self.clear_status();
+        let recv_cmds = [Command::start(address, READ), Command::receive(receive_len)];
+        self.enqueue_mtdr(recv_cmds.iter().cloned())?;
+        self.retrieve_mrdr(buffer.iter_mut())?;
+        self.enqueue_mtdr(core::iter::once(Command::Stop))?;
+        self.wait_stop();
+        Ok(())
     }
 }
