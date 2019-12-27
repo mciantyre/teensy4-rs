@@ -110,39 +110,18 @@ pub enum ClockSpeed {
     MHz1,
 }
 
-/// A handle that will disable I2C master on construction and
-/// enable I2C master when dropped. If the I2C master bit
-/// was not set, this does nothing.
-struct MasterDisabled<'a>(Option<&'a pac::lpi2c1::RegisterBlock>);
-impl<'a> MasterDisabled<'a> {
-    fn new(reg: &'a pac::lpi2c1::RegisterBlock) -> Self {
-        MasterDisabled(if reg.mcr.read().men().bit_is_set() {
-            reg.mcr.modify(|_, w| w.men().clear_bit());
-            Some(reg)
-        } else {
-            None
-        })
-    }
-}
-
-impl<'a> Drop for MasterDisabled<'a> {
-    fn drop(&mut self) {
-        if let Some(reg) = self.0 {
-            reg.mcr.modify(|_, w| w.men().set_bit());
-        }
-    }
-}
-
 impl ClockSpeed {
     /// Sets the clock speed parameters
+    ///
+    /// # Safety
     ///
     /// The function touches I2C registers that should only be touched
     /// while the I2C master is disabled. Enabling the I2C master outside
     /// of the `MasterDisabled` sentinel is a violation of the API.
-    fn set(self, _: &MasterDisabled, reg: &pac::lpi2c1::RegisterBlock) {
+    unsafe fn set(self, reg: &pac::lpi2c1::RegisterBlock) {
         match self {
             ClockSpeed::KHz100 => {
-                reg.mccr0.write(|w| unsafe {
+                reg.mccr0.write(|w| {
                     // Safety: 6 bits for all fields
                     w.clkhi()
                         .bits(55)
@@ -154,13 +133,13 @@ impl ClockSpeed {
                         .bits(40)
                 });
                 reg.mcfgr1.write(|w| w.prescale().prescale_1());
-                reg.mcfgr2.write(|w| unsafe {
+                reg.mcfgr2.write(|w| {
                     // Safety: 4 bits for filter fields, 12 for busidle
                     w.filtsda().bits(5).filtscl().bits(5).busidle().bits(3900)
                 });
             }
             ClockSpeed::KHz400 => {
-                reg.mccr0.write(|w| unsafe {
+                reg.mccr0.write(|w| {
                     // Safety: 6 bits for all fields
                     w.clkhi()
                         .bits(26)
@@ -172,13 +151,13 @@ impl ClockSpeed {
                         .bits(18)
                 });
                 reg.mcfgr1.write(|w| w.prescale().prescale_0());
-                reg.mcfgr2.write(|w| unsafe {
+                reg.mcfgr2.write(|w| {
                     // Safety: 4 bits for filter fields, 12 for busidle
                     w.filtsda().bits(2).filtscl().bits(2).busidle().bits(3900)
                 });
             }
             ClockSpeed::MHz1 => {
-                reg.mccr0.write(|w| unsafe {
+                reg.mccr0.write(|w| {
                     // Safety: 6 bits for all fields
                     w.clkhi()
                         .bits(9)
@@ -190,14 +169,14 @@ impl ClockSpeed {
                         .bits(7)
                 });
                 reg.mcfgr1.write(|w| w.prescale().prescale_0());
-                reg.mcfgr2.write(|w| unsafe {
+                reg.mcfgr2.write(|w| {
                     // Safety: 4 bits for filter fields, 12 for busidle
                     w.filtsda().bits(1).filtscl().bits(1).busidle().bits(3900)
                 });
             }
         }
         let mccr0 = reg.mccr0.read().bits();
-        reg.mccr1.write(|w| unsafe {
+        reg.mccr1.write(|w| {
             // Safety: registers are of the same size and fields, just for different purposes
             w.bits(mccr0)
         });
@@ -213,19 +192,20 @@ where
             reg,
             _module: PhantomData,
         };
-        {
-            // Disabled master should exist for the entire scope.
-            let mdis = MasterDisabled::new(&i2c.reg);
-            ClockSpeed::KHz100.set(&mdis, &i2c.reg);
-            i2c.reg.mcfgr3.write(|w| unsafe {
-                // Safety: pinlow is 12 bits
-                w.pinlow().bits(3900)
-            });
-            i2c.reg.mfcr.write(|w| unsafe {
-                // Safety: water marks are 2 bits
-                w.rxwater().bits(1).txwater().bits(0)
-            });
+
+        i2c.reg.mcr.modify(|_, w| w.men().clear_bit());
+        // Safety: modified while master is diabled
+        unsafe {
+            ClockSpeed::KHz100.set(&i2c.reg);
         }
+        i2c.reg.mcfgr3.write(|w| unsafe {
+            // Safety: pinlow is 12 bits
+            w.pinlow().bits(3900)
+        });
+        i2c.reg.mfcr.write(|w| unsafe {
+            // Safety: water marks are 2 bits
+            w.rxwater().bits(1).txwater().bits(0)
+        });
 
         // Enable I2C master
         i2c.reg.mcr.modify(|_, w| w.men().set_bit());
@@ -234,8 +214,12 @@ where
 
     /// Set the I2C clock speed to the specified rate
     pub fn set_clock_speed(&mut self, clock_speed: ClockSpeed) {
-        let mdis = MasterDisabled::new(&self.reg);
-        clock_speed.set(&mdis, &self.reg);
+        self.reg.mcr.modify(|_, w| w.men().clear_bit());
+        // Safety: called while master is disabled
+        unsafe {
+            clock_speed.set(&self.reg);
+        }
+        self.reg.mcr.modify(|_, w| w.men().set_bit());
     }
 
     #[inline(always)]
@@ -307,6 +291,9 @@ where
     where
         C: Iterator<Item = Command>,
     {
+
+        const FIFO_SIZE: u8 = 4;
+
         commands.try_for_each(|command| loop {
             self.check_errors()?;
             let fifo_used = self.reg.mfsr.read().txcount().bits();
@@ -358,7 +345,6 @@ pub enum Error {
     RequestTooMuchData,
 }
 
-const FIFO_SIZE: u8 = 4;
 const READ: u8 = 1;
 const WRITE: u8 = 0;
 
