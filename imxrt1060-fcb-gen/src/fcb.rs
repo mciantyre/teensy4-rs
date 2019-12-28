@@ -57,7 +57,7 @@ impl fmt::Display for FCB {
 pub static FIRMWARE_CONFIGURATION_BLOCK: [u8; 512] = ["#,
         )?;
         for (idx, (value, comment)) in self.raw.iter().zip(self.comments.iter()).enumerate() {
-            writeln!(f, "\t0x{:02X},\t// 0x{:03X} {}", *value, idx * 4, comment)?;
+            writeln!(f, "    0x{:02X}, // 0x{:03X} {}", *value, idx * 4, comment)?;
         }
         write!(f, "];")?;
         Ok(())
