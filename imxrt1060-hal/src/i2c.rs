@@ -107,7 +107,7 @@ where
 }
 
 /// I2C Clock speed
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub enum ClockSpeed {
     /// 100 KHz
     KHz100,
@@ -137,6 +137,12 @@ impl ClockSpeed {
         use core::cmp;
         use pac::lpi2c1::mcfgr1::PRESCALE_A;
 
+        log::debug!(
+            "I2C baud rate = {:?}, source clock = {:?}",
+            self,
+            source_clock
+        );
+
         const PRESCALARS: [PRESCALE_A; 8] = [
             PRESCALE_A::PRESCALE_0,
             PRESCALE_A::PRESCALE_1,
@@ -152,6 +158,7 @@ impl ClockSpeed {
             prescalar: PRESCALE_A,
             clkhi: u8,
             error: u32,
+            computed_rate: u32,
         }
 
         let baud_rate = match self {
@@ -172,39 +179,57 @@ impl ClockSpeed {
                 // See below for justification on magic numbers.
                 // In the 1 == clkhi case, the + 3 is the minimum allowable CLKLO value
                 // + 1 is CLKHI itself
-                ccm::Ticks::from(source_clock / divider) / (ccm::Ticks(1 + 3 + 2 + 2) / divider)
+                ccm::Ticks::from(source_clock / divider)
+                    / (ccm::Ticks(1 + 3 + 2) + ccm::Ticks(2) / divider)
             } else {
                 // CLKLO = 2 * CLKHI, allows us to do 3 * CLKHI
                 // + 2 accounts for the CLKLOW + 1 and CLKHI + 1
                 // + 2 accounts for the FLOOR((2 + FILTSCL)) factor
                 ccm::Ticks::from(source_clock / divider)
-                    / (ccm::Ticks(3 * clkhi.0 + 2 + 2) / divider)
+                    / (ccm::Ticks(3 * clkhi.0 + 2) + ccm::Ticks(2) / divider)
             };
             let error = cmp::max(computed_rate, baud_rate) - cmp::min(computed_rate, baud_rate);
             ByError {
                 prescalar: PRESCALE_A::from(divider),
                 clkhi: clkhi.0 as u8, /* (1..32) in u8 range */
                 error: error.0,
+                computed_rate: computed_rate.0,
             }
         });
 
         let ByError {
-            prescalar, clkhi, ..
+            prescalar,
+            clkhi,
+            error,
+            computed_rate,
         } = errors.min_by(|lhs, rhs| lhs.error.cmp(&rhs.error)).unwrap();
 
+        let (clklo, sethold, datavd) = if clkhi < 2 {
+            (3, 2, 1)
+        } else {
+            (clkhi * 2, clkhi, clkhi / 2)
+        };
+
+        log::debug!(
+            "COMPUTED_RATE = {}, ERROR = {}, PRESCALAR = {:?}, CLKHI = {}, CLKLO = {}, SETHOLD = {}, DAVAVD = {}",
+            computed_rate,
+            error,
+            prescalar,
+            clkhi,
+            clklo,
+            sethold,
+            datavd
+        );
         reg.mccr0.modify(|_, w| {
             // Safety: fields are 6 bits
-            w.clkhi().bits(clkhi);
-            if clkhi < 2 {
-                w.clklo().bits(3).sethold().bits(2).datavd().bits(1)
-            } else {
-                w.clklo()
-                    .bits(clkhi * 2)
-                    .sethold()
-                    .bits(clkhi)
-                    .datavd()
-                    .bits(clkhi / 2)
-            }
+            w.clkhi()
+                .bits(clkhi)
+                .clklo()
+                .bits(clklo)
+                .sethold()
+                .bits(sethold)
+                .datavd()
+                .bits(datavd)
         });
         reg.mcfgr1.modify(|_, w| w.prescale().variant(prescalar));
     }
@@ -269,6 +294,9 @@ where
     ///
     /// If SCL or, either SCL or SDA, is low for longer than the specified duration, then the
     /// I2C hardware indicates an error. If the timeout is `0`, then the detection is disabled.
+    ///
+    /// If the number of cycles required to represent the duration is too large, returns a
+    /// `PinLowTimeoutError`. Try using a smaller duration.
     pub fn set_pin_low_timeout(
         &mut self,
         timeout: core::time::Duration,
@@ -276,12 +304,15 @@ where
         let divider = self.reg.mcfgr1.read().prescale().variant().into();
         let pin_low_ticks: ccm::Ticks<u16> = ccm::ticks(timeout, self.source_clock, divider)
             .map(|ticks: ccm::Ticks<u16>| ccm::Ticks(ticks.0 / 256))
-            .map_err(|_| PinLowTimeoutError)?;
+            .into_iter()
+            .next()
+            .filter(|ticks| *ticks <= ccm::Ticks(0x0FFFu16))
+            .ok_or(PinLowTimeoutError)?;
+        log::debug!("PINLOW = 0x{:X}", pin_low_ticks.0);
         self.with_master_disabled(|| {
             self.reg.mcfgr3.modify(|_, w| unsafe {
                 // Safety: pinlow is 12 bits
-                w.pinlow()
-                    .bits(core::cmp::min(pin_low_ticks, ccm::Ticks(0xFFF)).0)
+                w.pinlow().bits(pin_low_ticks.0)
             });
             Ok(())
         })
@@ -292,18 +323,24 @@ where
     /// If both SCL and SDA are high for longer than the timeout, then the I2C bus is assumed to be
     /// idle and the master can generate a START condition. If the timeout is `0`, then the idle is
     /// disabled.
+    ///
+    /// If the number of cycles required to represent the duration is too large, returns a
+    /// `BusIdleTimeoutError`. Try using a smaller timeout.
     pub fn set_bus_idle_timeout(
         &mut self,
         timeout: core::time::Duration,
     ) -> Result<(), BusIdleTimeoutError> {
         let divider = self.reg.mcfgr1.read().prescale().variant().into();
-        let bus_idle_ticks: ccm::Ticks<u16> =
-            ccm::ticks(timeout, self.source_clock, divider).map_err(|_| BusIdleTimeoutError)?;
+        let bus_idle_ticks: ccm::Ticks<u16> = ccm::ticks(timeout, self.source_clock, divider)
+            .into_iter()
+            .next()
+            .filter(|ticks| *ticks <= ccm::Ticks(0xFFFu16))
+            .ok_or(BusIdleTimeoutError)?;
+        log::debug!("BUSIDLE = 0x{:X}", bus_idle_ticks.0);
         self.with_master_disabled(|| {
             self.reg.mcfgr2.modify(|_, w| unsafe {
                 // Safety: busidle is 12 bits
-                w.busidle()
-                    .bits(core::cmp::min(bus_idle_ticks, ccm::Ticks(0xFFF)).0)
+                w.busidle().bits(bus_idle_ticks.0)
             });
             Ok(())
         })
@@ -311,6 +348,7 @@ where
 
     #[inline(always)]
     fn wait_idle(&mut self) {
+        log::trace!("Waiting for I2C IDLE...");
         loop {
             let status = self.reg.msr.read();
             // Bus is idle
@@ -318,6 +356,7 @@ where
             // Master is busy; we already have the bus
             || status.mbf().bit_is_set()
             {
+                log::trace!("I2C bus IDLE");
                 break;
             }
         }
@@ -325,9 +364,11 @@ where
 
     #[inline(always)]
     fn wait_stop(&mut self) {
+        log::trace!("Waiting for I2C STOP...");
         loop {
             let status = self.reg.msr.read();
             if status.sdf().bit_is_set() {
+                log::trace!("I2C STOP asserted");
                 break;
             }
         }

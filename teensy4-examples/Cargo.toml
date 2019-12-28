@@ -13,6 +13,12 @@ panic-halt = "0.2.0"
 teensy4-bsp = { path = "../teensy4-bsp" }
 
 [[bin]]
+name = "i2c"
+path = "src/i2c.rs"
+test = false
+bench = false
+
+[[bin]]
 name = "led"
 path = "src/led.rs"
 test = false
