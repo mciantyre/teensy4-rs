@@ -1,5 +1,5 @@
 [package]
-name = "teensy4-rt"
+name = "imxrt1060-rt"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"

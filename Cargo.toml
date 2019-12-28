@@ -1,9 +1,5 @@
 [workspace]
 members = [
-    #################
-    # TEENSY4 RUNTIME
-    #################
-    "teensy4-rt",
     #############
     # TEENSY4 BSP
     #############
@@ -15,6 +11,7 @@ members = [
     # IMXRT1060 HAL
     ###############
     "imxrt1060-hal",
+    "imxrt1060-rt",
     ###############
     # IMXRT1060 PAC
     ###############
