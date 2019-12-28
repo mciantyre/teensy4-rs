@@ -55,36 +55,54 @@ pub enum ReadSampleClockSource {
 /// Serial flash CS hold time
 ///
 /// Defaults to `0x03`, the 'recommended value'
-pub struct CSHoldTime(pub u8);
+pub struct CSHoldTime([u8; 1]);
+
+impl CSHoldTime {
+    pub fn new(hold_time: u8) -> Self {
+        CSHoldTime([hold_time])
+    }
+}
 
 impl Default for CSHoldTime {
     fn default() -> Self {
-        CSHoldTime(0x03)
+        CSHoldTime([0x03])
     }
 }
 
 /// Serial flash CS setup time
 ///
 /// Defaults to `0x03`, the 'recommended value'
-pub struct CSSetupTime(pub u8);
+pub struct CSSetupTime([u8; 1]);
+
+impl CSSetupTime {
+    pub fn new(setup_time: u8) -> Self {
+        CSSetupTime([setup_time])
+    }
+}
 
 impl Default for CSSetupTime {
     fn default() -> Self {
-        CSSetupTime(0x03)
+        CSSetupTime([0x03])
     }
 }
 
 /// Column address width
-pub struct ColumnAddressWidth(u8);
+pub struct ColumnAddressWidth([u8; 1]);
 impl ColumnAddressWidth {
     /// Returns the value that represnts 'other devices'
     pub fn other_devices() -> Self {
-        ColumnAddressWidth(0)
+        ColumnAddressWidth([0])
     }
 }
 
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct DeviceModeArgument(pub u32);
+pub struct DeviceModeArgument([u8; 4]);
+
+impl DeviceModeArgument {
+    pub fn new(argument: u32) -> Self {
+        Self(argument.to_le_bytes())
+    }
+}
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum DeviceModeConfiguration {
@@ -99,10 +117,10 @@ impl Default for DeviceModeConfiguration {
 }
 
 /// Wait time for all configuration commands
-pub struct WaitTimeConfigurationCommands(u16);
+pub struct WaitTimeConfigurationCommands([u8; 2]);
 impl WaitTimeConfigurationCommands {
     pub fn disable() -> Self {
-        WaitTimeConfigurationCommands(0)
+        WaitTimeConfigurationCommands([0, 0])
     }
 
     /// Computes the wait time from the specified `wait_time`. The
@@ -116,21 +134,23 @@ impl WaitTimeConfigurationCommands {
             None
         } else {
             let factor = u16::try_from(us / 100).ok()?;
-            Some(WaitTimeConfigurationCommands(factor))
+            Some(WaitTimeConfigurationCommands(factor.to_le_bytes()))
         }
     }
 }
 
 /// Sequence parameter for device mode configuration
 #[derive(Default)]
-pub struct DeviceModeSequence(u32);
+pub struct DeviceModeSequence([u8; 4]);
 impl DeviceModeSequence {
     /// Create a new sequence parameter for device configuration
     ///
     /// `starting_lut_index`: starting LUT index of Device mode configuration command
     /// `number_of_luts`: number of LUT sequences for Device mode configuration command
     pub fn new(number_of_luts: u8, starting_lut_index: u8) -> Self {
-        DeviceModeSequence((u32::from(starting_lut_index) << 8) | u32::from(number_of_luts))
+        DeviceModeSequence(
+            ((u32::from(starting_lut_index) << 8) | u32::from(number_of_luts)).to_le_bytes(),
+        )
     }
 }
 
@@ -223,13 +243,9 @@ impl Builder {
             &(self.read_sample_clock_source as u8).to_le_bytes(),
             "readSampleClkSrc",
         );
-        fcb.field_comment(0x00D, &self.cs_hold_time.0.to_le_bytes(), "csHoldTime");
-        fcb.field_comment(0x00E, &self.cs_setup_time.0.to_le_bytes(), "csSetupTime");
-        fcb.field_comment(
-            0x00F,
-            &self.column_address_width.0.to_le_bytes(),
-            "columnAddressWidth",
-        );
+        fcb.field_comment(0x00D, &self.cs_hold_time.0, "csHoldTime");
+        fcb.field_comment(0x00E, &self.cs_setup_time.0, "csSetupTime");
+        fcb.field_comment(0x00F, &self.column_address_width.0, "columnAddressWidth");
         fcb.field_comment(
             0x010,
             match self.device_mode_configuration {
@@ -238,19 +254,11 @@ impl Builder {
             },
             "deviceModeCfgEnable",
         );
-        fcb.field_comment(
-            0x013,
-            &self.wait_time_cfg_commands.0.to_le_bytes(),
-            "waitTimeCfgCommands",
-        );
-        fcb.field_comment(
-            0x014,
-            &self.device_mode_seq.0.to_le_bytes(),
-            "deviceModeSeq",
-        );
+        fcb.field_comment(0x013, &self.wait_time_cfg_commands.0, "waitTimeCfgCommands");
+        fcb.field_comment(0x014, &self.device_mode_seq.0, "deviceModeSeq");
 
         if let DeviceModeConfiguration::Enabled(arg) = self.device_mode_configuration {
-            fcb.field_comment(0x018, &arg.0.to_le_bytes(), "deviceModeArg");
+            fcb.field_comment(0x018, &arg.0, "deviceModeArg");
         }
 
         fcb.field_comment(
@@ -308,8 +316,8 @@ impl Builder {
         }
         match self.device_type {
             DeviceType::SerialNOR(norcb) => {
-                fcb.field_comment(0x1C0, &norcb.page_size.0.to_le_bytes(), "pageSize");
-                fcb.field_comment(0x1C4, &norcb.sector_size.0.to_le_bytes(), "sectorSize");
+                fcb.field_comment(0x1C0, &norcb.page_size.0, "pageSize");
+                fcb.field_comment(0x1C4, &norcb.sector_size.0, "sectorSize");
                 fcb.field_comment(
                     0x1C8,
                     &(norcb.ip_cmd_serial_clk_freq as u8).to_le_bytes(),
@@ -322,8 +330,21 @@ impl Builder {
 }
 
 pub mod nor {
-    pub struct PageSize(pub u32);
-    pub struct SectorSize(pub u32);
+    pub struct PageSize(pub(super) [u8; 4]);
+    pub struct SectorSize(pub(super) [u8; 4]);
+
+    impl PageSize {
+        pub fn new(page_size: u32) -> Self {
+            PageSize(page_size.to_le_bytes())
+        }
+    }
+
+    impl SectorSize {
+        pub fn new(sector_size: u32) -> Self {
+            SectorSize(sector_size.to_le_bytes())
+        }
+    }
+
     #[repr(u8)]
     pub enum SerialClockFrequency {
         NoChange = 0,
@@ -351,8 +372,8 @@ mod test {
     #[test]
     fn teensy4_fcb() {
         let nor_cb = nor::ConfigurationBlock {
-            page_size: nor::PageSize(256),
-            sector_size: nor::SectorSize(4096),
+            page_size: nor::PageSize::new(256),
+            sector_size: nor::SectorSize::new(4096),
             ip_cmd_serial_clk_freq: nor::SerialClockFrequency::MHz30,
         };
         let lookup_table = LookupTable({
@@ -370,8 +391,8 @@ mod test {
         });
         let builder = Builder {
             read_sample_clock_source: ReadSampleClockSource::LoopbackFromDQSPad,
-            cs_hold_time: CSHoldTime(0x01),
-            cs_setup_time: CSSetupTime(0x02),
+            cs_hold_time: CSHoldTime::new(0x01),
+            cs_setup_time: CSSetupTime::new(0x02),
             column_address_width: ColumnAddressWidth::other_devices(),
             device_mode_configuration: DeviceModeConfiguration::Disabled,
             wait_time_cfg_commands: WaitTimeConfigurationCommands::disable(),
