@@ -7,10 +7,10 @@ edition = "2018"
 [dependencies]
 cortex-m = "0.6"
 imxrt1060-hal = { path = "../imxrt1060-hal" }
+imxrt1060-rt = { path = "../imxrt1060-rt" }
 log = "0.4.8"
 teensy4-fcb = { path = "../teensy4-fcb" }
 teensy4-usb-sys = { path = "teensy4-usb-sys" }
-teensy4-rt = { path = "../teensy4-rt" }
 
 [lib]
 bench = false
