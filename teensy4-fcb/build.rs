@@ -6,8 +6,8 @@ use std::path::Path;
 
 fn main() {
     let nor_cb = nor::ConfigurationBlock {
-        page_size: nor::PageSize(256),
-        sector_size: nor::SectorSize(4096),
+        page_size: nor::PageSize::new(256),
+        sector_size: nor::SectorSize::new(4096),
         ip_cmd_serial_clk_freq: nor::SerialClockFrequency::MHz30,
     };
     let lookup_table = LookupTable({
@@ -25,8 +25,8 @@ fn main() {
     });
     let builder = Builder {
         read_sample_clock_source: ReadSampleClockSource::LoopbackFromDQSPad,
-        cs_hold_time: CSHoldTime(0x01),
-        cs_setup_time: CSSetupTime(0x02),
+        cs_hold_time: CSHoldTime::new(0x01),
+        cs_setup_time: CSSetupTime::new(0x02),
         column_address_width: ColumnAddressWidth::other_devices(),
         device_mode_configuration: DeviceModeConfiguration::Disabled,
         wait_time_cfg_commands: WaitTimeConfigurationCommands::disable(),
