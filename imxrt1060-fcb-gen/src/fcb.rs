@@ -19,7 +19,10 @@ static OFFSETS_OF_RESERVED: &[std::ops::Range<usize>] = &[
 /// The firmware configuration block
 ///
 /// The `FCB` contains all the information to create the FCB code.
-/// Call `write()` to export it as a Rust array.
+/// It implements `Display`, and it will display itself as a formatted,
+/// commented Rust array. The array is called `FIRMWARE_CONFIGURATION_BLOCK`.
+/// It's 512 bytes large. It has comments that describe the element offsets
+/// and usage of the value.
 pub struct FCB {
     pub(crate) raw: [u8; FCB_SIZE],
     comments: Vec<String>,
