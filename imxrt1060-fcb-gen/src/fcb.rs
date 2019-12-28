@@ -53,7 +53,10 @@ impl FCB {
 
     pub(super) fn field(&mut self, offset: usize, bytes: &[u8]) {
         if self.reserved.contains(&offset) {
-            panic!("Attempting to access reserved offset 0x{:03X} in the FCB", offset);
+            panic!(
+                "Attempting to access reserved offset 0x{:03X} in the FCB",
+                offset
+            );
         } else {
             self.raw[offset..offset + bytes.len()].copy_from_slice(bytes);
         }
