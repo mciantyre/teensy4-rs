@@ -69,6 +69,11 @@ SECTIONS
         __etext = .;
     } > ITCM AT> FLASH
 
+    .padding (NOLOAD) :
+    {
+        . = ALIGN(32768);
+    } > ITCM
+
     __sitext = LOADADDR(.text);
 
     .data :
@@ -109,10 +114,10 @@ SECTIONS
     __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
 
     /* The following are used to compute the FlexRAM banks for ITCM / DTCM */
-    _itcm_block_count = (SIZEOF(.text) + 0x7FFE) >> 15;
-	__flexram_bank_config = 0xAAAAAAAA | ((1 << (_itcm_block_count * 2)) - 1);
+    _itcm_block_count = (SIZEOF(.text) + 0x7FFF) >> 15;
+    __flexram_bank_config = 0xAAAAAAAA | ((1 << (_itcm_block_count * 2)) - 1);
     /* We reconfigure the stack pointer based on the ITCM / DTCM separation */
-	__estack = ORIGIN(DTCM) + ((16 - _itcm_block_count) << 15);
+    __estack = ORIGIN(DTCM) + ((16 - _itcm_block_count) << 15);
 }
 
 /* Asserts that check some Rust requirements */
