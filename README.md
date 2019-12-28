@@ -15,7 +15,7 @@ Status: prototype. We can blink the LED, register exceptions, register interrupt
 $ rustup target add thumbv7em-none-eabihf
 ```
 
-- The [GNU ARM Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm) for compiling the C sources we need to bootstrap startup (in `teensy4-rt`) and the USB stack in the BSP. Specifically, we need the C compiler and archiver available on our path to build the runtime crate. For deploying to a Teensy 4 using the command-line loader, we'll also need `arm-none-eabi-objcopy` (ARM binutils).
+- The [GNU ARM Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm) for compiling the C sources we need to bootstrap startup (in `imxrt1060-rt`) and the USB stack in the BSP. Specifically, we need the C compiler and archiver available on our path to build the runtime crate. For deploying to a Teensy 4 using the command-line loader, we'll also need `arm-none-eabi-objcopy` (ARM binutils).
 
 - Optionally, a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli) available on our path. We have a script to rapidly test example programs in the `teensy4-examples`, and it makes use of `teensy_loader_cli`. To load applications onto the Teensy 4, we may also use the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html), which is also available with the Teensyduino add-ons.
 
@@ -40,7 +40,7 @@ See the `teensy4-examples` crate for an example of a project that works on the T
 
 Note that, as of this writing:
 
-- both the `imxrt1060-pac` and `teensy4-rt` crates are necessary to successfully link a Teensy 4 Rust application. This requirement should be lifted in the future. See the discussion in the project structure section (below).
+- both the `imxrt1060-pac`, `imxrt1060-rt`, and `teensy4-fcb` crates are necessary to successfully link a Teensy 4 Rust application. This requirement should be lifted in the future. See the discussion in the project structure section (below).
 - the crates are not yet published to crates.io, so we must either clone the repo and reference them locally, or reference the two crates via the git repository.
 
 These crates are guaranteed to build when targeting `thumbv7em-none-eabihf`; we do not support any other targets.
@@ -72,23 +72,23 @@ Although we strive for compatibility with existing crates and frameworks, we've 
 
 An embedded Rust developer might use the [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) crate for system startup and a minimal runtime. However, [#164](https://github.com/rust-embedded/cortex-m-rt/issues/164) notes that the `cortex-m-rt` crate cannot yet support devices with custom memory layouts. The iMXRT106x is one of the systems with a custom memory layout; in particular, we have tightly-coupled memory (TCM) regions for instructions (ITCM) and data (DTCM). We also need to place special arrays in memory in order to properly boot. Given these requirements, we need a custom runtime crate that can initialize the system.
 
-The `teensy4-rt` crate is a fork of the `cortex-m-rt` crate that is customized to support a minimal Teensy 4 startup and runtime. Like the `cortex-m-rt` crate, the `teensy4-rt` crate
+The `imxrt1060-rt` crate is a fork of the `cortex-m-rt` crate that is customized to support a minimal iMXRT1060 startup and runtime. Like the `cortex-m-rt` crate, the `imxrt1060-rt` crate
 
 - populates the vector table for correct booting and exception / interrupt dispatch
 - initializes static variables
 - enables the FPU (since we're a `thumbv7em-none-eabihf` device)
 
-The `teensy4-rt` crate goes a step further in its startup functionality:
+The `imxrt1060-rt` crate goes a step further in its startup functionality:
 
 - provides the required firmware configuration block (FCB) and image vector table (IVT) in order to start the iMXRT106x
 - initialize the TCM memory regions
 - configures instruction and data caches based on the TCM regions
 
-Just as the `cortex-m-rt` crate will call a user's `main()` function, the `teensy4-rt` completes by calling a user's `main()`. The `teensy4-rt` crate also exposes the `#[interrupt]`, `#[exception]`, and `#[entry]` macros for decorating interrupt handlers, exception handlers, and the program entrypoint, respectively. Note that, as of this writing, `#[pre_init]` is not supported. To support the macros, we need a patched version of the `cortex-m-rt-macros` crate. The patched version is automatically used in the `teensy4-rt` crate, so end users need not know this distinction.
+Just as the `cortex-m-rt` crate will call a user's `main()` function, the `imxrt1060-rt` completes by calling a user's `main()`. The `imxrt1060-rt` crate also exposes the `#[interrupt]`, `#[exception]`, and `#[entry]` macros for decorating interrupt handlers, exception handlers, and the program entrypoint, respectively. Note that, as of this writing, `#[pre_init]` is not supported.
 
-To support compatibility with the `cortex-m-rt` crate, the `teensy4-rt` crate uses the same link sections as the `cortex-m-rt` crate. However, the `teensy4-rt` crate may locate memory in different regions. Specifically, all instructions are placed into ITCM, and all data is placed into DTCM.
+To support compatibility with the `cortex-m-rt` crate, the `imxrt1060-rt` crate uses the same link sections as the `cortex-m-rt` crate. However, the `imxrt1060-rt` crate may locate memory in different regions. Specifically, all instructions are placed into ITCM, and all data is placed into DTCM.
 
-It is our hope that the `teensy4-rt` crate can be transparently replaced with the `cortext-m-rt` crate once the necessary features are available. If you think that the `teensy4-rt` crate is be diverging from the `cortex-m-rt` crate and might miss that goal, please file an issue!
+It is our hope that the `imxrt1060-rt` crate can be transparently replaced with the `cortext-m-rt` crate once the necessary features are available. If you think that the `imxrt1060-rt` crate is be diverging from the `cortex-m-rt` crate and might miss that goal, please file an issue!
 
 ### Peripheral access crates
 
@@ -98,17 +98,13 @@ The `imxrt1060-pac` crate follows this approach. Rather than using the output of
 
 The approach has some limitations: each peripheral crate ends up having its own copy of the types described in `generic.rs`. It also requires that we've generated the original PAC via `svd2rust`. Finally, and most importantly, the approach has not yet shown to scale in practice. Let us know if you have alternative approaches!
 
-The `imxrt1060-core` subcrate defines the interrupt table and interrupt handlers, which is why it's necessary to use it with the `teensy4-rt` crate. As mentioned earlier, this requirement should be lifted in the future.
+The `imxrt1060-core` subcrate defines the interrupt table and interrupt handlers, which is why it's necessary to use it with the `imxrt1060-rt` crate. As mentioned earlier, this requirement should be lifted in the future.
 
 ## Contributing
 
 We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop applications for the Teensy 4. Submit an issue to help us identify bugs, feature requests, or documentation gaps. If you would like a peripheral crate, let us know, or follow the instructions [here](imxrt1060-pac/README.md) to add the peripheral.
 
 ## Q/A
-
-*Why is it called the `teensy4-rt` crate, and not the `imxrt1060-rt` crate?*
-
-A general iMXRT106x runtime would need to work across all different hardware configurations. However, the `teensy4-rt` makes some assumptions that we're providing a runtime specifically for the Teensy 4. Therefore, the runtime crate is for Teensy 4 only. Ideally, an `imxrt1060-rt` crate wouldn't exist, since everyone would rally around the existing `cortex-m-rt` crate.
 
 *If they work across all NXP iMXRT106x processors, why are the crates prefixed with `imxrt1060`, and not `imxrt106x`?
 
