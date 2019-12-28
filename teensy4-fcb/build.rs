@@ -2,6 +2,7 @@ use imxrt1060_fcb_gen::*;
 
 use std::env;
 use std::fs::File;
+use std::io::Write;
 use std::path::Path;
 
 fn main() {
@@ -40,10 +41,10 @@ fn main() {
         device_type: DeviceType::SerialNOR(nor_cb),
         lookup_table,
     };
-    let mut fcb = builder.build().unwrap();
+    let fcb = builder.build().unwrap();
 
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("fcb.rs");
-    let f = File::create(&dest_path).unwrap();
-    fcb.write(f).unwrap();
+    let mut f = File::create(&dest_path).unwrap();
+    writeln!(f, "{}", fcb).unwrap();
 }

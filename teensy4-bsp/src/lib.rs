@@ -28,7 +28,7 @@
 //!
 //! For simplicity, there may be other choice APIs from either crate that
 //! are re-exported in the BSP namespace.
-//! 
+//!
 //! Although it's not exported publicly, the BSP crate links in the
 //! `teensy4-fcb` crate, which provides a Firmware Configuration Block (FCB)
 //! specific to the Teensy 4. See the `imxrt1060-fcb-gen` crate for details
