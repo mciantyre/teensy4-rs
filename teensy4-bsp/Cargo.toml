@@ -8,6 +8,7 @@ edition = "2018"
 cortex-m = "0.6"
 imxrt1060-hal = { path = "../imxrt1060-hal" }
 log = "0.4.8"
+teensy4-fcb = { path = "../teensy4-fcb" }
 teensy4-usb-sys = { path = "teensy4-usb-sys" }
 teensy4-rt = { path = "../teensy4-rt" }
 
