@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use std::fmt;
-use std::io;
 
 const FCB_SIZE: usize = 512;
 
@@ -65,12 +64,6 @@ impl FCB {
     pub(super) fn field_comment<S: ToString>(&mut self, offset: usize, bytes: &[u8], comment: S) {
         self.field(offset, bytes);
         self.comments[offset] = comment.to_string();
-    }
-
-    /// Write the FCB as an unmangled Rust array called `FIRMWARE_CONFIGURATION_BLOCK`. The link
-    /// section is `".fcb".
-    pub fn write<W: io::Write>(&mut self, mut writer: W) -> io::Result<()> {
-        write!(writer, "{}", self)
     }
 }
 
