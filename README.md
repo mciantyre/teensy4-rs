@@ -24,10 +24,10 @@ $ rustup target add thumbv7em-none-eabihf
 The best way to test our setup is to use the `hardware-test.sh` script to compile one of the example binaries. With a Teensy 4 connected to our system, build and load an example:
 
 ```
-./hardware-test.sh systick
+./hardware-test.sh led
 ```
 
-If all goes well, the `systick` example should begin blinking our Teensy 4's LED at ~1Hz.
+If all goes well, the `led` example should turn on the Teensy 4's LED.
 
 To build new applications with these crates, include the `teensy4-bsp` crate. The BSP crate exposes the runtime, HAL, and the peripheral access crates:
 
@@ -45,14 +45,14 @@ Note that, as of this writing:
 
 These crates are guaranteed to build when targeting `thumbv7em-none-eabihf`; we do not support any other targets.
 
-To build this with docker, use the following:
+To build the project in a Docker comtainer, use our custom Docker image available in the `docker` directory:
 
 ```
 $ cd docker
 $ docker build -t rust_teensy . 
 ```
 
-Run the docker image with the following. Note that this uses the led as an example. 
+Then, run the Docker image to build examples. In the snippet below, we build the `led` example: 
 
 ```
 $ docker run -it --rm -v $PWD:/build rust_teensy led
@@ -60,17 +60,22 @@ $ docker run -it --rm -v $PWD:/build rust_teensy led
 
 ## Project Structure
 
-The project has a model similar to other embedded Rust projects. We have a runtime crate, similar to the `cortex-m-rt` crate, that allows us to write a `main()` function, as well as register interrupts and exception handlers with `#[interrupt]` and `#[exception]` macros, respectively. For concrete examples of what this looks like, check out the examples in the `teensy4-examples` crate. Also check out the [`cortex-m-rt` documentation](https://crates.io/crates/cortex-m-rt) for more information. We also provide peripheral access crates (PAC) that help us interact with the processor registers. The PAC is auto-generate with [`svd2rust`; see the docs](https://docs.rs/svd2rust/0.16.1/svd2rust/) for more information on interacting with registers.
+The project has a model similar to other embedded Rust projects: we have a runtime crate, a peripheral access crate (PAC), and a board support package (BSP) for the Teensy 4. We also have a few crates that are unique to our system. The list below describes the project layout:
 
-We then introduce the hardware abstraction layer (HAL) in the `imxrt1060-hal` crate. The HAL uses the PAC crates to provide a safe interface for configuring the processor. The HAL crate provides implementations of the [`embedded-hal`](https://crates.io/crates/embedded-hal) interfaces. The HAL is generic for the processor and should work for any iMXRT106x system, although capabilities that enable development on the Teensy 4 will are the current priority.
-
-Finally, we combine the runtime crate and the HAL to make the `teensy4-bsp` board support crate (BSP). The BSP exposes the peripherals and capabilities that are specific to the Teensy 4 form-factor. Additionally, the BSP configures the USB stack, and provides an implementation of the [`log`](https://crates.io/crates/log) crate. Developers who are creating Rust applications for the Teensy 4 are encouraged to use the BSP crate, which re-exports all capabilities of the dependent crates.
+- `imxrt1060-fcb-gen`: a Rust crate used in other crates' build scripts. It provides an API for generating a Firmware Configuration Block (FCB), a memory region required to boot iMXRT106x processors. Other crates may use this crate to define custom FCBs for their iMXRT106x-based systems.
+- `imxrt1060-hal`: a hardware abstraction layer (HAL) for the iMXRT106x. It provides implementations of the [`embedded-hal` traits](https://crates.io/crates/embedded-hal) for the processor's peripherals.
+- `imxrt1060-pac`: a collection of Peripheral Access Crates (PAC), providing read / write APIs for processor registers. The crates are generated from [`svd2rust`](https://docs.rs/svd2rust/0.16.1/svd2rust/), with some custom tooling to generate a unique crate for each peripheral. See the "Peripheral access crates" notes to learn how this PAC might be different from other PACs.
+- `imxrt1060-rt`: an API-compatible fork of the `cortex-m-rt` crate that describes the system's memory layout, startup sequence, and interrupt table. The runtime crate let's a user write a normal `main()` function. See the "Runtime" notes to learn why this is a fork of the `cortex-m-rt` crate.
+- `teensy4-bsp`: a board support package (BSP) for the Teensy 4. The BSP provides access to the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log messages over USB. If you would like to develop Rust applications for the Teensy 4, start here.
+- `teensy4-examples`: a collection of examples which run out-of-the-box on the Teensy 4. Take a look at the examples if you're interested in using these crates.
+- `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the `imxrt1060-fcb-gen` crate.
+- `tools`: small Rust binaries intended to run on your development host. `tools` provides a Rust binary that will help import PAC crates. See the "Peripheral access crates" notes (below) for more information.
 
 Although we strive for compatibility with existing crates and frameworks, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
 
 ### Runtime
 
-An embedded Rust developer might use the [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) crate for system startup and a minimal runtime. However, [#164](https://github.com/rust-embedded/cortex-m-rt/issues/164) notes that the `cortex-m-rt` crate cannot yet support devices with custom memory layouts. The iMXRT106x is one of the systems with a custom memory layout; in particular, we have tightly-coupled memory (TCM) regions for instructions (ITCM) and data (DTCM). We also need to place special arrays in memory in order to properly boot. Given these requirements, we need a custom runtime crate that can initialize the system.
+An embedded Rust developer might use the [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) to bootstrap a Cortex-M system. However, [#164](https://github.com/rust-embedded/cortex-m-rt/issues/164) notes that the `cortex-m-rt` crate cannot yet support devices with custom memory layouts. The iMXRT106x is one of the systems with a custom memory layout; in particular, we have tightly-coupled memory (TCM) regions for instructions (ITCM) and data (DTCM). We also need to place special arrays (the FCB) in memory in order to properly boot. Given these requirements, we need a custom runtime crate that can initialize the system.
 
 The `imxrt1060-rt` crate is a fork of the `cortex-m-rt` crate that is customized to support a minimal iMXRT1060 startup and runtime. Like the `cortex-m-rt` crate, the `imxrt1060-rt` crate
 
@@ -94,7 +99,7 @@ It is our hope that the `imxrt1060-rt` crate can be transparently replaced with 
 
 An embedded Rust developer might use [`svd2rust`](https://docs.rs/svd2rust/0.16.1/svd2rust/) to auto-generate the peripheral access crate (PAC) for the iMXRT106x. The iMXRT106x SVD is readily [available online](https://developer.arm.com/tools-and-software/embedded/cmsis), and `svd2rust` is able to create the PAC without too many issues. However, [as mpasternacki noted](https://users.rust-lang.org/t/svd2rust-generates-an-enormous-crate/32372), the output PAC from `svd2rust` is extremely large, and it takes an inordinate amount of time to compile. One bottleneck is that the PAC mega-crate cannot be compiled in parallel, since the Rust compiler treats each crate as a translation unit. In order to compile the iMXRT106x peripheral modules in parallel, the peripherals would have to be broken apart into separate, indepdent crates.
 
-The `imxrt1060-pac` crate follows this approach. Rather than using the output of `svd2rust` as the PAC, we expose each peripheral as its own crate under `imxrt1060-pac`. The approach is semi-automated. We provide a tool (under `tools`) to auto-generate the peripheral crate from the well-formed `svd2rust` output. Once the peripheral crate is added to `imxrt1060-pac`, it's a matter of re-exporting the peripheral in `imxrt1060-pac/src/lib.rs`, un-commenting the corresponding code, and adding the peripheral crate to the workspace. The strategy allows us to add iMXRT106x peripherals as needed, and we benefit from the parallel compilation of the relevant code. The peripheral code is the same as one might find with any PAC generated via `svd2rust`, so there's no additional learning curve to understand the peripheral APIs.
+The `imxrt1060-pac` crate follows this approach. Rather than using the output of `svd2rust` as the single PAC, we expose each peripheral as its own crate under `imxrt1060-pac`. The approach is semi-automated. We provide a tool (under `tools`) to auto-generate the peripheral crate from the well-formed `svd2rust` output. Once the peripheral crate is added to `imxrt1060-pac`, it's a matter of re-exporting the peripheral in `imxrt1060-pac/src/lib.rs`, un-commenting the corresponding code, and adding the peripheral crate to the workspace. The strategy allows us to add iMXRT106x peripherals as needed, and we benefit from the parallel compilation of the relevant code. The peripheral code is the same as one might find with any PAC generated via `svd2rust`, so there's no additional learning curve to understand the peripheral APIs.
 
 The approach has some limitations: each peripheral crate ends up having its own copy of the types described in `generic.rs`. It also requires that we've generated the original PAC via `svd2rust`. Finally, and most importantly, the approach has not yet shown to scale in practice. Let us know if you have alternative approaches!
 
