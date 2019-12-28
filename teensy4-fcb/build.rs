@@ -6,11 +6,14 @@ use std::io::Write;
 use std::path::Path;
 
 fn main() {
+    // We're using serial NOR flash.
     let nor_cb = nor::ConfigurationBlock {
         page_size: nor::PageSize::new(256),
         sector_size: nor::SectorSize::new(4096),
         ip_cmd_serial_clk_freq: nor::SerialClockFrequency::MHz30,
     };
+    // Load the lookup table with our magic numbers. Numbers
+    // that are not specifed are set to `0`.
     let lookup_table = {
         let mut lookup = LookupTable::new();
         lookup.insert_u32(0, 0x0A18_04EB);
@@ -24,6 +27,7 @@ fn main() {
         lookup.insert_u32(44, 0x0000_0460);
         lookup
     };
+    // Define the FCB
     let builder = Builder {
         read_sample_clock_source: ReadSampleClockSource::LoopbackFromDQSPad,
         cs_hold_time: CSHoldTime::new(0x01),
@@ -41,6 +45,7 @@ fn main() {
         device_type: DeviceType::SerialNOR(nor_cb),
         lookup_table,
     };
+    // Build the FCB
     let fcb = builder.build().unwrap();
 
     let out_dir = env::var("OUT_DIR").unwrap();

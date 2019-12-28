@@ -1,3 +1,5 @@
+//! Firmware configuration block (FCB)
+
 use std::collections::HashSet;
 use std::fmt;
 
@@ -24,12 +26,20 @@ static OFFSETS_OF_RESERVED: &[std::ops::Range<usize>] = &[
 /// It's 512 bytes large. It has comments that describe the element offsets
 /// and usage of the value.
 pub struct FCB {
+    /// The raw contents of the FCB. Exposed in the crate so that
+    /// we can test its contents.
     pub(crate) raw: [u8; FCB_SIZE],
+    /// Associated comments for each byte in the FCB. These
+    /// will become Rust `//` comment tags
     comments: Vec<String>,
+    /// The indices of reserved fields in the FCB.
     reserved: HashSet<usize>,
 }
 
 impl FCB {
+    /// Allocates a new FCB
+    ///
+    /// The FCB will have the required FCB header already provided.
     pub(super) fn new() -> Self {
         let mut fcb = FCB {
             raw: [0; FCB_SIZE],
@@ -53,7 +63,14 @@ impl FCB {
         fcb
     }
 
-    pub(super) fn field(&mut self, offset: usize, bytes: &[u8]) {
+    /// Insert a field of bytes into the FCB at the specified `offset`
+    ///
+    /// # Panics
+    ///
+    /// Panics if the offset is in a reserved range, or if the field
+    /// will index past the bounds of the FCB.
+    pub(super) fn field<B: AsRef<[u8]>>(&mut self, offset: usize, bytes: &B) {
+        let bytes = bytes.as_ref();
         if self.reserved.contains(&offset) {
             panic!(
                 "Attempting to access reserved offset 0x{:03X} in the FCB",
@@ -64,7 +81,22 @@ impl FCB {
         }
     }
 
-    pub(super) fn field_comment<S: ToString>(&mut self, offset: usize, bytes: &[u8], comment: S) {
+    /// Insert a field of bytes into the FCB at the specified `offset`, along with a
+    /// documentation comment
+    ///
+    /// The comment will be placed at the `offset` element. This means that, if the field
+    /// is multiple bytes, the comment will appear at the first element.
+    ///
+    ///  # Panics
+    ///
+    /// Panics if the offset is in a reserved range, or if the field
+    /// will index past the bounds of the FCB.
+    pub(super) fn field_comment<B: AsRef<[u8]>, S: ToString>(
+        &mut self,
+        offset: usize,
+        bytes: &B,
+        comment: S,
+    ) {
         self.field(offset, bytes);
         self.comments[offset] = comment.to_string();
     }
@@ -82,7 +114,7 @@ pub static FIRMWARE_CONFIGURATION_BLOCK: [u8; 512] = ["#,
         for (idx, (value, comment)) in self.raw.iter().zip(self.comments.iter()).enumerate() {
             writeln!(f, "    0x{:02X}, // 0x{:03X} {}", *value, idx, comment)?;
         }
-        write!(f, "];")?;
+        writeln!(f, "];")?;
         Ok(())
     }
 }
