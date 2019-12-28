@@ -95,6 +95,9 @@
 
 #![no_std]
 
+// Need to reference this so that it doesn't get stripped out
+extern crate teensy4_fcb;
+
 pub mod log;
 
 pub use hal::pac::interrupt;

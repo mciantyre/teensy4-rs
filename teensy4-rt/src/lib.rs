@@ -3,7 +3,6 @@
 #![no_std]
 
 mod fault;
-mod fcb;
 mod fpu;
 mod nvic;
 

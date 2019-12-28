@@ -12,7 +12,7 @@ MEMORY
 EXTERN(_reset);
 /* This might get stripped out in dependent crates, but it's important to keep around. */
 /* It's put into the FCB block below. */
-EXTERN(FLEX_SPI_NOR_CONFIG);
+EXTERN(FIRMWARE_CONFIGURATION_BLOCK);
 
 EXTERN(__EXCEPTIONS);
 EXTERN(__INTERRUPTS);
@@ -37,7 +37,7 @@ SECTIONS
     .boot :
     {
         /* Firmware Configuration Block (FCB) */
-        KEEP(*(.boot.fcb));
+        KEEP(*(.fcb));
         FILL(0xFFFFFFFF);
         /* 4KiB (0x1000) offset since we're booting from FlexSPI NOR */
         . = ORIGIN(FLASH) + 0x1000;
