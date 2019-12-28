@@ -38,7 +38,9 @@
 //! The name is not mangled. It may be referenced in a linker script by its section, `".fcb"`.
 
 mod fcb;
+mod lookup;
 pub use fcb::*;
+pub use lookup::*;
 
 use std::convert::TryFrom;
 use std::marker::PhantomData;
@@ -208,13 +210,6 @@ impl<Region> Default for SerialFlashSize<Region> {
     }
 }
 
-pub struct LookupTable(pub [u32; 64]);
-impl Default for LookupTable {
-    fn default() -> LookupTable {
-        LookupTable([0; 64])
-    }
-}
-
 /// Builder for a firmware configuration block
 /// definition
 pub struct Builder {
@@ -300,19 +295,13 @@ impl Builder {
             &self.flash_b2_size.size.to_le_bytes(),
             "sflashB2Size",
         );
-        let mut lookup_table_offset = 0x080;
-        for (idx, entry) in self.lookup_table.0.iter().enumerate() {
-            let bytes = entry.to_le_bytes();
+        let lookup_table_offset = 0x080;
+        for (idx, byte) in self.lookup_table.iter().enumerate() {
             fcb.field_comment(
-                lookup_table_offset,
-                &bytes,
-                format!(
-                    "lookupTable[{}..{}]",
-                    idx * bytes.len(),
-                    (idx + 1) * bytes.len()
-                ),
+                lookup_table_offset + idx,
+                &[*byte],
+                format!("lookupTable[{}]", idx,),
             );
-            lookup_table_offset += bytes.len();
         }
         match self.device_type {
             DeviceType::SerialNOR(norcb) => {
@@ -376,19 +365,19 @@ mod test {
             sector_size: nor::SectorSize::new(4096),
             ip_cmd_serial_clk_freq: nor::SerialClockFrequency::MHz30,
         };
-        let lookup_table = LookupTable({
-            let mut raw: [u32; 64] = [0; 64];
-            raw[0] = 0x0A18_04EB;
-            raw[1] = 0x2604_3206;
-            raw[4] = 0x2404_0405;
-            raw[12] = 0x0000_0406;
-            raw[20] = 0x0818_0420;
-            raw[32] = 0x0818_04D8;
-            raw[36] = 0x0818_0402;
-            raw[37] = 0x0000_2004;
-            raw[44] = 0x0000_0460;
-            raw
-        });
+        let lookup_table = {
+            let mut lookup = LookupTable::new();
+            lookup.insert_u32(0, 0x0A18_04EB);
+            lookup.insert_u32(1, 0x2604_3206);
+            lookup.insert_u32(4, 0x2404_0405);
+            lookup.insert_u32(12, 0x0000_0406);
+            lookup.insert_u32(20, 0x0818_0420);
+            lookup.insert_u32(32, 0x0818_04D8);
+            lookup.insert_u32(36, 0x0818_0402);
+            lookup.insert_u32(37, 0x0000_2004);
+            lookup.insert_u32(44, 0x0000_0460);
+            lookup
+        };
         let builder = Builder {
             read_sample_clock_source: ReadSampleClockSource::LoopbackFromDQSPad,
             cs_hold_time: CSHoldTime::new(0x01),
@@ -407,7 +396,9 @@ mod test {
             lookup_table,
         };
         let fcb = builder.build().unwrap();
-        // A known, working FCB for the Teensy 4. The Builder above defines this table
+        // A known, working FCB for the Teensy 4. The Builder above defines this table.
+        // Note that this is a u32 array, where as we serialize a u8 array. We will convert
+        // across the two arrays in our comparison.
         let expected: [u32; 128] = [
             // 448 byte common FlexSPI configuration block, 8.6.3.1 page 223 (RT1060 rev 0)
             // MCU_Flashloader_Reference_Manual.pdf, 8.2.1, Table 8-2, page 72-75

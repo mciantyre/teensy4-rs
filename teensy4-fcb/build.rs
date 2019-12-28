@@ -10,19 +10,19 @@ fn main() {
         sector_size: nor::SectorSize::new(4096),
         ip_cmd_serial_clk_freq: nor::SerialClockFrequency::MHz30,
     };
-    let lookup_table = LookupTable({
-        let mut raw: [u32; 64] = [0; 64];
-        raw[0] = 0x0A18_04EB;
-        raw[1] = 0x2604_3206;
-        raw[4] = 0x2404_0405;
-        raw[12] = 0x0000_0406;
-        raw[20] = 0x0818_0420;
-        raw[32] = 0x0818_04D8;
-        raw[36] = 0x0818_0402;
-        raw[37] = 0x0000_2004;
-        raw[44] = 0x0000_0460;
-        raw
-    });
+    let lookup_table = {
+        let mut lookup = LookupTable::new();
+        lookup.insert_u32(0, 0x0A18_04EB);
+        lookup.insert_u32(1, 0x2604_3206);
+        lookup.insert_u32(4, 0x2404_0405);
+        lookup.insert_u32(12, 0x0000_0406);
+        lookup.insert_u32(20, 0x0818_0420);
+        lookup.insert_u32(32, 0x0818_04D8);
+        lookup.insert_u32(36, 0x0818_0402);
+        lookup.insert_u32(37, 0x0000_2004);
+        lookup.insert_u32(44, 0x0000_0460);
+        lookup
+    };
     let builder = Builder {
         read_sample_clock_source: ReadSampleClockSource::LoopbackFromDQSPad,
         cs_hold_time: CSHoldTime::new(0x01),
