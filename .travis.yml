@@ -15,6 +15,6 @@ before_install:
 script:
   - cargo build --verbose --all
   - cargo fmt --all -- --check
-  - # Run the tests in the FCB generation crate
+  # Run the tests in the FCB generation crate
   - cd imxrt1060-fcb-gen && cargo test --target $(rustup show | grep "Default host" | cut -d' ' -f3) && cd ..
 cache: cargo
