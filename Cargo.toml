@@ -30,7 +30,10 @@ members = [
     "imxrt1060-pac/imxrt1060-iomuxc-gpr",
     "imxrt1060-pac/imxrt1060-pit",
     "imxrt1060-pac/imxrt1060-pwm1",
+    "teensy4-fcb",
 ]
 exclude = [
     "tools",
+    # FCB generation
+    "imxrt1060-fcb-gen",
 ]
