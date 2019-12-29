@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 
 [build-dependencies]
-imxrt1060-fcb-gen = { path = "../imxrt1060-fcb-gen" }
+imxrt1062-fcb-gen = { path = "../imxrt1062-fcb-gen" }
 
 [lib]
 bench = false

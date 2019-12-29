@@ -1,0 +1,23 @@
+[package]
+name = "imxrt1062-pac"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+cortex-m = "0.6.1"
+imxrt1062-core = { path = "imxrt1062-core" }
+# Peripherals
+imxrt1062-ccm = { path = "imxrt1062-ccm" }
+imxrt1062-ccm-analog = { path = "imxrt1062-ccm-analog" }
+imxrt1062-dcdc = { path = "imxrt1062-dcdc" }
+imxrt1062-gpio1 = { path = "imxrt1062-gpio1" }
+imxrt1062-gpt1 = { path = "imxrt1062-gpt1" }
+imxrt1062-iomuxc = { path = "imxrt1062-iomuxc" }
+imxrt1062-iomuxc-gpr = { path = "imxrt1062-iomuxc-gpr" }
+imxrt1062-pit = { path = "imxrt1062-pit" }
+imxrt1062-pwm1 = { path = "imxrt1062-pwm1" }
+
+[lib]
+test = false
+bench = false

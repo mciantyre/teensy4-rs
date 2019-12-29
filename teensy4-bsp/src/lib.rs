@@ -20,8 +20,8 @@
 //!
 //! The BSP re-exports the following:
 //!
-//! - the `imxrt1060-rt` crate, as `rt`
-//! - the `imxrt1060-hal` crate, as `hal`
+//! - the `imxrt1062-rt` crate, as `rt`
+//! - the `imxrt1062-hal` crate, as `hal`
 //!
 //! See the accompanying documentation of each crate for more
 //! information.
@@ -31,7 +31,7 @@
 //!
 //! Although it's not exported publicly, the BSP crate links in the
 //! `teensy4-fcb` crate, which provides a Firmware Configuration Block (FCB)
-//! specific to the Teensy 4. See the `imxrt1060-fcb-gen` crate for details
+//! specific to the Teensy 4. See the `imxrt1062-fcb-gen` crate for details
 //! on FCBs.
 //!
 //! ## Physical Pins to Pads
@@ -106,8 +106,8 @@ extern crate teensy4_fcb;
 pub mod log;
 
 pub use hal::pac::interrupt;
-pub use imxrt1060_hal as hal;
-pub use imxrt1060_rt as rt;
+pub use imxrt1062_hal as hal;
+pub use imxrt1062_rt as rt;
 pub use teensy4_usb_sys::serial_write;
 pub type LED = hal::gpio::IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
@@ -203,7 +203,7 @@ pub extern "C" fn delay(millis: u32) {
 
 /// Scoping of data related to SYSTICK
 mod systick {
-    use imxrt1060_rt::exception;
+    use imxrt1062_rt::exception;
 
     #[no_mangle]
     static mut systick_millis_count: u32 = 0;

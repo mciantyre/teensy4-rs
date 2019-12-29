@@ -10,27 +10,27 @@ members = [
     ###############
     # IMXRT1060 HAL
     ###############
-    "imxrt1060-hal",
-    "imxrt1060-rt",
+    "imxrt1062-hal",
+    "imxrt1062-rt",
     ###############
     # IMXRT1060 PAC
     ###############
-    "imxrt1060-pac",
-    "imxrt1060-pac/imxrt1060-core",
+    "imxrt1062-pac",
+    "imxrt1062-pac/imxrt1062-core",
     # IMXRT1060 Peripherals
-    "imxrt1060-pac/imxrt1060-ccm",
-    "imxrt1060-pac/imxrt1060-ccm-analog",
-    "imxrt1060-pac/imxrt1060-dcdc",
-    "imxrt1060-pac/imxrt1060-gpio1",
-    "imxrt1060-pac/imxrt1060-gpt1",
-    "imxrt1060-pac/imxrt1060-iomuxc",
-    "imxrt1060-pac/imxrt1060-iomuxc-gpr",
-    "imxrt1060-pac/imxrt1060-pit",
-    "imxrt1060-pac/imxrt1060-pwm1",
+    "imxrt1062-pac/imxrt1062-ccm",
+    "imxrt1062-pac/imxrt1062-ccm-analog",
+    "imxrt1062-pac/imxrt1062-dcdc",
+    "imxrt1062-pac/imxrt1062-gpio1",
+    "imxrt1062-pac/imxrt1062-gpt1",
+    "imxrt1062-pac/imxrt1062-iomuxc",
+    "imxrt1062-pac/imxrt1062-iomuxc-gpr",
+    "imxrt1062-pac/imxrt1062-pit",
+    "imxrt1062-pac/imxrt1062-pwm1",
     "teensy4-fcb",
 ]
 exclude = [
     "tools",
     # FCB generation
-    "imxrt1060-fcb-gen",
+    "imxrt1062-fcb-gen",
 ]

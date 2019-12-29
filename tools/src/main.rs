@@ -1,5 +1,5 @@
 //! Allows us to auto-import a iMXRT1060 module
-//! from the svd2rust output into the imxrt1060-pac
+//! from the svd2rust output into the imxrt1062-pac
 //! megacrate. It code-ifies some manual work.
 //!
 //! This could probably use some better error handling...
@@ -103,7 +103,7 @@ fn main() {
         );
 
         let peripheral_crate_path =
-            output_pac.join(format!("imxrt1060-{}", module_name.replace("_", "-")));
+            output_pac.join(format!("imxrt1062-{}", module_name.replace("_", "-")));
         if peripheral_crate_path.exists() {
             println!(
                 "{} peripheral crate seems to already exist! Skipping...",
