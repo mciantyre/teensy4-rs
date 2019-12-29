@@ -16,5 +16,7 @@ script:
   - cargo build --verbose --all
   - cargo fmt --all -- --check
   # Run the tests in the FCB generation crate
-  - cd imxrt1062-fcb-gen && cargo test --target $(rustup show | grep "Default host" | cut -d' ' -f3) && cd ..
+  - cd imxrt1062-fcb-gen && cargo test --target $(rustc --verbose --version | grep host | cut -d' ' -f 2) && cd ..
+  # Run the import tool's tests
+  - cd tools && cd imxrt1062-fcb-gen && cargo test --target $(rustc --verbose --version | grep host | cut -d' ' -f 2) && cd ..
 cache: cargo
