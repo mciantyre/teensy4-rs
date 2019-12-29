@@ -11,7 +11,7 @@ edition = "2018"
 git = "https://github.com/rust-embedded/cortex-m-rt.git"
 
 [build-dependencies]
-cc = "1.0.47"
+cc = "1.0.48"
 
 [lib]
 bench = false

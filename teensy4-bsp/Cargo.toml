@@ -5,7 +5,7 @@ authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-cortex-m = "0.6"
+cortex-m = "0.6.1"
 imxrt1062-hal = { path = "../imxrt1062-hal" }
 imxrt1062-rt = { path = "../imxrt1062-rt" }
 log = "0.4.8"

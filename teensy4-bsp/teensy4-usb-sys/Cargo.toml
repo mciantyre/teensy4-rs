@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 
 [build-dependencies]
-cc = "1.0"
+cc = "1.0.48"
 
 [lib]
 test = false
