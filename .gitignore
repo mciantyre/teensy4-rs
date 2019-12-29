@@ -4,3 +4,7 @@
 Cargo.lock
 /out
 /svd/imxrt1062/*
+
+# Let developers specify their own configs in non Teensy crates
+imxrt1062-fcb-gen/.cargo
+tools/.cargo

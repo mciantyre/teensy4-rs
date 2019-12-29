@@ -10,6 +10,8 @@ use std::io::{self, Read, Write};
 use std::path::{Path, PathBuf};
 use std::process;
 
+mod toml;
+
 static CARGO_TOML_DEPENDENCIES: &str = r#"vcell = "0.1.2"
 "#;
 
@@ -69,22 +71,6 @@ fn copy_contents<I: Iterator<Item = io::Result<fs::DirEntry>>>(crate_path: &Path
     }
 }
 
-fn suggest_workspace_update(crate_names: &[String]) {
-    println!("Top-level Cargo.toml additions...");
-    for crate_name in crate_names {
-        println!("    \"imxrt1062-pac/{}\",", crate_name);
-    }
-    println!();
-}
-
-fn suggest_pac_update(crate_names: &[String]) {
-    println!("imxrt1062-pac Cargo.toml additions...");
-    for crate_name in crate_names {
-        println!("{0} = {{ path = \"{0}\" }}", crate_name);
-    }
-    println!();
-}
-
 fn suggest_reexports(crate_names: &[String]) {
     println!("imxrt1062-pac reexport additions...");
     for crate_name in crate_names {
@@ -100,28 +86,52 @@ fn suggest_reexports(crate_names: &[String]) {
     }
 }
 
+/// Update the workspace Cargo.toml.
+/// We assume that we're running this binary from
+/// this directory, and that the workspace Cargo.toml
+/// is one level up
+fn update_workspace_toml(crate_names: &[String]) {
+    static WORKSPACE_CARGO_TOML: &str = "../Cargo.toml";
+    let mut workspace: toml::Workspace = {
+        let file = fs::read(WORKSPACE_CARGO_TOML).expect("Cannot read workspace Cargo.toml");
+        ::toml::de::from_slice(&file).unwrap()
+    };
+    for crate_name in crate_names {
+        workspace.add_member(PathBuf::from(OUTPUT_PAC_NAME).join(crate_name));
+    }
+    let new_toml = ::toml::ser::to_string_pretty(&workspace).unwrap();
+    fs::write(WORKSPACE_CARGO_TOML, new_toml).unwrap();
+}
+
+fn update_pac_dependencies(output_pac: &Path, crate_names: &[String]) {
+    let output_pac_toml = output_pac.join("Cargo.toml");
+    let mut krate: toml::Krate = {
+        let file = fs::read(&output_pac_toml).unwrap();
+        ::toml::de::from_slice(&file).unwrap()
+    };
+    for crate_name in crate_names {
+        krate.add_dependency(crate_name, crate_name);
+    }
+    let new_toml = ::toml::ser::to_string_pretty(&krate).unwrap();
+    fs::write(&output_pac_toml, new_toml).unwrap();
+}
+
+static OUTPUT_PAC_NAME: &str = "imxrt1062-pac";
+
 fn main() {
-    let args: Vec<String> = env::args().skip(1).collect();
-
-    if args.len() < 3 {
-        println!("usage: path/to/svd2rust/output path/to/output/pac module_name ...");
-        process::exit(1);
-    }
-
-    let svd_crate_path = PathBuf::from(&args[0]);
-    if !svd_crate_path.exists() || !svd_crate_path.is_dir() {
-        println!("Cannot find crate directory {}", svd_crate_path.display());
-        process::exit(1);
-    }
-
-    let output_pac = PathBuf::from(&args[1]);
-    if !output_pac.exists() || !output_pac.is_dir() {
-        println!("Cannot find output PAC directory {}", output_pac.display());
-        process::exit(1);
-    }
+    let output_pac: PathBuf = PathBuf::from("../").join(OUTPUT_PAC_NAME);
+    let mut args = env::args().skip(1);
+    let svd_crate_path = match args.next() {
+        Some(path) => PathBuf::from(path),
+        None => {
+            println!("usage: path/to/svd2rust/output module_name ...");
+            process::exit(1);
+        }
+    };
 
     let mut new_pac_crates: Vec<String> = Vec::new();
-    for module_name in args.iter().skip(2) {
+    for module_name in args {
+        let module_name = &module_name;
         let peripheral_module_src = fs::File::open(
             svd_crate_path
                 .join("src")
@@ -164,8 +174,8 @@ fn main() {
     }
 
     if !new_pac_crates.is_empty() {
-        suggest_workspace_update(&new_pac_crates);
-        suggest_pac_update(&new_pac_crates);
         suggest_reexports(&new_pac_crates);
+        update_workspace_toml(&new_pac_crates);
+        update_pac_dependencies(&output_pac, &new_pac_crates);
     }
 }
