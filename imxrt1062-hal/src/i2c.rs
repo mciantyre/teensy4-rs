@@ -7,7 +7,7 @@ use crate::iomuxc::{daisy, i2c};
 use core::convert::TryFrom;
 use core::marker::PhantomData;
 use embedded_hal::blocking;
-use imxrt1060_pac as pac;
+use imxrt1062_pac as pac;
 use pac::lpi2c1::mtdr::CMD_AW;
 
 /// Unclocked I2C modules
