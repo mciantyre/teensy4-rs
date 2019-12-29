@@ -2,4 +2,4 @@
 #
 # Script to auto-format the SVD file
 
-tidy -xml -i -m MIMXRT1062.xml
+tidy -xml -i -wrap 0 -m MIMXRT1062.xml
