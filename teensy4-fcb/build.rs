@@ -1,4 +1,4 @@
-use imxrt1060_fcb_gen::*;
+use imxrt1062_fcb_gen::*;
 
 use std::env;
 use std::fs::File;

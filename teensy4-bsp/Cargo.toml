@@ -6,8 +6,8 @@ edition = "2018"
 
 [dependencies]
 cortex-m = "0.6"
-imxrt1060-hal = { path = "../imxrt1060-hal" }
-imxrt1060-rt = { path = "../imxrt1060-rt" }
+imxrt1062-hal = { path = "../imxrt1062-hal" }
+imxrt1062-rt = { path = "../imxrt1062-rt" }
 log = "0.4.8"
 teensy4-fcb = { path = "../teensy4-fcb" }
 teensy4-usb-sys = { path = "teensy4-usb-sys" }
