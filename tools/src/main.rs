@@ -69,6 +69,37 @@ fn copy_contents<I: Iterator<Item = io::Result<fs::DirEntry>>>(crate_path: &Path
     }
 }
 
+fn suggest_workspace_update(crate_names: &[String]) {
+    println!("Top-level Cargo.toml additions...");
+    for crate_name in crate_names {
+        println!("    \"imxrt1062-pac/{}\",", crate_name);
+    }
+    println!();
+}
+
+fn suggest_pac_update(crate_names: &[String]) {
+    println!("imxrt1062-pac Cargo.toml additions...");
+    for crate_name in crate_names {
+        println!("{0} = {{ path = \"{0}\" }}", crate_name);
+    }
+    println!();
+}
+
+fn suggest_reexports(crate_names: &[String]) {
+    println!("imxrt1062-pac reexport additions...");
+    for crate_name in crate_names {
+        let crate_name = crate_name.replace("-", "_");
+        // pub use imxrt1062_foo_bar as foo_bar
+        let module = crate_name
+            .split("_")
+            .skip(1)
+            .map(String::from)
+            .collect::<Vec<String>>()
+            .join("_");
+        println!("pub use {} as {};", crate_name, module);
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 
@@ -89,6 +120,7 @@ fn main() {
         process::exit(1);
     }
 
+    let mut new_pac_crates: Vec<String> = Vec::new();
     for module_name in args.iter().skip(2) {
         let peripheral_module_src = fs::File::open(
             svd_crate_path
@@ -100,8 +132,8 @@ fn main() {
             &format!("Unable to find module directory for {}", module_name),
         );
 
-        let peripheral_crate_path =
-            output_pac.join(format!("imxrt1062-{}", module_name.replace("_", "-")));
+        let crate_name = format!("imxrt1062-{}", module_name.replace("_", "-"));
+        let peripheral_crate_path = output_pac.join(crate_name.clone());
         if peripheral_crate_path.exists() {
             println!(
                 "{} peripheral crate seems to already exist! Skipping...",
@@ -128,5 +160,12 @@ fn main() {
         copy_contents(&peripheral_crate_path.join("src"), peripheral_dir_src);
 
         println!("{} crate was created! Add the crate to the workspace, re-export it from the main PAC crate, and enable the relevant structs in the PAC crate", peripheral_crate_path.display());
+        new_pac_crates.push(crate_name);
+    }
+
+    if !new_pac_crates.is_empty() {
+        suggest_workspace_update(&new_pac_crates);
+        suggest_pac_update(&new_pac_crates);
+        suggest_reexports(&new_pac_crates);
     }
 }
