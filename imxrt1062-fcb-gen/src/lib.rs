@@ -26,7 +26,7 @@
 //!
 //! Then, instantiate a `Builder` in your `build.rs` build script. Unless a
 //! member of the `Builder` implements `Default`, it's probably required and
-//! it requires your input. See the `iMXRT1060` reference manual for details
+//! it requires your input. See the `iMXRT1062` reference manual for details
 //! that may be missing from this library.
 //!
 //! Once the builder is built, write the FCB instance from your build script, and

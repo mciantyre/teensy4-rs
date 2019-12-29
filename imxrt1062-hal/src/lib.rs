@@ -1,4 +1,4 @@
-//! NXP iMXRT1060 hardware abstraction layer
+//! NXP iMXRT1062 hardware abstraction layer
 //!
 //! An [`embedded-hal`](https://crates.io/crates/embedded-hal) implementation
 //! targeting processors in NXP's IMXRT106x family.

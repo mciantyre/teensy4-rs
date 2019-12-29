@@ -1,4 +1,4 @@
-//! Allows us to auto-import a iMXRT1060 module
+//! Allows us to auto-import a iMXRT1062 module
 //! from the svd2rust output into the imxrt1062-pac
 //! megacrate. It code-ifies some manual work.
 //!

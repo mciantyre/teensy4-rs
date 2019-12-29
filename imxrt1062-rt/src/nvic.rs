@@ -5,7 +5,7 @@ const NUM_EXCEPTIONS: usize = 14;
 
 /// The number of chip-specific interrupt count.
 ///
-/// See page 44 of the IMXRT1060 reference manual (skipping the two 'reserved' at the end,
+/// See page 44 of the IMXRT1062 reference manual (skipping the two 'reserved' at the end,
 /// since it seems that the SVD doesn't document these, or svd2rust removes them.)
 const NUM_IMXRT106X_INTERRUPTS: usize = 158;
 
