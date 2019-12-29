@@ -33,4 +33,6 @@ exclude = [
     "tools",
     # FCB generation
     "imxrt1062-fcb-gen",
+    # SVD project (not checked into repo)
+    "svd/imxrt1062",
 ]
