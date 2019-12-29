@@ -8,16 +8,16 @@ members = [
     # Examples
     "teensy4-examples",
     ###############
-    # IMXRT1060 HAL
+    # IMXRT1062 HAL
     ###############
     "imxrt1062-hal",
     "imxrt1062-rt",
     ###############
-    # IMXRT1060 PAC
+    # IMXRT1062 PAC
     ###############
     "imxrt1062-pac",
     "imxrt1062-pac/imxrt1062-core",
-    # IMXRT1060 Peripherals
+    # IMXRT1062 Peripherals
     "imxrt1062-pac/imxrt1062-ccm",
     "imxrt1062-pac/imxrt1062-ccm-analog",
     "imxrt1062-pac/imxrt1062-dcdc",
