@@ -10,9 +10,7 @@ use std::io::{self, Read, Write};
 use std::path::{Path, PathBuf};
 use std::process;
 
-static CARGO_TOML_DEPENDENCIES: &str = r#"bare-metal = "0.2.5"
-cortex-m = "0.6.1"
-vcell = "0.1.2"
+static CARGO_TOML_DEPENDENCIES: &str = r#"vcell = "0.1.2"
 "#;
 
 static CARGO_NO_TESTS_BENCH: &str = r#"

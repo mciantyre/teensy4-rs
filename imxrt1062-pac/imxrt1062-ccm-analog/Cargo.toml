@@ -5,8 +5,6 @@ authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-bare-metal = "0.2.5"
-cortex-m = "0.6.1"
 vcell = "0.1.2"
 
 [lib]
