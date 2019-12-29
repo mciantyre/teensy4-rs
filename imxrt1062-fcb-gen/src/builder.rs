@@ -170,7 +170,7 @@ mod test {
         // Note that this is a u32 array, where as we serialize a u8 array. We will convert
         // across the two arrays in our comparison.
         let expected: [u32; 128] = [
-            // 448 byte common FlexSPI configuration block, 8.6.3.1 page 223 (RT1060 rev 0)
+            // 448 byte common FlexSPI configuration block, 8.6.3.1 page 223 (RT1062 rev 0)
             // MCU_Flashloader_Reference_Manual.pdf, 8.2.1, Table 8-2, page 72-75
             0x4246_4346, // Tag				0x00
             0x5601_0000, // Version

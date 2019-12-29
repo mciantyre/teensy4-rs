@@ -1,7 +1,7 @@
 //! Pulse Width Modulation (PWM)
 //!
 //! The PWM module provides abstractions for using
-//! the iMXRT1060's PWM capabilities. It relies on
+//! the iMXRT1062's PWM capabilities. It relies on
 //! a user mutliplexing appropriate pins from.
 //! IOMUXC. It also relies on some of the timing
 //! functionality available in the CCM. See those
