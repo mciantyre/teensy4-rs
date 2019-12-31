@@ -13,36 +13,57 @@ license = 'MIT OR Apache-2.0'
 name = 'imxrt1062-pac'
 repository = 'https://github.com/mciantyre/teensy4-rs'
 version = '0.1.0'
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "svd2rust",
+    "imxrt1062",
+    "cortex-m",
+]
 
 [dependencies]
 cortex-m = '0.6.1'
 
 [dependencies.imxrt1062-ccm]
 path = 'imxrt1062-ccm'
+version = "0.1.0"
 
 [dependencies.imxrt1062-ccm-analog]
 path = 'imxrt1062-ccm-analog'
+version = "0.1.0"
 
 [dependencies.imxrt1062-core]
 path = 'imxrt1062-core'
+version = "0.1.0"
 
 [dependencies.imxrt1062-dcdc]
 path = 'imxrt1062-dcdc'
+version = "0.1.0"
 
 [dependencies.imxrt1062-gpio1]
 path = 'imxrt1062-gpio1'
+version = "0.1.0"
 
 [dependencies.imxrt1062-gpt1]
 path = 'imxrt1062-gpt1'
+version = "0.1.0"
 
 [dependencies.imxrt1062-iomuxc]
 path = 'imxrt1062-iomuxc'
+version = "0.1.0"
 
 [dependencies.imxrt1062-iomuxc-gpr]
 path = 'imxrt1062-iomuxc-gpr'
+version = "0.1.0"
 
 [dependencies.imxrt1062-pit]
 path = 'imxrt1062-pit'
+version = "0.1.0"
 
 [dependencies.imxrt1062-pwm1]
 path = 'imxrt1062-pwm1'
+version = "0.1.0"

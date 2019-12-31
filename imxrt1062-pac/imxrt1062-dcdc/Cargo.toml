@@ -10,6 +10,17 @@ An imxrt1062-pac subcrate. See the imxrt1062-pac for more details.
 
 Part of the teensy4-rs project.
 """
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "svd2rust",
+    "imxrt1062",
+    "cortex-m",
+]
 
 [dependencies]
 vcell = "0.1.2"
