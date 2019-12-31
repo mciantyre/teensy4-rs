@@ -14,17 +14,14 @@ impl crate::ResetValue for super::MCR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FRZ_A {
     #[doc = "0: Timers continue to run in Debug mode."]
-    FRZ_0,
+    FRZ_0 = 0,
     #[doc = "1: Timers are stopped in Debug mode."]
-    FRZ_1,
+    FRZ_1 = 1,
 }
 impl From<FRZ_A> for bool {
     #[inline(always)]
     fn from(variant: FRZ_A) -> Self {
-        match variant {
-            FRZ_A::FRZ_0 => false,
-            FRZ_A::FRZ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FRZ`"]
@@ -92,17 +89,14 @@ impl<'a> FRZ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MDIS_A {
     #[doc = "0: Clock for standard PIT timers is enabled."]
-    MDIS_0,
+    MDIS_0 = 0,
     #[doc = "1: Clock for standard PIT timers is disabled."]
-    MDIS_1,
+    MDIS_1 = 1,
 }
 impl From<MDIS_A> for bool {
     #[inline(always)]
     fn from(variant: MDIS_A) -> Self {
-        match variant {
-            MDIS_A::MDIS_0 => false,
-            MDIS_A::MDIS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MDIS`"]

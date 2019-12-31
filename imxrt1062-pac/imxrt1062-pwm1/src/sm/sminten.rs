@@ -14,9 +14,11 @@ impl crate::ResetValue for super::SMINTEN {
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[repr(u8)]
 pub enum CMPIE_A {
-    #[doc = "0: The corresponding STS\\[CMPF\\] bit will not cause an interrupt request."]
+    #[doc = "0: The corresponding STS\\[CMPF\\]
+bit will not cause an interrupt request."]
     CMPIE_0 = 0,
-    #[doc = "1: The corresponding STS\\[CMPF\\] bit will cause an interrupt request."]
+    #[doc = "1: The corresponding STS\\[CMPF\\]
+bit will cause an interrupt request."]
     CMPIE_1 = 1,
 }
 impl From<CMPIE_A> for u8 {
@@ -59,12 +61,14 @@ impl<'a> CMPIE_W<'a> {
     pub fn variant(self, variant: CMPIE_A) -> &'a mut W {
         unsafe { self.bits(variant.into()) }
     }
-    #[doc = "The corresponding STS\\[CMPF\\] bit will not cause an interrupt request."]
+    #[doc = "The corresponding STS\\[CMPF\\]
+bit will not cause an interrupt request."]
     #[inline(always)]
     pub fn cmpie_0(self) -> &'a mut W {
         self.variant(CMPIE_A::CMPIE_0)
     }
-    #[doc = "The corresponding STS\\[CMPF\\] bit will cause an interrupt request."]
+    #[doc = "The corresponding STS\\[CMPF\\]
+bit will cause an interrupt request."]
     #[inline(always)]
     pub fn cmpie_1(self) -> &'a mut W {
         self.variant(CMPIE_A::CMPIE_1)
@@ -529,9 +533,11 @@ impl<'a> CA1IE_W<'a> {
 #[doc = "Reload Interrupt Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RIE_A {
-    #[doc = "0: STS\\[RF\\] CPU interrupt requests disabled"]
+    #[doc = "0: STS\\[RF\\]
+CPU interrupt requests disabled"]
     RIE_0 = 0,
-    #[doc = "1: STS\\[RF\\] CPU interrupt requests enabled"]
+    #[doc = "1: STS\\[RF\\]
+CPU interrupt requests enabled"]
     RIE_1 = 1,
 }
 impl From<RIE_A> for bool {
@@ -574,12 +580,14 @@ impl<'a> RIE_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "STS\\[RF\\] CPU interrupt requests disabled"]
+    #[doc = "STS\\[RF\\]
+CPU interrupt requests disabled"]
     #[inline(always)]
     pub fn rie_0(self) -> &'a mut W {
         self.variant(RIE_A::RIE_0)
     }
-    #[doc = "STS\\[RF\\] CPU interrupt requests enabled"]
+    #[doc = "STS\\[RF\\]
+CPU interrupt requests enabled"]
     #[inline(always)]
     pub fn rie_1(self) -> &'a mut W {
         self.variant(RIE_A::RIE_1)
@@ -604,9 +612,11 @@ impl<'a> RIE_W<'a> {
 #[doc = "Reload Error Interrupt Enable\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REIE_A {
-    #[doc = "0: STS\\[REF\\] CPU interrupt requests disabled"]
+    #[doc = "0: STS\\[REF\\]
+CPU interrupt requests disabled"]
     REIE_0 = 0,
-    #[doc = "1: STS\\[REF\\] CPU interrupt requests enabled"]
+    #[doc = "1: STS\\[REF\\]
+CPU interrupt requests enabled"]
     REIE_1 = 1,
 }
 impl From<REIE_A> for bool {
@@ -649,12 +659,14 @@ impl<'a> REIE_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "STS\\[REF\\] CPU interrupt requests disabled"]
+    #[doc = "STS\\[REF\\]
+CPU interrupt requests disabled"]
     #[inline(always)]
     pub fn reie_0(self) -> &'a mut W {
         self.variant(REIE_A::REIE_0)
     }
-    #[doc = "STS\\[REF\\] CPU interrupt requests enabled"]
+    #[doc = "STS\\[REF\\]
+CPU interrupt requests enabled"]
     #[inline(always)]
     pub fn reie_1(self) -> &'a mut W {
         self.variant(REIE_A::REIE_1)

@@ -27,18 +27,17 @@ impl<'a> OCRAM_CTL_W<'a> {
 #[doc = "Select 128-bit dcp key from 256-bit key from snvs/ocotp\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DCP_KEY_SEL_A {
-    #[doc = "0: Select \\[127:0\\] from snvs/ocotp key as dcp key"]
-    DCP_KEY_SEL_0,
-    #[doc = "1: Select \\[255:128\\] from snvs/ocotp key as dcp key"]
-    DCP_KEY_SEL_1,
+    #[doc = "0: Select \\[127:0\\]
+from snvs/ocotp key as dcp key"]
+    DCP_KEY_SEL_0 = 0,
+    #[doc = "1: Select \\[255:128\\]
+from snvs/ocotp key as dcp key"]
+    DCP_KEY_SEL_1 = 1,
 }
 impl From<DCP_KEY_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: DCP_KEY_SEL_A) -> Self {
-        match variant {
-            DCP_KEY_SEL_A::DCP_KEY_SEL_0 => false,
-            DCP_KEY_SEL_A::DCP_KEY_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DCP_KEY_SEL`"]
@@ -75,12 +74,14 @@ impl<'a> DCP_KEY_SEL_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "Select \\[127:0\\] from snvs/ocotp key as dcp key"]
+    #[doc = "Select \\[127:0\\]
+from snvs/ocotp key as dcp key"]
     #[inline(always)]
     pub fn dcp_key_sel_0(self) -> &'a mut W {
         self.variant(DCP_KEY_SEL_A::DCP_KEY_SEL_0)
     }
-    #[doc = "Select \\[255:128\\] from snvs/ocotp key as dcp key"]
+    #[doc = "Select \\[255:128\\]
+from snvs/ocotp key as dcp key"]
     #[inline(always)]
     pub fn dcp_key_sel_1(self) -> &'a mut W {
         self.variant(DCP_KEY_SEL_A::DCP_KEY_SEL_1)
@@ -120,17 +121,14 @@ impl<'a> OCRAM2_CTL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_L_HALT_REQ_A {
     #[doc = "0: axbs_l normal run"]
-    AXBS_L_HALT_REQ_0,
+    AXBS_L_HALT_REQ_0 = 0,
     #[doc = "1: request to halt axbs_l"]
-    AXBS_L_HALT_REQ_1,
+    AXBS_L_HALT_REQ_1 = 1,
 }
 impl From<AXBS_L_HALT_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_L_HALT_REQ_A) -> Self {
-        match variant {
-            AXBS_L_HALT_REQ_A::AXBS_L_HALT_REQ_0 => false,
-            AXBS_L_HALT_REQ_A::AXBS_L_HALT_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_L_HALT_REQ`"]
@@ -202,17 +200,14 @@ pub type OCRAM2_STATUS_R = crate::R<u8, u8>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_L_HALTED_A {
     #[doc = "0: axbs_l is not halted"]
-    AXBS_L_HALTED_0,
+    AXBS_L_HALTED_0 = 0,
     #[doc = "1: axbs_l is in halted status"]
-    AXBS_L_HALTED_1,
+    AXBS_L_HALTED_1 = 1,
 }
 impl From<AXBS_L_HALTED_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_L_HALTED_A) -> Self {
-        match variant {
-            AXBS_L_HALTED_A::AXBS_L_HALTED_0 => false,
-            AXBS_L_HALTED_A::AXBS_L_HALTED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_L_HALTED`"]
@@ -277,7 +272,8 @@ impl<'a> AXBS_L_HALTED_W<'a> {
     }
 }
 impl R {
-    #[doc = "Bits 0:3 - OCRAM_CTL\\[3\\] - write address pipeline control bit"]
+    #[doc = "Bits 0:3 - OCRAM_CTL\\[3\\]
+- write address pipeline control bit"]
     #[inline(always)]
     pub fn ocram_ctl(&self) -> OCRAM_CTL_R {
         OCRAM_CTL_R::new((self.bits & 0x0f) as u8)
@@ -287,7 +283,8 @@ impl R {
     pub fn dcp_key_sel(&self) -> DCP_KEY_SEL_R {
         DCP_KEY_SEL_R::new(((self.bits >> 4) & 0x01) != 0)
     }
-    #[doc = "Bits 8:11 - OCRAM2_CTL\\[3\\] - write address pipeline control bit"]
+    #[doc = "Bits 8:11 - OCRAM2_CTL\\[3\\]
+- write address pipeline control bit"]
     #[inline(always)]
     pub fn ocram2_ctl(&self) -> OCRAM2_CTL_R {
         OCRAM2_CTL_R::new(((self.bits >> 8) & 0x0f) as u8)
@@ -314,7 +311,8 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bits 0:3 - OCRAM_CTL\\[3\\] - write address pipeline control bit"]
+    #[doc = "Bits 0:3 - OCRAM_CTL\\[3\\]
+- write address pipeline control bit"]
     #[inline(always)]
     pub fn ocram_ctl(&mut self) -> OCRAM_CTL_W {
         OCRAM_CTL_W { w: self }
@@ -324,7 +322,8 @@ impl W {
     pub fn dcp_key_sel(&mut self) -> DCP_KEY_SEL_W {
         DCP_KEY_SEL_W { w: self }
     }
-    #[doc = "Bits 8:11 - OCRAM2_CTL\\[3\\] - write address pipeline control bit"]
+    #[doc = "Bits 8:11 - OCRAM2_CTL\\[3\\]
+- write address pipeline control bit"]
     #[inline(always)]
     pub fn ocram2_ctl(&mut self) -> OCRAM2_CTL_W {
         OCRAM2_CTL_W { w: self }

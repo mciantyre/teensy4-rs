@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR8 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C1_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPI2C1_IPG_STOP_MODE_0,
+    LPI2C1_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPI2C1_IPG_STOP_MODE_1,
+    LPI2C1_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPI2C1_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C1_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPI2C1_IPG_STOP_MODE_A::LPI2C1_IPG_STOP_MODE_0 => false,
-            LPI2C1_IPG_STOP_MODE_A::LPI2C1_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C1_IPG_STOP_MODE`"]
@@ -92,17 +89,14 @@ impl<'a> LPI2C1_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C1_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPI2C1_IPG_DOZE_0,
+    LPI2C1_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPI2C1_IPG_DOZE_1,
+    LPI2C1_IPG_DOZE_1 = 1,
 }
 impl From<LPI2C1_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C1_IPG_DOZE_A) -> Self {
-        match variant {
-            LPI2C1_IPG_DOZE_A::LPI2C1_IPG_DOZE_0 => false,
-            LPI2C1_IPG_DOZE_A::LPI2C1_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C1_IPG_DOZE`"]
@@ -170,17 +164,14 @@ impl<'a> LPI2C1_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C2_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPI2C2_IPG_STOP_MODE_0,
+    LPI2C2_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPI2C2_IPG_STOP_MODE_1,
+    LPI2C2_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPI2C2_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C2_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPI2C2_IPG_STOP_MODE_A::LPI2C2_IPG_STOP_MODE_0 => false,
-            LPI2C2_IPG_STOP_MODE_A::LPI2C2_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C2_IPG_STOP_MODE`"]
@@ -248,17 +239,14 @@ impl<'a> LPI2C2_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C2_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPI2C2_IPG_DOZE_0,
+    LPI2C2_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPI2C2_IPG_DOZE_1,
+    LPI2C2_IPG_DOZE_1 = 1,
 }
 impl From<LPI2C2_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C2_IPG_DOZE_A) -> Self {
-        match variant {
-            LPI2C2_IPG_DOZE_A::LPI2C2_IPG_DOZE_0 => false,
-            LPI2C2_IPG_DOZE_A::LPI2C2_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C2_IPG_DOZE`"]
@@ -326,17 +314,14 @@ impl<'a> LPI2C2_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C3_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPI2C3_IPG_STOP_MODE_0,
+    LPI2C3_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPI2C3_IPG_STOP_MODE_1,
+    LPI2C3_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPI2C3_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C3_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPI2C3_IPG_STOP_MODE_A::LPI2C3_IPG_STOP_MODE_0 => false,
-            LPI2C3_IPG_STOP_MODE_A::LPI2C3_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C3_IPG_STOP_MODE`"]
@@ -404,17 +389,14 @@ impl<'a> LPI2C3_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C3_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPI2C3_IPG_DOZE_0,
+    LPI2C3_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPI2C3_IPG_DOZE_1,
+    LPI2C3_IPG_DOZE_1 = 1,
 }
 impl From<LPI2C3_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C3_IPG_DOZE_A) -> Self {
-        match variant {
-            LPI2C3_IPG_DOZE_A::LPI2C3_IPG_DOZE_0 => false,
-            LPI2C3_IPG_DOZE_A::LPI2C3_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C3_IPG_DOZE`"]
@@ -482,17 +464,14 @@ impl<'a> LPI2C3_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C4_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPI2C4_IPG_STOP_MODE_0,
+    LPI2C4_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPI2C4_IPG_STOP_MODE_1,
+    LPI2C4_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPI2C4_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C4_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPI2C4_IPG_STOP_MODE_A::LPI2C4_IPG_STOP_MODE_0 => false,
-            LPI2C4_IPG_STOP_MODE_A::LPI2C4_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C4_IPG_STOP_MODE`"]
@@ -560,17 +539,14 @@ impl<'a> LPI2C4_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C4_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPI2C4_IPG_DOZE_0,
+    LPI2C4_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPI2C4_IPG_DOZE_1,
+    LPI2C4_IPG_DOZE_1 = 1,
 }
 impl From<LPI2C4_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C4_IPG_DOZE_A) -> Self {
-        match variant {
-            LPI2C4_IPG_DOZE_A::LPI2C4_IPG_DOZE_0 => false,
-            LPI2C4_IPG_DOZE_A::LPI2C4_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C4_IPG_DOZE`"]
@@ -638,17 +614,14 @@ impl<'a> LPI2C4_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI1_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPSPI1_IPG_STOP_MODE_0,
+    LPSPI1_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPSPI1_IPG_STOP_MODE_1,
+    LPSPI1_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPSPI1_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI1_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPSPI1_IPG_STOP_MODE_A::LPSPI1_IPG_STOP_MODE_0 => false,
-            LPSPI1_IPG_STOP_MODE_A::LPSPI1_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI1_IPG_STOP_MODE`"]
@@ -716,17 +689,14 @@ impl<'a> LPSPI1_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI1_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPSPI1_IPG_DOZE_0,
+    LPSPI1_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPSPI1_IPG_DOZE_1,
+    LPSPI1_IPG_DOZE_1 = 1,
 }
 impl From<LPSPI1_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI1_IPG_DOZE_A) -> Self {
-        match variant {
-            LPSPI1_IPG_DOZE_A::LPSPI1_IPG_DOZE_0 => false,
-            LPSPI1_IPG_DOZE_A::LPSPI1_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI1_IPG_DOZE`"]
@@ -794,17 +764,14 @@ impl<'a> LPSPI1_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI2_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPSPI2_IPG_STOP_MODE_0,
+    LPSPI2_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPSPI2_IPG_STOP_MODE_1,
+    LPSPI2_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPSPI2_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI2_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPSPI2_IPG_STOP_MODE_A::LPSPI2_IPG_STOP_MODE_0 => false,
-            LPSPI2_IPG_STOP_MODE_A::LPSPI2_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI2_IPG_STOP_MODE`"]
@@ -872,17 +839,14 @@ impl<'a> LPSPI2_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI2_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPSPI2_IPG_DOZE_0,
+    LPSPI2_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPSPI2_IPG_DOZE_1,
+    LPSPI2_IPG_DOZE_1 = 1,
 }
 impl From<LPSPI2_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI2_IPG_DOZE_A) -> Self {
-        match variant {
-            LPSPI2_IPG_DOZE_A::LPSPI2_IPG_DOZE_0 => false,
-            LPSPI2_IPG_DOZE_A::LPSPI2_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI2_IPG_DOZE`"]
@@ -950,17 +914,14 @@ impl<'a> LPSPI2_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI3_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPSPI3_IPG_STOP_MODE_0,
+    LPSPI3_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPSPI3_IPG_STOP_MODE_1,
+    LPSPI3_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPSPI3_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI3_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPSPI3_IPG_STOP_MODE_A::LPSPI3_IPG_STOP_MODE_0 => false,
-            LPSPI3_IPG_STOP_MODE_A::LPSPI3_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI3_IPG_STOP_MODE`"]
@@ -1028,17 +989,14 @@ impl<'a> LPSPI3_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI3_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPSPI3_IPG_DOZE_0,
+    LPSPI3_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPSPI3_IPG_DOZE_1,
+    LPSPI3_IPG_DOZE_1 = 1,
 }
 impl From<LPSPI3_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI3_IPG_DOZE_A) -> Self {
-        match variant {
-            LPSPI3_IPG_DOZE_A::LPSPI3_IPG_DOZE_0 => false,
-            LPSPI3_IPG_DOZE_A::LPSPI3_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI3_IPG_DOZE`"]
@@ -1106,17 +1064,14 @@ impl<'a> LPSPI3_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI4_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPSPI4_IPG_STOP_MODE_0,
+    LPSPI4_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPSPI4_IPG_STOP_MODE_1,
+    LPSPI4_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPSPI4_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI4_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPSPI4_IPG_STOP_MODE_A::LPSPI4_IPG_STOP_MODE_0 => false,
-            LPSPI4_IPG_STOP_MODE_A::LPSPI4_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI4_IPG_STOP_MODE`"]
@@ -1184,17 +1139,14 @@ impl<'a> LPSPI4_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI4_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPSPI4_IPG_DOZE_0,
+    LPSPI4_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPSPI4_IPG_DOZE_1,
+    LPSPI4_IPG_DOZE_1 = 1,
 }
 impl From<LPSPI4_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI4_IPG_DOZE_A) -> Self {
-        match variant {
-            LPSPI4_IPG_DOZE_A::LPSPI4_IPG_DOZE_0 => false,
-            LPSPI4_IPG_DOZE_A::LPSPI4_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI4_IPG_DOZE`"]
@@ -1262,17 +1214,14 @@ impl<'a> LPSPI4_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART1_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART1_IPG_STOP_MODE_0,
+    LPUART1_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART1_IPG_STOP_MODE_1,
+    LPUART1_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART1_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART1_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART1_IPG_STOP_MODE_A::LPUART1_IPG_STOP_MODE_0 => false,
-            LPUART1_IPG_STOP_MODE_A::LPUART1_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART1_IPG_STOP_MODE`"]
@@ -1340,17 +1289,14 @@ impl<'a> LPUART1_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART1_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART1_IPG_DOZE_0,
+    LPUART1_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART1_IPG_DOZE_1,
+    LPUART1_IPG_DOZE_1 = 1,
 }
 impl From<LPUART1_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART1_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART1_IPG_DOZE_A::LPUART1_IPG_DOZE_0 => false,
-            LPUART1_IPG_DOZE_A::LPUART1_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART1_IPG_DOZE`"]
@@ -1418,17 +1364,14 @@ impl<'a> LPUART1_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART2_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART2_IPG_STOP_MODE_0,
+    LPUART2_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART2_IPG_STOP_MODE_1,
+    LPUART2_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART2_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART2_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART2_IPG_STOP_MODE_A::LPUART2_IPG_STOP_MODE_0 => false,
-            LPUART2_IPG_STOP_MODE_A::LPUART2_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART2_IPG_STOP_MODE`"]
@@ -1496,17 +1439,14 @@ impl<'a> LPUART2_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART2_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART2_IPG_DOZE_0,
+    LPUART2_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART2_IPG_DOZE_1,
+    LPUART2_IPG_DOZE_1 = 1,
 }
 impl From<LPUART2_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART2_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART2_IPG_DOZE_A::LPUART2_IPG_DOZE_0 => false,
-            LPUART2_IPG_DOZE_A::LPUART2_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART2_IPG_DOZE`"]
@@ -1574,17 +1514,14 @@ impl<'a> LPUART2_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART3_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART3_IPG_STOP_MODE_0,
+    LPUART3_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART3_IPG_STOP_MODE_1,
+    LPUART3_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART3_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART3_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART3_IPG_STOP_MODE_A::LPUART3_IPG_STOP_MODE_0 => false,
-            LPUART3_IPG_STOP_MODE_A::LPUART3_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART3_IPG_STOP_MODE`"]
@@ -1652,17 +1589,14 @@ impl<'a> LPUART3_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART3_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART3_IPG_DOZE_0,
+    LPUART3_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART3_IPG_DOZE_1,
+    LPUART3_IPG_DOZE_1 = 1,
 }
 impl From<LPUART3_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART3_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART3_IPG_DOZE_A::LPUART3_IPG_DOZE_0 => false,
-            LPUART3_IPG_DOZE_A::LPUART3_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART3_IPG_DOZE`"]
@@ -1730,17 +1664,14 @@ impl<'a> LPUART3_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART4_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART4_IPG_STOP_MODE_0,
+    LPUART4_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART4_IPG_STOP_MODE_1,
+    LPUART4_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART4_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART4_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART4_IPG_STOP_MODE_A::LPUART4_IPG_STOP_MODE_0 => false,
-            LPUART4_IPG_STOP_MODE_A::LPUART4_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART4_IPG_STOP_MODE`"]
@@ -1808,17 +1739,14 @@ impl<'a> LPUART4_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART4_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART4_IPG_DOZE_0,
+    LPUART4_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART4_IPG_DOZE_1,
+    LPUART4_IPG_DOZE_1 = 1,
 }
 impl From<LPUART4_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART4_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART4_IPG_DOZE_A::LPUART4_IPG_DOZE_0 => false,
-            LPUART4_IPG_DOZE_A::LPUART4_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART4_IPG_DOZE`"]
@@ -1886,17 +1814,14 @@ impl<'a> LPUART4_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART5_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART5_IPG_STOP_MODE_0,
+    LPUART5_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART5_IPG_STOP_MODE_1,
+    LPUART5_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART5_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART5_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART5_IPG_STOP_MODE_A::LPUART5_IPG_STOP_MODE_0 => false,
-            LPUART5_IPG_STOP_MODE_A::LPUART5_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART5_IPG_STOP_MODE`"]
@@ -1964,17 +1889,14 @@ impl<'a> LPUART5_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART5_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART5_IPG_DOZE_0,
+    LPUART5_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART5_IPG_DOZE_1,
+    LPUART5_IPG_DOZE_1 = 1,
 }
 impl From<LPUART5_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART5_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART5_IPG_DOZE_A::LPUART5_IPG_DOZE_0 => false,
-            LPUART5_IPG_DOZE_A::LPUART5_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART5_IPG_DOZE`"]
@@ -2042,17 +1964,14 @@ impl<'a> LPUART5_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART6_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART6_IPG_STOP_MODE_0,
+    LPUART6_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART6_IPG_STOP_MODE_1,
+    LPUART6_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART6_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART6_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART6_IPG_STOP_MODE_A::LPUART6_IPG_STOP_MODE_0 => false,
-            LPUART6_IPG_STOP_MODE_A::LPUART6_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART6_IPG_STOP_MODE`"]
@@ -2120,17 +2039,14 @@ impl<'a> LPUART6_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART6_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART6_IPG_DOZE_0,
+    LPUART6_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART6_IPG_DOZE_1,
+    LPUART6_IPG_DOZE_1 = 1,
 }
 impl From<LPUART6_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART6_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART6_IPG_DOZE_A::LPUART6_IPG_DOZE_0 => false,
-            LPUART6_IPG_DOZE_A::LPUART6_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART6_IPG_DOZE`"]
@@ -2198,17 +2114,14 @@ impl<'a> LPUART6_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART7_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART7_IPG_STOP_MODE_0,
+    LPUART7_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART7_IPG_STOP_MODE_1,
+    LPUART7_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART7_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART7_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART7_IPG_STOP_MODE_A::LPUART7_IPG_STOP_MODE_0 => false,
-            LPUART7_IPG_STOP_MODE_A::LPUART7_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART7_IPG_STOP_MODE`"]
@@ -2276,17 +2189,14 @@ impl<'a> LPUART7_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART7_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART7_IPG_DOZE_0,
+    LPUART7_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART7_IPG_DOZE_1,
+    LPUART7_IPG_DOZE_1 = 1,
 }
 impl From<LPUART7_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART7_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART7_IPG_DOZE_A::LPUART7_IPG_DOZE_0 => false,
-            LPUART7_IPG_DOZE_A::LPUART7_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART7_IPG_DOZE`"]
@@ -2354,17 +2264,14 @@ impl<'a> LPUART7_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART8_IPG_STOP_MODE_A {
     #[doc = "0: the module is functional in Stop mode"]
-    LPUART8_IPG_STOP_MODE_0,
+    LPUART8_IPG_STOP_MODE_0 = 0,
     #[doc = "1: the module is NOT functional in Stop mode, when this bit is equal to 1 and ipg_stop is asserted"]
-    LPUART8_IPG_STOP_MODE_1,
+    LPUART8_IPG_STOP_MODE_1 = 1,
 }
 impl From<LPUART8_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART8_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            LPUART8_IPG_STOP_MODE_A::LPUART8_IPG_STOP_MODE_0 => false,
-            LPUART8_IPG_STOP_MODE_A::LPUART8_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART8_IPG_STOP_MODE`"]
@@ -2432,17 +2339,14 @@ impl<'a> LPUART8_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART8_IPG_DOZE_A {
     #[doc = "0: not in doze mode"]
-    LPUART8_IPG_DOZE_0,
+    LPUART8_IPG_DOZE_0 = 0,
     #[doc = "1: in doze mode"]
-    LPUART8_IPG_DOZE_1,
+    LPUART8_IPG_DOZE_1 = 1,
 }
 impl From<LPUART8_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART8_IPG_DOZE_A) -> Self {
-        match variant {
-            LPUART8_IPG_DOZE_A::LPUART8_IPG_DOZE_0 => false,
-            LPUART8_IPG_DOZE_A::LPUART8_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART8_IPG_DOZE`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::TCTRL {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum TEN_A {
     #[doc = "0: Timer n is disabled."]
-    TEN_0,
+    TEN_0 = 0,
     #[doc = "1: Timer n is enabled."]
-    TEN_1,
+    TEN_1 = 1,
 }
 impl From<TEN_A> for bool {
     #[inline(always)]
     fn from(variant: TEN_A) -> Self {
-        match variant {
-            TEN_A::TEN_0 => false,
-            TEN_A::TEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `TEN`"]
@@ -92,17 +89,14 @@ impl<'a> TEN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum TIE_A {
     #[doc = "0: Interrupt requests from Timer n are disabled."]
-    TIE_0,
+    TIE_0 = 0,
     #[doc = "1: Interrupt will be requested whenever TIF is set."]
-    TIE_1,
+    TIE_1 = 1,
 }
 impl From<TIE_A> for bool {
     #[inline(always)]
     fn from(variant: TIE_A) -> Self {
-        match variant {
-            TIE_A::TIE_0 => false,
-            TIE_A::TIE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `TIE`"]
@@ -170,17 +164,14 @@ impl<'a> TIE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CHN_A {
     #[doc = "0: Timer is not chained."]
-    CHN_0,
+    CHN_0 = 0,
     #[doc = "1: Timer is chained to previous timer. For example, for Channel 2, if this field is set, Timer 2 is chained to Timer 1."]
-    CHN_1,
+    CHN_1 = 1,
 }
 impl From<CHN_A> for bool {
     #[inline(always)]
     fn from(variant: CHN_A) -> Self {
-        match variant {
-            CHN_A::CHN_0 => false,
-            CHN_A::CHN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CHN`"]

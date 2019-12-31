@@ -160,11 +160,13 @@ impl<'a> CA1DE_W<'a> {
 pub enum CAPTDE_A {
     #[doc = "0: Read DMA requests disabled."]
     CAPTDE_0 = 0,
-    #[doc = "1: Exceeding a FIFO watermark sets the DMA read request. This requires at least one of DMAEN\\[CA1DE\\], DMAEN\\[CA0DE\\], DMAEN\\[CB1DE\\], DMAEN\\[CB0DE\\], DMAEN\\[CX1DE\\], or DMAEN\\[CX0DE\\] to also be set in order to determine to which watermark(s) the DMA request is sensitive."]
+    #[doc = "1: Exceeding a FIFO watermark sets the DMA read request. This requires at least one of DMAEN\\[CA1DE\\], DMAEN\\[CA0DE\\], DMAEN\\[CB1DE\\], DMAEN\\[CB0DE\\], DMAEN\\[CX1DE\\], or DMAEN\\[CX0DE\\]
+to also be set in order to determine to which watermark(s) the DMA request is sensitive."]
     CAPTDE_1 = 1,
     #[doc = "2: A local sync (VAL1 matches counter) sets the read DMA request."]
     CAPTDE_2 = 2,
-    #[doc = "3: A local reload (STS\\[RF\\] being set) sets the read DMA request."]
+    #[doc = "3: A local reload (STS\\[RF\\]
+being set) sets the read DMA request."]
     CAPTDE_3 = 3,
 }
 impl From<CAPTDE_A> for u8 {
@@ -225,7 +227,8 @@ impl<'a> CAPTDE_W<'a> {
     pub fn captde_0(self) -> &'a mut W {
         self.variant(CAPTDE_A::CAPTDE_0)
     }
-    #[doc = "Exceeding a FIFO watermark sets the DMA read request. This requires at least one of DMAEN\\[CA1DE\\], DMAEN\\[CA0DE\\], DMAEN\\[CB1DE\\], DMAEN\\[CB0DE\\], DMAEN\\[CX1DE\\], or DMAEN\\[CX0DE\\] to also be set in order to determine to which watermark(s) the DMA request is sensitive."]
+    #[doc = "Exceeding a FIFO watermark sets the DMA read request. This requires at least one of DMAEN\\[CA1DE\\], DMAEN\\[CA0DE\\], DMAEN\\[CB1DE\\], DMAEN\\[CB0DE\\], DMAEN\\[CX1DE\\], or DMAEN\\[CX0DE\\]
+to also be set in order to determine to which watermark(s) the DMA request is sensitive."]
     #[inline(always)]
     pub fn captde_1(self) -> &'a mut W {
         self.variant(CAPTDE_A::CAPTDE_1)
@@ -235,7 +238,8 @@ impl<'a> CAPTDE_W<'a> {
     pub fn captde_2(self) -> &'a mut W {
         self.variant(CAPTDE_A::CAPTDE_2)
     }
-    #[doc = "A local reload (STS\\[RF\\] being set) sets the read DMA request."]
+    #[doc = "A local reload (STS\\[RF\\]
+being set) sets the read DMA request."]
     #[inline(always)]
     pub fn captde_3(self) -> &'a mut W {
         self.variant(CAPTDE_A::CAPTDE_3)

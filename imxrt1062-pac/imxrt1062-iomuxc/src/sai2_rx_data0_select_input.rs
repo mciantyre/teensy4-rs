@@ -14,17 +14,14 @@ impl crate::ResetValue for super::SAI2_RX_DATA0_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_EMC_08 for Mode: ALT2"]
-    GPIO_EMC_08_ALT2,
+    GPIO_EMC_08_ALT2 = 0,
     #[doc = "1: Selecting Pad: GPIO_AD_B0_08 for Mode: ALT3"]
-    GPIO_AD_B0_08_ALT3,
+    GPIO_AD_B0_08_ALT3 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_EMC_08_ALT2 => false,
-            DAISY_A::GPIO_AD_B0_08_ALT3 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

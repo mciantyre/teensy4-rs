@@ -12,37 +12,29 @@ impl crate::ResetValue for super::SW_MUX_CTL_PAD_GPIO_AD_B0_12 {
 }
 #[doc = "MUX Mode Select Field.\n\nValue on reset: 5"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MUX_MODE_A {
     #[doc = "0: Select mux mode: ALT0 mux port: LPI2C4_SCL of instance: lpi2c4"]
-    ALT0,
+    ALT0 = 0,
     #[doc = "1: Select mux mode: ALT1 mux port: CCM_PMIC_READY of instance: ccm"]
-    ALT1,
+    ALT1 = 1,
     #[doc = "2: Select mux mode: ALT2 mux port: LPUART1_TX of instance: lpuart1"]
-    ALT2,
+    ALT2 = 2,
     #[doc = "3: Select mux mode: ALT3 mux port: WDOG2_WDOG_B of instance: wdog2"]
-    ALT3,
+    ALT3 = 3,
     #[doc = "4: Select mux mode: ALT4 mux port: FLEXPWM1_PWMX02 of instance: flexpwm1"]
-    ALT4,
+    ALT4 = 4,
     #[doc = "5: Select mux mode: ALT5 mux port: GPIO1_IO12 of instance: gpio1"]
-    ALT5,
+    ALT5 = 5,
     #[doc = "6: Select mux mode: ALT6 mux port: ENET_1588_EVENT1_OUT of instance: enet"]
-    ALT6,
+    ALT6 = 6,
     #[doc = "7: Select mux mode: ALT7 mux port: NMI_GLUE_NMI of instance: nmi_glue"]
-    ALT7,
+    ALT7 = 7,
 }
 impl From<MUX_MODE_A> for u8 {
     #[inline(always)]
     fn from(variant: MUX_MODE_A) -> Self {
-        match variant {
-            MUX_MODE_A::ALT0 => 0,
-            MUX_MODE_A::ALT1 => 1,
-            MUX_MODE_A::ALT2 => 2,
-            MUX_MODE_A::ALT3 => 3,
-            MUX_MODE_A::ALT4 => 4,
-            MUX_MODE_A::ALT5 => 5,
-            MUX_MODE_A::ALT6 => 6,
-            MUX_MODE_A::ALT7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MUX_MODE`"]
@@ -167,17 +159,14 @@ impl<'a> MUX_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SION_A {
     #[doc = "0: Input Path is determined by functionality"]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Force input path of pad GPIO_AD_B0_12"]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<SION_A> for bool {
     #[inline(always)]
     fn from(variant: SION_A) -> Self {
-        match variant {
-            SION_A::DISABLED => false,
-            SION_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SION`"]

@@ -12,22 +12,19 @@ impl crate::ResetValue for super::ENET_MDIO_SELECT_INPUT {
 }
 #[doc = "Selecting Pads Involved in Daisy Chain.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_AD_B1_05 for Mode: ALT1"]
-    GPIO_AD_B1_05_ALT1,
+    GPIO_AD_B1_05_ALT1 = 0,
     #[doc = "1: Selecting Pad: GPIO_EMC_41 for Mode: ALT4"]
-    GPIO_EMC_41_ALT4,
+    GPIO_EMC_41_ALT4 = 1,
     #[doc = "2: Selecting Pad: GPIO_B1_15 for Mode: ALT0"]
-    GPIO_B1_15_ALT0,
+    GPIO_B1_15_ALT0 = 2,
 }
 impl From<DAISY_A> for u8 {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_AD_B1_05_ALT1 => 0,
-            DAISY_A::GPIO_EMC_41_ALT4 => 1,
-            DAISY_A::GPIO_B1_15_ALT0 => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `DAISY`"]

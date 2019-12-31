@@ -14,17 +14,14 @@ impl crate::ResetValue for super::FLEXPWM4_PWMA0_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_EMC_00 for Mode: ALT1"]
-    GPIO_EMC_00_ALT1,
+    GPIO_EMC_00_ALT1 = 0,
     #[doc = "1: Selecting Pad: GPIO_AD_B1_08 for Mode: ALT1"]
-    GPIO_AD_B1_08_ALT1,
+    GPIO_AD_B1_08_ALT1 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_EMC_00_ALT1 => false,
-            DAISY_A::GPIO_AD_B1_08_ALT1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

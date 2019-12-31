@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR13 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ARCACHE_USDHC_A {
     #[doc = "0: Cacheable attribute is off for read transactions."]
-    ARCACHE_USDHC_0,
+    ARCACHE_USDHC_0 = 0,
     #[doc = "1: Cacheable attribute is on for read transactions."]
-    ARCACHE_USDHC_1,
+    ARCACHE_USDHC_1 = 1,
 }
 impl From<ARCACHE_USDHC_A> for bool {
     #[inline(always)]
     fn from(variant: ARCACHE_USDHC_A) -> Self {
-        match variant {
-            ARCACHE_USDHC_A::ARCACHE_USDHC_0 => false,
-            ARCACHE_USDHC_A::ARCACHE_USDHC_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ARCACHE_USDHC`"]
@@ -92,17 +89,14 @@ impl<'a> ARCACHE_USDHC_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AWCACHE_USDHC_A {
     #[doc = "0: Cacheable attribute is off for write transactions."]
-    AWCACHE_USDHC_0,
+    AWCACHE_USDHC_0 = 0,
     #[doc = "1: Cacheable attribute is on for write transactions."]
-    AWCACHE_USDHC_1,
+    AWCACHE_USDHC_1 = 1,
 }
 impl From<AWCACHE_USDHC_A> for bool {
     #[inline(always)]
     fn from(variant: AWCACHE_USDHC_A) -> Self {
-        match variant {
-            AWCACHE_USDHC_A::AWCACHE_USDHC_0 => false,
-            AWCACHE_USDHC_A::AWCACHE_USDHC_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AWCACHE_USDHC`"]
@@ -170,17 +164,14 @@ impl<'a> AWCACHE_USDHC_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CANFD_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    CANFD_STOP_REQ_0,
+    CANFD_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    CANFD_STOP_REQ_1,
+    CANFD_STOP_REQ_1 = 1,
 }
 impl From<CANFD_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: CANFD_STOP_REQ_A) -> Self {
-        match variant {
-            CANFD_STOP_REQ_A::CANFD_STOP_REQ_0 => false,
-            CANFD_STOP_REQ_A::CANFD_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CANFD_STOP_REQ`"]
@@ -248,17 +239,14 @@ impl<'a> CANFD_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CACHE_ENET_A {
     #[doc = "0: Cacheable attribute is off for read/write transactions."]
-    CACHE_ENET_0,
+    CACHE_ENET_0 = 0,
     #[doc = "1: Cacheable attribute is on for read/write transactions."]
-    CACHE_ENET_1,
+    CACHE_ENET_1 = 1,
 }
 impl From<CACHE_ENET_A> for bool {
     #[inline(always)]
     fn from(variant: CACHE_ENET_A) -> Self {
-        match variant {
-            CACHE_ENET_A::CACHE_ENET_0 => false,
-            CACHE_ENET_A::CACHE_ENET_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CACHE_ENET`"]
@@ -326,17 +314,14 @@ impl<'a> CACHE_ENET_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CACHE_USB_A {
     #[doc = "0: Cacheable attribute is off for read/write transactions."]
-    CACHE_USB_0,
+    CACHE_USB_0 = 0,
     #[doc = "1: Cacheable attribute is on for read/write transactions."]
-    CACHE_USB_1,
+    CACHE_USB_1 = 1,
 }
 impl From<CACHE_USB_A> for bool {
     #[inline(always)]
     fn from(variant: CACHE_USB_A) -> Self {
-        match variant {
-            CACHE_USB_A::CACHE_USB_0 => false,
-            CACHE_USB_A::CACHE_USB_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CACHE_USB`"]
@@ -404,17 +389,14 @@ impl<'a> CACHE_USB_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CANFD_STOP_ACK_A {
     #[doc = "0: CANFD stop acknowledge is not asserted"]
-    CANFD_STOP_ACK_0,
+    CANFD_STOP_ACK_0 = 0,
     #[doc = "1: CANFD stop acknowledge is asserted"]
-    CANFD_STOP_ACK_1,
+    CANFD_STOP_ACK_1 = 1,
 }
 impl From<CANFD_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: CANFD_STOP_ACK_A) -> Self {
-        match variant {
-            CANFD_STOP_ACK_A::CANFD_STOP_ACK_0 => false,
-            CANFD_STOP_ACK_A::CANFD_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CANFD_STOP_ACK`"]

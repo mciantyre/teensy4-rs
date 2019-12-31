@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR10 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum NIDEN_A {
     #[doc = "0: Debug turned off."]
-    NIDEN_0,
+    NIDEN_0 = 0,
     #[doc = "1: Debug enabled (default)."]
-    NIDEN_1,
+    NIDEN_1 = 1,
 }
 impl From<NIDEN_A> for bool {
     #[inline(always)]
     fn from(variant: NIDEN_A) -> Self {
-        match variant {
-            NIDEN_A::NIDEN_0 => false,
-            NIDEN_A::NIDEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `NIDEN`"]
@@ -92,17 +89,14 @@ impl<'a> NIDEN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DBG_EN_A {
     #[doc = "0: Debug turned off."]
-    DBG_EN_0,
+    DBG_EN_0 = 0,
     #[doc = "1: Debug enabled (default)."]
-    DBG_EN_1,
+    DBG_EN_1 = 1,
 }
 impl From<DBG_EN_A> for bool {
     #[inline(always)]
     fn from(variant: DBG_EN_A) -> Self {
-        match variant {
-            DBG_EN_A::DBG_EN_0 => false,
-            DBG_EN_A::DBG_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DBG_EN`"]
@@ -170,17 +164,14 @@ impl<'a> DBG_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SEC_ERR_RESP_A {
     #[doc = "0: OKEY response"]
-    SEC_ERR_RESP_0,
+    SEC_ERR_RESP_0 = 0,
     #[doc = "1: SLVError (default)"]
-    SEC_ERR_RESP_1,
+    SEC_ERR_RESP_1 = 1,
 }
 impl From<SEC_ERR_RESP_A> for bool {
     #[inline(always)]
     fn from(variant: SEC_ERR_RESP_A) -> Self {
-        match variant {
-            SEC_ERR_RESP_A::SEC_ERR_RESP_0 => false,
-            SEC_ERR_RESP_A::SEC_ERR_RESP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SEC_ERR_RESP`"]
@@ -248,17 +239,14 @@ impl<'a> SEC_ERR_RESP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DCPKEY_OCOTP_OR_KEYMUX_A {
     #[doc = "0: Select key from Key MUX (SNVS/OTPMK)."]
-    DCPKEY_OCOTP_OR_KEYMUX_0,
+    DCPKEY_OCOTP_OR_KEYMUX_0 = 0,
     #[doc = "1: Select key from OCOTP (SW_GP2)."]
-    DCPKEY_OCOTP_OR_KEYMUX_1,
+    DCPKEY_OCOTP_OR_KEYMUX_1 = 1,
 }
 impl From<DCPKEY_OCOTP_OR_KEYMUX_A> for bool {
     #[inline(always)]
     fn from(variant: DCPKEY_OCOTP_OR_KEYMUX_A) -> Self {
-        match variant {
-            DCPKEY_OCOTP_OR_KEYMUX_A::DCPKEY_OCOTP_OR_KEYMUX_0 => false,
-            DCPKEY_OCOTP_OR_KEYMUX_A::DCPKEY_OCOTP_OR_KEYMUX_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DCPKEY_OCOTP_OR_KEYMUX`"]
@@ -326,17 +314,15 @@ impl<'a> DCPKEY_OCOTP_OR_KEYMUX_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OCRAM_TZ_EN_A {
     #[doc = "0: The TrustZone feature is disabled. Entire OCRAM space is available for all access types (secure/non-secure/user/supervisor)."]
-    OCRAM_TZ_EN_0,
-    #[doc = "1: The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\] follows the execution mode access policy described in CSU chapter."]
-    OCRAM_TZ_EN_1,
+    OCRAM_TZ_EN_0 = 0,
+    #[doc = "1: The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\]
+follows the execution mode access policy described in CSU chapter."]
+    OCRAM_TZ_EN_1 = 1,
 }
 impl From<OCRAM_TZ_EN_A> for bool {
     #[inline(always)]
     fn from(variant: OCRAM_TZ_EN_A) -> Self {
-        match variant {
-            OCRAM_TZ_EN_A::OCRAM_TZ_EN_0 => false,
-            OCRAM_TZ_EN_A::OCRAM_TZ_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `OCRAM_TZ_EN`"]
@@ -378,7 +364,8 @@ impl<'a> OCRAM_TZ_EN_W<'a> {
     pub fn ocram_tz_en_0(self) -> &'a mut W {
         self.variant(OCRAM_TZ_EN_A::OCRAM_TZ_EN_0)
     }
-    #[doc = "The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\] follows the execution mode access policy described in CSU chapter."]
+    #[doc = "The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\]
+follows the execution mode access policy described in CSU chapter."]
     #[inline(always)]
     pub fn ocram_tz_en_1(self) -> &'a mut W {
         self.variant(OCRAM_TZ_EN_A::OCRAM_TZ_EN_1)
@@ -418,17 +405,14 @@ impl<'a> OCRAM_TZ_ADDR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_NIDEN_A {
     #[doc = "0: Field is not locked"]
-    LOCK_NIDEN_0,
+    LOCK_NIDEN_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_NIDEN_1,
+    LOCK_NIDEN_1 = 1,
 }
 impl From<LOCK_NIDEN_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_NIDEN_A) -> Self {
-        match variant {
-            LOCK_NIDEN_A::LOCK_NIDEN_0 => false,
-            LOCK_NIDEN_A::LOCK_NIDEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_NIDEN`"]
@@ -496,17 +480,14 @@ impl<'a> LOCK_NIDEN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_DBG_EN_A {
     #[doc = "0: Field is not locked"]
-    LOCK_DBG_EN_0,
+    LOCK_DBG_EN_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_DBG_EN_1,
+    LOCK_DBG_EN_1 = 1,
 }
 impl From<LOCK_DBG_EN_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_DBG_EN_A) -> Self {
-        match variant {
-            LOCK_DBG_EN_A::LOCK_DBG_EN_0 => false,
-            LOCK_DBG_EN_A::LOCK_DBG_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_DBG_EN`"]
@@ -574,17 +555,14 @@ impl<'a> LOCK_DBG_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_SEC_ERR_RESP_A {
     #[doc = "0: Field is not locked"]
-    LOCK_SEC_ERR_RESP_0,
+    LOCK_SEC_ERR_RESP_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_SEC_ERR_RESP_1,
+    LOCK_SEC_ERR_RESP_1 = 1,
 }
 impl From<LOCK_SEC_ERR_RESP_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_SEC_ERR_RESP_A) -> Self {
-        match variant {
-            LOCK_SEC_ERR_RESP_A::LOCK_SEC_ERR_RESP_0 => false,
-            LOCK_SEC_ERR_RESP_A::LOCK_SEC_ERR_RESP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_SEC_ERR_RESP`"]
@@ -652,17 +630,14 @@ impl<'a> LOCK_SEC_ERR_RESP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_DCPKEY_OCOTP_OR_KEYMUX_A {
     #[doc = "0: Field is not locked"]
-    LOCK_DCPKEY_OCOTP_OR_KEYMUX_0,
+    LOCK_DCPKEY_OCOTP_OR_KEYMUX_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_DCPKEY_OCOTP_OR_KEYMUX_1,
+    LOCK_DCPKEY_OCOTP_OR_KEYMUX_1 = 1,
 }
 impl From<LOCK_DCPKEY_OCOTP_OR_KEYMUX_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_DCPKEY_OCOTP_OR_KEYMUX_A) -> Self {
-        match variant {
-            LOCK_DCPKEY_OCOTP_OR_KEYMUX_A::LOCK_DCPKEY_OCOTP_OR_KEYMUX_0 => false,
-            LOCK_DCPKEY_OCOTP_OR_KEYMUX_A::LOCK_DCPKEY_OCOTP_OR_KEYMUX_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_DCPKEY_OCOTP_OR_KEYMUX`"]
@@ -730,17 +705,14 @@ impl<'a> LOCK_DCPKEY_OCOTP_OR_KEYMUX_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_OCRAM_TZ_EN_A {
     #[doc = "0: Field is not locked"]
-    LOCK_OCRAM_TZ_EN_0,
+    LOCK_OCRAM_TZ_EN_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_OCRAM_TZ_EN_1,
+    LOCK_OCRAM_TZ_EN_1 = 1,
 }
 impl From<LOCK_OCRAM_TZ_EN_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_OCRAM_TZ_EN_A) -> Self {
-        match variant {
-            LOCK_OCRAM_TZ_EN_A::LOCK_OCRAM_TZ_EN_0 => false,
-            LOCK_OCRAM_TZ_EN_A::LOCK_OCRAM_TZ_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_OCRAM_TZ_EN`"]
@@ -806,19 +778,17 @@ impl<'a> LOCK_OCRAM_TZ_EN_W<'a> {
 }
 #[doc = "Lock OCRAM_TZ_ADDR field for changes\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LOCK_OCRAM_TZ_ADDR_A {
     #[doc = "0: Field is not locked"]
-    LOCK_OCRAM_TZ_ADDR_0,
+    LOCK_OCRAM_TZ_ADDR_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_OCRAM_TZ_ADDR_1,
+    LOCK_OCRAM_TZ_ADDR_1 = 1,
 }
 impl From<LOCK_OCRAM_TZ_ADDR_A> for u8 {
     #[inline(always)]
     fn from(variant: LOCK_OCRAM_TZ_ADDR_A) -> Self {
-        match variant {
-            LOCK_OCRAM_TZ_ADDR_A::LOCK_OCRAM_TZ_ADDR_0 => 0,
-            LOCK_OCRAM_TZ_ADDR_A::LOCK_OCRAM_TZ_ADDR_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LOCK_OCRAM_TZ_ADDR`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::NMI_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_AD_B0_12 for Mode: ALT7"]
-    GPIO_AD_B0_12_ALT7,
+    GPIO_AD_B0_12_ALT7 = 0,
     #[doc = "1: Selecting Pad: WAKEUP for Mode: ALT7"]
-    WAKEUP_ALT7,
+    WAKEUP_ALT7 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_AD_B0_12_ALT7 => false,
-            DAISY_A::WAKEUP_ALT7 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

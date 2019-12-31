@@ -79,9 +79,11 @@ impl<'a> OUT_TRIG_EN_W<'a> {
 #[doc = "Trigger frequency\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum TRGFRQ_A {
-    #[doc = "0: Trigger outputs are generated during every PWM period even if the PWM is not reloaded every period due to CTRL\\[LDFQ\\] being non-zero."]
+    #[doc = "0: Trigger outputs are generated during every PWM period even if the PWM is not reloaded every period due to CTRL\\[LDFQ\\]
+being non-zero."]
     TRGFRQ_0 = 0,
-    #[doc = "1: Trigger outputs are generated only during the final PWM period prior to a reload opportunity when the PWM is not reloaded every period due to CTRL\\[LDFQ\\] being non-zero."]
+    #[doc = "1: Trigger outputs are generated only during the final PWM period prior to a reload opportunity when the PWM is not reloaded every period due to CTRL\\[LDFQ\\]
+being non-zero."]
     TRGFRQ_1 = 1,
 }
 impl From<TRGFRQ_A> for bool {
@@ -124,12 +126,14 @@ impl<'a> TRGFRQ_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "Trigger outputs are generated during every PWM period even if the PWM is not reloaded every period due to CTRL\\[LDFQ\\] being non-zero."]
+    #[doc = "Trigger outputs are generated during every PWM period even if the PWM is not reloaded every period due to CTRL\\[LDFQ\\]
+being non-zero."]
     #[inline(always)]
     pub fn trgfrq_0(self) -> &'a mut W {
         self.variant(TRGFRQ_A::TRGFRQ_0)
     }
-    #[doc = "Trigger outputs are generated only during the final PWM period prior to a reload opportunity when the PWM is not reloaded every period due to CTRL\\[LDFQ\\] being non-zero."]
+    #[doc = "Trigger outputs are generated only during the final PWM period prior to a reload opportunity when the PWM is not reloaded every period due to CTRL\\[LDFQ\\]
+being non-zero."]
     #[inline(always)]
     pub fn trgfrq_1(self) -> &'a mut W {
         self.variant(TRGFRQ_A::TRGFRQ_1)

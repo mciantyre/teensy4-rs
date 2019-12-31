@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR14 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP1_CMP_IGEN_TRIM_DN_A {
     #[doc = "0: no reduce"]
-    ACMP1_CMP_IGEN_TRIM_DN_0,
+    ACMP1_CMP_IGEN_TRIM_DN_0 = 0,
     #[doc = "1: reduces"]
-    ACMP1_CMP_IGEN_TRIM_DN_1,
+    ACMP1_CMP_IGEN_TRIM_DN_1 = 1,
 }
 impl From<ACMP1_CMP_IGEN_TRIM_DN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP1_CMP_IGEN_TRIM_DN_A) -> Self {
-        match variant {
-            ACMP1_CMP_IGEN_TRIM_DN_A::ACMP1_CMP_IGEN_TRIM_DN_0 => false,
-            ACMP1_CMP_IGEN_TRIM_DN_A::ACMP1_CMP_IGEN_TRIM_DN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP1_CMP_IGEN_TRIM_DN`"]
@@ -92,17 +89,14 @@ impl<'a> ACMP1_CMP_IGEN_TRIM_DN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP2_CMP_IGEN_TRIM_DN_A {
     #[doc = "0: no reduce"]
-    ACMP2_CMP_IGEN_TRIM_DN_0,
+    ACMP2_CMP_IGEN_TRIM_DN_0 = 0,
     #[doc = "1: reduces"]
-    ACMP2_CMP_IGEN_TRIM_DN_1,
+    ACMP2_CMP_IGEN_TRIM_DN_1 = 1,
 }
 impl From<ACMP2_CMP_IGEN_TRIM_DN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP2_CMP_IGEN_TRIM_DN_A) -> Self {
-        match variant {
-            ACMP2_CMP_IGEN_TRIM_DN_A::ACMP2_CMP_IGEN_TRIM_DN_0 => false,
-            ACMP2_CMP_IGEN_TRIM_DN_A::ACMP2_CMP_IGEN_TRIM_DN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP2_CMP_IGEN_TRIM_DN`"]
@@ -170,17 +164,14 @@ impl<'a> ACMP2_CMP_IGEN_TRIM_DN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP3_CMP_IGEN_TRIM_DN_A {
     #[doc = "0: no reduce"]
-    ACMP3_CMP_IGEN_TRIM_DN_0,
+    ACMP3_CMP_IGEN_TRIM_DN_0 = 0,
     #[doc = "1: reduces"]
-    ACMP3_CMP_IGEN_TRIM_DN_1,
+    ACMP3_CMP_IGEN_TRIM_DN_1 = 1,
 }
 impl From<ACMP3_CMP_IGEN_TRIM_DN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP3_CMP_IGEN_TRIM_DN_A) -> Self {
-        match variant {
-            ACMP3_CMP_IGEN_TRIM_DN_A::ACMP3_CMP_IGEN_TRIM_DN_0 => false,
-            ACMP3_CMP_IGEN_TRIM_DN_A::ACMP3_CMP_IGEN_TRIM_DN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP3_CMP_IGEN_TRIM_DN`"]
@@ -248,17 +239,14 @@ impl<'a> ACMP3_CMP_IGEN_TRIM_DN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP4_CMP_IGEN_TRIM_DN_A {
     #[doc = "0: no reduce"]
-    ACMP4_CMP_IGEN_TRIM_DN_0,
+    ACMP4_CMP_IGEN_TRIM_DN_0 = 0,
     #[doc = "1: reduces"]
-    ACMP4_CMP_IGEN_TRIM_DN_1,
+    ACMP4_CMP_IGEN_TRIM_DN_1 = 1,
 }
 impl From<ACMP4_CMP_IGEN_TRIM_DN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP4_CMP_IGEN_TRIM_DN_A) -> Self {
-        match variant {
-            ACMP4_CMP_IGEN_TRIM_DN_A::ACMP4_CMP_IGEN_TRIM_DN_0 => false,
-            ACMP4_CMP_IGEN_TRIM_DN_A::ACMP4_CMP_IGEN_TRIM_DN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP4_CMP_IGEN_TRIM_DN`"]
@@ -326,17 +314,14 @@ impl<'a> ACMP4_CMP_IGEN_TRIM_DN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP1_CMP_IGEN_TRIM_UP_A {
     #[doc = "0: no increase"]
-    ACMP1_CMP_IGEN_TRIM_UP_0,
+    ACMP1_CMP_IGEN_TRIM_UP_0 = 0,
     #[doc = "1: increases"]
-    ACMP1_CMP_IGEN_TRIM_UP_1,
+    ACMP1_CMP_IGEN_TRIM_UP_1 = 1,
 }
 impl From<ACMP1_CMP_IGEN_TRIM_UP_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP1_CMP_IGEN_TRIM_UP_A) -> Self {
-        match variant {
-            ACMP1_CMP_IGEN_TRIM_UP_A::ACMP1_CMP_IGEN_TRIM_UP_0 => false,
-            ACMP1_CMP_IGEN_TRIM_UP_A::ACMP1_CMP_IGEN_TRIM_UP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP1_CMP_IGEN_TRIM_UP`"]
@@ -404,17 +389,14 @@ impl<'a> ACMP1_CMP_IGEN_TRIM_UP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP2_CMP_IGEN_TRIM_UP_A {
     #[doc = "0: no increase"]
-    ACMP2_CMP_IGEN_TRIM_UP_0,
+    ACMP2_CMP_IGEN_TRIM_UP_0 = 0,
     #[doc = "1: increases"]
-    ACMP2_CMP_IGEN_TRIM_UP_1,
+    ACMP2_CMP_IGEN_TRIM_UP_1 = 1,
 }
 impl From<ACMP2_CMP_IGEN_TRIM_UP_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP2_CMP_IGEN_TRIM_UP_A) -> Self {
-        match variant {
-            ACMP2_CMP_IGEN_TRIM_UP_A::ACMP2_CMP_IGEN_TRIM_UP_0 => false,
-            ACMP2_CMP_IGEN_TRIM_UP_A::ACMP2_CMP_IGEN_TRIM_UP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP2_CMP_IGEN_TRIM_UP`"]
@@ -482,17 +464,14 @@ impl<'a> ACMP2_CMP_IGEN_TRIM_UP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP3_CMP_IGEN_TRIM_UP_A {
     #[doc = "0: no increase"]
-    ACMP3_CMP_IGEN_TRIM_UP_0,
+    ACMP3_CMP_IGEN_TRIM_UP_0 = 0,
     #[doc = "1: increases"]
-    ACMP3_CMP_IGEN_TRIM_UP_1,
+    ACMP3_CMP_IGEN_TRIM_UP_1 = 1,
 }
 impl From<ACMP3_CMP_IGEN_TRIM_UP_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP3_CMP_IGEN_TRIM_UP_A) -> Self {
-        match variant {
-            ACMP3_CMP_IGEN_TRIM_UP_A::ACMP3_CMP_IGEN_TRIM_UP_0 => false,
-            ACMP3_CMP_IGEN_TRIM_UP_A::ACMP3_CMP_IGEN_TRIM_UP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP3_CMP_IGEN_TRIM_UP`"]
@@ -560,17 +539,14 @@ impl<'a> ACMP3_CMP_IGEN_TRIM_UP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP4_CMP_IGEN_TRIM_UP_A {
     #[doc = "0: no increase"]
-    ACMP4_CMP_IGEN_TRIM_UP_0,
+    ACMP4_CMP_IGEN_TRIM_UP_0 = 0,
     #[doc = "1: increases"]
-    ACMP4_CMP_IGEN_TRIM_UP_1,
+    ACMP4_CMP_IGEN_TRIM_UP_1 = 1,
 }
 impl From<ACMP4_CMP_IGEN_TRIM_UP_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP4_CMP_IGEN_TRIM_UP_A) -> Self {
-        match variant {
-            ACMP4_CMP_IGEN_TRIM_UP_A::ACMP4_CMP_IGEN_TRIM_UP_0 => false,
-            ACMP4_CMP_IGEN_TRIM_UP_A::ACMP4_CMP_IGEN_TRIM_UP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP4_CMP_IGEN_TRIM_UP`"]
@@ -638,17 +614,14 @@ impl<'a> ACMP4_CMP_IGEN_TRIM_UP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP1_SAMPLE_SYNC_EN_A {
     #[doc = "0: select XBAR output"]
-    ACMP1_SAMPLE_SYNC_EN_0,
+    ACMP1_SAMPLE_SYNC_EN_0 = 0,
     #[doc = "1: select synced sample_lv"]
-    ACMP1_SAMPLE_SYNC_EN_1,
+    ACMP1_SAMPLE_SYNC_EN_1 = 1,
 }
 impl From<ACMP1_SAMPLE_SYNC_EN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP1_SAMPLE_SYNC_EN_A) -> Self {
-        match variant {
-            ACMP1_SAMPLE_SYNC_EN_A::ACMP1_SAMPLE_SYNC_EN_0 => false,
-            ACMP1_SAMPLE_SYNC_EN_A::ACMP1_SAMPLE_SYNC_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP1_SAMPLE_SYNC_EN`"]
@@ -716,17 +689,14 @@ impl<'a> ACMP1_SAMPLE_SYNC_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP2_SAMPLE_SYNC_EN_A {
     #[doc = "0: select XBAR output"]
-    ACMP2_SAMPLE_SYNC_EN_0,
+    ACMP2_SAMPLE_SYNC_EN_0 = 0,
     #[doc = "1: select synced sample_lv"]
-    ACMP2_SAMPLE_SYNC_EN_1,
+    ACMP2_SAMPLE_SYNC_EN_1 = 1,
 }
 impl From<ACMP2_SAMPLE_SYNC_EN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP2_SAMPLE_SYNC_EN_A) -> Self {
-        match variant {
-            ACMP2_SAMPLE_SYNC_EN_A::ACMP2_SAMPLE_SYNC_EN_0 => false,
-            ACMP2_SAMPLE_SYNC_EN_A::ACMP2_SAMPLE_SYNC_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP2_SAMPLE_SYNC_EN`"]
@@ -794,17 +764,14 @@ impl<'a> ACMP2_SAMPLE_SYNC_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP3_SAMPLE_SYNC_EN_A {
     #[doc = "0: select XBAR output"]
-    ACMP3_SAMPLE_SYNC_EN_0,
+    ACMP3_SAMPLE_SYNC_EN_0 = 0,
     #[doc = "1: select synced sample_lv"]
-    ACMP3_SAMPLE_SYNC_EN_1,
+    ACMP3_SAMPLE_SYNC_EN_1 = 1,
 }
 impl From<ACMP3_SAMPLE_SYNC_EN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP3_SAMPLE_SYNC_EN_A) -> Self {
-        match variant {
-            ACMP3_SAMPLE_SYNC_EN_A::ACMP3_SAMPLE_SYNC_EN_0 => false,
-            ACMP3_SAMPLE_SYNC_EN_A::ACMP3_SAMPLE_SYNC_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP3_SAMPLE_SYNC_EN`"]
@@ -872,17 +839,14 @@ impl<'a> ACMP3_SAMPLE_SYNC_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP4_SAMPLE_SYNC_EN_A {
     #[doc = "0: select XBAR output"]
-    ACMP4_SAMPLE_SYNC_EN_0,
+    ACMP4_SAMPLE_SYNC_EN_0 = 0,
     #[doc = "1: select synced sample_lv"]
-    ACMP4_SAMPLE_SYNC_EN_1,
+    ACMP4_SAMPLE_SYNC_EN_1 = 1,
 }
 impl From<ACMP4_SAMPLE_SYNC_EN_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP4_SAMPLE_SYNC_EN_A) -> Self {
-        match variant {
-            ACMP4_SAMPLE_SYNC_EN_A::ACMP4_SAMPLE_SYNC_EN_0 => false,
-            ACMP4_SAMPLE_SYNC_EN_A::ACMP4_SAMPLE_SYNC_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP4_SAMPLE_SYNC_EN`"]
@@ -948,40 +912,31 @@ impl<'a> ACMP4_SAMPLE_SYNC_EN_W<'a> {
 }
 #[doc = "ITCM total size configuration\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CM7_CFGITCMSZ_A {
     #[doc = "0: 0 KB (No ITCM)"]
-    CM7_CFGITCMSZ_0,
+    CM7_CFGITCMSZ_0 = 0,
     #[doc = "3: 4 KB"]
-    CM7_CFGITCMSZ_3,
+    CM7_CFGITCMSZ_3 = 3,
     #[doc = "4: 8 KB"]
-    CM7_CFGITCMSZ_4,
+    CM7_CFGITCMSZ_4 = 4,
     #[doc = "5: 16 KB"]
-    CM7_CFGITCMSZ_5,
+    CM7_CFGITCMSZ_5 = 5,
     #[doc = "6: 32 KB"]
-    CM7_CFGITCMSZ_6,
+    CM7_CFGITCMSZ_6 = 6,
     #[doc = "7: 64 KB"]
-    CM7_CFGITCMSZ_7,
+    CM7_CFGITCMSZ_7 = 7,
     #[doc = "8: 128 KB"]
-    CM7_CFGITCMSZ_8,
+    CM7_CFGITCMSZ_8 = 8,
     #[doc = "9: 256 KB"]
-    CM7_CFGITCMSZ_9,
+    CM7_CFGITCMSZ_9 = 9,
     #[doc = "10: 512 KB"]
-    CM7_CFGITCMSZ_10,
+    CM7_CFGITCMSZ_10 = 10,
 }
 impl From<CM7_CFGITCMSZ_A> for u8 {
     #[inline(always)]
     fn from(variant: CM7_CFGITCMSZ_A) -> Self {
-        match variant {
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_0 => 0,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_3 => 3,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_4 => 4,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_5 => 5,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_6 => 6,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_7 => 7,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_8 => 8,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_9 => 9,
-            CM7_CFGITCMSZ_A::CM7_CFGITCMSZ_10 => 10,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CM7_CFGITCMSZ`"]
@@ -1114,40 +1069,31 @@ impl<'a> CM7_CFGITCMSZ_W<'a> {
 }
 #[doc = "DTCM total size configuration\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CM7_CFGDTCMSZ_A {
     #[doc = "0: 0 KB (No DTCM)"]
-    CM7_CFGDTCMSZ_0,
+    CM7_CFGDTCMSZ_0 = 0,
     #[doc = "3: 4 KB"]
-    CM7_CFGDTCMSZ_3,
+    CM7_CFGDTCMSZ_3 = 3,
     #[doc = "4: 8 KB"]
-    CM7_CFGDTCMSZ_4,
+    CM7_CFGDTCMSZ_4 = 4,
     #[doc = "5: 16 KB"]
-    CM7_CFGDTCMSZ_5,
+    CM7_CFGDTCMSZ_5 = 5,
     #[doc = "6: 32 KB"]
-    CM7_CFGDTCMSZ_6,
+    CM7_CFGDTCMSZ_6 = 6,
     #[doc = "7: 64 KB"]
-    CM7_CFGDTCMSZ_7,
+    CM7_CFGDTCMSZ_7 = 7,
     #[doc = "8: 128 KB"]
-    CM7_CFGDTCMSZ_8,
+    CM7_CFGDTCMSZ_8 = 8,
     #[doc = "9: 256 KB"]
-    CM7_CFGDTCMSZ_9,
+    CM7_CFGDTCMSZ_9 = 9,
     #[doc = "10: 512 KB"]
-    CM7_CFGDTCMSZ_10,
+    CM7_CFGDTCMSZ_10 = 10,
 }
 impl From<CM7_CFGDTCMSZ_A> for u8 {
     #[inline(always)]
     fn from(variant: CM7_CFGDTCMSZ_A) -> Self {
-        match variant {
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_0 => 0,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_3 => 3,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_4 => 4,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_5 => 5,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_6 => 6,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_7 => 7,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_8 => 8,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_9 => 9,
-            CM7_CFGDTCMSZ_A::CM7_CFGDTCMSZ_10 => 10,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CM7_CFGDTCMSZ`"]

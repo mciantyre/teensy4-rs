@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CCSR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PLL3_SW_CLK_SEL_A {
     #[doc = "0: pll3_main_clk"]
-    PLL3_SW_CLK_SEL_0,
+    PLL3_SW_CLK_SEL_0 = 0,
     #[doc = "1: pll3 bypass clock"]
-    PLL3_SW_CLK_SEL_1,
+    PLL3_SW_CLK_SEL_1 = 1,
 }
 impl From<PLL3_SW_CLK_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: PLL3_SW_CLK_SEL_A) -> Self {
-        match variant {
-            PLL3_SW_CLK_SEL_A::PLL3_SW_CLK_SEL_0 => false,
-            PLL3_SW_CLK_SEL_A::PLL3_SW_CLK_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PLL3_SW_CLK_SEL`"]

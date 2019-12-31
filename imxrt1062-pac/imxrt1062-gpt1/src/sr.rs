@@ -62,17 +62,14 @@ impl<'a> OF2_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OF3_A {
     #[doc = "0: Compare event has not occurred."]
-    OF3_0,
+    OF3_0 = 0,
     #[doc = "1: Compare event has occurred."]
-    OF3_1,
+    OF3_1 = 1,
 }
 impl From<OF3_A> for bool {
     #[inline(always)]
     fn from(variant: OF3_A) -> Self {
-        match variant {
-            OF3_A::OF3_0 => false,
-            OF3_A::OF3_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `OF3`"]
@@ -164,17 +161,14 @@ impl<'a> IF1_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IF2_A {
     #[doc = "0: Capture event has not occurred."]
-    IF2_0,
+    IF2_0 = 0,
     #[doc = "1: Capture event has occurred."]
-    IF2_1,
+    IF2_1 = 1,
 }
 impl From<IF2_A> for bool {
     #[inline(always)]
     fn from(variant: IF2_A) -> Self {
-        match variant {
-            IF2_A::IF2_0 => false,
-            IF2_A::IF2_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IF2`"]
@@ -242,17 +236,14 @@ impl<'a> IF2_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ROV_A {
     #[doc = "0: Rollover has not occurred."]
-    ROV_0,
+    ROV_0 = 0,
     #[doc = "1: Rollover has occurred."]
-    ROV_1,
+    ROV_1 = 1,
 }
 impl From<ROV_A> for bool {
     #[inline(always)]
     fn from(variant: ROV_A) -> Self {
-        match variant {
-            ROV_A::ROV_0 => false,
-            ROV_A::ROV_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ROV`"]

@@ -62,17 +62,14 @@ impl<'a> OF2IE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OF3IE_A {
     #[doc = "0: Output Compare Channel n interrupt is disabled."]
-    OF3IE_0,
+    OF3IE_0 = 0,
     #[doc = "1: Output Compare Channel n interrupt is enabled."]
-    OF3IE_1,
+    OF3IE_1 = 1,
 }
 impl From<OF3IE_A> for bool {
     #[inline(always)]
     fn from(variant: OF3IE_A) -> Self {
-        match variant {
-            OF3IE_A::OF3IE_0 => false,
-            OF3IE_A::OF3IE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `OF3IE`"]
@@ -164,17 +161,14 @@ impl<'a> IF1IE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IF2IE_A {
     #[doc = "0: IF2IE Input Capture n Interrupt Enable is disabled."]
-    IF2IE_0,
+    IF2IE_0 = 0,
     #[doc = "1: IF2IE Input Capture n Interrupt Enable is enabled."]
-    IF2IE_1,
+    IF2IE_1 = 1,
 }
 impl From<IF2IE_A> for bool {
     #[inline(always)]
     fn from(variant: IF2IE_A) -> Self {
-        match variant {
-            IF2IE_A::IF2IE_0 => false,
-            IF2IE_A::IF2IE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IF2IE`"]
@@ -242,17 +236,14 @@ impl<'a> IF2IE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ROVIE_A {
     #[doc = "0: Rollover interrupt is disabled."]
-    ROVIE_0,
+    ROVIE_0 = 0,
     #[doc = "1: Rollover interrupt enabled."]
-    ROVIE_1,
+    ROVIE_1 = 1,
 }
 impl From<ROVIE_A> for bool {
     #[inline(always)]
     fn from(variant: ROVIE_A) -> Self {
-        match variant {
-            ROVIE_A::ROVIE_0 => false,
-            ROVIE_A::ROVIE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ROVIE`"]

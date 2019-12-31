@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -34,7 +35,7 @@ pub struct TIMER {
 #[doc = r"Register block"]
 #[doc = "no description available"]
 pub mod timer;
-#[doc = "PIT Module Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [mcr](mcr) module"]
+#[doc = "PIT Module Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [mcr](mcr) module"]
 pub type MCR = crate::Reg<u32, _MCR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -45,7 +46,7 @@ impl crate::Readable for MCR {}
 impl crate::Writable for MCR {}
 #[doc = "PIT Module Control Register"]
 pub mod mcr;
-#[doc = "PIT Upper Lifetime Timer Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ltmr64h](ltmr64h) module"]
+#[doc = "PIT Upper Lifetime Timer Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ltmr64h](ltmr64h) module"]
 pub type LTMR64H = crate::Reg<u32, _LTMR64H>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -54,7 +55,7 @@ pub struct _LTMR64H;
 impl crate::Readable for LTMR64H {}
 #[doc = "PIT Upper Lifetime Timer Register"]
 pub mod ltmr64h;
-#[doc = "PIT Lower Lifetime Timer Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ltmr64l](ltmr64l) module"]
+#[doc = "PIT Lower Lifetime Timer Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ltmr64l](ltmr64l) module"]
 pub type LTMR64L = crate::Reg<u32, _LTMR64L>;
 #[allow(missing_docs)]
 #[doc(hidden)]

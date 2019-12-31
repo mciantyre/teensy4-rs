@@ -12,22 +12,19 @@ impl crate::ResetValue for super::CLPCR {
 }
 #[doc = "Setting the low power mode that system will enter on next assertion of dsm_request signal.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LPM_A {
     #[doc = "0: Remain in run mode"]
-    LPM_0,
+    LPM_0 = 0,
     #[doc = "1: Transfer to wait mode"]
-    LPM_1,
+    LPM_1 = 1,
     #[doc = "2: Transfer to stop mode"]
-    LPM_2,
+    LPM_2 = 2,
 }
 impl From<LPM_A> for u8 {
     #[inline(always)]
     fn from(variant: LPM_A) -> Self {
-        match variant {
-            LPM_A::LPM_0 => 0,
-            LPM_A::LPM_1 => 1,
-            LPM_A::LPM_2 => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LPM`"]
@@ -96,17 +93,14 @@ impl<'a> LPM_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ARM_CLK_DIS_ON_LPM_A {
     #[doc = "0: ARM clock enabled on wait mode."]
-    ARM_CLK_DIS_ON_LPM_0,
+    ARM_CLK_DIS_ON_LPM_0 = 0,
     #[doc = "1: ARM clock disabled on wait mode. ."]
-    ARM_CLK_DIS_ON_LPM_1,
+    ARM_CLK_DIS_ON_LPM_1 = 1,
 }
 impl From<ARM_CLK_DIS_ON_LPM_A> for bool {
     #[inline(always)]
     fn from(variant: ARM_CLK_DIS_ON_LPM_A) -> Self {
-        match variant {
-            ARM_CLK_DIS_ON_LPM_A::ARM_CLK_DIS_ON_LPM_0 => false,
-            ARM_CLK_DIS_ON_LPM_A::ARM_CLK_DIS_ON_LPM_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ARM_CLK_DIS_ON_LPM`"]
@@ -174,17 +168,14 @@ impl<'a> ARM_CLK_DIS_ON_LPM_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SBYOS_A {
     #[doc = "0: On-chip oscillator will not be powered down, after next entrance to STOP mode. (CCM_REF_EN_B will remain asserted - '0' and cosc_pwrdown will remain de asserted - '0')"]
-    SBYOS_0,
+    SBYOS_0 = 0,
     #[doc = "1: On-chip oscillator will be powered down, after next entrance to STOP mode. (CCM_REF_EN_B will be deasserted - '1' and cosc_pwrdown will be asserted - '1'). When returning from STOP mode, external oscillator will be enabled again, on-chip oscillator will return to oscillator mode, and after oscnt count, CCM will continue with the exit from the STOP mode process."]
-    SBYOS_1,
+    SBYOS_1 = 1,
 }
 impl From<SBYOS_A> for bool {
     #[inline(always)]
     fn from(variant: SBYOS_A) -> Self {
-        match variant {
-            SBYOS_A::SBYOS_0 => false,
-            SBYOS_A::SBYOS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SBYOS`"]
@@ -252,17 +243,14 @@ impl<'a> SBYOS_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DIS_REF_OSC_A {
     #[doc = "0: external high frequency oscillator will be enabled, i.e. CCM_REF_EN_B = '0'."]
-    DIS_REF_OSC_0,
+    DIS_REF_OSC_0 = 0,
     #[doc = "1: external high frequency oscillator will be disabled, i.e. CCM_REF_EN_B = '1'"]
-    DIS_REF_OSC_1,
+    DIS_REF_OSC_1 = 1,
 }
 impl From<DIS_REF_OSC_A> for bool {
     #[inline(always)]
     fn from(variant: DIS_REF_OSC_A) -> Self {
-        match variant {
-            DIS_REF_OSC_A::DIS_REF_OSC_0 => false,
-            DIS_REF_OSC_A::DIS_REF_OSC_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DIS_REF_OSC`"]
@@ -330,17 +318,14 @@ impl<'a> DIS_REF_OSC_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum VSTBY_A {
     #[doc = "0: Voltage will not be changed to standby voltage after next entrance to STOP mode. ( PMIC_STBY_REQ will remain negated - '0')"]
-    VSTBY_0,
+    VSTBY_0 = 0,
     #[doc = "1: Voltage will be requested to change to standby voltage after next entrance to stop mode. ( PMIC_STBY_REQ will be asserted - '1')."]
-    VSTBY_1,
+    VSTBY_1 = 1,
 }
 impl From<VSTBY_A> for bool {
     #[inline(always)]
     fn from(variant: VSTBY_A) -> Self {
-        match variant {
-            VSTBY_A::VSTBY_0 => false,
-            VSTBY_A::VSTBY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `VSTBY`"]
@@ -406,25 +391,21 @@ impl<'a> VSTBY_W<'a> {
 }
 #[doc = "Standby counter definition\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum STBY_COUNT_A {
     #[doc = "0: CCM will wait (1*pmic_delay_scaler)+1 ckil clock cycles"]
-    STBY_COUNT_0,
+    STBY_COUNT_0 = 0,
     #[doc = "1: CCM will wait (3*pmic_delay_scaler)+1 ckil clock cycles"]
-    STBY_COUNT_1,
+    STBY_COUNT_1 = 1,
     #[doc = "2: CCM will wait (7*pmic_delay_scaler)+1 ckil clock cycles"]
-    STBY_COUNT_2,
+    STBY_COUNT_2 = 2,
     #[doc = "3: CCM will wait (15*pmic_delay_scaler)+1 ckil clock cycles"]
-    STBY_COUNT_3,
+    STBY_COUNT_3 = 3,
 }
 impl From<STBY_COUNT_A> for u8 {
     #[inline(always)]
     fn from(variant: STBY_COUNT_A) -> Self {
-        match variant {
-            STBY_COUNT_A::STBY_COUNT_0 => 0,
-            STBY_COUNT_A::STBY_COUNT_1 => 1,
-            STBY_COUNT_A::STBY_COUNT_2 => 2,
-            STBY_COUNT_A::STBY_COUNT_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `STBY_COUNT`"]
@@ -505,17 +486,14 @@ impl<'a> STBY_COUNT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COSC_PWRDOWN_A {
     #[doc = "0: On chip oscillator will not be powered down, i.e. cosc_pwrdown = '0'."]
-    COSC_PWRDOWN_0,
+    COSC_PWRDOWN_0 = 0,
     #[doc = "1: On chip oscillator will be powered down, i.e. cosc_pwrdown = '1'."]
-    COSC_PWRDOWN_1,
+    COSC_PWRDOWN_1 = 1,
 }
 impl From<COSC_PWRDOWN_A> for bool {
     #[inline(always)]
     fn from(variant: COSC_PWRDOWN_A) -> Self {
-        match variant {
-            COSC_PWRDOWN_A::COSC_PWRDOWN_0 => false,
-            COSC_PWRDOWN_A::COSC_PWRDOWN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COSC_PWRDOWN`"]
@@ -627,21 +605,19 @@ impl<'a> BYPASS_LPM_HS0_W<'a> {
         self.w
     }
 }
-#[doc = "Mask WFI of core0 for entering low power mode Assertion of all bits\\[27:22\\] will generate low power mode request\n\nValue on reset: 0"]
+#[doc = "Mask WFI of core0 for entering low power mode Assertion of all bits\\[27:22\\]
+will generate low power mode request\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_CORE0_WFI_A {
     #[doc = "0: WFI of core0 is not masked"]
-    MASK_CORE0_WFI_0,
+    MASK_CORE0_WFI_0 = 0,
     #[doc = "1: WFI of core0 is masked"]
-    MASK_CORE0_WFI_1,
+    MASK_CORE0_WFI_1 = 1,
 }
 impl From<MASK_CORE0_WFI_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_CORE0_WFI_A) -> Self {
-        match variant {
-            MASK_CORE0_WFI_A::MASK_CORE0_WFI_0 => false,
-            MASK_CORE0_WFI_A::MASK_CORE0_WFI_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_CORE0_WFI`"]
@@ -705,21 +681,19 @@ impl<'a> MASK_CORE0_WFI_W<'a> {
         self.w
     }
 }
-#[doc = "Mask SCU IDLE for entering low power mode Assertion of all bits\\[27:22\\] will generate low power mode request\n\nValue on reset: 0"]
+#[doc = "Mask SCU IDLE for entering low power mode Assertion of all bits\\[27:22\\]
+will generate low power mode request\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_SCU_IDLE_A {
     #[doc = "0: SCU IDLE is not masked"]
-    MASK_SCU_IDLE_0,
+    MASK_SCU_IDLE_0 = 0,
     #[doc = "1: SCU IDLE is masked"]
-    MASK_SCU_IDLE_1,
+    MASK_SCU_IDLE_1 = 1,
 }
 impl From<MASK_SCU_IDLE_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_SCU_IDLE_A) -> Self {
-        match variant {
-            MASK_SCU_IDLE_A::MASK_SCU_IDLE_0 => false,
-            MASK_SCU_IDLE_A::MASK_SCU_IDLE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_SCU_IDLE`"]
@@ -787,17 +761,14 @@ impl<'a> MASK_SCU_IDLE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_L2CC_IDLE_A {
     #[doc = "0: L2CC IDLE is not masked"]
-    MASK_L2CC_IDLE_0,
+    MASK_L2CC_IDLE_0 = 0,
     #[doc = "1: L2CC IDLE is masked"]
-    MASK_L2CC_IDLE_1,
+    MASK_L2CC_IDLE_1 = 1,
 }
 impl From<MASK_L2CC_IDLE_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_L2CC_IDLE_A) -> Self {
-        match variant {
-            MASK_L2CC_IDLE_A::MASK_L2CC_IDLE_0 => false,
-            MASK_L2CC_IDLE_A::MASK_L2CC_IDLE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_L2CC_IDLE`"]
@@ -907,12 +878,14 @@ impl R {
     pub fn bypass_lpm_hs0(&self) -> BYPASS_LPM_HS0_R {
         BYPASS_LPM_HS0_R::new(((self.bits >> 21) & 0x01) != 0)
     }
-    #[doc = "Bit 22 - Mask WFI of core0 for entering low power mode Assertion of all bits\\[27:22\\] will generate low power mode request"]
+    #[doc = "Bit 22 - Mask WFI of core0 for entering low power mode Assertion of all bits\\[27:22\\]
+will generate low power mode request"]
     #[inline(always)]
     pub fn mask_core0_wfi(&self) -> MASK_CORE0_WFI_R {
         MASK_CORE0_WFI_R::new(((self.bits >> 22) & 0x01) != 0)
     }
-    #[doc = "Bit 26 - Mask SCU IDLE for entering low power mode Assertion of all bits\\[27:22\\] will generate low power mode request"]
+    #[doc = "Bit 26 - Mask SCU IDLE for entering low power mode Assertion of all bits\\[27:22\\]
+will generate low power mode request"]
     #[inline(always)]
     pub fn mask_scu_idle(&self) -> MASK_SCU_IDLE_R {
         MASK_SCU_IDLE_R::new(((self.bits >> 26) & 0x01) != 0)
@@ -969,12 +942,14 @@ impl W {
     pub fn bypass_lpm_hs0(&mut self) -> BYPASS_LPM_HS0_W {
         BYPASS_LPM_HS0_W { w: self }
     }
-    #[doc = "Bit 22 - Mask WFI of core0 for entering low power mode Assertion of all bits\\[27:22\\] will generate low power mode request"]
+    #[doc = "Bit 22 - Mask WFI of core0 for entering low power mode Assertion of all bits\\[27:22\\]
+will generate low power mode request"]
     #[inline(always)]
     pub fn mask_core0_wfi(&mut self) -> MASK_CORE0_WFI_W {
         MASK_CORE0_WFI_W { w: self }
     }
-    #[doc = "Bit 26 - Mask SCU IDLE for entering low power mode Assertion of all bits\\[27:22\\] will generate low power mode request"]
+    #[doc = "Bit 26 - Mask SCU IDLE for entering low power mode Assertion of all bits\\[27:22\\]
+will generate low power mode request"]
     #[inline(always)]
     pub fn mask_scu_idle(&mut self) -> MASK_SCU_IDLE_W {
         MASK_SCU_IDLE_W { w: self }

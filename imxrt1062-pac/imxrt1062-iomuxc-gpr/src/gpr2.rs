@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR2 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_L_AHBXL_HIGH_PRIORITY_A {
     #[doc = "0: AXBS_L AHBXL master does not have high priority"]
-    AXBS_L_AHBXL_HIGH_PRIORITY_0,
+    AXBS_L_AHBXL_HIGH_PRIORITY_0 = 0,
     #[doc = "1: AXBS_P AHBXL master has high priority"]
-    AXBS_L_AHBXL_HIGH_PRIORITY_1,
+    AXBS_L_AHBXL_HIGH_PRIORITY_1 = 1,
 }
 impl From<AXBS_L_AHBXL_HIGH_PRIORITY_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_L_AHBXL_HIGH_PRIORITY_A) -> Self {
-        match variant {
-            AXBS_L_AHBXL_HIGH_PRIORITY_A::AXBS_L_AHBXL_HIGH_PRIORITY_0 => false,
-            AXBS_L_AHBXL_HIGH_PRIORITY_A::AXBS_L_AHBXL_HIGH_PRIORITY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_L_AHBXL_HIGH_PRIORITY`"]
@@ -92,17 +89,14 @@ impl<'a> AXBS_L_AHBXL_HIGH_PRIORITY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_L_DMA_HIGH_PRIORITY_A {
     #[doc = "0: AXBS_L DMA master does not have high priority"]
-    AXBS_L_DMA_HIGH_PRIORITY_0,
+    AXBS_L_DMA_HIGH_PRIORITY_0 = 0,
     #[doc = "1: AXBS_L DMA master has high priority"]
-    AXBS_L_DMA_HIGH_PRIORITY_1,
+    AXBS_L_DMA_HIGH_PRIORITY_1 = 1,
 }
 impl From<AXBS_L_DMA_HIGH_PRIORITY_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_L_DMA_HIGH_PRIORITY_A) -> Self {
-        match variant {
-            AXBS_L_DMA_HIGH_PRIORITY_A::AXBS_L_DMA_HIGH_PRIORITY_0 => false,
-            AXBS_L_DMA_HIGH_PRIORITY_A::AXBS_L_DMA_HIGH_PRIORITY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_L_DMA_HIGH_PRIORITY`"]
@@ -170,17 +164,14 @@ impl<'a> AXBS_L_DMA_HIGH_PRIORITY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_L_FORCE_ROUND_ROBIN_A {
     #[doc = "0: AXBS_L masters are not arbitored in round robin, depending on DMA and AHBXL master priority settings."]
-    AXBS_L_FORCE_ROUND_ROBIN_0,
+    AXBS_L_FORCE_ROUND_ROBIN_0 = 0,
     #[doc = "1: AXBS_L masters are arbitored in round robin"]
-    AXBS_L_FORCE_ROUND_ROBIN_1,
+    AXBS_L_FORCE_ROUND_ROBIN_1 = 1,
 }
 impl From<AXBS_L_FORCE_ROUND_ROBIN_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_L_FORCE_ROUND_ROBIN_A) -> Self {
-        match variant {
-            AXBS_L_FORCE_ROUND_ROBIN_A::AXBS_L_FORCE_ROUND_ROBIN_0 => false,
-            AXBS_L_FORCE_ROUND_ROBIN_A::AXBS_L_FORCE_ROUND_ROBIN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_L_FORCE_ROUND_ROBIN`"]
@@ -248,17 +239,14 @@ impl<'a> AXBS_L_FORCE_ROUND_ROBIN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_P_M0_HIGH_PRIORITY_A {
     #[doc = "0: AXBS_P M0 master doesn't have high priority"]
-    AXBS_P_M0_HIGH_PRIORITY_0,
+    AXBS_P_M0_HIGH_PRIORITY_0 = 0,
     #[doc = "1: AXBS_P M0 master has high priority"]
-    AXBS_P_M0_HIGH_PRIORITY_1,
+    AXBS_P_M0_HIGH_PRIORITY_1 = 1,
 }
 impl From<AXBS_P_M0_HIGH_PRIORITY_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_P_M0_HIGH_PRIORITY_A) -> Self {
-        match variant {
-            AXBS_P_M0_HIGH_PRIORITY_A::AXBS_P_M0_HIGH_PRIORITY_0 => false,
-            AXBS_P_M0_HIGH_PRIORITY_A::AXBS_P_M0_HIGH_PRIORITY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_P_M0_HIGH_PRIORITY`"]
@@ -326,17 +314,14 @@ impl<'a> AXBS_P_M0_HIGH_PRIORITY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_P_M1_HIGH_PRIORITY_A {
     #[doc = "0: AXBS_P M1 master does not have high priority"]
-    AXBS_P_M1_HIGH_PRIORITY_0,
+    AXBS_P_M1_HIGH_PRIORITY_0 = 0,
     #[doc = "1: AXBS_P M1 master has high priority"]
-    AXBS_P_M1_HIGH_PRIORITY_1,
+    AXBS_P_M1_HIGH_PRIORITY_1 = 1,
 }
 impl From<AXBS_P_M1_HIGH_PRIORITY_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_P_M1_HIGH_PRIORITY_A) -> Self {
-        match variant {
-            AXBS_P_M1_HIGH_PRIORITY_A::AXBS_P_M1_HIGH_PRIORITY_0 => false,
-            AXBS_P_M1_HIGH_PRIORITY_A::AXBS_P_M1_HIGH_PRIORITY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_P_M1_HIGH_PRIORITY`"]
@@ -404,17 +389,14 @@ impl<'a> AXBS_P_M1_HIGH_PRIORITY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AXBS_P_FORCE_ROUND_ROBIN_A {
     #[doc = "0: AXBS_P masters are not arbitored in round robin, depending on M0/M1 master priority settings."]
-    AXBS_P_FORCE_ROUND_ROBIN_0,
+    AXBS_P_FORCE_ROUND_ROBIN_0 = 0,
     #[doc = "1: AXBS_P masters are arbitored in round robin"]
-    AXBS_P_FORCE_ROUND_ROBIN_1,
+    AXBS_P_FORCE_ROUND_ROBIN_1 = 1,
 }
 impl From<AXBS_P_FORCE_ROUND_ROBIN_A> for bool {
     #[inline(always)]
     fn from(variant: AXBS_P_FORCE_ROUND_ROBIN_A) -> Self {
-        match variant {
-            AXBS_P_FORCE_ROUND_ROBIN_A::AXBS_P_FORCE_ROUND_ROBIN_0 => false,
-            AXBS_P_FORCE_ROUND_ROBIN_A::AXBS_P_FORCE_ROUND_ROBIN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AXBS_P_FORCE_ROUND_ROBIN`"]
@@ -482,17 +464,14 @@ impl<'a> AXBS_P_FORCE_ROUND_ROBIN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CANFD_FILTER_BYPASS_A {
     #[doc = "0: enable CANFD filter"]
-    CANFD_FILTER_BYPASS_0,
+    CANFD_FILTER_BYPASS_0 = 0,
     #[doc = "1: disable CANFD filter"]
-    CANFD_FILTER_BYPASS_1,
+    CANFD_FILTER_BYPASS_1 = 1,
 }
 impl From<CANFD_FILTER_BYPASS_A> for bool {
     #[inline(always)]
     fn from(variant: CANFD_FILTER_BYPASS_A) -> Self {
-        match variant {
-            CANFD_FILTER_BYPASS_A::CANFD_FILTER_BYPASS_0 => false,
-            CANFD_FILTER_BYPASS_A::CANFD_FILTER_BYPASS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CANFD_FILTER_BYPASS`"]
@@ -560,17 +539,14 @@ impl<'a> CANFD_FILTER_BYPASS_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum L2_MEM_EN_POWERSAVING_A {
     #[doc = "0: none memory power saving features enabled, SHUTDOWN/DEEPSLEEP/LIGHTSLEEP will have no effect"]
-    L2_MEM_EN_POWERSAVING_0,
+    L2_MEM_EN_POWERSAVING_0 = 0,
     #[doc = "1: memory power saving features enabled, set SHUTDOWN/DEEPSLEEP/LIGHTSLEEP (priority high to low) to enable power saving levels"]
-    L2_MEM_EN_POWERSAVING_1,
+    L2_MEM_EN_POWERSAVING_1 = 1,
 }
 impl From<L2_MEM_EN_POWERSAVING_A> for bool {
     #[inline(always)]
     fn from(variant: L2_MEM_EN_POWERSAVING_A) -> Self {
-        match variant {
-            L2_MEM_EN_POWERSAVING_A::L2_MEM_EN_POWERSAVING_0 => false,
-            L2_MEM_EN_POWERSAVING_A::L2_MEM_EN_POWERSAVING_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `L2_MEM_EN_POWERSAVING`"]
@@ -638,17 +614,14 @@ impl<'a> L2_MEM_EN_POWERSAVING_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RAM_AUTO_CLK_GATING_EN_A {
     #[doc = "0: disable automatically gate off RAM clock"]
-    RAM_AUTO_CLK_GATING_EN_0,
+    RAM_AUTO_CLK_GATING_EN_0 = 0,
     #[doc = "1: enable automatically gate off RAM clock"]
-    RAM_AUTO_CLK_GATING_EN_1,
+    RAM_AUTO_CLK_GATING_EN_1 = 1,
 }
 impl From<RAM_AUTO_CLK_GATING_EN_A> for bool {
     #[inline(always)]
     fn from(variant: RAM_AUTO_CLK_GATING_EN_A) -> Self {
-        match variant {
-            RAM_AUTO_CLK_GATING_EN_A::RAM_AUTO_CLK_GATING_EN_0 => false,
-            RAM_AUTO_CLK_GATING_EN_A::RAM_AUTO_CLK_GATING_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RAM_AUTO_CLK_GATING_EN`"]
@@ -716,17 +689,14 @@ impl<'a> RAM_AUTO_CLK_GATING_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum L2_MEM_DEEPSLEEP_A {
     #[doc = "0: no force sleep control supported, memory deep sleep mode only entered when whole system in stop mode"]
-    L2_MEM_DEEPSLEEP_0,
+    L2_MEM_DEEPSLEEP_0 = 0,
     #[doc = "1: force memory into deep sleep mode"]
-    L2_MEM_DEEPSLEEP_1,
+    L2_MEM_DEEPSLEEP_1 = 1,
 }
 impl From<L2_MEM_DEEPSLEEP_A> for bool {
     #[inline(always)]
     fn from(variant: L2_MEM_DEEPSLEEP_A) -> Self {
-        match variant {
-            L2_MEM_DEEPSLEEP_A::L2_MEM_DEEPSLEEP_0 => false,
-            L2_MEM_DEEPSLEEP_A::L2_MEM_DEEPSLEEP_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `L2_MEM_DEEPSLEEP`"]
@@ -792,781 +762,525 @@ impl<'a> L2_MEM_DEEPSLEEP_W<'a> {
 }
 #[doc = "Divider ratio control for mclk from hmclk. mclk frequency = 1/(n+1) * hmclk frequency.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MQS_CLK_DIV_A {
     #[doc = "0: mclk frequency = 1/1 * hmclk frequency"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: mclk frequency = 1/2 * hmclk frequency"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: mclk frequency = 1/3 * hmclk frequency"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: mclk frequency = 1/4 * hmclk frequency"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: mclk frequency = 1/5 * hmclk frequency"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: mclk frequency = 1/6 * hmclk frequency"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: mclk frequency = 1/7 * hmclk frequency"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: mclk frequency = 1/8 * hmclk frequency"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
     #[doc = "8: mclk frequency = 1/9 * hmclk frequency"]
-    DIVIDE_9,
+    DIVIDE_9 = 8,
     #[doc = "9: mclk frequency = 1/10 * hmclk frequency"]
-    DIVIDE_10,
+    DIVIDE_10 = 9,
     #[doc = "10: mclk frequency = 1/11 * hmclk frequency"]
-    DIVIDE_11,
+    DIVIDE_11 = 10,
     #[doc = "11: mclk frequency = 1/12 * hmclk frequency"]
-    DIVIDE_12,
+    DIVIDE_12 = 11,
     #[doc = "12: mclk frequency = 1/13 * hmclk frequency"]
-    DIVIDE_13,
+    DIVIDE_13 = 12,
     #[doc = "13: mclk frequency = 1/14 * hmclk frequency"]
-    DIVIDE_14,
+    DIVIDE_14 = 13,
     #[doc = "14: mclk frequency = 1/15 * hmclk frequency"]
-    DIVIDE_15,
+    DIVIDE_15 = 14,
     #[doc = "15: mclk frequency = 1/16 * hmclk frequency"]
-    DIVIDE_16,
+    DIVIDE_16 = 15,
     #[doc = "16: mclk frequency = 1/17 * hmclk frequency"]
-    DIVIDE_17,
+    DIVIDE_17 = 16,
     #[doc = "17: mclk frequency = 1/18 * hmclk frequency"]
-    DIVIDE_18,
+    DIVIDE_18 = 17,
     #[doc = "18: mclk frequency = 1/19 * hmclk frequency"]
-    DIVIDE_19,
+    DIVIDE_19 = 18,
     #[doc = "19: mclk frequency = 1/20 * hmclk frequency"]
-    DIVIDE_20,
+    DIVIDE_20 = 19,
     #[doc = "20: mclk frequency = 1/21 * hmclk frequency"]
-    DIVIDE_21,
+    DIVIDE_21 = 20,
     #[doc = "21: mclk frequency = 1/22 * hmclk frequency"]
-    DIVIDE_22,
+    DIVIDE_22 = 21,
     #[doc = "22: mclk frequency = 1/23 * hmclk frequency"]
-    DIVIDE_23,
+    DIVIDE_23 = 22,
     #[doc = "23: mclk frequency = 1/24 * hmclk frequency"]
-    DIVIDE_24,
+    DIVIDE_24 = 23,
     #[doc = "24: mclk frequency = 1/25 * hmclk frequency"]
-    DIVIDE_25,
+    DIVIDE_25 = 24,
     #[doc = "25: mclk frequency = 1/26 * hmclk frequency"]
-    DIVIDE_26,
+    DIVIDE_26 = 25,
     #[doc = "26: mclk frequency = 1/27 * hmclk frequency"]
-    DIVIDE_27,
+    DIVIDE_27 = 26,
     #[doc = "27: mclk frequency = 1/28 * hmclk frequency"]
-    DIVIDE_28,
+    DIVIDE_28 = 27,
     #[doc = "28: mclk frequency = 1/29 * hmclk frequency"]
-    DIVIDE_29,
+    DIVIDE_29 = 28,
     #[doc = "29: mclk frequency = 1/30 * hmclk frequency"]
-    DIVIDE_30,
+    DIVIDE_30 = 29,
     #[doc = "30: mclk frequency = 1/31 * hmclk frequency"]
-    DIVIDE_31,
+    DIVIDE_31 = 30,
     #[doc = "31: mclk frequency = 1/32 * hmclk frequency"]
-    DIVIDE_32,
+    DIVIDE_32 = 31,
     #[doc = "32: mclk frequency = 1/33 * hmclk frequency"]
-    DIVIDE_33,
+    DIVIDE_33 = 32,
     #[doc = "33: mclk frequency = 1/34 * hmclk frequency"]
-    DIVIDE_34,
+    DIVIDE_34 = 33,
     #[doc = "34: mclk frequency = 1/35 * hmclk frequency"]
-    DIVIDE_35,
+    DIVIDE_35 = 34,
     #[doc = "35: mclk frequency = 1/36 * hmclk frequency"]
-    DIVIDE_36,
+    DIVIDE_36 = 35,
     #[doc = "36: mclk frequency = 1/37 * hmclk frequency"]
-    DIVIDE_37,
+    DIVIDE_37 = 36,
     #[doc = "37: mclk frequency = 1/38 * hmclk frequency"]
-    DIVIDE_38,
+    DIVIDE_38 = 37,
     #[doc = "38: mclk frequency = 1/39 * hmclk frequency"]
-    DIVIDE_39,
+    DIVIDE_39 = 38,
     #[doc = "39: mclk frequency = 1/40 * hmclk frequency"]
-    DIVIDE_40,
+    DIVIDE_40 = 39,
     #[doc = "40: mclk frequency = 1/41 * hmclk frequency"]
-    DIVIDE_41,
+    DIVIDE_41 = 40,
     #[doc = "41: mclk frequency = 1/42 * hmclk frequency"]
-    DIVIDE_42,
+    DIVIDE_42 = 41,
     #[doc = "42: mclk frequency = 1/43 * hmclk frequency"]
-    DIVIDE_43,
+    DIVIDE_43 = 42,
     #[doc = "43: mclk frequency = 1/44 * hmclk frequency"]
-    DIVIDE_44,
+    DIVIDE_44 = 43,
     #[doc = "44: mclk frequency = 1/45 * hmclk frequency"]
-    DIVIDE_45,
+    DIVIDE_45 = 44,
     #[doc = "45: mclk frequency = 1/46 * hmclk frequency"]
-    DIVIDE_46,
+    DIVIDE_46 = 45,
     #[doc = "46: mclk frequency = 1/47 * hmclk frequency"]
-    DIVIDE_47,
+    DIVIDE_47 = 46,
     #[doc = "47: mclk frequency = 1/48 * hmclk frequency"]
-    DIVIDE_48,
+    DIVIDE_48 = 47,
     #[doc = "48: mclk frequency = 1/49 * hmclk frequency"]
-    DIVIDE_49,
+    DIVIDE_49 = 48,
     #[doc = "49: mclk frequency = 1/50 * hmclk frequency"]
-    DIVIDE_50,
+    DIVIDE_50 = 49,
     #[doc = "50: mclk frequency = 1/51 * hmclk frequency"]
-    DIVIDE_51,
+    DIVIDE_51 = 50,
     #[doc = "51: mclk frequency = 1/52 * hmclk frequency"]
-    DIVIDE_52,
+    DIVIDE_52 = 51,
     #[doc = "52: mclk frequency = 1/53 * hmclk frequency"]
-    DIVIDE_53,
+    DIVIDE_53 = 52,
     #[doc = "53: mclk frequency = 1/54 * hmclk frequency"]
-    DIVIDE_54,
+    DIVIDE_54 = 53,
     #[doc = "54: mclk frequency = 1/55 * hmclk frequency"]
-    DIVIDE_55,
+    DIVIDE_55 = 54,
     #[doc = "55: mclk frequency = 1/56 * hmclk frequency"]
-    DIVIDE_56,
+    DIVIDE_56 = 55,
     #[doc = "56: mclk frequency = 1/57 * hmclk frequency"]
-    DIVIDE_57,
+    DIVIDE_57 = 56,
     #[doc = "57: mclk frequency = 1/58 * hmclk frequency"]
-    DIVIDE_58,
+    DIVIDE_58 = 57,
     #[doc = "58: mclk frequency = 1/59 * hmclk frequency"]
-    DIVIDE_59,
+    DIVIDE_59 = 58,
     #[doc = "59: mclk frequency = 1/60 * hmclk frequency"]
-    DIVIDE_60,
+    DIVIDE_60 = 59,
     #[doc = "60: mclk frequency = 1/61 * hmclk frequency"]
-    DIVIDE_61,
+    DIVIDE_61 = 60,
     #[doc = "61: mclk frequency = 1/62 * hmclk frequency"]
-    DIVIDE_62,
+    DIVIDE_62 = 61,
     #[doc = "62: mclk frequency = 1/63 * hmclk frequency"]
-    DIVIDE_63,
+    DIVIDE_63 = 62,
     #[doc = "63: mclk frequency = 1/64 * hmclk frequency"]
-    DIVIDE_64,
+    DIVIDE_64 = 63,
     #[doc = "64: mclk frequency = 1/65 * hmclk frequency"]
-    DIVIDE_65,
+    DIVIDE_65 = 64,
     #[doc = "65: mclk frequency = 1/66 * hmclk frequency"]
-    DIVIDE_66,
+    DIVIDE_66 = 65,
     #[doc = "66: mclk frequency = 1/67 * hmclk frequency"]
-    DIVIDE_67,
+    DIVIDE_67 = 66,
     #[doc = "67: mclk frequency = 1/68 * hmclk frequency"]
-    DIVIDE_68,
+    DIVIDE_68 = 67,
     #[doc = "68: mclk frequency = 1/69 * hmclk frequency"]
-    DIVIDE_69,
+    DIVIDE_69 = 68,
     #[doc = "69: mclk frequency = 1/70 * hmclk frequency"]
-    DIVIDE_70,
+    DIVIDE_70 = 69,
     #[doc = "70: mclk frequency = 1/71 * hmclk frequency"]
-    DIVIDE_71,
+    DIVIDE_71 = 70,
     #[doc = "71: mclk frequency = 1/72 * hmclk frequency"]
-    DIVIDE_72,
+    DIVIDE_72 = 71,
     #[doc = "72: mclk frequency = 1/73 * hmclk frequency"]
-    DIVIDE_73,
+    DIVIDE_73 = 72,
     #[doc = "73: mclk frequency = 1/74 * hmclk frequency"]
-    DIVIDE_74,
+    DIVIDE_74 = 73,
     #[doc = "74: mclk frequency = 1/75 * hmclk frequency"]
-    DIVIDE_75,
+    DIVIDE_75 = 74,
     #[doc = "75: mclk frequency = 1/76 * hmclk frequency"]
-    DIVIDE_76,
+    DIVIDE_76 = 75,
     #[doc = "76: mclk frequency = 1/77 * hmclk frequency"]
-    DIVIDE_77,
+    DIVIDE_77 = 76,
     #[doc = "77: mclk frequency = 1/78 * hmclk frequency"]
-    DIVIDE_78,
+    DIVIDE_78 = 77,
     #[doc = "78: mclk frequency = 1/79 * hmclk frequency"]
-    DIVIDE_79,
+    DIVIDE_79 = 78,
     #[doc = "79: mclk frequency = 1/80 * hmclk frequency"]
-    DIVIDE_80,
+    DIVIDE_80 = 79,
     #[doc = "80: mclk frequency = 1/81 * hmclk frequency"]
-    DIVIDE_81,
+    DIVIDE_81 = 80,
     #[doc = "81: mclk frequency = 1/82 * hmclk frequency"]
-    DIVIDE_82,
+    DIVIDE_82 = 81,
     #[doc = "82: mclk frequency = 1/83 * hmclk frequency"]
-    DIVIDE_83,
+    DIVIDE_83 = 82,
     #[doc = "83: mclk frequency = 1/84 * hmclk frequency"]
-    DIVIDE_84,
+    DIVIDE_84 = 83,
     #[doc = "84: mclk frequency = 1/85 * hmclk frequency"]
-    DIVIDE_85,
+    DIVIDE_85 = 84,
     #[doc = "85: mclk frequency = 1/86 * hmclk frequency"]
-    DIVIDE_86,
+    DIVIDE_86 = 85,
     #[doc = "86: mclk frequency = 1/87 * hmclk frequency"]
-    DIVIDE_87,
+    DIVIDE_87 = 86,
     #[doc = "87: mclk frequency = 1/88 * hmclk frequency"]
-    DIVIDE_88,
+    DIVIDE_88 = 87,
     #[doc = "88: mclk frequency = 1/89 * hmclk frequency"]
-    DIVIDE_89,
+    DIVIDE_89 = 88,
     #[doc = "89: mclk frequency = 1/90 * hmclk frequency"]
-    DIVIDE_90,
+    DIVIDE_90 = 89,
     #[doc = "90: mclk frequency = 1/91 * hmclk frequency"]
-    DIVIDE_91,
+    DIVIDE_91 = 90,
     #[doc = "91: mclk frequency = 1/92 * hmclk frequency"]
-    DIVIDE_92,
+    DIVIDE_92 = 91,
     #[doc = "92: mclk frequency = 1/93 * hmclk frequency"]
-    DIVIDE_93,
+    DIVIDE_93 = 92,
     #[doc = "93: mclk frequency = 1/94 * hmclk frequency"]
-    DIVIDE_94,
+    DIVIDE_94 = 93,
     #[doc = "94: mclk frequency = 1/95 * hmclk frequency"]
-    DIVIDE_95,
+    DIVIDE_95 = 94,
     #[doc = "95: mclk frequency = 1/96 * hmclk frequency"]
-    DIVIDE_96,
+    DIVIDE_96 = 95,
     #[doc = "96: mclk frequency = 1/97 * hmclk frequency"]
-    DIVIDE_97,
+    DIVIDE_97 = 96,
     #[doc = "97: mclk frequency = 1/98 * hmclk frequency"]
-    DIVIDE_98,
+    DIVIDE_98 = 97,
     #[doc = "98: mclk frequency = 1/99 * hmclk frequency"]
-    DIVIDE_99,
+    DIVIDE_99 = 98,
     #[doc = "99: mclk frequency = 1/100 * hmclk frequency"]
-    DIVIDE_100,
+    DIVIDE_100 = 99,
     #[doc = "100: mclk frequency = 1/101 * hmclk frequency"]
-    DIVIDE_101,
+    DIVIDE_101 = 100,
     #[doc = "101: mclk frequency = 1/102 * hmclk frequency"]
-    DIVIDE_102,
+    DIVIDE_102 = 101,
     #[doc = "102: mclk frequency = 1/103 * hmclk frequency"]
-    DIVIDE_103,
+    DIVIDE_103 = 102,
     #[doc = "103: mclk frequency = 1/104 * hmclk frequency"]
-    DIVIDE_104,
+    DIVIDE_104 = 103,
     #[doc = "104: mclk frequency = 1/105 * hmclk frequency"]
-    DIVIDE_105,
+    DIVIDE_105 = 104,
     #[doc = "105: mclk frequency = 1/106 * hmclk frequency"]
-    DIVIDE_106,
+    DIVIDE_106 = 105,
     #[doc = "106: mclk frequency = 1/107 * hmclk frequency"]
-    DIVIDE_107,
+    DIVIDE_107 = 106,
     #[doc = "107: mclk frequency = 1/108 * hmclk frequency"]
-    DIVIDE_108,
+    DIVIDE_108 = 107,
     #[doc = "108: mclk frequency = 1/109 * hmclk frequency"]
-    DIVIDE_109,
+    DIVIDE_109 = 108,
     #[doc = "109: mclk frequency = 1/110 * hmclk frequency"]
-    DIVIDE_110,
+    DIVIDE_110 = 109,
     #[doc = "110: mclk frequency = 1/111 * hmclk frequency"]
-    DIVIDE_111,
+    DIVIDE_111 = 110,
     #[doc = "111: mclk frequency = 1/112 * hmclk frequency"]
-    DIVIDE_112,
+    DIVIDE_112 = 111,
     #[doc = "112: mclk frequency = 1/113 * hmclk frequency"]
-    DIVIDE_113,
+    DIVIDE_113 = 112,
     #[doc = "113: mclk frequency = 1/114 * hmclk frequency"]
-    DIVIDE_114,
+    DIVIDE_114 = 113,
     #[doc = "114: mclk frequency = 1/115 * hmclk frequency"]
-    DIVIDE_115,
+    DIVIDE_115 = 114,
     #[doc = "115: mclk frequency = 1/116 * hmclk frequency"]
-    DIVIDE_116,
+    DIVIDE_116 = 115,
     #[doc = "116: mclk frequency = 1/117 * hmclk frequency"]
-    DIVIDE_117,
+    DIVIDE_117 = 116,
     #[doc = "117: mclk frequency = 1/118 * hmclk frequency"]
-    DIVIDE_118,
+    DIVIDE_118 = 117,
     #[doc = "118: mclk frequency = 1/119 * hmclk frequency"]
-    DIVIDE_119,
+    DIVIDE_119 = 118,
     #[doc = "119: mclk frequency = 1/120 * hmclk frequency"]
-    DIVIDE_120,
+    DIVIDE_120 = 119,
     #[doc = "120: mclk frequency = 1/121 * hmclk frequency"]
-    DIVIDE_121,
+    DIVIDE_121 = 120,
     #[doc = "121: mclk frequency = 1/122 * hmclk frequency"]
-    DIVIDE_122,
+    DIVIDE_122 = 121,
     #[doc = "122: mclk frequency = 1/123 * hmclk frequency"]
-    DIVIDE_123,
+    DIVIDE_123 = 122,
     #[doc = "123: mclk frequency = 1/124 * hmclk frequency"]
-    DIVIDE_124,
+    DIVIDE_124 = 123,
     #[doc = "124: mclk frequency = 1/125 * hmclk frequency"]
-    DIVIDE_125,
+    DIVIDE_125 = 124,
     #[doc = "125: mclk frequency = 1/126 * hmclk frequency"]
-    DIVIDE_126,
+    DIVIDE_126 = 125,
     #[doc = "126: mclk frequency = 1/127 * hmclk frequency"]
-    DIVIDE_127,
+    DIVIDE_127 = 126,
     #[doc = "127: mclk frequency = 1/128 * hmclk frequency"]
-    DIVIDE_128,
+    DIVIDE_128 = 127,
     #[doc = "128: mclk frequency = 1/129 * hmclk frequency"]
-    DIVIDE_129,
+    DIVIDE_129 = 128,
     #[doc = "129: mclk frequency = 1/130 * hmclk frequency"]
-    DIVIDE_130,
+    DIVIDE_130 = 129,
     #[doc = "130: mclk frequency = 1/131 * hmclk frequency"]
-    DIVIDE_131,
+    DIVIDE_131 = 130,
     #[doc = "131: mclk frequency = 1/132 * hmclk frequency"]
-    DIVIDE_132,
+    DIVIDE_132 = 131,
     #[doc = "132: mclk frequency = 1/133 * hmclk frequency"]
-    DIVIDE_133,
+    DIVIDE_133 = 132,
     #[doc = "133: mclk frequency = 1/134 * hmclk frequency"]
-    DIVIDE_134,
+    DIVIDE_134 = 133,
     #[doc = "134: mclk frequency = 1/135 * hmclk frequency"]
-    DIVIDE_135,
+    DIVIDE_135 = 134,
     #[doc = "135: mclk frequency = 1/136 * hmclk frequency"]
-    DIVIDE_136,
+    DIVIDE_136 = 135,
     #[doc = "136: mclk frequency = 1/137 * hmclk frequency"]
-    DIVIDE_137,
+    DIVIDE_137 = 136,
     #[doc = "137: mclk frequency = 1/138 * hmclk frequency"]
-    DIVIDE_138,
+    DIVIDE_138 = 137,
     #[doc = "138: mclk frequency = 1/139 * hmclk frequency"]
-    DIVIDE_139,
+    DIVIDE_139 = 138,
     #[doc = "139: mclk frequency = 1/140 * hmclk frequency"]
-    DIVIDE_140,
+    DIVIDE_140 = 139,
     #[doc = "140: mclk frequency = 1/141 * hmclk frequency"]
-    DIVIDE_141,
+    DIVIDE_141 = 140,
     #[doc = "141: mclk frequency = 1/142 * hmclk frequency"]
-    DIVIDE_142,
+    DIVIDE_142 = 141,
     #[doc = "142: mclk frequency = 1/143 * hmclk frequency"]
-    DIVIDE_143,
+    DIVIDE_143 = 142,
     #[doc = "143: mclk frequency = 1/144 * hmclk frequency"]
-    DIVIDE_144,
+    DIVIDE_144 = 143,
     #[doc = "144: mclk frequency = 1/145 * hmclk frequency"]
-    DIVIDE_145,
+    DIVIDE_145 = 144,
     #[doc = "145: mclk frequency = 1/146 * hmclk frequency"]
-    DIVIDE_146,
+    DIVIDE_146 = 145,
     #[doc = "146: mclk frequency = 1/147 * hmclk frequency"]
-    DIVIDE_147,
+    DIVIDE_147 = 146,
     #[doc = "147: mclk frequency = 1/148 * hmclk frequency"]
-    DIVIDE_148,
+    DIVIDE_148 = 147,
     #[doc = "148: mclk frequency = 1/149 * hmclk frequency"]
-    DIVIDE_149,
+    DIVIDE_149 = 148,
     #[doc = "149: mclk frequency = 1/150 * hmclk frequency"]
-    DIVIDE_150,
+    DIVIDE_150 = 149,
     #[doc = "150: mclk frequency = 1/151 * hmclk frequency"]
-    DIVIDE_151,
+    DIVIDE_151 = 150,
     #[doc = "151: mclk frequency = 1/152 * hmclk frequency"]
-    DIVIDE_152,
+    DIVIDE_152 = 151,
     #[doc = "152: mclk frequency = 1/153 * hmclk frequency"]
-    DIVIDE_153,
+    DIVIDE_153 = 152,
     #[doc = "153: mclk frequency = 1/154 * hmclk frequency"]
-    DIVIDE_154,
+    DIVIDE_154 = 153,
     #[doc = "154: mclk frequency = 1/155 * hmclk frequency"]
-    DIVIDE_155,
+    DIVIDE_155 = 154,
     #[doc = "155: mclk frequency = 1/156 * hmclk frequency"]
-    DIVIDE_156,
+    DIVIDE_156 = 155,
     #[doc = "156: mclk frequency = 1/157 * hmclk frequency"]
-    DIVIDE_157,
+    DIVIDE_157 = 156,
     #[doc = "157: mclk frequency = 1/158 * hmclk frequency"]
-    DIVIDE_158,
+    DIVIDE_158 = 157,
     #[doc = "158: mclk frequency = 1/159 * hmclk frequency"]
-    DIVIDE_159,
+    DIVIDE_159 = 158,
     #[doc = "159: mclk frequency = 1/160 * hmclk frequency"]
-    DIVIDE_160,
+    DIVIDE_160 = 159,
     #[doc = "160: mclk frequency = 1/161 * hmclk frequency"]
-    DIVIDE_161,
+    DIVIDE_161 = 160,
     #[doc = "161: mclk frequency = 1/162 * hmclk frequency"]
-    DIVIDE_162,
+    DIVIDE_162 = 161,
     #[doc = "162: mclk frequency = 1/163 * hmclk frequency"]
-    DIVIDE_163,
+    DIVIDE_163 = 162,
     #[doc = "163: mclk frequency = 1/164 * hmclk frequency"]
-    DIVIDE_164,
+    DIVIDE_164 = 163,
     #[doc = "164: mclk frequency = 1/165 * hmclk frequency"]
-    DIVIDE_165,
+    DIVIDE_165 = 164,
     #[doc = "165: mclk frequency = 1/166 * hmclk frequency"]
-    DIVIDE_166,
+    DIVIDE_166 = 165,
     #[doc = "166: mclk frequency = 1/167 * hmclk frequency"]
-    DIVIDE_167,
+    DIVIDE_167 = 166,
     #[doc = "167: mclk frequency = 1/168 * hmclk frequency"]
-    DIVIDE_168,
+    DIVIDE_168 = 167,
     #[doc = "168: mclk frequency = 1/169 * hmclk frequency"]
-    DIVIDE_169,
+    DIVIDE_169 = 168,
     #[doc = "169: mclk frequency = 1/170 * hmclk frequency"]
-    DIVIDE_170,
+    DIVIDE_170 = 169,
     #[doc = "170: mclk frequency = 1/171 * hmclk frequency"]
-    DIVIDE_171,
+    DIVIDE_171 = 170,
     #[doc = "171: mclk frequency = 1/172 * hmclk frequency"]
-    DIVIDE_172,
+    DIVIDE_172 = 171,
     #[doc = "172: mclk frequency = 1/173 * hmclk frequency"]
-    DIVIDE_173,
+    DIVIDE_173 = 172,
     #[doc = "173: mclk frequency = 1/174 * hmclk frequency"]
-    DIVIDE_174,
+    DIVIDE_174 = 173,
     #[doc = "174: mclk frequency = 1/175 * hmclk frequency"]
-    DIVIDE_175,
+    DIVIDE_175 = 174,
     #[doc = "175: mclk frequency = 1/176 * hmclk frequency"]
-    DIVIDE_176,
+    DIVIDE_176 = 175,
     #[doc = "176: mclk frequency = 1/177 * hmclk frequency"]
-    DIVIDE_177,
+    DIVIDE_177 = 176,
     #[doc = "177: mclk frequency = 1/178 * hmclk frequency"]
-    DIVIDE_178,
+    DIVIDE_178 = 177,
     #[doc = "178: mclk frequency = 1/179 * hmclk frequency"]
-    DIVIDE_179,
+    DIVIDE_179 = 178,
     #[doc = "179: mclk frequency = 1/180 * hmclk frequency"]
-    DIVIDE_180,
+    DIVIDE_180 = 179,
     #[doc = "180: mclk frequency = 1/181 * hmclk frequency"]
-    DIVIDE_181,
+    DIVIDE_181 = 180,
     #[doc = "181: mclk frequency = 1/182 * hmclk frequency"]
-    DIVIDE_182,
+    DIVIDE_182 = 181,
     #[doc = "182: mclk frequency = 1/183 * hmclk frequency"]
-    DIVIDE_183,
+    DIVIDE_183 = 182,
     #[doc = "183: mclk frequency = 1/184 * hmclk frequency"]
-    DIVIDE_184,
+    DIVIDE_184 = 183,
     #[doc = "184: mclk frequency = 1/185 * hmclk frequency"]
-    DIVIDE_185,
+    DIVIDE_185 = 184,
     #[doc = "185: mclk frequency = 1/186 * hmclk frequency"]
-    DIVIDE_186,
+    DIVIDE_186 = 185,
     #[doc = "186: mclk frequency = 1/187 * hmclk frequency"]
-    DIVIDE_187,
+    DIVIDE_187 = 186,
     #[doc = "187: mclk frequency = 1/188 * hmclk frequency"]
-    DIVIDE_188,
+    DIVIDE_188 = 187,
     #[doc = "188: mclk frequency = 1/189 * hmclk frequency"]
-    DIVIDE_189,
+    DIVIDE_189 = 188,
     #[doc = "189: mclk frequency = 1/190 * hmclk frequency"]
-    DIVIDE_190,
+    DIVIDE_190 = 189,
     #[doc = "190: mclk frequency = 1/191 * hmclk frequency"]
-    DIVIDE_191,
+    DIVIDE_191 = 190,
     #[doc = "191: mclk frequency = 1/192 * hmclk frequency"]
-    DIVIDE_192,
+    DIVIDE_192 = 191,
     #[doc = "192: mclk frequency = 1/193 * hmclk frequency"]
-    DIVIDE_193,
+    DIVIDE_193 = 192,
     #[doc = "193: mclk frequency = 1/194 * hmclk frequency"]
-    DIVIDE_194,
+    DIVIDE_194 = 193,
     #[doc = "194: mclk frequency = 1/195 * hmclk frequency"]
-    DIVIDE_195,
+    DIVIDE_195 = 194,
     #[doc = "195: mclk frequency = 1/196 * hmclk frequency"]
-    DIVIDE_196,
+    DIVIDE_196 = 195,
     #[doc = "196: mclk frequency = 1/197 * hmclk frequency"]
-    DIVIDE_197,
+    DIVIDE_197 = 196,
     #[doc = "197: mclk frequency = 1/198 * hmclk frequency"]
-    DIVIDE_198,
+    DIVIDE_198 = 197,
     #[doc = "198: mclk frequency = 1/199 * hmclk frequency"]
-    DIVIDE_199,
+    DIVIDE_199 = 198,
     #[doc = "199: mclk frequency = 1/200 * hmclk frequency"]
-    DIVIDE_200,
+    DIVIDE_200 = 199,
     #[doc = "200: mclk frequency = 1/201 * hmclk frequency"]
-    DIVIDE_201,
+    DIVIDE_201 = 200,
     #[doc = "201: mclk frequency = 1/202 * hmclk frequency"]
-    DIVIDE_202,
+    DIVIDE_202 = 201,
     #[doc = "202: mclk frequency = 1/203 * hmclk frequency"]
-    DIVIDE_203,
+    DIVIDE_203 = 202,
     #[doc = "203: mclk frequency = 1/204 * hmclk frequency"]
-    DIVIDE_204,
+    DIVIDE_204 = 203,
     #[doc = "204: mclk frequency = 1/205 * hmclk frequency"]
-    DIVIDE_205,
+    DIVIDE_205 = 204,
     #[doc = "205: mclk frequency = 1/206 * hmclk frequency"]
-    DIVIDE_206,
+    DIVIDE_206 = 205,
     #[doc = "206: mclk frequency = 1/207 * hmclk frequency"]
-    DIVIDE_207,
+    DIVIDE_207 = 206,
     #[doc = "207: mclk frequency = 1/208 * hmclk frequency"]
-    DIVIDE_208,
+    DIVIDE_208 = 207,
     #[doc = "208: mclk frequency = 1/209 * hmclk frequency"]
-    DIVIDE_209,
+    DIVIDE_209 = 208,
     #[doc = "209: mclk frequency = 1/210 * hmclk frequency"]
-    DIVIDE_210,
+    DIVIDE_210 = 209,
     #[doc = "210: mclk frequency = 1/211 * hmclk frequency"]
-    DIVIDE_211,
+    DIVIDE_211 = 210,
     #[doc = "211: mclk frequency = 1/212 * hmclk frequency"]
-    DIVIDE_212,
+    DIVIDE_212 = 211,
     #[doc = "212: mclk frequency = 1/213 * hmclk frequency"]
-    DIVIDE_213,
+    DIVIDE_213 = 212,
     #[doc = "213: mclk frequency = 1/214 * hmclk frequency"]
-    DIVIDE_214,
+    DIVIDE_214 = 213,
     #[doc = "214: mclk frequency = 1/215 * hmclk frequency"]
-    DIVIDE_215,
+    DIVIDE_215 = 214,
     #[doc = "215: mclk frequency = 1/216 * hmclk frequency"]
-    DIVIDE_216,
+    DIVIDE_216 = 215,
     #[doc = "216: mclk frequency = 1/217 * hmclk frequency"]
-    DIVIDE_217,
+    DIVIDE_217 = 216,
     #[doc = "217: mclk frequency = 1/218 * hmclk frequency"]
-    DIVIDE_218,
+    DIVIDE_218 = 217,
     #[doc = "218: mclk frequency = 1/219 * hmclk frequency"]
-    DIVIDE_219,
+    DIVIDE_219 = 218,
     #[doc = "219: mclk frequency = 1/220 * hmclk frequency"]
-    DIVIDE_220,
+    DIVIDE_220 = 219,
     #[doc = "220: mclk frequency = 1/221 * hmclk frequency"]
-    DIVIDE_221,
+    DIVIDE_221 = 220,
     #[doc = "221: mclk frequency = 1/222 * hmclk frequency"]
-    DIVIDE_222,
+    DIVIDE_222 = 221,
     #[doc = "222: mclk frequency = 1/223 * hmclk frequency"]
-    DIVIDE_223,
+    DIVIDE_223 = 222,
     #[doc = "223: mclk frequency = 1/224 * hmclk frequency"]
-    DIVIDE_224,
+    DIVIDE_224 = 223,
     #[doc = "224: mclk frequency = 1/225 * hmclk frequency"]
-    DIVIDE_225,
+    DIVIDE_225 = 224,
     #[doc = "225: mclk frequency = 1/226 * hmclk frequency"]
-    DIVIDE_226,
+    DIVIDE_226 = 225,
     #[doc = "226: mclk frequency = 1/227 * hmclk frequency"]
-    DIVIDE_227,
+    DIVIDE_227 = 226,
     #[doc = "227: mclk frequency = 1/228 * hmclk frequency"]
-    DIVIDE_228,
+    DIVIDE_228 = 227,
     #[doc = "228: mclk frequency = 1/229 * hmclk frequency"]
-    DIVIDE_229,
+    DIVIDE_229 = 228,
     #[doc = "229: mclk frequency = 1/230 * hmclk frequency"]
-    DIVIDE_230,
+    DIVIDE_230 = 229,
     #[doc = "230: mclk frequency = 1/231 * hmclk frequency"]
-    DIVIDE_231,
+    DIVIDE_231 = 230,
     #[doc = "231: mclk frequency = 1/232 * hmclk frequency"]
-    DIVIDE_232,
+    DIVIDE_232 = 231,
     #[doc = "232: mclk frequency = 1/233 * hmclk frequency"]
-    DIVIDE_233,
+    DIVIDE_233 = 232,
     #[doc = "233: mclk frequency = 1/234 * hmclk frequency"]
-    DIVIDE_234,
+    DIVIDE_234 = 233,
     #[doc = "234: mclk frequency = 1/235 * hmclk frequency"]
-    DIVIDE_235,
+    DIVIDE_235 = 234,
     #[doc = "235: mclk frequency = 1/236 * hmclk frequency"]
-    DIVIDE_236,
+    DIVIDE_236 = 235,
     #[doc = "236: mclk frequency = 1/237 * hmclk frequency"]
-    DIVIDE_237,
+    DIVIDE_237 = 236,
     #[doc = "237: mclk frequency = 1/238 * hmclk frequency"]
-    DIVIDE_238,
+    DIVIDE_238 = 237,
     #[doc = "238: mclk frequency = 1/239 * hmclk frequency"]
-    DIVIDE_239,
+    DIVIDE_239 = 238,
     #[doc = "239: mclk frequency = 1/240 * hmclk frequency"]
-    DIVIDE_240,
+    DIVIDE_240 = 239,
     #[doc = "240: mclk frequency = 1/241 * hmclk frequency"]
-    DIVIDE_241,
+    DIVIDE_241 = 240,
     #[doc = "241: mclk frequency = 1/242 * hmclk frequency"]
-    DIVIDE_242,
+    DIVIDE_242 = 241,
     #[doc = "242: mclk frequency = 1/243 * hmclk frequency"]
-    DIVIDE_243,
+    DIVIDE_243 = 242,
     #[doc = "243: mclk frequency = 1/244 * hmclk frequency"]
-    DIVIDE_244,
+    DIVIDE_244 = 243,
     #[doc = "244: mclk frequency = 1/245 * hmclk frequency"]
-    DIVIDE_245,
+    DIVIDE_245 = 244,
     #[doc = "245: mclk frequency = 1/246 * hmclk frequency"]
-    DIVIDE_246,
+    DIVIDE_246 = 245,
     #[doc = "246: mclk frequency = 1/247 * hmclk frequency"]
-    DIVIDE_247,
+    DIVIDE_247 = 246,
     #[doc = "247: mclk frequency = 1/248 * hmclk frequency"]
-    DIVIDE_248,
+    DIVIDE_248 = 247,
     #[doc = "248: mclk frequency = 1/249 * hmclk frequency"]
-    DIVIDE_249,
+    DIVIDE_249 = 248,
     #[doc = "249: mclk frequency = 1/250 * hmclk frequency"]
-    DIVIDE_250,
+    DIVIDE_250 = 249,
     #[doc = "250: mclk frequency = 1/251 * hmclk frequency"]
-    DIVIDE_251,
+    DIVIDE_251 = 250,
     #[doc = "251: mclk frequency = 1/252 * hmclk frequency"]
-    DIVIDE_252,
+    DIVIDE_252 = 251,
     #[doc = "252: mclk frequency = 1/253 * hmclk frequency"]
-    DIVIDE_253,
+    DIVIDE_253 = 252,
     #[doc = "253: mclk frequency = 1/254 * hmclk frequency"]
-    DIVIDE_254,
+    DIVIDE_254 = 253,
     #[doc = "254: mclk frequency = 1/255 * hmclk frequency"]
-    DIVIDE_255,
+    DIVIDE_255 = 254,
     #[doc = "255: mclk frequency = 1/256 * hmclk frequency"]
-    DIVIDE_256,
+    DIVIDE_256 = 255,
 }
 impl From<MQS_CLK_DIV_A> for u8 {
     #[inline(always)]
     fn from(variant: MQS_CLK_DIV_A) -> Self {
-        match variant {
-            MQS_CLK_DIV_A::DIVIDE_1 => 0,
-            MQS_CLK_DIV_A::DIVIDE_2 => 1,
-            MQS_CLK_DIV_A::DIVIDE_3 => 2,
-            MQS_CLK_DIV_A::DIVIDE_4 => 3,
-            MQS_CLK_DIV_A::DIVIDE_5 => 4,
-            MQS_CLK_DIV_A::DIVIDE_6 => 5,
-            MQS_CLK_DIV_A::DIVIDE_7 => 6,
-            MQS_CLK_DIV_A::DIVIDE_8 => 7,
-            MQS_CLK_DIV_A::DIVIDE_9 => 8,
-            MQS_CLK_DIV_A::DIVIDE_10 => 9,
-            MQS_CLK_DIV_A::DIVIDE_11 => 10,
-            MQS_CLK_DIV_A::DIVIDE_12 => 11,
-            MQS_CLK_DIV_A::DIVIDE_13 => 12,
-            MQS_CLK_DIV_A::DIVIDE_14 => 13,
-            MQS_CLK_DIV_A::DIVIDE_15 => 14,
-            MQS_CLK_DIV_A::DIVIDE_16 => 15,
-            MQS_CLK_DIV_A::DIVIDE_17 => 16,
-            MQS_CLK_DIV_A::DIVIDE_18 => 17,
-            MQS_CLK_DIV_A::DIVIDE_19 => 18,
-            MQS_CLK_DIV_A::DIVIDE_20 => 19,
-            MQS_CLK_DIV_A::DIVIDE_21 => 20,
-            MQS_CLK_DIV_A::DIVIDE_22 => 21,
-            MQS_CLK_DIV_A::DIVIDE_23 => 22,
-            MQS_CLK_DIV_A::DIVIDE_24 => 23,
-            MQS_CLK_DIV_A::DIVIDE_25 => 24,
-            MQS_CLK_DIV_A::DIVIDE_26 => 25,
-            MQS_CLK_DIV_A::DIVIDE_27 => 26,
-            MQS_CLK_DIV_A::DIVIDE_28 => 27,
-            MQS_CLK_DIV_A::DIVIDE_29 => 28,
-            MQS_CLK_DIV_A::DIVIDE_30 => 29,
-            MQS_CLK_DIV_A::DIVIDE_31 => 30,
-            MQS_CLK_DIV_A::DIVIDE_32 => 31,
-            MQS_CLK_DIV_A::DIVIDE_33 => 32,
-            MQS_CLK_DIV_A::DIVIDE_34 => 33,
-            MQS_CLK_DIV_A::DIVIDE_35 => 34,
-            MQS_CLK_DIV_A::DIVIDE_36 => 35,
-            MQS_CLK_DIV_A::DIVIDE_37 => 36,
-            MQS_CLK_DIV_A::DIVIDE_38 => 37,
-            MQS_CLK_DIV_A::DIVIDE_39 => 38,
-            MQS_CLK_DIV_A::DIVIDE_40 => 39,
-            MQS_CLK_DIV_A::DIVIDE_41 => 40,
-            MQS_CLK_DIV_A::DIVIDE_42 => 41,
-            MQS_CLK_DIV_A::DIVIDE_43 => 42,
-            MQS_CLK_DIV_A::DIVIDE_44 => 43,
-            MQS_CLK_DIV_A::DIVIDE_45 => 44,
-            MQS_CLK_DIV_A::DIVIDE_46 => 45,
-            MQS_CLK_DIV_A::DIVIDE_47 => 46,
-            MQS_CLK_DIV_A::DIVIDE_48 => 47,
-            MQS_CLK_DIV_A::DIVIDE_49 => 48,
-            MQS_CLK_DIV_A::DIVIDE_50 => 49,
-            MQS_CLK_DIV_A::DIVIDE_51 => 50,
-            MQS_CLK_DIV_A::DIVIDE_52 => 51,
-            MQS_CLK_DIV_A::DIVIDE_53 => 52,
-            MQS_CLK_DIV_A::DIVIDE_54 => 53,
-            MQS_CLK_DIV_A::DIVIDE_55 => 54,
-            MQS_CLK_DIV_A::DIVIDE_56 => 55,
-            MQS_CLK_DIV_A::DIVIDE_57 => 56,
-            MQS_CLK_DIV_A::DIVIDE_58 => 57,
-            MQS_CLK_DIV_A::DIVIDE_59 => 58,
-            MQS_CLK_DIV_A::DIVIDE_60 => 59,
-            MQS_CLK_DIV_A::DIVIDE_61 => 60,
-            MQS_CLK_DIV_A::DIVIDE_62 => 61,
-            MQS_CLK_DIV_A::DIVIDE_63 => 62,
-            MQS_CLK_DIV_A::DIVIDE_64 => 63,
-            MQS_CLK_DIV_A::DIVIDE_65 => 64,
-            MQS_CLK_DIV_A::DIVIDE_66 => 65,
-            MQS_CLK_DIV_A::DIVIDE_67 => 66,
-            MQS_CLK_DIV_A::DIVIDE_68 => 67,
-            MQS_CLK_DIV_A::DIVIDE_69 => 68,
-            MQS_CLK_DIV_A::DIVIDE_70 => 69,
-            MQS_CLK_DIV_A::DIVIDE_71 => 70,
-            MQS_CLK_DIV_A::DIVIDE_72 => 71,
-            MQS_CLK_DIV_A::DIVIDE_73 => 72,
-            MQS_CLK_DIV_A::DIVIDE_74 => 73,
-            MQS_CLK_DIV_A::DIVIDE_75 => 74,
-            MQS_CLK_DIV_A::DIVIDE_76 => 75,
-            MQS_CLK_DIV_A::DIVIDE_77 => 76,
-            MQS_CLK_DIV_A::DIVIDE_78 => 77,
-            MQS_CLK_DIV_A::DIVIDE_79 => 78,
-            MQS_CLK_DIV_A::DIVIDE_80 => 79,
-            MQS_CLK_DIV_A::DIVIDE_81 => 80,
-            MQS_CLK_DIV_A::DIVIDE_82 => 81,
-            MQS_CLK_DIV_A::DIVIDE_83 => 82,
-            MQS_CLK_DIV_A::DIVIDE_84 => 83,
-            MQS_CLK_DIV_A::DIVIDE_85 => 84,
-            MQS_CLK_DIV_A::DIVIDE_86 => 85,
-            MQS_CLK_DIV_A::DIVIDE_87 => 86,
-            MQS_CLK_DIV_A::DIVIDE_88 => 87,
-            MQS_CLK_DIV_A::DIVIDE_89 => 88,
-            MQS_CLK_DIV_A::DIVIDE_90 => 89,
-            MQS_CLK_DIV_A::DIVIDE_91 => 90,
-            MQS_CLK_DIV_A::DIVIDE_92 => 91,
-            MQS_CLK_DIV_A::DIVIDE_93 => 92,
-            MQS_CLK_DIV_A::DIVIDE_94 => 93,
-            MQS_CLK_DIV_A::DIVIDE_95 => 94,
-            MQS_CLK_DIV_A::DIVIDE_96 => 95,
-            MQS_CLK_DIV_A::DIVIDE_97 => 96,
-            MQS_CLK_DIV_A::DIVIDE_98 => 97,
-            MQS_CLK_DIV_A::DIVIDE_99 => 98,
-            MQS_CLK_DIV_A::DIVIDE_100 => 99,
-            MQS_CLK_DIV_A::DIVIDE_101 => 100,
-            MQS_CLK_DIV_A::DIVIDE_102 => 101,
-            MQS_CLK_DIV_A::DIVIDE_103 => 102,
-            MQS_CLK_DIV_A::DIVIDE_104 => 103,
-            MQS_CLK_DIV_A::DIVIDE_105 => 104,
-            MQS_CLK_DIV_A::DIVIDE_106 => 105,
-            MQS_CLK_DIV_A::DIVIDE_107 => 106,
-            MQS_CLK_DIV_A::DIVIDE_108 => 107,
-            MQS_CLK_DIV_A::DIVIDE_109 => 108,
-            MQS_CLK_DIV_A::DIVIDE_110 => 109,
-            MQS_CLK_DIV_A::DIVIDE_111 => 110,
-            MQS_CLK_DIV_A::DIVIDE_112 => 111,
-            MQS_CLK_DIV_A::DIVIDE_113 => 112,
-            MQS_CLK_DIV_A::DIVIDE_114 => 113,
-            MQS_CLK_DIV_A::DIVIDE_115 => 114,
-            MQS_CLK_DIV_A::DIVIDE_116 => 115,
-            MQS_CLK_DIV_A::DIVIDE_117 => 116,
-            MQS_CLK_DIV_A::DIVIDE_118 => 117,
-            MQS_CLK_DIV_A::DIVIDE_119 => 118,
-            MQS_CLK_DIV_A::DIVIDE_120 => 119,
-            MQS_CLK_DIV_A::DIVIDE_121 => 120,
-            MQS_CLK_DIV_A::DIVIDE_122 => 121,
-            MQS_CLK_DIV_A::DIVIDE_123 => 122,
-            MQS_CLK_DIV_A::DIVIDE_124 => 123,
-            MQS_CLK_DIV_A::DIVIDE_125 => 124,
-            MQS_CLK_DIV_A::DIVIDE_126 => 125,
-            MQS_CLK_DIV_A::DIVIDE_127 => 126,
-            MQS_CLK_DIV_A::DIVIDE_128 => 127,
-            MQS_CLK_DIV_A::DIVIDE_129 => 128,
-            MQS_CLK_DIV_A::DIVIDE_130 => 129,
-            MQS_CLK_DIV_A::DIVIDE_131 => 130,
-            MQS_CLK_DIV_A::DIVIDE_132 => 131,
-            MQS_CLK_DIV_A::DIVIDE_133 => 132,
-            MQS_CLK_DIV_A::DIVIDE_134 => 133,
-            MQS_CLK_DIV_A::DIVIDE_135 => 134,
-            MQS_CLK_DIV_A::DIVIDE_136 => 135,
-            MQS_CLK_DIV_A::DIVIDE_137 => 136,
-            MQS_CLK_DIV_A::DIVIDE_138 => 137,
-            MQS_CLK_DIV_A::DIVIDE_139 => 138,
-            MQS_CLK_DIV_A::DIVIDE_140 => 139,
-            MQS_CLK_DIV_A::DIVIDE_141 => 140,
-            MQS_CLK_DIV_A::DIVIDE_142 => 141,
-            MQS_CLK_DIV_A::DIVIDE_143 => 142,
-            MQS_CLK_DIV_A::DIVIDE_144 => 143,
-            MQS_CLK_DIV_A::DIVIDE_145 => 144,
-            MQS_CLK_DIV_A::DIVIDE_146 => 145,
-            MQS_CLK_DIV_A::DIVIDE_147 => 146,
-            MQS_CLK_DIV_A::DIVIDE_148 => 147,
-            MQS_CLK_DIV_A::DIVIDE_149 => 148,
-            MQS_CLK_DIV_A::DIVIDE_150 => 149,
-            MQS_CLK_DIV_A::DIVIDE_151 => 150,
-            MQS_CLK_DIV_A::DIVIDE_152 => 151,
-            MQS_CLK_DIV_A::DIVIDE_153 => 152,
-            MQS_CLK_DIV_A::DIVIDE_154 => 153,
-            MQS_CLK_DIV_A::DIVIDE_155 => 154,
-            MQS_CLK_DIV_A::DIVIDE_156 => 155,
-            MQS_CLK_DIV_A::DIVIDE_157 => 156,
-            MQS_CLK_DIV_A::DIVIDE_158 => 157,
-            MQS_CLK_DIV_A::DIVIDE_159 => 158,
-            MQS_CLK_DIV_A::DIVIDE_160 => 159,
-            MQS_CLK_DIV_A::DIVIDE_161 => 160,
-            MQS_CLK_DIV_A::DIVIDE_162 => 161,
-            MQS_CLK_DIV_A::DIVIDE_163 => 162,
-            MQS_CLK_DIV_A::DIVIDE_164 => 163,
-            MQS_CLK_DIV_A::DIVIDE_165 => 164,
-            MQS_CLK_DIV_A::DIVIDE_166 => 165,
-            MQS_CLK_DIV_A::DIVIDE_167 => 166,
-            MQS_CLK_DIV_A::DIVIDE_168 => 167,
-            MQS_CLK_DIV_A::DIVIDE_169 => 168,
-            MQS_CLK_DIV_A::DIVIDE_170 => 169,
-            MQS_CLK_DIV_A::DIVIDE_171 => 170,
-            MQS_CLK_DIV_A::DIVIDE_172 => 171,
-            MQS_CLK_DIV_A::DIVIDE_173 => 172,
-            MQS_CLK_DIV_A::DIVIDE_174 => 173,
-            MQS_CLK_DIV_A::DIVIDE_175 => 174,
-            MQS_CLK_DIV_A::DIVIDE_176 => 175,
-            MQS_CLK_DIV_A::DIVIDE_177 => 176,
-            MQS_CLK_DIV_A::DIVIDE_178 => 177,
-            MQS_CLK_DIV_A::DIVIDE_179 => 178,
-            MQS_CLK_DIV_A::DIVIDE_180 => 179,
-            MQS_CLK_DIV_A::DIVIDE_181 => 180,
-            MQS_CLK_DIV_A::DIVIDE_182 => 181,
-            MQS_CLK_DIV_A::DIVIDE_183 => 182,
-            MQS_CLK_DIV_A::DIVIDE_184 => 183,
-            MQS_CLK_DIV_A::DIVIDE_185 => 184,
-            MQS_CLK_DIV_A::DIVIDE_186 => 185,
-            MQS_CLK_DIV_A::DIVIDE_187 => 186,
-            MQS_CLK_DIV_A::DIVIDE_188 => 187,
-            MQS_CLK_DIV_A::DIVIDE_189 => 188,
-            MQS_CLK_DIV_A::DIVIDE_190 => 189,
-            MQS_CLK_DIV_A::DIVIDE_191 => 190,
-            MQS_CLK_DIV_A::DIVIDE_192 => 191,
-            MQS_CLK_DIV_A::DIVIDE_193 => 192,
-            MQS_CLK_DIV_A::DIVIDE_194 => 193,
-            MQS_CLK_DIV_A::DIVIDE_195 => 194,
-            MQS_CLK_DIV_A::DIVIDE_196 => 195,
-            MQS_CLK_DIV_A::DIVIDE_197 => 196,
-            MQS_CLK_DIV_A::DIVIDE_198 => 197,
-            MQS_CLK_DIV_A::DIVIDE_199 => 198,
-            MQS_CLK_DIV_A::DIVIDE_200 => 199,
-            MQS_CLK_DIV_A::DIVIDE_201 => 200,
-            MQS_CLK_DIV_A::DIVIDE_202 => 201,
-            MQS_CLK_DIV_A::DIVIDE_203 => 202,
-            MQS_CLK_DIV_A::DIVIDE_204 => 203,
-            MQS_CLK_DIV_A::DIVIDE_205 => 204,
-            MQS_CLK_DIV_A::DIVIDE_206 => 205,
-            MQS_CLK_DIV_A::DIVIDE_207 => 206,
-            MQS_CLK_DIV_A::DIVIDE_208 => 207,
-            MQS_CLK_DIV_A::DIVIDE_209 => 208,
-            MQS_CLK_DIV_A::DIVIDE_210 => 209,
-            MQS_CLK_DIV_A::DIVIDE_211 => 210,
-            MQS_CLK_DIV_A::DIVIDE_212 => 211,
-            MQS_CLK_DIV_A::DIVIDE_213 => 212,
-            MQS_CLK_DIV_A::DIVIDE_214 => 213,
-            MQS_CLK_DIV_A::DIVIDE_215 => 214,
-            MQS_CLK_DIV_A::DIVIDE_216 => 215,
-            MQS_CLK_DIV_A::DIVIDE_217 => 216,
-            MQS_CLK_DIV_A::DIVIDE_218 => 217,
-            MQS_CLK_DIV_A::DIVIDE_219 => 218,
-            MQS_CLK_DIV_A::DIVIDE_220 => 219,
-            MQS_CLK_DIV_A::DIVIDE_221 => 220,
-            MQS_CLK_DIV_A::DIVIDE_222 => 221,
-            MQS_CLK_DIV_A::DIVIDE_223 => 222,
-            MQS_CLK_DIV_A::DIVIDE_224 => 223,
-            MQS_CLK_DIV_A::DIVIDE_225 => 224,
-            MQS_CLK_DIV_A::DIVIDE_226 => 225,
-            MQS_CLK_DIV_A::DIVIDE_227 => 226,
-            MQS_CLK_DIV_A::DIVIDE_228 => 227,
-            MQS_CLK_DIV_A::DIVIDE_229 => 228,
-            MQS_CLK_DIV_A::DIVIDE_230 => 229,
-            MQS_CLK_DIV_A::DIVIDE_231 => 230,
-            MQS_CLK_DIV_A::DIVIDE_232 => 231,
-            MQS_CLK_DIV_A::DIVIDE_233 => 232,
-            MQS_CLK_DIV_A::DIVIDE_234 => 233,
-            MQS_CLK_DIV_A::DIVIDE_235 => 234,
-            MQS_CLK_DIV_A::DIVIDE_236 => 235,
-            MQS_CLK_DIV_A::DIVIDE_237 => 236,
-            MQS_CLK_DIV_A::DIVIDE_238 => 237,
-            MQS_CLK_DIV_A::DIVIDE_239 => 238,
-            MQS_CLK_DIV_A::DIVIDE_240 => 239,
-            MQS_CLK_DIV_A::DIVIDE_241 => 240,
-            MQS_CLK_DIV_A::DIVIDE_242 => 241,
-            MQS_CLK_DIV_A::DIVIDE_243 => 242,
-            MQS_CLK_DIV_A::DIVIDE_244 => 243,
-            MQS_CLK_DIV_A::DIVIDE_245 => 244,
-            MQS_CLK_DIV_A::DIVIDE_246 => 245,
-            MQS_CLK_DIV_A::DIVIDE_247 => 246,
-            MQS_CLK_DIV_A::DIVIDE_248 => 247,
-            MQS_CLK_DIV_A::DIVIDE_249 => 248,
-            MQS_CLK_DIV_A::DIVIDE_250 => 249,
-            MQS_CLK_DIV_A::DIVIDE_251 => 250,
-            MQS_CLK_DIV_A::DIVIDE_252 => 251,
-            MQS_CLK_DIV_A::DIVIDE_253 => 252,
-            MQS_CLK_DIV_A::DIVIDE_254 => 253,
-            MQS_CLK_DIV_A::DIVIDE_255 => 254,
-            MQS_CLK_DIV_A::DIVIDE_256 => 255,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MQS_CLK_DIV`"]
@@ -4418,17 +4132,14 @@ impl<'a> MQS_CLK_DIV_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MQS_SW_RST_A {
     #[doc = "0: Exit software reset for MQS"]
-    MQS_SW_RST_0,
+    MQS_SW_RST_0 = 0,
     #[doc = "1: Enable software reset for MQS"]
-    MQS_SW_RST_1,
+    MQS_SW_RST_1 = 1,
 }
 impl From<MQS_SW_RST_A> for bool {
     #[inline(always)]
     fn from(variant: MQS_SW_RST_A) -> Self {
-        match variant {
-            MQS_SW_RST_A::MQS_SW_RST_0 => false,
-            MQS_SW_RST_A::MQS_SW_RST_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MQS_SW_RST`"]
@@ -4496,17 +4207,14 @@ impl<'a> MQS_SW_RST_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MQS_EN_A {
     #[doc = "0: Disable MQS"]
-    MQS_EN_0,
+    MQS_EN_0 = 0,
     #[doc = "1: Enable MQS"]
-    MQS_EN_1,
+    MQS_EN_1 = 1,
 }
 impl From<MQS_EN_A> for bool {
     #[inline(always)]
     fn from(variant: MQS_EN_A) -> Self {
-        match variant {
-            MQS_EN_A::MQS_EN_0 => false,
-            MQS_EN_A::MQS_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MQS_EN`"]
@@ -4574,17 +4282,14 @@ impl<'a> MQS_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MQS_OVERSAMPLE_A {
     #[doc = "0: 32"]
-    MQS_OVERSAMPLE_0,
+    MQS_OVERSAMPLE_0 = 0,
     #[doc = "1: 64"]
-    MQS_OVERSAMPLE_1,
+    MQS_OVERSAMPLE_1 = 1,
 }
 impl From<MQS_OVERSAMPLE_A> for bool {
     #[inline(always)]
     fn from(variant: MQS_OVERSAMPLE_A) -> Self {
-        match variant {
-            MQS_OVERSAMPLE_A::MQS_OVERSAMPLE_0 => false,
-            MQS_OVERSAMPLE_A::MQS_OVERSAMPLE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MQS_OVERSAMPLE`"]
@@ -4652,17 +4357,14 @@ impl<'a> MQS_OVERSAMPLE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER1_TMR_CNTS_FREEZE_A {
     #[doc = "0: timer counter work normally"]
-    QTIMER1_TMR_CNTS_FREEZE_0,
+    QTIMER1_TMR_CNTS_FREEZE_0 = 0,
     #[doc = "1: reset counter and ouput flags"]
-    QTIMER1_TMR_CNTS_FREEZE_1,
+    QTIMER1_TMR_CNTS_FREEZE_1 = 1,
 }
 impl From<QTIMER1_TMR_CNTS_FREEZE_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER1_TMR_CNTS_FREEZE_A) -> Self {
-        match variant {
-            QTIMER1_TMR_CNTS_FREEZE_A::QTIMER1_TMR_CNTS_FREEZE_0 => false,
-            QTIMER1_TMR_CNTS_FREEZE_A::QTIMER1_TMR_CNTS_FREEZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER1_TMR_CNTS_FREEZE`"]
@@ -4730,17 +4432,14 @@ impl<'a> QTIMER1_TMR_CNTS_FREEZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER2_TMR_CNTS_FREEZE_A {
     #[doc = "0: timer counter work normally"]
-    QTIMER2_TMR_CNTS_FREEZE_0,
+    QTIMER2_TMR_CNTS_FREEZE_0 = 0,
     #[doc = "1: reset counter and ouput flags"]
-    QTIMER2_TMR_CNTS_FREEZE_1,
+    QTIMER2_TMR_CNTS_FREEZE_1 = 1,
 }
 impl From<QTIMER2_TMR_CNTS_FREEZE_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER2_TMR_CNTS_FREEZE_A) -> Self {
-        match variant {
-            QTIMER2_TMR_CNTS_FREEZE_A::QTIMER2_TMR_CNTS_FREEZE_0 => false,
-            QTIMER2_TMR_CNTS_FREEZE_A::QTIMER2_TMR_CNTS_FREEZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER2_TMR_CNTS_FREEZE`"]
@@ -4808,17 +4507,14 @@ impl<'a> QTIMER2_TMR_CNTS_FREEZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER3_TMR_CNTS_FREEZE_A {
     #[doc = "0: timer counter work normally"]
-    QTIMER3_TMR_CNTS_FREEZE_0,
+    QTIMER3_TMR_CNTS_FREEZE_0 = 0,
     #[doc = "1: reset counter and ouput flags"]
-    QTIMER3_TMR_CNTS_FREEZE_1,
+    QTIMER3_TMR_CNTS_FREEZE_1 = 1,
 }
 impl From<QTIMER3_TMR_CNTS_FREEZE_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER3_TMR_CNTS_FREEZE_A) -> Self {
-        match variant {
-            QTIMER3_TMR_CNTS_FREEZE_A::QTIMER3_TMR_CNTS_FREEZE_0 => false,
-            QTIMER3_TMR_CNTS_FREEZE_A::QTIMER3_TMR_CNTS_FREEZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER3_TMR_CNTS_FREEZE`"]
@@ -4886,17 +4582,14 @@ impl<'a> QTIMER3_TMR_CNTS_FREEZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER4_TMR_CNTS_FREEZE_A {
     #[doc = "0: timer counter work normally"]
-    QTIMER4_TMR_CNTS_FREEZE_0,
+    QTIMER4_TMR_CNTS_FREEZE_0 = 0,
     #[doc = "1: reset counter and ouput flags"]
-    QTIMER4_TMR_CNTS_FREEZE_1,
+    QTIMER4_TMR_CNTS_FREEZE_1 = 1,
 }
 impl From<QTIMER4_TMR_CNTS_FREEZE_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER4_TMR_CNTS_FREEZE_A) -> Self {
-        match variant {
-            QTIMER4_TMR_CNTS_FREEZE_A::QTIMER4_TMR_CNTS_FREEZE_0 => false,
-            QTIMER4_TMR_CNTS_FREEZE_A::QTIMER4_TMR_CNTS_FREEZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER4_TMR_CNTS_FREEZE`"]

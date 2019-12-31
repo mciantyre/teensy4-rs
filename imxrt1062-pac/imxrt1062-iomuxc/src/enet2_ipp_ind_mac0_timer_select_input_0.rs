@@ -14,17 +14,14 @@ impl crate::ResetValue for super::ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_AD_B1_01 for Mode: ALT8"]
-    GPIO_AD_B1_01_ALT8,
+    GPIO_AD_B1_01_ALT8 = 0,
     #[doc = "1: Selecting Pad: GPIO_B0_03 for Mode: ALT8"]
-    GPIO_B0_03_ALT8,
+    GPIO_B0_03_ALT8 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_AD_B1_01_ALT8 => false,
-            DAISY_A::GPIO_B0_03_ALT8 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

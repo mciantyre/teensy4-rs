@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR7 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C1_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPI2C1_STOP_REQ_0,
+    LPI2C1_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPI2C1_STOP_REQ_1,
+    LPI2C1_STOP_REQ_1 = 1,
 }
 impl From<LPI2C1_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C1_STOP_REQ_A) -> Self {
-        match variant {
-            LPI2C1_STOP_REQ_A::LPI2C1_STOP_REQ_0 => false,
-            LPI2C1_STOP_REQ_A::LPI2C1_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C1_STOP_REQ`"]
@@ -92,17 +89,14 @@ impl<'a> LPI2C1_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPI2C2_STOP_REQ_0,
+    LPI2C2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPI2C2_STOP_REQ_1,
+    LPI2C2_STOP_REQ_1 = 1,
 }
 impl From<LPI2C2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C2_STOP_REQ_A) -> Self {
-        match variant {
-            LPI2C2_STOP_REQ_A::LPI2C2_STOP_REQ_0 => false,
-            LPI2C2_STOP_REQ_A::LPI2C2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C2_STOP_REQ`"]
@@ -170,17 +164,14 @@ impl<'a> LPI2C2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C3_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPI2C3_STOP_REQ_0,
+    LPI2C3_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPI2C3_STOP_REQ_1,
+    LPI2C3_STOP_REQ_1 = 1,
 }
 impl From<LPI2C3_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C3_STOP_REQ_A) -> Self {
-        match variant {
-            LPI2C3_STOP_REQ_A::LPI2C3_STOP_REQ_0 => false,
-            LPI2C3_STOP_REQ_A::LPI2C3_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C3_STOP_REQ`"]
@@ -248,17 +239,14 @@ impl<'a> LPI2C3_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C4_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPI2C4_STOP_REQ_0,
+    LPI2C4_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPI2C4_STOP_REQ_1,
+    LPI2C4_STOP_REQ_1 = 1,
 }
 impl From<LPI2C4_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C4_STOP_REQ_A) -> Self {
-        match variant {
-            LPI2C4_STOP_REQ_A::LPI2C4_STOP_REQ_0 => false,
-            LPI2C4_STOP_REQ_A::LPI2C4_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C4_STOP_REQ`"]
@@ -326,17 +314,14 @@ impl<'a> LPI2C4_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI1_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPSPI1_STOP_REQ_0,
+    LPSPI1_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPSPI1_STOP_REQ_1,
+    LPSPI1_STOP_REQ_1 = 1,
 }
 impl From<LPSPI1_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI1_STOP_REQ_A) -> Self {
-        match variant {
-            LPSPI1_STOP_REQ_A::LPSPI1_STOP_REQ_0 => false,
-            LPSPI1_STOP_REQ_A::LPSPI1_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI1_STOP_REQ`"]
@@ -404,17 +389,14 @@ impl<'a> LPSPI1_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPSPI2_STOP_REQ_0,
+    LPSPI2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPSPI2_STOP_REQ_1,
+    LPSPI2_STOP_REQ_1 = 1,
 }
 impl From<LPSPI2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI2_STOP_REQ_A) -> Self {
-        match variant {
-            LPSPI2_STOP_REQ_A::LPSPI2_STOP_REQ_0 => false,
-            LPSPI2_STOP_REQ_A::LPSPI2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI2_STOP_REQ`"]
@@ -482,17 +464,14 @@ impl<'a> LPSPI2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI3_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPSPI3_STOP_REQ_0,
+    LPSPI3_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPSPI3_STOP_REQ_1,
+    LPSPI3_STOP_REQ_1 = 1,
 }
 impl From<LPSPI3_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI3_STOP_REQ_A) -> Self {
-        match variant {
-            LPSPI3_STOP_REQ_A::LPSPI3_STOP_REQ_0 => false,
-            LPSPI3_STOP_REQ_A::LPSPI3_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI3_STOP_REQ`"]
@@ -560,17 +539,14 @@ impl<'a> LPSPI3_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI4_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPSPI4_STOP_REQ_0,
+    LPSPI4_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPSPI4_STOP_REQ_1,
+    LPSPI4_STOP_REQ_1 = 1,
 }
 impl From<LPSPI4_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI4_STOP_REQ_A) -> Self {
-        match variant {
-            LPSPI4_STOP_REQ_A::LPSPI4_STOP_REQ_0 => false,
-            LPSPI4_STOP_REQ_A::LPSPI4_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI4_STOP_REQ`"]
@@ -638,17 +614,14 @@ impl<'a> LPSPI4_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART1_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART1_STOP_REQ_0,
+    LPUART1_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART1_STOP_REQ_1,
+    LPUART1_STOP_REQ_1 = 1,
 }
 impl From<LPUART1_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART1_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART1_STOP_REQ_A::LPUART1_STOP_REQ_0 => false,
-            LPUART1_STOP_REQ_A::LPUART1_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART1_STOP_REQ`"]
@@ -716,17 +689,14 @@ impl<'a> LPUART1_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART2_STOP_REQ_0,
+    LPUART2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART2_STOP_REQ_1,
+    LPUART2_STOP_REQ_1 = 1,
 }
 impl From<LPUART2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART2_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART2_STOP_REQ_A::LPUART2_STOP_REQ_0 => false,
-            LPUART2_STOP_REQ_A::LPUART2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART2_STOP_REQ`"]
@@ -794,17 +764,14 @@ impl<'a> LPUART2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART3_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART3_STOP_REQ_0,
+    LPUART3_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART3_STOP_REQ_1,
+    LPUART3_STOP_REQ_1 = 1,
 }
 impl From<LPUART3_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART3_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART3_STOP_REQ_A::LPUART3_STOP_REQ_0 => false,
-            LPUART3_STOP_REQ_A::LPUART3_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART3_STOP_REQ`"]
@@ -872,17 +839,14 @@ impl<'a> LPUART3_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART4_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART4_STOP_REQ_0,
+    LPUART4_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART4_STOP_REQ_1,
+    LPUART4_STOP_REQ_1 = 1,
 }
 impl From<LPUART4_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART4_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART4_STOP_REQ_A::LPUART4_STOP_REQ_0 => false,
-            LPUART4_STOP_REQ_A::LPUART4_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART4_STOP_REQ`"]
@@ -950,17 +914,14 @@ impl<'a> LPUART4_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART5_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART5_STOP_REQ_0,
+    LPUART5_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART5_STOP_REQ_1,
+    LPUART5_STOP_REQ_1 = 1,
 }
 impl From<LPUART5_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART5_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART5_STOP_REQ_A::LPUART5_STOP_REQ_0 => false,
-            LPUART5_STOP_REQ_A::LPUART5_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART5_STOP_REQ`"]
@@ -1028,17 +989,14 @@ impl<'a> LPUART5_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART6_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART6_STOP_REQ_0,
+    LPUART6_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART6_STOP_REQ_1,
+    LPUART6_STOP_REQ_1 = 1,
 }
 impl From<LPUART6_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART6_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART6_STOP_REQ_A::LPUART6_STOP_REQ_0 => false,
-            LPUART6_STOP_REQ_A::LPUART6_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART6_STOP_REQ`"]
@@ -1106,17 +1064,14 @@ impl<'a> LPUART6_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART7_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART7_STOP_REQ_0,
+    LPUART7_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART7_STOP_REQ_1,
+    LPUART7_STOP_REQ_1 = 1,
 }
 impl From<LPUART7_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART7_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART7_STOP_REQ_A::LPUART7_STOP_REQ_0 => false,
-            LPUART7_STOP_REQ_A::LPUART7_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART7_STOP_REQ`"]
@@ -1184,17 +1139,14 @@ impl<'a> LPUART7_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART8_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    LPUART8_STOP_REQ_0,
+    LPUART8_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    LPUART8_STOP_REQ_1,
+    LPUART8_STOP_REQ_1 = 1,
 }
 impl From<LPUART8_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART8_STOP_REQ_A) -> Self {
-        match variant {
-            LPUART8_STOP_REQ_A::LPUART8_STOP_REQ_0 => false,
-            LPUART8_STOP_REQ_A::LPUART8_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART8_STOP_REQ`"]
@@ -1262,17 +1214,14 @@ impl<'a> LPUART8_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C1_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPI2C1_STOP_ACK_0,
+    LPI2C1_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted (the module is in Stop mode)"]
-    LPI2C1_STOP_ACK_1,
+    LPI2C1_STOP_ACK_1 = 1,
 }
 impl From<LPI2C1_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C1_STOP_ACK_A) -> Self {
-        match variant {
-            LPI2C1_STOP_ACK_A::LPI2C1_STOP_ACK_0 => false,
-            LPI2C1_STOP_ACK_A::LPI2C1_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C1_STOP_ACK`"]
@@ -1301,17 +1250,14 @@ impl LPI2C1_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C2_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPI2C2_STOP_ACK_0,
+    LPI2C2_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPI2C2_STOP_ACK_1,
+    LPI2C2_STOP_ACK_1 = 1,
 }
 impl From<LPI2C2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C2_STOP_ACK_A) -> Self {
-        match variant {
-            LPI2C2_STOP_ACK_A::LPI2C2_STOP_ACK_0 => false,
-            LPI2C2_STOP_ACK_A::LPI2C2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C2_STOP_ACK`"]
@@ -1340,17 +1286,14 @@ impl LPI2C2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C3_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPI2C3_STOP_ACK_0,
+    LPI2C3_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPI2C3_STOP_ACK_1,
+    LPI2C3_STOP_ACK_1 = 1,
 }
 impl From<LPI2C3_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C3_STOP_ACK_A) -> Self {
-        match variant {
-            LPI2C3_STOP_ACK_A::LPI2C3_STOP_ACK_0 => false,
-            LPI2C3_STOP_ACK_A::LPI2C3_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C3_STOP_ACK`"]
@@ -1379,17 +1322,14 @@ impl LPI2C3_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPI2C4_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPI2C4_STOP_ACK_0,
+    LPI2C4_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPI2C4_STOP_ACK_1,
+    LPI2C4_STOP_ACK_1 = 1,
 }
 impl From<LPI2C4_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPI2C4_STOP_ACK_A) -> Self {
-        match variant {
-            LPI2C4_STOP_ACK_A::LPI2C4_STOP_ACK_0 => false,
-            LPI2C4_STOP_ACK_A::LPI2C4_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPI2C4_STOP_ACK`"]
@@ -1418,17 +1358,14 @@ impl LPI2C4_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI1_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPSPI1_STOP_ACK_0,
+    LPSPI1_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPSPI1_STOP_ACK_1,
+    LPSPI1_STOP_ACK_1 = 1,
 }
 impl From<LPSPI1_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI1_STOP_ACK_A) -> Self {
-        match variant {
-            LPSPI1_STOP_ACK_A::LPSPI1_STOP_ACK_0 => false,
-            LPSPI1_STOP_ACK_A::LPSPI1_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI1_STOP_ACK`"]
@@ -1457,17 +1394,14 @@ impl LPSPI1_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI2_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPSPI2_STOP_ACK_0,
+    LPSPI2_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPSPI2_STOP_ACK_1,
+    LPSPI2_STOP_ACK_1 = 1,
 }
 impl From<LPSPI2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI2_STOP_ACK_A) -> Self {
-        match variant {
-            LPSPI2_STOP_ACK_A::LPSPI2_STOP_ACK_0 => false,
-            LPSPI2_STOP_ACK_A::LPSPI2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI2_STOP_ACK`"]
@@ -1496,17 +1430,14 @@ impl LPSPI2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI3_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPSPI3_STOP_ACK_0,
+    LPSPI3_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPSPI3_STOP_ACK_1,
+    LPSPI3_STOP_ACK_1 = 1,
 }
 impl From<LPSPI3_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI3_STOP_ACK_A) -> Self {
-        match variant {
-            LPSPI3_STOP_ACK_A::LPSPI3_STOP_ACK_0 => false,
-            LPSPI3_STOP_ACK_A::LPSPI3_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI3_STOP_ACK`"]
@@ -1535,17 +1466,14 @@ impl LPSPI3_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPSPI4_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPSPI4_STOP_ACK_0,
+    LPSPI4_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPSPI4_STOP_ACK_1,
+    LPSPI4_STOP_ACK_1 = 1,
 }
 impl From<LPSPI4_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPSPI4_STOP_ACK_A) -> Self {
-        match variant {
-            LPSPI4_STOP_ACK_A::LPSPI4_STOP_ACK_0 => false,
-            LPSPI4_STOP_ACK_A::LPSPI4_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPSPI4_STOP_ACK`"]
@@ -1574,17 +1502,14 @@ impl LPSPI4_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART1_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART1_STOP_ACK_0,
+    LPUART1_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART1_STOP_ACK_1,
+    LPUART1_STOP_ACK_1 = 1,
 }
 impl From<LPUART1_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART1_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART1_STOP_ACK_A::LPUART1_STOP_ACK_0 => false,
-            LPUART1_STOP_ACK_A::LPUART1_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART1_STOP_ACK`"]
@@ -1613,17 +1538,14 @@ impl LPUART1_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART2_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART2_STOP_ACK_0,
+    LPUART2_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART2_STOP_ACK_1,
+    LPUART2_STOP_ACK_1 = 1,
 }
 impl From<LPUART2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART2_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART2_STOP_ACK_A::LPUART2_STOP_ACK_0 => false,
-            LPUART2_STOP_ACK_A::LPUART2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART2_STOP_ACK`"]
@@ -1652,17 +1574,14 @@ impl LPUART2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART3_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART3_STOP_ACK_0,
+    LPUART3_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART3_STOP_ACK_1,
+    LPUART3_STOP_ACK_1 = 1,
 }
 impl From<LPUART3_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART3_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART3_STOP_ACK_A::LPUART3_STOP_ACK_0 => false,
-            LPUART3_STOP_ACK_A::LPUART3_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART3_STOP_ACK`"]
@@ -1691,17 +1610,14 @@ impl LPUART3_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART4_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART4_STOP_ACK_0,
+    LPUART4_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART4_STOP_ACK_1,
+    LPUART4_STOP_ACK_1 = 1,
 }
 impl From<LPUART4_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART4_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART4_STOP_ACK_A::LPUART4_STOP_ACK_0 => false,
-            LPUART4_STOP_ACK_A::LPUART4_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART4_STOP_ACK`"]
@@ -1730,17 +1646,14 @@ impl LPUART4_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART5_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART5_STOP_ACK_0,
+    LPUART5_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART5_STOP_ACK_1,
+    LPUART5_STOP_ACK_1 = 1,
 }
 impl From<LPUART5_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART5_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART5_STOP_ACK_A::LPUART5_STOP_ACK_0 => false,
-            LPUART5_STOP_ACK_A::LPUART5_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART5_STOP_ACK`"]
@@ -1769,17 +1682,14 @@ impl LPUART5_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART6_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART6_STOP_ACK_0,
+    LPUART6_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART6_STOP_ACK_1,
+    LPUART6_STOP_ACK_1 = 1,
 }
 impl From<LPUART6_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART6_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART6_STOP_ACK_A::LPUART6_STOP_ACK_0 => false,
-            LPUART6_STOP_ACK_A::LPUART6_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART6_STOP_ACK`"]
@@ -1808,17 +1718,14 @@ impl LPUART6_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART7_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART7_STOP_ACK_0,
+    LPUART7_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted"]
-    LPUART7_STOP_ACK_1,
+    LPUART7_STOP_ACK_1 = 1,
 }
 impl From<LPUART7_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART7_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART7_STOP_ACK_A::LPUART7_STOP_ACK_0 => false,
-            LPUART7_STOP_ACK_A::LPUART7_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART7_STOP_ACK`"]
@@ -1847,17 +1754,14 @@ impl LPUART7_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LPUART8_STOP_ACK_A {
     #[doc = "0: stop acknowledge is not asserted"]
-    LPUART8_STOP_ACK_0,
+    LPUART8_STOP_ACK_0 = 0,
     #[doc = "1: stop acknowledge is asserted (the module is in Stop mode)"]
-    LPUART8_STOP_ACK_1,
+    LPUART8_STOP_ACK_1 = 1,
 }
 impl From<LPUART8_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: LPUART8_STOP_ACK_A) -> Self {
-        match variant {
-            LPUART8_STOP_ACK_A::LPUART8_STOP_ACK_0 => false,
-            LPUART8_STOP_ACK_A::LPUART8_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LPUART8_STOP_ACK`"]

@@ -12,37 +12,29 @@ impl crate::ResetValue for super::CACRR {
 }
 #[doc = "Divider for ARM clock root\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ARM_PODF_A {
     #[doc = "0: divide by 1"]
-    ARM_PODF_0,
+    ARM_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    ARM_PODF_1,
+    ARM_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    ARM_PODF_2,
+    ARM_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    ARM_PODF_3,
+    ARM_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    ARM_PODF_4,
+    ARM_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    ARM_PODF_5,
+    ARM_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    ARM_PODF_6,
+    ARM_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    ARM_PODF_7,
+    ARM_PODF_7 = 7,
 }
 impl From<ARM_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: ARM_PODF_A) -> Self {
-        match variant {
-            ARM_PODF_A::ARM_PODF_0 => 0,
-            ARM_PODF_A::ARM_PODF_1 => 1,
-            ARM_PODF_A::ARM_PODF_2 => 2,
-            ARM_PODF_A::ARM_PODF_3 => 3,
-            ARM_PODF_A::ARM_PODF_4 => 4,
-            ARM_PODF_A::ARM_PODF_5 => 5,
-            ARM_PODF_A::ARM_PODF_6 => 6,
-            ARM_PODF_A::ARM_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ARM_PODF`"]

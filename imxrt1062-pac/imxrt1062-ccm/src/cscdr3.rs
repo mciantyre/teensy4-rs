@@ -12,25 +12,21 @@ impl crate::ResetValue for super::CSCDR3 {
 }
 #[doc = "Selector for csi_mclk multiplexer\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CSI_CLK_SEL_A {
     #[doc = "0: derive clock from osc_clk (24M)"]
-    CSI_CLK_SEL_0,
+    CSI_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL2 PFD2"]
-    CSI_CLK_SEL_1,
+    CSI_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from pll3_120M"]
-    CSI_CLK_SEL_2,
+    CSI_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from PLL3 PFD1"]
-    CSI_CLK_SEL_3,
+    CSI_CLK_SEL_3 = 3,
 }
 impl From<CSI_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: CSI_CLK_SEL_A) -> Self {
-        match variant {
-            CSI_CLK_SEL_A::CSI_CLK_SEL_0 => 0,
-            CSI_CLK_SEL_A::CSI_CLK_SEL_1 => 1,
-            CSI_CLK_SEL_A::CSI_CLK_SEL_2 => 2,
-            CSI_CLK_SEL_A::CSI_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CSI_CLK_SEL`"]
@@ -109,37 +105,29 @@ impl<'a> CSI_CLK_SEL_W<'a> {
 }
 #[doc = "Post divider for csi_mclk. Divider should be updated when output clock is gated.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CSI_PODF_A {
     #[doc = "0: divide by 1"]
-    CSI_PODF_0,
+    CSI_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    CSI_PODF_1,
+    CSI_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    CSI_PODF_2,
+    CSI_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    CSI_PODF_3,
+    CSI_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    CSI_PODF_4,
+    CSI_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    CSI_PODF_5,
+    CSI_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    CSI_PODF_6,
+    CSI_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    CSI_PODF_7,
+    CSI_PODF_7 = 7,
 }
 impl From<CSI_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: CSI_PODF_A) -> Self {
-        match variant {
-            CSI_PODF_A::CSI_PODF_0 => 0,
-            CSI_PODF_A::CSI_PODF_1 => 1,
-            CSI_PODF_A::CSI_PODF_2 => 2,
-            CSI_PODF_A::CSI_PODF_3 => 3,
-            CSI_PODF_A::CSI_PODF_4 => 4,
-            CSI_PODF_A::CSI_PODF_5 => 5,
-            CSI_PODF_A::CSI_PODF_6 => 6,
-            CSI_PODF_A::CSI_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CSI_PODF`"]

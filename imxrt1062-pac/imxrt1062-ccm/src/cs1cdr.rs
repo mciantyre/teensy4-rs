@@ -12,205 +12,141 @@ impl crate::ResetValue for super::CS1CDR {
 }
 #[doc = "Divider for sai1 clock podf. The input clock to this divider should be lower than 300Mhz, the predivider can be used to achieve this.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI1_CLK_PODF_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
     #[doc = "8: Divide by 9"]
-    DIVIDE_9,
+    DIVIDE_9 = 8,
     #[doc = "9: Divide by 10"]
-    DIVIDE_10,
+    DIVIDE_10 = 9,
     #[doc = "10: Divide by 11"]
-    DIVIDE_11,
+    DIVIDE_11 = 10,
     #[doc = "11: Divide by 12"]
-    DIVIDE_12,
+    DIVIDE_12 = 11,
     #[doc = "12: Divide by 13"]
-    DIVIDE_13,
+    DIVIDE_13 = 12,
     #[doc = "13: Divide by 14"]
-    DIVIDE_14,
+    DIVIDE_14 = 13,
     #[doc = "14: Divide by 15"]
-    DIVIDE_15,
+    DIVIDE_15 = 14,
     #[doc = "15: Divide by 16"]
-    DIVIDE_16,
+    DIVIDE_16 = 15,
     #[doc = "16: Divide by 17"]
-    DIVIDE_17,
+    DIVIDE_17 = 16,
     #[doc = "17: Divide by 18"]
-    DIVIDE_18,
+    DIVIDE_18 = 17,
     #[doc = "18: Divide by 19"]
-    DIVIDE_19,
+    DIVIDE_19 = 18,
     #[doc = "19: Divide by 20"]
-    DIVIDE_20,
+    DIVIDE_20 = 19,
     #[doc = "20: Divide by 21"]
-    DIVIDE_21,
+    DIVIDE_21 = 20,
     #[doc = "21: Divide by 22"]
-    DIVIDE_22,
+    DIVIDE_22 = 21,
     #[doc = "22: Divide by 23"]
-    DIVIDE_23,
+    DIVIDE_23 = 22,
     #[doc = "23: Divide by 24"]
-    DIVIDE_24,
+    DIVIDE_24 = 23,
     #[doc = "24: Divide by 25"]
-    DIVIDE_25,
+    DIVIDE_25 = 24,
     #[doc = "25: Divide by 26"]
-    DIVIDE_26,
+    DIVIDE_26 = 25,
     #[doc = "26: Divide by 27"]
-    DIVIDE_27,
+    DIVIDE_27 = 26,
     #[doc = "27: Divide by 28"]
-    DIVIDE_28,
+    DIVIDE_28 = 27,
     #[doc = "28: Divide by 29"]
-    DIVIDE_29,
+    DIVIDE_29 = 28,
     #[doc = "29: Divide by 30"]
-    DIVIDE_30,
+    DIVIDE_30 = 29,
     #[doc = "30: Divide by 31"]
-    DIVIDE_31,
+    DIVIDE_31 = 30,
     #[doc = "31: Divide by 32"]
-    DIVIDE_32,
+    DIVIDE_32 = 31,
     #[doc = "32: Divide by 33"]
-    DIVIDE_33,
+    DIVIDE_33 = 32,
     #[doc = "33: Divide by 34"]
-    DIVIDE_34,
+    DIVIDE_34 = 33,
     #[doc = "34: Divide by 35"]
-    DIVIDE_35,
+    DIVIDE_35 = 34,
     #[doc = "35: Divide by 36"]
-    DIVIDE_36,
+    DIVIDE_36 = 35,
     #[doc = "36: Divide by 37"]
-    DIVIDE_37,
+    DIVIDE_37 = 36,
     #[doc = "37: Divide by 38"]
-    DIVIDE_38,
+    DIVIDE_38 = 37,
     #[doc = "38: Divide by 39"]
-    DIVIDE_39,
+    DIVIDE_39 = 38,
     #[doc = "39: Divide by 40"]
-    DIVIDE_40,
+    DIVIDE_40 = 39,
     #[doc = "40: Divide by 41"]
-    DIVIDE_41,
+    DIVIDE_41 = 40,
     #[doc = "41: Divide by 42"]
-    DIVIDE_42,
+    DIVIDE_42 = 41,
     #[doc = "42: Divide by 43"]
-    DIVIDE_43,
+    DIVIDE_43 = 42,
     #[doc = "43: Divide by 44"]
-    DIVIDE_44,
+    DIVIDE_44 = 43,
     #[doc = "44: Divide by 45"]
-    DIVIDE_45,
+    DIVIDE_45 = 44,
     #[doc = "45: Divide by 46"]
-    DIVIDE_46,
+    DIVIDE_46 = 45,
     #[doc = "46: Divide by 47"]
-    DIVIDE_47,
+    DIVIDE_47 = 46,
     #[doc = "47: Divide by 48"]
-    DIVIDE_48,
+    DIVIDE_48 = 47,
     #[doc = "48: Divide by 49"]
-    DIVIDE_49,
+    DIVIDE_49 = 48,
     #[doc = "49: Divide by 50"]
-    DIVIDE_50,
+    DIVIDE_50 = 49,
     #[doc = "50: Divide by 51"]
-    DIVIDE_51,
+    DIVIDE_51 = 50,
     #[doc = "51: Divide by 52"]
-    DIVIDE_52,
+    DIVIDE_52 = 51,
     #[doc = "52: Divide by 53"]
-    DIVIDE_53,
+    DIVIDE_53 = 52,
     #[doc = "53: Divide by 54"]
-    DIVIDE_54,
+    DIVIDE_54 = 53,
     #[doc = "54: Divide by 55"]
-    DIVIDE_55,
+    DIVIDE_55 = 54,
     #[doc = "55: Divide by 56"]
-    DIVIDE_56,
+    DIVIDE_56 = 55,
     #[doc = "56: Divide by 57"]
-    DIVIDE_57,
+    DIVIDE_57 = 56,
     #[doc = "57: Divide by 58"]
-    DIVIDE_58,
+    DIVIDE_58 = 57,
     #[doc = "58: Divide by 59"]
-    DIVIDE_59,
+    DIVIDE_59 = 58,
     #[doc = "59: Divide by 60"]
-    DIVIDE_60,
+    DIVIDE_60 = 59,
     #[doc = "60: Divide by 61"]
-    DIVIDE_61,
+    DIVIDE_61 = 60,
     #[doc = "61: Divide by 62"]
-    DIVIDE_62,
+    DIVIDE_62 = 61,
     #[doc = "62: Divide by 63"]
-    DIVIDE_63,
+    DIVIDE_63 = 62,
     #[doc = "63: Divide by 64"]
-    DIVIDE_64,
+    DIVIDE_64 = 63,
 }
 impl From<SAI1_CLK_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI1_CLK_PODF_A) -> Self {
-        match variant {
-            SAI1_CLK_PODF_A::DIVIDE_1 => 0,
-            SAI1_CLK_PODF_A::DIVIDE_2 => 1,
-            SAI1_CLK_PODF_A::DIVIDE_3 => 2,
-            SAI1_CLK_PODF_A::DIVIDE_4 => 3,
-            SAI1_CLK_PODF_A::DIVIDE_5 => 4,
-            SAI1_CLK_PODF_A::DIVIDE_6 => 5,
-            SAI1_CLK_PODF_A::DIVIDE_7 => 6,
-            SAI1_CLK_PODF_A::DIVIDE_8 => 7,
-            SAI1_CLK_PODF_A::DIVIDE_9 => 8,
-            SAI1_CLK_PODF_A::DIVIDE_10 => 9,
-            SAI1_CLK_PODF_A::DIVIDE_11 => 10,
-            SAI1_CLK_PODF_A::DIVIDE_12 => 11,
-            SAI1_CLK_PODF_A::DIVIDE_13 => 12,
-            SAI1_CLK_PODF_A::DIVIDE_14 => 13,
-            SAI1_CLK_PODF_A::DIVIDE_15 => 14,
-            SAI1_CLK_PODF_A::DIVIDE_16 => 15,
-            SAI1_CLK_PODF_A::DIVIDE_17 => 16,
-            SAI1_CLK_PODF_A::DIVIDE_18 => 17,
-            SAI1_CLK_PODF_A::DIVIDE_19 => 18,
-            SAI1_CLK_PODF_A::DIVIDE_20 => 19,
-            SAI1_CLK_PODF_A::DIVIDE_21 => 20,
-            SAI1_CLK_PODF_A::DIVIDE_22 => 21,
-            SAI1_CLK_PODF_A::DIVIDE_23 => 22,
-            SAI1_CLK_PODF_A::DIVIDE_24 => 23,
-            SAI1_CLK_PODF_A::DIVIDE_25 => 24,
-            SAI1_CLK_PODF_A::DIVIDE_26 => 25,
-            SAI1_CLK_PODF_A::DIVIDE_27 => 26,
-            SAI1_CLK_PODF_A::DIVIDE_28 => 27,
-            SAI1_CLK_PODF_A::DIVIDE_29 => 28,
-            SAI1_CLK_PODF_A::DIVIDE_30 => 29,
-            SAI1_CLK_PODF_A::DIVIDE_31 => 30,
-            SAI1_CLK_PODF_A::DIVIDE_32 => 31,
-            SAI1_CLK_PODF_A::DIVIDE_33 => 32,
-            SAI1_CLK_PODF_A::DIVIDE_34 => 33,
-            SAI1_CLK_PODF_A::DIVIDE_35 => 34,
-            SAI1_CLK_PODF_A::DIVIDE_36 => 35,
-            SAI1_CLK_PODF_A::DIVIDE_37 => 36,
-            SAI1_CLK_PODF_A::DIVIDE_38 => 37,
-            SAI1_CLK_PODF_A::DIVIDE_39 => 38,
-            SAI1_CLK_PODF_A::DIVIDE_40 => 39,
-            SAI1_CLK_PODF_A::DIVIDE_41 => 40,
-            SAI1_CLK_PODF_A::DIVIDE_42 => 41,
-            SAI1_CLK_PODF_A::DIVIDE_43 => 42,
-            SAI1_CLK_PODF_A::DIVIDE_44 => 43,
-            SAI1_CLK_PODF_A::DIVIDE_45 => 44,
-            SAI1_CLK_PODF_A::DIVIDE_46 => 45,
-            SAI1_CLK_PODF_A::DIVIDE_47 => 46,
-            SAI1_CLK_PODF_A::DIVIDE_48 => 47,
-            SAI1_CLK_PODF_A::DIVIDE_49 => 48,
-            SAI1_CLK_PODF_A::DIVIDE_50 => 49,
-            SAI1_CLK_PODF_A::DIVIDE_51 => 50,
-            SAI1_CLK_PODF_A::DIVIDE_52 => 51,
-            SAI1_CLK_PODF_A::DIVIDE_53 => 52,
-            SAI1_CLK_PODF_A::DIVIDE_54 => 53,
-            SAI1_CLK_PODF_A::DIVIDE_55 => 54,
-            SAI1_CLK_PODF_A::DIVIDE_56 => 55,
-            SAI1_CLK_PODF_A::DIVIDE_57 => 56,
-            SAI1_CLK_PODF_A::DIVIDE_58 => 57,
-            SAI1_CLK_PODF_A::DIVIDE_59 => 58,
-            SAI1_CLK_PODF_A::DIVIDE_60 => 59,
-            SAI1_CLK_PODF_A::DIVIDE_61 => 60,
-            SAI1_CLK_PODF_A::DIVIDE_62 => 61,
-            SAI1_CLK_PODF_A::DIVIDE_63 => 62,
-            SAI1_CLK_PODF_A::DIVIDE_64 => 63,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI1_CLK_PODF`"]
@@ -949,37 +885,29 @@ impl<'a> SAI1_CLK_PODF_W<'a> {
 }
 #[doc = "Divider for sai1 clock pred.\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI1_CLK_PRED_A {
     #[doc = "0: divide by 1"]
-    SAI1_CLK_PRED_0,
+    SAI1_CLK_PRED_0 = 0,
     #[doc = "1: divide by 2"]
-    SAI1_CLK_PRED_1,
+    SAI1_CLK_PRED_1 = 1,
     #[doc = "2: divide by 3"]
-    SAI1_CLK_PRED_2,
+    SAI1_CLK_PRED_2 = 2,
     #[doc = "3: divide by 4"]
-    SAI1_CLK_PRED_3,
+    SAI1_CLK_PRED_3 = 3,
     #[doc = "4: divide by 5"]
-    SAI1_CLK_PRED_4,
+    SAI1_CLK_PRED_4 = 4,
     #[doc = "5: divide by 6"]
-    SAI1_CLK_PRED_5,
+    SAI1_CLK_PRED_5 = 5,
     #[doc = "6: divide by 7"]
-    SAI1_CLK_PRED_6,
+    SAI1_CLK_PRED_6 = 6,
     #[doc = "7: divide by 8"]
-    SAI1_CLK_PRED_7,
+    SAI1_CLK_PRED_7 = 7,
 }
 impl From<SAI1_CLK_PRED_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI1_CLK_PRED_A) -> Self {
-        match variant {
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_0 => 0,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_1 => 1,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_2 => 2,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_3 => 3,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_4 => 4,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_5 => 5,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_6 => 6,
-            SAI1_CLK_PRED_A::SAI1_CLK_PRED_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI1_CLK_PRED`"]
@@ -1102,37 +1030,29 @@ impl<'a> SAI1_CLK_PRED_W<'a> {
 }
 #[doc = "Divider for flexio2/flexio3 clock.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXIO2_CLK_PRED_A {
     #[doc = "0: divide by 1"]
-    FLEXIO2_CLK_PRED_0,
+    FLEXIO2_CLK_PRED_0 = 0,
     #[doc = "1: divide by 2"]
-    FLEXIO2_CLK_PRED_1,
+    FLEXIO2_CLK_PRED_1 = 1,
     #[doc = "2: divide by 3"]
-    FLEXIO2_CLK_PRED_2,
+    FLEXIO2_CLK_PRED_2 = 2,
     #[doc = "3: divide by 4"]
-    FLEXIO2_CLK_PRED_3,
+    FLEXIO2_CLK_PRED_3 = 3,
     #[doc = "4: divide by 5"]
-    FLEXIO2_CLK_PRED_4,
+    FLEXIO2_CLK_PRED_4 = 4,
     #[doc = "5: divide by 6"]
-    FLEXIO2_CLK_PRED_5,
+    FLEXIO2_CLK_PRED_5 = 5,
     #[doc = "6: divide by 7"]
-    FLEXIO2_CLK_PRED_6,
+    FLEXIO2_CLK_PRED_6 = 6,
     #[doc = "7: divide by 8"]
-    FLEXIO2_CLK_PRED_7,
+    FLEXIO2_CLK_PRED_7 = 7,
 }
 impl From<FLEXIO2_CLK_PRED_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXIO2_CLK_PRED_A) -> Self {
-        match variant {
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_0 => 0,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_1 => 1,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_2 => 2,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_3 => 3,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_4 => 4,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_5 => 5,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_6 => 6,
-            FLEXIO2_CLK_PRED_A::FLEXIO2_CLK_PRED_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXIO2_CLK_PRED`"]
@@ -1255,205 +1175,141 @@ impl<'a> FLEXIO2_CLK_PRED_W<'a> {
 }
 #[doc = "Divider for sai3 clock podf. The input clock to this divider should be lower than 300Mhz, the predivider can be used to achieve this.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI3_CLK_PODF_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
     #[doc = "8: Divide by 9"]
-    DIVIDE_9,
+    DIVIDE_9 = 8,
     #[doc = "9: Divide by 10"]
-    DIVIDE_10,
+    DIVIDE_10 = 9,
     #[doc = "10: Divide by 11"]
-    DIVIDE_11,
+    DIVIDE_11 = 10,
     #[doc = "11: Divide by 12"]
-    DIVIDE_12,
+    DIVIDE_12 = 11,
     #[doc = "12: Divide by 13"]
-    DIVIDE_13,
+    DIVIDE_13 = 12,
     #[doc = "13: Divide by 14"]
-    DIVIDE_14,
+    DIVIDE_14 = 13,
     #[doc = "14: Divide by 15"]
-    DIVIDE_15,
+    DIVIDE_15 = 14,
     #[doc = "15: Divide by 16"]
-    DIVIDE_16,
+    DIVIDE_16 = 15,
     #[doc = "16: Divide by 17"]
-    DIVIDE_17,
+    DIVIDE_17 = 16,
     #[doc = "17: Divide by 18"]
-    DIVIDE_18,
+    DIVIDE_18 = 17,
     #[doc = "18: Divide by 19"]
-    DIVIDE_19,
+    DIVIDE_19 = 18,
     #[doc = "19: Divide by 20"]
-    DIVIDE_20,
+    DIVIDE_20 = 19,
     #[doc = "20: Divide by 21"]
-    DIVIDE_21,
+    DIVIDE_21 = 20,
     #[doc = "21: Divide by 22"]
-    DIVIDE_22,
+    DIVIDE_22 = 21,
     #[doc = "22: Divide by 23"]
-    DIVIDE_23,
+    DIVIDE_23 = 22,
     #[doc = "23: Divide by 24"]
-    DIVIDE_24,
+    DIVIDE_24 = 23,
     #[doc = "24: Divide by 25"]
-    DIVIDE_25,
+    DIVIDE_25 = 24,
     #[doc = "25: Divide by 26"]
-    DIVIDE_26,
+    DIVIDE_26 = 25,
     #[doc = "26: Divide by 27"]
-    DIVIDE_27,
+    DIVIDE_27 = 26,
     #[doc = "27: Divide by 28"]
-    DIVIDE_28,
+    DIVIDE_28 = 27,
     #[doc = "28: Divide by 29"]
-    DIVIDE_29,
+    DIVIDE_29 = 28,
     #[doc = "29: Divide by 30"]
-    DIVIDE_30,
+    DIVIDE_30 = 29,
     #[doc = "30: Divide by 31"]
-    DIVIDE_31,
+    DIVIDE_31 = 30,
     #[doc = "31: Divide by 32"]
-    DIVIDE_32,
+    DIVIDE_32 = 31,
     #[doc = "32: Divide by 33"]
-    DIVIDE_33,
+    DIVIDE_33 = 32,
     #[doc = "33: Divide by 34"]
-    DIVIDE_34,
+    DIVIDE_34 = 33,
     #[doc = "34: Divide by 35"]
-    DIVIDE_35,
+    DIVIDE_35 = 34,
     #[doc = "35: Divide by 36"]
-    DIVIDE_36,
+    DIVIDE_36 = 35,
     #[doc = "36: Divide by 37"]
-    DIVIDE_37,
+    DIVIDE_37 = 36,
     #[doc = "37: Divide by 38"]
-    DIVIDE_38,
+    DIVIDE_38 = 37,
     #[doc = "38: Divide by 39"]
-    DIVIDE_39,
+    DIVIDE_39 = 38,
     #[doc = "39: Divide by 40"]
-    DIVIDE_40,
+    DIVIDE_40 = 39,
     #[doc = "40: Divide by 41"]
-    DIVIDE_41,
+    DIVIDE_41 = 40,
     #[doc = "41: Divide by 42"]
-    DIVIDE_42,
+    DIVIDE_42 = 41,
     #[doc = "42: Divide by 43"]
-    DIVIDE_43,
+    DIVIDE_43 = 42,
     #[doc = "43: Divide by 44"]
-    DIVIDE_44,
+    DIVIDE_44 = 43,
     #[doc = "44: Divide by 45"]
-    DIVIDE_45,
+    DIVIDE_45 = 44,
     #[doc = "45: Divide by 46"]
-    DIVIDE_46,
+    DIVIDE_46 = 45,
     #[doc = "46: Divide by 47"]
-    DIVIDE_47,
+    DIVIDE_47 = 46,
     #[doc = "47: Divide by 48"]
-    DIVIDE_48,
+    DIVIDE_48 = 47,
     #[doc = "48: Divide by 49"]
-    DIVIDE_49,
+    DIVIDE_49 = 48,
     #[doc = "49: Divide by 50"]
-    DIVIDE_50,
+    DIVIDE_50 = 49,
     #[doc = "50: Divide by 51"]
-    DIVIDE_51,
+    DIVIDE_51 = 50,
     #[doc = "51: Divide by 52"]
-    DIVIDE_52,
+    DIVIDE_52 = 51,
     #[doc = "52: Divide by 53"]
-    DIVIDE_53,
+    DIVIDE_53 = 52,
     #[doc = "53: Divide by 54"]
-    DIVIDE_54,
+    DIVIDE_54 = 53,
     #[doc = "54: Divide by 55"]
-    DIVIDE_55,
+    DIVIDE_55 = 54,
     #[doc = "55: Divide by 56"]
-    DIVIDE_56,
+    DIVIDE_56 = 55,
     #[doc = "56: Divide by 57"]
-    DIVIDE_57,
+    DIVIDE_57 = 56,
     #[doc = "57: Divide by 58"]
-    DIVIDE_58,
+    DIVIDE_58 = 57,
     #[doc = "58: Divide by 59"]
-    DIVIDE_59,
+    DIVIDE_59 = 58,
     #[doc = "59: Divide by 60"]
-    DIVIDE_60,
+    DIVIDE_60 = 59,
     #[doc = "60: Divide by 61"]
-    DIVIDE_61,
+    DIVIDE_61 = 60,
     #[doc = "61: Divide by 62"]
-    DIVIDE_62,
+    DIVIDE_62 = 61,
     #[doc = "62: Divide by 63"]
-    DIVIDE_63,
+    DIVIDE_63 = 62,
     #[doc = "63: Divide by 64"]
-    DIVIDE_64,
+    DIVIDE_64 = 63,
 }
 impl From<SAI3_CLK_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI3_CLK_PODF_A) -> Self {
-        match variant {
-            SAI3_CLK_PODF_A::DIVIDE_1 => 0,
-            SAI3_CLK_PODF_A::DIVIDE_2 => 1,
-            SAI3_CLK_PODF_A::DIVIDE_3 => 2,
-            SAI3_CLK_PODF_A::DIVIDE_4 => 3,
-            SAI3_CLK_PODF_A::DIVIDE_5 => 4,
-            SAI3_CLK_PODF_A::DIVIDE_6 => 5,
-            SAI3_CLK_PODF_A::DIVIDE_7 => 6,
-            SAI3_CLK_PODF_A::DIVIDE_8 => 7,
-            SAI3_CLK_PODF_A::DIVIDE_9 => 8,
-            SAI3_CLK_PODF_A::DIVIDE_10 => 9,
-            SAI3_CLK_PODF_A::DIVIDE_11 => 10,
-            SAI3_CLK_PODF_A::DIVIDE_12 => 11,
-            SAI3_CLK_PODF_A::DIVIDE_13 => 12,
-            SAI3_CLK_PODF_A::DIVIDE_14 => 13,
-            SAI3_CLK_PODF_A::DIVIDE_15 => 14,
-            SAI3_CLK_PODF_A::DIVIDE_16 => 15,
-            SAI3_CLK_PODF_A::DIVIDE_17 => 16,
-            SAI3_CLK_PODF_A::DIVIDE_18 => 17,
-            SAI3_CLK_PODF_A::DIVIDE_19 => 18,
-            SAI3_CLK_PODF_A::DIVIDE_20 => 19,
-            SAI3_CLK_PODF_A::DIVIDE_21 => 20,
-            SAI3_CLK_PODF_A::DIVIDE_22 => 21,
-            SAI3_CLK_PODF_A::DIVIDE_23 => 22,
-            SAI3_CLK_PODF_A::DIVIDE_24 => 23,
-            SAI3_CLK_PODF_A::DIVIDE_25 => 24,
-            SAI3_CLK_PODF_A::DIVIDE_26 => 25,
-            SAI3_CLK_PODF_A::DIVIDE_27 => 26,
-            SAI3_CLK_PODF_A::DIVIDE_28 => 27,
-            SAI3_CLK_PODF_A::DIVIDE_29 => 28,
-            SAI3_CLK_PODF_A::DIVIDE_30 => 29,
-            SAI3_CLK_PODF_A::DIVIDE_31 => 30,
-            SAI3_CLK_PODF_A::DIVIDE_32 => 31,
-            SAI3_CLK_PODF_A::DIVIDE_33 => 32,
-            SAI3_CLK_PODF_A::DIVIDE_34 => 33,
-            SAI3_CLK_PODF_A::DIVIDE_35 => 34,
-            SAI3_CLK_PODF_A::DIVIDE_36 => 35,
-            SAI3_CLK_PODF_A::DIVIDE_37 => 36,
-            SAI3_CLK_PODF_A::DIVIDE_38 => 37,
-            SAI3_CLK_PODF_A::DIVIDE_39 => 38,
-            SAI3_CLK_PODF_A::DIVIDE_40 => 39,
-            SAI3_CLK_PODF_A::DIVIDE_41 => 40,
-            SAI3_CLK_PODF_A::DIVIDE_42 => 41,
-            SAI3_CLK_PODF_A::DIVIDE_43 => 42,
-            SAI3_CLK_PODF_A::DIVIDE_44 => 43,
-            SAI3_CLK_PODF_A::DIVIDE_45 => 44,
-            SAI3_CLK_PODF_A::DIVIDE_46 => 45,
-            SAI3_CLK_PODF_A::DIVIDE_47 => 46,
-            SAI3_CLK_PODF_A::DIVIDE_48 => 47,
-            SAI3_CLK_PODF_A::DIVIDE_49 => 48,
-            SAI3_CLK_PODF_A::DIVIDE_50 => 49,
-            SAI3_CLK_PODF_A::DIVIDE_51 => 50,
-            SAI3_CLK_PODF_A::DIVIDE_52 => 51,
-            SAI3_CLK_PODF_A::DIVIDE_53 => 52,
-            SAI3_CLK_PODF_A::DIVIDE_54 => 53,
-            SAI3_CLK_PODF_A::DIVIDE_55 => 54,
-            SAI3_CLK_PODF_A::DIVIDE_56 => 55,
-            SAI3_CLK_PODF_A::DIVIDE_57 => 56,
-            SAI3_CLK_PODF_A::DIVIDE_58 => 57,
-            SAI3_CLK_PODF_A::DIVIDE_59 => 58,
-            SAI3_CLK_PODF_A::DIVIDE_60 => 59,
-            SAI3_CLK_PODF_A::DIVIDE_61 => 60,
-            SAI3_CLK_PODF_A::DIVIDE_62 => 61,
-            SAI3_CLK_PODF_A::DIVIDE_63 => 62,
-            SAI3_CLK_PODF_A::DIVIDE_64 => 63,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI3_CLK_PODF`"]
@@ -2192,37 +2048,29 @@ impl<'a> SAI3_CLK_PODF_W<'a> {
 }
 #[doc = "Divider for sai3/adc1/adc2 clock pred.\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI3_CLK_PRED_A {
     #[doc = "0: divide by 1"]
-    SAI3_CLK_PRED_0,
+    SAI3_CLK_PRED_0 = 0,
     #[doc = "1: divide by 2"]
-    SAI3_CLK_PRED_1,
+    SAI3_CLK_PRED_1 = 1,
     #[doc = "2: divide by 3"]
-    SAI3_CLK_PRED_2,
+    SAI3_CLK_PRED_2 = 2,
     #[doc = "3: divide by 4"]
-    SAI3_CLK_PRED_3,
+    SAI3_CLK_PRED_3 = 3,
     #[doc = "4: divide by 5"]
-    SAI3_CLK_PRED_4,
+    SAI3_CLK_PRED_4 = 4,
     #[doc = "5: divide by 6"]
-    SAI3_CLK_PRED_5,
+    SAI3_CLK_PRED_5 = 5,
     #[doc = "6: divide by 7"]
-    SAI3_CLK_PRED_6,
+    SAI3_CLK_PRED_6 = 6,
     #[doc = "7: divide by 8"]
-    SAI3_CLK_PRED_7,
+    SAI3_CLK_PRED_7 = 7,
 }
 impl From<SAI3_CLK_PRED_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI3_CLK_PRED_A) -> Self {
-        match variant {
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_0 => 0,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_1 => 1,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_2 => 2,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_3 => 3,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_4 => 4,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_5 => 5,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_6 => 6,
-            SAI3_CLK_PRED_A::SAI3_CLK_PRED_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI3_CLK_PRED`"]
@@ -2345,37 +2193,29 @@ impl<'a> SAI3_CLK_PRED_W<'a> {
 }
 #[doc = "Divider for flexio2/flexio3 clock. Divider should be updated when output clock is gated.\n\nValue on reset: 7"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXIO2_CLK_PODF_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
 }
 impl From<FLEXIO2_CLK_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXIO2_CLK_PODF_A) -> Self {
-        match variant {
-            FLEXIO2_CLK_PODF_A::DIVIDE_1 => 0,
-            FLEXIO2_CLK_PODF_A::DIVIDE_2 => 1,
-            FLEXIO2_CLK_PODF_A::DIVIDE_3 => 2,
-            FLEXIO2_CLK_PODF_A::DIVIDE_4 => 3,
-            FLEXIO2_CLK_PODF_A::DIVIDE_5 => 4,
-            FLEXIO2_CLK_PODF_A::DIVIDE_6 => 5,
-            FLEXIO2_CLK_PODF_A::DIVIDE_7 => 6,
-            FLEXIO2_CLK_PODF_A::DIVIDE_8 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXIO2_CLK_PODF`"]
