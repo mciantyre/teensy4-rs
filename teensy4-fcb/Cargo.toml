@@ -9,6 +9,16 @@ description = """
 Firmware Configuration Block (FCB) generation for the Teensy 4.
 Part of the teensy4-rs project.
 """
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "cortex-m",
+    "teensy4",
+]
 
 [build-dependencies]
 imxrt1062-fcb-gen = { version = "0.1.0", path = "../imxrt1062-fcb-gen" }
