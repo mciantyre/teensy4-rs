@@ -9,6 +9,16 @@ description = """
 Hardware abstraction layer (HAL) for the iMXRT1062 family of processors.
 Part of the teensy4-rs project.
 """
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "cortex-m",
+    "embedded-hal",
+]
 
 [dependencies]
 cortex-m = "0.6.1"
