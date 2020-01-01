@@ -2,6 +2,7 @@
 
 #![no_std]
 
+mod cache;
 mod fault;
 mod fpu;
 mod nvic;
@@ -17,13 +18,9 @@ pub use nvic::exception;
 /// other functions that do the same.
 #[no_mangle]
 pub unsafe extern "C" fn _start() -> ! {
-    extern "C" {
-        fn cache_init();
-    }
-
     nvic::init();
     fpu::init();
-    cache_init();
+    cache::init();
 
     extern "Rust" {
         fn main() -> !;
