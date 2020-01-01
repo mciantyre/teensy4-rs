@@ -53,7 +53,6 @@ const fn region(n: u32) -> u32 {
     scb_mpu_rbar_region(n) | SCB_MPU_RBAR_VALID
 }
 
-
 #[inline(always)]
 pub unsafe fn init() {
     ptr::write_volatile(SCB_MPU_CTRL, 0);
