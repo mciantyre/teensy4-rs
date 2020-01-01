@@ -7,6 +7,14 @@
 
 use imxrt1062_pac as pac;
 
+#[inline(always)]
+fn reg3_trg(mv: u32) -> u8 {
+    ((mv - 800) / 25) as u8
+}
+
+/// Sets the main system clock to as close to `hz` as possible.
+/// Returns the `(ARM, IPG)` clock frequencies based on the input frequency
+/// and selected prescalars.
 pub fn set_arm_clock(
     mut hz: u32,
     ccm: &pac::CCM,
@@ -25,11 +33,6 @@ pub fn set_arm_clock(
     // Safety: CG3 field is two bits
     ccm.ccgr6.modify(|_, w| unsafe { w.cg3().bits(0x3) });
 
-    #[inline(always)]
-    fn reg3_trg(mv: u32) -> u8 {
-        ((mv - 800) / 25) as u8
-    }
-
     // Set VDD_SOC, voltage for the chip
     if dcdc.reg3.read().trg().bits() < reg3_trg(millivolts) {
         log::debug!("Increasing voltage to {}mv", millivolts);
@@ -42,40 +45,7 @@ pub fn set_arm_clock(
         }
     }
 
-    use pac::ccm::cbcdr::PERIPH_CLK_SEL_A;
-    if PERIPH_CLK_SEL_A::PERIPH_CLK_SEL_0 == ccm.cbcdr.read().periph_clk_sel().variant() {
-        log::debug!("Choosing alternative clock before reconfiguring ARM PLL...");
-        use pac::ccm::{cbcdr::PERIPH_CLK2_PODF_A, cbcmr::PERIPH_CLK2_SEL_A};
-        let pll_usb1 = ccm_analog.pll_usb1.read();
-        let (sel, div) = if pll_usb1.enable().bit_is_set()
-            && pll_usb1.power().bit_is_set()
-            && pll_usb1.lock().bit_is_set()
-            && pll_usb1.en_usb_clks().bit_is_set()
-        {
-            log::debug!("Using USB PLL, divided down to 120MHz");
-            (
-                PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_0,
-                PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_3,
-            )
-        } else {
-            log::debug!("USB PLL is off; using 24MHz oscillator");
-            (
-                PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_1,
-                PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_0,
-            )
-        };
-        ccm.cbcdr.modify(|_, w| w.periph_clk2_podf().variant(div));
-        ccm.cbcmr.modify(|_, w| w.periph_clk2_sel().variant(sel));
-        while ccm.cdhipr.read().periph2_clk_sel_busy().bit_is_set() {
-            core::sync::atomic::spin_loop_hint();
-        }
-        ccm.cbcdr.modify(|_, w| w.periph_clk_sel().set_bit());
-        while ccm.cdhipr.read().periph_clk_sel_busy().bit_is_set() {
-            core::sync::atomic::spin_loop_hint();
-        }
-    } else {
-        log::debug!("Already running from PERIPH2_CLK2");
-    }
+    select_alt_clock(ccm, ccm_analog);
 
     let (mut div_arm, mut div_ahb) = (1, 1);
     while hz * div_arm * div_ahb < 648_000_000 {
@@ -140,4 +110,44 @@ pub fn set_arm_clock(
     }
 
     (hz, hz / div_ipg)
+}
+
+/// Selects an alternative clock so that we can modify the main
+/// system clock.
+#[inline(always)]
+fn select_alt_clock(ccm: &pac::CCM, ccm_analog: &pac::CCM_ANALOG) {
+    use pac::ccm::cbcdr::PERIPH_CLK_SEL_A;
+    if PERIPH_CLK_SEL_A::PERIPH_CLK_SEL_0 == ccm.cbcdr.read().periph_clk_sel().variant() {
+        log::debug!("Choosing alternative clock before reconfiguring ARM PLL...");
+        use pac::ccm::{cbcdr::PERIPH_CLK2_PODF_A, cbcmr::PERIPH_CLK2_SEL_A};
+        let pll_usb1 = ccm_analog.pll_usb1.read();
+        let (sel, div) = if pll_usb1.enable().bit_is_set()
+            && pll_usb1.power().bit_is_set()
+            && pll_usb1.lock().bit_is_set()
+            && pll_usb1.en_usb_clks().bit_is_set()
+        {
+            log::debug!("Using USB PLL, divided down to 120MHz");
+            (
+                PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_0,
+                PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_3,
+            )
+        } else {
+            log::debug!("USB PLL is off; using 24MHz oscillator");
+            (
+                PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_1,
+                PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_0,
+            )
+        };
+        ccm.cbcdr.modify(|_, w| w.periph_clk2_podf().variant(div));
+        ccm.cbcmr.modify(|_, w| w.periph_clk2_sel().variant(sel));
+        while ccm.cdhipr.read().periph2_clk_sel_busy().bit_is_set() {
+            core::sync::atomic::spin_loop_hint();
+        }
+        ccm.cbcdr.modify(|_, w| w.periph_clk_sel().set_bit());
+        while ccm.cdhipr.read().periph_clk_sel_busy().bit_is_set() {
+            core::sync::atomic::spin_loop_hint();
+        }
+    } else {
+        log::debug!("Already running from PERIPH2_CLK2");
+    }
 }
