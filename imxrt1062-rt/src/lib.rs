@@ -20,7 +20,7 @@ pub use nvic::exception;
 pub unsafe extern "C" fn _start() -> ! {
     nvic::init();
     fpu::init();
-    cache::cache_init();
+    cache::init();
 
     extern "Rust" {
         fn main() -> !;

@@ -57,7 +57,7 @@ extern "C" {
 }
 
 #[inline(always)]
-pub unsafe fn cache_init() {
+pub unsafe fn init() {
     ptr::write_volatile(SCB_MPU_CTRL, 0);
 
     ptr::write_volatile(SCB_MPU_RBAR, 0x00000000 | region(0)); // ITCM
