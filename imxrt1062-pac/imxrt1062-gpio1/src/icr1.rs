@@ -12,25 +12,21 @@ impl crate::ResetValue for super::ICR1 {
 }
 #[doc = "ICR0\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR0_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR0_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR0_A) -> Self {
-        match variant {
-            ICR0_A::LOW_LEVEL => 0,
-            ICR0_A::HIGH_LEVEL => 1,
-            ICR0_A::RISING_EDGE => 2,
-            ICR0_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR0`"]
@@ -109,25 +105,21 @@ impl<'a> ICR0_W<'a> {
 }
 #[doc = "ICR1\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR1_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR1_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR1_A) -> Self {
-        match variant {
-            ICR1_A::LOW_LEVEL => 0,
-            ICR1_A::HIGH_LEVEL => 1,
-            ICR1_A::RISING_EDGE => 2,
-            ICR1_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR1`"]
@@ -206,25 +198,21 @@ impl<'a> ICR1_W<'a> {
 }
 #[doc = "ICR2\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR2_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR2_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR2_A) -> Self {
-        match variant {
-            ICR2_A::LOW_LEVEL => 0,
-            ICR2_A::HIGH_LEVEL => 1,
-            ICR2_A::RISING_EDGE => 2,
-            ICR2_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR2`"]
@@ -303,25 +291,21 @@ impl<'a> ICR2_W<'a> {
 }
 #[doc = "ICR3\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR3_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR3_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR3_A) -> Self {
-        match variant {
-            ICR3_A::LOW_LEVEL => 0,
-            ICR3_A::HIGH_LEVEL => 1,
-            ICR3_A::RISING_EDGE => 2,
-            ICR3_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR3`"]
@@ -400,25 +384,21 @@ impl<'a> ICR3_W<'a> {
 }
 #[doc = "ICR4\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR4_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR4_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR4_A) -> Self {
-        match variant {
-            ICR4_A::LOW_LEVEL => 0,
-            ICR4_A::HIGH_LEVEL => 1,
-            ICR4_A::RISING_EDGE => 2,
-            ICR4_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR4`"]
@@ -497,25 +477,21 @@ impl<'a> ICR4_W<'a> {
 }
 #[doc = "ICR5\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR5_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR5_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR5_A) -> Self {
-        match variant {
-            ICR5_A::LOW_LEVEL => 0,
-            ICR5_A::HIGH_LEVEL => 1,
-            ICR5_A::RISING_EDGE => 2,
-            ICR5_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR5`"]
@@ -594,25 +570,21 @@ impl<'a> ICR5_W<'a> {
 }
 #[doc = "ICR6\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR6_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR6_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR6_A) -> Self {
-        match variant {
-            ICR6_A::LOW_LEVEL => 0,
-            ICR6_A::HIGH_LEVEL => 1,
-            ICR6_A::RISING_EDGE => 2,
-            ICR6_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR6`"]
@@ -691,25 +663,21 @@ impl<'a> ICR6_W<'a> {
 }
 #[doc = "ICR7\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR7_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR7_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR7_A) -> Self {
-        match variant {
-            ICR7_A::LOW_LEVEL => 0,
-            ICR7_A::HIGH_LEVEL => 1,
-            ICR7_A::RISING_EDGE => 2,
-            ICR7_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR7`"]
@@ -788,25 +756,21 @@ impl<'a> ICR7_W<'a> {
 }
 #[doc = "ICR8\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR8_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR8_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR8_A) -> Self {
-        match variant {
-            ICR8_A::LOW_LEVEL => 0,
-            ICR8_A::HIGH_LEVEL => 1,
-            ICR8_A::RISING_EDGE => 2,
-            ICR8_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR8`"]
@@ -885,25 +849,21 @@ impl<'a> ICR8_W<'a> {
 }
 #[doc = "ICR9\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR9_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR9_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR9_A) -> Self {
-        match variant {
-            ICR9_A::LOW_LEVEL => 0,
-            ICR9_A::HIGH_LEVEL => 1,
-            ICR9_A::RISING_EDGE => 2,
-            ICR9_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR9`"]
@@ -982,25 +942,21 @@ impl<'a> ICR9_W<'a> {
 }
 #[doc = "ICR10\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR10_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR10_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR10_A) -> Self {
-        match variant {
-            ICR10_A::LOW_LEVEL => 0,
-            ICR10_A::HIGH_LEVEL => 1,
-            ICR10_A::RISING_EDGE => 2,
-            ICR10_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR10`"]
@@ -1079,25 +1035,21 @@ impl<'a> ICR10_W<'a> {
 }
 #[doc = "ICR11\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR11_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR11_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR11_A) -> Self {
-        match variant {
-            ICR11_A::LOW_LEVEL => 0,
-            ICR11_A::HIGH_LEVEL => 1,
-            ICR11_A::RISING_EDGE => 2,
-            ICR11_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR11`"]
@@ -1176,25 +1128,21 @@ impl<'a> ICR11_W<'a> {
 }
 #[doc = "ICR12\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR12_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR12_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR12_A) -> Self {
-        match variant {
-            ICR12_A::LOW_LEVEL => 0,
-            ICR12_A::HIGH_LEVEL => 1,
-            ICR12_A::RISING_EDGE => 2,
-            ICR12_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR12`"]
@@ -1273,25 +1221,21 @@ impl<'a> ICR12_W<'a> {
 }
 #[doc = "ICR13\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR13_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR13_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR13_A) -> Self {
-        match variant {
-            ICR13_A::LOW_LEVEL => 0,
-            ICR13_A::HIGH_LEVEL => 1,
-            ICR13_A::RISING_EDGE => 2,
-            ICR13_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR13`"]
@@ -1370,25 +1314,21 @@ impl<'a> ICR13_W<'a> {
 }
 #[doc = "ICR14\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR14_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR14_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR14_A) -> Self {
-        match variant {
-            ICR14_A::LOW_LEVEL => 0,
-            ICR14_A::HIGH_LEVEL => 1,
-            ICR14_A::RISING_EDGE => 2,
-            ICR14_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR14`"]
@@ -1467,25 +1407,21 @@ impl<'a> ICR14_W<'a> {
 }
 #[doc = "ICR15\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ICR15_A {
     #[doc = "0: Interrupt n is low-level sensitive."]
-    LOW_LEVEL,
+    LOW_LEVEL = 0,
     #[doc = "1: Interrupt n is high-level sensitive."]
-    HIGH_LEVEL,
+    HIGH_LEVEL = 1,
     #[doc = "2: Interrupt n is rising-edge sensitive."]
-    RISING_EDGE,
+    RISING_EDGE = 2,
     #[doc = "3: Interrupt n is falling-edge sensitive."]
-    FALLING_EDGE,
+    FALLING_EDGE = 3,
 }
 impl From<ICR15_A> for u8 {
     #[inline(always)]
     fn from(variant: ICR15_A) -> Self {
-        match variant {
-            ICR15_A::LOW_LEVEL => 0,
-            ICR15_A::HIGH_LEVEL => 1,
-            ICR15_A::RISING_EDGE => 2,
-            ICR15_A::FALLING_EDGE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ICR15`"]

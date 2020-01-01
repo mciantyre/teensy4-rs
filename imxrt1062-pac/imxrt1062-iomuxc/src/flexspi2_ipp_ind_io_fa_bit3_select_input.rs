@@ -12,22 +12,19 @@ impl crate::ResetValue for super::FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT {
 }
 #[doc = "Selecting Pads Involved in Daisy Chain.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_SPI_B1_01 for Mode: ALT0"]
-    GPIO_SPI_B1_01_ALT0,
+    GPIO_SPI_B1_01_ALT0 = 0,
     #[doc = "1: Selecting Pad: GPIO_EMC_29 for Mode: ALT8"]
-    GPIO_EMC_29_ALT8,
+    GPIO_EMC_29_ALT8 = 1,
     #[doc = "2: Selecting Pad: GPIO_SPI_B0_10 for Mode: ALT0"]
-    GPIO_SPI_B0_10_ALT0,
+    GPIO_SPI_B0_10_ALT0 = 2,
 }
 impl From<DAISY_A> for u8 {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_SPI_B1_01_ALT0 => 0,
-            DAISY_A::GPIO_EMC_29_ALT8 => 1,
-            DAISY_A::GPIO_SPI_B0_10_ALT0 => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `DAISY`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CMEOR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_OV_GPT_A {
     #[doc = "0: don't override module enable signal"]
-    MOD_EN_OV_GPT_0,
+    MOD_EN_OV_GPT_0 = 0,
     #[doc = "1: override module enable signal"]
-    MOD_EN_OV_GPT_1,
+    MOD_EN_OV_GPT_1 = 1,
 }
 impl From<MOD_EN_OV_GPT_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_OV_GPT_A) -> Self {
-        match variant {
-            MOD_EN_OV_GPT_A::MOD_EN_OV_GPT_0 => false,
-            MOD_EN_OV_GPT_A::MOD_EN_OV_GPT_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_OV_GPT`"]
@@ -92,17 +89,14 @@ impl<'a> MOD_EN_OV_GPT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_OV_PIT_A {
     #[doc = "0: don't override module enable signal"]
-    MOD_EN_OV_PIT_0,
+    MOD_EN_OV_PIT_0 = 0,
     #[doc = "1: override module enable signal"]
-    MOD_EN_OV_PIT_1,
+    MOD_EN_OV_PIT_1 = 1,
 }
 impl From<MOD_EN_OV_PIT_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_OV_PIT_A) -> Self {
-        match variant {
-            MOD_EN_OV_PIT_A::MOD_EN_OV_PIT_0 => false,
-            MOD_EN_OV_PIT_A::MOD_EN_OV_PIT_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_OV_PIT`"]
@@ -170,17 +164,14 @@ impl<'a> MOD_EN_OV_PIT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_USDHC_A {
     #[doc = "0: don't override module enable signal"]
-    MOD_EN_USDHC_0,
+    MOD_EN_USDHC_0 = 0,
     #[doc = "1: override module enable signal"]
-    MOD_EN_USDHC_1,
+    MOD_EN_USDHC_1 = 1,
 }
 impl From<MOD_EN_USDHC_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_USDHC_A) -> Self {
-        match variant {
-            MOD_EN_USDHC_A::MOD_EN_USDHC_0 => false,
-            MOD_EN_USDHC_A::MOD_EN_USDHC_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_USDHC`"]
@@ -248,17 +239,14 @@ impl<'a> MOD_EN_USDHC_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_OV_TRNG_A {
     #[doc = "0: don't override module enable signal"]
-    MOD_EN_OV_TRNG_0,
+    MOD_EN_OV_TRNG_0 = 0,
     #[doc = "1: override module enable signal"]
-    MOD_EN_OV_TRNG_1,
+    MOD_EN_OV_TRNG_1 = 1,
 }
 impl From<MOD_EN_OV_TRNG_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_OV_TRNG_A) -> Self {
-        match variant {
-            MOD_EN_OV_TRNG_A::MOD_EN_OV_TRNG_0 => false,
-            MOD_EN_OV_TRNG_A::MOD_EN_OV_TRNG_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_OV_TRNG`"]
@@ -326,17 +314,14 @@ impl<'a> MOD_EN_OV_TRNG_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_OV_CANFD_CPI_A {
     #[doc = "0: don't override module enable signal"]
-    MOD_EN_OV_CANFD_CPI_0,
+    MOD_EN_OV_CANFD_CPI_0 = 0,
     #[doc = "1: override module enable signal"]
-    MOD_EN_OV_CANFD_CPI_1,
+    MOD_EN_OV_CANFD_CPI_1 = 1,
 }
 impl From<MOD_EN_OV_CANFD_CPI_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_OV_CANFD_CPI_A) -> Self {
-        match variant {
-            MOD_EN_OV_CANFD_CPI_A::MOD_EN_OV_CANFD_CPI_0 => false,
-            MOD_EN_OV_CANFD_CPI_A::MOD_EN_OV_CANFD_CPI_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_OV_CANFD_CPI`"]
@@ -404,17 +389,14 @@ impl<'a> MOD_EN_OV_CANFD_CPI_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_OV_CAN2_CPI_A {
     #[doc = "0: don't override module enable signal"]
-    MOD_EN_OV_CAN2_CPI_0,
+    MOD_EN_OV_CAN2_CPI_0 = 0,
     #[doc = "1: override module enable signal"]
-    MOD_EN_OV_CAN2_CPI_1,
+    MOD_EN_OV_CAN2_CPI_1 = 1,
 }
 impl From<MOD_EN_OV_CAN2_CPI_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_OV_CAN2_CPI_A) -> Self {
-        match variant {
-            MOD_EN_OV_CAN2_CPI_A::MOD_EN_OV_CAN2_CPI_0 => false,
-            MOD_EN_OV_CAN2_CPI_A::MOD_EN_OV_CAN2_CPI_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_OV_CAN2_CPI`"]
@@ -482,17 +464,14 @@ impl<'a> MOD_EN_OV_CAN2_CPI_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MOD_EN_OV_CAN1_CPI_A {
     #[doc = "0: don't overide module enable signal"]
-    MOD_EN_OV_CAN1_CPI_0,
+    MOD_EN_OV_CAN1_CPI_0 = 0,
     #[doc = "1: overide module enable signal"]
-    MOD_EN_OV_CAN1_CPI_1,
+    MOD_EN_OV_CAN1_CPI_1 = 1,
 }
 impl From<MOD_EN_OV_CAN1_CPI_A> for bool {
     #[inline(always)]
     fn from(variant: MOD_EN_OV_CAN1_CPI_A) -> Self {
-        match variant {
-            MOD_EN_OV_CAN1_CPI_A::MOD_EN_OV_CAN1_CPI_0 => false,
-            MOD_EN_OV_CAN1_CPI_A::MOD_EN_OV_CAN1_CPI_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MOD_EN_OV_CAN1_CPI`"]

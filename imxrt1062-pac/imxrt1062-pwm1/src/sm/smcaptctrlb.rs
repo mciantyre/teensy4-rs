@@ -15,7 +15,8 @@ impl crate::ResetValue for super::SMCAPTCTRLB {
 pub enum ARMB_A {
     #[doc = "0: Input capture operation is disabled."]
     ARMB_0 = 0,
-    #[doc = "1: Input capture operation as specified by CAPTCTRLB\\[EDGBx\\] is enabled."]
+    #[doc = "1: Input capture operation as specified by CAPTCTRLB\\[EDGBx\\]
+is enabled."]
     ARMB_1 = 1,
 }
 impl From<ARMB_A> for bool {
@@ -63,7 +64,8 @@ impl<'a> ARMB_W<'a> {
     pub fn armb_0(self) -> &'a mut W {
         self.variant(ARMB_A::ARMB_0)
     }
-    #[doc = "Input capture operation as specified by CAPTCTRLB\\[EDGBx\\] is enabled."]
+    #[doc = "Input capture operation as specified by CAPTCTRLB\\[EDGBx\\]
+is enabled."]
     #[inline(always)]
     pub fn armb_1(self) -> &'a mut W {
         self.variant(ARMB_A::ARMB_1)
@@ -88,9 +90,14 @@ impl<'a> ARMB_W<'a> {
 #[doc = "One Shot Mode B\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ONESHOTB_A {
-    #[doc = "0: Free running mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\] is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and capture circuit 0 is re-armed. The process continues indefinitely.If only one of the capture circuits is enabled, then captures continue indefinitely on the enabled capture circuit."]
+    #[doc = "0: Free running mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\]
+is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and capture circuit 0 is re-armed. The process continues indefinitely.If only one of the capture circuits is enabled, then captures continue indefinitely on the enabled capture circuit."]
     ONESHOTB_0 = 0,
-    #[doc = "1: One shot mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\] is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and CAPTCTRLB\\[ARMB\\] is cleared. No further captures will be performed until CAPTCTRLB\\[ARMB\\] is set again.If only one of the capture circuits is enabled, then a single capture will occur on the enabled capture circuit and CAPTCTRLB\\[ARMB\\] is then cleared."]
+    #[doc = "1: One shot mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\]
+is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and CAPTCTRLB\\[ARMB\\]
+is cleared. No further captures will be performed until CAPTCTRLB\\[ARMB\\]
+is set again.If only one of the capture circuits is enabled, then a single capture will occur on the enabled capture circuit and CAPTCTRLB\\[ARMB\\]
+is then cleared."]
     ONESHOTB_1 = 1,
 }
 impl From<ONESHOTB_A> for bool {
@@ -133,12 +140,17 @@ impl<'a> ONESHOTB_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "Free running mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\] is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and capture circuit 0 is re-armed. The process continues indefinitely.If only one of the capture circuits is enabled, then captures continue indefinitely on the enabled capture circuit."]
+    #[doc = "Free running mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\]
+is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and capture circuit 0 is re-armed. The process continues indefinitely.If only one of the capture circuits is enabled, then captures continue indefinitely on the enabled capture circuit."]
     #[inline(always)]
     pub fn oneshotb_0(self) -> &'a mut W {
         self.variant(ONESHOTB_A::ONESHOTB_0)
     }
-    #[doc = "One shot mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\] is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and CAPTCTRLB\\[ARMB\\] is cleared. No further captures will be performed until CAPTCTRLB\\[ARMB\\] is set again.If only one of the capture circuits is enabled, then a single capture will occur on the enabled capture circuit and CAPTCTRLB\\[ARMB\\] is then cleared."]
+    #[doc = "One shot mode is selected. If both capture circuits are enabled, then capture circuit 0 is armed first after CAPTCTRLB\\[ARMB\\]
+is set. Once a capture occurs, capture circuit 0 is disarmed and capture circuit 1 is armed. After capture circuit 1 performs a capture, it is disarmed and CAPTCTRLB\\[ARMB\\]
+is cleared. No further captures will be performed until CAPTCTRLB\\[ARMB\\]
+is set again.If only one of the capture circuits is enabled, then a single capture will occur on the enabled capture circuit and CAPTCTRLB\\[ARMB\\]
+is then cleared."]
     #[inline(always)]
     pub fn oneshotb_1(self) -> &'a mut W {
         self.variant(ONESHOTB_A::ONESHOTB_1)
@@ -351,7 +363,11 @@ impl<'a> EDGB1_W<'a> {
 pub enum INP_SELB_A {
     #[doc = "0: Raw PWM_B input signal selected as source."]
     INP_SELB_0 = 0,
-    #[doc = "1: Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLB\\[EDGB0\\] and CAPTCTRLB\\[EDGB1\\] fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRB\\[EDGB0\\] and/or CAPTCTRLB\\[EDGB1\\] fields in order to enable one or both of the capture registers."]
+    #[doc = "1: Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLB\\[EDGB0\\]
+and CAPTCTRLB\\[EDGB1\\]
+fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRB\\[EDGB0\\]
+and/or CAPTCTRLB\\[EDGB1\\]
+fields in order to enable one or both of the capture registers."]
     INP_SELB_1 = 1,
 }
 impl From<INP_SELB_A> for bool {
@@ -399,7 +415,11 @@ impl<'a> INP_SELB_W<'a> {
     pub fn inp_selb_0(self) -> &'a mut W {
         self.variant(INP_SELB_A::INP_SELB_0)
     }
-    #[doc = "Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLB\\[EDGB0\\] and CAPTCTRLB\\[EDGB1\\] fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRB\\[EDGB0\\] and/or CAPTCTRLB\\[EDGB1\\] fields in order to enable one or both of the capture registers."]
+    #[doc = "Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLB\\[EDGB0\\]
+and CAPTCTRLB\\[EDGB1\\]
+fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRB\\[EDGB0\\]
+and/or CAPTCTRLB\\[EDGB1\\]
+fields in order to enable one or both of the capture registers."]
     #[inline(always)]
     pub fn inp_selb_1(self) -> &'a mut W {
         self.variant(INP_SELB_A::INP_SELB_1)

@@ -1,5 +1,5 @@
-// Note that this module is compiled into every peripheral crate
-// via an include!(..) macro.
+// This module is compiled into every peripheral crate. It is
+// defined in the teensy4-rs PAC import tool.
 
 use core::marker;
 #[doc = "This trait shows that register has `read` method"]

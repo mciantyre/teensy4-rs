@@ -14,17 +14,14 @@ impl crate::ResetValue for super::USDHC2_WP_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_EMC_37 for Mode: ALT6"]
-    GPIO_EMC_37_ALT6,
+    GPIO_EMC_37_ALT6 = 0,
     #[doc = "1: Selecting Pad: GPIO_AD_B1_10 for Mode: ALT6"]
-    GPIO_AD_B1_10_ALT6,
+    GPIO_AD_B1_10_ALT6 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_EMC_37_ALT6 => false,
-            DAISY_A::GPIO_AD_B1_10_ALT6 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

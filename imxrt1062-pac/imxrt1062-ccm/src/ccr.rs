@@ -28,17 +28,14 @@ impl<'a> OSCNT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COSC_EN_A {
     #[doc = "0: disable on chip oscillator"]
-    COSC_EN_0,
+    COSC_EN_0 = 0,
     #[doc = "1: enable on chip oscillator"]
-    COSC_EN_1,
+    COSC_EN_1 = 1,
 }
 impl From<COSC_EN_A> for bool {
     #[inline(always)]
     fn from(variant: COSC_EN_A) -> Self {
-        match variant {
-            COSC_EN_A::COSC_EN_0 => false,
-            COSC_EN_A::COSC_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COSC_EN`"]
@@ -104,22 +101,19 @@ impl<'a> COSC_EN_W<'a> {
 }
 #[doc = "Counter for analog_reg_bypass signal assertion after standby voltage request by PMIC_STBY_REQ\n\nValue on reset: 32"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG_BYPASS_COUNT_A {
     #[doc = "0: no delay"]
-    REG_BYPASS_COUNT_0,
+    REG_BYPASS_COUNT_0 = 0,
     #[doc = "1: 1 CKIL clock period delay"]
-    REG_BYPASS_COUNT_1,
+    REG_BYPASS_COUNT_1 = 1,
     #[doc = "63: 63 CKIL clock periods delay"]
-    REG_BYPASS_COUNT_63,
+    REG_BYPASS_COUNT_63 = 63,
 }
 impl From<REG_BYPASS_COUNT_A> for u8 {
     #[inline(always)]
     fn from(variant: REG_BYPASS_COUNT_A) -> Self {
-        match variant {
-            REG_BYPASS_COUNT_A::REG_BYPASS_COUNT_0 => 0,
-            REG_BYPASS_COUNT_A::REG_BYPASS_COUNT_1 => 1,
-            REG_BYPASS_COUNT_A::REG_BYPASS_COUNT_63 => 63,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG_BYPASS_COUNT`"]
@@ -188,17 +182,14 @@ impl<'a> REG_BYPASS_COUNT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RBC_EN_A {
     #[doc = "0: REG_BYPASS_COUNTER disabled"]
-    RBC_EN_0,
+    RBC_EN_0 = 0,
     #[doc = "1: REG_BYPASS_COUNTER enabled."]
-    RBC_EN_1,
+    RBC_EN_1 = 1,
 }
 impl From<RBC_EN_A> for bool {
     #[inline(always)]
     fn from(variant: RBC_EN_A) -> Self {
-        match variant {
-            RBC_EN_A::RBC_EN_0 => false,
-            RBC_EN_A::RBC_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RBC_EN`"]

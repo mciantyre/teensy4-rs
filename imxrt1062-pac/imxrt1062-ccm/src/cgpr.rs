@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CGPR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PMIC_DELAY_SCALER_A {
     #[doc = "0: clock is not divided"]
-    PMIC_DELAY_SCALER_0,
+    PMIC_DELAY_SCALER_0 = 0,
     #[doc = "1: clock is divided /8"]
-    PMIC_DELAY_SCALER_1,
+    PMIC_DELAY_SCALER_1 = 1,
 }
 impl From<PMIC_DELAY_SCALER_A> for bool {
     #[inline(always)]
     fn from(variant: PMIC_DELAY_SCALER_A) -> Self {
-        match variant {
-            PMIC_DELAY_SCALER_A::PMIC_DELAY_SCALER_0 => false,
-            PMIC_DELAY_SCALER_A::PMIC_DELAY_SCALER_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PMIC_DELAY_SCALER`"]
@@ -92,17 +89,14 @@ impl<'a> PMIC_DELAY_SCALER_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EFUSE_PROG_SUPPLY_GATE_A {
     #[doc = "0: fuse programing supply voltage is gated off to the efuse module"]
-    EFUSE_PROG_SUPPLY_GATE_0,
+    EFUSE_PROG_SUPPLY_GATE_0 = 0,
     #[doc = "1: allow fuse programing."]
-    EFUSE_PROG_SUPPLY_GATE_1,
+    EFUSE_PROG_SUPPLY_GATE_1 = 1,
 }
 impl From<EFUSE_PROG_SUPPLY_GATE_A> for bool {
     #[inline(always)]
     fn from(variant: EFUSE_PROG_SUPPLY_GATE_A) -> Self {
-        match variant {
-            EFUSE_PROG_SUPPLY_GATE_A::EFUSE_PROG_SUPPLY_GATE_0 => false,
-            EFUSE_PROG_SUPPLY_GATE_A::EFUSE_PROG_SUPPLY_GATE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EFUSE_PROG_SUPPLY_GATE`"]
@@ -168,22 +162,19 @@ impl<'a> EFUSE_PROG_SUPPLY_GATE_W<'a> {
 }
 #[doc = "System memory DS control\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SYS_MEM_DS_CTRL_A {
     #[doc = "0: Disable memory DS mode always"]
-    SYS_MEM_DS_CTRL_0,
+    SYS_MEM_DS_CTRL_0 = 0,
     #[doc = "1: Enable memory (outside ARM platform) DS mode when system STOP and PLL are disabled"]
-    SYS_MEM_DS_CTRL_1,
+    SYS_MEM_DS_CTRL_1 = 1,
     #[doc = "2: enable memory (outside ARM platform) DS mode when system is in STOP mode"]
-    SYS_MEM_DS_CTRL_2,
+    SYS_MEM_DS_CTRL_2 = 2,
 }
 impl From<SYS_MEM_DS_CTRL_A> for u8 {
     #[inline(always)]
     fn from(variant: SYS_MEM_DS_CTRL_A) -> Self {
-        match variant {
-            SYS_MEM_DS_CTRL_A::SYS_MEM_DS_CTRL_0 => 0,
-            SYS_MEM_DS_CTRL_A::SYS_MEM_DS_CTRL_1 => 1,
-            SYS_MEM_DS_CTRL_A::SYS_MEM_DS_CTRL_2 => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SYS_MEM_DS_CTRL`"]
@@ -252,17 +243,14 @@ impl<'a> SYS_MEM_DS_CTRL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FPL_A {
     #[doc = "0: Engage PLL enable default way."]
-    FPL_0,
+    FPL_0 = 0,
     #[doc = "1: Engage PLL enable 3 CKIL clocks earlier at exiting low power mode (STOP). Should be used only if 24MHz OSC was active in low power mode."]
-    FPL_1,
+    FPL_1 = 1,
 }
 impl From<FPL_A> for bool {
     #[inline(always)]
     fn from(variant: FPL_A) -> Self {
-        match variant {
-            FPL_A::FPL_0 => false,
-            FPL_A::FPL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FPL`"]
@@ -330,17 +318,14 @@ impl<'a> FPL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum INT_MEM_CLK_LPM_A {
     #[doc = "0: Disable the clock to the ARM platform memories when entering Low Power Mode"]
-    INT_MEM_CLK_LPM_0,
+    INT_MEM_CLK_LPM_0 = 0,
     #[doc = "1: Keep the clocks to the ARM platform memories enabled only if an interrupt is pending when entering Low Power Modes (WAIT and STOP without power gating)"]
-    INT_MEM_CLK_LPM_1,
+    INT_MEM_CLK_LPM_1 = 1,
 }
 impl From<INT_MEM_CLK_LPM_A> for bool {
     #[inline(always)]
     fn from(variant: INT_MEM_CLK_LPM_A) -> Self {
-        match variant {
-            INT_MEM_CLK_LPM_A::INT_MEM_CLK_LPM_0 => false,
-            INT_MEM_CLK_LPM_A::INT_MEM_CLK_LPM_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `INT_MEM_CLK_LPM`"]

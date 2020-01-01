@@ -1,7 +1,7 @@
 //! Allows us to auto-import a iMXRT1062 module
 //! from the svd2rust output into the imxrt1062-pac
 //! megacrate. It code-ifies some manual work.
-//! 
+//!
 //! We expect that this tool is run from the `tools`
 //! directory.
 //!
@@ -48,6 +48,15 @@ test = false
         .expect("Failed to update Cargo.toml");
 }
 
+fn copy_generic_rs(crate_path: &Path) {
+    static GENERIC_RS: &[u8] = include_bytes!("generic.rs");
+    let mut generic_rs = fs::File::create(crate_path.join("src").join("generic.rs"))
+        .expect("Unable to create generic.rs");
+    generic_rs
+        .write_all(GENERIC_RS)
+        .expect("Unable to write generic.rs");
+}
+
 /// Migrate the `lib.rs` of the PAC subscrate, adding
 /// our necessary header to the top of the file.
 fn write_lib<R: Read>(crate_path: &Path, mut src: R) {
@@ -56,11 +65,12 @@ fn write_lib<R: Read>(crate_path: &Path, mut src: R) {
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 "#;
     let mut crate_lib =
-        fs::File::create(crate_path.join("src").join("lib.rs")).expect("Unable to crate lib.rs");
+        fs::File::create(crate_path.join("src").join("lib.rs")).expect("Unable to create lib.rs");
     crate_lib
         .write_all(LIB_PRELUDE.as_bytes())
         .expect("Unable to write lib.rs prelude");
@@ -73,7 +83,9 @@ fn copy_contents<I: Iterator<Item = io::Result<fs::DirEntry>>>(crate_path: &Path
         let entry = entry.unwrap();
         if entry.file_type().unwrap().is_dir() {
             let dst_dir = crate_path.join(entry.path().file_name().unwrap());
-            fs::create_dir(&dst_dir).unwrap();
+            if !dst_dir.exists() {
+                fs::create_dir(&dst_dir).unwrap();
+            }
             copy_contents(&dst_dir, fs::read_dir(entry.path()).unwrap());
         } else {
             fs::copy(
@@ -159,14 +171,8 @@ fn main() {
 
         let crate_name = format!("imxrt1062-{}", module_name.replace("_", "-"));
         let peripheral_crate_path = output_pac.join(crate_name.clone());
-        if peripheral_crate_path.exists() {
-            println!(
-                "{} peripheral crate seems to already exist! Skipping...",
-                peripheral_crate_path.display()
-            );
-            continue;
-        }
-        process::Command::new("cargo")
+        if !peripheral_crate_path.exists() {
+            process::Command::new("cargo")
             .args(&[
                 "new",
                 "--lib",
@@ -176,12 +182,11 @@ fn main() {
             ])
             .output()
             .unwrap_or_else(|_| panic!("Cannot create peripheral crate for '{}'", module_name));
-
-        add_deps(&peripheral_crate_path);
+            add_deps(&peripheral_crate_path);
+        }
         write_lib(&peripheral_crate_path, peripheral_module_src);
         copy_contents(&peripheral_crate_path.join("src"), peripheral_dir_src);
-
-        println!("{} crate was created! Add the crate to the workspace, re-export it from the main PAC crate, and enable the relevant structs in the PAC crate", peripheral_crate_path.display());
+        copy_generic_rs(&peripheral_crate_path);
         new_pac_crates.push(crate_name);
     }
 

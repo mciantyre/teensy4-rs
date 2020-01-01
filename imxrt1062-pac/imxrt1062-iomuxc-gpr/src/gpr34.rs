@@ -28,17 +28,14 @@ impl<'a> SIP_TEST_MUX_BOOT_PIN_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SIP_TEST_MUX_QSPI_SIP_EN_A {
     #[doc = "0: SIP_TEST_MUX is disabled"]
-    SIP_TEST_MUX_QSPI_SIP_EN_0,
+    SIP_TEST_MUX_QSPI_SIP_EN_0 = 0,
     #[doc = "1: SIP_TEST_MUX is enabled"]
-    SIP_TEST_MUX_QSPI_SIP_EN_1,
+    SIP_TEST_MUX_QSPI_SIP_EN_1 = 1,
 }
 impl From<SIP_TEST_MUX_QSPI_SIP_EN_A> for bool {
     #[inline(always)]
     fn from(variant: SIP_TEST_MUX_QSPI_SIP_EN_A) -> Self {
-        match variant {
-            SIP_TEST_MUX_QSPI_SIP_EN_A::SIP_TEST_MUX_QSPI_SIP_EN_0 => false,
-            SIP_TEST_MUX_QSPI_SIP_EN_A::SIP_TEST_MUX_QSPI_SIP_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SIP_TEST_MUX_QSPI_SIP_EN`"]

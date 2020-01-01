@@ -14,17 +14,14 @@ impl crate::ResetValue for super::SW_PAD_CTL_PAD_GPIO_B0_13 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SRE_A {
     #[doc = "0: Slow Slew Rate"]
-    SRE_0_SLOW_SLEW_RATE,
+    SRE_0_SLOW_SLEW_RATE = 0,
     #[doc = "1: Fast Slew Rate"]
-    SRE_1_FAST_SLEW_RATE,
+    SRE_1_FAST_SLEW_RATE = 1,
 }
 impl From<SRE_A> for bool {
     #[inline(always)]
     fn from(variant: SRE_A) -> Self {
-        match variant {
-            SRE_A::SRE_0_SLOW_SLEW_RATE => false,
-            SRE_A::SRE_1_FAST_SLEW_RATE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SRE`"]
@@ -90,37 +87,29 @@ impl<'a> SRE_W<'a> {
 }
 #[doc = "Drive Strength Field\n\nValue on reset: 6"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum DSE_A {
     #[doc = "0: output driver disabled;"]
-    DSE_0_OUTPUT_DRIVER_DISABLED,
+    DSE_0_OUTPUT_DRIVER_DISABLED = 0,
     #[doc = "1: R0(150 Ohm @ 3.3V, 260 Ohm@1.8V)"]
-    DSE_1_R0_150_OHM_3_3V_260_OHM_1_8V,
+    DSE_1_R0_150_OHM_3_3V_260_OHM_1_8V = 1,
     #[doc = "2: R0/2"]
-    DSE_2_R0_2,
+    DSE_2_R0_2 = 2,
     #[doc = "3: R0/3"]
-    DSE_3_R0_3,
+    DSE_3_R0_3 = 3,
     #[doc = "4: R0/4"]
-    DSE_4_R0_4,
+    DSE_4_R0_4 = 4,
     #[doc = "5: R0/5"]
-    DSE_5_R0_5,
+    DSE_5_R0_5 = 5,
     #[doc = "6: R0/6"]
-    DSE_6_R0_6,
+    DSE_6_R0_6 = 6,
     #[doc = "7: R0/7"]
-    DSE_7_R0_7,
+    DSE_7_R0_7 = 7,
 }
 impl From<DSE_A> for u8 {
     #[inline(always)]
     fn from(variant: DSE_A) -> Self {
-        match variant {
-            DSE_A::DSE_0_OUTPUT_DRIVER_DISABLED => 0,
-            DSE_A::DSE_1_R0_150_OHM_3_3V_260_OHM_1_8V => 1,
-            DSE_A::DSE_2_R0_2 => 2,
-            DSE_A::DSE_3_R0_3 => 3,
-            DSE_A::DSE_4_R0_4 => 4,
-            DSE_A::DSE_5_R0_5 => 5,
-            DSE_A::DSE_6_R0_6 => 6,
-            DSE_A::DSE_7_R0_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `DSE`"]
@@ -243,25 +232,21 @@ impl<'a> DSE_W<'a> {
 }
 #[doc = "Speed Field\n\nValue on reset: 2"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SPEED_A {
     #[doc = "0: low(50MHz)"]
-    SPEED_0_LOW_50MHZ,
+    SPEED_0_LOW_50MHZ = 0,
     #[doc = "1: medium(100MHz)"]
-    SPEED_1_MEDIUM_100MHZ,
+    SPEED_1_MEDIUM_100MHZ = 1,
     #[doc = "2: medium(100MHz)"]
-    SPEED_2_MEDIUM_100MHZ,
+    SPEED_2_MEDIUM_100MHZ = 2,
     #[doc = "3: max(200MHz)"]
-    SPEED_3_MAX_200MHZ,
+    SPEED_3_MAX_200MHZ = 3,
 }
 impl From<SPEED_A> for u8 {
     #[inline(always)]
     fn from(variant: SPEED_A) -> Self {
-        match variant {
-            SPEED_A::SPEED_0_LOW_50MHZ => 0,
-            SPEED_A::SPEED_1_MEDIUM_100MHZ => 1,
-            SPEED_A::SPEED_2_MEDIUM_100MHZ => 2,
-            SPEED_A::SPEED_3_MAX_200MHZ => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SPEED`"]
@@ -342,17 +327,14 @@ impl<'a> SPEED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ODE_A {
     #[doc = "0: Open Drain Disabled"]
-    ODE_0_OPEN_DRAIN_DISABLED,
+    ODE_0_OPEN_DRAIN_DISABLED = 0,
     #[doc = "1: Open Drain Enabled"]
-    ODE_1_OPEN_DRAIN_ENABLED,
+    ODE_1_OPEN_DRAIN_ENABLED = 1,
 }
 impl From<ODE_A> for bool {
     #[inline(always)]
     fn from(variant: ODE_A) -> Self {
-        match variant {
-            ODE_A::ODE_0_OPEN_DRAIN_DISABLED => false,
-            ODE_A::ODE_1_OPEN_DRAIN_ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ODE`"]
@@ -420,17 +402,14 @@ impl<'a> ODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PKE_A {
     #[doc = "0: Pull/Keeper Disabled"]
-    PKE_0_PULL_KEEPER_DISABLED,
+    PKE_0_PULL_KEEPER_DISABLED = 0,
     #[doc = "1: Pull/Keeper Enabled"]
-    PKE_1_PULL_KEEPER_ENABLED,
+    PKE_1_PULL_KEEPER_ENABLED = 1,
 }
 impl From<PKE_A> for bool {
     #[inline(always)]
     fn from(variant: PKE_A) -> Self {
-        match variant {
-            PKE_A::PKE_0_PULL_KEEPER_DISABLED => false,
-            PKE_A::PKE_1_PULL_KEEPER_ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PKE`"]
@@ -498,17 +477,14 @@ impl<'a> PKE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PUE_A {
     #[doc = "0: Keeper"]
-    PUE_0_KEEPER,
+    PUE_0_KEEPER = 0,
     #[doc = "1: Pull"]
-    PUE_1_PULL,
+    PUE_1_PULL = 1,
 }
 impl From<PUE_A> for bool {
     #[inline(always)]
     fn from(variant: PUE_A) -> Self {
-        match variant {
-            PUE_A::PUE_0_KEEPER => false,
-            PUE_A::PUE_1_PULL => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PUE`"]
@@ -574,25 +550,21 @@ impl<'a> PUE_W<'a> {
 }
 #[doc = "Pull Up / Down Config. Field\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PUS_A {
     #[doc = "0: 100K Ohm Pull Down"]
-    PUS_0_100K_OHM_PULL_DOWN,
+    PUS_0_100K_OHM_PULL_DOWN = 0,
     #[doc = "1: 47K Ohm Pull Up"]
-    PUS_1_47K_OHM_PULL_UP,
+    PUS_1_47K_OHM_PULL_UP = 1,
     #[doc = "2: 100K Ohm Pull Up"]
-    PUS_2_100K_OHM_PULL_UP,
+    PUS_2_100K_OHM_PULL_UP = 2,
     #[doc = "3: 22K Ohm Pull Up"]
-    PUS_3_22K_OHM_PULL_UP,
+    PUS_3_22K_OHM_PULL_UP = 3,
 }
 impl From<PUS_A> for u8 {
     #[inline(always)]
     fn from(variant: PUS_A) -> Self {
-        match variant {
-            PUS_A::PUS_0_100K_OHM_PULL_DOWN => 0,
-            PUS_A::PUS_1_47K_OHM_PULL_UP => 1,
-            PUS_A::PUS_2_100K_OHM_PULL_UP => 2,
-            PUS_A::PUS_3_22K_OHM_PULL_UP => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PUS`"]
@@ -673,17 +645,14 @@ impl<'a> PUS_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum HYS_A {
     #[doc = "0: Hysteresis Disabled"]
-    HYS_0_HYSTERESIS_DISABLED,
+    HYS_0_HYSTERESIS_DISABLED = 0,
     #[doc = "1: Hysteresis Enabled"]
-    HYS_1_HYSTERESIS_ENABLED,
+    HYS_1_HYSTERESIS_ENABLED = 1,
 }
 impl From<HYS_A> for bool {
     #[inline(always)]
     fn from(variant: HYS_A) -> Self {
-        match variant {
-            HYS_A::HYS_0_HYSTERESIS_DISABLED => false,
-            HYS_A::HYS_1_HYSTERESIS_ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `HYS`"]

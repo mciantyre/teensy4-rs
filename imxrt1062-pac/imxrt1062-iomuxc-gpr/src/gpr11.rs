@@ -12,25 +12,21 @@ impl crate::ResetValue for super::GPR11 {
 }
 #[doc = "Access control of memory region-0\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum M7_APC_AC_R0_CTRL_A {
     #[doc = "0: No access protection"]
-    M7_APC_AC_R0_CTRL_0,
+    M7_APC_AC_R0_CTRL_0 = 0,
     #[doc = "1: M7 debug protection enabled"]
-    M7_APC_AC_R0_CTRL_1,
+    M7_APC_AC_R0_CTRL_1 = 1,
     #[doc = "2: FlexSPI access protection"]
-    M7_APC_AC_R0_CTRL_2,
+    M7_APC_AC_R0_CTRL_2 = 2,
     #[doc = "3: Both M7 debug and FlexSPI access are protected"]
-    M7_APC_AC_R0_CTRL_3,
+    M7_APC_AC_R0_CTRL_3 = 3,
 }
 impl From<M7_APC_AC_R0_CTRL_A> for u8 {
     #[inline(always)]
     fn from(variant: M7_APC_AC_R0_CTRL_A) -> Self {
-        match variant {
-            M7_APC_AC_R0_CTRL_A::M7_APC_AC_R0_CTRL_0 => 0,
-            M7_APC_AC_R0_CTRL_A::M7_APC_AC_R0_CTRL_1 => 1,
-            M7_APC_AC_R0_CTRL_A::M7_APC_AC_R0_CTRL_2 => 2,
-            M7_APC_AC_R0_CTRL_A::M7_APC_AC_R0_CTRL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `M7_APC_AC_R0_CTRL`"]
@@ -109,25 +105,21 @@ impl<'a> M7_APC_AC_R0_CTRL_W<'a> {
 }
 #[doc = "Access control of memory region-1\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum M7_APC_AC_R1_CTRL_A {
     #[doc = "0: No access protection"]
-    M7_APC_AC_R1_CTRL_0,
+    M7_APC_AC_R1_CTRL_0 = 0,
     #[doc = "1: M7 debug protection enabled"]
-    M7_APC_AC_R1_CTRL_1,
+    M7_APC_AC_R1_CTRL_1 = 1,
     #[doc = "2: FlexSPI access protection"]
-    M7_APC_AC_R1_CTRL_2,
+    M7_APC_AC_R1_CTRL_2 = 2,
     #[doc = "3: Both M7 debug and FlexSPI access are protected"]
-    M7_APC_AC_R1_CTRL_3,
+    M7_APC_AC_R1_CTRL_3 = 3,
 }
 impl From<M7_APC_AC_R1_CTRL_A> for u8 {
     #[inline(always)]
     fn from(variant: M7_APC_AC_R1_CTRL_A) -> Self {
-        match variant {
-            M7_APC_AC_R1_CTRL_A::M7_APC_AC_R1_CTRL_0 => 0,
-            M7_APC_AC_R1_CTRL_A::M7_APC_AC_R1_CTRL_1 => 1,
-            M7_APC_AC_R1_CTRL_A::M7_APC_AC_R1_CTRL_2 => 2,
-            M7_APC_AC_R1_CTRL_A::M7_APC_AC_R1_CTRL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `M7_APC_AC_R1_CTRL`"]
@@ -206,25 +198,21 @@ impl<'a> M7_APC_AC_R1_CTRL_W<'a> {
 }
 #[doc = "Access control of memory region-2\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum M7_APC_AC_R2_CTRL_A {
     #[doc = "0: No access protection"]
-    M7_APC_AC_R2_CTRL_0,
+    M7_APC_AC_R2_CTRL_0 = 0,
     #[doc = "1: M7 debug protection enabled"]
-    M7_APC_AC_R2_CTRL_1,
+    M7_APC_AC_R2_CTRL_1 = 1,
     #[doc = "2: FlexSPI access protection"]
-    M7_APC_AC_R2_CTRL_2,
+    M7_APC_AC_R2_CTRL_2 = 2,
     #[doc = "3: Both M7 debug and FlexSPI access are protected"]
-    M7_APC_AC_R2_CTRL_3,
+    M7_APC_AC_R2_CTRL_3 = 3,
 }
 impl From<M7_APC_AC_R2_CTRL_A> for u8 {
     #[inline(always)]
     fn from(variant: M7_APC_AC_R2_CTRL_A) -> Self {
-        match variant {
-            M7_APC_AC_R2_CTRL_A::M7_APC_AC_R2_CTRL_0 => 0,
-            M7_APC_AC_R2_CTRL_A::M7_APC_AC_R2_CTRL_1 => 1,
-            M7_APC_AC_R2_CTRL_A::M7_APC_AC_R2_CTRL_2 => 2,
-            M7_APC_AC_R2_CTRL_A::M7_APC_AC_R2_CTRL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `M7_APC_AC_R2_CTRL`"]
@@ -303,25 +291,21 @@ impl<'a> M7_APC_AC_R2_CTRL_W<'a> {
 }
 #[doc = "Access control of memory region-3\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum M7_APC_AC_R3_CTRL_A {
     #[doc = "0: No access protection"]
-    M7_APC_AC_R3_CTRL_0,
+    M7_APC_AC_R3_CTRL_0 = 0,
     #[doc = "1: M7 debug protection enabled"]
-    M7_APC_AC_R3_CTRL_1,
+    M7_APC_AC_R3_CTRL_1 = 1,
     #[doc = "2: FlexSPI access protection"]
-    M7_APC_AC_R3_CTRL_2,
+    M7_APC_AC_R3_CTRL_2 = 2,
     #[doc = "3: Both M7 debug and FlexSPI access are protected"]
-    M7_APC_AC_R3_CTRL_3,
+    M7_APC_AC_R3_CTRL_3 = 3,
 }
 impl From<M7_APC_AC_R3_CTRL_A> for u8 {
     #[inline(always)]
     fn from(variant: M7_APC_AC_R3_CTRL_A) -> Self {
-        match variant {
-            M7_APC_AC_R3_CTRL_A::M7_APC_AC_R3_CTRL_0 => 0,
-            M7_APC_AC_R3_CTRL_A::M7_APC_AC_R3_CTRL_1 => 1,
-            M7_APC_AC_R3_CTRL_A::M7_APC_AC_R3_CTRL_2 => 2,
-            M7_APC_AC_R3_CTRL_A::M7_APC_AC_R3_CTRL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `M7_APC_AC_R3_CTRL`"]

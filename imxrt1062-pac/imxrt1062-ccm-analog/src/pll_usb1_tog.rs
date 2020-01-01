@@ -38,17 +38,14 @@ impl<'a> DIV_SELECT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EN_USB_CLKS_A {
     #[doc = "0: PLL outputs for USBPHYn off."]
-    EN_USB_CLKS_0,
+    EN_USB_CLKS_0 = 0,
     #[doc = "1: PLL outputs for USBPHYn on."]
-    EN_USB_CLKS_1,
+    EN_USB_CLKS_1 = 1,
 }
 impl From<EN_USB_CLKS_A> for bool {
     #[inline(always)]
     fn from(variant: EN_USB_CLKS_A) -> Self {
-        match variant {
-            EN_USB_CLKS_A::EN_USB_CLKS_0 => false,
-            EN_USB_CLKS_A::EN_USB_CLKS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EN_USB_CLKS`"]
@@ -162,19 +159,17 @@ impl<'a> ENABLE_W<'a> {
 }
 #[doc = "Determines the bypass source.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum BYPASS_CLK_SRC_A {
     #[doc = "0: Select the 24MHz oscillator as source."]
-    REF_CLK_24M,
+    REF_CLK_24M = 0,
     #[doc = "1: Select the CLK1_N / CLK1_P as source."]
-    CLK1,
+    CLK1 = 1,
 }
 impl From<BYPASS_CLK_SRC_A> for u8 {
     #[inline(always)]
     fn from(variant: BYPASS_CLK_SRC_A) -> Self {
-        match variant {
-            BYPASS_CLK_SRC_A::REF_CLK_24M => 0,
-            BYPASS_CLK_SRC_A::CLK1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `BYPASS_CLK_SRC`"]

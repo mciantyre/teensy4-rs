@@ -3,6 +3,13 @@ name = "teensy4-examples"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
+publish = false
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+Examples of Rust running on the Teensy 4.
+Part of the teensy4-rs project.
+"""
 
 [dependencies]
 cortex-m = "0.6.1"
@@ -10,7 +17,7 @@ embedded-hal = "0.2.3"
 log = { version = "0.4.8", features = ["release_max_level_info"] }
 nb = "0.1.2"
 panic-halt = "0.2.0"
-teensy4-bsp = { path = "../teensy4-bsp" }
+teensy4-bsp = { version = "0.1.0", path = "../teensy4-bsp" }
 
 [[bin]]
 name = "led"

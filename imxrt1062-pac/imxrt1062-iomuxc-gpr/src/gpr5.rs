@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR5 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum WDOG1_MASK_A {
     #[doc = "0: WDOG1 Timeout behaves normally"]
-    WDOG1_MASK_0,
+    WDOG1_MASK_0 = 0,
     #[doc = "1: WDOG1 Timeout is masked"]
-    WDOG1_MASK_1,
+    WDOG1_MASK_1 = 1,
 }
 impl From<WDOG1_MASK_A> for bool {
     #[inline(always)]
     fn from(variant: WDOG1_MASK_A) -> Self {
-        match variant {
-            WDOG1_MASK_A::WDOG1_MASK_0 => false,
-            WDOG1_MASK_A::WDOG1_MASK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `WDOG1_MASK`"]
@@ -92,17 +89,14 @@ impl<'a> WDOG1_MASK_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum WDOG2_MASK_A {
     #[doc = "0: WDOG2 Timeout behaves normally"]
-    WDOG2_MASK_0,
+    WDOG2_MASK_0 = 0,
     #[doc = "1: WDOG2 Timeout is masked"]
-    WDOG2_MASK_1,
+    WDOG2_MASK_1 = 1,
 }
 impl From<WDOG2_MASK_A> for bool {
     #[inline(always)]
     fn from(variant: WDOG2_MASK_A) -> Self {
-        match variant {
-            WDOG2_MASK_A::WDOG2_MASK_0 => false,
-            WDOG2_MASK_A::WDOG2_MASK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `WDOG2_MASK`"]
@@ -170,17 +164,14 @@ impl<'a> WDOG2_MASK_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum GPT2_CAPIN1_SEL_A {
     #[doc = "0: source from GPT2_CAPTURE1"]
-    GPT2_CAPIN1_SEL_0,
+    GPT2_CAPIN1_SEL_0 = 0,
     #[doc = "1: source from ENET_1588_EVENT3_OUT (chnnal 3 of IEEE 1588 timer)"]
-    GPT2_CAPIN1_SEL_1,
+    GPT2_CAPIN1_SEL_1 = 1,
 }
 impl From<GPT2_CAPIN1_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: GPT2_CAPIN1_SEL_A) -> Self {
-        match variant {
-            GPT2_CAPIN1_SEL_A::GPT2_CAPIN1_SEL_0 => false,
-            GPT2_CAPIN1_SEL_A::GPT2_CAPIN1_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `GPT2_CAPIN1_SEL`"]
@@ -248,17 +239,14 @@ impl<'a> GPT2_CAPIN1_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum GPT2_CAPIN2_SEL_A {
     #[doc = "0: source from GPT2_CAPTURE2"]
-    GPT2_CAPIN2_SEL_0,
+    GPT2_CAPIN2_SEL_0 = 0,
     #[doc = "1: source from ENET2_1588_EVENT3_OUT (chnnal 3 of IEEE 1588 timer)"]
-    GPT2_CAPIN2_SEL_1,
+    GPT2_CAPIN2_SEL_1 = 1,
 }
 impl From<GPT2_CAPIN2_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: GPT2_CAPIN2_SEL_A) -> Self {
-        match variant {
-            GPT2_CAPIN2_SEL_A::GPT2_CAPIN2_SEL_0 => false,
-            GPT2_CAPIN2_SEL_A::GPT2_CAPIN2_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `GPT2_CAPIN2_SEL`"]
@@ -326,17 +314,14 @@ impl<'a> GPT2_CAPIN2_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET_EVENT3IN_SEL_A {
     #[doc = "0: event3 source input from ENET_1588_EVENT3_IN"]
-    ENET_EVENT3IN_SEL_0,
+    ENET_EVENT3IN_SEL_0 = 0,
     #[doc = "1: event3 source input from GPT2.GPT_COMPARE1"]
-    ENET_EVENT3IN_SEL_1,
+    ENET_EVENT3IN_SEL_1 = 1,
 }
 impl From<ENET_EVENT3IN_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: ENET_EVENT3IN_SEL_A) -> Self {
-        match variant {
-            ENET_EVENT3IN_SEL_A::ENET_EVENT3IN_SEL_0 => false,
-            ENET_EVENT3IN_SEL_A::ENET_EVENT3IN_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET_EVENT3IN_SEL`"]
@@ -404,17 +389,14 @@ impl<'a> ENET_EVENT3IN_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET2_EVENT3IN_SEL_A {
     #[doc = "0: event3 source input from ENET2_1588_EVENT3_IN"]
-    ENET2_EVENT3IN_SEL_0,
+    ENET2_EVENT3IN_SEL_0 = 0,
     #[doc = "1: event3 source input from GPT2.GPT_COMPARE2"]
-    ENET2_EVENT3IN_SEL_1,
+    ENET2_EVENT3IN_SEL_1 = 1,
 }
 impl From<ENET2_EVENT3IN_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: ENET2_EVENT3IN_SEL_A) -> Self {
-        match variant {
-            ENET2_EVENT3IN_SEL_A::ENET2_EVENT3IN_SEL_0 => false,
-            ENET2_EVENT3IN_SEL_A::ENET2_EVENT3IN_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET2_EVENT3IN_SEL`"]
@@ -482,17 +464,14 @@ impl<'a> ENET2_EVENT3IN_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum VREF_1M_CLK_GPT1_A {
     #[doc = "0: GPT1 ipg_clk_highfreq driven by IPG_PERCLK"]
-    VREF_1M_CLK_GPT1_0,
+    VREF_1M_CLK_GPT1_0 = 0,
     #[doc = "1: GPT1 ipg_clk_highfreq driven by anatop 1 MHz clock"]
-    VREF_1M_CLK_GPT1_1,
+    VREF_1M_CLK_GPT1_1 = 1,
 }
 impl From<VREF_1M_CLK_GPT1_A> for bool {
     #[inline(always)]
     fn from(variant: VREF_1M_CLK_GPT1_A) -> Self {
-        match variant {
-            VREF_1M_CLK_GPT1_A::VREF_1M_CLK_GPT1_0 => false,
-            VREF_1M_CLK_GPT1_A::VREF_1M_CLK_GPT1_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `VREF_1M_CLK_GPT1`"]
@@ -560,17 +539,14 @@ impl<'a> VREF_1M_CLK_GPT1_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum VREF_1M_CLK_GPT2_A {
     #[doc = "0: GPT2 ipg_clk_highfreq driven by IPG_PERCLK"]
-    VREF_1M_CLK_GPT2_0,
+    VREF_1M_CLK_GPT2_0 = 0,
     #[doc = "1: GPT2 ipg_clk_highfreq driven by anatop 1 MHz clock"]
-    VREF_1M_CLK_GPT2_1,
+    VREF_1M_CLK_GPT2_1 = 1,
 }
 impl From<VREF_1M_CLK_GPT2_A> for bool {
     #[inline(always)]
     fn from(variant: VREF_1M_CLK_GPT2_A) -> Self {
-        match variant {
-            VREF_1M_CLK_GPT2_A::VREF_1M_CLK_GPT2_0 => false,
-            VREF_1M_CLK_GPT2_A::VREF_1M_CLK_GPT2_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `VREF_1M_CLK_GPT2`"]

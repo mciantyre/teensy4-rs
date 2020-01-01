@@ -3,6 +3,24 @@ name = "imxrt1062-pit"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+An imxrt1062-pac subcrate. See the imxrt1062-pac for more details.
+
+Part of the teensy4-rs project.
+"""
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "svd2rust",
+    "imxrt1062",
+    "cortex-m",
+]
 
 [dependencies]
 vcell = "0.1.2"

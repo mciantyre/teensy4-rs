@@ -12,25 +12,21 @@ impl crate::ResetValue for super::CDCDR {
 }
 #[doc = "Selector for flexio1 clock multiplexer\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXIO1_CLK_SEL_A {
     #[doc = "0: derive clock from PLL4"]
-    FLEXIO1_CLK_SEL_0,
+    FLEXIO1_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL3 PFD2"]
-    FLEXIO1_CLK_SEL_1,
+    FLEXIO1_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from PLL5"]
-    FLEXIO1_CLK_SEL_2,
+    FLEXIO1_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from pll3_sw_clk"]
-    FLEXIO1_CLK_SEL_3,
+    FLEXIO1_CLK_SEL_3 = 3,
 }
 impl From<FLEXIO1_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXIO1_CLK_SEL_A) -> Self {
-        match variant {
-            FLEXIO1_CLK_SEL_A::FLEXIO1_CLK_SEL_0 => 0,
-            FLEXIO1_CLK_SEL_A::FLEXIO1_CLK_SEL_1 => 1,
-            FLEXIO1_CLK_SEL_A::FLEXIO1_CLK_SEL_2 => 2,
-            FLEXIO1_CLK_SEL_A::FLEXIO1_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXIO1_CLK_SEL`"]
@@ -109,37 +105,29 @@ impl<'a> FLEXIO1_CLK_SEL_W<'a> {
 }
 #[doc = "Divider for flexio1 clock podf. Divider should be updated when output clock is gated.\n\nValue on reset: 7"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXIO1_CLK_PODF_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
 }
 impl From<FLEXIO1_CLK_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXIO1_CLK_PODF_A) -> Self {
-        match variant {
-            FLEXIO1_CLK_PODF_A::DIVIDE_1 => 0,
-            FLEXIO1_CLK_PODF_A::DIVIDE_2 => 1,
-            FLEXIO1_CLK_PODF_A::DIVIDE_3 => 2,
-            FLEXIO1_CLK_PODF_A::DIVIDE_4 => 3,
-            FLEXIO1_CLK_PODF_A::DIVIDE_5 => 4,
-            FLEXIO1_CLK_PODF_A::DIVIDE_6 => 5,
-            FLEXIO1_CLK_PODF_A::DIVIDE_7 => 6,
-            FLEXIO1_CLK_PODF_A::DIVIDE_8 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXIO1_CLK_PODF`"]
@@ -262,37 +250,29 @@ impl<'a> FLEXIO1_CLK_PODF_W<'a> {
 }
 #[doc = "Divider for flexio1 clock pred. Divider should be updated when output clock is gated.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXIO1_CLK_PRED_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
 }
 impl From<FLEXIO1_CLK_PRED_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXIO1_CLK_PRED_A) -> Self {
-        match variant {
-            FLEXIO1_CLK_PRED_A::DIVIDE_1 => 0,
-            FLEXIO1_CLK_PRED_A::DIVIDE_2 => 1,
-            FLEXIO1_CLK_PRED_A::DIVIDE_3 => 2,
-            FLEXIO1_CLK_PRED_A::DIVIDE_4 => 3,
-            FLEXIO1_CLK_PRED_A::DIVIDE_5 => 4,
-            FLEXIO1_CLK_PRED_A::DIVIDE_6 => 5,
-            FLEXIO1_CLK_PRED_A::DIVIDE_7 => 6,
-            FLEXIO1_CLK_PRED_A::DIVIDE_8 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXIO1_CLK_PRED`"]
@@ -415,25 +395,21 @@ impl<'a> FLEXIO1_CLK_PRED_W<'a> {
 }
 #[doc = "Selector for spdif0 clock multiplexer\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SPDIF0_CLK_SEL_A {
     #[doc = "0: derive clock from PLL4"]
-    SPDIF0_CLK_SEL_0,
+    SPDIF0_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL3 PFD2"]
-    SPDIF0_CLK_SEL_1,
+    SPDIF0_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from PLL5"]
-    SPDIF0_CLK_SEL_2,
+    SPDIF0_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from pll3_sw_clk"]
-    SPDIF0_CLK_SEL_3,
+    SPDIF0_CLK_SEL_3 = 3,
 }
 impl From<SPDIF0_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: SPDIF0_CLK_SEL_A) -> Self {
-        match variant {
-            SPDIF0_CLK_SEL_A::SPDIF0_CLK_SEL_0 => 0,
-            SPDIF0_CLK_SEL_A::SPDIF0_CLK_SEL_1 => 1,
-            SPDIF0_CLK_SEL_A::SPDIF0_CLK_SEL_2 => 2,
-            SPDIF0_CLK_SEL_A::SPDIF0_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SPDIF0_CLK_SEL`"]
@@ -512,37 +488,29 @@ impl<'a> SPDIF0_CLK_SEL_W<'a> {
 }
 #[doc = "Divider for spdif0 clock podf. Divider should be updated when output clock is gated.\n\nValue on reset: 7"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SPDIF0_CLK_PODF_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
 }
 impl From<SPDIF0_CLK_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: SPDIF0_CLK_PODF_A) -> Self {
-        match variant {
-            SPDIF0_CLK_PODF_A::DIVIDE_1 => 0,
-            SPDIF0_CLK_PODF_A::DIVIDE_2 => 1,
-            SPDIF0_CLK_PODF_A::DIVIDE_3 => 2,
-            SPDIF0_CLK_PODF_A::DIVIDE_4 => 3,
-            SPDIF0_CLK_PODF_A::DIVIDE_5 => 4,
-            SPDIF0_CLK_PODF_A::DIVIDE_6 => 5,
-            SPDIF0_CLK_PODF_A::DIVIDE_7 => 6,
-            SPDIF0_CLK_PODF_A::DIVIDE_8 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SPDIF0_CLK_PODF`"]
@@ -665,37 +633,29 @@ impl<'a> SPDIF0_CLK_PODF_W<'a> {
 }
 #[doc = "Divider for spdif0 clock pred. Divider should be updated when output clock is gated.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SPDIF0_CLK_PRED_A {
     #[doc = "0: Divide by 1"]
-    DIVIDE_1,
+    DIVIDE_1 = 0,
     #[doc = "1: Divide by 2"]
-    DIVIDE_2,
+    DIVIDE_2 = 1,
     #[doc = "2: Divide by 3"]
-    DIVIDE_3,
+    DIVIDE_3 = 2,
     #[doc = "3: Divide by 4"]
-    DIVIDE_4,
+    DIVIDE_4 = 3,
     #[doc = "4: Divide by 5"]
-    DIVIDE_5,
+    DIVIDE_5 = 4,
     #[doc = "5: Divide by 6"]
-    DIVIDE_6,
+    DIVIDE_6 = 5,
     #[doc = "6: Divide by 7"]
-    DIVIDE_7,
+    DIVIDE_7 = 6,
     #[doc = "7: Divide by 8"]
-    DIVIDE_8,
+    DIVIDE_8 = 7,
 }
 impl From<SPDIF0_CLK_PRED_A> for u8 {
     #[inline(always)]
     fn from(variant: SPDIF0_CLK_PRED_A) -> Self {
-        match variant {
-            SPDIF0_CLK_PRED_A::DIVIDE_1 => 0,
-            SPDIF0_CLK_PRED_A::DIVIDE_2 => 1,
-            SPDIF0_CLK_PRED_A::DIVIDE_3 => 2,
-            SPDIF0_CLK_PRED_A::DIVIDE_4 => 3,
-            SPDIF0_CLK_PRED_A::DIVIDE_5 => 4,
-            SPDIF0_CLK_PRED_A::DIVIDE_6 => 5,
-            SPDIF0_CLK_PRED_A::DIVIDE_7 => 6,
-            SPDIF0_CLK_PRED_A::DIVIDE_8 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SPDIF0_CLK_PRED`"]

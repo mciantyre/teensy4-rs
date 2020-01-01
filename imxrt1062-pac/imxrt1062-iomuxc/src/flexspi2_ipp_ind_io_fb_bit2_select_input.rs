@@ -14,17 +14,14 @@ impl crate::ResetValue for super::FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_EMC_15 for Mode: ALT8"]
-    GPIO_EMC_15_ALT8,
+    GPIO_EMC_15_ALT8 = 0,
     #[doc = "1: Selecting Pad: GPIO_SPI_B0_03 for Mode: ALT0"]
-    GPIO_SPI_B0_03_ALT0,
+    GPIO_SPI_B0_03_ALT0 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_EMC_15_ALT8 => false,
-            DAISY_A::GPIO_SPI_B0_03_ALT0 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

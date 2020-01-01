@@ -80,9 +80,13 @@ impl<'a> FIE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[repr(u8)]
 pub enum FSAFE_A {
-    #[doc = "0: Normal mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\] without regard to the state of FSTS\\[FFPINx\\]. The PWM outputs disabled by this fault input will not be re-enabled until the actual FAULTx input signal de-asserts since the fault input will combinationally disable the PWM outputs (as programmed in DISMAPn)."]
+    #[doc = "0: Normal mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\]
+is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]
+without regard to the state of FSTS\\[FFPINx\\]. The PWM outputs disabled by this fault input will not be re-enabled until the actual FAULTx input signal de-asserts since the fault input will combinationally disable the PWM outputs (as programmed in DISMAPn)."]
     FSAFE_0 = 0,
-    #[doc = "1: Safe mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear and FSTS\\[FFPINx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]."]
+    #[doc = "1: Safe mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\]
+is clear and FSTS\\[FFPINx\\]
+is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]."]
     FSAFE_1 = 1,
 }
 impl From<FSAFE_A> for u8 {
@@ -125,12 +129,16 @@ impl<'a> FSAFE_W<'a> {
     pub fn variant(self, variant: FSAFE_A) -> &'a mut W {
         unsafe { self.bits(variant.into()) }
     }
-    #[doc = "Normal mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\] without regard to the state of FSTS\\[FFPINx\\]. The PWM outputs disabled by this fault input will not be re-enabled until the actual FAULTx input signal de-asserts since the fault input will combinationally disable the PWM outputs (as programmed in DISMAPn)."]
+    #[doc = "Normal mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\]
+is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]
+without regard to the state of FSTS\\[FFPINx\\]. The PWM outputs disabled by this fault input will not be re-enabled until the actual FAULTx input signal de-asserts since the fault input will combinationally disable the PWM outputs (as programmed in DISMAPn)."]
     #[inline(always)]
     pub fn fsafe_0(self) -> &'a mut W {
         self.variant(FSAFE_A::FSAFE_0)
     }
-    #[doc = "Safe mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear and FSTS\\[FFPINx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]."]
+    #[doc = "Safe mode. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\]
+is clear and FSTS\\[FFPINx\\]
+is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]."]
     #[inline(always)]
     pub fn fsafe_1(self) -> &'a mut W {
         self.variant(FSAFE_A::FSAFE_1)
@@ -146,9 +154,12 @@ impl<'a> FSAFE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[repr(u8)]
 pub enum FAUTO_A {
-    #[doc = "0: Manual fault clearing. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear at the start of a half cycle or full cycle depending the state of FSTS\\[FFULL\\]. This is further controlled by FCTRL\\[FSAFE\\]."]
+    #[doc = "0: Manual fault clearing. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\]
+is clear at the start of a half cycle or full cycle depending the state of FSTS\\[FFULL\\]. This is further controlled by FCTRL\\[FSAFE\\]."]
     FAUTO_0 = 0,
-    #[doc = "1: Automatic fault clearing. PWM outputs disabled by this fault are enabled when FSTS\\[FFPINx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\] without regard to the state of FSTS\\[FFLAGx\\]."]
+    #[doc = "1: Automatic fault clearing. PWM outputs disabled by this fault are enabled when FSTS\\[FFPINx\\]
+is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]
+without regard to the state of FSTS\\[FFLAGx\\]."]
     FAUTO_1 = 1,
 }
 impl From<FAUTO_A> for u8 {
@@ -191,12 +202,15 @@ impl<'a> FAUTO_W<'a> {
     pub fn variant(self, variant: FAUTO_A) -> &'a mut W {
         unsafe { self.bits(variant.into()) }
     }
-    #[doc = "Manual fault clearing. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\] is clear at the start of a half cycle or full cycle depending the state of FSTS\\[FFULL\\]. This is further controlled by FCTRL\\[FSAFE\\]."]
+    #[doc = "Manual fault clearing. PWM outputs disabled by this fault are not enabled until FSTS\\[FFLAGx\\]
+is clear at the start of a half cycle or full cycle depending the state of FSTS\\[FFULL\\]. This is further controlled by FCTRL\\[FSAFE\\]."]
     #[inline(always)]
     pub fn fauto_0(self) -> &'a mut W {
         self.variant(FAUTO_A::FAUTO_0)
     }
-    #[doc = "Automatic fault clearing. PWM outputs disabled by this fault are enabled when FSTS\\[FFPINx\\] is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\] without regard to the state of FSTS\\[FFLAGx\\]."]
+    #[doc = "Automatic fault clearing. PWM outputs disabled by this fault are enabled when FSTS\\[FFPINx\\]
+is clear at the start of a half cycle or full cycle depending on the state of FSTS\\[FFULL\\]
+without regard to the state of FSTS\\[FFLAGx\\]."]
     #[inline(always)]
     pub fn fauto_1(self) -> &'a mut W {
         self.variant(FAUTO_A::FAUTO_1)

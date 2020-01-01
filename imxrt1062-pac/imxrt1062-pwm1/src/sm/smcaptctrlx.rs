@@ -15,7 +15,8 @@ impl crate::ResetValue for super::SMCAPTCTRLX {
 pub enum ARMX_A {
     #[doc = "0: Input capture operation is disabled."]
     ARMX_0 = 0,
-    #[doc = "1: Input capture operation as specified by CAPTCTRLX\\[EDGXx\\] is enabled."]
+    #[doc = "1: Input capture operation as specified by CAPTCTRLX\\[EDGXx\\]
+is enabled."]
     ARMX_1 = 1,
 }
 impl From<ARMX_A> for bool {
@@ -63,7 +64,8 @@ impl<'a> ARMX_W<'a> {
     pub fn armx_0(self) -> &'a mut W {
         self.variant(ARMX_A::ARMX_0)
     }
-    #[doc = "Input capture operation as specified by CAPTCTRLX\\[EDGXx\\] is enabled."]
+    #[doc = "Input capture operation as specified by CAPTCTRLX\\[EDGXx\\]
+is enabled."]
     #[inline(always)]
     pub fn armx_1(self) -> &'a mut W {
         self.variant(ARMX_A::ARMX_1)
@@ -351,7 +353,11 @@ impl<'a> EDGX1_W<'a> {
 pub enum INP_SELX_A {
     #[doc = "0: Raw PWM_X input signal selected as source."]
     INP_SELX_0 = 0,
-    #[doc = "1: Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLX\\[EDGX0\\] and CAPTCTRLX\\[EDGX1\\] fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRX\\[EDGX0\\] and/or CAPTCTRLX\\[EDGX1\\] fields in order to enable one or both of the capture registers."]
+    #[doc = "1: Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLX\\[EDGX0\\]
+and CAPTCTRLX\\[EDGX1\\]
+fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRX\\[EDGX0\\]
+and/or CAPTCTRLX\\[EDGX1\\]
+fields in order to enable one or both of the capture registers."]
     INP_SELX_1 = 1,
 }
 impl From<INP_SELX_A> for bool {
@@ -399,7 +405,11 @@ impl<'a> INP_SELX_W<'a> {
     pub fn inp_selx_0(self) -> &'a mut W {
         self.variant(INP_SELX_A::INP_SELX_0)
     }
-    #[doc = "Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLX\\[EDGX0\\] and CAPTCTRLX\\[EDGX1\\] fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRX\\[EDGX0\\] and/or CAPTCTRLX\\[EDGX1\\] fields in order to enable one or both of the capture registers."]
+    #[doc = "Output of edge counter/compare selected as source. Note that when this bitfield is set to 1, the internal edge counter is enabled and the rising and/or falling edges specified by the CAPTCTRLX\\[EDGX0\\]
+and CAPTCTRLX\\[EDGX1\\]
+fields are ignored. The software must still place a value other than 00 in either or both of the CAPTCTLRX\\[EDGX0\\]
+and/or CAPTCTRLX\\[EDGX1\\]
+fields in order to enable one or both of the capture registers."]
     #[inline(always)]
     pub fn inp_selx_1(self) -> &'a mut W {
         self.variant(INP_SELX_A::INP_SELX_1)

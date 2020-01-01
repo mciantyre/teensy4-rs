@@ -12,19 +12,17 @@ impl crate::ResetValue for super::MISC2_TOG {
 }
 #[doc = "This field defines the brown out voltage offset for the CORE power domain\n\nValue on reset: 7"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG0_BO_OFFSET_A {
     #[doc = "4: Brownout offset = 0.100V"]
-    REG0_BO_OFFSET_4,
+    REG0_BO_OFFSET_4 = 4,
     #[doc = "7: Brownout offset = 0.175V"]
-    REG0_BO_OFFSET_7,
+    REG0_BO_OFFSET_7 = 7,
 }
 impl From<REG0_BO_OFFSET_A> for u8 {
     #[inline(always)]
     fn from(variant: REG0_BO_OFFSET_A) -> Self {
-        match variant {
-            REG0_BO_OFFSET_A::REG0_BO_OFFSET_4 => 4,
-            REG0_BO_OFFSET_A::REG0_BO_OFFSET_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG0_BO_OFFSET`"]
@@ -55,14 +53,12 @@ impl REG0_BO_OFFSET_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REG0_BO_STATUS_A {
     #[doc = "1: Brownout, supply is below target minus brownout offset."]
-    REG0_BO_STATUS_1,
+    REG0_BO_STATUS_1 = 1,
 }
 impl From<REG0_BO_STATUS_A> for bool {
     #[inline(always)]
     fn from(variant: REG0_BO_STATUS_A) -> Self {
-        match variant {
-            REG0_BO_STATUS_A::REG0_BO_STATUS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `REG0_BO_STATUS`"]
@@ -113,17 +109,14 @@ pub type REG0_OK_R = crate::R<bool, bool>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PLL3_DISABLE_A {
     #[doc = "0: PLL3 is being used by peripherals and is enabled when SoC is not in any low power mode"]
-    PLL3_DISABLE_0,
+    PLL3_DISABLE_0 = 0,
     #[doc = "1: PLL3 can be disabled when the SoC is not in any low power mode"]
-    PLL3_DISABLE_1,
+    PLL3_DISABLE_1 = 1,
 }
 impl From<PLL3_DISABLE_A> for bool {
     #[inline(always)]
     fn from(variant: PLL3_DISABLE_A) -> Self {
-        match variant {
-            PLL3_DISABLE_A::PLL3_DISABLE_0 => false,
-            PLL3_DISABLE_A::PLL3_DISABLE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PLL3_DISABLE`"]
@@ -189,19 +182,17 @@ impl<'a> PLL3_DISABLE_W<'a> {
 }
 #[doc = "This field defines the brown out voltage offset for the xPU power domain\n\nValue on reset: 7"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG1_BO_OFFSET_A {
     #[doc = "4: Brownout offset = 0.100V"]
-    REG1_BO_OFFSET_4,
+    REG1_BO_OFFSET_4 = 4,
     #[doc = "7: Brownout offset = 0.175V"]
-    REG1_BO_OFFSET_7,
+    REG1_BO_OFFSET_7 = 7,
 }
 impl From<REG1_BO_OFFSET_A> for u8 {
     #[inline(always)]
     fn from(variant: REG1_BO_OFFSET_A) -> Self {
-        match variant {
-            REG1_BO_OFFSET_A::REG1_BO_OFFSET_4 => 4,
-            REG1_BO_OFFSET_A::REG1_BO_OFFSET_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG1_BO_OFFSET`"]
@@ -232,14 +223,12 @@ impl REG1_BO_OFFSET_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REG1_BO_STATUS_A {
     #[doc = "1: Brownout, supply is below target minus brownout offset."]
-    REG1_BO_STATUS_1,
+    REG1_BO_STATUS_1 = 1,
 }
 impl From<REG1_BO_STATUS_A> for bool {
     #[inline(always)]
     fn from(variant: REG1_BO_STATUS_A) -> Self {
-        match variant {
-            REG1_BO_STATUS_A::REG1_BO_STATUS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `REG1_BO_STATUS`"]
@@ -290,17 +279,14 @@ pub type REG1_OK_R = crate::R<bool, bool>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AUDIO_DIV_LSB_A {
     #[doc = "0: divide by 1 (Default)"]
-    AUDIO_DIV_LSB_0,
+    AUDIO_DIV_LSB_0 = 0,
     #[doc = "1: divide by 2"]
-    AUDIO_DIV_LSB_1,
+    AUDIO_DIV_LSB_1 = 1,
 }
 impl From<AUDIO_DIV_LSB_A> for bool {
     #[inline(always)]
     fn from(variant: AUDIO_DIV_LSB_A) -> Self {
-        match variant {
-            AUDIO_DIV_LSB_A::AUDIO_DIV_LSB_0 => false,
-            AUDIO_DIV_LSB_A::AUDIO_DIV_LSB_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AUDIO_DIV_LSB`"]
@@ -366,19 +352,17 @@ impl<'a> AUDIO_DIV_LSB_W<'a> {
 }
 #[doc = "This field defines the brown out voltage offset for the xPU power domain\n\nValue on reset: 7"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG2_BO_OFFSET_A {
     #[doc = "4: Brownout offset = 0.100V"]
-    REG2_BO_OFFSET_4,
+    REG2_BO_OFFSET_4 = 4,
     #[doc = "7: Brownout offset = 0.175V"]
-    REG2_BO_OFFSET_7,
+    REG2_BO_OFFSET_7 = 7,
 }
 impl From<REG2_BO_OFFSET_A> for u8 {
     #[inline(always)]
     fn from(variant: REG2_BO_OFFSET_A) -> Self {
-        match variant {
-            REG2_BO_OFFSET_A::REG2_BO_OFFSET_4 => 4,
-            REG2_BO_OFFSET_A::REG2_BO_OFFSET_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG2_BO_OFFSET`"]
@@ -437,17 +421,14 @@ pub type REG2_OK_R = crate::R<bool, bool>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AUDIO_DIV_MSB_A {
     #[doc = "0: divide by 1 (Default)"]
-    AUDIO_DIV_MSB_0,
+    AUDIO_DIV_MSB_0 = 0,
     #[doc = "1: divide by 2"]
-    AUDIO_DIV_MSB_1,
+    AUDIO_DIV_MSB_1 = 1,
 }
 impl From<AUDIO_DIV_MSB_A> for bool {
     #[inline(always)]
     fn from(variant: AUDIO_DIV_MSB_A) -> Self {
-        match variant {
-            AUDIO_DIV_MSB_A::AUDIO_DIV_MSB_0 => false,
-            AUDIO_DIV_MSB_A::AUDIO_DIV_MSB_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AUDIO_DIV_MSB`"]
@@ -513,25 +494,21 @@ impl<'a> AUDIO_DIV_MSB_W<'a> {
 }
 #[doc = "Number of clock periods (24MHz clock).Not related to CCM. See Power Management Unit (PMU)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG0_STEP_TIME_A {
     #[doc = "0: 64"]
-    _64_CLOCKS,
+    _64_CLOCKS = 0,
     #[doc = "1: 128"]
-    _128_CLOCKS,
+    _128_CLOCKS = 1,
     #[doc = "2: 256"]
-    _256_CLOCKS,
+    _256_CLOCKS = 2,
     #[doc = "3: 512"]
-    _512_CLOCKS,
+    _512_CLOCKS = 3,
 }
 impl From<REG0_STEP_TIME_A> for u8 {
     #[inline(always)]
     fn from(variant: REG0_STEP_TIME_A) -> Self {
-        match variant {
-            REG0_STEP_TIME_A::_64_CLOCKS => 0,
-            REG0_STEP_TIME_A::_128_CLOCKS => 1,
-            REG0_STEP_TIME_A::_256_CLOCKS => 2,
-            REG0_STEP_TIME_A::_512_CLOCKS => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG0_STEP_TIME`"]
@@ -610,25 +587,21 @@ impl<'a> REG0_STEP_TIME_W<'a> {
 }
 #[doc = "Number of clock periods (24MHz clock).Not related to CCM. See Power Management Unit (PMU)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG1_STEP_TIME_A {
     #[doc = "0: 64"]
-    _64_CLOCKS,
+    _64_CLOCKS = 0,
     #[doc = "1: 128"]
-    _128_CLOCKS,
+    _128_CLOCKS = 1,
     #[doc = "2: 256"]
-    _256_CLOCKS,
+    _256_CLOCKS = 2,
     #[doc = "3: 512"]
-    _512_CLOCKS,
+    _512_CLOCKS = 3,
 }
 impl From<REG1_STEP_TIME_A> for u8 {
     #[inline(always)]
     fn from(variant: REG1_STEP_TIME_A) -> Self {
-        match variant {
-            REG1_STEP_TIME_A::_64_CLOCKS => 0,
-            REG1_STEP_TIME_A::_128_CLOCKS => 1,
-            REG1_STEP_TIME_A::_256_CLOCKS => 2,
-            REG1_STEP_TIME_A::_512_CLOCKS => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG1_STEP_TIME`"]
@@ -707,25 +680,21 @@ impl<'a> REG1_STEP_TIME_W<'a> {
 }
 #[doc = "Number of clock periods (24MHz clock).Not related to CCM. See Power Management Unit (PMU)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REG2_STEP_TIME_A {
     #[doc = "0: 64"]
-    _64_CLOCKS,
+    _64_CLOCKS = 0,
     #[doc = "1: 128"]
-    _128_CLOCKS,
+    _128_CLOCKS = 1,
     #[doc = "2: 256"]
-    _256_CLOCKS,
+    _256_CLOCKS = 2,
     #[doc = "3: 512"]
-    _512_CLOCKS,
+    _512_CLOCKS = 3,
 }
 impl From<REG2_STEP_TIME_A> for u8 {
     #[inline(always)]
     fn from(variant: REG2_STEP_TIME_A) -> Self {
-        match variant {
-            REG2_STEP_TIME_A::_64_CLOCKS => 0,
-            REG2_STEP_TIME_A::_128_CLOCKS => 1,
-            REG2_STEP_TIME_A::_256_CLOCKS => 2,
-            REG2_STEP_TIME_A::_512_CLOCKS => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REG2_STEP_TIME`"]
@@ -804,25 +773,21 @@ impl<'a> REG2_STEP_TIME_W<'a> {
 }
 #[doc = "Post-divider for video\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum VIDEO_DIV_A {
     #[doc = "0: divide by 1 (Default)"]
-    VIDEO_DIV_0,
+    VIDEO_DIV_0 = 0,
     #[doc = "1: divide by 2"]
-    VIDEO_DIV_1,
+    VIDEO_DIV_1 = 1,
     #[doc = "2: divide by 1"]
-    VIDEO_DIV_2,
+    VIDEO_DIV_2 = 2,
     #[doc = "3: divide by 4"]
-    VIDEO_DIV_3,
+    VIDEO_DIV_3 = 3,
 }
 impl From<VIDEO_DIV_A> for u8 {
     #[inline(always)]
     fn from(variant: VIDEO_DIV_A) -> Self {
-        match variant {
-            VIDEO_DIV_A::VIDEO_DIV_0 => 0,
-            VIDEO_DIV_A::VIDEO_DIV_1 => 1,
-            VIDEO_DIV_A::VIDEO_DIV_2 => 2,
-            VIDEO_DIV_A::VIDEO_DIV_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `VIDEO_DIV`"]

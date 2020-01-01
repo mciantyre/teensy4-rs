@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -968,7 +969,7 @@ pub struct RegisterBlock {
     #[doc = "0x78c - CANFD_IPP_IND_CANRX_SELECT_INPUT DAISY Register"]
     pub canfd_ipp_ind_canrx_select_input: CANFD_IPP_IND_CANRX_SELECT_INPUT,
 }
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_00](sw_mux_ctl_pad_gpio_emc_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_00](sw_mux_ctl_pad_gpio_emc_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -979,7 +980,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_01](sw_mux_ctl_pad_gpio_emc_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_01](sw_mux_ctl_pad_gpio_emc_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -990,7 +991,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_02](sw_mux_ctl_pad_gpio_emc_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_02](sw_mux_ctl_pad_gpio_emc_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1001,7 +1002,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_03](sw_mux_ctl_pad_gpio_emc_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_03](sw_mux_ctl_pad_gpio_emc_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1012,7 +1013,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_04](sw_mux_ctl_pad_gpio_emc_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_04](sw_mux_ctl_pad_gpio_emc_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1023,7 +1024,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_05](sw_mux_ctl_pad_gpio_emc_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_05](sw_mux_ctl_pad_gpio_emc_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1034,7 +1035,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_06](sw_mux_ctl_pad_gpio_emc_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_06](sw_mux_ctl_pad_gpio_emc_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1045,7 +1046,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_07](sw_mux_ctl_pad_gpio_emc_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_07](sw_mux_ctl_pad_gpio_emc_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1056,7 +1057,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_08](sw_mux_ctl_pad_gpio_emc_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_08](sw_mux_ctl_pad_gpio_emc_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1067,7 +1068,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_09](sw_mux_ctl_pad_gpio_emc_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_09](sw_mux_ctl_pad_gpio_emc_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1078,7 +1079,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_10](sw_mux_ctl_pad_gpio_emc_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_10](sw_mux_ctl_pad_gpio_emc_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1089,7 +1090,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_11](sw_mux_ctl_pad_gpio_emc_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_11](sw_mux_ctl_pad_gpio_emc_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1100,7 +1101,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_11;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_12](sw_mux_ctl_pad_gpio_emc_12) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_12](sw_mux_ctl_pad_gpio_emc_12) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_12 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1111,7 +1112,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_12 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_12 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_12 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_12;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_13](sw_mux_ctl_pad_gpio_emc_13) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_13](sw_mux_ctl_pad_gpio_emc_13) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_13 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1122,7 +1123,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_13 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_13 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_13 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_13;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_14](sw_mux_ctl_pad_gpio_emc_14) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_14](sw_mux_ctl_pad_gpio_emc_14) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_14 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1133,7 +1134,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_14 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_14 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_14 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_14;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_15](sw_mux_ctl_pad_gpio_emc_15) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_15](sw_mux_ctl_pad_gpio_emc_15) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_15 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1144,7 +1145,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_15 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_15 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_15 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_15;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_16 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_16](sw_mux_ctl_pad_gpio_emc_16) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_16 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_16](sw_mux_ctl_pad_gpio_emc_16) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_16 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_16>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1155,7 +1156,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_16 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_16 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_16 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_16;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_17 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_17](sw_mux_ctl_pad_gpio_emc_17) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_17 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_17](sw_mux_ctl_pad_gpio_emc_17) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_17 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_17>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1166,7 +1167,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_17 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_17 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_17 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_17;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_18 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_18](sw_mux_ctl_pad_gpio_emc_18) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_18 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_18](sw_mux_ctl_pad_gpio_emc_18) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_18 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_18>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1177,7 +1178,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_18 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_18 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_18 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_18;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_19 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_19](sw_mux_ctl_pad_gpio_emc_19) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_19 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_19](sw_mux_ctl_pad_gpio_emc_19) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_19 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_19>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1188,7 +1189,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_19 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_19 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_19 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_19;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_20 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_20](sw_mux_ctl_pad_gpio_emc_20) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_20 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_20](sw_mux_ctl_pad_gpio_emc_20) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_20 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_20>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1199,7 +1200,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_20 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_20 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_20 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_20;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_21 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_21](sw_mux_ctl_pad_gpio_emc_21) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_21 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_21](sw_mux_ctl_pad_gpio_emc_21) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_21 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_21>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1210,7 +1211,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_21 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_21 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_21 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_21;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_22 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_22](sw_mux_ctl_pad_gpio_emc_22) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_22 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_22](sw_mux_ctl_pad_gpio_emc_22) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_22 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_22>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1221,7 +1222,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_22 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_22 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_22 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_22;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_23 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_23](sw_mux_ctl_pad_gpio_emc_23) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_23 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_23](sw_mux_ctl_pad_gpio_emc_23) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_23 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_23>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1232,7 +1233,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_23 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_23 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_23 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_23;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_24 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_24](sw_mux_ctl_pad_gpio_emc_24) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_24 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_24](sw_mux_ctl_pad_gpio_emc_24) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_24 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_24>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1243,7 +1244,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_24 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_24 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_24 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_24;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_25 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_25](sw_mux_ctl_pad_gpio_emc_25) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_25 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_25](sw_mux_ctl_pad_gpio_emc_25) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_25 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_25>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1254,7 +1255,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_25 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_25 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_25 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_25;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_26 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_26](sw_mux_ctl_pad_gpio_emc_26) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_26 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_26](sw_mux_ctl_pad_gpio_emc_26) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_26 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_26>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1265,7 +1266,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_26 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_26 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_26 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_26;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_27 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_27](sw_mux_ctl_pad_gpio_emc_27) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_27 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_27](sw_mux_ctl_pad_gpio_emc_27) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_27 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_27>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1276,7 +1277,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_27 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_27 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_27 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_27;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_28 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_28](sw_mux_ctl_pad_gpio_emc_28) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_28 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_28](sw_mux_ctl_pad_gpio_emc_28) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_28 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_28>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1287,7 +1288,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_28 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_28 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_28 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_28;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_29 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_29](sw_mux_ctl_pad_gpio_emc_29) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_29 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_29](sw_mux_ctl_pad_gpio_emc_29) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_29 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_29>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1298,7 +1299,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_29 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_29 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_29 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_29;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_30 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_30](sw_mux_ctl_pad_gpio_emc_30) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_30 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_30](sw_mux_ctl_pad_gpio_emc_30) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_30 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_30>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1309,7 +1310,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_30 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_30 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_30 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_30;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_31 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_31](sw_mux_ctl_pad_gpio_emc_31) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_31 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_31](sw_mux_ctl_pad_gpio_emc_31) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_31 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_31>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1320,7 +1321,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_31 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_31 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_31 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_31;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_32 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_32](sw_mux_ctl_pad_gpio_emc_32) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_32 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_32](sw_mux_ctl_pad_gpio_emc_32) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_32 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_32>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1331,7 +1332,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_32 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_32 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_32 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_32;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_33 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_33](sw_mux_ctl_pad_gpio_emc_33) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_33 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_33](sw_mux_ctl_pad_gpio_emc_33) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_33 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_33>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1342,7 +1343,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_33 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_33 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_33 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_33;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_34 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_34](sw_mux_ctl_pad_gpio_emc_34) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_34 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_34](sw_mux_ctl_pad_gpio_emc_34) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_34 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_34>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1353,7 +1354,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_34 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_34 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_34 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_34;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_35 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_35](sw_mux_ctl_pad_gpio_emc_35) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_35 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_35](sw_mux_ctl_pad_gpio_emc_35) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_35 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_35>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1364,7 +1365,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_35 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_35 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_35 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_35;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_36 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_36](sw_mux_ctl_pad_gpio_emc_36) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_36 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_36](sw_mux_ctl_pad_gpio_emc_36) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_36 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_36>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1375,7 +1376,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_36 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_36 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_36 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_36;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_37 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_37](sw_mux_ctl_pad_gpio_emc_37) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_37 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_37](sw_mux_ctl_pad_gpio_emc_37) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_37 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_37>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1386,7 +1387,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_37 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_37 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_37 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_37;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_38 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_38](sw_mux_ctl_pad_gpio_emc_38) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_38 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_38](sw_mux_ctl_pad_gpio_emc_38) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_38 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_38>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1397,7 +1398,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_38 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_38 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_38 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_38;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_39 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_39](sw_mux_ctl_pad_gpio_emc_39) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_39 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_39](sw_mux_ctl_pad_gpio_emc_39) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_39 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_39>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1408,7 +1409,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_39 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_39 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_39 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_39;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_40 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_40](sw_mux_ctl_pad_gpio_emc_40) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_40 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_40](sw_mux_ctl_pad_gpio_emc_40) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_40 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_40>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1419,7 +1420,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_40 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_40 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_40 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_40;
-#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_41 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_emc_41](sw_mux_ctl_pad_gpio_emc_41) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_EMC_41 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_emc_41](sw_mux_ctl_pad_gpio_emc_41) module"]
 pub type SW_MUX_CTL_PAD_GPIO_EMC_41 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_EMC_41>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1430,7 +1431,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_EMC_41 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_EMC_41 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_EMC_41 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_emc_41;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_00](sw_mux_ctl_pad_gpio_ad_b0_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_00](sw_mux_ctl_pad_gpio_ad_b0_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1441,7 +1442,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_01](sw_mux_ctl_pad_gpio_ad_b0_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_01](sw_mux_ctl_pad_gpio_ad_b0_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1452,7 +1453,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_02](sw_mux_ctl_pad_gpio_ad_b0_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_02](sw_mux_ctl_pad_gpio_ad_b0_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1463,7 +1464,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_03](sw_mux_ctl_pad_gpio_ad_b0_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_03](sw_mux_ctl_pad_gpio_ad_b0_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1474,7 +1475,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_04](sw_mux_ctl_pad_gpio_ad_b0_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_04](sw_mux_ctl_pad_gpio_ad_b0_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1485,7 +1486,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_05](sw_mux_ctl_pad_gpio_ad_b0_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_05](sw_mux_ctl_pad_gpio_ad_b0_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1496,7 +1497,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_06](sw_mux_ctl_pad_gpio_ad_b0_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_06](sw_mux_ctl_pad_gpio_ad_b0_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1507,7 +1508,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_07](sw_mux_ctl_pad_gpio_ad_b0_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_07](sw_mux_ctl_pad_gpio_ad_b0_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1518,7 +1519,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_08](sw_mux_ctl_pad_gpio_ad_b0_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_08](sw_mux_ctl_pad_gpio_ad_b0_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1529,7 +1530,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_09](sw_mux_ctl_pad_gpio_ad_b0_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_09](sw_mux_ctl_pad_gpio_ad_b0_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1540,7 +1541,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_10](sw_mux_ctl_pad_gpio_ad_b0_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_10](sw_mux_ctl_pad_gpio_ad_b0_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1551,7 +1552,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_11](sw_mux_ctl_pad_gpio_ad_b0_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_11](sw_mux_ctl_pad_gpio_ad_b0_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1562,7 +1563,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_11;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_12](sw_mux_ctl_pad_gpio_ad_b0_12) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_12](sw_mux_ctl_pad_gpio_ad_b0_12) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_12 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1573,7 +1574,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_12 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_12 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_12 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_12;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_13](sw_mux_ctl_pad_gpio_ad_b0_13) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_13](sw_mux_ctl_pad_gpio_ad_b0_13) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_13 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1584,7 +1585,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_13 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_13 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_13 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_13;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_14](sw_mux_ctl_pad_gpio_ad_b0_14) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_14](sw_mux_ctl_pad_gpio_ad_b0_14) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_14 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1595,7 +1596,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_14 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_14 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_14 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_14;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b0_15](sw_mux_ctl_pad_gpio_ad_b0_15) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b0_15](sw_mux_ctl_pad_gpio_ad_b0_15) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B0_15 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B0_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1606,7 +1607,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B0_15 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B0_15 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B0_15 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b0_15;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_00](sw_mux_ctl_pad_gpio_ad_b1_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_00](sw_mux_ctl_pad_gpio_ad_b1_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1617,7 +1618,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_01](sw_mux_ctl_pad_gpio_ad_b1_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_01](sw_mux_ctl_pad_gpio_ad_b1_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1628,7 +1629,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_02](sw_mux_ctl_pad_gpio_ad_b1_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_02](sw_mux_ctl_pad_gpio_ad_b1_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1639,7 +1640,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_03](sw_mux_ctl_pad_gpio_ad_b1_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_03](sw_mux_ctl_pad_gpio_ad_b1_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1650,7 +1651,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_04](sw_mux_ctl_pad_gpio_ad_b1_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_04](sw_mux_ctl_pad_gpio_ad_b1_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1661,7 +1662,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_05](sw_mux_ctl_pad_gpio_ad_b1_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_05](sw_mux_ctl_pad_gpio_ad_b1_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1672,7 +1673,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_06](sw_mux_ctl_pad_gpio_ad_b1_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_06](sw_mux_ctl_pad_gpio_ad_b1_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1683,7 +1684,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_07](sw_mux_ctl_pad_gpio_ad_b1_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_07](sw_mux_ctl_pad_gpio_ad_b1_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1694,7 +1695,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_08](sw_mux_ctl_pad_gpio_ad_b1_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_08](sw_mux_ctl_pad_gpio_ad_b1_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1705,7 +1706,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_09](sw_mux_ctl_pad_gpio_ad_b1_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_09](sw_mux_ctl_pad_gpio_ad_b1_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1716,7 +1717,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_10](sw_mux_ctl_pad_gpio_ad_b1_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_10](sw_mux_ctl_pad_gpio_ad_b1_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1727,7 +1728,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_11](sw_mux_ctl_pad_gpio_ad_b1_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_11](sw_mux_ctl_pad_gpio_ad_b1_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1738,7 +1739,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_11;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_12](sw_mux_ctl_pad_gpio_ad_b1_12) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_12](sw_mux_ctl_pad_gpio_ad_b1_12) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_12 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1749,7 +1750,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_12 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_12 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_12 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_12;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_13](sw_mux_ctl_pad_gpio_ad_b1_13) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_13](sw_mux_ctl_pad_gpio_ad_b1_13) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_13 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1760,7 +1761,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_13 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_13 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_13 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_13;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_14](sw_mux_ctl_pad_gpio_ad_b1_14) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_14](sw_mux_ctl_pad_gpio_ad_b1_14) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_14 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1771,7 +1772,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_14 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_14 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_14 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_14;
-#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_ad_b1_15](sw_mux_ctl_pad_gpio_ad_b1_15) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_ad_b1_15](sw_mux_ctl_pad_gpio_ad_b1_15) module"]
 pub type SW_MUX_CTL_PAD_GPIO_AD_B1_15 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_AD_B1_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1782,7 +1783,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_AD_B1_15 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_AD_B1_15 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_AD_B1_15 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_ad_b1_15;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_00](sw_mux_ctl_pad_gpio_b0_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_00](sw_mux_ctl_pad_gpio_b0_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1793,7 +1794,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_01](sw_mux_ctl_pad_gpio_b0_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_01](sw_mux_ctl_pad_gpio_b0_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1804,7 +1805,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_02](sw_mux_ctl_pad_gpio_b0_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_02](sw_mux_ctl_pad_gpio_b0_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1815,7 +1816,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_03](sw_mux_ctl_pad_gpio_b0_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_03](sw_mux_ctl_pad_gpio_b0_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1826,7 +1827,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_04](sw_mux_ctl_pad_gpio_b0_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_04](sw_mux_ctl_pad_gpio_b0_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1837,7 +1838,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_05](sw_mux_ctl_pad_gpio_b0_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_05](sw_mux_ctl_pad_gpio_b0_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1848,7 +1849,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_06](sw_mux_ctl_pad_gpio_b0_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_06](sw_mux_ctl_pad_gpio_b0_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1859,7 +1860,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_07](sw_mux_ctl_pad_gpio_b0_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_07](sw_mux_ctl_pad_gpio_b0_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1870,7 +1871,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_08](sw_mux_ctl_pad_gpio_b0_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_08](sw_mux_ctl_pad_gpio_b0_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1881,7 +1882,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_09](sw_mux_ctl_pad_gpio_b0_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_09](sw_mux_ctl_pad_gpio_b0_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1892,7 +1893,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_10](sw_mux_ctl_pad_gpio_b0_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_10](sw_mux_ctl_pad_gpio_b0_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1903,7 +1904,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_11](sw_mux_ctl_pad_gpio_b0_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_11](sw_mux_ctl_pad_gpio_b0_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1914,7 +1915,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_11;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_12](sw_mux_ctl_pad_gpio_b0_12) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_12](sw_mux_ctl_pad_gpio_b0_12) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_12 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1925,7 +1926,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_12 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_12 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_12 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_12;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_13](sw_mux_ctl_pad_gpio_b0_13) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_13](sw_mux_ctl_pad_gpio_b0_13) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_13 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1936,7 +1937,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_13 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_13 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_13 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_13;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_14](sw_mux_ctl_pad_gpio_b0_14) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_14](sw_mux_ctl_pad_gpio_b0_14) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_14 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1947,7 +1948,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_14 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_14 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_14 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_14;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B0_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b0_15](sw_mux_ctl_pad_gpio_b0_15) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B0_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b0_15](sw_mux_ctl_pad_gpio_b0_15) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B0_15 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B0_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1958,7 +1959,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B0_15 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B0_15 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B0_15 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b0_15;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_00](sw_mux_ctl_pad_gpio_b1_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_00](sw_mux_ctl_pad_gpio_b1_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1969,7 +1970,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_01](sw_mux_ctl_pad_gpio_b1_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_01](sw_mux_ctl_pad_gpio_b1_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1980,7 +1981,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_02](sw_mux_ctl_pad_gpio_b1_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_02](sw_mux_ctl_pad_gpio_b1_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -1991,7 +1992,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_03](sw_mux_ctl_pad_gpio_b1_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_03](sw_mux_ctl_pad_gpio_b1_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2002,7 +2003,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_04](sw_mux_ctl_pad_gpio_b1_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_04](sw_mux_ctl_pad_gpio_b1_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2013,7 +2014,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_05](sw_mux_ctl_pad_gpio_b1_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_05](sw_mux_ctl_pad_gpio_b1_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2024,7 +2025,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_06](sw_mux_ctl_pad_gpio_b1_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_06](sw_mux_ctl_pad_gpio_b1_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2035,7 +2036,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_07](sw_mux_ctl_pad_gpio_b1_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_07](sw_mux_ctl_pad_gpio_b1_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2046,7 +2047,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_08](sw_mux_ctl_pad_gpio_b1_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_08](sw_mux_ctl_pad_gpio_b1_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2057,7 +2058,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_09](sw_mux_ctl_pad_gpio_b1_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_09](sw_mux_ctl_pad_gpio_b1_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2068,7 +2069,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_10](sw_mux_ctl_pad_gpio_b1_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_10](sw_mux_ctl_pad_gpio_b1_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2079,7 +2080,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_11](sw_mux_ctl_pad_gpio_b1_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_11](sw_mux_ctl_pad_gpio_b1_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2090,7 +2091,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_11;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_12](sw_mux_ctl_pad_gpio_b1_12) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_12](sw_mux_ctl_pad_gpio_b1_12) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_12 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2101,7 +2102,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_12 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_12 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_12 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_12;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_13](sw_mux_ctl_pad_gpio_b1_13) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_13](sw_mux_ctl_pad_gpio_b1_13) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_13 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2112,7 +2113,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_13 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_13 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_13 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_13;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_14](sw_mux_ctl_pad_gpio_b1_14) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_14 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_14](sw_mux_ctl_pad_gpio_b1_14) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_14 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2123,7 +2124,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_14 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_14 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_14 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_14;
-#[doc = "SW_MUX_CTL_PAD_GPIO_B1_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_b1_15](sw_mux_ctl_pad_gpio_b1_15) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_B1_15 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_b1_15](sw_mux_ctl_pad_gpio_b1_15) module"]
 pub type SW_MUX_CTL_PAD_GPIO_B1_15 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_B1_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2134,7 +2135,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_B1_15 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_B1_15 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_B1_15 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_b1_15;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b0_00](sw_mux_ctl_pad_gpio_sd_b0_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b0_00](sw_mux_ctl_pad_gpio_sd_b0_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B0_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2145,7 +2146,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B0_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B0_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b0_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b0_01](sw_mux_ctl_pad_gpio_sd_b0_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b0_01](sw_mux_ctl_pad_gpio_sd_b0_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B0_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2156,7 +2157,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B0_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B0_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b0_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b0_02](sw_mux_ctl_pad_gpio_sd_b0_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b0_02](sw_mux_ctl_pad_gpio_sd_b0_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B0_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2167,7 +2168,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B0_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B0_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b0_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b0_03](sw_mux_ctl_pad_gpio_sd_b0_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b0_03](sw_mux_ctl_pad_gpio_sd_b0_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B0_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2178,7 +2179,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B0_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B0_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b0_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b0_04](sw_mux_ctl_pad_gpio_sd_b0_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b0_04](sw_mux_ctl_pad_gpio_sd_b0_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B0_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2189,7 +2190,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B0_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B0_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b0_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b0_05](sw_mux_ctl_pad_gpio_sd_b0_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b0_05](sw_mux_ctl_pad_gpio_sd_b0_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B0_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2200,7 +2201,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B0_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B0_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B0_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b0_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_00](sw_mux_ctl_pad_gpio_sd_b1_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_00](sw_mux_ctl_pad_gpio_sd_b1_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2211,7 +2212,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_01](sw_mux_ctl_pad_gpio_sd_b1_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_01](sw_mux_ctl_pad_gpio_sd_b1_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2222,7 +2223,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_02](sw_mux_ctl_pad_gpio_sd_b1_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_02](sw_mux_ctl_pad_gpio_sd_b1_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2233,7 +2234,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_03](sw_mux_ctl_pad_gpio_sd_b1_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_03](sw_mux_ctl_pad_gpio_sd_b1_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2244,7 +2245,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_04](sw_mux_ctl_pad_gpio_sd_b1_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_04](sw_mux_ctl_pad_gpio_sd_b1_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2255,7 +2256,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_05](sw_mux_ctl_pad_gpio_sd_b1_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_05](sw_mux_ctl_pad_gpio_sd_b1_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2266,7 +2267,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_06](sw_mux_ctl_pad_gpio_sd_b1_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_06](sw_mux_ctl_pad_gpio_sd_b1_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2277,7 +2278,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_07](sw_mux_ctl_pad_gpio_sd_b1_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_07](sw_mux_ctl_pad_gpio_sd_b1_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2288,7 +2289,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_08](sw_mux_ctl_pad_gpio_sd_b1_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_08](sw_mux_ctl_pad_gpio_sd_b1_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2299,7 +2300,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_09](sw_mux_ctl_pad_gpio_sd_b1_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_09](sw_mux_ctl_pad_gpio_sd_b1_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2310,7 +2311,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_10](sw_mux_ctl_pad_gpio_sd_b1_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_10](sw_mux_ctl_pad_gpio_sd_b1_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2321,7 +2322,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_sd_b1_11](sw_mux_ctl_pad_gpio_sd_b1_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_sd_b1_11](sw_mux_ctl_pad_gpio_sd_b1_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SD_B1_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SD_B1_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2332,7 +2333,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SD_B1_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SD_B1_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SD_B1_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_sd_b1_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_00](sw_pad_ctl_pad_gpio_emc_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_00](sw_pad_ctl_pad_gpio_emc_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2343,7 +2344,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_01](sw_pad_ctl_pad_gpio_emc_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_01](sw_pad_ctl_pad_gpio_emc_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2354,7 +2355,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_02](sw_pad_ctl_pad_gpio_emc_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_02](sw_pad_ctl_pad_gpio_emc_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2365,7 +2366,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_03](sw_pad_ctl_pad_gpio_emc_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_03](sw_pad_ctl_pad_gpio_emc_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2376,7 +2377,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_04](sw_pad_ctl_pad_gpio_emc_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_04](sw_pad_ctl_pad_gpio_emc_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2387,7 +2388,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_05](sw_pad_ctl_pad_gpio_emc_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_05](sw_pad_ctl_pad_gpio_emc_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2398,7 +2399,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_06](sw_pad_ctl_pad_gpio_emc_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_06](sw_pad_ctl_pad_gpio_emc_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2409,7 +2410,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_07](sw_pad_ctl_pad_gpio_emc_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_07](sw_pad_ctl_pad_gpio_emc_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2420,7 +2421,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_08](sw_pad_ctl_pad_gpio_emc_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_08](sw_pad_ctl_pad_gpio_emc_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2431,7 +2432,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_09](sw_pad_ctl_pad_gpio_emc_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_09](sw_pad_ctl_pad_gpio_emc_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2442,7 +2443,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_10](sw_pad_ctl_pad_gpio_emc_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_10](sw_pad_ctl_pad_gpio_emc_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2453,7 +2454,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_11](sw_pad_ctl_pad_gpio_emc_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_11](sw_pad_ctl_pad_gpio_emc_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2464,7 +2465,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_12](sw_pad_ctl_pad_gpio_emc_12) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_12](sw_pad_ctl_pad_gpio_emc_12) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_12 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2475,7 +2476,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_12 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_12 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_12 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_12;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_13](sw_pad_ctl_pad_gpio_emc_13) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_13](sw_pad_ctl_pad_gpio_emc_13) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_13 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2486,7 +2487,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_13 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_13 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_13 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_13;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_14](sw_pad_ctl_pad_gpio_emc_14) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_14](sw_pad_ctl_pad_gpio_emc_14) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_14 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2497,7 +2498,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_14 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_14 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_14 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_14;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_15](sw_pad_ctl_pad_gpio_emc_15) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_15](sw_pad_ctl_pad_gpio_emc_15) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_15 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2508,7 +2509,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_15 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_15 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_15 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_15;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_16 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_16](sw_pad_ctl_pad_gpio_emc_16) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_16 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_16](sw_pad_ctl_pad_gpio_emc_16) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_16 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_16>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2519,7 +2520,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_16 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_16 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_16 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_16;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_17 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_17](sw_pad_ctl_pad_gpio_emc_17) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_17 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_17](sw_pad_ctl_pad_gpio_emc_17) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_17 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_17>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2530,7 +2531,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_17 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_17 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_17 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_17;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_18 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_18](sw_pad_ctl_pad_gpio_emc_18) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_18 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_18](sw_pad_ctl_pad_gpio_emc_18) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_18 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_18>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2541,7 +2542,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_18 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_18 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_18 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_18;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_19 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_19](sw_pad_ctl_pad_gpio_emc_19) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_19 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_19](sw_pad_ctl_pad_gpio_emc_19) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_19 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_19>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2552,7 +2553,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_19 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_19 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_19 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_19;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_20 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_20](sw_pad_ctl_pad_gpio_emc_20) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_20 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_20](sw_pad_ctl_pad_gpio_emc_20) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_20 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_20>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2563,7 +2564,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_20 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_20 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_20 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_20;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_21 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_21](sw_pad_ctl_pad_gpio_emc_21) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_21 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_21](sw_pad_ctl_pad_gpio_emc_21) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_21 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_21>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2574,7 +2575,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_21 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_21 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_21 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_21;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_22 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_22](sw_pad_ctl_pad_gpio_emc_22) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_22 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_22](sw_pad_ctl_pad_gpio_emc_22) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_22 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_22>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2585,7 +2586,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_22 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_22 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_22 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_22;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_23 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_23](sw_pad_ctl_pad_gpio_emc_23) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_23 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_23](sw_pad_ctl_pad_gpio_emc_23) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_23 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_23>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2596,7 +2597,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_23 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_23 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_23 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_23;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_24 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_24](sw_pad_ctl_pad_gpio_emc_24) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_24 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_24](sw_pad_ctl_pad_gpio_emc_24) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_24 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_24>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2607,7 +2608,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_24 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_24 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_24 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_24;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_25 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_25](sw_pad_ctl_pad_gpio_emc_25) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_25 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_25](sw_pad_ctl_pad_gpio_emc_25) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_25 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_25>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2618,7 +2619,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_25 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_25 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_25 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_25;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_26 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_26](sw_pad_ctl_pad_gpio_emc_26) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_26 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_26](sw_pad_ctl_pad_gpio_emc_26) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_26 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_26>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2629,7 +2630,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_26 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_26 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_26 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_26;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_27 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_27](sw_pad_ctl_pad_gpio_emc_27) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_27 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_27](sw_pad_ctl_pad_gpio_emc_27) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_27 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_27>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2640,7 +2641,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_27 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_27 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_27 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_27;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_28 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_28](sw_pad_ctl_pad_gpio_emc_28) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_28 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_28](sw_pad_ctl_pad_gpio_emc_28) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_28 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_28>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2651,7 +2652,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_28 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_28 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_28 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_28;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_29 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_29](sw_pad_ctl_pad_gpio_emc_29) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_29 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_29](sw_pad_ctl_pad_gpio_emc_29) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_29 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_29>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2662,7 +2663,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_29 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_29 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_29 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_29;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_30 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_30](sw_pad_ctl_pad_gpio_emc_30) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_30 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_30](sw_pad_ctl_pad_gpio_emc_30) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_30 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_30>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2673,7 +2674,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_30 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_30 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_30 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_30;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_31 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_31](sw_pad_ctl_pad_gpio_emc_31) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_31 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_31](sw_pad_ctl_pad_gpio_emc_31) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_31 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_31>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2684,7 +2685,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_31 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_31 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_31 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_31;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_32 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_32](sw_pad_ctl_pad_gpio_emc_32) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_32 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_32](sw_pad_ctl_pad_gpio_emc_32) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_32 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_32>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2695,7 +2696,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_32 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_32 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_32 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_32;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_33 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_33](sw_pad_ctl_pad_gpio_emc_33) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_33 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_33](sw_pad_ctl_pad_gpio_emc_33) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_33 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_33>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2706,7 +2707,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_33 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_33 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_33 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_33;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_34 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_34](sw_pad_ctl_pad_gpio_emc_34) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_34 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_34](sw_pad_ctl_pad_gpio_emc_34) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_34 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_34>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2717,7 +2718,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_34 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_34 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_34 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_34;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_35 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_35](sw_pad_ctl_pad_gpio_emc_35) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_35 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_35](sw_pad_ctl_pad_gpio_emc_35) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_35 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_35>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2728,7 +2729,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_35 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_35 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_35 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_35;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_36 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_36](sw_pad_ctl_pad_gpio_emc_36) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_36 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_36](sw_pad_ctl_pad_gpio_emc_36) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_36 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_36>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2739,7 +2740,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_36 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_36 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_36 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_36;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_37 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_37](sw_pad_ctl_pad_gpio_emc_37) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_37 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_37](sw_pad_ctl_pad_gpio_emc_37) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_37 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_37>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2750,7 +2751,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_37 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_37 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_37 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_37;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_38 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_38](sw_pad_ctl_pad_gpio_emc_38) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_38 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_38](sw_pad_ctl_pad_gpio_emc_38) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_38 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_38>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2761,7 +2762,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_38 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_38 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_38 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_38;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_39 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_39](sw_pad_ctl_pad_gpio_emc_39) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_39 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_39](sw_pad_ctl_pad_gpio_emc_39) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_39 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_39>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2772,7 +2773,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_39 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_39 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_39 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_39;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_40 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_40](sw_pad_ctl_pad_gpio_emc_40) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_40 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_40](sw_pad_ctl_pad_gpio_emc_40) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_40 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_40>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2783,7 +2784,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_40 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_40 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_40 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_40;
-#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_41 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_emc_41](sw_pad_ctl_pad_gpio_emc_41) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_EMC_41 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_emc_41](sw_pad_ctl_pad_gpio_emc_41) module"]
 pub type SW_PAD_CTL_PAD_GPIO_EMC_41 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_EMC_41>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2794,7 +2795,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_EMC_41 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_EMC_41 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_EMC_41 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_emc_41;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_00](sw_pad_ctl_pad_gpio_ad_b0_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_00](sw_pad_ctl_pad_gpio_ad_b0_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2805,7 +2806,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_01](sw_pad_ctl_pad_gpio_ad_b0_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_01](sw_pad_ctl_pad_gpio_ad_b0_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2816,7 +2817,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_02](sw_pad_ctl_pad_gpio_ad_b0_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_02](sw_pad_ctl_pad_gpio_ad_b0_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2827,7 +2828,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_03](sw_pad_ctl_pad_gpio_ad_b0_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_03](sw_pad_ctl_pad_gpio_ad_b0_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2838,7 +2839,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_04](sw_pad_ctl_pad_gpio_ad_b0_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_04](sw_pad_ctl_pad_gpio_ad_b0_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2849,7 +2850,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_05](sw_pad_ctl_pad_gpio_ad_b0_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_05](sw_pad_ctl_pad_gpio_ad_b0_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2860,7 +2861,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_06](sw_pad_ctl_pad_gpio_ad_b0_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_06](sw_pad_ctl_pad_gpio_ad_b0_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2871,7 +2872,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_07](sw_pad_ctl_pad_gpio_ad_b0_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_07](sw_pad_ctl_pad_gpio_ad_b0_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2882,7 +2883,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_08](sw_pad_ctl_pad_gpio_ad_b0_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_08](sw_pad_ctl_pad_gpio_ad_b0_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2893,7 +2894,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_09](sw_pad_ctl_pad_gpio_ad_b0_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_09](sw_pad_ctl_pad_gpio_ad_b0_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2904,7 +2905,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_10](sw_pad_ctl_pad_gpio_ad_b0_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_10](sw_pad_ctl_pad_gpio_ad_b0_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2915,7 +2916,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_11](sw_pad_ctl_pad_gpio_ad_b0_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_11](sw_pad_ctl_pad_gpio_ad_b0_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2926,7 +2927,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_12](sw_pad_ctl_pad_gpio_ad_b0_12) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_12](sw_pad_ctl_pad_gpio_ad_b0_12) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_12 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2937,7 +2938,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_12 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_12 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_12 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_12;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_13](sw_pad_ctl_pad_gpio_ad_b0_13) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_13](sw_pad_ctl_pad_gpio_ad_b0_13) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_13 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2948,7 +2949,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_13 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_13 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_13 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_13;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_14](sw_pad_ctl_pad_gpio_ad_b0_14) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_14](sw_pad_ctl_pad_gpio_ad_b0_14) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_14 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2959,7 +2960,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_14 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_14 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_14 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_14;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b0_15](sw_pad_ctl_pad_gpio_ad_b0_15) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b0_15](sw_pad_ctl_pad_gpio_ad_b0_15) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B0_15 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B0_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2970,7 +2971,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B0_15 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B0_15 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B0_15 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b0_15;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_00](sw_pad_ctl_pad_gpio_ad_b1_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_00](sw_pad_ctl_pad_gpio_ad_b1_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2981,7 +2982,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_01](sw_pad_ctl_pad_gpio_ad_b1_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_01](sw_pad_ctl_pad_gpio_ad_b1_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -2992,7 +2993,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_02](sw_pad_ctl_pad_gpio_ad_b1_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_02](sw_pad_ctl_pad_gpio_ad_b1_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3003,7 +3004,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_03](sw_pad_ctl_pad_gpio_ad_b1_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_03](sw_pad_ctl_pad_gpio_ad_b1_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3014,7 +3015,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_04](sw_pad_ctl_pad_gpio_ad_b1_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_04](sw_pad_ctl_pad_gpio_ad_b1_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3025,7 +3026,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_05](sw_pad_ctl_pad_gpio_ad_b1_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_05](sw_pad_ctl_pad_gpio_ad_b1_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3036,7 +3037,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_06](sw_pad_ctl_pad_gpio_ad_b1_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_06](sw_pad_ctl_pad_gpio_ad_b1_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3047,7 +3048,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_07](sw_pad_ctl_pad_gpio_ad_b1_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_07](sw_pad_ctl_pad_gpio_ad_b1_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3058,7 +3059,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_08](sw_pad_ctl_pad_gpio_ad_b1_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_08](sw_pad_ctl_pad_gpio_ad_b1_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3069,7 +3070,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_09](sw_pad_ctl_pad_gpio_ad_b1_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_09](sw_pad_ctl_pad_gpio_ad_b1_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3080,7 +3081,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_10](sw_pad_ctl_pad_gpio_ad_b1_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_10](sw_pad_ctl_pad_gpio_ad_b1_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3091,7 +3092,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_11](sw_pad_ctl_pad_gpio_ad_b1_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_11](sw_pad_ctl_pad_gpio_ad_b1_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3102,7 +3103,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_12](sw_pad_ctl_pad_gpio_ad_b1_12) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_12](sw_pad_ctl_pad_gpio_ad_b1_12) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_12 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3113,7 +3114,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_12 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_12 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_12 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_12;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_13](sw_pad_ctl_pad_gpio_ad_b1_13) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_13](sw_pad_ctl_pad_gpio_ad_b1_13) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_13 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3124,7 +3125,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_13 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_13 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_13 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_13;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_14](sw_pad_ctl_pad_gpio_ad_b1_14) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_14](sw_pad_ctl_pad_gpio_ad_b1_14) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_14 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3135,7 +3136,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_14 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_14 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_14 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_14;
-#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_ad_b1_15](sw_pad_ctl_pad_gpio_ad_b1_15) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_ad_b1_15](sw_pad_ctl_pad_gpio_ad_b1_15) module"]
 pub type SW_PAD_CTL_PAD_GPIO_AD_B1_15 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_AD_B1_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3146,7 +3147,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_AD_B1_15 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_AD_B1_15 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_AD_B1_15 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_ad_b1_15;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_00](sw_pad_ctl_pad_gpio_b0_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_00](sw_pad_ctl_pad_gpio_b0_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3157,7 +3158,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_01](sw_pad_ctl_pad_gpio_b0_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_01](sw_pad_ctl_pad_gpio_b0_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3168,7 +3169,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_02](sw_pad_ctl_pad_gpio_b0_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_02](sw_pad_ctl_pad_gpio_b0_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3179,7 +3180,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_03](sw_pad_ctl_pad_gpio_b0_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_03](sw_pad_ctl_pad_gpio_b0_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3190,7 +3191,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_04](sw_pad_ctl_pad_gpio_b0_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_04](sw_pad_ctl_pad_gpio_b0_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3201,7 +3202,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_05](sw_pad_ctl_pad_gpio_b0_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_05](sw_pad_ctl_pad_gpio_b0_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3212,7 +3213,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_06](sw_pad_ctl_pad_gpio_b0_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_06](sw_pad_ctl_pad_gpio_b0_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3223,7 +3224,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_07](sw_pad_ctl_pad_gpio_b0_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_07](sw_pad_ctl_pad_gpio_b0_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3234,7 +3235,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_08](sw_pad_ctl_pad_gpio_b0_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_08](sw_pad_ctl_pad_gpio_b0_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3245,7 +3246,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_09](sw_pad_ctl_pad_gpio_b0_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_09](sw_pad_ctl_pad_gpio_b0_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3256,7 +3257,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_10](sw_pad_ctl_pad_gpio_b0_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_10](sw_pad_ctl_pad_gpio_b0_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3267,7 +3268,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_11](sw_pad_ctl_pad_gpio_b0_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_11](sw_pad_ctl_pad_gpio_b0_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3278,7 +3279,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_12](sw_pad_ctl_pad_gpio_b0_12) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_12](sw_pad_ctl_pad_gpio_b0_12) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_12 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3289,7 +3290,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_12 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_12 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_12 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_12;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_13](sw_pad_ctl_pad_gpio_b0_13) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_13](sw_pad_ctl_pad_gpio_b0_13) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_13 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3300,7 +3301,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_13 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_13 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_13 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_13;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_14](sw_pad_ctl_pad_gpio_b0_14) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_14](sw_pad_ctl_pad_gpio_b0_14) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_14 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3311,7 +3312,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_14 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_14 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_14 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_14;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B0_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b0_15](sw_pad_ctl_pad_gpio_b0_15) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B0_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b0_15](sw_pad_ctl_pad_gpio_b0_15) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B0_15 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B0_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3322,7 +3323,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B0_15 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B0_15 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B0_15 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b0_15;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_00](sw_pad_ctl_pad_gpio_b1_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_00](sw_pad_ctl_pad_gpio_b1_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3333,7 +3334,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_01](sw_pad_ctl_pad_gpio_b1_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_01](sw_pad_ctl_pad_gpio_b1_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3344,7 +3345,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_02](sw_pad_ctl_pad_gpio_b1_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_02](sw_pad_ctl_pad_gpio_b1_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3355,7 +3356,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_03](sw_pad_ctl_pad_gpio_b1_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_03](sw_pad_ctl_pad_gpio_b1_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3366,7 +3367,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_04](sw_pad_ctl_pad_gpio_b1_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_04](sw_pad_ctl_pad_gpio_b1_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3377,7 +3378,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_05](sw_pad_ctl_pad_gpio_b1_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_05](sw_pad_ctl_pad_gpio_b1_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3388,7 +3389,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_06](sw_pad_ctl_pad_gpio_b1_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_06](sw_pad_ctl_pad_gpio_b1_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3399,7 +3400,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_07](sw_pad_ctl_pad_gpio_b1_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_07](sw_pad_ctl_pad_gpio_b1_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3410,7 +3411,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_08](sw_pad_ctl_pad_gpio_b1_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_08](sw_pad_ctl_pad_gpio_b1_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3421,7 +3422,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_09](sw_pad_ctl_pad_gpio_b1_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_09](sw_pad_ctl_pad_gpio_b1_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3432,7 +3433,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_10](sw_pad_ctl_pad_gpio_b1_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_10](sw_pad_ctl_pad_gpio_b1_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3443,7 +3444,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_11](sw_pad_ctl_pad_gpio_b1_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_11](sw_pad_ctl_pad_gpio_b1_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3454,7 +3455,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_12](sw_pad_ctl_pad_gpio_b1_12) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_12](sw_pad_ctl_pad_gpio_b1_12) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_12 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3465,7 +3466,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_12 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_12 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_12 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_12;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_13](sw_pad_ctl_pad_gpio_b1_13) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_13](sw_pad_ctl_pad_gpio_b1_13) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_13 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3476,7 +3477,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_13 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_13 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_13 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_13;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_14](sw_pad_ctl_pad_gpio_b1_14) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_14 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_14](sw_pad_ctl_pad_gpio_b1_14) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_14 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3487,7 +3488,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_14 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_14 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_14 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_14;
-#[doc = "SW_PAD_CTL_PAD_GPIO_B1_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_b1_15](sw_pad_ctl_pad_gpio_b1_15) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_B1_15 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_b1_15](sw_pad_ctl_pad_gpio_b1_15) module"]
 pub type SW_PAD_CTL_PAD_GPIO_B1_15 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_B1_15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3498,7 +3499,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_B1_15 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_B1_15 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_B1_15 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_b1_15;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b0_00](sw_pad_ctl_pad_gpio_sd_b0_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b0_00](sw_pad_ctl_pad_gpio_sd_b0_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B0_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3509,7 +3510,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B0_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B0_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b0_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b0_01](sw_pad_ctl_pad_gpio_sd_b0_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b0_01](sw_pad_ctl_pad_gpio_sd_b0_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B0_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3520,7 +3521,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B0_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B0_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b0_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b0_02](sw_pad_ctl_pad_gpio_sd_b0_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b0_02](sw_pad_ctl_pad_gpio_sd_b0_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B0_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3531,7 +3532,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B0_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B0_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b0_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b0_03](sw_pad_ctl_pad_gpio_sd_b0_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b0_03](sw_pad_ctl_pad_gpio_sd_b0_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B0_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3542,7 +3543,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B0_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B0_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b0_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b0_04](sw_pad_ctl_pad_gpio_sd_b0_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b0_04](sw_pad_ctl_pad_gpio_sd_b0_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B0_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3553,7 +3554,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B0_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B0_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b0_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b0_05](sw_pad_ctl_pad_gpio_sd_b0_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b0_05](sw_pad_ctl_pad_gpio_sd_b0_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B0_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3564,7 +3565,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B0_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B0_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B0_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b0_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_00](sw_pad_ctl_pad_gpio_sd_b1_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_00](sw_pad_ctl_pad_gpio_sd_b1_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3575,7 +3576,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_01](sw_pad_ctl_pad_gpio_sd_b1_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_01](sw_pad_ctl_pad_gpio_sd_b1_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3586,7 +3587,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_02](sw_pad_ctl_pad_gpio_sd_b1_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_02](sw_pad_ctl_pad_gpio_sd_b1_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3597,7 +3598,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_03](sw_pad_ctl_pad_gpio_sd_b1_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_03](sw_pad_ctl_pad_gpio_sd_b1_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3608,7 +3609,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_04](sw_pad_ctl_pad_gpio_sd_b1_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_04](sw_pad_ctl_pad_gpio_sd_b1_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3619,7 +3620,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_05](sw_pad_ctl_pad_gpio_sd_b1_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_05](sw_pad_ctl_pad_gpio_sd_b1_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3630,7 +3631,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_06](sw_pad_ctl_pad_gpio_sd_b1_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_06](sw_pad_ctl_pad_gpio_sd_b1_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3641,7 +3642,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_07](sw_pad_ctl_pad_gpio_sd_b1_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_07](sw_pad_ctl_pad_gpio_sd_b1_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3652,7 +3653,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_08](sw_pad_ctl_pad_gpio_sd_b1_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_08](sw_pad_ctl_pad_gpio_sd_b1_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3663,7 +3664,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_09](sw_pad_ctl_pad_gpio_sd_b1_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_09](sw_pad_ctl_pad_gpio_sd_b1_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3674,7 +3675,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_10](sw_pad_ctl_pad_gpio_sd_b1_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_10](sw_pad_ctl_pad_gpio_sd_b1_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3685,7 +3686,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_sd_b1_11](sw_pad_ctl_pad_gpio_sd_b1_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_sd_b1_11](sw_pad_ctl_pad_gpio_sd_b1_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SD_B1_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SD_B1_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3696,7 +3697,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SD_B1_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SD_B1_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SD_B1_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_sd_b1_11;
-#[doc = "ANATOP_USB_OTG1_ID_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [anatop_usb_otg1_id_select_input](anatop_usb_otg1_id_select_input) module"]
+#[doc = "ANATOP_USB_OTG1_ID_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [anatop_usb_otg1_id_select_input](anatop_usb_otg1_id_select_input) module"]
 pub type ANATOP_USB_OTG1_ID_SELECT_INPUT = crate::Reg<u32, _ANATOP_USB_OTG1_ID_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3707,7 +3708,7 @@ impl crate::Readable for ANATOP_USB_OTG1_ID_SELECT_INPUT {}
 impl crate::Writable for ANATOP_USB_OTG1_ID_SELECT_INPUT {}
 #[doc = "ANATOP_USB_OTG1_ID_SELECT_INPUT DAISY Register"]
 pub mod anatop_usb_otg1_id_select_input;
-#[doc = "ANATOP_USB_OTG2_ID_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [anatop_usb_otg2_id_select_input](anatop_usb_otg2_id_select_input) module"]
+#[doc = "ANATOP_USB_OTG2_ID_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [anatop_usb_otg2_id_select_input](anatop_usb_otg2_id_select_input) module"]
 pub type ANATOP_USB_OTG2_ID_SELECT_INPUT = crate::Reg<u32, _ANATOP_USB_OTG2_ID_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3718,7 +3719,7 @@ impl crate::Readable for ANATOP_USB_OTG2_ID_SELECT_INPUT {}
 impl crate::Writable for ANATOP_USB_OTG2_ID_SELECT_INPUT {}
 #[doc = "ANATOP_USB_OTG2_ID_SELECT_INPUT DAISY Register"]
 pub mod anatop_usb_otg2_id_select_input;
-#[doc = "CCM_PMIC_READY_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccm_pmic_ready_select_input](ccm_pmic_ready_select_input) module"]
+#[doc = "CCM_PMIC_READY_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccm_pmic_ready_select_input](ccm_pmic_ready_select_input) module"]
 pub type CCM_PMIC_READY_SELECT_INPUT = crate::Reg<u32, _CCM_PMIC_READY_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3729,7 +3730,7 @@ impl crate::Readable for CCM_PMIC_READY_SELECT_INPUT {}
 impl crate::Writable for CCM_PMIC_READY_SELECT_INPUT {}
 #[doc = "CCM_PMIC_READY_SELECT_INPUT DAISY Register"]
 pub mod ccm_pmic_ready_select_input;
-#[doc = "CSI_DATA02_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data02_select_input](csi_data02_select_input) module"]
+#[doc = "CSI_DATA02_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data02_select_input](csi_data02_select_input) module"]
 pub type CSI_DATA02_SELECT_INPUT = crate::Reg<u32, _CSI_DATA02_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3740,7 +3741,7 @@ impl crate::Readable for CSI_DATA02_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA02_SELECT_INPUT {}
 #[doc = "CSI_DATA02_SELECT_INPUT DAISY Register"]
 pub mod csi_data02_select_input;
-#[doc = "CSI_DATA03_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data03_select_input](csi_data03_select_input) module"]
+#[doc = "CSI_DATA03_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data03_select_input](csi_data03_select_input) module"]
 pub type CSI_DATA03_SELECT_INPUT = crate::Reg<u32, _CSI_DATA03_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3751,7 +3752,7 @@ impl crate::Readable for CSI_DATA03_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA03_SELECT_INPUT {}
 #[doc = "CSI_DATA03_SELECT_INPUT DAISY Register"]
 pub mod csi_data03_select_input;
-#[doc = "CSI_DATA04_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data04_select_input](csi_data04_select_input) module"]
+#[doc = "CSI_DATA04_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data04_select_input](csi_data04_select_input) module"]
 pub type CSI_DATA04_SELECT_INPUT = crate::Reg<u32, _CSI_DATA04_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3762,7 +3763,7 @@ impl crate::Readable for CSI_DATA04_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA04_SELECT_INPUT {}
 #[doc = "CSI_DATA04_SELECT_INPUT DAISY Register"]
 pub mod csi_data04_select_input;
-#[doc = "CSI_DATA05_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data05_select_input](csi_data05_select_input) module"]
+#[doc = "CSI_DATA05_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data05_select_input](csi_data05_select_input) module"]
 pub type CSI_DATA05_SELECT_INPUT = crate::Reg<u32, _CSI_DATA05_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3773,7 +3774,7 @@ impl crate::Readable for CSI_DATA05_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA05_SELECT_INPUT {}
 #[doc = "CSI_DATA05_SELECT_INPUT DAISY Register"]
 pub mod csi_data05_select_input;
-#[doc = "CSI_DATA06_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data06_select_input](csi_data06_select_input) module"]
+#[doc = "CSI_DATA06_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data06_select_input](csi_data06_select_input) module"]
 pub type CSI_DATA06_SELECT_INPUT = crate::Reg<u32, _CSI_DATA06_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3784,7 +3785,7 @@ impl crate::Readable for CSI_DATA06_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA06_SELECT_INPUT {}
 #[doc = "CSI_DATA06_SELECT_INPUT DAISY Register"]
 pub mod csi_data06_select_input;
-#[doc = "CSI_DATA07_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data07_select_input](csi_data07_select_input) module"]
+#[doc = "CSI_DATA07_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data07_select_input](csi_data07_select_input) module"]
 pub type CSI_DATA07_SELECT_INPUT = crate::Reg<u32, _CSI_DATA07_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3795,7 +3796,7 @@ impl crate::Readable for CSI_DATA07_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA07_SELECT_INPUT {}
 #[doc = "CSI_DATA07_SELECT_INPUT DAISY Register"]
 pub mod csi_data07_select_input;
-#[doc = "CSI_DATA08_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data08_select_input](csi_data08_select_input) module"]
+#[doc = "CSI_DATA08_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data08_select_input](csi_data08_select_input) module"]
 pub type CSI_DATA08_SELECT_INPUT = crate::Reg<u32, _CSI_DATA08_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3806,7 +3807,7 @@ impl crate::Readable for CSI_DATA08_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA08_SELECT_INPUT {}
 #[doc = "CSI_DATA08_SELECT_INPUT DAISY Register"]
 pub mod csi_data08_select_input;
-#[doc = "CSI_DATA09_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_data09_select_input](csi_data09_select_input) module"]
+#[doc = "CSI_DATA09_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_data09_select_input](csi_data09_select_input) module"]
 pub type CSI_DATA09_SELECT_INPUT = crate::Reg<u32, _CSI_DATA09_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3817,7 +3818,7 @@ impl crate::Readable for CSI_DATA09_SELECT_INPUT {}
 impl crate::Writable for CSI_DATA09_SELECT_INPUT {}
 #[doc = "CSI_DATA09_SELECT_INPUT DAISY Register"]
 pub mod csi_data09_select_input;
-#[doc = "CSI_HSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_hsync_select_input](csi_hsync_select_input) module"]
+#[doc = "CSI_HSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_hsync_select_input](csi_hsync_select_input) module"]
 pub type CSI_HSYNC_SELECT_INPUT = crate::Reg<u32, _CSI_HSYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3828,7 +3829,7 @@ impl crate::Readable for CSI_HSYNC_SELECT_INPUT {}
 impl crate::Writable for CSI_HSYNC_SELECT_INPUT {}
 #[doc = "CSI_HSYNC_SELECT_INPUT DAISY Register"]
 pub mod csi_hsync_select_input;
-#[doc = "CSI_PIXCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_pixclk_select_input](csi_pixclk_select_input) module"]
+#[doc = "CSI_PIXCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_pixclk_select_input](csi_pixclk_select_input) module"]
 pub type CSI_PIXCLK_SELECT_INPUT = crate::Reg<u32, _CSI_PIXCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3839,7 +3840,7 @@ impl crate::Readable for CSI_PIXCLK_SELECT_INPUT {}
 impl crate::Writable for CSI_PIXCLK_SELECT_INPUT {}
 #[doc = "CSI_PIXCLK_SELECT_INPUT DAISY Register"]
 pub mod csi_pixclk_select_input;
-#[doc = "CSI_VSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csi_vsync_select_input](csi_vsync_select_input) module"]
+#[doc = "CSI_VSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csi_vsync_select_input](csi_vsync_select_input) module"]
 pub type CSI_VSYNC_SELECT_INPUT = crate::Reg<u32, _CSI_VSYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3850,7 +3851,7 @@ impl crate::Readable for CSI_VSYNC_SELECT_INPUT {}
 impl crate::Writable for CSI_VSYNC_SELECT_INPUT {}
 #[doc = "CSI_VSYNC_SELECT_INPUT DAISY Register"]
 pub mod csi_vsync_select_input;
-#[doc = "ENET_IPG_CLK_RMII_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet_ipg_clk_rmii_select_input](enet_ipg_clk_rmii_select_input) module"]
+#[doc = "ENET_IPG_CLK_RMII_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet_ipg_clk_rmii_select_input](enet_ipg_clk_rmii_select_input) module"]
 pub type ENET_IPG_CLK_RMII_SELECT_INPUT = crate::Reg<u32, _ENET_IPG_CLK_RMII_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3861,7 +3862,7 @@ impl crate::Readable for ENET_IPG_CLK_RMII_SELECT_INPUT {}
 impl crate::Writable for ENET_IPG_CLK_RMII_SELECT_INPUT {}
 #[doc = "ENET_IPG_CLK_RMII_SELECT_INPUT DAISY Register"]
 pub mod enet_ipg_clk_rmii_select_input;
-#[doc = "ENET_MDIO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet_mdio_select_input](enet_mdio_select_input) module"]
+#[doc = "ENET_MDIO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet_mdio_select_input](enet_mdio_select_input) module"]
 pub type ENET_MDIO_SELECT_INPUT = crate::Reg<u32, _ENET_MDIO_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3872,7 +3873,7 @@ impl crate::Readable for ENET_MDIO_SELECT_INPUT {}
 impl crate::Writable for ENET_MDIO_SELECT_INPUT {}
 #[doc = "ENET_MDIO_SELECT_INPUT DAISY Register"]
 pub mod enet_mdio_select_input;
-#[doc = "ENET0_RXDATA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet0_rxdata_select_input](enet0_rxdata_select_input) module"]
+#[doc = "ENET0_RXDATA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet0_rxdata_select_input](enet0_rxdata_select_input) module"]
 pub type ENET0_RXDATA_SELECT_INPUT = crate::Reg<u32, _ENET0_RXDATA_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3883,7 +3884,7 @@ impl crate::Readable for ENET0_RXDATA_SELECT_INPUT {}
 impl crate::Writable for ENET0_RXDATA_SELECT_INPUT {}
 #[doc = "ENET0_RXDATA_SELECT_INPUT DAISY Register"]
 pub mod enet0_rxdata_select_input;
-#[doc = "ENET1_RXDATA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet1_rxdata_select_input](enet1_rxdata_select_input) module"]
+#[doc = "ENET1_RXDATA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet1_rxdata_select_input](enet1_rxdata_select_input) module"]
 pub type ENET1_RXDATA_SELECT_INPUT = crate::Reg<u32, _ENET1_RXDATA_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3894,7 +3895,7 @@ impl crate::Readable for ENET1_RXDATA_SELECT_INPUT {}
 impl crate::Writable for ENET1_RXDATA_SELECT_INPUT {}
 #[doc = "ENET1_RXDATA_SELECT_INPUT DAISY Register"]
 pub mod enet1_rxdata_select_input;
-#[doc = "ENET_RXEN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet_rxen_select_input](enet_rxen_select_input) module"]
+#[doc = "ENET_RXEN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet_rxen_select_input](enet_rxen_select_input) module"]
 pub type ENET_RXEN_SELECT_INPUT = crate::Reg<u32, _ENET_RXEN_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3905,7 +3906,7 @@ impl crate::Readable for ENET_RXEN_SELECT_INPUT {}
 impl crate::Writable for ENET_RXEN_SELECT_INPUT {}
 #[doc = "ENET_RXEN_SELECT_INPUT DAISY Register"]
 pub mod enet_rxen_select_input;
-#[doc = "ENET_RXERR_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet_rxerr_select_input](enet_rxerr_select_input) module"]
+#[doc = "ENET_RXERR_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet_rxerr_select_input](enet_rxerr_select_input) module"]
 pub type ENET_RXERR_SELECT_INPUT = crate::Reg<u32, _ENET_RXERR_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3916,7 +3917,7 @@ impl crate::Readable for ENET_RXERR_SELECT_INPUT {}
 impl crate::Writable for ENET_RXERR_SELECT_INPUT {}
 #[doc = "ENET_RXERR_SELECT_INPUT DAISY Register"]
 pub mod enet_rxerr_select_input;
-#[doc = "ENET0_TIMER_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet0_timer_select_input](enet0_timer_select_input) module"]
+#[doc = "ENET0_TIMER_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet0_timer_select_input](enet0_timer_select_input) module"]
 pub type ENET0_TIMER_SELECT_INPUT = crate::Reg<u32, _ENET0_TIMER_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3927,7 +3928,7 @@ impl crate::Readable for ENET0_TIMER_SELECT_INPUT {}
 impl crate::Writable for ENET0_TIMER_SELECT_INPUT {}
 #[doc = "ENET0_TIMER_SELECT_INPUT DAISY Register"]
 pub mod enet0_timer_select_input;
-#[doc = "ENET_TXCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet_txclk_select_input](enet_txclk_select_input) module"]
+#[doc = "ENET_TXCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet_txclk_select_input](enet_txclk_select_input) module"]
 pub type ENET_TXCLK_SELECT_INPUT = crate::Reg<u32, _ENET_TXCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3938,7 +3939,7 @@ impl crate::Readable for ENET_TXCLK_SELECT_INPUT {}
 impl crate::Writable for ENET_TXCLK_SELECT_INPUT {}
 #[doc = "ENET_TXCLK_SELECT_INPUT DAISY Register"]
 pub mod enet_txclk_select_input;
-#[doc = "FLEXCAN1_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexcan1_rx_select_input](flexcan1_rx_select_input) module"]
+#[doc = "FLEXCAN1_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexcan1_rx_select_input](flexcan1_rx_select_input) module"]
 pub type FLEXCAN1_RX_SELECT_INPUT = crate::Reg<u32, _FLEXCAN1_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3949,7 +3950,7 @@ impl crate::Readable for FLEXCAN1_RX_SELECT_INPUT {}
 impl crate::Writable for FLEXCAN1_RX_SELECT_INPUT {}
 #[doc = "FLEXCAN1_RX_SELECT_INPUT DAISY Register"]
 pub mod flexcan1_rx_select_input;
-#[doc = "FLEXCAN2_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexcan2_rx_select_input](flexcan2_rx_select_input) module"]
+#[doc = "FLEXCAN2_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexcan2_rx_select_input](flexcan2_rx_select_input) module"]
 pub type FLEXCAN2_RX_SELECT_INPUT = crate::Reg<u32, _FLEXCAN2_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3960,7 +3961,7 @@ impl crate::Readable for FLEXCAN2_RX_SELECT_INPUT {}
 impl crate::Writable for FLEXCAN2_RX_SELECT_INPUT {}
 #[doc = "FLEXCAN2_RX_SELECT_INPUT DAISY Register"]
 pub mod flexcan2_rx_select_input;
-#[doc = "FLEXPWM1_PWMA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwma3_select_input](flexpwm1_pwma3_select_input) module"]
+#[doc = "FLEXPWM1_PWMA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwma3_select_input](flexpwm1_pwma3_select_input) module"]
 pub type FLEXPWM1_PWMA3_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3971,7 +3972,7 @@ impl crate::Readable for FLEXPWM1_PWMA3_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMA3_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMA3_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwma3_select_input;
-#[doc = "FLEXPWM1_PWMA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwma0_select_input](flexpwm1_pwma0_select_input) module"]
+#[doc = "FLEXPWM1_PWMA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwma0_select_input](flexpwm1_pwma0_select_input) module"]
 pub type FLEXPWM1_PWMA0_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3982,7 +3983,7 @@ impl crate::Readable for FLEXPWM1_PWMA0_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMA0_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMA0_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwma0_select_input;
-#[doc = "FLEXPWM1_PWMA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwma1_select_input](flexpwm1_pwma1_select_input) module"]
+#[doc = "FLEXPWM1_PWMA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwma1_select_input](flexpwm1_pwma1_select_input) module"]
 pub type FLEXPWM1_PWMA1_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -3993,7 +3994,7 @@ impl crate::Readable for FLEXPWM1_PWMA1_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMA1_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMA1_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwma1_select_input;
-#[doc = "FLEXPWM1_PWMA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwma2_select_input](flexpwm1_pwma2_select_input) module"]
+#[doc = "FLEXPWM1_PWMA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwma2_select_input](flexpwm1_pwma2_select_input) module"]
 pub type FLEXPWM1_PWMA2_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4004,7 +4005,7 @@ impl crate::Readable for FLEXPWM1_PWMA2_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMA2_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMA2_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwma2_select_input;
-#[doc = "FLEXPWM1_PWMB3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwmb3_select_input](flexpwm1_pwmb3_select_input) module"]
+#[doc = "FLEXPWM1_PWMB3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwmb3_select_input](flexpwm1_pwmb3_select_input) module"]
 pub type FLEXPWM1_PWMB3_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMB3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4015,7 +4016,7 @@ impl crate::Readable for FLEXPWM1_PWMB3_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMB3_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMB3_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwmb3_select_input;
-#[doc = "FLEXPWM1_PWMB0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwmb0_select_input](flexpwm1_pwmb0_select_input) module"]
+#[doc = "FLEXPWM1_PWMB0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwmb0_select_input](flexpwm1_pwmb0_select_input) module"]
 pub type FLEXPWM1_PWMB0_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMB0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4026,7 +4027,7 @@ impl crate::Readable for FLEXPWM1_PWMB0_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMB0_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMB0_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwmb0_select_input;
-#[doc = "FLEXPWM1_PWMB1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwmb1_select_input](flexpwm1_pwmb1_select_input) module"]
+#[doc = "FLEXPWM1_PWMB1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwmb1_select_input](flexpwm1_pwmb1_select_input) module"]
 pub type FLEXPWM1_PWMB1_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMB1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4037,7 +4038,7 @@ impl crate::Readable for FLEXPWM1_PWMB1_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMB1_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMB1_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwmb1_select_input;
-#[doc = "FLEXPWM1_PWMB2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm1_pwmb2_select_input](flexpwm1_pwmb2_select_input) module"]
+#[doc = "FLEXPWM1_PWMB2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm1_pwmb2_select_input](flexpwm1_pwmb2_select_input) module"]
 pub type FLEXPWM1_PWMB2_SELECT_INPUT = crate::Reg<u32, _FLEXPWM1_PWMB2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4048,7 +4049,7 @@ impl crate::Readable for FLEXPWM1_PWMB2_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM1_PWMB2_SELECT_INPUT {}
 #[doc = "FLEXPWM1_PWMB2_SELECT_INPUT DAISY Register"]
 pub mod flexpwm1_pwmb2_select_input;
-#[doc = "FLEXPWM2_PWMA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwma3_select_input](flexpwm2_pwma3_select_input) module"]
+#[doc = "FLEXPWM2_PWMA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwma3_select_input](flexpwm2_pwma3_select_input) module"]
 pub type FLEXPWM2_PWMA3_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4059,7 +4060,7 @@ impl crate::Readable for FLEXPWM2_PWMA3_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMA3_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMA3_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwma3_select_input;
-#[doc = "FLEXPWM2_PWMA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwma0_select_input](flexpwm2_pwma0_select_input) module"]
+#[doc = "FLEXPWM2_PWMA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwma0_select_input](flexpwm2_pwma0_select_input) module"]
 pub type FLEXPWM2_PWMA0_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4070,7 +4071,7 @@ impl crate::Readable for FLEXPWM2_PWMA0_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMA0_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMA0_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwma0_select_input;
-#[doc = "FLEXPWM2_PWMA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwma1_select_input](flexpwm2_pwma1_select_input) module"]
+#[doc = "FLEXPWM2_PWMA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwma1_select_input](flexpwm2_pwma1_select_input) module"]
 pub type FLEXPWM2_PWMA1_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4081,7 +4082,7 @@ impl crate::Readable for FLEXPWM2_PWMA1_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMA1_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMA1_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwma1_select_input;
-#[doc = "FLEXPWM2_PWMA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwma2_select_input](flexpwm2_pwma2_select_input) module"]
+#[doc = "FLEXPWM2_PWMA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwma2_select_input](flexpwm2_pwma2_select_input) module"]
 pub type FLEXPWM2_PWMA2_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4092,7 +4093,7 @@ impl crate::Readable for FLEXPWM2_PWMA2_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMA2_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMA2_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwma2_select_input;
-#[doc = "FLEXPWM2_PWMB3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwmb3_select_input](flexpwm2_pwmb3_select_input) module"]
+#[doc = "FLEXPWM2_PWMB3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwmb3_select_input](flexpwm2_pwmb3_select_input) module"]
 pub type FLEXPWM2_PWMB3_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMB3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4103,7 +4104,7 @@ impl crate::Readable for FLEXPWM2_PWMB3_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMB3_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMB3_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwmb3_select_input;
-#[doc = "FLEXPWM2_PWMB0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwmb0_select_input](flexpwm2_pwmb0_select_input) module"]
+#[doc = "FLEXPWM2_PWMB0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwmb0_select_input](flexpwm2_pwmb0_select_input) module"]
 pub type FLEXPWM2_PWMB0_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMB0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4114,7 +4115,7 @@ impl crate::Readable for FLEXPWM2_PWMB0_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMB0_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMB0_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwmb0_select_input;
-#[doc = "FLEXPWM2_PWMB1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwmb1_select_input](flexpwm2_pwmb1_select_input) module"]
+#[doc = "FLEXPWM2_PWMB1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwmb1_select_input](flexpwm2_pwmb1_select_input) module"]
 pub type FLEXPWM2_PWMB1_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMB1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4125,7 +4126,7 @@ impl crate::Readable for FLEXPWM2_PWMB1_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMB1_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMB1_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwmb1_select_input;
-#[doc = "FLEXPWM2_PWMB2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm2_pwmb2_select_input](flexpwm2_pwmb2_select_input) module"]
+#[doc = "FLEXPWM2_PWMB2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm2_pwmb2_select_input](flexpwm2_pwmb2_select_input) module"]
 pub type FLEXPWM2_PWMB2_SELECT_INPUT = crate::Reg<u32, _FLEXPWM2_PWMB2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4136,7 +4137,7 @@ impl crate::Readable for FLEXPWM2_PWMB2_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM2_PWMB2_SELECT_INPUT {}
 #[doc = "FLEXPWM2_PWMB2_SELECT_INPUT DAISY Register"]
 pub mod flexpwm2_pwmb2_select_input;
-#[doc = "FLEXPWM4_PWMA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm4_pwma0_select_input](flexpwm4_pwma0_select_input) module"]
+#[doc = "FLEXPWM4_PWMA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm4_pwma0_select_input](flexpwm4_pwma0_select_input) module"]
 pub type FLEXPWM4_PWMA0_SELECT_INPUT = crate::Reg<u32, _FLEXPWM4_PWMA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4147,7 +4148,7 @@ impl crate::Readable for FLEXPWM4_PWMA0_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM4_PWMA0_SELECT_INPUT {}
 #[doc = "FLEXPWM4_PWMA0_SELECT_INPUT DAISY Register"]
 pub mod flexpwm4_pwma0_select_input;
-#[doc = "FLEXPWM4_PWMA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm4_pwma1_select_input](flexpwm4_pwma1_select_input) module"]
+#[doc = "FLEXPWM4_PWMA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm4_pwma1_select_input](flexpwm4_pwma1_select_input) module"]
 pub type FLEXPWM4_PWMA1_SELECT_INPUT = crate::Reg<u32, _FLEXPWM4_PWMA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4158,7 +4159,7 @@ impl crate::Readable for FLEXPWM4_PWMA1_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM4_PWMA1_SELECT_INPUT {}
 #[doc = "FLEXPWM4_PWMA1_SELECT_INPUT DAISY Register"]
 pub mod flexpwm4_pwma1_select_input;
-#[doc = "FLEXPWM4_PWMA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm4_pwma2_select_input](flexpwm4_pwma2_select_input) module"]
+#[doc = "FLEXPWM4_PWMA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm4_pwma2_select_input](flexpwm4_pwma2_select_input) module"]
 pub type FLEXPWM4_PWMA2_SELECT_INPUT = crate::Reg<u32, _FLEXPWM4_PWMA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4169,7 +4170,7 @@ impl crate::Readable for FLEXPWM4_PWMA2_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM4_PWMA2_SELECT_INPUT {}
 #[doc = "FLEXPWM4_PWMA2_SELECT_INPUT DAISY Register"]
 pub mod flexpwm4_pwma2_select_input;
-#[doc = "FLEXPWM4_PWMA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexpwm4_pwma3_select_input](flexpwm4_pwma3_select_input) module"]
+#[doc = "FLEXPWM4_PWMA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexpwm4_pwma3_select_input](flexpwm4_pwma3_select_input) module"]
 pub type FLEXPWM4_PWMA3_SELECT_INPUT = crate::Reg<u32, _FLEXPWM4_PWMA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4180,7 +4181,7 @@ impl crate::Readable for FLEXPWM4_PWMA3_SELECT_INPUT {}
 impl crate::Writable for FLEXPWM4_PWMA3_SELECT_INPUT {}
 #[doc = "FLEXPWM4_PWMA3_SELECT_INPUT DAISY Register"]
 pub mod flexpwm4_pwma3_select_input;
-#[doc = "FLEXSPIA_DQS_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspia_dqs_select_input](flexspia_dqs_select_input) module"]
+#[doc = "FLEXSPIA_DQS_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspia_dqs_select_input](flexspia_dqs_select_input) module"]
 pub type FLEXSPIA_DQS_SELECT_INPUT = crate::Reg<u32, _FLEXSPIA_DQS_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4191,7 +4192,7 @@ impl crate::Readable for FLEXSPIA_DQS_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIA_DQS_SELECT_INPUT {}
 #[doc = "FLEXSPIA_DQS_SELECT_INPUT DAISY Register"]
 pub mod flexspia_dqs_select_input;
-#[doc = "FLEXSPIA_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspia_data0_select_input](flexspia_data0_select_input) module"]
+#[doc = "FLEXSPIA_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspia_data0_select_input](flexspia_data0_select_input) module"]
 pub type FLEXSPIA_DATA0_SELECT_INPUT = crate::Reg<u32, _FLEXSPIA_DATA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4202,7 +4203,7 @@ impl crate::Readable for FLEXSPIA_DATA0_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIA_DATA0_SELECT_INPUT {}
 #[doc = "FLEXSPIA_DATA0_SELECT_INPUT DAISY Register"]
 pub mod flexspia_data0_select_input;
-#[doc = "FLEXSPIA_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspia_data1_select_input](flexspia_data1_select_input) module"]
+#[doc = "FLEXSPIA_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspia_data1_select_input](flexspia_data1_select_input) module"]
 pub type FLEXSPIA_DATA1_SELECT_INPUT = crate::Reg<u32, _FLEXSPIA_DATA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4213,7 +4214,7 @@ impl crate::Readable for FLEXSPIA_DATA1_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIA_DATA1_SELECT_INPUT {}
 #[doc = "FLEXSPIA_DATA1_SELECT_INPUT DAISY Register"]
 pub mod flexspia_data1_select_input;
-#[doc = "FLEXSPIA_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspia_data2_select_input](flexspia_data2_select_input) module"]
+#[doc = "FLEXSPIA_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspia_data2_select_input](flexspia_data2_select_input) module"]
 pub type FLEXSPIA_DATA2_SELECT_INPUT = crate::Reg<u32, _FLEXSPIA_DATA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4224,7 +4225,7 @@ impl crate::Readable for FLEXSPIA_DATA2_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIA_DATA2_SELECT_INPUT {}
 #[doc = "FLEXSPIA_DATA2_SELECT_INPUT DAISY Register"]
 pub mod flexspia_data2_select_input;
-#[doc = "FLEXSPIA_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspia_data3_select_input](flexspia_data3_select_input) module"]
+#[doc = "FLEXSPIA_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspia_data3_select_input](flexspia_data3_select_input) module"]
 pub type FLEXSPIA_DATA3_SELECT_INPUT = crate::Reg<u32, _FLEXSPIA_DATA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4235,7 +4236,7 @@ impl crate::Readable for FLEXSPIA_DATA3_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIA_DATA3_SELECT_INPUT {}
 #[doc = "FLEXSPIA_DATA3_SELECT_INPUT DAISY Register"]
 pub mod flexspia_data3_select_input;
-#[doc = "FLEXSPIB_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspib_data0_select_input](flexspib_data0_select_input) module"]
+#[doc = "FLEXSPIB_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspib_data0_select_input](flexspib_data0_select_input) module"]
 pub type FLEXSPIB_DATA0_SELECT_INPUT = crate::Reg<u32, _FLEXSPIB_DATA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4246,7 +4247,7 @@ impl crate::Readable for FLEXSPIB_DATA0_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIB_DATA0_SELECT_INPUT {}
 #[doc = "FLEXSPIB_DATA0_SELECT_INPUT DAISY Register"]
 pub mod flexspib_data0_select_input;
-#[doc = "FLEXSPIB_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspib_data1_select_input](flexspib_data1_select_input) module"]
+#[doc = "FLEXSPIB_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspib_data1_select_input](flexspib_data1_select_input) module"]
 pub type FLEXSPIB_DATA1_SELECT_INPUT = crate::Reg<u32, _FLEXSPIB_DATA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4257,7 +4258,7 @@ impl crate::Readable for FLEXSPIB_DATA1_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIB_DATA1_SELECT_INPUT {}
 #[doc = "FLEXSPIB_DATA1_SELECT_INPUT DAISY Register"]
 pub mod flexspib_data1_select_input;
-#[doc = "FLEXSPIB_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspib_data2_select_input](flexspib_data2_select_input) module"]
+#[doc = "FLEXSPIB_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspib_data2_select_input](flexspib_data2_select_input) module"]
 pub type FLEXSPIB_DATA2_SELECT_INPUT = crate::Reg<u32, _FLEXSPIB_DATA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4268,7 +4269,7 @@ impl crate::Readable for FLEXSPIB_DATA2_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIB_DATA2_SELECT_INPUT {}
 #[doc = "FLEXSPIB_DATA2_SELECT_INPUT DAISY Register"]
 pub mod flexspib_data2_select_input;
-#[doc = "FLEXSPIB_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspib_data3_select_input](flexspib_data3_select_input) module"]
+#[doc = "FLEXSPIB_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspib_data3_select_input](flexspib_data3_select_input) module"]
 pub type FLEXSPIB_DATA3_SELECT_INPUT = crate::Reg<u32, _FLEXSPIB_DATA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4279,7 +4280,7 @@ impl crate::Readable for FLEXSPIB_DATA3_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIB_DATA3_SELECT_INPUT {}
 #[doc = "FLEXSPIB_DATA3_SELECT_INPUT DAISY Register"]
 pub mod flexspib_data3_select_input;
-#[doc = "FLEXSPIA_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspia_sck_select_input](flexspia_sck_select_input) module"]
+#[doc = "FLEXSPIA_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspia_sck_select_input](flexspia_sck_select_input) module"]
 pub type FLEXSPIA_SCK_SELECT_INPUT = crate::Reg<u32, _FLEXSPIA_SCK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4290,7 +4291,7 @@ impl crate::Readable for FLEXSPIA_SCK_SELECT_INPUT {}
 impl crate::Writable for FLEXSPIA_SCK_SELECT_INPUT {}
 #[doc = "FLEXSPIA_SCK_SELECT_INPUT DAISY Register"]
 pub mod flexspia_sck_select_input;
-#[doc = "LPI2C1_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c1_scl_select_input](lpi2c1_scl_select_input) module"]
+#[doc = "LPI2C1_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c1_scl_select_input](lpi2c1_scl_select_input) module"]
 pub type LPI2C1_SCL_SELECT_INPUT = crate::Reg<u32, _LPI2C1_SCL_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4301,7 +4302,7 @@ impl crate::Readable for LPI2C1_SCL_SELECT_INPUT {}
 impl crate::Writable for LPI2C1_SCL_SELECT_INPUT {}
 #[doc = "LPI2C1_SCL_SELECT_INPUT DAISY Register"]
 pub mod lpi2c1_scl_select_input;
-#[doc = "LPI2C1_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c1_sda_select_input](lpi2c1_sda_select_input) module"]
+#[doc = "LPI2C1_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c1_sda_select_input](lpi2c1_sda_select_input) module"]
 pub type LPI2C1_SDA_SELECT_INPUT = crate::Reg<u32, _LPI2C1_SDA_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4312,7 +4313,7 @@ impl crate::Readable for LPI2C1_SDA_SELECT_INPUT {}
 impl crate::Writable for LPI2C1_SDA_SELECT_INPUT {}
 #[doc = "LPI2C1_SDA_SELECT_INPUT DAISY Register"]
 pub mod lpi2c1_sda_select_input;
-#[doc = "LPI2C2_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c2_scl_select_input](lpi2c2_scl_select_input) module"]
+#[doc = "LPI2C2_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c2_scl_select_input](lpi2c2_scl_select_input) module"]
 pub type LPI2C2_SCL_SELECT_INPUT = crate::Reg<u32, _LPI2C2_SCL_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4323,7 +4324,7 @@ impl crate::Readable for LPI2C2_SCL_SELECT_INPUT {}
 impl crate::Writable for LPI2C2_SCL_SELECT_INPUT {}
 #[doc = "LPI2C2_SCL_SELECT_INPUT DAISY Register"]
 pub mod lpi2c2_scl_select_input;
-#[doc = "LPI2C2_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c2_sda_select_input](lpi2c2_sda_select_input) module"]
+#[doc = "LPI2C2_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c2_sda_select_input](lpi2c2_sda_select_input) module"]
 pub type LPI2C2_SDA_SELECT_INPUT = crate::Reg<u32, _LPI2C2_SDA_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4334,7 +4335,7 @@ impl crate::Readable for LPI2C2_SDA_SELECT_INPUT {}
 impl crate::Writable for LPI2C2_SDA_SELECT_INPUT {}
 #[doc = "LPI2C2_SDA_SELECT_INPUT DAISY Register"]
 pub mod lpi2c2_sda_select_input;
-#[doc = "LPI2C3_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c3_scl_select_input](lpi2c3_scl_select_input) module"]
+#[doc = "LPI2C3_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c3_scl_select_input](lpi2c3_scl_select_input) module"]
 pub type LPI2C3_SCL_SELECT_INPUT = crate::Reg<u32, _LPI2C3_SCL_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4345,7 +4346,7 @@ impl crate::Readable for LPI2C3_SCL_SELECT_INPUT {}
 impl crate::Writable for LPI2C3_SCL_SELECT_INPUT {}
 #[doc = "LPI2C3_SCL_SELECT_INPUT DAISY Register"]
 pub mod lpi2c3_scl_select_input;
-#[doc = "LPI2C3_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c3_sda_select_input](lpi2c3_sda_select_input) module"]
+#[doc = "LPI2C3_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c3_sda_select_input](lpi2c3_sda_select_input) module"]
 pub type LPI2C3_SDA_SELECT_INPUT = crate::Reg<u32, _LPI2C3_SDA_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4356,7 +4357,7 @@ impl crate::Readable for LPI2C3_SDA_SELECT_INPUT {}
 impl crate::Writable for LPI2C3_SDA_SELECT_INPUT {}
 #[doc = "LPI2C3_SDA_SELECT_INPUT DAISY Register"]
 pub mod lpi2c3_sda_select_input;
-#[doc = "LPI2C4_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c4_scl_select_input](lpi2c4_scl_select_input) module"]
+#[doc = "LPI2C4_SCL_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c4_scl_select_input](lpi2c4_scl_select_input) module"]
 pub type LPI2C4_SCL_SELECT_INPUT = crate::Reg<u32, _LPI2C4_SCL_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4367,7 +4368,7 @@ impl crate::Readable for LPI2C4_SCL_SELECT_INPUT {}
 impl crate::Writable for LPI2C4_SCL_SELECT_INPUT {}
 #[doc = "LPI2C4_SCL_SELECT_INPUT DAISY Register"]
 pub mod lpi2c4_scl_select_input;
-#[doc = "LPI2C4_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpi2c4_sda_select_input](lpi2c4_sda_select_input) module"]
+#[doc = "LPI2C4_SDA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpi2c4_sda_select_input](lpi2c4_sda_select_input) module"]
 pub type LPI2C4_SDA_SELECT_INPUT = crate::Reg<u32, _LPI2C4_SDA_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4378,7 +4379,7 @@ impl crate::Readable for LPI2C4_SDA_SELECT_INPUT {}
 impl crate::Writable for LPI2C4_SDA_SELECT_INPUT {}
 #[doc = "LPI2C4_SDA_SELECT_INPUT DAISY Register"]
 pub mod lpi2c4_sda_select_input;
-#[doc = "LPSPI1_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi1_pcs0_select_input](lpspi1_pcs0_select_input) module"]
+#[doc = "LPSPI1_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi1_pcs0_select_input](lpspi1_pcs0_select_input) module"]
 pub type LPSPI1_PCS0_SELECT_INPUT = crate::Reg<u32, _LPSPI1_PCS0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4389,7 +4390,7 @@ impl crate::Readable for LPSPI1_PCS0_SELECT_INPUT {}
 impl crate::Writable for LPSPI1_PCS0_SELECT_INPUT {}
 #[doc = "LPSPI1_PCS0_SELECT_INPUT DAISY Register"]
 pub mod lpspi1_pcs0_select_input;
-#[doc = "LPSPI1_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi1_sck_select_input](lpspi1_sck_select_input) module"]
+#[doc = "LPSPI1_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi1_sck_select_input](lpspi1_sck_select_input) module"]
 pub type LPSPI1_SCK_SELECT_INPUT = crate::Reg<u32, _LPSPI1_SCK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4400,7 +4401,7 @@ impl crate::Readable for LPSPI1_SCK_SELECT_INPUT {}
 impl crate::Writable for LPSPI1_SCK_SELECT_INPUT {}
 #[doc = "LPSPI1_SCK_SELECT_INPUT DAISY Register"]
 pub mod lpspi1_sck_select_input;
-#[doc = "LPSPI1_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi1_sdi_select_input](lpspi1_sdi_select_input) module"]
+#[doc = "LPSPI1_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi1_sdi_select_input](lpspi1_sdi_select_input) module"]
 pub type LPSPI1_SDI_SELECT_INPUT = crate::Reg<u32, _LPSPI1_SDI_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4411,7 +4412,7 @@ impl crate::Readable for LPSPI1_SDI_SELECT_INPUT {}
 impl crate::Writable for LPSPI1_SDI_SELECT_INPUT {}
 #[doc = "LPSPI1_SDI_SELECT_INPUT DAISY Register"]
 pub mod lpspi1_sdi_select_input;
-#[doc = "LPSPI1_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi1_sdo_select_input](lpspi1_sdo_select_input) module"]
+#[doc = "LPSPI1_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi1_sdo_select_input](lpspi1_sdo_select_input) module"]
 pub type LPSPI1_SDO_SELECT_INPUT = crate::Reg<u32, _LPSPI1_SDO_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4422,7 +4423,7 @@ impl crate::Readable for LPSPI1_SDO_SELECT_INPUT {}
 impl crate::Writable for LPSPI1_SDO_SELECT_INPUT {}
 #[doc = "LPSPI1_SDO_SELECT_INPUT DAISY Register"]
 pub mod lpspi1_sdo_select_input;
-#[doc = "LPSPI2_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi2_pcs0_select_input](lpspi2_pcs0_select_input) module"]
+#[doc = "LPSPI2_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi2_pcs0_select_input](lpspi2_pcs0_select_input) module"]
 pub type LPSPI2_PCS0_SELECT_INPUT = crate::Reg<u32, _LPSPI2_PCS0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4433,7 +4434,7 @@ impl crate::Readable for LPSPI2_PCS0_SELECT_INPUT {}
 impl crate::Writable for LPSPI2_PCS0_SELECT_INPUT {}
 #[doc = "LPSPI2_PCS0_SELECT_INPUT DAISY Register"]
 pub mod lpspi2_pcs0_select_input;
-#[doc = "LPSPI2_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi2_sck_select_input](lpspi2_sck_select_input) module"]
+#[doc = "LPSPI2_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi2_sck_select_input](lpspi2_sck_select_input) module"]
 pub type LPSPI2_SCK_SELECT_INPUT = crate::Reg<u32, _LPSPI2_SCK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4444,7 +4445,7 @@ impl crate::Readable for LPSPI2_SCK_SELECT_INPUT {}
 impl crate::Writable for LPSPI2_SCK_SELECT_INPUT {}
 #[doc = "LPSPI2_SCK_SELECT_INPUT DAISY Register"]
 pub mod lpspi2_sck_select_input;
-#[doc = "LPSPI2_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi2_sdi_select_input](lpspi2_sdi_select_input) module"]
+#[doc = "LPSPI2_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi2_sdi_select_input](lpspi2_sdi_select_input) module"]
 pub type LPSPI2_SDI_SELECT_INPUT = crate::Reg<u32, _LPSPI2_SDI_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4455,7 +4456,7 @@ impl crate::Readable for LPSPI2_SDI_SELECT_INPUT {}
 impl crate::Writable for LPSPI2_SDI_SELECT_INPUT {}
 #[doc = "LPSPI2_SDI_SELECT_INPUT DAISY Register"]
 pub mod lpspi2_sdi_select_input;
-#[doc = "LPSPI2_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi2_sdo_select_input](lpspi2_sdo_select_input) module"]
+#[doc = "LPSPI2_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi2_sdo_select_input](lpspi2_sdo_select_input) module"]
 pub type LPSPI2_SDO_SELECT_INPUT = crate::Reg<u32, _LPSPI2_SDO_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4466,7 +4467,7 @@ impl crate::Readable for LPSPI2_SDO_SELECT_INPUT {}
 impl crate::Writable for LPSPI2_SDO_SELECT_INPUT {}
 #[doc = "LPSPI2_SDO_SELECT_INPUT DAISY Register"]
 pub mod lpspi2_sdo_select_input;
-#[doc = "LPSPI3_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi3_pcs0_select_input](lpspi3_pcs0_select_input) module"]
+#[doc = "LPSPI3_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi3_pcs0_select_input](lpspi3_pcs0_select_input) module"]
 pub type LPSPI3_PCS0_SELECT_INPUT = crate::Reg<u32, _LPSPI3_PCS0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4477,7 +4478,7 @@ impl crate::Readable for LPSPI3_PCS0_SELECT_INPUT {}
 impl crate::Writable for LPSPI3_PCS0_SELECT_INPUT {}
 #[doc = "LPSPI3_PCS0_SELECT_INPUT DAISY Register"]
 pub mod lpspi3_pcs0_select_input;
-#[doc = "LPSPI3_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi3_sck_select_input](lpspi3_sck_select_input) module"]
+#[doc = "LPSPI3_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi3_sck_select_input](lpspi3_sck_select_input) module"]
 pub type LPSPI3_SCK_SELECT_INPUT = crate::Reg<u32, _LPSPI3_SCK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4488,7 +4489,7 @@ impl crate::Readable for LPSPI3_SCK_SELECT_INPUT {}
 impl crate::Writable for LPSPI3_SCK_SELECT_INPUT {}
 #[doc = "LPSPI3_SCK_SELECT_INPUT DAISY Register"]
 pub mod lpspi3_sck_select_input;
-#[doc = "LPSPI3_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi3_sdi_select_input](lpspi3_sdi_select_input) module"]
+#[doc = "LPSPI3_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi3_sdi_select_input](lpspi3_sdi_select_input) module"]
 pub type LPSPI3_SDI_SELECT_INPUT = crate::Reg<u32, _LPSPI3_SDI_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4499,7 +4500,7 @@ impl crate::Readable for LPSPI3_SDI_SELECT_INPUT {}
 impl crate::Writable for LPSPI3_SDI_SELECT_INPUT {}
 #[doc = "LPSPI3_SDI_SELECT_INPUT DAISY Register"]
 pub mod lpspi3_sdi_select_input;
-#[doc = "LPSPI3_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi3_sdo_select_input](lpspi3_sdo_select_input) module"]
+#[doc = "LPSPI3_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi3_sdo_select_input](lpspi3_sdo_select_input) module"]
 pub type LPSPI3_SDO_SELECT_INPUT = crate::Reg<u32, _LPSPI3_SDO_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4510,7 +4511,7 @@ impl crate::Readable for LPSPI3_SDO_SELECT_INPUT {}
 impl crate::Writable for LPSPI3_SDO_SELECT_INPUT {}
 #[doc = "LPSPI3_SDO_SELECT_INPUT DAISY Register"]
 pub mod lpspi3_sdo_select_input;
-#[doc = "LPSPI4_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi4_pcs0_select_input](lpspi4_pcs0_select_input) module"]
+#[doc = "LPSPI4_PCS0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi4_pcs0_select_input](lpspi4_pcs0_select_input) module"]
 pub type LPSPI4_PCS0_SELECT_INPUT = crate::Reg<u32, _LPSPI4_PCS0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4521,7 +4522,7 @@ impl crate::Readable for LPSPI4_PCS0_SELECT_INPUT {}
 impl crate::Writable for LPSPI4_PCS0_SELECT_INPUT {}
 #[doc = "LPSPI4_PCS0_SELECT_INPUT DAISY Register"]
 pub mod lpspi4_pcs0_select_input;
-#[doc = "LPSPI4_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi4_sck_select_input](lpspi4_sck_select_input) module"]
+#[doc = "LPSPI4_SCK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi4_sck_select_input](lpspi4_sck_select_input) module"]
 pub type LPSPI4_SCK_SELECT_INPUT = crate::Reg<u32, _LPSPI4_SCK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4532,7 +4533,7 @@ impl crate::Readable for LPSPI4_SCK_SELECT_INPUT {}
 impl crate::Writable for LPSPI4_SCK_SELECT_INPUT {}
 #[doc = "LPSPI4_SCK_SELECT_INPUT DAISY Register"]
 pub mod lpspi4_sck_select_input;
-#[doc = "LPSPI4_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi4_sdi_select_input](lpspi4_sdi_select_input) module"]
+#[doc = "LPSPI4_SDI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi4_sdi_select_input](lpspi4_sdi_select_input) module"]
 pub type LPSPI4_SDI_SELECT_INPUT = crate::Reg<u32, _LPSPI4_SDI_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4543,7 +4544,7 @@ impl crate::Readable for LPSPI4_SDI_SELECT_INPUT {}
 impl crate::Writable for LPSPI4_SDI_SELECT_INPUT {}
 #[doc = "LPSPI4_SDI_SELECT_INPUT DAISY Register"]
 pub mod lpspi4_sdi_select_input;
-#[doc = "LPSPI4_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpspi4_sdo_select_input](lpspi4_sdo_select_input) module"]
+#[doc = "LPSPI4_SDO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpspi4_sdo_select_input](lpspi4_sdo_select_input) module"]
 pub type LPSPI4_SDO_SELECT_INPUT = crate::Reg<u32, _LPSPI4_SDO_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4554,7 +4555,7 @@ impl crate::Readable for LPSPI4_SDO_SELECT_INPUT {}
 impl crate::Writable for LPSPI4_SDO_SELECT_INPUT {}
 #[doc = "LPSPI4_SDO_SELECT_INPUT DAISY Register"]
 pub mod lpspi4_sdo_select_input;
-#[doc = "LPUART2_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart2_rx_select_input](lpuart2_rx_select_input) module"]
+#[doc = "LPUART2_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart2_rx_select_input](lpuart2_rx_select_input) module"]
 pub type LPUART2_RX_SELECT_INPUT = crate::Reg<u32, _LPUART2_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4565,7 +4566,7 @@ impl crate::Readable for LPUART2_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART2_RX_SELECT_INPUT {}
 #[doc = "LPUART2_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart2_rx_select_input;
-#[doc = "LPUART2_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart2_tx_select_input](lpuart2_tx_select_input) module"]
+#[doc = "LPUART2_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart2_tx_select_input](lpuart2_tx_select_input) module"]
 pub type LPUART2_TX_SELECT_INPUT = crate::Reg<u32, _LPUART2_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4576,7 +4577,7 @@ impl crate::Readable for LPUART2_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART2_TX_SELECT_INPUT {}
 #[doc = "LPUART2_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart2_tx_select_input;
-#[doc = "LPUART3_CTS_B_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart3_cts_b_select_input](lpuart3_cts_b_select_input) module"]
+#[doc = "LPUART3_CTS_B_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart3_cts_b_select_input](lpuart3_cts_b_select_input) module"]
 pub type LPUART3_CTS_B_SELECT_INPUT = crate::Reg<u32, _LPUART3_CTS_B_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4587,7 +4588,7 @@ impl crate::Readable for LPUART3_CTS_B_SELECT_INPUT {}
 impl crate::Writable for LPUART3_CTS_B_SELECT_INPUT {}
 #[doc = "LPUART3_CTS_B_SELECT_INPUT DAISY Register"]
 pub mod lpuart3_cts_b_select_input;
-#[doc = "LPUART3_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart3_rx_select_input](lpuart3_rx_select_input) module"]
+#[doc = "LPUART3_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart3_rx_select_input](lpuart3_rx_select_input) module"]
 pub type LPUART3_RX_SELECT_INPUT = crate::Reg<u32, _LPUART3_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4598,7 +4599,7 @@ impl crate::Readable for LPUART3_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART3_RX_SELECT_INPUT {}
 #[doc = "LPUART3_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart3_rx_select_input;
-#[doc = "LPUART3_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart3_tx_select_input](lpuart3_tx_select_input) module"]
+#[doc = "LPUART3_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart3_tx_select_input](lpuart3_tx_select_input) module"]
 pub type LPUART3_TX_SELECT_INPUT = crate::Reg<u32, _LPUART3_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4609,7 +4610,7 @@ impl crate::Readable for LPUART3_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART3_TX_SELECT_INPUT {}
 #[doc = "LPUART3_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart3_tx_select_input;
-#[doc = "LPUART4_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart4_rx_select_input](lpuart4_rx_select_input) module"]
+#[doc = "LPUART4_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart4_rx_select_input](lpuart4_rx_select_input) module"]
 pub type LPUART4_RX_SELECT_INPUT = crate::Reg<u32, _LPUART4_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4620,7 +4621,7 @@ impl crate::Readable for LPUART4_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART4_RX_SELECT_INPUT {}
 #[doc = "LPUART4_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart4_rx_select_input;
-#[doc = "LPUART4_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart4_tx_select_input](lpuart4_tx_select_input) module"]
+#[doc = "LPUART4_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart4_tx_select_input](lpuart4_tx_select_input) module"]
 pub type LPUART4_TX_SELECT_INPUT = crate::Reg<u32, _LPUART4_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4631,7 +4632,7 @@ impl crate::Readable for LPUART4_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART4_TX_SELECT_INPUT {}
 #[doc = "LPUART4_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart4_tx_select_input;
-#[doc = "LPUART5_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart5_rx_select_input](lpuart5_rx_select_input) module"]
+#[doc = "LPUART5_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart5_rx_select_input](lpuart5_rx_select_input) module"]
 pub type LPUART5_RX_SELECT_INPUT = crate::Reg<u32, _LPUART5_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4642,7 +4643,7 @@ impl crate::Readable for LPUART5_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART5_RX_SELECT_INPUT {}
 #[doc = "LPUART5_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart5_rx_select_input;
-#[doc = "LPUART5_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart5_tx_select_input](lpuart5_tx_select_input) module"]
+#[doc = "LPUART5_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart5_tx_select_input](lpuart5_tx_select_input) module"]
 pub type LPUART5_TX_SELECT_INPUT = crate::Reg<u32, _LPUART5_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4653,7 +4654,7 @@ impl crate::Readable for LPUART5_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART5_TX_SELECT_INPUT {}
 #[doc = "LPUART5_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart5_tx_select_input;
-#[doc = "LPUART6_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart6_rx_select_input](lpuart6_rx_select_input) module"]
+#[doc = "LPUART6_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart6_rx_select_input](lpuart6_rx_select_input) module"]
 pub type LPUART6_RX_SELECT_INPUT = crate::Reg<u32, _LPUART6_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4664,7 +4665,7 @@ impl crate::Readable for LPUART6_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART6_RX_SELECT_INPUT {}
 #[doc = "LPUART6_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart6_rx_select_input;
-#[doc = "LPUART6_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart6_tx_select_input](lpuart6_tx_select_input) module"]
+#[doc = "LPUART6_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart6_tx_select_input](lpuart6_tx_select_input) module"]
 pub type LPUART6_TX_SELECT_INPUT = crate::Reg<u32, _LPUART6_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4675,7 +4676,7 @@ impl crate::Readable for LPUART6_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART6_TX_SELECT_INPUT {}
 #[doc = "LPUART6_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart6_tx_select_input;
-#[doc = "LPUART7_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart7_rx_select_input](lpuart7_rx_select_input) module"]
+#[doc = "LPUART7_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart7_rx_select_input](lpuart7_rx_select_input) module"]
 pub type LPUART7_RX_SELECT_INPUT = crate::Reg<u32, _LPUART7_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4686,7 +4687,7 @@ impl crate::Readable for LPUART7_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART7_RX_SELECT_INPUT {}
 #[doc = "LPUART7_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart7_rx_select_input;
-#[doc = "LPUART7_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart7_tx_select_input](lpuart7_tx_select_input) module"]
+#[doc = "LPUART7_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart7_tx_select_input](lpuart7_tx_select_input) module"]
 pub type LPUART7_TX_SELECT_INPUT = crate::Reg<u32, _LPUART7_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4697,7 +4698,7 @@ impl crate::Readable for LPUART7_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART7_TX_SELECT_INPUT {}
 #[doc = "LPUART7_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart7_tx_select_input;
-#[doc = "LPUART8_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart8_rx_select_input](lpuart8_rx_select_input) module"]
+#[doc = "LPUART8_RX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart8_rx_select_input](lpuart8_rx_select_input) module"]
 pub type LPUART8_RX_SELECT_INPUT = crate::Reg<u32, _LPUART8_RX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4708,7 +4709,7 @@ impl crate::Readable for LPUART8_RX_SELECT_INPUT {}
 impl crate::Writable for LPUART8_RX_SELECT_INPUT {}
 #[doc = "LPUART8_RX_SELECT_INPUT DAISY Register"]
 pub mod lpuart8_rx_select_input;
-#[doc = "LPUART8_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [lpuart8_tx_select_input](lpuart8_tx_select_input) module"]
+#[doc = "LPUART8_TX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [lpuart8_tx_select_input](lpuart8_tx_select_input) module"]
 pub type LPUART8_TX_SELECT_INPUT = crate::Reg<u32, _LPUART8_TX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4719,7 +4720,7 @@ impl crate::Readable for LPUART8_TX_SELECT_INPUT {}
 impl crate::Writable for LPUART8_TX_SELECT_INPUT {}
 #[doc = "LPUART8_TX_SELECT_INPUT DAISY Register"]
 pub mod lpuart8_tx_select_input;
-#[doc = "NMI_GLUE_NMI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [nmi_select_input](nmi_select_input) module"]
+#[doc = "NMI_GLUE_NMI_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [nmi_select_input](nmi_select_input) module"]
 pub type NMI_SELECT_INPUT = crate::Reg<u32, _NMI_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4730,7 +4731,7 @@ impl crate::Readable for NMI_SELECT_INPUT {}
 impl crate::Writable for NMI_SELECT_INPUT {}
 #[doc = "NMI_GLUE_NMI_SELECT_INPUT DAISY Register"]
 pub mod nmi_select_input;
-#[doc = "QTIMER2_TIMER0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer2_timer0_select_input](qtimer2_timer0_select_input) module"]
+#[doc = "QTIMER2_TIMER0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer2_timer0_select_input](qtimer2_timer0_select_input) module"]
 pub type QTIMER2_TIMER0_SELECT_INPUT = crate::Reg<u32, _QTIMER2_TIMER0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4741,7 +4742,7 @@ impl crate::Readable for QTIMER2_TIMER0_SELECT_INPUT {}
 impl crate::Writable for QTIMER2_TIMER0_SELECT_INPUT {}
 #[doc = "QTIMER2_TIMER0_SELECT_INPUT DAISY Register"]
 pub mod qtimer2_timer0_select_input;
-#[doc = "QTIMER2_TIMER1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer2_timer1_select_input](qtimer2_timer1_select_input) module"]
+#[doc = "QTIMER2_TIMER1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer2_timer1_select_input](qtimer2_timer1_select_input) module"]
 pub type QTIMER2_TIMER1_SELECT_INPUT = crate::Reg<u32, _QTIMER2_TIMER1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4752,7 +4753,7 @@ impl crate::Readable for QTIMER2_TIMER1_SELECT_INPUT {}
 impl crate::Writable for QTIMER2_TIMER1_SELECT_INPUT {}
 #[doc = "QTIMER2_TIMER1_SELECT_INPUT DAISY Register"]
 pub mod qtimer2_timer1_select_input;
-#[doc = "QTIMER2_TIMER2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer2_timer2_select_input](qtimer2_timer2_select_input) module"]
+#[doc = "QTIMER2_TIMER2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer2_timer2_select_input](qtimer2_timer2_select_input) module"]
 pub type QTIMER2_TIMER2_SELECT_INPUT = crate::Reg<u32, _QTIMER2_TIMER2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4763,7 +4764,7 @@ impl crate::Readable for QTIMER2_TIMER2_SELECT_INPUT {}
 impl crate::Writable for QTIMER2_TIMER2_SELECT_INPUT {}
 #[doc = "QTIMER2_TIMER2_SELECT_INPUT DAISY Register"]
 pub mod qtimer2_timer2_select_input;
-#[doc = "QTIMER2_TIMER3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer2_timer3_select_input](qtimer2_timer3_select_input) module"]
+#[doc = "QTIMER2_TIMER3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer2_timer3_select_input](qtimer2_timer3_select_input) module"]
 pub type QTIMER2_TIMER3_SELECT_INPUT = crate::Reg<u32, _QTIMER2_TIMER3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4774,7 +4775,7 @@ impl crate::Readable for QTIMER2_TIMER3_SELECT_INPUT {}
 impl crate::Writable for QTIMER2_TIMER3_SELECT_INPUT {}
 #[doc = "QTIMER2_TIMER3_SELECT_INPUT DAISY Register"]
 pub mod qtimer2_timer3_select_input;
-#[doc = "QTIMER3_TIMER0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer3_timer0_select_input](qtimer3_timer0_select_input) module"]
+#[doc = "QTIMER3_TIMER0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer3_timer0_select_input](qtimer3_timer0_select_input) module"]
 pub type QTIMER3_TIMER0_SELECT_INPUT = crate::Reg<u32, _QTIMER3_TIMER0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4785,7 +4786,7 @@ impl crate::Readable for QTIMER3_TIMER0_SELECT_INPUT {}
 impl crate::Writable for QTIMER3_TIMER0_SELECT_INPUT {}
 #[doc = "QTIMER3_TIMER0_SELECT_INPUT DAISY Register"]
 pub mod qtimer3_timer0_select_input;
-#[doc = "QTIMER3_TIMER1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer3_timer1_select_input](qtimer3_timer1_select_input) module"]
+#[doc = "QTIMER3_TIMER1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer3_timer1_select_input](qtimer3_timer1_select_input) module"]
 pub type QTIMER3_TIMER1_SELECT_INPUT = crate::Reg<u32, _QTIMER3_TIMER1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4796,7 +4797,7 @@ impl crate::Readable for QTIMER3_TIMER1_SELECT_INPUT {}
 impl crate::Writable for QTIMER3_TIMER1_SELECT_INPUT {}
 #[doc = "QTIMER3_TIMER1_SELECT_INPUT DAISY Register"]
 pub mod qtimer3_timer1_select_input;
-#[doc = "QTIMER3_TIMER2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer3_timer2_select_input](qtimer3_timer2_select_input) module"]
+#[doc = "QTIMER3_TIMER2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer3_timer2_select_input](qtimer3_timer2_select_input) module"]
 pub type QTIMER3_TIMER2_SELECT_INPUT = crate::Reg<u32, _QTIMER3_TIMER2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4807,7 +4808,7 @@ impl crate::Readable for QTIMER3_TIMER2_SELECT_INPUT {}
 impl crate::Writable for QTIMER3_TIMER2_SELECT_INPUT {}
 #[doc = "QTIMER3_TIMER2_SELECT_INPUT DAISY Register"]
 pub mod qtimer3_timer2_select_input;
-#[doc = "QTIMER3_TIMER3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [qtimer3_timer3_select_input](qtimer3_timer3_select_input) module"]
+#[doc = "QTIMER3_TIMER3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [qtimer3_timer3_select_input](qtimer3_timer3_select_input) module"]
 pub type QTIMER3_TIMER3_SELECT_INPUT = crate::Reg<u32, _QTIMER3_TIMER3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4818,7 +4819,7 @@ impl crate::Readable for QTIMER3_TIMER3_SELECT_INPUT {}
 impl crate::Writable for QTIMER3_TIMER3_SELECT_INPUT {}
 #[doc = "QTIMER3_TIMER3_SELECT_INPUT DAISY Register"]
 pub mod qtimer3_timer3_select_input;
-#[doc = "SAI1_MCLK2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_mclk2_select_input](sai1_mclk2_select_input) module"]
+#[doc = "SAI1_MCLK2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_mclk2_select_input](sai1_mclk2_select_input) module"]
 pub type SAI1_MCLK2_SELECT_INPUT = crate::Reg<u32, _SAI1_MCLK2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4829,7 +4830,7 @@ impl crate::Readable for SAI1_MCLK2_SELECT_INPUT {}
 impl crate::Writable for SAI1_MCLK2_SELECT_INPUT {}
 #[doc = "SAI1_MCLK2_SELECT_INPUT DAISY Register"]
 pub mod sai1_mclk2_select_input;
-#[doc = "SAI1_RX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_rx_bclk_select_input](sai1_rx_bclk_select_input) module"]
+#[doc = "SAI1_RX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_rx_bclk_select_input](sai1_rx_bclk_select_input) module"]
 pub type SAI1_RX_BCLK_SELECT_INPUT = crate::Reg<u32, _SAI1_RX_BCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4840,7 +4841,7 @@ impl crate::Readable for SAI1_RX_BCLK_SELECT_INPUT {}
 impl crate::Writable for SAI1_RX_BCLK_SELECT_INPUT {}
 #[doc = "SAI1_RX_BCLK_SELECT_INPUT DAISY Register"]
 pub mod sai1_rx_bclk_select_input;
-#[doc = "SAI1_RX_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_rx_data0_select_input](sai1_rx_data0_select_input) module"]
+#[doc = "SAI1_RX_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_rx_data0_select_input](sai1_rx_data0_select_input) module"]
 pub type SAI1_RX_DATA0_SELECT_INPUT = crate::Reg<u32, _SAI1_RX_DATA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4851,7 +4852,7 @@ impl crate::Readable for SAI1_RX_DATA0_SELECT_INPUT {}
 impl crate::Writable for SAI1_RX_DATA0_SELECT_INPUT {}
 #[doc = "SAI1_RX_DATA0_SELECT_INPUT DAISY Register"]
 pub mod sai1_rx_data0_select_input;
-#[doc = "SAI1_RX_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_rx_data1_select_input](sai1_rx_data1_select_input) module"]
+#[doc = "SAI1_RX_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_rx_data1_select_input](sai1_rx_data1_select_input) module"]
 pub type SAI1_RX_DATA1_SELECT_INPUT = crate::Reg<u32, _SAI1_RX_DATA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4862,7 +4863,7 @@ impl crate::Readable for SAI1_RX_DATA1_SELECT_INPUT {}
 impl crate::Writable for SAI1_RX_DATA1_SELECT_INPUT {}
 #[doc = "SAI1_RX_DATA1_SELECT_INPUT DAISY Register"]
 pub mod sai1_rx_data1_select_input;
-#[doc = "SAI1_RX_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_rx_data2_select_input](sai1_rx_data2_select_input) module"]
+#[doc = "SAI1_RX_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_rx_data2_select_input](sai1_rx_data2_select_input) module"]
 pub type SAI1_RX_DATA2_SELECT_INPUT = crate::Reg<u32, _SAI1_RX_DATA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4873,7 +4874,7 @@ impl crate::Readable for SAI1_RX_DATA2_SELECT_INPUT {}
 impl crate::Writable for SAI1_RX_DATA2_SELECT_INPUT {}
 #[doc = "SAI1_RX_DATA2_SELECT_INPUT DAISY Register"]
 pub mod sai1_rx_data2_select_input;
-#[doc = "SAI1_RX_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_rx_data3_select_input](sai1_rx_data3_select_input) module"]
+#[doc = "SAI1_RX_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_rx_data3_select_input](sai1_rx_data3_select_input) module"]
 pub type SAI1_RX_DATA3_SELECT_INPUT = crate::Reg<u32, _SAI1_RX_DATA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4884,7 +4885,7 @@ impl crate::Readable for SAI1_RX_DATA3_SELECT_INPUT {}
 impl crate::Writable for SAI1_RX_DATA3_SELECT_INPUT {}
 #[doc = "SAI1_RX_DATA3_SELECT_INPUT DAISY Register"]
 pub mod sai1_rx_data3_select_input;
-#[doc = "SAI1_RX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_rx_sync_select_input](sai1_rx_sync_select_input) module"]
+#[doc = "SAI1_RX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_rx_sync_select_input](sai1_rx_sync_select_input) module"]
 pub type SAI1_RX_SYNC_SELECT_INPUT = crate::Reg<u32, _SAI1_RX_SYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4895,7 +4896,7 @@ impl crate::Readable for SAI1_RX_SYNC_SELECT_INPUT {}
 impl crate::Writable for SAI1_RX_SYNC_SELECT_INPUT {}
 #[doc = "SAI1_RX_SYNC_SELECT_INPUT DAISY Register"]
 pub mod sai1_rx_sync_select_input;
-#[doc = "SAI1_TX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_tx_bclk_select_input](sai1_tx_bclk_select_input) module"]
+#[doc = "SAI1_TX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_tx_bclk_select_input](sai1_tx_bclk_select_input) module"]
 pub type SAI1_TX_BCLK_SELECT_INPUT = crate::Reg<u32, _SAI1_TX_BCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4906,7 +4907,7 @@ impl crate::Readable for SAI1_TX_BCLK_SELECT_INPUT {}
 impl crate::Writable for SAI1_TX_BCLK_SELECT_INPUT {}
 #[doc = "SAI1_TX_BCLK_SELECT_INPUT DAISY Register"]
 pub mod sai1_tx_bclk_select_input;
-#[doc = "SAI1_TX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai1_tx_sync_select_input](sai1_tx_sync_select_input) module"]
+#[doc = "SAI1_TX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai1_tx_sync_select_input](sai1_tx_sync_select_input) module"]
 pub type SAI1_TX_SYNC_SELECT_INPUT = crate::Reg<u32, _SAI1_TX_SYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4917,7 +4918,7 @@ impl crate::Readable for SAI1_TX_SYNC_SELECT_INPUT {}
 impl crate::Writable for SAI1_TX_SYNC_SELECT_INPUT {}
 #[doc = "SAI1_TX_SYNC_SELECT_INPUT DAISY Register"]
 pub mod sai1_tx_sync_select_input;
-#[doc = "SAI2_MCLK2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai2_mclk2_select_input](sai2_mclk2_select_input) module"]
+#[doc = "SAI2_MCLK2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai2_mclk2_select_input](sai2_mclk2_select_input) module"]
 pub type SAI2_MCLK2_SELECT_INPUT = crate::Reg<u32, _SAI2_MCLK2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4928,7 +4929,7 @@ impl crate::Readable for SAI2_MCLK2_SELECT_INPUT {}
 impl crate::Writable for SAI2_MCLK2_SELECT_INPUT {}
 #[doc = "SAI2_MCLK2_SELECT_INPUT DAISY Register"]
 pub mod sai2_mclk2_select_input;
-#[doc = "SAI2_RX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai2_rx_bclk_select_input](sai2_rx_bclk_select_input) module"]
+#[doc = "SAI2_RX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai2_rx_bclk_select_input](sai2_rx_bclk_select_input) module"]
 pub type SAI2_RX_BCLK_SELECT_INPUT = crate::Reg<u32, _SAI2_RX_BCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4939,7 +4940,7 @@ impl crate::Readable for SAI2_RX_BCLK_SELECT_INPUT {}
 impl crate::Writable for SAI2_RX_BCLK_SELECT_INPUT {}
 #[doc = "SAI2_RX_BCLK_SELECT_INPUT DAISY Register"]
 pub mod sai2_rx_bclk_select_input;
-#[doc = "SAI2_RX_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai2_rx_data0_select_input](sai2_rx_data0_select_input) module"]
+#[doc = "SAI2_RX_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai2_rx_data0_select_input](sai2_rx_data0_select_input) module"]
 pub type SAI2_RX_DATA0_SELECT_INPUT = crate::Reg<u32, _SAI2_RX_DATA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4950,7 +4951,7 @@ impl crate::Readable for SAI2_RX_DATA0_SELECT_INPUT {}
 impl crate::Writable for SAI2_RX_DATA0_SELECT_INPUT {}
 #[doc = "SAI2_RX_DATA0_SELECT_INPUT DAISY Register"]
 pub mod sai2_rx_data0_select_input;
-#[doc = "SAI2_RX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai2_rx_sync_select_input](sai2_rx_sync_select_input) module"]
+#[doc = "SAI2_RX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai2_rx_sync_select_input](sai2_rx_sync_select_input) module"]
 pub type SAI2_RX_SYNC_SELECT_INPUT = crate::Reg<u32, _SAI2_RX_SYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4961,7 +4962,7 @@ impl crate::Readable for SAI2_RX_SYNC_SELECT_INPUT {}
 impl crate::Writable for SAI2_RX_SYNC_SELECT_INPUT {}
 #[doc = "SAI2_RX_SYNC_SELECT_INPUT DAISY Register"]
 pub mod sai2_rx_sync_select_input;
-#[doc = "SAI2_TX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai2_tx_bclk_select_input](sai2_tx_bclk_select_input) module"]
+#[doc = "SAI2_TX_BCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai2_tx_bclk_select_input](sai2_tx_bclk_select_input) module"]
 pub type SAI2_TX_BCLK_SELECT_INPUT = crate::Reg<u32, _SAI2_TX_BCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4972,7 +4973,7 @@ impl crate::Readable for SAI2_TX_BCLK_SELECT_INPUT {}
 impl crate::Writable for SAI2_TX_BCLK_SELECT_INPUT {}
 #[doc = "SAI2_TX_BCLK_SELECT_INPUT DAISY Register"]
 pub mod sai2_tx_bclk_select_input;
-#[doc = "SAI2_TX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai2_tx_sync_select_input](sai2_tx_sync_select_input) module"]
+#[doc = "SAI2_TX_SYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai2_tx_sync_select_input](sai2_tx_sync_select_input) module"]
 pub type SAI2_TX_SYNC_SELECT_INPUT = crate::Reg<u32, _SAI2_TX_SYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4983,7 +4984,7 @@ impl crate::Readable for SAI2_TX_SYNC_SELECT_INPUT {}
 impl crate::Writable for SAI2_TX_SYNC_SELECT_INPUT {}
 #[doc = "SAI2_TX_SYNC_SELECT_INPUT DAISY Register"]
 pub mod sai2_tx_sync_select_input;
-#[doc = "SPDIF_IN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [spdif_in_select_input](spdif_in_select_input) module"]
+#[doc = "SPDIF_IN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [spdif_in_select_input](spdif_in_select_input) module"]
 pub type SPDIF_IN_SELECT_INPUT = crate::Reg<u32, _SPDIF_IN_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -4994,7 +4995,7 @@ impl crate::Readable for SPDIF_IN_SELECT_INPUT {}
 impl crate::Writable for SPDIF_IN_SELECT_INPUT {}
 #[doc = "SPDIF_IN_SELECT_INPUT DAISY Register"]
 pub mod spdif_in_select_input;
-#[doc = "USB_OTG2_OC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usb_otg2_oc_select_input](usb_otg2_oc_select_input) module"]
+#[doc = "USB_OTG2_OC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usb_otg2_oc_select_input](usb_otg2_oc_select_input) module"]
 pub type USB_OTG2_OC_SELECT_INPUT = crate::Reg<u32, _USB_OTG2_OC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5005,7 +5006,7 @@ impl crate::Readable for USB_OTG2_OC_SELECT_INPUT {}
 impl crate::Writable for USB_OTG2_OC_SELECT_INPUT {}
 #[doc = "USB_OTG2_OC_SELECT_INPUT DAISY Register"]
 pub mod usb_otg2_oc_select_input;
-#[doc = "USB_OTG1_OC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usb_otg1_oc_select_input](usb_otg1_oc_select_input) module"]
+#[doc = "USB_OTG1_OC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usb_otg1_oc_select_input](usb_otg1_oc_select_input) module"]
 pub type USB_OTG1_OC_SELECT_INPUT = crate::Reg<u32, _USB_OTG1_OC_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5016,7 +5017,7 @@ impl crate::Readable for USB_OTG1_OC_SELECT_INPUT {}
 impl crate::Writable for USB_OTG1_OC_SELECT_INPUT {}
 #[doc = "USB_OTG1_OC_SELECT_INPUT DAISY Register"]
 pub mod usb_otg1_oc_select_input;
-#[doc = "USDHC1_CD_B_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc1_cd_b_select_input](usdhc1_cd_b_select_input) module"]
+#[doc = "USDHC1_CD_B_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc1_cd_b_select_input](usdhc1_cd_b_select_input) module"]
 pub type USDHC1_CD_B_SELECT_INPUT = crate::Reg<u32, _USDHC1_CD_B_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5027,7 +5028,7 @@ impl crate::Readable for USDHC1_CD_B_SELECT_INPUT {}
 impl crate::Writable for USDHC1_CD_B_SELECT_INPUT {}
 #[doc = "USDHC1_CD_B_SELECT_INPUT DAISY Register"]
 pub mod usdhc1_cd_b_select_input;
-#[doc = "USDHC1_WP_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc1_wp_select_input](usdhc1_wp_select_input) module"]
+#[doc = "USDHC1_WP_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc1_wp_select_input](usdhc1_wp_select_input) module"]
 pub type USDHC1_WP_SELECT_INPUT = crate::Reg<u32, _USDHC1_WP_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5038,7 +5039,7 @@ impl crate::Readable for USDHC1_WP_SELECT_INPUT {}
 impl crate::Writable for USDHC1_WP_SELECT_INPUT {}
 #[doc = "USDHC1_WP_SELECT_INPUT DAISY Register"]
 pub mod usdhc1_wp_select_input;
-#[doc = "USDHC2_CLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_clk_select_input](usdhc2_clk_select_input) module"]
+#[doc = "USDHC2_CLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_clk_select_input](usdhc2_clk_select_input) module"]
 pub type USDHC2_CLK_SELECT_INPUT = crate::Reg<u32, _USDHC2_CLK_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5049,7 +5050,7 @@ impl crate::Readable for USDHC2_CLK_SELECT_INPUT {}
 impl crate::Writable for USDHC2_CLK_SELECT_INPUT {}
 #[doc = "USDHC2_CLK_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_clk_select_input;
-#[doc = "USDHC2_CD_B_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_cd_b_select_input](usdhc2_cd_b_select_input) module"]
+#[doc = "USDHC2_CD_B_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_cd_b_select_input](usdhc2_cd_b_select_input) module"]
 pub type USDHC2_CD_B_SELECT_INPUT = crate::Reg<u32, _USDHC2_CD_B_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5060,7 +5061,7 @@ impl crate::Readable for USDHC2_CD_B_SELECT_INPUT {}
 impl crate::Writable for USDHC2_CD_B_SELECT_INPUT {}
 #[doc = "USDHC2_CD_B_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_cd_b_select_input;
-#[doc = "USDHC2_CMD_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_cmd_select_input](usdhc2_cmd_select_input) module"]
+#[doc = "USDHC2_CMD_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_cmd_select_input](usdhc2_cmd_select_input) module"]
 pub type USDHC2_CMD_SELECT_INPUT = crate::Reg<u32, _USDHC2_CMD_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5071,7 +5072,7 @@ impl crate::Readable for USDHC2_CMD_SELECT_INPUT {}
 impl crate::Writable for USDHC2_CMD_SELECT_INPUT {}
 #[doc = "USDHC2_CMD_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_cmd_select_input;
-#[doc = "USDHC2_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data0_select_input](usdhc2_data0_select_input) module"]
+#[doc = "USDHC2_DATA0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data0_select_input](usdhc2_data0_select_input) module"]
 pub type USDHC2_DATA0_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA0_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5082,7 +5083,7 @@ impl crate::Readable for USDHC2_DATA0_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA0_SELECT_INPUT {}
 #[doc = "USDHC2_DATA0_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data0_select_input;
-#[doc = "USDHC2_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data1_select_input](usdhc2_data1_select_input) module"]
+#[doc = "USDHC2_DATA1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data1_select_input](usdhc2_data1_select_input) module"]
 pub type USDHC2_DATA1_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5093,7 +5094,7 @@ impl crate::Readable for USDHC2_DATA1_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA1_SELECT_INPUT {}
 #[doc = "USDHC2_DATA1_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data1_select_input;
-#[doc = "USDHC2_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data2_select_input](usdhc2_data2_select_input) module"]
+#[doc = "USDHC2_DATA2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data2_select_input](usdhc2_data2_select_input) module"]
 pub type USDHC2_DATA2_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5104,7 +5105,7 @@ impl crate::Readable for USDHC2_DATA2_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA2_SELECT_INPUT {}
 #[doc = "USDHC2_DATA2_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data2_select_input;
-#[doc = "USDHC2_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data3_select_input](usdhc2_data3_select_input) module"]
+#[doc = "USDHC2_DATA3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data3_select_input](usdhc2_data3_select_input) module"]
 pub type USDHC2_DATA3_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA3_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5115,7 +5116,7 @@ impl crate::Readable for USDHC2_DATA3_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA3_SELECT_INPUT {}
 #[doc = "USDHC2_DATA3_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data3_select_input;
-#[doc = "USDHC2_DATA4_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data4_select_input](usdhc2_data4_select_input) module"]
+#[doc = "USDHC2_DATA4_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data4_select_input](usdhc2_data4_select_input) module"]
 pub type USDHC2_DATA4_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA4_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5126,7 +5127,7 @@ impl crate::Readable for USDHC2_DATA4_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA4_SELECT_INPUT {}
 #[doc = "USDHC2_DATA4_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data4_select_input;
-#[doc = "USDHC2_DATA5_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data5_select_input](usdhc2_data5_select_input) module"]
+#[doc = "USDHC2_DATA5_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data5_select_input](usdhc2_data5_select_input) module"]
 pub type USDHC2_DATA5_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA5_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5137,7 +5138,7 @@ impl crate::Readable for USDHC2_DATA5_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA5_SELECT_INPUT {}
 #[doc = "USDHC2_DATA5_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data5_select_input;
-#[doc = "USDHC2_DATA6_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data6_select_input](usdhc2_data6_select_input) module"]
+#[doc = "USDHC2_DATA6_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data6_select_input](usdhc2_data6_select_input) module"]
 pub type USDHC2_DATA6_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA6_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5148,7 +5149,7 @@ impl crate::Readable for USDHC2_DATA6_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA6_SELECT_INPUT {}
 #[doc = "USDHC2_DATA6_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data6_select_input;
-#[doc = "USDHC2_DATA7_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_data7_select_input](usdhc2_data7_select_input) module"]
+#[doc = "USDHC2_DATA7_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_data7_select_input](usdhc2_data7_select_input) module"]
 pub type USDHC2_DATA7_SELECT_INPUT = crate::Reg<u32, _USDHC2_DATA7_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5159,7 +5160,7 @@ impl crate::Readable for USDHC2_DATA7_SELECT_INPUT {}
 impl crate::Writable for USDHC2_DATA7_SELECT_INPUT {}
 #[doc = "USDHC2_DATA7_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_data7_select_input;
-#[doc = "USDHC2_WP_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [usdhc2_wp_select_input](usdhc2_wp_select_input) module"]
+#[doc = "USDHC2_WP_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [usdhc2_wp_select_input](usdhc2_wp_select_input) module"]
 pub type USDHC2_WP_SELECT_INPUT = crate::Reg<u32, _USDHC2_WP_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5170,7 +5171,7 @@ impl crate::Readable for USDHC2_WP_SELECT_INPUT {}
 impl crate::Writable for USDHC2_WP_SELECT_INPUT {}
 #[doc = "USDHC2_WP_SELECT_INPUT DAISY Register"]
 pub mod usdhc2_wp_select_input;
-#[doc = "XBAR1_IN02_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in02_select_input](xbar1_in02_select_input) module"]
+#[doc = "XBAR1_IN02_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in02_select_input](xbar1_in02_select_input) module"]
 pub type XBAR1_IN02_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN02_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5181,7 +5182,7 @@ impl crate::Readable for XBAR1_IN02_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN02_SELECT_INPUT {}
 #[doc = "XBAR1_IN02_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in02_select_input;
-#[doc = "XBAR1_IN03_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in03_select_input](xbar1_in03_select_input) module"]
+#[doc = "XBAR1_IN03_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in03_select_input](xbar1_in03_select_input) module"]
 pub type XBAR1_IN03_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN03_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5192,7 +5193,7 @@ impl crate::Readable for XBAR1_IN03_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN03_SELECT_INPUT {}
 #[doc = "XBAR1_IN03_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in03_select_input;
-#[doc = "XBAR1_IN04_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in04_select_input](xbar1_in04_select_input) module"]
+#[doc = "XBAR1_IN04_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in04_select_input](xbar1_in04_select_input) module"]
 pub type XBAR1_IN04_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN04_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5203,7 +5204,7 @@ impl crate::Readable for XBAR1_IN04_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN04_SELECT_INPUT {}
 #[doc = "XBAR1_IN04_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in04_select_input;
-#[doc = "XBAR1_IN05_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in05_select_input](xbar1_in05_select_input) module"]
+#[doc = "XBAR1_IN05_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in05_select_input](xbar1_in05_select_input) module"]
 pub type XBAR1_IN05_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN05_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5214,7 +5215,7 @@ impl crate::Readable for XBAR1_IN05_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN05_SELECT_INPUT {}
 #[doc = "XBAR1_IN05_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in05_select_input;
-#[doc = "XBAR1_IN06_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in06_select_input](xbar1_in06_select_input) module"]
+#[doc = "XBAR1_IN06_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in06_select_input](xbar1_in06_select_input) module"]
 pub type XBAR1_IN06_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN06_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5225,7 +5226,7 @@ impl crate::Readable for XBAR1_IN06_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN06_SELECT_INPUT {}
 #[doc = "XBAR1_IN06_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in06_select_input;
-#[doc = "XBAR1_IN07_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in07_select_input](xbar1_in07_select_input) module"]
+#[doc = "XBAR1_IN07_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in07_select_input](xbar1_in07_select_input) module"]
 pub type XBAR1_IN07_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN07_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5236,7 +5237,7 @@ impl crate::Readable for XBAR1_IN07_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN07_SELECT_INPUT {}
 #[doc = "XBAR1_IN07_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in07_select_input;
-#[doc = "XBAR1_IN08_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in08_select_input](xbar1_in08_select_input) module"]
+#[doc = "XBAR1_IN08_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in08_select_input](xbar1_in08_select_input) module"]
 pub type XBAR1_IN08_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN08_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5247,7 +5248,7 @@ impl crate::Readable for XBAR1_IN08_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN08_SELECT_INPUT {}
 #[doc = "XBAR1_IN08_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in08_select_input;
-#[doc = "XBAR1_IN09_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in09_select_input](xbar1_in09_select_input) module"]
+#[doc = "XBAR1_IN09_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in09_select_input](xbar1_in09_select_input) module"]
 pub type XBAR1_IN09_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN09_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5258,7 +5259,7 @@ impl crate::Readable for XBAR1_IN09_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN09_SELECT_INPUT {}
 #[doc = "XBAR1_IN09_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in09_select_input;
-#[doc = "XBAR1_IN17_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in17_select_input](xbar1_in17_select_input) module"]
+#[doc = "XBAR1_IN17_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in17_select_input](xbar1_in17_select_input) module"]
 pub type XBAR1_IN17_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN17_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5269,7 +5270,7 @@ impl crate::Readable for XBAR1_IN17_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN17_SELECT_INPUT {}
 #[doc = "XBAR1_IN17_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in17_select_input;
-#[doc = "XBAR1_IN18_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in18_select_input](xbar1_in18_select_input) module"]
+#[doc = "XBAR1_IN18_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in18_select_input](xbar1_in18_select_input) module"]
 pub type XBAR1_IN18_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN18_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5280,7 +5281,7 @@ impl crate::Readable for XBAR1_IN18_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN18_SELECT_INPUT {}
 #[doc = "XBAR1_IN18_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in18_select_input;
-#[doc = "XBAR1_IN20_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in20_select_input](xbar1_in20_select_input) module"]
+#[doc = "XBAR1_IN20_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in20_select_input](xbar1_in20_select_input) module"]
 pub type XBAR1_IN20_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN20_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5291,7 +5292,7 @@ impl crate::Readable for XBAR1_IN20_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN20_SELECT_INPUT {}
 #[doc = "XBAR1_IN20_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in20_select_input;
-#[doc = "XBAR1_IN22_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in22_select_input](xbar1_in22_select_input) module"]
+#[doc = "XBAR1_IN22_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in22_select_input](xbar1_in22_select_input) module"]
 pub type XBAR1_IN22_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN22_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5302,7 +5303,7 @@ impl crate::Readable for XBAR1_IN22_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN22_SELECT_INPUT {}
 #[doc = "XBAR1_IN22_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in22_select_input;
-#[doc = "XBAR1_IN23_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in23_select_input](xbar1_in23_select_input) module"]
+#[doc = "XBAR1_IN23_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in23_select_input](xbar1_in23_select_input) module"]
 pub type XBAR1_IN23_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN23_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5313,7 +5314,7 @@ impl crate::Readable for XBAR1_IN23_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN23_SELECT_INPUT {}
 #[doc = "XBAR1_IN23_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in23_select_input;
-#[doc = "XBAR1_IN24_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in24_select_input](xbar1_in24_select_input) module"]
+#[doc = "XBAR1_IN24_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in24_select_input](xbar1_in24_select_input) module"]
 pub type XBAR1_IN24_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN24_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5324,7 +5325,7 @@ impl crate::Readable for XBAR1_IN24_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN24_SELECT_INPUT {}
 #[doc = "XBAR1_IN24_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in24_select_input;
-#[doc = "XBAR1_IN14_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in14_select_input](xbar1_in14_select_input) module"]
+#[doc = "XBAR1_IN14_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in14_select_input](xbar1_in14_select_input) module"]
 pub type XBAR1_IN14_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN14_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5335,7 +5336,7 @@ impl crate::Readable for XBAR1_IN14_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN14_SELECT_INPUT {}
 #[doc = "XBAR1_IN14_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in14_select_input;
-#[doc = "XBAR1_IN15_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in15_select_input](xbar1_in15_select_input) module"]
+#[doc = "XBAR1_IN15_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in15_select_input](xbar1_in15_select_input) module"]
 pub type XBAR1_IN15_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN15_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5346,7 +5347,7 @@ impl crate::Readable for XBAR1_IN15_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN15_SELECT_INPUT {}
 #[doc = "XBAR1_IN15_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in15_select_input;
-#[doc = "XBAR1_IN16_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in16_select_input](xbar1_in16_select_input) module"]
+#[doc = "XBAR1_IN16_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in16_select_input](xbar1_in16_select_input) module"]
 pub type XBAR1_IN16_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN16_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5357,7 +5358,7 @@ impl crate::Readable for XBAR1_IN16_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN16_SELECT_INPUT {}
 #[doc = "XBAR1_IN16_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in16_select_input;
-#[doc = "XBAR1_IN25_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in25_select_input](xbar1_in25_select_input) module"]
+#[doc = "XBAR1_IN25_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in25_select_input](xbar1_in25_select_input) module"]
 pub type XBAR1_IN25_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN25_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5368,7 +5369,7 @@ impl crate::Readable for XBAR1_IN25_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN25_SELECT_INPUT {}
 #[doc = "XBAR1_IN25_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in25_select_input;
-#[doc = "XBAR1_IN19_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in19_select_input](xbar1_in19_select_input) module"]
+#[doc = "XBAR1_IN19_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in19_select_input](xbar1_in19_select_input) module"]
 pub type XBAR1_IN19_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN19_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5379,7 +5380,7 @@ impl crate::Readable for XBAR1_IN19_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN19_SELECT_INPUT {}
 #[doc = "XBAR1_IN19_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in19_select_input;
-#[doc = "XBAR1_IN23_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xbar1_in21_select_input](xbar1_in21_select_input) module"]
+#[doc = "XBAR1_IN23_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xbar1_in21_select_input](xbar1_in21_select_input) module"]
 pub type XBAR1_IN21_SELECT_INPUT = crate::Reg<u32, _XBAR1_IN21_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5390,7 +5391,7 @@ impl crate::Readable for XBAR1_IN21_SELECT_INPUT {}
 impl crate::Writable for XBAR1_IN21_SELECT_INPUT {}
 #[doc = "XBAR1_IN23_SELECT_INPUT DAISY Register"]
 pub mod xbar1_in21_select_input;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_00](sw_mux_ctl_pad_gpio_spi_b0_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_00](sw_mux_ctl_pad_gpio_spi_b0_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5401,7 +5402,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_01](sw_mux_ctl_pad_gpio_spi_b0_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_01](sw_mux_ctl_pad_gpio_spi_b0_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5412,7 +5413,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_02](sw_mux_ctl_pad_gpio_spi_b0_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_02](sw_mux_ctl_pad_gpio_spi_b0_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5423,7 +5424,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_03](sw_mux_ctl_pad_gpio_spi_b0_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_03](sw_mux_ctl_pad_gpio_spi_b0_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5434,7 +5435,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_04](sw_mux_ctl_pad_gpio_spi_b0_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_04](sw_mux_ctl_pad_gpio_spi_b0_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5445,7 +5446,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_05](sw_mux_ctl_pad_gpio_spi_b0_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_05](sw_mux_ctl_pad_gpio_spi_b0_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5456,7 +5457,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_06](sw_mux_ctl_pad_gpio_spi_b0_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_06](sw_mux_ctl_pad_gpio_spi_b0_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5467,7 +5468,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_07](sw_mux_ctl_pad_gpio_spi_b0_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_07](sw_mux_ctl_pad_gpio_spi_b0_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5478,7 +5479,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_07;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_08](sw_mux_ctl_pad_gpio_spi_b0_08) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_08 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_08](sw_mux_ctl_pad_gpio_spi_b0_08) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_08 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5489,7 +5490,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_08 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_08 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_08 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_08;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_09](sw_mux_ctl_pad_gpio_spi_b0_09) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_09 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_09](sw_mux_ctl_pad_gpio_spi_b0_09) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_09 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5500,7 +5501,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_09 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_09 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_09 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_09;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_10](sw_mux_ctl_pad_gpio_spi_b0_10) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_10 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_10](sw_mux_ctl_pad_gpio_spi_b0_10) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_10 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5511,7 +5512,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_10 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_10 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_10 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_10;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_11](sw_mux_ctl_pad_gpio_spi_b0_11) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_11 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_11](sw_mux_ctl_pad_gpio_spi_b0_11) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_11 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5522,7 +5523,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_11 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_11 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_11 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_11;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_12](sw_mux_ctl_pad_gpio_spi_b0_12) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_12 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_12](sw_mux_ctl_pad_gpio_spi_b0_12) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_12 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5533,7 +5534,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_12 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_12 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_12 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_12;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b0_13](sw_mux_ctl_pad_gpio_spi_b0_13) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_13 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b0_13](sw_mux_ctl_pad_gpio_spi_b0_13) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B0_13 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B0_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5544,7 +5545,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B0_13 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B0_13 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B0_13 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b0_13;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_00](sw_mux_ctl_pad_gpio_spi_b1_00) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_00 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_00](sw_mux_ctl_pad_gpio_spi_b1_00) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_00 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5555,7 +5556,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_00 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_00 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_00 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_00;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_01](sw_mux_ctl_pad_gpio_spi_b1_01) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_01 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_01](sw_mux_ctl_pad_gpio_spi_b1_01) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_01 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5566,7 +5567,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_01 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_01 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_01 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_01;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_02](sw_mux_ctl_pad_gpio_spi_b1_02) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_02 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_02](sw_mux_ctl_pad_gpio_spi_b1_02) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_02 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5577,7 +5578,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_02 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_02 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_02 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_02;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_03](sw_mux_ctl_pad_gpio_spi_b1_03) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_03 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_03](sw_mux_ctl_pad_gpio_spi_b1_03) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_03 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5588,7 +5589,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_03 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_03 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_03 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_03;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_04](sw_mux_ctl_pad_gpio_spi_b1_04) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_04 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_04](sw_mux_ctl_pad_gpio_spi_b1_04) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_04 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5599,7 +5600,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_04 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_04 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_04 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_04;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_05](sw_mux_ctl_pad_gpio_spi_b1_05) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_05 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_05](sw_mux_ctl_pad_gpio_spi_b1_05) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_05 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5610,7 +5611,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_05 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_05 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_05 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_05;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_06](sw_mux_ctl_pad_gpio_spi_b1_06) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_06 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_06](sw_mux_ctl_pad_gpio_spi_b1_06) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_06 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5621,7 +5622,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_06 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_06 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_06 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_06;
-#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_mux_ctl_pad_gpio_spi_b1_07](sw_mux_ctl_pad_gpio_spi_b1_07) module"]
+#[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_07 SW MUX Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_mux_ctl_pad_gpio_spi_b1_07](sw_mux_ctl_pad_gpio_spi_b1_07) module"]
 pub type SW_MUX_CTL_PAD_GPIO_SPI_B1_07 = crate::Reg<u32, _SW_MUX_CTL_PAD_GPIO_SPI_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5632,7 +5633,7 @@ impl crate::Readable for SW_MUX_CTL_PAD_GPIO_SPI_B1_07 {}
 impl crate::Writable for SW_MUX_CTL_PAD_GPIO_SPI_B1_07 {}
 #[doc = "SW_MUX_CTL_PAD_GPIO_SPI_B1_07 SW MUX Control Register"]
 pub mod sw_mux_ctl_pad_gpio_spi_b1_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_00](sw_pad_ctl_pad_gpio_spi_b0_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_00](sw_pad_ctl_pad_gpio_spi_b0_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5643,7 +5644,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_01](sw_pad_ctl_pad_gpio_spi_b0_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_01](sw_pad_ctl_pad_gpio_spi_b0_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5654,7 +5655,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_02](sw_pad_ctl_pad_gpio_spi_b0_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_02](sw_pad_ctl_pad_gpio_spi_b0_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5665,7 +5666,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_03](sw_pad_ctl_pad_gpio_spi_b0_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_03](sw_pad_ctl_pad_gpio_spi_b0_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5676,7 +5677,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_04](sw_pad_ctl_pad_gpio_spi_b0_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_04](sw_pad_ctl_pad_gpio_spi_b0_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5687,7 +5688,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_05](sw_pad_ctl_pad_gpio_spi_b0_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_05](sw_pad_ctl_pad_gpio_spi_b0_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5698,7 +5699,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_06](sw_pad_ctl_pad_gpio_spi_b0_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_06](sw_pad_ctl_pad_gpio_spi_b0_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5709,7 +5710,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_07](sw_pad_ctl_pad_gpio_spi_b0_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_07](sw_pad_ctl_pad_gpio_spi_b0_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5720,7 +5721,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_07;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_08](sw_pad_ctl_pad_gpio_spi_b0_08) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_08 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_08](sw_pad_ctl_pad_gpio_spi_b0_08) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_08 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_08>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5731,7 +5732,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_08 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_08 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_08 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_08;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_09](sw_pad_ctl_pad_gpio_spi_b0_09) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_09 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_09](sw_pad_ctl_pad_gpio_spi_b0_09) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_09 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_09>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5742,7 +5743,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_09 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_09 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_09 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_09;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_10](sw_pad_ctl_pad_gpio_spi_b0_10) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_10 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_10](sw_pad_ctl_pad_gpio_spi_b0_10) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_10 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5753,7 +5754,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_10 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_10 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_10 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_10;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_11](sw_pad_ctl_pad_gpio_spi_b0_11) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_11 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_11](sw_pad_ctl_pad_gpio_spi_b0_11) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_11 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5764,7 +5765,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_11 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_11 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_11 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_11;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_12](sw_pad_ctl_pad_gpio_spi_b0_12) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_12 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_12](sw_pad_ctl_pad_gpio_spi_b0_12) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_12 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5775,7 +5776,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_12 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_12 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_12 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_12;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b0_13](sw_pad_ctl_pad_gpio_spi_b0_13) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_13 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b0_13](sw_pad_ctl_pad_gpio_spi_b0_13) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B0_13 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B0_13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5786,7 +5787,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B0_13 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B0_13 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B0_13 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b0_13;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_00](sw_pad_ctl_pad_gpio_spi_b1_00) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_00 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_00](sw_pad_ctl_pad_gpio_spi_b1_00) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_00 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_00>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5797,7 +5798,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_00 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_00 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_00 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_00;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_01](sw_pad_ctl_pad_gpio_spi_b1_01) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_01 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_01](sw_pad_ctl_pad_gpio_spi_b1_01) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_01 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_01>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5808,7 +5809,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_01 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_01 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_01 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_01;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_02](sw_pad_ctl_pad_gpio_spi_b1_02) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_02 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_02](sw_pad_ctl_pad_gpio_spi_b1_02) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_02 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_02>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5819,7 +5820,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_02 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_02 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_02 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_02;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_03](sw_pad_ctl_pad_gpio_spi_b1_03) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_03 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_03](sw_pad_ctl_pad_gpio_spi_b1_03) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_03 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_03>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5830,7 +5831,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_03 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_03 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_03 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_03;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_04](sw_pad_ctl_pad_gpio_spi_b1_04) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_04 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_04](sw_pad_ctl_pad_gpio_spi_b1_04) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_04 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_04>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5841,7 +5842,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_04 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_04 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_04 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_04;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_05](sw_pad_ctl_pad_gpio_spi_b1_05) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_05 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_05](sw_pad_ctl_pad_gpio_spi_b1_05) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_05 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_05>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5852,7 +5853,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_05 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_05 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_05 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_05;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_06](sw_pad_ctl_pad_gpio_spi_b1_06) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_06 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_06](sw_pad_ctl_pad_gpio_spi_b1_06) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_06 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_06>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5863,7 +5864,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_06 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_06 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_06 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_06;
-#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sw_pad_ctl_pad_gpio_spi_b1_07](sw_pad_ctl_pad_gpio_spi_b1_07) module"]
+#[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_07 SW PAD Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sw_pad_ctl_pad_gpio_spi_b1_07](sw_pad_ctl_pad_gpio_spi_b1_07) module"]
 pub type SW_PAD_CTL_PAD_GPIO_SPI_B1_07 = crate::Reg<u32, _SW_PAD_CTL_PAD_GPIO_SPI_B1_07>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5874,7 +5875,7 @@ impl crate::Readable for SW_PAD_CTL_PAD_GPIO_SPI_B1_07 {}
 impl crate::Writable for SW_PAD_CTL_PAD_GPIO_SPI_B1_07 {}
 #[doc = "SW_PAD_CTL_PAD_GPIO_SPI_B1_07 SW PAD Control Register"]
 pub mod sw_pad_ctl_pad_gpio_spi_b1_07;
-#[doc = "ENET2_IPG_CLK_RMII_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipg_clk_rmii_select_input](enet2_ipg_clk_rmii_select_input) module"]
+#[doc = "ENET2_IPG_CLK_RMII_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipg_clk_rmii_select_input](enet2_ipg_clk_rmii_select_input) module"]
 pub type ENET2_IPG_CLK_RMII_SELECT_INPUT = crate::Reg<u32, _ENET2_IPG_CLK_RMII_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -5885,7 +5886,7 @@ impl crate::Readable for ENET2_IPG_CLK_RMII_SELECT_INPUT {}
 impl crate::Writable for ENET2_IPG_CLK_RMII_SELECT_INPUT {}
 #[doc = "ENET2_IPG_CLK_RMII_SELECT_INPUT DAISY Register"]
 pub mod enet2_ipg_clk_rmii_select_input;
-#[doc = "ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_mdio_select_input](enet2_ipp_ind_mac0_mdio_select_input) module"]
+#[doc = "ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_mdio_select_input](enet2_ipp_ind_mac0_mdio_select_input) module"]
 pub type ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -5897,7 +5898,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT {}
 #[doc = "ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT DAISY Register"]
 pub mod enet2_ipp_ind_mac0_mdio_select_input;
-#[doc = "ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_rxdata_select_input_0](enet2_ipp_ind_mac0_rxdata_select_input_0) module"]
+#[doc = "ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_rxdata_select_input_0](enet2_ipp_ind_mac0_rxdata_select_input_0) module"]
 pub type ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0>;
 #[allow(missing_docs)]
@@ -5909,7 +5910,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 {}
 #[doc = "ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 DAISY Register"]
 pub mod enet2_ipp_ind_mac0_rxdata_select_input_0;
-#[doc = "ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_rxdata_select_input_1](enet2_ipp_ind_mac0_rxdata_select_input_1) module"]
+#[doc = "ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_rxdata_select_input_1](enet2_ipp_ind_mac0_rxdata_select_input_1) module"]
 pub type ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1>;
 #[allow(missing_docs)]
@@ -5921,7 +5922,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 {}
 #[doc = "ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 DAISY Register"]
 pub mod enet2_ipp_ind_mac0_rxdata_select_input_1;
-#[doc = "ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_rxen_select_input](enet2_ipp_ind_mac0_rxen_select_input) module"]
+#[doc = "ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_rxen_select_input](enet2_ipp_ind_mac0_rxen_select_input) module"]
 pub type ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -5933,7 +5934,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT {}
 #[doc = "ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT DAISY Register"]
 pub mod enet2_ipp_ind_mac0_rxen_select_input;
-#[doc = "ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_rxerr_select_input](enet2_ipp_ind_mac0_rxerr_select_input) module"]
+#[doc = "ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_rxerr_select_input](enet2_ipp_ind_mac0_rxerr_select_input) module"]
 pub type ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -5945,7 +5946,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT {}
 #[doc = "ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT DAISY Register"]
 pub mod enet2_ipp_ind_mac0_rxerr_select_input;
-#[doc = "ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_timer_select_input_0](enet2_ipp_ind_mac0_timer_select_input_0) module"]
+#[doc = "ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_timer_select_input_0](enet2_ipp_ind_mac0_timer_select_input_0) module"]
 pub type ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0>;
 #[allow(missing_docs)]
@@ -5957,7 +5958,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 {}
 #[doc = "ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 DAISY Register"]
 pub mod enet2_ipp_ind_mac0_timer_select_input_0;
-#[doc = "ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [enet2_ipp_ind_mac0_txclk_select_input](enet2_ipp_ind_mac0_txclk_select_input) module"]
+#[doc = "ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [enet2_ipp_ind_mac0_txclk_select_input](enet2_ipp_ind_mac0_txclk_select_input) module"]
 pub type ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT =
     crate::Reg<u32, _ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -5969,7 +5970,7 @@ impl crate::Readable for ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT {}
 impl crate::Writable for ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT {}
 #[doc = "ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT DAISY Register"]
 pub mod enet2_ipp_ind_mac0_txclk_select_input;
-#[doc = "FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_dqs_fa_select_input](flexspi2_ipp_ind_dqs_fa_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_dqs_fa_select_input](flexspi2_ipp_ind_dqs_fa_select_input) module"]
 pub type FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -5981,7 +5982,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_dqs_fa_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fa_bit0_select_input](flexspi2_ipp_ind_io_fa_bit0_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fa_bit0_select_input](flexspi2_ipp_ind_io_fa_bit0_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -5993,7 +5994,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fa_bit0_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fa_bit1_select_input](flexspi2_ipp_ind_io_fa_bit1_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fa_bit1_select_input](flexspi2_ipp_ind_io_fa_bit1_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6005,7 +6006,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fa_bit1_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fa_bit2_select_input](flexspi2_ipp_ind_io_fa_bit2_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fa_bit2_select_input](flexspi2_ipp_ind_io_fa_bit2_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6017,7 +6018,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fa_bit2_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fa_bit3_select_input](flexspi2_ipp_ind_io_fa_bit3_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fa_bit3_select_input](flexspi2_ipp_ind_io_fa_bit3_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6029,7 +6030,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fa_bit3_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fb_bit0_select_input](flexspi2_ipp_ind_io_fb_bit0_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fb_bit0_select_input](flexspi2_ipp_ind_io_fb_bit0_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6041,7 +6042,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fb_bit0_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fb_bit1_select_input](flexspi2_ipp_ind_io_fb_bit1_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fb_bit1_select_input](flexspi2_ipp_ind_io_fb_bit1_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6053,7 +6054,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fb_bit1_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fb_bit2_select_input](flexspi2_ipp_ind_io_fb_bit2_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fb_bit2_select_input](flexspi2_ipp_ind_io_fb_bit2_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6065,7 +6066,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fb_bit2_select_input;
-#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_io_fb_bit3_select_input](flexspi2_ipp_ind_io_fb_bit3_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_io_fb_bit3_select_input](flexspi2_ipp_ind_io_fb_bit3_select_input) module"]
 pub type FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6077,7 +6078,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_io_fb_bit3_select_input;
-#[doc = "FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_sck_fa_select_input](flexspi2_ipp_ind_sck_fa_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_sck_fa_select_input](flexspi2_ipp_ind_sck_fa_select_input) module"]
 pub type FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6089,7 +6090,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_sck_fa_select_input;
-#[doc = "FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [flexspi2_ipp_ind_sck_fb_select_input](flexspi2_ipp_ind_sck_fb_select_input) module"]
+#[doc = "FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [flexspi2_ipp_ind_sck_fb_select_input](flexspi2_ipp_ind_sck_fb_select_input) module"]
 pub type FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT =
     crate::Reg<u32, _FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6101,7 +6102,7 @@ impl crate::Readable for FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT {}
 impl crate::Writable for FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT {}
 #[doc = "FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT DAISY Register"]
 pub mod flexspi2_ipp_ind_sck_fb_select_input;
-#[doc = "GPT1_IPP_IND_CAPIN1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpt1_ipp_ind_capin1_select_input](gpt1_ipp_ind_capin1_select_input) module"]
+#[doc = "GPT1_IPP_IND_CAPIN1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpt1_ipp_ind_capin1_select_input](gpt1_ipp_ind_capin1_select_input) module"]
 pub type GPT1_IPP_IND_CAPIN1_SELECT_INPUT = crate::Reg<u32, _GPT1_IPP_IND_CAPIN1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6112,7 +6113,7 @@ impl crate::Readable for GPT1_IPP_IND_CAPIN1_SELECT_INPUT {}
 impl crate::Writable for GPT1_IPP_IND_CAPIN1_SELECT_INPUT {}
 #[doc = "GPT1_IPP_IND_CAPIN1_SELECT_INPUT DAISY Register"]
 pub mod gpt1_ipp_ind_capin1_select_input;
-#[doc = "GPT1_IPP_IND_CAPIN2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpt1_ipp_ind_capin2_select_input](gpt1_ipp_ind_capin2_select_input) module"]
+#[doc = "GPT1_IPP_IND_CAPIN2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpt1_ipp_ind_capin2_select_input](gpt1_ipp_ind_capin2_select_input) module"]
 pub type GPT1_IPP_IND_CAPIN2_SELECT_INPUT = crate::Reg<u32, _GPT1_IPP_IND_CAPIN2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6123,7 +6124,7 @@ impl crate::Readable for GPT1_IPP_IND_CAPIN2_SELECT_INPUT {}
 impl crate::Writable for GPT1_IPP_IND_CAPIN2_SELECT_INPUT {}
 #[doc = "GPT1_IPP_IND_CAPIN2_SELECT_INPUT DAISY Register"]
 pub mod gpt1_ipp_ind_capin2_select_input;
-#[doc = "GPT1_IPP_IND_CLKIN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpt1_ipp_ind_clkin_select_input](gpt1_ipp_ind_clkin_select_input) module"]
+#[doc = "GPT1_IPP_IND_CLKIN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpt1_ipp_ind_clkin_select_input](gpt1_ipp_ind_clkin_select_input) module"]
 pub type GPT1_IPP_IND_CLKIN_SELECT_INPUT = crate::Reg<u32, _GPT1_IPP_IND_CLKIN_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6134,7 +6135,7 @@ impl crate::Readable for GPT1_IPP_IND_CLKIN_SELECT_INPUT {}
 impl crate::Writable for GPT1_IPP_IND_CLKIN_SELECT_INPUT {}
 #[doc = "GPT1_IPP_IND_CLKIN_SELECT_INPUT DAISY Register"]
 pub mod gpt1_ipp_ind_clkin_select_input;
-#[doc = "GPT2_IPP_IND_CAPIN1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpt2_ipp_ind_capin1_select_input](gpt2_ipp_ind_capin1_select_input) module"]
+#[doc = "GPT2_IPP_IND_CAPIN1_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpt2_ipp_ind_capin1_select_input](gpt2_ipp_ind_capin1_select_input) module"]
 pub type GPT2_IPP_IND_CAPIN1_SELECT_INPUT = crate::Reg<u32, _GPT2_IPP_IND_CAPIN1_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6145,7 +6146,7 @@ impl crate::Readable for GPT2_IPP_IND_CAPIN1_SELECT_INPUT {}
 impl crate::Writable for GPT2_IPP_IND_CAPIN1_SELECT_INPUT {}
 #[doc = "GPT2_IPP_IND_CAPIN1_SELECT_INPUT DAISY Register"]
 pub mod gpt2_ipp_ind_capin1_select_input;
-#[doc = "GPT2_IPP_IND_CAPIN2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpt2_ipp_ind_capin2_select_input](gpt2_ipp_ind_capin2_select_input) module"]
+#[doc = "GPT2_IPP_IND_CAPIN2_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpt2_ipp_ind_capin2_select_input](gpt2_ipp_ind_capin2_select_input) module"]
 pub type GPT2_IPP_IND_CAPIN2_SELECT_INPUT = crate::Reg<u32, _GPT2_IPP_IND_CAPIN2_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6156,7 +6157,7 @@ impl crate::Readable for GPT2_IPP_IND_CAPIN2_SELECT_INPUT {}
 impl crate::Writable for GPT2_IPP_IND_CAPIN2_SELECT_INPUT {}
 #[doc = "GPT2_IPP_IND_CAPIN2_SELECT_INPUT DAISY Register"]
 pub mod gpt2_ipp_ind_capin2_select_input;
-#[doc = "GPT2_IPP_IND_CLKIN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpt2_ipp_ind_clkin_select_input](gpt2_ipp_ind_clkin_select_input) module"]
+#[doc = "GPT2_IPP_IND_CLKIN_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpt2_ipp_ind_clkin_select_input](gpt2_ipp_ind_clkin_select_input) module"]
 pub type GPT2_IPP_IND_CLKIN_SELECT_INPUT = crate::Reg<u32, _GPT2_IPP_IND_CLKIN_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6167,7 +6168,7 @@ impl crate::Readable for GPT2_IPP_IND_CLKIN_SELECT_INPUT {}
 impl crate::Writable for GPT2_IPP_IND_CLKIN_SELECT_INPUT {}
 #[doc = "GPT2_IPP_IND_CLKIN_SELECT_INPUT DAISY Register"]
 pub mod gpt2_ipp_ind_clkin_select_input;
-#[doc = "SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai3_ipg_clk_sai_mclk_select_input_2](sai3_ipg_clk_sai_mclk_select_input_2) module"]
+#[doc = "SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai3_ipg_clk_sai_mclk_select_input_2](sai3_ipg_clk_sai_mclk_select_input_2) module"]
 pub type SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 =
     crate::Reg<u32, _SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2>;
 #[allow(missing_docs)]
@@ -6179,7 +6180,7 @@ impl crate::Readable for SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 {}
 impl crate::Writable for SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 {}
 #[doc = "SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 DAISY Register"]
 pub mod sai3_ipg_clk_sai_mclk_select_input_2;
-#[doc = "SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai3_ipp_ind_sai_rxbclk_select_input](sai3_ipp_ind_sai_rxbclk_select_input) module"]
+#[doc = "SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai3_ipp_ind_sai_rxbclk_select_input](sai3_ipp_ind_sai_rxbclk_select_input) module"]
 pub type SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT =
     crate::Reg<u32, _SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6191,7 +6192,7 @@ impl crate::Readable for SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT {}
 impl crate::Writable for SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT {}
 #[doc = "SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT DAISY Register"]
 pub mod sai3_ipp_ind_sai_rxbclk_select_input;
-#[doc = "SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai3_ipp_ind_sai_rxdata_select_input_0](sai3_ipp_ind_sai_rxdata_select_input_0) module"]
+#[doc = "SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai3_ipp_ind_sai_rxdata_select_input_0](sai3_ipp_ind_sai_rxdata_select_input_0) module"]
 pub type SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 =
     crate::Reg<u32, _SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0>;
 #[allow(missing_docs)]
@@ -6203,7 +6204,7 @@ impl crate::Readable for SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 {}
 impl crate::Writable for SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 {}
 #[doc = "SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 DAISY Register"]
 pub mod sai3_ipp_ind_sai_rxdata_select_input_0;
-#[doc = "SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai3_ipp_ind_sai_rxsync_select_input](sai3_ipp_ind_sai_rxsync_select_input) module"]
+#[doc = "SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai3_ipp_ind_sai_rxsync_select_input](sai3_ipp_ind_sai_rxsync_select_input) module"]
 pub type SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT =
     crate::Reg<u32, _SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6215,7 +6216,7 @@ impl crate::Readable for SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT {}
 impl crate::Writable for SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT {}
 #[doc = "SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT DAISY Register"]
 pub mod sai3_ipp_ind_sai_rxsync_select_input;
-#[doc = "SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai3_ipp_ind_sai_txbclk_select_input](sai3_ipp_ind_sai_txbclk_select_input) module"]
+#[doc = "SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai3_ipp_ind_sai_txbclk_select_input](sai3_ipp_ind_sai_txbclk_select_input) module"]
 pub type SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT =
     crate::Reg<u32, _SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6227,7 +6228,7 @@ impl crate::Readable for SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT {}
 impl crate::Writable for SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT {}
 #[doc = "SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT DAISY Register"]
 pub mod sai3_ipp_ind_sai_txbclk_select_input;
-#[doc = "SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sai3_ipp_ind_sai_txsync_select_input](sai3_ipp_ind_sai_txsync_select_input) module"]
+#[doc = "SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sai3_ipp_ind_sai_txsync_select_input](sai3_ipp_ind_sai_txsync_select_input) module"]
 pub type SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT =
     crate::Reg<u32, _SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT>;
 #[allow(missing_docs)]
@@ -6239,7 +6240,7 @@ impl crate::Readable for SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT {}
 impl crate::Writable for SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT {}
 #[doc = "SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT DAISY Register"]
 pub mod sai3_ipp_ind_sai_txsync_select_input;
-#[doc = "SEMC_I_IPP_IND_DQS4_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [semc_i_ipp_ind_dqs4_select_input](semc_i_ipp_ind_dqs4_select_input) module"]
+#[doc = "SEMC_I_IPP_IND_DQS4_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [semc_i_ipp_ind_dqs4_select_input](semc_i_ipp_ind_dqs4_select_input) module"]
 pub type SEMC_I_IPP_IND_DQS4_SELECT_INPUT = crate::Reg<u32, _SEMC_I_IPP_IND_DQS4_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -6250,7 +6251,7 @@ impl crate::Readable for SEMC_I_IPP_IND_DQS4_SELECT_INPUT {}
 impl crate::Writable for SEMC_I_IPP_IND_DQS4_SELECT_INPUT {}
 #[doc = "SEMC_I_IPP_IND_DQS4_SELECT_INPUT DAISY Register"]
 pub mod semc_i_ipp_ind_dqs4_select_input;
-#[doc = "CANFD_IPP_IND_CANRX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [canfd_ipp_ind_canrx_select_input](canfd_ipp_ind_canrx_select_input) module"]
+#[doc = "CANFD_IPP_IND_CANRX_SELECT_INPUT DAISY Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [canfd_ipp_ind_canrx_select_input](canfd_ipp_ind_canrx_select_input) module"]
 pub type CANFD_IPP_IND_CANRX_SELECT_INPUT = crate::Reg<u32, _CANFD_IPP_IND_CANRX_SELECT_INPUT>;
 #[allow(missing_docs)]
 #[doc(hidden)]

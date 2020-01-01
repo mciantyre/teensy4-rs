@@ -14,17 +14,15 @@ impl crate::ResetValue for super::GPR33 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OCRAM2_TZ_EN_A {
     #[doc = "0: The TrustZone feature is disabled. Entire OCRAM2 space is available for all access types (secure/non-secure/user/supervisor)."]
-    OCRAM2_TZ_EN_0,
-    #[doc = "1: The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\] follows the execution mode access policy described in CSU chapter."]
-    OCRAM2_TZ_EN_1,
+    OCRAM2_TZ_EN_0 = 0,
+    #[doc = "1: The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\]
+follows the execution mode access policy described in CSU chapter."]
+    OCRAM2_TZ_EN_1 = 1,
 }
 impl From<OCRAM2_TZ_EN_A> for bool {
     #[inline(always)]
     fn from(variant: OCRAM2_TZ_EN_A) -> Self {
-        match variant {
-            OCRAM2_TZ_EN_A::OCRAM2_TZ_EN_0 => false,
-            OCRAM2_TZ_EN_A::OCRAM2_TZ_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `OCRAM2_TZ_EN`"]
@@ -66,7 +64,8 @@ impl<'a> OCRAM2_TZ_EN_W<'a> {
     pub fn ocram2_tz_en_0(self) -> &'a mut W {
         self.variant(OCRAM2_TZ_EN_A::OCRAM2_TZ_EN_0)
     }
-    #[doc = "The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\] follows the execution mode access policy described in CSU chapter."]
+    #[doc = "The TrustZone feature is enabled. Access to address in the range specified by \\[ENDADDR:STARTADDR\\]
+follows the execution mode access policy described in CSU chapter."]
     #[inline(always)]
     pub fn ocram2_tz_en_1(self) -> &'a mut W {
         self.variant(OCRAM2_TZ_EN_A::OCRAM2_TZ_EN_1)
@@ -106,17 +105,14 @@ impl<'a> OCRAM2_TZ_ADDR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_OCRAM2_TZ_EN_A {
     #[doc = "0: Field is not locked"]
-    LOCK_OCRAM2_TZ_EN_0,
+    LOCK_OCRAM2_TZ_EN_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_OCRAM2_TZ_EN_1,
+    LOCK_OCRAM2_TZ_EN_1 = 1,
 }
 impl From<LOCK_OCRAM2_TZ_EN_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_OCRAM2_TZ_EN_A) -> Self {
-        match variant {
-            LOCK_OCRAM2_TZ_EN_A::LOCK_OCRAM2_TZ_EN_0 => false,
-            LOCK_OCRAM2_TZ_EN_A::LOCK_OCRAM2_TZ_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_OCRAM2_TZ_EN`"]
@@ -182,19 +178,17 @@ impl<'a> LOCK_OCRAM2_TZ_EN_W<'a> {
 }
 #[doc = "Lock OCRAM2_TZ_ADDR field for changes\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LOCK_OCRAM2_TZ_ADDR_A {
     #[doc = "0: Field is not locked"]
-    LOCK_OCRAM2_TZ_ADDR_0,
+    LOCK_OCRAM2_TZ_ADDR_0 = 0,
     #[doc = "1: Field is locked (read access only)"]
-    LOCK_OCRAM2_TZ_ADDR_1,
+    LOCK_OCRAM2_TZ_ADDR_1 = 1,
 }
 impl From<LOCK_OCRAM2_TZ_ADDR_A> for u8 {
     #[inline(always)]
     fn from(variant: LOCK_OCRAM2_TZ_ADDR_A) -> Self {
-        match variant {
-            LOCK_OCRAM2_TZ_ADDR_A::LOCK_OCRAM2_TZ_ADDR_0 => 0,
-            LOCK_OCRAM2_TZ_ADDR_A::LOCK_OCRAM2_TZ_ADDR_1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LOCK_OCRAM2_TZ_ADDR`"]

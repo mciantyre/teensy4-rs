@@ -163,9 +163,12 @@ impl<'a> DBLX_W<'a> {
 #[doc = "Load Mode Select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LDMOD_A {
-    #[doc = "0: Buffered registers of this submodule are loaded and take effect at the next PWM reload if MCTRL\\[LDOK\\] is set."]
+    #[doc = "0: Buffered registers of this submodule are loaded and take effect at the next PWM reload if MCTRL\\[LDOK\\]
+is set."]
     LDMOD_0 = 0,
-    #[doc = "1: Buffered registers of this submodule are loaded and take effect immediately upon MCTRL\\[LDOK\\] being set. In this case it is not necessary to set CTRL\\[FULL\\] or CTRL\\[HALF\\]."]
+    #[doc = "1: Buffered registers of this submodule are loaded and take effect immediately upon MCTRL\\[LDOK\\]
+being set. In this case it is not necessary to set CTRL\\[FULL\\]
+or CTRL\\[HALF\\]."]
     LDMOD_1 = 1,
 }
 impl From<LDMOD_A> for bool {
@@ -208,12 +211,15 @@ impl<'a> LDMOD_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "Buffered registers of this submodule are loaded and take effect at the next PWM reload if MCTRL\\[LDOK\\] is set."]
+    #[doc = "Buffered registers of this submodule are loaded and take effect at the next PWM reload if MCTRL\\[LDOK\\]
+is set."]
     #[inline(always)]
     pub fn ldmod_0(self) -> &'a mut W {
         self.variant(LDMOD_A::LDMOD_0)
     }
-    #[doc = "Buffered registers of this submodule are loaded and take effect immediately upon MCTRL\\[LDOK\\] being set. In this case it is not necessary to set CTRL\\[FULL\\] or CTRL\\[HALF\\]."]
+    #[doc = "Buffered registers of this submodule are loaded and take effect immediately upon MCTRL\\[LDOK\\]
+being set. In this case it is not necessary to set CTRL\\[FULL\\]
+or CTRL\\[HALF\\]."]
     #[inline(always)]
     pub fn ldmod_1(self) -> &'a mut W {
         self.variant(LDMOD_A::LDMOD_1)

@@ -4,17 +4,14 @@ pub type R = crate::R<u32, super::CSR>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REF_EN_B_A {
     #[doc = "0: value of CCM_REF_EN_B is '0'"]
-    REF_EN_B_0,
+    REF_EN_B_0 = 0,
     #[doc = "1: value of CCM_REF_EN_B is '1'"]
-    REF_EN_B_1,
+    REF_EN_B_1 = 1,
 }
 impl From<REF_EN_B_A> for bool {
     #[inline(always)]
     fn from(variant: REF_EN_B_A) -> Self {
-        match variant {
-            REF_EN_B_A::REF_EN_B_0 => false,
-            REF_EN_B_A::REF_EN_B_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `REF_EN_B`"]
@@ -43,17 +40,14 @@ impl REF_EN_B_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CAMP2_READY_A {
     #[doc = "0: CAMP2 is not ready."]
-    CAMP2_READY_0,
+    CAMP2_READY_0 = 0,
     #[doc = "1: CAMP2 is ready."]
-    CAMP2_READY_1,
+    CAMP2_READY_1 = 1,
 }
 impl From<CAMP2_READY_A> for bool {
     #[inline(always)]
     fn from(variant: CAMP2_READY_A) -> Self {
-        match variant {
-            CAMP2_READY_A::CAMP2_READY_0 => false,
-            CAMP2_READY_A::CAMP2_READY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CAMP2_READY`"]
@@ -82,17 +76,14 @@ impl CAMP2_READY_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COSC_READY_A {
     #[doc = "0: on board oscillator is not ready."]
-    COSC_READY_0,
+    COSC_READY_0 = 0,
     #[doc = "1: on board oscillator is ready."]
-    COSC_READY_1,
+    COSC_READY_1 = 1,
 }
 impl From<COSC_READY_A> for bool {
     #[inline(always)]
     fn from(variant: COSC_READY_A) -> Self {
-        match variant {
-            COSC_READY_A::COSC_READY_0 => false,
-            COSC_READY_A::COSC_READY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COSC_READY`"]

@@ -3,6 +3,12 @@ name = "teensy4-bsp"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+Rust-based BSP for the Teensy 4.
+Part of the teensy4-rs project.
+"""
 
 [dependencies]
 cortex-m = "0.6.1"

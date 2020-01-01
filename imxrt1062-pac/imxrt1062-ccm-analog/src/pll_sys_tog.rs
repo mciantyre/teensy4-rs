@@ -84,19 +84,17 @@ impl<'a> ENABLE_W<'a> {
 }
 #[doc = "Determines the bypass source.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum BYPASS_CLK_SRC_A {
     #[doc = "0: Select the 24MHz oscillator as source."]
-    REF_CLK_24M,
+    REF_CLK_24M = 0,
     #[doc = "1: Select the CLK1_N / CLK1_P as source."]
-    CLK1,
+    CLK1 = 1,
 }
 impl From<BYPASS_CLK_SRC_A> for u8 {
     #[inline(always)]
     fn from(variant: BYPASS_CLK_SRC_A) -> Self {
-        match variant {
-            BYPASS_CLK_SRC_A::REF_CLK_24M => 0,
-            BYPASS_CLK_SRC_A::CLK1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `BYPASS_CLK_SRC`"]

@@ -12,43 +12,33 @@ impl crate::ResetValue for super::CCOSR {
 }
 #[doc = "Selection of the clock to be generated on CCM_CLKO1\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CLKO1_SEL_A {
     #[doc = "0: USB1 PLL clock (divided by 2)"]
-    CLKO1_SEL_0,
+    CLKO1_SEL_0 = 0,
     #[doc = "1: SYS PLL clock (divided by 2)"]
-    CLKO1_SEL_1,
+    CLKO1_SEL_1 = 1,
     #[doc = "3: VIDEO PLL clock (divided by 2)"]
-    CLKO1_SEL_3,
+    CLKO1_SEL_3 = 3,
     #[doc = "5: semc_clk_root"]
-    CLKO1_SEL_5,
+    CLKO1_SEL_5 = 5,
     #[doc = "10: lcdif_pix_clk_root"]
-    CLKO1_SEL_10,
+    CLKO1_SEL_10 = 10,
     #[doc = "11: ahb_clk_root"]
-    CLKO1_SEL_11,
+    CLKO1_SEL_11 = 11,
     #[doc = "12: ipg_clk_root"]
-    CLKO1_SEL_12,
+    CLKO1_SEL_12 = 12,
     #[doc = "13: perclk_root"]
-    CLKO1_SEL_13,
+    CLKO1_SEL_13 = 13,
     #[doc = "14: ckil_sync_clk_root"]
-    CLKO1_SEL_14,
+    CLKO1_SEL_14 = 14,
     #[doc = "15: pll4_main_clk"]
-    CLKO1_SEL_15,
+    CLKO1_SEL_15 = 15,
 }
 impl From<CLKO1_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: CLKO1_SEL_A) -> Self {
-        match variant {
-            CLKO1_SEL_A::CLKO1_SEL_0 => 0,
-            CLKO1_SEL_A::CLKO1_SEL_1 => 1,
-            CLKO1_SEL_A::CLKO1_SEL_3 => 3,
-            CLKO1_SEL_A::CLKO1_SEL_5 => 5,
-            CLKO1_SEL_A::CLKO1_SEL_10 => 10,
-            CLKO1_SEL_A::CLKO1_SEL_11 => 11,
-            CLKO1_SEL_A::CLKO1_SEL_12 => 12,
-            CLKO1_SEL_A::CLKO1_SEL_13 => 13,
-            CLKO1_SEL_A::CLKO1_SEL_14 => 14,
-            CLKO1_SEL_A::CLKO1_SEL_15 => 15,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CLKO1_SEL`"]
@@ -192,37 +182,29 @@ impl<'a> CLKO1_SEL_W<'a> {
 }
 #[doc = "Setting the divider of CCM_CLKO1\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CLKO1_DIV_A {
     #[doc = "0: divide by 1"]
-    CLKO1_DIV_0,
+    CLKO1_DIV_0 = 0,
     #[doc = "1: divide by 2"]
-    CLKO1_DIV_1,
+    CLKO1_DIV_1 = 1,
     #[doc = "2: divide by 3"]
-    CLKO1_DIV_2,
+    CLKO1_DIV_2 = 2,
     #[doc = "3: divide by 4"]
-    CLKO1_DIV_3,
+    CLKO1_DIV_3 = 3,
     #[doc = "4: divide by 5"]
-    CLKO1_DIV_4,
+    CLKO1_DIV_4 = 4,
     #[doc = "5: divide by 6"]
-    CLKO1_DIV_5,
+    CLKO1_DIV_5 = 5,
     #[doc = "6: divide by 7"]
-    CLKO1_DIV_6,
+    CLKO1_DIV_6 = 6,
     #[doc = "7: divide by 8"]
-    CLKO1_DIV_7,
+    CLKO1_DIV_7 = 7,
 }
 impl From<CLKO1_DIV_A> for u8 {
     #[inline(always)]
     fn from(variant: CLKO1_DIV_A) -> Self {
-        match variant {
-            CLKO1_DIV_A::CLKO1_DIV_0 => 0,
-            CLKO1_DIV_A::CLKO1_DIV_1 => 1,
-            CLKO1_DIV_A::CLKO1_DIV_2 => 2,
-            CLKO1_DIV_A::CLKO1_DIV_3 => 3,
-            CLKO1_DIV_A::CLKO1_DIV_4 => 4,
-            CLKO1_DIV_A::CLKO1_DIV_5 => 5,
-            CLKO1_DIV_A::CLKO1_DIV_6 => 6,
-            CLKO1_DIV_A::CLKO1_DIV_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CLKO1_DIV`"]
@@ -347,17 +329,14 @@ impl<'a> CLKO1_DIV_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CLKO1_EN_A {
     #[doc = "0: CCM_CLKO1 disabled."]
-    CLKO1_EN_0,
+    CLKO1_EN_0 = 0,
     #[doc = "1: CCM_CLKO1 enabled."]
-    CLKO1_EN_1,
+    CLKO1_EN_1 = 1,
 }
 impl From<CLKO1_EN_A> for bool {
     #[inline(always)]
     fn from(variant: CLKO1_EN_A) -> Self {
-        match variant {
-            CLKO1_EN_A::CLKO1_EN_0 => false,
-            CLKO1_EN_A::CLKO1_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CLKO1_EN`"]
@@ -425,17 +404,14 @@ impl<'a> CLKO1_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CLK_OUT_SEL_A {
     #[doc = "0: CCM_CLKO1 output drives CCM_CLKO1 clock"]
-    CLK_OUT_SEL_0,
+    CLK_OUT_SEL_0 = 0,
     #[doc = "1: CCM_CLKO1 output drives CCM_CLKO2 clock"]
-    CLK_OUT_SEL_1,
+    CLK_OUT_SEL_1 = 1,
 }
 impl From<CLK_OUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: CLK_OUT_SEL_A) -> Self {
-        match variant {
-            CLK_OUT_SEL_A::CLK_OUT_SEL_0 => false,
-            CLK_OUT_SEL_A::CLK_OUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CLK_OUT_SEL`"]
@@ -501,49 +477,37 @@ impl<'a> CLK_OUT_SEL_W<'a> {
 }
 #[doc = "Selection of the clock to be generated on CCM_CLKO2\n\nValue on reset: 10"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CLKO2_SEL_A {
     #[doc = "3: usdhc1_clk_root"]
-    CLKO2_SEL_3,
+    CLKO2_SEL_3 = 3,
     #[doc = "6: lpi2c_clk_root"]
-    CLKO2_SEL_6,
+    CLKO2_SEL_6 = 6,
     #[doc = "11: csi_clk_root"]
-    CLKO2_SEL_11,
+    CLKO2_SEL_11 = 11,
     #[doc = "14: osc_clk"]
-    CLKO2_SEL_14,
+    CLKO2_SEL_14 = 14,
     #[doc = "17: usdhc2_clk_root"]
-    CLKO2_SEL_17,
+    CLKO2_SEL_17 = 17,
     #[doc = "18: sai1_clk_root"]
-    CLKO2_SEL_18,
+    CLKO2_SEL_18 = 18,
     #[doc = "19: sai2_clk_root"]
-    CLKO2_SEL_19,
+    CLKO2_SEL_19 = 19,
     #[doc = "20: sai3_clk_root (shared with ADC1 and ADC2 alt_clk root)"]
-    CLKO2_SEL_20,
+    CLKO2_SEL_20 = 20,
     #[doc = "23: can_clk_root (FlexCAN, shared with CANFD)"]
-    CLKO2_SEL_23,
+    CLKO2_SEL_23 = 23,
     #[doc = "27: flexspi_clk_root"]
-    CLKO2_SEL_27,
+    CLKO2_SEL_27 = 27,
     #[doc = "28: uart_clk_root"]
-    CLKO2_SEL_28,
+    CLKO2_SEL_28 = 28,
     #[doc = "29: spdif0_clk_root"]
-    CLKO2_SEL_29,
+    CLKO2_SEL_29 = 29,
 }
 impl From<CLKO2_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: CLKO2_SEL_A) -> Self {
-        match variant {
-            CLKO2_SEL_A::CLKO2_SEL_3 => 3,
-            CLKO2_SEL_A::CLKO2_SEL_6 => 6,
-            CLKO2_SEL_A::CLKO2_SEL_11 => 11,
-            CLKO2_SEL_A::CLKO2_SEL_14 => 14,
-            CLKO2_SEL_A::CLKO2_SEL_17 => 17,
-            CLKO2_SEL_A::CLKO2_SEL_18 => 18,
-            CLKO2_SEL_A::CLKO2_SEL_19 => 19,
-            CLKO2_SEL_A::CLKO2_SEL_20 => 20,
-            CLKO2_SEL_A::CLKO2_SEL_23 => 23,
-            CLKO2_SEL_A::CLKO2_SEL_27 => 27,
-            CLKO2_SEL_A::CLKO2_SEL_28 => 28,
-            CLKO2_SEL_A::CLKO2_SEL_29 => 29,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CLKO2_SEL`"]
@@ -709,37 +673,29 @@ impl<'a> CLKO2_SEL_W<'a> {
 }
 #[doc = "Setting the divider of CCM_CLKO2\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CLKO2_DIV_A {
     #[doc = "0: divide by 1"]
-    CLKO2_DIV_0,
+    CLKO2_DIV_0 = 0,
     #[doc = "1: divide by 2"]
-    CLKO2_DIV_1,
+    CLKO2_DIV_1 = 1,
     #[doc = "2: divide by 3"]
-    CLKO2_DIV_2,
+    CLKO2_DIV_2 = 2,
     #[doc = "3: divide by 4"]
-    CLKO2_DIV_3,
+    CLKO2_DIV_3 = 3,
     #[doc = "4: divide by 5"]
-    CLKO2_DIV_4,
+    CLKO2_DIV_4 = 4,
     #[doc = "5: divide by 6"]
-    CLKO2_DIV_5,
+    CLKO2_DIV_5 = 5,
     #[doc = "6: divide by 7"]
-    CLKO2_DIV_6,
+    CLKO2_DIV_6 = 6,
     #[doc = "7: divide by 8"]
-    CLKO2_DIV_7,
+    CLKO2_DIV_7 = 7,
 }
 impl From<CLKO2_DIV_A> for u8 {
     #[inline(always)]
     fn from(variant: CLKO2_DIV_A) -> Self {
-        match variant {
-            CLKO2_DIV_A::CLKO2_DIV_0 => 0,
-            CLKO2_DIV_A::CLKO2_DIV_1 => 1,
-            CLKO2_DIV_A::CLKO2_DIV_2 => 2,
-            CLKO2_DIV_A::CLKO2_DIV_3 => 3,
-            CLKO2_DIV_A::CLKO2_DIV_4 => 4,
-            CLKO2_DIV_A::CLKO2_DIV_5 => 5,
-            CLKO2_DIV_A::CLKO2_DIV_6 => 6,
-            CLKO2_DIV_A::CLKO2_DIV_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CLKO2_DIV`"]
@@ -864,17 +820,14 @@ impl<'a> CLKO2_DIV_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CLKO2_EN_A {
     #[doc = "0: CCM_CLKO2 disabled."]
-    CLKO2_EN_0,
+    CLKO2_EN_0 = 0,
     #[doc = "1: CCM_CLKO2 enabled."]
-    CLKO2_EN_1,
+    CLKO2_EN_1 = 1,
 }
 impl From<CLKO2_EN_A> for bool {
     #[inline(always)]
     fn from(variant: CLKO2_EN_A) -> Self {
-        match variant {
-            CLKO2_EN_A::CLKO2_EN_0 => false,
-            CLKO2_EN_A::CLKO2_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CLKO2_EN`"]
