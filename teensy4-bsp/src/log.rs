@@ -138,7 +138,7 @@ impl ::log::Log for Logger {
             write!(&mut cursor, "[{} {}]: ", record.level(), record.target()).expect("infallible");
             usbsys::serial_write(&cursor);
             cursor.clear();
-            write!(&mut cursor, "{}\r\n", record.args()).expect("infallible");
+            writeln!(&mut cursor, "{}\r", record.args()).expect("infallible");
             usbsys::serial_write(&cursor);
             cursor.clear();
         }
