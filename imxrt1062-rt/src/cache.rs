@@ -1,6 +1,7 @@
 //Cache configuration
 
 use core::ptr;
+use cortex_m::asm;
 
 const SCB_CCR: *mut u32 = 0xE000ED14 as *mut u32;
 const SCB_MPU_CTRL: *mut u32 = 0xE000ED94 as *mut u32;
@@ -52,9 +53,6 @@ const fn region(n: u32) -> u32 {
     scb_mpu_rbar_region(n) | SCB_MPU_RBAR_VALID
 }
 
-extern "C" {
-    fn call();
-}
 
 #[inline(always)]
 pub unsafe fn init() {
@@ -80,9 +78,11 @@ pub unsafe fn init() {
 
     ptr::write_volatile(SCB_MPU_CTRL, SCB_MPU_CTRL_ENABLE);
 
-    call();
+    asm::dsb();
+    asm::isb();
     ptr::write_volatile(SCB_CACHE_ICIALLU, 0);
 
-    call();
+    asm::dsb();
+    asm::isb();
     ptr::write_volatile(SCB_CCR, SCB_CCR_IC | SCB_CCR_DC);
 }

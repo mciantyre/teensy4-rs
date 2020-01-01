@@ -1,5 +1,4 @@
 static C_SRCS: &[&str] = &[
-    "./src/call.c",
     "./src/fault.c",
     "./src/ivt.c",
     "./src/reset.c",
