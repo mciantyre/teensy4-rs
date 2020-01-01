@@ -3,7 +3,6 @@
 
 pub use imxrt1062_core::*;
 
-Re-export peripherals
 pub use imxrt1062_adc1 as adc1;
 pub use imxrt1062_adc_etc as adc_etc;
 pub use imxrt1062_aipstz1 as aipstz1;
@@ -87,8 +86,7 @@ impl Deref for AIPSTZ1 {
         unsafe { &*AIPSTZ1::ptr() }
     }
 }
-#[doc = "AIPSTZ Control Registers"]
-pub mod aipstz1;
+
 #[doc = "AIPSTZ Control Registers"]
 pub struct AIPSTZ2 {
     _marker: PhantomData<*const ()>,
@@ -200,8 +198,6 @@ impl Deref for CMP1 {
     }
 }
 #[doc = "High-Speed Comparator (CMP), Voltage Reference (VREF) Digital-to-Analog Converter (DAC), and Analog Mux (ANMUX)"]
-pub mod cmp1;
-#[doc = "High-Speed Comparator (CMP), Voltage Reference (VREF) Digital-to-Analog Converter (DAC), and Analog Mux (ANMUX)"]
 pub struct CMP2 {
     _marker: PhantomData<*const ()>,
 }
@@ -273,8 +269,6 @@ impl Deref for IOMUXC_SNVS_GPR {
         unsafe { &*IOMUXC_SNVS_GPR::ptr() }
     }
 }
-#[doc = "IOMUXC"]
-pub mod iomuxc_snvs_gpr;
 #[doc = "IOMUXC_SNVS"]
 pub struct IOMUXC_SNVS {
     _marker: PhantomData<*const ()>,
@@ -293,8 +287,6 @@ impl Deref for IOMUXC_SNVS {
         unsafe { &*IOMUXC_SNVS::ptr() }
     }
 }
-#[doc = "IOMUXC_SNVS"]
-pub mod iomuxc_snvs;
 #[doc = "IOMUXC_GPR"]
 pub struct IOMUXC_GPR {
     _marker: PhantomData<*const ()>,
@@ -332,8 +324,6 @@ impl Deref for FLEXRAM {
         unsafe { &*FLEXRAM::ptr() }
     }
 }
-#[doc = "FLEXRAM"]
-pub mod flexram;
 #[doc = "EWM"]
 pub struct EWM {
     _marker: PhantomData<*const ()>,
@@ -352,8 +342,6 @@ impl Deref for EWM {
         unsafe { &*EWM::ptr() }
     }
 }
-#[doc = "EWM"]
-pub mod ewm;
 #[doc = "WDOG"]
 pub struct WDOG1 {
     _marker: PhantomData<*const ()>,
@@ -372,8 +360,6 @@ impl Deref for WDOG1 {
         unsafe { &*WDOG1::ptr() }
     }
 }
-#[doc = "WDOG"]
-pub mod wdog1;
 #[doc = "WDOG"]
 pub struct WDOG2 {
     _marker: PhantomData<*const ()>,
@@ -410,8 +396,6 @@ impl Deref for RTWDOG {
         unsafe { &*RTWDOG::ptr() }
     }
 }
-#[doc = "WDOG"]
-pub mod rtwdog;
 #[doc = "Analog-to-Digital Converter"]
 pub struct ADC1 {
     _marker: PhantomData<*const ()>,
@@ -430,8 +414,6 @@ impl Deref for ADC1 {
         unsafe { &*ADC1::ptr() }
     }
 }
-#[doc = "Analog-to-Digital Converter"]
-pub mod adc1;
 #[doc = "Analog-to-Digital Converter"]
 pub struct ADC2 {
     _marker: PhantomData<*const ()>,
@@ -468,8 +450,6 @@ impl Deref for TRNG {
         unsafe { &*TRNG::ptr() }
     }
 }
-#[doc = "TRNG"]
-pub mod trng;
 #[doc = "SNVS"]
 pub struct SNVS {
     _marker: PhantomData<*const ()>,
@@ -488,8 +468,6 @@ impl Deref for SNVS {
         unsafe { &*SNVS::ptr() }
     }
 }
-#[doc = "SNVS"]
-pub mod snvs;
 #[doc = "CCM_ANALOG"]
 pub struct CCM_ANALOG {
     _marker: PhantomData<*const ()>,
@@ -527,8 +505,6 @@ impl Deref for PMU {
         unsafe { &*PMU::ptr() }
     }
 }
-#[doc = "PMU"]
-pub mod pmu;
 #[doc = "Temperature Monitor"]
 pub struct TEMPMON {
     _marker: PhantomData<*const ()>,
@@ -547,8 +523,6 @@ impl Deref for TEMPMON {
         unsafe { &*TEMPMON::ptr() }
     }
 }
-#[doc = "Temperature Monitor"]
-pub mod tempmon;
 #[doc = "USB Analog"]
 pub struct USB_ANALOG {
     _marker: PhantomData<*const ()>,
@@ -567,8 +541,6 @@ impl Deref for USB_ANALOG {
         unsafe { &*USB_ANALOG::ptr() }
     }
 }
-#[doc = "USB Analog"]
-pub mod usb_analog;
 #[doc = "XTALOSC24M"]
 pub struct XTALOSC24M {
     _marker: PhantomData<*const ()>,
@@ -587,8 +559,6 @@ impl Deref for XTALOSC24M {
         unsafe { &*XTALOSC24M::ptr() }
     }
 }
-#[doc = "XTALOSC24M"]
-pub mod xtalosc24m;
 #[doc = "USBPHY Register Reference Index"]
 pub struct USBPHY1 {
     _marker: PhantomData<*const ()>,
@@ -607,8 +577,6 @@ impl Deref for USBPHY1 {
         unsafe { &*USBPHY1::ptr() }
     }
 }
-#[doc = "USBPHY Register Reference Index"]
-pub mod usbphy1;
 #[doc = "USBPHY Register Reference Index"]
 pub struct USBPHY2 {
     _marker: PhantomData<*const ()>,
@@ -645,8 +613,6 @@ impl Deref for CSU {
         unsafe { &*CSU::ptr() }
     }
 }
-#[doc = "CSU registers"]
-pub mod csu;
 #[doc = "Touch Screen Controller"]
 pub struct TSC {
     _marker: PhantomData<*const ()>,
@@ -665,8 +631,6 @@ impl Deref for TSC {
         unsafe { &*TSC::ptr() }
     }
 }
-#[doc = "Touch Screen Controller"]
-pub mod tsc;
 #[doc = "DMA"]
 pub struct DMA0 {
     _marker: PhantomData<*const ()>,
@@ -685,8 +649,6 @@ impl Deref for DMA0 {
         unsafe { &*DMA0::ptr() }
     }
 }
-#[doc = "DMA"]
-pub mod dma0;
 #[doc = "DMA_CH_MUX"]
 pub struct DMAMUX {
     _marker: PhantomData<*const ()>,
@@ -705,8 +667,6 @@ impl Deref for DMAMUX {
         unsafe { &*DMAMUX::ptr() }
     }
 }
-#[doc = "DMA_CH_MUX"]
-pub mod dmamux;
 #[doc = "GPC"]
 pub struct GPC {
     _marker: PhantomData<*const ()>,
@@ -725,8 +685,6 @@ impl Deref for GPC {
         unsafe { &*GPC::ptr() }
     }
 }
-#[doc = "GPC"]
-pub mod gpc;
 #[doc = "PGC"]
 pub struct PGC {
     _marker: PhantomData<*const ()>,
@@ -745,8 +703,6 @@ impl Deref for PGC {
         unsafe { &*PGC::ptr() }
     }
 }
-#[doc = "PGC"]
-pub mod pgc;
 #[doc = "SRC"]
 pub struct SRC {
     _marker: PhantomData<*const ()>,
@@ -765,8 +721,6 @@ impl Deref for SRC {
         unsafe { &*SRC::ptr() }
     }
 }
-#[doc = "SRC"]
-pub mod src;
 #[doc = "CCM"]
 pub struct CCM {
     _marker: PhantomData<*const ()>,
@@ -804,8 +758,6 @@ impl Deref for ROMC {
         unsafe { &*ROMC::ptr() }
     }
 }
-#[doc = "ROMC"]
-pub mod romc;
 #[doc = "LPUART"]
 pub struct LPUART1 {
     _marker: PhantomData<*const ()>,
@@ -824,8 +776,6 @@ impl Deref for LPUART1 {
         unsafe { &*LPUART1::ptr() }
     }
 }
-#[doc = "LPUART"]
-pub mod lpuart1;
 #[doc = "LPUART"]
 pub struct LPUART2 {
     _marker: PhantomData<*const ()>,
@@ -970,8 +920,6 @@ impl Deref for FLEXIO1 {
         unsafe { &*FLEXIO1::ptr() }
     }
 }
-#[doc = "FLEXIO"]
-pub mod flexio1;
 #[doc = "FLEXIO"]
 pub struct FLEXIO2 {
     _marker: PhantomData<*const ()>,
@@ -1190,8 +1138,6 @@ impl Deref for CAN1 {
     }
 }
 #[doc = "FLEXCAN"]
-pub mod can1;
-#[doc = "FLEXCAN"]
 pub struct CAN2 {
     _marker: PhantomData<*const ()>,
 }
@@ -1227,8 +1173,6 @@ impl Deref for CAN3 {
         unsafe { &*CAN3::ptr() }
     }
 }
-#[doc = "CAN"]
-pub mod can3;
 #[doc = "Quad Timer"]
 pub struct TMR1 {
     _marker: PhantomData<*const ()>,
@@ -1247,8 +1191,6 @@ impl Deref for TMR1 {
         unsafe { &*TMR1::ptr() }
     }
 }
-#[doc = "Quad Timer"]
-pub mod tmr1;
 #[doc = "Quad Timer"]
 pub struct TMR2 {
     _marker: PhantomData<*const ()>,
@@ -1358,8 +1300,6 @@ impl Deref for OCOTP {
         unsafe { &*OCOTP::ptr() }
     }
 }
-#[doc = "OCOTP"]
-pub mod ocotp;
 #[doc = "IOMUXC"]
 pub struct IOMUXC {
     _marker: PhantomData<*const ()>,
@@ -1397,8 +1337,6 @@ impl Deref for KPP {
         unsafe { &*KPP::ptr() }
     }
 }
-#[doc = "KPP Registers"]
-pub mod kpp;
 #[doc = "FlexSPI"]
 pub struct FLEXSPI {
     _marker: PhantomData<*const ()>,
@@ -1417,8 +1355,6 @@ impl Deref for FLEXSPI {
         unsafe { &*FLEXSPI::ptr() }
     }
 }
-#[doc = "FlexSPI"]
-pub mod flexspi;
 #[doc = "FlexSPI"]
 pub struct FLEXSPI2 {
     _marker: PhantomData<*const ()>,
@@ -1455,8 +1391,6 @@ impl Deref for PXP {
         unsafe { &*PXP::ptr() }
     }
 }
-#[doc = "PXP v2.0 Register Reference Index"]
-pub mod pxp;
 #[doc = "LCDIF Register Reference Index"]
 pub struct LCDIF {
     _marker: PhantomData<*const ()>,
@@ -1475,8 +1409,6 @@ impl Deref for LCDIF {
         unsafe { &*LCDIF::ptr() }
     }
 }
-#[doc = "LCDIF Register Reference Index"]
-pub mod lcdif;
 #[doc = "CSI"]
 pub struct CSI {
     _marker: PhantomData<*const ()>,
@@ -1495,8 +1427,6 @@ impl Deref for CSI {
         unsafe { &*CSI::ptr() }
     }
 }
-#[doc = "CSI"]
-pub mod csi;
 #[doc = "uSDHC"]
 pub struct USDHC1 {
     _marker: PhantomData<*const ()>,
@@ -1515,8 +1445,6 @@ impl Deref for USDHC1 {
         unsafe { &*USDHC1::ptr() }
     }
 }
-#[doc = "uSDHC"]
-pub mod usdhc1;
 #[doc = "uSDHC"]
 pub struct USDHC2 {
     _marker: PhantomData<*const ()>,
@@ -1554,8 +1482,6 @@ impl Deref for ENET {
     }
 }
 #[doc = "Ethernet MAC-NET Core"]
-pub mod enet;
-#[doc = "Ethernet MAC-NET Core"]
 pub struct ENET2 {
     _marker: PhantomData<*const ()>,
 }
@@ -1591,8 +1517,6 @@ impl Deref for USB1 {
         unsafe { &*USB1::ptr() }
     }
 }
-#[doc = "USB"]
-pub mod usb1;
 #[doc = "USB"]
 pub struct USB2 {
     _marker: PhantomData<*const ()>,
@@ -1630,8 +1554,6 @@ impl Deref for USBNC1 {
     }
 }
 #[doc = "USB"]
-pub mod usbnc1;
-#[doc = "USB"]
 pub struct USBNC2 {
     _marker: PhantomData<*const ()>,
 }
@@ -1667,8 +1589,6 @@ impl Deref for SEMC {
         unsafe { &*SEMC::ptr() }
     }
 }
-#[doc = "SEMC"]
-pub mod semc;
 #[doc = "DCP register reference index"]
 pub struct DCP {
     _marker: PhantomData<*const ()>,
@@ -1687,8 +1607,6 @@ impl Deref for DCP {
         unsafe { &*DCP::ptr() }
     }
 }
-#[doc = "DCP register reference index"]
-pub mod dcp;
 #[doc = "SPDIF"]
 pub struct SPDIF {
     _marker: PhantomData<*const ()>,
@@ -1707,8 +1625,6 @@ impl Deref for SPDIF {
         unsafe { &*SPDIF::ptr() }
     }
 }
-#[doc = "SPDIF"]
-pub mod spdif;
 #[doc = "I2S"]
 pub struct SAI1 {
     _marker: PhantomData<*const ()>,
@@ -1727,8 +1643,6 @@ impl Deref for SAI1 {
         unsafe { &*SAI1::ptr() }
     }
 }
-#[doc = "I2S"]
-pub mod sai1;
 #[doc = "I2S"]
 pub struct SAI2 {
     _marker: PhantomData<*const ()>,
@@ -1783,8 +1697,6 @@ impl Deref for LPSPI1 {
         unsafe { &*LPSPI1::ptr() }
     }
 }
-#[doc = "LPSPI"]
-pub mod lpspi1;
 #[doc = "LPSPI"]
 pub struct LPSPI2 {
     _marker: PhantomData<*const ()>,
@@ -1857,8 +1769,6 @@ impl Deref for ADC_ETC {
         unsafe { &*ADC_ETC::ptr() }
     }
 }
-#[doc = "ADC_ETC"]
-pub mod adc_etc;
 #[doc = "AND/OR/INVERT module"]
 pub struct AOI1 {
     _marker: PhantomData<*const ()>,
@@ -1877,8 +1787,6 @@ impl Deref for AOI1 {
         unsafe { &*AOI1::ptr() }
     }
 }
-#[doc = "AND/OR/INVERT module"]
-pub mod aoi1;
 #[doc = "AND/OR/INVERT module"]
 pub struct AOI2 {
     _marker: PhantomData<*const ()>,
@@ -1916,8 +1824,6 @@ impl Deref for XBARA1 {
     }
 }
 #[doc = "Crossbar Switch"]
-pub mod xbara1;
-#[doc = "Crossbar Switch"]
 pub struct XBARB2 {
     _marker: PhantomData<*const ()>,
 }
@@ -1935,8 +1841,6 @@ impl Deref for XBARB2 {
         unsafe { &*XBARB2::ptr() }
     }
 }
-#[doc = "Crossbar Switch"]
-pub mod xbarb2;
 #[doc = "Crossbar Switch"]
 pub struct XBARB3 {
     _marker: PhantomData<*const ()>,
@@ -1973,8 +1877,6 @@ impl Deref for ENC1 {
         unsafe { &*ENC1::ptr() }
     }
 }
-#[doc = "Quadrature Decoder"]
-pub mod enc1;
 #[doc = "Quadrature Decoder"]
 pub struct ENC2 {
     _marker: PhantomData<*const ()>,
@@ -2119,8 +2021,6 @@ impl Deref for BEE {
         unsafe { &*BEE::ptr() }
     }
 }
-#[doc = "Bus Encryption Engine"]
-pub mod bee;
 #[doc = "LPI2C"]
 pub struct LPI2C1 {
     _marker: PhantomData<*const ()>,
@@ -2139,8 +2039,6 @@ impl Deref for LPI2C1 {
         unsafe { &*LPI2C1::ptr() }
     }
 }
-#[doc = "LPI2C"]
-pub mod lpi2c1;
 #[doc = "LPI2C"]
 pub struct LPI2C2 {
     _marker: PhantomData<*const ()>,
@@ -2213,8 +2111,6 @@ impl Deref for SYSTEMCONTROL {
         unsafe { &*SYSTEMCONTROL::ptr() }
     }
 }
-#[doc = "System Control Block"]
-pub mod system_control;
 #[no_mangle]
 static mut DEVICE_PERIPHERALS: bool = false;
 #[doc = r"All the peripherals"]

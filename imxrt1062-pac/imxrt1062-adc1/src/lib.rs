@@ -28,21 +28,21 @@ pub struct RegisterBlock {
     #[doc = "0x20 - Status register for HW triggers"]
     pub hs: HS,
     #[doc = "0x24 - Data result register for HW triggers"]
-    pub r0: R0,
+    pub r0: RESULT0,
     #[doc = "0x28 - Data result register for HW triggers"]
-    pub r1: R,
+    pub r1: RESULT,
     #[doc = "0x2c - Data result register for HW triggers"]
-    pub r2: R,
+    pub r2: RESULT,
     #[doc = "0x30 - Data result register for HW triggers"]
-    pub r3: R,
+    pub r3: RESULT,
     #[doc = "0x34 - Data result register for HW triggers"]
-    pub r4: R,
+    pub r4: RESULT,
     #[doc = "0x38 - Data result register for HW triggers"]
-    pub r5: R,
+    pub r5: RESULT,
     #[doc = "0x3c - Data result register for HW triggers"]
-    pub r6: R,
+    pub r6: RESULT,
     #[doc = "0x40 - Data result register for HW triggers"]
-    pub r7: R,
+    pub r7: RESULT,
     #[doc = "0x44 - Configuration register"]
     pub cfg: CFG,
     #[doc = "0x48 - General control register"]
@@ -88,23 +88,23 @@ impl crate::Readable for HS {}
 #[doc = "Status register for HW triggers"]
 pub mod hs;
 #[doc = "Data result register for HW triggers\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [r0](r0) module"]
-pub type R0 = crate::Reg<u32, _R0>;
+pub type RESULT0 = crate::Reg<u32, _RESULT0>;
 #[allow(missing_docs)]
 #[doc(hidden)]
-pub struct _R0;
+pub struct _RESULT0;
 #[doc = "`read()` method returns [r0::R](r0::R) reader structure"]
-impl crate::Readable for R0 {}
+impl crate::Readable for RESULT0 {}
 #[doc = "Data result register for HW triggers"]
-pub mod r0;
+pub mod result0;
 #[doc = "Data result register for HW triggers\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [r](r) module"]
-pub type R = crate::Reg<u32, _R>;
+pub type RESULT = crate::Reg<u32, _RESULT>;
 #[allow(missing_docs)]
 #[doc(hidden)]
-pub struct _R;
+pub struct _RESULT;
 #[doc = "`read()` method returns [r::R](r::R) reader structure"]
-impl crate::Readable for R {}
+impl crate::Readable for RESULT {}
 #[doc = "Data result register for HW triggers"]
-pub mod r;
+pub mod result;
 #[doc = "Configuration register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub type CFG = crate::Reg<u32, _CFG>;
 #[allow(missing_docs)]
