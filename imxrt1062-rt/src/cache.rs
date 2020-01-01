@@ -2,10 +2,10 @@
 
 use core::ptr;
 
-static mut SCB_CCR: *mut u32 = 0xE000ED14 as *mut u32;
-static mut SCB_MPU_CTRL: *mut u32 = 0xE000ED94 as *mut u32;
-static mut SCB_MPU_RBAR: *mut u32 = 0xE000ED9C as *mut u32;
-static mut SCB_MPU_RASR: *mut u32 = 0xE000EDA0 as *mut u32;
+const SCB_CCR: *mut u32 = 0xE000ED14 as *mut u32;
+const SCB_MPU_CTRL: *mut u32 = 0xE000ED94 as *mut u32;
+const SCB_MPU_RBAR: *mut u32 = 0xE000ED9C as *mut u32;
+const SCB_MPU_RASR: *mut u32 = 0xE000EDA0 as *mut u32;
 static mut SCB_CACHE_ICIALLU: *mut u32 = 0xE000EF50 as *mut u32;
 const SCB_CCR_IC: u32 = 1 << 17;
 const SCB_CCR_DC: u32 = 1 << 16;
