@@ -32,21 +32,21 @@ const fn scb_mpu_rbar_region(n: u32) -> u32 {
 const NOEXEC: u32 = SCB_MPU_RASR_XN;
 const READONLY: u32 = scb_mpu_rasr_ap(7);
 const READWRITE: u32 = scb_mpu_rasr_ap(3);
-//const NOACCESS: u32 = scb_mpu_rasr_ap(0);
+const _NOACCESS: u32 = scb_mpu_rasr_ap(0);
 const MEM_CACHE_WT: u32 = scb_mpu_rasr_tex(0) | SCB_MPU_RASR_C;
-//const MEM_CACHE_WB: u32 = scb_mpu_rasr_tex(0) | SCB_MPU_RASR_C | SCB_MPU_RASR_B;
+const _MEM_CACHE_WB: u32 = scb_mpu_rasr_tex(0) | SCB_MPU_RASR_C | SCB_MPU_RASR_B;
 const MEM_CACHE_WBWA: u32 = scb_mpu_rasr_tex(1) | SCB_MPU_RASR_C | SCB_MPU_RASR_B;
 const MEM_NOCACHE: u32 = scb_mpu_rasr_tex(1);
 const DEV_NOCACHE: u32 = scb_mpu_rasr_tex(2);
 const SIZE_128K: u32 = scb_mpu_rasr_size(16) | SCB_MPU_RASR_ENABLE;
-//const SIZE_256K: u32 = scb_mpu_rasr_size(17) | SCB_MPU_RASR_ENABLE;
+const _SIZE_256K: u32 = scb_mpu_rasr_size(17) | SCB_MPU_RASR_ENABLE;
 const SIZE_512K: u32 = scb_mpu_rasr_size(18) | SCB_MPU_RASR_ENABLE;
 const SIZE_1M: u32 = scb_mpu_rasr_size(19) | SCB_MPU_RASR_ENABLE;
-//const SIZE_2M: u32 = scb_mpu_rasr_size(20) | SCB_MPU_RASR_ENABLE;
-//const SIZE_4M: u32 = scb_mpu_rasr_size(21) | SCB_MPU_RASR_ENABLE;
-//const SIZE_8M: u32 = scb_mpu_rasr_size(22) | SCB_MPU_RASR_ENABLE;
+const _SIZE_2M: u32 = scb_mpu_rasr_size(20) | SCB_MPU_RASR_ENABLE;
+const _SIZE_4M: u32 = scb_mpu_rasr_size(21) | SCB_MPU_RASR_ENABLE;
+const _SIZE_8M: u32 = scb_mpu_rasr_size(22) | SCB_MPU_RASR_ENABLE;
 const SIZE_16M: u32 = scb_mpu_rasr_size(23) | SCB_MPU_RASR_ENABLE;
-//const SIZE_32M: u32 = scb_mpu_rasr_size(24) | SCB_MPU_RASR_ENABLE;
+const _SIZE_32M: u32 = scb_mpu_rasr_size(24) | SCB_MPU_RASR_ENABLE;
 const SIZE_64M: u32 = scb_mpu_rasr_size(25) | SCB_MPU_RASR_ENABLE;
 const fn region(n: u32) -> u32 {
     scb_mpu_rbar_region(n) | SCB_MPU_RBAR_VALID
