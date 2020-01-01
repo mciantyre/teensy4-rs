@@ -193,7 +193,7 @@ where
             self.upper.disabled(|| {
                 self.upper.timer.tctrl.modify(|_, w| w.chn().set_bit());
                 self.upper.ldval((ticks.0 >> 32) as u32);
-                self.lower.ldval((ticks.0 & 0xFFFFFFFF) as u32)
+                self.lower.ldval((ticks.0 & 0xFFFF_FFFF) as u32)
             })
         });
     }

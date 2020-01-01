@@ -1,13 +1,16 @@
-//Cache configuration
+//! Cache configuration
+
+// Visually appealing constructs like (1 << 0) or (0x0000_0000 | [non-zero number])
+#![allow(clippy::identity_op)]
 
 use core::ptr;
 use cortex_m::asm;
 
-const SCB_CCR: *mut u32 = 0xE000ED14 as *mut u32;
-const SCB_MPU_CTRL: *mut u32 = 0xE000ED94 as *mut u32;
-const SCB_MPU_RBAR: *mut u32 = 0xE000ED9C as *mut u32;
-const SCB_MPU_RASR: *mut u32 = 0xE000EDA0 as *mut u32;
-static mut SCB_CACHE_ICIALLU: *mut u32 = 0xE000EF50 as *mut u32;
+const SCB_CCR: *mut u32 = 0xE000_ED14 as *mut u32;
+const SCB_MPU_CTRL: *mut u32 = 0xE000_ED94 as *mut u32;
+const SCB_MPU_RBAR: *mut u32 = 0xE000_ED9C as *mut u32;
+const SCB_MPU_RASR: *mut u32 = 0xE000_EDA0 as *mut u32;
+const SCB_CACHE_ICIALLU: *mut u32 = 0xE000_EF50 as *mut u32;
 const SCB_CCR_IC: u32 = 1 << 17;
 const SCB_CCR_DC: u32 = 1 << 16;
 
@@ -57,22 +60,22 @@ const fn region(n: u32) -> u32 {
 pub unsafe fn init() {
     ptr::write_volatile(SCB_MPU_CTRL, 0);
 
-    ptr::write_volatile(SCB_MPU_RBAR, 0x00000000 | region(0)); // ITCM
+    ptr::write_volatile(SCB_MPU_RBAR, 0x0000_0000 | region(0)); // ITCM
     ptr::write_volatile(SCB_MPU_RASR, MEM_NOCACHE | READWRITE | SIZE_512K);
 
-    ptr::write_volatile(SCB_MPU_RBAR, 0x00200000 | region(1)); // Boot ROM
+    ptr::write_volatile(SCB_MPU_RBAR, 0x0020_0000 | region(1)); // Boot ROM
     ptr::write_volatile(SCB_MPU_RASR, MEM_CACHE_WT | READONLY | SIZE_128K);
 
-    ptr::write_volatile(SCB_MPU_RBAR, 0x20000000 | region(2)); // DTCM
+    ptr::write_volatile(SCB_MPU_RBAR, 0x2000_0000 | region(2)); // DTCM
     ptr::write_volatile(SCB_MPU_RASR, MEM_NOCACHE | READWRITE | NOEXEC | SIZE_512K);
 
-    ptr::write_volatile(SCB_MPU_RBAR, 0x20200000 | region(3)); // RAM (AXI bus)
+    ptr::write_volatile(SCB_MPU_RBAR, 0x2020_0000 | region(3)); // RAM (AXI bus)
     ptr::write_volatile(SCB_MPU_RASR, MEM_CACHE_WBWA | READWRITE | NOEXEC | SIZE_1M);
 
-    ptr::write_volatile(SCB_MPU_RBAR, 0x40000000 | region(4)); // Peripherals
+    ptr::write_volatile(SCB_MPU_RBAR, 0x4000_0000 | region(4)); // Peripherals
     ptr::write_volatile(SCB_MPU_RASR, DEV_NOCACHE | READWRITE | NOEXEC | SIZE_64M);
 
-    ptr::write_volatile(SCB_MPU_RBAR, 0x60000000 | region(5)); // QSPI Flash
+    ptr::write_volatile(SCB_MPU_RBAR, 0x6000_0000 | region(5)); // QSPI Flash
     ptr::write_volatile(SCB_MPU_RASR, MEM_CACHE_WBWA | READONLY | SIZE_16M);
 
     ptr::write_volatile(SCB_MPU_CTRL, SCB_MPU_CTRL_ENABLE);
