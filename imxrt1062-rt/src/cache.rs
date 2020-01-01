@@ -2,24 +2,32 @@
 
 use core::ptr;
 
-static mut SCB_CCR : *mut u32 = 0xE000ED14 as *mut u32;
-static mut SCB_MPU_CTRL : *mut u32 = 0xE000ED94 as *mut u32;
+static mut SCB_CCR: *mut u32 = 0xE000ED14 as *mut u32;
+static mut SCB_MPU_CTRL: *mut u32 = 0xE000ED94 as *mut u32;
 static mut SCB_MPU_RBAR: *mut u32 = 0xE000ED9C as *mut u32;
 static mut SCB_MPU_RASR: *mut u32 = 0xE000EDA0 as *mut u32;
-static mut SCB_CACHE_ICIALLU : *mut u32 = 0xE000EF50 as *mut u32;
+static mut SCB_CACHE_ICIALLU: *mut u32 = 0xE000EF50 as *mut u32;
 const SCB_CCR_IC: u32 = 1 << 17;
-const SCB_CCR_DC : u32 = 1 << 16;
+const SCB_CCR_DC: u32 = 1 << 16;
 
 const SCB_MPU_RBAR_VALID: u32 = 1 << 4;
 const SCB_MPU_RASR_ENABLE: u32 = 1 << 0;
 const SCB_MPU_RASR_XN: u32 = 1 << 28;
-const fn scb_mpu_rasr_ap(n: u32) -> u32 {(n&7) << 24}
-const fn scb_mpu_rasr_tex(n: u32) -> u32 {(n&7) << 19}
+const fn scb_mpu_rasr_ap(n: u32) -> u32 {
+    (n & 7) << 24
+}
+const fn scb_mpu_rasr_tex(n: u32) -> u32 {
+    (n & 7) << 19
+}
 const SCB_MPU_RASR_C: u32 = 1 << 17;
 const SCB_MPU_RASR_B: u32 = 1 << 16;
 const SCB_MPU_CTRL_ENABLE: u32 = 1 << 0;
-const fn scb_mpu_rasr_size(n: u32) -> u32 {(n&31) << 1}
-const fn scb_mpu_rbar_region(n: u32) -> u32 {n&15}
+const fn scb_mpu_rasr_size(n: u32) -> u32 {
+    (n & 31) << 1
+}
+const fn scb_mpu_rbar_region(n: u32) -> u32 {
+    n & 15
+}
 
 const NOEXEC: u32 = SCB_MPU_RASR_XN;
 const READONLY: u32 = scb_mpu_rasr_ap(7);
@@ -40,7 +48,9 @@ const SIZE_1M: u32 = scb_mpu_rasr_size(19) | SCB_MPU_RASR_ENABLE;
 const SIZE_16M: u32 = scb_mpu_rasr_size(23) | SCB_MPU_RASR_ENABLE;
 //const SIZE_32M: u32 = scb_mpu_rasr_size(24) | SCB_MPU_RASR_ENABLE;
 const SIZE_64M: u32 = scb_mpu_rasr_size(25) | SCB_MPU_RASR_ENABLE;
-const fn region(n: u32) -> u32 {scb_mpu_rbar_region(n) | SCB_MPU_RBAR_VALID}
+const fn region(n: u32) -> u32 {
+    scb_mpu_rbar_region(n) | SCB_MPU_RBAR_VALID
+}
 
 extern "C" {
     fn call();
@@ -70,11 +80,9 @@ pub unsafe fn cache_init() {
 
     ptr::write_volatile(SCB_MPU_CTRL, SCB_MPU_CTRL_ENABLE);
 
-    
     call();
     ptr::write_volatile(SCB_CACHE_ICIALLU, 0);
 
-
     call();
     ptr::write_volatile(SCB_CCR, SCB_CCR_IC | SCB_CCR_DC);
-} 
+}

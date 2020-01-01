@@ -2,10 +2,10 @@
 
 #![no_std]
 
+mod cache;
 mod fault;
 mod fpu;
 mod nvic;
-mod cache;
 
 pub use cortex_m_rt_macros::{entry, exception, interrupt};
 pub use nvic::exception;
@@ -18,7 +18,6 @@ pub use nvic::exception;
 /// other functions that do the same.
 #[no_mangle]
 pub unsafe extern "C" fn _start() -> ! {
-
     nvic::init();
     fpu::init();
     cache::cache_init();
