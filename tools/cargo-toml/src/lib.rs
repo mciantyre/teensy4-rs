@@ -1,4 +1,6 @@
-//! Support for modifying Cargo.toml files
+//! Simple support for reading and modifying Cargo.toml files.
+//!
+//! Used throughout the teensy4-rs developer tooling.
 
 pub use krate::Krate;
 pub use workspace::Workspace;
@@ -13,6 +15,7 @@ mod workspace {
         exclude: Vec<String>,
     }
 
+    /// A `serde` serializable and deserializable definition of a Cargo workspace
     #[derive(serde::Deserialize, serde::Serialize)]
     pub struct Workspace {
         workspace: Table,
@@ -38,7 +41,7 @@ mod krate {
     use std::path::Path;
 
     #[derive(serde::Deserialize, serde::Serialize)]
-    struct WithPath {
+    struct Complex {
         path: String,
     }
 
@@ -46,7 +49,7 @@ mod krate {
     #[serde(untagged)]
     enum Dependency {
         JustVersion(String),
-        WithPath(WithPath),
+        Complex(Complex),
     }
 
     #[derive(serde::Deserialize, serde::Serialize)]
@@ -63,7 +66,7 @@ mod krate {
         pub fn add_dependency<P: AsRef<Path>>(&mut self, name: &str, path: P) {
             self.dependencies.insert(
                 name.to_string(),
-                Dependency::WithPath(WithPath {
+                Dependency::Complex(Complex {
                     path: path.as_ref().display().to_string(),
                 }),
             );

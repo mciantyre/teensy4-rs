@@ -13,8 +13,6 @@ use std::io::{self, Read, Write};
 use std::path::{Path, PathBuf};
 use std::process;
 
-mod toml;
-
 /// The name of the PAC crate into which we will
 /// put subcrates
 static OUTPUT_PAC_NAME: &str = "imxrt1062-pac";
@@ -121,7 +119,7 @@ fn suggest_reexports(crate_names: &[String]) {
 /// is one level up
 fn update_workspace_toml(crate_names: &[String]) {
     static WORKSPACE_CARGO_TOML: &str = "../Cargo.toml";
-    let mut workspace: toml::Workspace = {
+    let mut workspace: cargo_toml::Workspace = {
         let file = fs::read(WORKSPACE_CARGO_TOML).expect("Cannot read workspace Cargo.toml");
         ::toml::de::from_slice(&file).unwrap()
     };
@@ -135,7 +133,7 @@ fn update_workspace_toml(crate_names: &[String]) {
 /// Add the new dependencies into the top-level PAC's Cargo.toml
 fn update_pac_dependencies(output_pac: &Path, crate_names: &[String]) {
     let output_pac_toml = output_pac.join("Cargo.toml");
-    let mut krate: toml::Krate = {
+    let mut krate: cargo_toml::Krate = {
         let file = fs::read(&output_pac_toml).unwrap();
         ::toml::de::from_slice(&file).unwrap()
     };
@@ -173,15 +171,15 @@ fn main() {
         let peripheral_crate_path = output_pac.join(crate_name.clone());
         if !peripheral_crate_path.exists() {
             process::Command::new("cargo")
-            .args(&[
-                "new",
-                "--lib",
-                &format!("{}", peripheral_crate_path.display()),
-                "--vcs",
-                "none",
-            ])
-            .output()
-            .unwrap_or_else(|_| panic!("Cannot create peripheral crate for '{}'", module_name));
+                .args(&[
+                    "new",
+                    "--lib",
+                    &format!("{}", peripheral_crate_path.display()),
+                    "--vcs",
+                    "none",
+                ])
+                .output()
+                .unwrap_or_else(|_| panic!("Cannot create peripheral crate for '{}'", module_name));
             add_deps(&peripheral_crate_path);
         }
         write_lib(&peripheral_crate_path, peripheral_module_src);
