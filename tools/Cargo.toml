@@ -1,5 +1,6 @@
 [workspace]
 members = [
-    "import",
     "cargo-toml",
+    "import",
+    "version",
 ]

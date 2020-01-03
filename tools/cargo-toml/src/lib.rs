@@ -5,6 +5,8 @@
 pub use krate::Krate;
 pub use workspace::Workspace;
 
+type CatchAll = toml::value::Value;
+
 /// Support for Cargo.toml workspaces
 mod workspace {
     use std::path::Path;
@@ -38,11 +40,14 @@ mod workspace {
 /// Support for Cargo.toml crate specs
 mod krate {
     use std::collections::BTreeMap;
-    use std::path::Path;
+    use std::error::Error;
+    use std::fs;
+    use std::path::{Path, PathBuf};
 
     #[derive(serde::Deserialize, serde::Serialize)]
     struct Complex {
         path: String,
+        version: Option<String>,
     }
 
     #[derive(serde::Deserialize, serde::Serialize)]
@@ -53,13 +58,26 @@ mod krate {
     }
 
     #[derive(serde::Deserialize, serde::Serialize)]
-    pub struct Krate {
-        /// Catch-all for the rest of the file
+    struct Package {
+        name: String,
+        version: String,
+        categories: Option<Vec<String>>,
+        keywords: Option<Vec<String>>,
+        description: Option<String>,
+        license: Option<String>,
+        repository: Option<String>,
         #[serde(flatten)]
-        _rest: toml::value::Value,
+        _catch_all: super::CatchAll,
+    }
+
+    #[derive(serde::Deserialize, serde::Serialize)]
+    pub struct Krate {
+        package: Package,
         // https://github.com/alexcrichton/toml-rs/issues/142#issuecomment-279009115
         #[serde(serialize_with = "toml::ser::tables_last")]
         dependencies: BTreeMap<String, Dependency>,
+        #[serde(flatten)]
+        _catch_all: super::CatchAll,
     }
 
     impl Krate {
@@ -68,8 +86,89 @@ mod krate {
                 name.to_string(),
                 Dependency::Complex(Complex {
                     path: path.as_ref().display().to_string(),
+                    version: None,
                 }),
             );
+        }
+
+        pub fn add_versioned_dependency<P: AsRef<Path>, V: ToString>(
+            &mut self,
+            name: &str,
+            path: P,
+            version: V,
+        ) {
+            self.dependencies.insert(
+                name.to_string(),
+                Dependency::Complex(Complex {
+                    path: path.as_ref().display().to_string(),
+                    version: Some(version.to_string()),
+                }),
+            );
+        }
+
+        /// Sets the version for this crate to the supplied version, `ver`
+        pub fn set_version<V: ToString>(&mut self, ver: V) {
+            self.package.version = ver.to_string();
+        }
+
+        pub fn set_categories(&mut self, categories: &[&str]) {
+            self.package.categories =
+                Some(categories.into_iter().map(|s| String::from(*s)).collect());
+        }
+
+        pub fn set_keywords(&mut self, keywords: &[&str]) {
+            self.package.keywords = Some(keywords.into_iter().map(|s| String::from(*s)).collect());
+        }
+
+        pub fn set_license(&mut self, license: &str) {
+            self.package.license = Some(license.to_string());
+        }
+
+        pub fn set_repository(&mut self, repo: &str) {
+            self.package.repository = Some(repo.to_string());
+        }
+
+        pub fn set_description(&mut self, desc: &str) {
+            self.package.description = Some(desc.to_string());
+        }
+
+        /// Returns an iterator that describes the dependencies of the crate
+        pub fn dependencies(&self) -> impl Iterator<Item = &String> {
+            self.dependencies.keys()
+        }
+
+        pub fn update_dependency<P, F>(
+            &mut self,
+            dep: &str,
+            relative_to: P,
+            updater: F,
+        ) -> Result<(), Box<dyn Error>>
+        where
+            P: AsRef<Path>,
+            F: FnOnce(&mut Krate),
+        {
+            let path: PathBuf = match self.dependencies.get(dep) {
+                None => {
+                    return Err(Box::from(format!(
+                        "Dependency '{}' is not a valid dependency!",
+                        dep
+                    )))
+                }
+                Some(Dependency::JustVersion(_)) => {
+                    return Err(Box::from("Cannot find dependency on the local filesystem!"))
+                }
+                Some(Dependency::Complex(Complex { path, .. })) => PathBuf::from(path),
+            };
+            let cargo_toml_path = PathBuf::from(relative_to.as_ref())
+                .join(&path)
+                .join("Cargo.toml");
+            let source = fs::read_to_string(&cargo_toml_path)?;
+            let mut krate = ::toml::from_str(&source)?;
+            updater(&mut krate);
+            self.add_versioned_dependency(&krate.package.name, &path, &krate.package.version);
+            let source = ::toml::to_string_pretty(&krate)?;
+            fs::write(&cargo_toml_path, &source)?;
+            Ok(())
         }
     }
 }
@@ -117,21 +216,9 @@ bar = { path = "path/to/bar" }
         let mut krate: Krate = toml::de::from_str(crate_str).unwrap();
         krate.add_dependency("a_new_dep", "path/to/new/dep");
         let updated_crate = toml::ser::to_string(&krate).unwrap();
-        assert_eq!(
-            updated_crate,
-            r#"[package]
-name = "crate_name"
-version = "1.2.3"
-
-[dependencies]
-foo = "1.23"
-
-[dependencies.a_new_dep]
-path = "path/to/new/dep"
-
-[dependencies.bar]
-path = "path/to/bar"
-"#
-        );
+        assert!(updated_crate.contains("[package]\nname = \"crate_name\"\nversion = \"1.2.3\""));
+        assert!(updated_crate.contains("[dependencies]\nfoo = \"1.23\""));
+        assert!(updated_crate.contains("[dependencies.a_new_dep]\npath = \"path/to/new/dep\""));
+        assert!(updated_crate.contains("[dependencies.bar]\npath = \"path/to/bar\""));
     }
 }
