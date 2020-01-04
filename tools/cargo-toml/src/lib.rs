@@ -113,11 +113,11 @@ mod krate {
 
         pub fn set_categories(&mut self, categories: &[&str]) {
             self.package.categories =
-                Some(categories.into_iter().map(|s| String::from(*s)).collect());
+                Some(categories.iter().map(|s| String::from(*s)).collect());
         }
 
         pub fn set_keywords(&mut self, keywords: &[&str]) {
-            self.package.keywords = Some(keywords.into_iter().map(|s| String::from(*s)).collect());
+            self.package.keywords = Some(keywords.iter().map(|s| String::from(*s)).collect());
         }
 
         pub fn set_license(&mut self, license: &str) {
