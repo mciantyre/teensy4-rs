@@ -2,5 +2,4 @@
 members = [
     "cargo-toml",
     "import",
-    "version",
 ]
