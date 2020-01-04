@@ -1,6 +1,6 @@
 [package]
 name = "imxrt1062-hal"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -23,7 +23,7 @@ keywords = [
 [dependencies]
 cortex-m = "0.6.1"
 embedded-hal = "0.2.3"
-imxrt1062-pac = { version = "0.1.0", path = "../imxrt1062-pac" }
+imxrt1062-pac = { version = "0.2.0", path = "../imxrt1062-pac" }
 nb = "0.1.2"
 void = { version = "1.0.2", default-features = false }
 log = "0.4.8"
