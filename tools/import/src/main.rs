@@ -19,6 +19,8 @@ static OUTPUT_PAC_NAME: &str = "imxrt1062-pac";
 
 /// Add dependencies into the Cargo.toml of the new PAC subcrate
 /// identified by crate_path
+///
+/// TODO this should use the cargo-toml abstractions.
 fn add_deps(crate_path: &Path) {
     /// Dependencies that are added to each PAC subcrate
     static CARGO_TOML_DEPENDENCIES: &str = r#"vcell = "0.1.2"
@@ -138,8 +140,28 @@ fn update_pac_dependencies(output_pac: &Path, crate_names: &[String]) {
         ::toml::de::from_slice(&file).unwrap()
     };
     for crate_name in crate_names {
-        krate.add_dependency(crate_name, crate_name);
+        krate.add_versioned_dependency(crate_name, crate_name, "0.1.0");
     }
+    let new_toml = ::toml::ser::to_string_pretty(&krate).unwrap();
+    fs::write(&output_pac_toml, new_toml).unwrap();
+}
+
+fn add_cargo_contents(output_pac: &Path) {
+    let output_pac_toml = output_pac.join("Cargo.toml");
+    let mut krate: cargo_toml::Krate = {
+        let file = fs::read(&output_pac_toml).unwrap();
+        ::toml::de::from_slice(&file).unwrap()
+    };
+    krate.set_categories(&["embedded", "hardware-support", "no-std"]);
+    krate.set_keywords(&["arm", "svd2rust", "imxrt1062", "cortex-m"]);
+    krate.set_license("MIT OR Apache-2.0");
+    krate.set_repository("https://github.com/mciantyre/teensy4-rs");
+    krate.set_description(
+        r#"An imxrt1062-pac subcrate. See the imxrt1062-pac for more details.
+
+Part of the teensy4-rs project.        
+"#,
+    );
     let new_toml = ::toml::ser::to_string_pretty(&krate).unwrap();
     fs::write(&output_pac_toml, new_toml).unwrap();
 }
@@ -182,6 +204,7 @@ fn main() {
                 .unwrap_or_else(|_| panic!("Cannot create peripheral crate for '{}'", module_name));
             add_deps(&peripheral_crate_path);
         }
+        add_cargo_contents(&peripheral_crate_path);
         write_lib(&peripheral_crate_path, peripheral_module_src);
         copy_contents(&peripheral_crate_path.join("src"), peripheral_dir_src);
         copy_generic_rs(&peripheral_crate_path);
