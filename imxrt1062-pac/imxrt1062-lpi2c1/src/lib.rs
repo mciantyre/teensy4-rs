@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]

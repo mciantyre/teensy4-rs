@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CBCDR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SEMC_CLK_SEL_A {
     #[doc = "0: Periph_clk output will be used as SEMC clock root"]
-    SEMC_CLK_SEL_0,
+    SEMC_CLK_SEL_0 = 0,
     #[doc = "1: SEMC alternative clock will be used as SEMC clock root"]
-    SEMC_CLK_SEL_1,
+    SEMC_CLK_SEL_1 = 1,
 }
 impl From<SEMC_CLK_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: SEMC_CLK_SEL_A) -> Self {
-        match variant {
-            SEMC_CLK_SEL_A::SEMC_CLK_SEL_0 => false,
-            SEMC_CLK_SEL_A::SEMC_CLK_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SEMC_CLK_SEL`"]
@@ -92,17 +89,14 @@ impl<'a> SEMC_CLK_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SEMC_ALT_CLK_SEL_A {
     #[doc = "0: PLL2 PFD2 will be selected as alternative clock for SEMC root clock"]
-    SEMC_ALT_CLK_SEL_0,
+    SEMC_ALT_CLK_SEL_0 = 0,
     #[doc = "1: PLL3 PFD1 will be selected as alternative clock for SEMC root clock"]
-    SEMC_ALT_CLK_SEL_1,
+    SEMC_ALT_CLK_SEL_1 = 1,
 }
 impl From<SEMC_ALT_CLK_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: SEMC_ALT_CLK_SEL_A) -> Self {
-        match variant {
-            SEMC_ALT_CLK_SEL_A::SEMC_ALT_CLK_SEL_0 => false,
-            SEMC_ALT_CLK_SEL_A::SEMC_ALT_CLK_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SEMC_ALT_CLK_SEL`"]
@@ -168,25 +162,21 @@ impl<'a> SEMC_ALT_CLK_SEL_W<'a> {
 }
 #[doc = "Divider for ipg podf.\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum IPG_PODF_A {
     #[doc = "0: divide by 1"]
-    IPG_PODF_0,
+    IPG_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    IPG_PODF_1,
+    IPG_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    IPG_PODF_2,
+    IPG_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    IPG_PODF_3,
+    IPG_PODF_3 = 3,
 }
 impl From<IPG_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: IPG_PODF_A) -> Self {
-        match variant {
-            IPG_PODF_A::IPG_PODF_0 => 0,
-            IPG_PODF_A::IPG_PODF_1 => 1,
-            IPG_PODF_A::IPG_PODF_2 => 2,
-            IPG_PODF_A::IPG_PODF_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `IPG_PODF`"]
@@ -265,37 +255,29 @@ impl<'a> IPG_PODF_W<'a> {
 }
 #[doc = "Divider for AHB PODF\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum AHB_PODF_A {
     #[doc = "0: divide by 1"]
-    AHB_PODF_0,
+    AHB_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    AHB_PODF_1,
+    AHB_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    AHB_PODF_2,
+    AHB_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    AHB_PODF_3,
+    AHB_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    AHB_PODF_4,
+    AHB_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    AHB_PODF_5,
+    AHB_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    AHB_PODF_6,
+    AHB_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    AHB_PODF_7,
+    AHB_PODF_7 = 7,
 }
 impl From<AHB_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: AHB_PODF_A) -> Self {
-        match variant {
-            AHB_PODF_A::AHB_PODF_0 => 0,
-            AHB_PODF_A::AHB_PODF_1 => 1,
-            AHB_PODF_A::AHB_PODF_2 => 2,
-            AHB_PODF_A::AHB_PODF_3 => 3,
-            AHB_PODF_A::AHB_PODF_4 => 4,
-            AHB_PODF_A::AHB_PODF_5 => 5,
-            AHB_PODF_A::AHB_PODF_6 => 6,
-            AHB_PODF_A::AHB_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `AHB_PODF`"]
@@ -418,37 +400,29 @@ impl<'a> AHB_PODF_W<'a> {
 }
 #[doc = "Post divider for SEMC clock\n\nValue on reset: 2"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SEMC_PODF_A {
     #[doc = "0: divide by 1"]
-    SEMC_PODF_0,
+    SEMC_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    SEMC_PODF_1,
+    SEMC_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    SEMC_PODF_2,
+    SEMC_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    SEMC_PODF_3,
+    SEMC_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    SEMC_PODF_4,
+    SEMC_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    SEMC_PODF_5,
+    SEMC_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    SEMC_PODF_6,
+    SEMC_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    SEMC_PODF_7,
+    SEMC_PODF_7 = 7,
 }
 impl From<SEMC_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: SEMC_PODF_A) -> Self {
-        match variant {
-            SEMC_PODF_A::SEMC_PODF_0 => 0,
-            SEMC_PODF_A::SEMC_PODF_1 => 1,
-            SEMC_PODF_A::SEMC_PODF_2 => 2,
-            SEMC_PODF_A::SEMC_PODF_3 => 3,
-            SEMC_PODF_A::SEMC_PODF_4 => 4,
-            SEMC_PODF_A::SEMC_PODF_5 => 5,
-            SEMC_PODF_A::SEMC_PODF_6 => 6,
-            SEMC_PODF_A::SEMC_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SEMC_PODF`"]
@@ -573,17 +547,14 @@ impl<'a> SEMC_PODF_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PERIPH_CLK_SEL_A {
     #[doc = "0: derive clock from pre_periph_clk_sel"]
-    PERIPH_CLK_SEL_0,
+    PERIPH_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from periph_clk2_clk_divided"]
-    PERIPH_CLK_SEL_1,
+    PERIPH_CLK_SEL_1 = 1,
 }
 impl From<PERIPH_CLK_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: PERIPH_CLK_SEL_A) -> Self {
-        match variant {
-            PERIPH_CLK_SEL_A::PERIPH_CLK_SEL_0 => false,
-            PERIPH_CLK_SEL_A::PERIPH_CLK_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PERIPH_CLK_SEL`"]
@@ -649,37 +620,29 @@ impl<'a> PERIPH_CLK_SEL_W<'a> {
 }
 #[doc = "Divider for periph_clk2_podf.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PERIPH_CLK2_PODF_A {
     #[doc = "0: divide by 1"]
-    PERIPH_CLK2_PODF_0,
+    PERIPH_CLK2_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    PERIPH_CLK2_PODF_1,
+    PERIPH_CLK2_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    PERIPH_CLK2_PODF_2,
+    PERIPH_CLK2_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    PERIPH_CLK2_PODF_3,
+    PERIPH_CLK2_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    PERIPH_CLK2_PODF_4,
+    PERIPH_CLK2_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    PERIPH_CLK2_PODF_5,
+    PERIPH_CLK2_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    PERIPH_CLK2_PODF_6,
+    PERIPH_CLK2_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    PERIPH_CLK2_PODF_7,
+    PERIPH_CLK2_PODF_7 = 7,
 }
 impl From<PERIPH_CLK2_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: PERIPH_CLK2_PODF_A) -> Self {
-        match variant {
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_0 => 0,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_1 => 1,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_2 => 2,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_3 => 3,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_4 => 4,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_5 => 5,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_6 => 6,
-            PERIPH_CLK2_PODF_A::PERIPH_CLK2_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PERIPH_CLK2_PODF`"]

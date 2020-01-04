@@ -12,22 +12,19 @@ impl crate::ResetValue for super::PR {
 }
 #[doc = "Prescaler bits\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u16)]
 pub enum PRESCALER_A {
     #[doc = "0: Divide by 1"]
-    PRESCALER_0,
+    PRESCALER_0 = 0,
     #[doc = "1: Divide by 2"]
-    PRESCALER_1,
+    PRESCALER_1 = 1,
     #[doc = "4095: Divide by 4096"]
-    PRESCALER_4095,
+    PRESCALER_4095 = 4095,
 }
 impl From<PRESCALER_A> for u16 {
     #[inline(always)]
     fn from(variant: PRESCALER_A) -> Self {
-        match variant {
-            PRESCALER_A::PRESCALER_0 => 0,
-            PRESCALER_A::PRESCALER_1 => 1,
-            PRESCALER_A::PRESCALER_4095 => 4095,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PRESCALER`"]
@@ -94,22 +91,19 @@ impl<'a> PRESCALER_W<'a> {
 }
 #[doc = "Prescaler bits\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PRESCALER24M_A {
     #[doc = "0: Divide by 1"]
-    PRESCALER24M_0,
+    PRESCALER24M_0 = 0,
     #[doc = "1: Divide by 2"]
-    PRESCALER24M_1,
+    PRESCALER24M_1 = 1,
     #[doc = "15: Divide by 16"]
-    PRESCALER24M_15,
+    PRESCALER24M_15 = 15,
 }
 impl From<PRESCALER24M_A> for u8 {
     #[inline(always)]
     fn from(variant: PRESCALER24M_A) -> Self {
-        match variant {
-            PRESCALER24M_A::PRESCALER24M_0 => 0,
-            PRESCALER24M_A::PRESCALER24M_1 => 1,
-            PRESCALER24M_A::PRESCALER24M_15 => 15,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PRESCALER24M`"]

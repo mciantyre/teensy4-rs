@@ -12,28 +12,23 @@ impl crate::ResetValue for super::CCM_PMIC_READY_SELECT_INPUT {
 }
 #[doc = "Selecting Pads Involved in Daisy Chain.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_SD_B1_03 for Mode: ALT6"]
-    GPIO_SD_B1_03_ALT6,
+    GPIO_SD_B1_03_ALT6 = 0,
     #[doc = "1: Selecting Pad: GPIO_AD_B0_12 for Mode: ALT1"]
-    GPIO_AD_B0_12_ALT1,
+    GPIO_AD_B0_12_ALT1 = 1,
     #[doc = "2: Selecting Pad: GPIO_AD_B1_01 for Mode: ALT4"]
-    GPIO_AD_B1_01_ALT4,
+    GPIO_AD_B1_01_ALT4 = 2,
     #[doc = "3: Selecting Pad: GPIO_AD_B1_08 for Mode: ALT3"]
-    GPIO_AD_B1_08_ALT3,
+    GPIO_AD_B1_08_ALT3 = 3,
     #[doc = "4: Selecting Pad: GPIO_EMC_32 for Mode: ALT3"]
-    GPIO_EMC_32_ALT3,
+    GPIO_EMC_32_ALT3 = 4,
 }
 impl From<DAISY_A> for u8 {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_SD_B1_03_ALT6 => 0,
-            DAISY_A::GPIO_AD_B0_12_ALT1 => 1,
-            DAISY_A::GPIO_AD_B1_01_ALT4 => 2,
-            DAISY_A::GPIO_AD_B1_08_ALT3 => 3,
-            DAISY_A::GPIO_EMC_32_ALT3 => 4,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `DAISY`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR16 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum INIT_ITCM_EN_A {
     #[doc = "0: ITCM is disabled"]
-    INIT_ITCM_EN_0,
+    INIT_ITCM_EN_0 = 0,
     #[doc = "1: ITCM is enabled"]
-    INIT_ITCM_EN_1,
+    INIT_ITCM_EN_1 = 1,
 }
 impl From<INIT_ITCM_EN_A> for bool {
     #[inline(always)]
     fn from(variant: INIT_ITCM_EN_A) -> Self {
-        match variant {
-            INIT_ITCM_EN_A::INIT_ITCM_EN_0 => false,
-            INIT_ITCM_EN_A::INIT_ITCM_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `INIT_ITCM_EN`"]
@@ -92,17 +89,14 @@ impl<'a> INIT_ITCM_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum INIT_DTCM_EN_A {
     #[doc = "0: DTCM is disabled"]
-    INIT_DTCM_EN_0,
+    INIT_DTCM_EN_0 = 0,
     #[doc = "1: DTCM is enabled"]
-    INIT_DTCM_EN_1,
+    INIT_DTCM_EN_1 = 1,
 }
 impl From<INIT_DTCM_EN_A> for bool {
     #[inline(always)]
     fn from(variant: INIT_DTCM_EN_A) -> Self {
-        match variant {
-            INIT_DTCM_EN_A::INIT_DTCM_EN_0 => false,
-            INIT_DTCM_EN_A::INIT_DTCM_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `INIT_DTCM_EN`"]
@@ -170,17 +164,14 @@ impl<'a> INIT_DTCM_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXRAM_BANK_CFG_SEL_A {
     #[doc = "0: use fuse value to config"]
-    FLEXRAM_BANK_CFG_SEL_0,
+    FLEXRAM_BANK_CFG_SEL_0 = 0,
     #[doc = "1: use FLEXRAM_BANK_CFG to config"]
-    FLEXRAM_BANK_CFG_SEL_1,
+    FLEXRAM_BANK_CFG_SEL_1 = 1,
 }
 impl From<FLEXRAM_BANK_CFG_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXRAM_BANK_CFG_SEL_A) -> Self {
-        match variant {
-            FLEXRAM_BANK_CFG_SEL_A::FLEXRAM_BANK_CFG_SEL_0 => false,
-            FLEXRAM_BANK_CFG_SEL_A::FLEXRAM_BANK_CFG_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXRAM_BANK_CFG_SEL`"]

@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -79,7 +80,7 @@ pub struct RegisterBlock {
     #[doc = "0x88 - GPR34 General Purpose Register"]
     pub gpr34: GPR34,
 }
-#[doc = "GPR0 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr0](gpr0) module"]
+#[doc = "GPR0 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr0](gpr0) module"]
 pub type GPR0 = crate::Reg<u32, _GPR0>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -88,7 +89,7 @@ pub struct _GPR0;
 impl crate::Readable for GPR0 {}
 #[doc = "GPR0 General Purpose Register"]
 pub mod gpr0;
-#[doc = "GPR1 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr1](gpr1) module"]
+#[doc = "GPR1 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr1](gpr1) module"]
 pub type GPR1 = crate::Reg<u32, _GPR1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -99,7 +100,7 @@ impl crate::Readable for GPR1 {}
 impl crate::Writable for GPR1 {}
 #[doc = "GPR1 General Purpose Register"]
 pub mod gpr1;
-#[doc = "GPR2 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr2](gpr2) module"]
+#[doc = "GPR2 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr2](gpr2) module"]
 pub type GPR2 = crate::Reg<u32, _GPR2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -110,7 +111,7 @@ impl crate::Readable for GPR2 {}
 impl crate::Writable for GPR2 {}
 #[doc = "GPR2 General Purpose Register"]
 pub mod gpr2;
-#[doc = "GPR3 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr3](gpr3) module"]
+#[doc = "GPR3 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr3](gpr3) module"]
 pub type GPR3 = crate::Reg<u32, _GPR3>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -121,7 +122,7 @@ impl crate::Readable for GPR3 {}
 impl crate::Writable for GPR3 {}
 #[doc = "GPR3 General Purpose Register"]
 pub mod gpr3;
-#[doc = "GPR4 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr4](gpr4) module"]
+#[doc = "GPR4 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr4](gpr4) module"]
 pub type GPR4 = crate::Reg<u32, _GPR4>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -132,7 +133,7 @@ impl crate::Readable for GPR4 {}
 impl crate::Writable for GPR4 {}
 #[doc = "GPR4 General Purpose Register"]
 pub mod gpr4;
-#[doc = "GPR5 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr5](gpr5) module"]
+#[doc = "GPR5 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr5](gpr5) module"]
 pub type GPR5 = crate::Reg<u32, _GPR5>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -143,7 +144,7 @@ impl crate::Readable for GPR5 {}
 impl crate::Writable for GPR5 {}
 #[doc = "GPR5 General Purpose Register"]
 pub mod gpr5;
-#[doc = "GPR6 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr6](gpr6) module"]
+#[doc = "GPR6 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr6](gpr6) module"]
 pub type GPR6 = crate::Reg<u32, _GPR6>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -154,7 +155,7 @@ impl crate::Readable for GPR6 {}
 impl crate::Writable for GPR6 {}
 #[doc = "GPR6 General Purpose Register"]
 pub mod gpr6;
-#[doc = "GPR7 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr7](gpr7) module"]
+#[doc = "GPR7 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr7](gpr7) module"]
 pub type GPR7 = crate::Reg<u32, _GPR7>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -165,7 +166,7 @@ impl crate::Readable for GPR7 {}
 impl crate::Writable for GPR7 {}
 #[doc = "GPR7 General Purpose Register"]
 pub mod gpr7;
-#[doc = "GPR8 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr8](gpr8) module"]
+#[doc = "GPR8 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr8](gpr8) module"]
 pub type GPR8 = crate::Reg<u32, _GPR8>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -176,7 +177,7 @@ impl crate::Readable for GPR8 {}
 impl crate::Writable for GPR8 {}
 #[doc = "GPR8 General Purpose Register"]
 pub mod gpr8;
-#[doc = "GPR9 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr9](gpr9) module"]
+#[doc = "GPR9 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr9](gpr9) module"]
 pub type GPR9 = crate::Reg<u32, _GPR9>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -185,7 +186,7 @@ pub struct _GPR9;
 impl crate::Readable for GPR9 {}
 #[doc = "GPR9 General Purpose Register"]
 pub mod gpr9;
-#[doc = "GPR10 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr10](gpr10) module"]
+#[doc = "GPR10 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr10](gpr10) module"]
 pub type GPR10 = crate::Reg<u32, _GPR10>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -196,7 +197,7 @@ impl crate::Readable for GPR10 {}
 impl crate::Writable for GPR10 {}
 #[doc = "GPR10 General Purpose Register"]
 pub mod gpr10;
-#[doc = "GPR11 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr11](gpr11) module"]
+#[doc = "GPR11 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr11](gpr11) module"]
 pub type GPR11 = crate::Reg<u32, _GPR11>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -207,7 +208,7 @@ impl crate::Readable for GPR11 {}
 impl crate::Writable for GPR11 {}
 #[doc = "GPR11 General Purpose Register"]
 pub mod gpr11;
-#[doc = "GPR12 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr12](gpr12) module"]
+#[doc = "GPR12 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr12](gpr12) module"]
 pub type GPR12 = crate::Reg<u32, _GPR12>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -218,7 +219,7 @@ impl crate::Readable for GPR12 {}
 impl crate::Writable for GPR12 {}
 #[doc = "GPR12 General Purpose Register"]
 pub mod gpr12;
-#[doc = "GPR13 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr13](gpr13) module"]
+#[doc = "GPR13 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr13](gpr13) module"]
 pub type GPR13 = crate::Reg<u32, _GPR13>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -229,7 +230,7 @@ impl crate::Readable for GPR13 {}
 impl crate::Writable for GPR13 {}
 #[doc = "GPR13 General Purpose Register"]
 pub mod gpr13;
-#[doc = "GPR14 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr14](gpr14) module"]
+#[doc = "GPR14 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr14](gpr14) module"]
 pub type GPR14 = crate::Reg<u32, _GPR14>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -240,7 +241,7 @@ impl crate::Readable for GPR14 {}
 impl crate::Writable for GPR14 {}
 #[doc = "GPR14 General Purpose Register"]
 pub mod gpr14;
-#[doc = "GPR15 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr15](gpr15) module"]
+#[doc = "GPR15 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr15](gpr15) module"]
 pub type GPR15 = crate::Reg<u32, _GPR15>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -249,7 +250,7 @@ pub struct _GPR15;
 impl crate::Readable for GPR15 {}
 #[doc = "GPR15 General Purpose Register"]
 pub mod gpr15;
-#[doc = "GPR16 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr16](gpr16) module"]
+#[doc = "GPR16 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr16](gpr16) module"]
 pub type GPR16 = crate::Reg<u32, _GPR16>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -260,7 +261,7 @@ impl crate::Readable for GPR16 {}
 impl crate::Writable for GPR16 {}
 #[doc = "GPR16 General Purpose Register"]
 pub mod gpr16;
-#[doc = "GPR17 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr17](gpr17) module"]
+#[doc = "GPR17 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr17](gpr17) module"]
 pub type GPR17 = crate::Reg<u32, _GPR17>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -271,7 +272,7 @@ impl crate::Readable for GPR17 {}
 impl crate::Writable for GPR17 {}
 #[doc = "GPR17 General Purpose Register"]
 pub mod gpr17;
-#[doc = "GPR18 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr18](gpr18) module"]
+#[doc = "GPR18 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr18](gpr18) module"]
 pub type GPR18 = crate::Reg<u32, _GPR18>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -282,7 +283,7 @@ impl crate::Readable for GPR18 {}
 impl crate::Writable for GPR18 {}
 #[doc = "GPR18 General Purpose Register"]
 pub mod gpr18;
-#[doc = "GPR19 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr19](gpr19) module"]
+#[doc = "GPR19 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr19](gpr19) module"]
 pub type GPR19 = crate::Reg<u32, _GPR19>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -293,7 +294,7 @@ impl crate::Readable for GPR19 {}
 impl crate::Writable for GPR19 {}
 #[doc = "GPR19 General Purpose Register"]
 pub mod gpr19;
-#[doc = "GPR20 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr20](gpr20) module"]
+#[doc = "GPR20 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr20](gpr20) module"]
 pub type GPR20 = crate::Reg<u32, _GPR20>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -304,7 +305,7 @@ impl crate::Readable for GPR20 {}
 impl crate::Writable for GPR20 {}
 #[doc = "GPR20 General Purpose Register"]
 pub mod gpr20;
-#[doc = "GPR21 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr21](gpr21) module"]
+#[doc = "GPR21 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr21](gpr21) module"]
 pub type GPR21 = crate::Reg<u32, _GPR21>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -315,7 +316,7 @@ impl crate::Readable for GPR21 {}
 impl crate::Writable for GPR21 {}
 #[doc = "GPR21 General Purpose Register"]
 pub mod gpr21;
-#[doc = "GPR22 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr22](gpr22) module"]
+#[doc = "GPR22 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr22](gpr22) module"]
 pub type GPR22 = crate::Reg<u32, _GPR22>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -326,7 +327,7 @@ impl crate::Readable for GPR22 {}
 impl crate::Writable for GPR22 {}
 #[doc = "GPR22 General Purpose Register"]
 pub mod gpr22;
-#[doc = "GPR23 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr23](gpr23) module"]
+#[doc = "GPR23 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr23](gpr23) module"]
 pub type GPR23 = crate::Reg<u32, _GPR23>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -337,7 +338,7 @@ impl crate::Readable for GPR23 {}
 impl crate::Writable for GPR23 {}
 #[doc = "GPR23 General Purpose Register"]
 pub mod gpr23;
-#[doc = "GPR24 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr24](gpr24) module"]
+#[doc = "GPR24 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr24](gpr24) module"]
 pub type GPR24 = crate::Reg<u32, _GPR24>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -348,7 +349,7 @@ impl crate::Readable for GPR24 {}
 impl crate::Writable for GPR24 {}
 #[doc = "GPR24 General Purpose Register"]
 pub mod gpr24;
-#[doc = "GPR25 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr25](gpr25) module"]
+#[doc = "GPR25 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr25](gpr25) module"]
 pub type GPR25 = crate::Reg<u32, _GPR25>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -359,7 +360,7 @@ impl crate::Readable for GPR25 {}
 impl crate::Writable for GPR25 {}
 #[doc = "GPR25 General Purpose Register"]
 pub mod gpr25;
-#[doc = "GPR26 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr26](gpr26) module"]
+#[doc = "GPR26 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr26](gpr26) module"]
 pub type GPR26 = crate::Reg<u32, _GPR26>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -370,7 +371,7 @@ impl crate::Readable for GPR26 {}
 impl crate::Writable for GPR26 {}
 #[doc = "GPR26 General Purpose Register"]
 pub mod gpr26;
-#[doc = "GPR27 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr27](gpr27) module"]
+#[doc = "GPR27 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr27](gpr27) module"]
 pub type GPR27 = crate::Reg<u32, _GPR27>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -381,7 +382,7 @@ impl crate::Readable for GPR27 {}
 impl crate::Writable for GPR27 {}
 #[doc = "GPR27 General Purpose Register"]
 pub mod gpr27;
-#[doc = "GPR28 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr28](gpr28) module"]
+#[doc = "GPR28 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr28](gpr28) module"]
 pub type GPR28 = crate::Reg<u32, _GPR28>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -392,7 +393,7 @@ impl crate::Readable for GPR28 {}
 impl crate::Writable for GPR28 {}
 #[doc = "GPR28 General Purpose Register"]
 pub mod gpr28;
-#[doc = "GPR29 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr29](gpr29) module"]
+#[doc = "GPR29 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr29](gpr29) module"]
 pub type GPR29 = crate::Reg<u32, _GPR29>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -403,7 +404,7 @@ impl crate::Readable for GPR29 {}
 impl crate::Writable for GPR29 {}
 #[doc = "GPR29 General Purpose Register"]
 pub mod gpr29;
-#[doc = "GPR30 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr30](gpr30) module"]
+#[doc = "GPR30 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr30](gpr30) module"]
 pub type GPR30 = crate::Reg<u32, _GPR30>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -414,7 +415,7 @@ impl crate::Readable for GPR30 {}
 impl crate::Writable for GPR30 {}
 #[doc = "GPR30 General Purpose Register"]
 pub mod gpr30;
-#[doc = "GPR31 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr31](gpr31) module"]
+#[doc = "GPR31 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr31](gpr31) module"]
 pub type GPR31 = crate::Reg<u32, _GPR31>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -425,7 +426,7 @@ impl crate::Readable for GPR31 {}
 impl crate::Writable for GPR31 {}
 #[doc = "GPR31 General Purpose Register"]
 pub mod gpr31;
-#[doc = "GPR32 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr32](gpr32) module"]
+#[doc = "GPR32 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr32](gpr32) module"]
 pub type GPR32 = crate::Reg<u32, _GPR32>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -436,7 +437,7 @@ impl crate::Readable for GPR32 {}
 impl crate::Writable for GPR32 {}
 #[doc = "GPR32 General Purpose Register"]
 pub mod gpr32;
-#[doc = "GPR33 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr33](gpr33) module"]
+#[doc = "GPR33 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr33](gpr33) module"]
 pub type GPR33 = crate::Reg<u32, _GPR33>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -447,7 +448,7 @@ impl crate::Readable for GPR33 {}
 impl crate::Writable for GPR33 {}
 #[doc = "GPR33 General Purpose Register"]
 pub mod gpr33;
-#[doc = "GPR34 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [gpr34](gpr34) module"]
+#[doc = "GPR34 General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [gpr34](gpr34) module"]
 pub type GPR34 = crate::Reg<u32, _GPR34>;
 #[allow(missing_docs)]
 #[doc(hidden)]

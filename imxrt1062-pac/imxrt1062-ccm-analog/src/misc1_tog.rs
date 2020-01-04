@@ -12,61 +12,45 @@ impl crate::ResetValue for super::MISC1_TOG {
 }
 #[doc = "This field selects the clk to be routed to anaclk1/1b.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LVDS1_CLK_SEL_A {
     #[doc = "0: Arm PLL"]
-    ARM_PLL,
+    ARM_PLL = 0,
     #[doc = "1: System PLL"]
-    SYS_PLL,
+    SYS_PLL = 1,
     #[doc = "2: ref_pfd4_clk == pll2_pfd0_clk"]
-    PFD4,
+    PFD4 = 2,
     #[doc = "3: ref_pfd5_clk == pll2_pfd1_clk"]
-    PFD5,
+    PFD5 = 3,
     #[doc = "4: ref_pfd6_clk == pll2_pfd2_clk"]
-    PFD6,
+    PFD6 = 4,
     #[doc = "5: ref_pfd7_clk == pll2_pfd3_clk"]
-    PFD7,
+    PFD7 = 5,
     #[doc = "6: Audio PLL"]
-    AUDIO_PLL,
+    AUDIO_PLL = 6,
     #[doc = "7: Video PLL"]
-    VIDEO_PLL,
+    VIDEO_PLL = 7,
     #[doc = "9: ethernet ref clock (ENET_PLL)"]
-    ETHERNET_REF,
+    ETHERNET_REF = 9,
     #[doc = "12: USB1 PLL clock"]
-    USB1_PLL,
+    USB1_PLL = 12,
     #[doc = "13: USB2 PLL clock"]
-    USB2_PLL,
+    USB2_PLL = 13,
     #[doc = "14: ref_pfd0_clk == pll3_pfd0_clk"]
-    PFD0,
+    PFD0 = 14,
     #[doc = "15: ref_pfd1_clk == pll3_pfd1_clk"]
-    PFD1,
+    PFD1 = 15,
     #[doc = "16: ref_pfd2_clk == pll3_pfd2_clk"]
-    PFD2,
+    PFD2 = 16,
     #[doc = "17: ref_pfd3_clk == pll3_pfd3_clk"]
-    PFD3,
+    PFD3 = 17,
     #[doc = "18: xtal (24M)"]
-    XTAL,
+    XTAL = 18,
 }
 impl From<LVDS1_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: LVDS1_CLK_SEL_A) -> Self {
-        match variant {
-            LVDS1_CLK_SEL_A::ARM_PLL => 0,
-            LVDS1_CLK_SEL_A::SYS_PLL => 1,
-            LVDS1_CLK_SEL_A::PFD4 => 2,
-            LVDS1_CLK_SEL_A::PFD5 => 3,
-            LVDS1_CLK_SEL_A::PFD6 => 4,
-            LVDS1_CLK_SEL_A::PFD7 => 5,
-            LVDS1_CLK_SEL_A::AUDIO_PLL => 6,
-            LVDS1_CLK_SEL_A::VIDEO_PLL => 7,
-            LVDS1_CLK_SEL_A::ETHERNET_REF => 9,
-            LVDS1_CLK_SEL_A::USB1_PLL => 12,
-            LVDS1_CLK_SEL_A::USB2_PLL => 13,
-            LVDS1_CLK_SEL_A::PFD0 => 14,
-            LVDS1_CLK_SEL_A::PFD1 => 15,
-            LVDS1_CLK_SEL_A::PFD2 => 16,
-            LVDS1_CLK_SEL_A::PFD3 => 17,
-            LVDS1_CLK_SEL_A::XTAL => 18,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LVDS1_CLK_SEL`"]

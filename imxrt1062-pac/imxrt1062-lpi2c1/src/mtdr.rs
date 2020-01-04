@@ -28,19 +28,23 @@ impl<'a> DATA_W<'a> {
 pub enum CMD_AW {
     #[doc = "0: Transmit DATA\\[7:0\\]"]
     CMD_0 = 0,
-    #[doc = "1: Receive (DATA\\[7:0\\] + 1) bytes"]
+    #[doc = "1: Receive (DATA\\[7:0\\]
++ 1) bytes"]
     CMD_1 = 1,
     #[doc = "2: Generate STOP condition"]
     CMD_2 = 2,
-    #[doc = "3: Receive and discard (DATA\\[7:0\\] + 1) bytes"]
+    #[doc = "3: Receive and discard (DATA\\[7:0\\]
++ 1) bytes"]
     CMD_3 = 3,
     #[doc = "4: Generate (repeated) START and transmit address in DATA\\[7:0\\]"]
     CMD_4 = 4,
     #[doc = "5: Generate (repeated) START and transmit address in DATA\\[7:0\\]. This transfer expects a NACK to be returned."]
     CMD_5 = 5,
-    #[doc = "6: Generate (repeated) START and transmit address in DATA\\[7:0\\] using high speed mode"]
+    #[doc = "6: Generate (repeated) START and transmit address in DATA\\[7:0\\]
+using high speed mode"]
     CMD_6 = 6,
-    #[doc = "7: Generate (repeated) START and transmit address in DATA\\[7:0\\] using high speed mode. This transfer expects a NACK to be returned."]
+    #[doc = "7: Generate (repeated) START and transmit address in DATA\\[7:0\\]
+using high speed mode. This transfer expects a NACK to be returned."]
     CMD_7 = 7,
 }
 impl From<CMD_AW> for u8 {
@@ -66,7 +70,8 @@ impl<'a> CMD_W<'a> {
     pub fn cmd_0(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_0)
     }
-    #[doc = "Receive (DATA\\[7:0\\] + 1) bytes"]
+    #[doc = "Receive (DATA\\[7:0\\]
++ 1) bytes"]
     #[inline(always)]
     pub fn cmd_1(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_1)
@@ -76,7 +81,8 @@ impl<'a> CMD_W<'a> {
     pub fn cmd_2(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_2)
     }
-    #[doc = "Receive and discard (DATA\\[7:0\\] + 1) bytes"]
+    #[doc = "Receive and discard (DATA\\[7:0\\]
++ 1) bytes"]
     #[inline(always)]
     pub fn cmd_3(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_3)
@@ -91,12 +97,14 @@ impl<'a> CMD_W<'a> {
     pub fn cmd_5(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_5)
     }
-    #[doc = "Generate (repeated) START and transmit address in DATA\\[7:0\\] using high speed mode"]
+    #[doc = "Generate (repeated) START and transmit address in DATA\\[7:0\\]
+using high speed mode"]
     #[inline(always)]
     pub fn cmd_6(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_6)
     }
-    #[doc = "Generate (repeated) START and transmit address in DATA\\[7:0\\] using high speed mode. This transfer expects a NACK to be returned."]
+    #[doc = "Generate (repeated) START and transmit address in DATA\\[7:0\\]
+using high speed mode. This transfer expects a NACK to be returned."]
     #[inline(always)]
     pub fn cmd_7(self) -> &'a mut W {
         self.variant(CMD_AW::CMD_7)

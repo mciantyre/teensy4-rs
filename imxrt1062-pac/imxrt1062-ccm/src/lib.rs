@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -71,7 +72,7 @@ pub struct RegisterBlock {
     #[doc = "0x88 - CCM Module Enable Overide Register"]
     pub cmeor: CMEOR,
 }
-#[doc = "CCM Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccr](ccr) module"]
+#[doc = "CCM Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccr](ccr) module"]
 pub type CCR = crate::Reg<u32, _CCR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -82,7 +83,7 @@ impl crate::Readable for CCR {}
 impl crate::Writable for CCR {}
 #[doc = "CCM Control Register"]
 pub mod ccr;
-#[doc = "CCM Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [csr](csr) module"]
+#[doc = "CCM Status Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [csr](csr) module"]
 pub type CSR = crate::Reg<u32, _CSR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -91,7 +92,7 @@ pub struct _CSR;
 impl crate::Readable for CSR {}
 #[doc = "CCM Status Register"]
 pub mod csr;
-#[doc = "CCM Clock Switcher Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccsr](ccsr) module"]
+#[doc = "CCM Clock Switcher Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccsr](ccsr) module"]
 pub type CCSR = crate::Reg<u32, _CCSR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -102,7 +103,7 @@ impl crate::Readable for CCSR {}
 impl crate::Writable for CCSR {}
 #[doc = "CCM Clock Switcher Register"]
 pub mod ccsr;
-#[doc = "CCM Arm Clock Root Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cacrr](cacrr) module"]
+#[doc = "CCM Arm Clock Root Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cacrr](cacrr) module"]
 pub type CACRR = crate::Reg<u32, _CACRR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -113,7 +114,7 @@ impl crate::Readable for CACRR {}
 impl crate::Writable for CACRR {}
 #[doc = "CCM Arm Clock Root Register"]
 pub mod cacrr;
-#[doc = "CCM Bus Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cbcdr](cbcdr) module"]
+#[doc = "CCM Bus Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cbcdr](cbcdr) module"]
 pub type CBCDR = crate::Reg<u32, _CBCDR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -124,7 +125,7 @@ impl crate::Readable for CBCDR {}
 impl crate::Writable for CBCDR {}
 #[doc = "CCM Bus Clock Divider Register"]
 pub mod cbcdr;
-#[doc = "CCM Bus Clock Multiplexer Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cbcmr](cbcmr) module"]
+#[doc = "CCM Bus Clock Multiplexer Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cbcmr](cbcmr) module"]
 pub type CBCMR = crate::Reg<u32, _CBCMR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -135,7 +136,7 @@ impl crate::Readable for CBCMR {}
 impl crate::Writable for CBCMR {}
 #[doc = "CCM Bus Clock Multiplexer Register"]
 pub mod cbcmr;
-#[doc = "CCM Serial Clock Multiplexer Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cscmr1](cscmr1) module"]
+#[doc = "CCM Serial Clock Multiplexer Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cscmr1](cscmr1) module"]
 pub type CSCMR1 = crate::Reg<u32, _CSCMR1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -146,7 +147,7 @@ impl crate::Readable for CSCMR1 {}
 impl crate::Writable for CSCMR1 {}
 #[doc = "CCM Serial Clock Multiplexer Register 1"]
 pub mod cscmr1;
-#[doc = "CCM Serial Clock Multiplexer Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cscmr2](cscmr2) module"]
+#[doc = "CCM Serial Clock Multiplexer Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cscmr2](cscmr2) module"]
 pub type CSCMR2 = crate::Reg<u32, _CSCMR2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -157,7 +158,7 @@ impl crate::Readable for CSCMR2 {}
 impl crate::Writable for CSCMR2 {}
 #[doc = "CCM Serial Clock Multiplexer Register 2"]
 pub mod cscmr2;
-#[doc = "CCM Serial Clock Divider Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cscdr1](cscdr1) module"]
+#[doc = "CCM Serial Clock Divider Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cscdr1](cscdr1) module"]
 pub type CSCDR1 = crate::Reg<u32, _CSCDR1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -168,7 +169,7 @@ impl crate::Readable for CSCDR1 {}
 impl crate::Writable for CSCDR1 {}
 #[doc = "CCM Serial Clock Divider Register 1"]
 pub mod cscdr1;
-#[doc = "CCM Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cs1cdr](cs1cdr) module"]
+#[doc = "CCM Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cs1cdr](cs1cdr) module"]
 pub type CS1CDR = crate::Reg<u32, _CS1CDR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -179,7 +180,7 @@ impl crate::Readable for CS1CDR {}
 impl crate::Writable for CS1CDR {}
 #[doc = "CCM Clock Divider Register"]
 pub mod cs1cdr;
-#[doc = "CCM Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cs2cdr](cs2cdr) module"]
+#[doc = "CCM Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cs2cdr](cs2cdr) module"]
 pub type CS2CDR = crate::Reg<u32, _CS2CDR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -190,7 +191,7 @@ impl crate::Readable for CS2CDR {}
 impl crate::Writable for CS2CDR {}
 #[doc = "CCM Clock Divider Register"]
 pub mod cs2cdr;
-#[doc = "CCM D1 Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cdcdr](cdcdr) module"]
+#[doc = "CCM D1 Clock Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cdcdr](cdcdr) module"]
 pub type CDCDR = crate::Reg<u32, _CDCDR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -201,7 +202,7 @@ impl crate::Readable for CDCDR {}
 impl crate::Writable for CDCDR {}
 #[doc = "CCM D1 Clock Divider Register"]
 pub mod cdcdr;
-#[doc = "CCM Serial Clock Divider Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cscdr2](cscdr2) module"]
+#[doc = "CCM Serial Clock Divider Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cscdr2](cscdr2) module"]
 pub type CSCDR2 = crate::Reg<u32, _CSCDR2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -212,7 +213,7 @@ impl crate::Readable for CSCDR2 {}
 impl crate::Writable for CSCDR2 {}
 #[doc = "CCM Serial Clock Divider Register 2"]
 pub mod cscdr2;
-#[doc = "CCM Serial Clock Divider Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cscdr3](cscdr3) module"]
+#[doc = "CCM Serial Clock Divider Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cscdr3](cscdr3) module"]
 pub type CSCDR3 = crate::Reg<u32, _CSCDR3>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -223,7 +224,7 @@ impl crate::Readable for CSCDR3 {}
 impl crate::Writable for CSCDR3 {}
 #[doc = "CCM Serial Clock Divider Register 3"]
 pub mod cscdr3;
-#[doc = "CCM Divider Handshake In-Process Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cdhipr](cdhipr) module"]
+#[doc = "CCM Divider Handshake In-Process Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cdhipr](cdhipr) module"]
 pub type CDHIPR = crate::Reg<u32, _CDHIPR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -232,7 +233,7 @@ pub struct _CDHIPR;
 impl crate::Readable for CDHIPR {}
 #[doc = "CCM Divider Handshake In-Process Register"]
 pub mod cdhipr;
-#[doc = "CCM Low Power Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [clpcr](clpcr) module"]
+#[doc = "CCM Low Power Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [clpcr](clpcr) module"]
 pub type CLPCR = crate::Reg<u32, _CLPCR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -243,7 +244,7 @@ impl crate::Readable for CLPCR {}
 impl crate::Writable for CLPCR {}
 #[doc = "CCM Low Power Control Register"]
 pub mod clpcr;
-#[doc = "CCM Interrupt Status Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cisr](cisr) module"]
+#[doc = "CCM Interrupt Status Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cisr](cisr) module"]
 pub type CISR = crate::Reg<u32, _CISR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -254,7 +255,7 @@ impl crate::Readable for CISR {}
 impl crate::Writable for CISR {}
 #[doc = "CCM Interrupt Status Register"]
 pub mod cisr;
-#[doc = "CCM Interrupt Mask Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cimr](cimr) module"]
+#[doc = "CCM Interrupt Mask Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cimr](cimr) module"]
 pub type CIMR = crate::Reg<u32, _CIMR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -265,7 +266,7 @@ impl crate::Readable for CIMR {}
 impl crate::Writable for CIMR {}
 #[doc = "CCM Interrupt Mask Register"]
 pub mod cimr;
-#[doc = "CCM Clock Output Source Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccosr](ccosr) module"]
+#[doc = "CCM Clock Output Source Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccosr](ccosr) module"]
 pub type CCOSR = crate::Reg<u32, _CCOSR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -276,7 +277,7 @@ impl crate::Readable for CCOSR {}
 impl crate::Writable for CCOSR {}
 #[doc = "CCM Clock Output Source Register"]
 pub mod ccosr;
-#[doc = "CCM General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cgpr](cgpr) module"]
+#[doc = "CCM General Purpose Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cgpr](cgpr) module"]
 pub type CGPR = crate::Reg<u32, _CGPR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -287,7 +288,7 @@ impl crate::Readable for CGPR {}
 impl crate::Writable for CGPR {}
 #[doc = "CCM General Purpose Register"]
 pub mod cgpr;
-#[doc = "CCM Clock Gating Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr0](ccgr0) module"]
+#[doc = "CCM Clock Gating Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr0](ccgr0) module"]
 pub type CCGR0 = crate::Reg<u32, _CCGR0>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -298,7 +299,7 @@ impl crate::Readable for CCGR0 {}
 impl crate::Writable for CCGR0 {}
 #[doc = "CCM Clock Gating Register 0"]
 pub mod ccgr0;
-#[doc = "CCM Clock Gating Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr1](ccgr1) module"]
+#[doc = "CCM Clock Gating Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr1](ccgr1) module"]
 pub type CCGR1 = crate::Reg<u32, _CCGR1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -309,7 +310,7 @@ impl crate::Readable for CCGR1 {}
 impl crate::Writable for CCGR1 {}
 #[doc = "CCM Clock Gating Register 1"]
 pub mod ccgr1;
-#[doc = "CCM Clock Gating Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr2](ccgr2) module"]
+#[doc = "CCM Clock Gating Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr2](ccgr2) module"]
 pub type CCGR2 = crate::Reg<u32, _CCGR2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -320,7 +321,7 @@ impl crate::Readable for CCGR2 {}
 impl crate::Writable for CCGR2 {}
 #[doc = "CCM Clock Gating Register 2"]
 pub mod ccgr2;
-#[doc = "CCM Clock Gating Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr3](ccgr3) module"]
+#[doc = "CCM Clock Gating Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr3](ccgr3) module"]
 pub type CCGR3 = crate::Reg<u32, _CCGR3>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -331,7 +332,7 @@ impl crate::Readable for CCGR3 {}
 impl crate::Writable for CCGR3 {}
 #[doc = "CCM Clock Gating Register 3"]
 pub mod ccgr3;
-#[doc = "CCM Clock Gating Register 4\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr4](ccgr4) module"]
+#[doc = "CCM Clock Gating Register 4\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr4](ccgr4) module"]
 pub type CCGR4 = crate::Reg<u32, _CCGR4>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -342,7 +343,7 @@ impl crate::Readable for CCGR4 {}
 impl crate::Writable for CCGR4 {}
 #[doc = "CCM Clock Gating Register 4"]
 pub mod ccgr4;
-#[doc = "CCM Clock Gating Register 5\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr5](ccgr5) module"]
+#[doc = "CCM Clock Gating Register 5\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr5](ccgr5) module"]
 pub type CCGR5 = crate::Reg<u32, _CCGR5>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -353,7 +354,7 @@ impl crate::Readable for CCGR5 {}
 impl crate::Writable for CCGR5 {}
 #[doc = "CCM Clock Gating Register 5"]
 pub mod ccgr5;
-#[doc = "CCM Clock Gating Register 6\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr6](ccgr6) module"]
+#[doc = "CCM Clock Gating Register 6\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr6](ccgr6) module"]
 pub type CCGR6 = crate::Reg<u32, _CCGR6>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -364,7 +365,7 @@ impl crate::Readable for CCGR6 {}
 impl crate::Writable for CCGR6 {}
 #[doc = "CCM Clock Gating Register 6"]
 pub mod ccgr6;
-#[doc = "CCM Clock Gating Register 7\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ccgr7](ccgr7) module"]
+#[doc = "CCM Clock Gating Register 7\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ccgr7](ccgr7) module"]
 pub type CCGR7 = crate::Reg<u32, _CCGR7>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -375,7 +376,7 @@ impl crate::Readable for CCGR7 {}
 impl crate::Writable for CCGR7 {}
 #[doc = "CCM Clock Gating Register 7"]
 pub mod ccgr7;
-#[doc = "CCM Module Enable Overide Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cmeor](cmeor) module"]
+#[doc = "CCM Module Enable Overide Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cmeor](cmeor) module"]
 pub type CMEOR = crate::Reg<u32, _CMEOR>;
 #[allow(missing_docs)]
 #[doc(hidden)]

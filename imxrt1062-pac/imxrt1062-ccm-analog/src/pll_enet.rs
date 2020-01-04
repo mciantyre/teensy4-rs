@@ -26,25 +26,21 @@ impl<'a> DIV_SELECT_W<'a> {
 }
 #[doc = "Controls the frequency of the ENET2 reference clock.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ENET2_DIV_SELECT_A {
     #[doc = "0: 25MHz"]
-    ENET2_DIV_SELECT_0,
+    ENET2_DIV_SELECT_0 = 0,
     #[doc = "1: 50MHz"]
-    ENET2_DIV_SELECT_1,
+    ENET2_DIV_SELECT_1 = 1,
     #[doc = "2: 100MHz (not 50% duty cycle)"]
-    ENET2_DIV_SELECT_2,
+    ENET2_DIV_SELECT_2 = 2,
     #[doc = "3: 125MHz"]
-    ENET2_DIV_SELECT_3,
+    ENET2_DIV_SELECT_3 = 3,
 }
 impl From<ENET2_DIV_SELECT_A> for u8 {
     #[inline(always)]
     fn from(variant: ENET2_DIV_SELECT_A) -> Self {
-        match variant {
-            ENET2_DIV_SELECT_A::ENET2_DIV_SELECT_0 => 0,
-            ENET2_DIV_SELECT_A::ENET2_DIV_SELECT_1 => 1,
-            ENET2_DIV_SELECT_A::ENET2_DIV_SELECT_2 => 2,
-            ENET2_DIV_SELECT_A::ENET2_DIV_SELECT_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ENET2_DIV_SELECT`"]
@@ -171,19 +167,17 @@ impl<'a> ENABLE_W<'a> {
 }
 #[doc = "Determines the bypass source.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum BYPASS_CLK_SRC_A {
     #[doc = "0: Select the 24MHz oscillator as source."]
-    REF_CLK_24M,
+    REF_CLK_24M = 0,
     #[doc = "1: Select the CLK1_N / CLK1_P as source."]
-    CLK1,
+    CLK1 = 1,
 }
 impl From<BYPASS_CLK_SRC_A> for u8 {
     #[inline(always)]
     fn from(variant: BYPASS_CLK_SRC_A) -> Self {
-        match variant {
-            BYPASS_CLK_SRC_A::REF_CLK_24M => 0,
-            BYPASS_CLK_SRC_A::CLK1 => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `BYPASS_CLK_SRC`"]

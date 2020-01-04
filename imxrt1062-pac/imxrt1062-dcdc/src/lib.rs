@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -17,7 +18,7 @@ pub struct RegisterBlock {
     #[doc = "0x0c - DCDC Register 3"]
     pub reg3: REG3,
 }
-#[doc = "DCDC Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [reg0](reg0) module"]
+#[doc = "DCDC Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [reg0](reg0) module"]
 pub type REG0 = crate::Reg<u32, _REG0>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -28,7 +29,7 @@ impl crate::Readable for REG0 {}
 impl crate::Writable for REG0 {}
 #[doc = "DCDC Register 0"]
 pub mod reg0;
-#[doc = "DCDC Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [reg1](reg1) module"]
+#[doc = "DCDC Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [reg1](reg1) module"]
 pub type REG1 = crate::Reg<u32, _REG1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -39,7 +40,7 @@ impl crate::Readable for REG1 {}
 impl crate::Writable for REG1 {}
 #[doc = "DCDC Register 1"]
 pub mod reg1;
-#[doc = "DCDC Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [reg2](reg2) module"]
+#[doc = "DCDC Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [reg2](reg2) module"]
 pub type REG2 = crate::Reg<u32, _REG2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -50,7 +51,7 @@ impl crate::Readable for REG2 {}
 impl crate::Writable for REG2 {}
 #[doc = "DCDC Register 2"]
 pub mod reg2;
-#[doc = "DCDC Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [reg3](reg3) module"]
+#[doc = "DCDC Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [reg3](reg3) module"]
 pub type REG3 = crate::Reg<u32, _REG3>;
 #[allow(missing_docs)]
 #[doc(hidden)]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPT1_IPP_IND_CAPIN1_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_EMC_24 for Mode: ALT4"]
-    GPIO_EMC_24_ALT4,
+    GPIO_EMC_24_ALT4 = 0,
     #[doc = "1: Selecting Pad: GPIO_B1_05 for Mode: ALT8"]
-    GPIO_B1_05_ALT8,
+    GPIO_B1_05_ALT8 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_EMC_24_ALT4 => false,
-            DAISY_A::GPIO_B1_05_ALT8 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::LPSPI4_SDO_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_B0_02 for Mode: ALT3"]
-    GPIO_B0_02_ALT3,
+    GPIO_B0_02_ALT3 = 0,
     #[doc = "1: Selecting Pad: GPIO_B1_06 for Mode: ALT1"]
-    GPIO_B1_06_ALT1,
+    GPIO_B1_06_ALT1 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_B0_02_ALT3 => false,
-            DAISY_A::GPIO_B1_06_ALT1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

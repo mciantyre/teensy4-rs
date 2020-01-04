@@ -28,17 +28,14 @@ impl<'a> STEP_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENABLE_A {
     #[doc = "0: Spread spectrum modulation disabled"]
-    ENABLE_0,
+    ENABLE_0 = 0,
     #[doc = "1: Soread spectrum modulation enabled"]
-    ENABLE_1,
+    ENABLE_1 = 1,
 }
 impl From<ENABLE_A> for bool {
     #[inline(always)]
     fn from(variant: ENABLE_A) -> Self {
-        match variant {
-            ENABLE_A::ENABLE_0 => false,
-            ENABLE_A::ENABLE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENABLE`"]

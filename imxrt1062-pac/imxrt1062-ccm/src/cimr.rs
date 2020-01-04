@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CIMR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_LRF_PLL_A {
     #[doc = "0: don't mask interrupt due to lrf of PLLs - interrupt will be created"]
-    MASK_LRF_PLL_0,
+    MASK_LRF_PLL_0 = 0,
     #[doc = "1: mask interrupt due to lrf of PLLs"]
-    MASK_LRF_PLL_1,
+    MASK_LRF_PLL_1 = 1,
 }
 impl From<MASK_LRF_PLL_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_LRF_PLL_A) -> Self {
-        match variant {
-            MASK_LRF_PLL_A::MASK_LRF_PLL_0 => false,
-            MASK_LRF_PLL_A::MASK_LRF_PLL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_LRF_PLL`"]
@@ -92,17 +89,14 @@ impl<'a> MASK_LRF_PLL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_COSC_READY_A {
     #[doc = "0: don't mask interrupt due to on board oscillator ready - interrupt will be created"]
-    MASK_COSC_READY_0,
+    MASK_COSC_READY_0 = 0,
     #[doc = "1: mask interrupt due to on board oscillator ready"]
-    MASK_COSC_READY_1,
+    MASK_COSC_READY_1 = 1,
 }
 impl From<MASK_COSC_READY_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_COSC_READY_A) -> Self {
-        match variant {
-            MASK_COSC_READY_A::MASK_COSC_READY_0 => false,
-            MASK_COSC_READY_A::MASK_COSC_READY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_COSC_READY`"]
@@ -170,17 +164,14 @@ impl<'a> MASK_COSC_READY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_SEMC_PODF_LOADED_A {
     #[doc = "0: don't mask interrupt due to frequency change of semc_podf - interrupt will be created"]
-    MASK_SEMC_PODF_LOADED_0,
+    MASK_SEMC_PODF_LOADED_0 = 0,
     #[doc = "1: mask interrupt due to frequency change of semc_podf"]
-    MASK_SEMC_PODF_LOADED_1,
+    MASK_SEMC_PODF_LOADED_1 = 1,
 }
 impl From<MASK_SEMC_PODF_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_SEMC_PODF_LOADED_A) -> Self {
-        match variant {
-            MASK_SEMC_PODF_LOADED_A::MASK_SEMC_PODF_LOADED_0 => false,
-            MASK_SEMC_PODF_LOADED_A::MASK_SEMC_PODF_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_SEMC_PODF_LOADED`"]
@@ -248,17 +239,14 @@ impl<'a> MASK_SEMC_PODF_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_PERIPH2_CLK_SEL_LOADED_A {
     #[doc = "0: don't mask interrupt due to update of periph2_clk_sel - interrupt will be created"]
-    MASK_PERIPH2_CLK_SEL_LOADED_0,
+    MASK_PERIPH2_CLK_SEL_LOADED_0 = 0,
     #[doc = "1: mask interrupt due to update of periph2_clk_sel"]
-    MASK_PERIPH2_CLK_SEL_LOADED_1,
+    MASK_PERIPH2_CLK_SEL_LOADED_1 = 1,
 }
 impl From<MASK_PERIPH2_CLK_SEL_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_PERIPH2_CLK_SEL_LOADED_A) -> Self {
-        match variant {
-            MASK_PERIPH2_CLK_SEL_LOADED_A::MASK_PERIPH2_CLK_SEL_LOADED_0 => false,
-            MASK_PERIPH2_CLK_SEL_LOADED_A::MASK_PERIPH2_CLK_SEL_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_PERIPH2_CLK_SEL_LOADED`"]
@@ -326,17 +314,14 @@ impl<'a> MASK_PERIPH2_CLK_SEL_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_AHB_PODF_LOADED_A {
     #[doc = "0: don't mask interrupt due to frequency change of ahb_podf - interrupt will be created"]
-    MASK_AHB_PODF_LOADED_0,
+    MASK_AHB_PODF_LOADED_0 = 0,
     #[doc = "1: mask interrupt due to frequency change of ahb_podf"]
-    MASK_AHB_PODF_LOADED_1,
+    MASK_AHB_PODF_LOADED_1 = 1,
 }
 impl From<MASK_AHB_PODF_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_AHB_PODF_LOADED_A) -> Self {
-        match variant {
-            MASK_AHB_PODF_LOADED_A::MASK_AHB_PODF_LOADED_0 => false,
-            MASK_AHB_PODF_LOADED_A::MASK_AHB_PODF_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_AHB_PODF_LOADED`"]
@@ -404,17 +389,14 @@ impl<'a> MASK_AHB_PODF_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MASK_PERIPH_CLK_SEL_LOADED_A {
     #[doc = "0: don't mask interrupt due to update of periph_clk_sel - interrupt will be created"]
-    MASK_PERIPH_CLK_SEL_LOADED_0,
+    MASK_PERIPH_CLK_SEL_LOADED_0 = 0,
     #[doc = "1: mask interrupt due to update of periph_clk_sel"]
-    MASK_PERIPH_CLK_SEL_LOADED_1,
+    MASK_PERIPH_CLK_SEL_LOADED_1 = 1,
 }
 impl From<MASK_PERIPH_CLK_SEL_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: MASK_PERIPH_CLK_SEL_LOADED_A) -> Self {
-        match variant {
-            MASK_PERIPH_CLK_SEL_LOADED_A::MASK_PERIPH_CLK_SEL_LOADED_0 => false,
-            MASK_PERIPH_CLK_SEL_LOADED_A::MASK_PERIPH_CLK_SEL_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MASK_PERIPH_CLK_SEL_LOADED`"]
@@ -482,17 +464,14 @@ impl<'a> MASK_PERIPH_CLK_SEL_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ARM_PODF_LOADED_A {
     #[doc = "0: don't mask interrupt due to frequency change of arm_podf - interrupt will be created"]
-    ARM_PODF_LOADED_0,
+    ARM_PODF_LOADED_0 = 0,
     #[doc = "1: mask interrupt due to frequency change of arm_podf"]
-    ARM_PODF_LOADED_1,
+    ARM_PODF_LOADED_1 = 1,
 }
 impl From<ARM_PODF_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: ARM_PODF_LOADED_A) -> Self {
-        match variant {
-            ARM_PODF_LOADED_A::ARM_PODF_LOADED_0 => false,
-            ARM_PODF_LOADED_A::ARM_PODF_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ARM_PODF_LOADED`"]

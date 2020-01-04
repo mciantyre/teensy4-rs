@@ -14,17 +14,14 @@ impl crate::ResetValue for super::QTIMER2_TIMER3_SELECT_INPUT {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DAISY_A {
     #[doc = "0: Selecting Pad: GPIO_EMC_22 for Mode: ALT4"]
-    GPIO_EMC_22_ALT4,
+    GPIO_EMC_22_ALT4 = 0,
     #[doc = "1: Selecting Pad: GPIO_B1_09 for Mode: ALT1"]
-    GPIO_B1_09_ALT1,
+    GPIO_B1_09_ALT1 = 1,
 }
 impl From<DAISY_A> for bool {
     #[inline(always)]
     fn from(variant: DAISY_A) -> Self {
-        match variant {
-            DAISY_A::GPIO_EMC_22_ALT4 => false,
-            DAISY_A::GPIO_B1_09_ALT1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DAISY`"]

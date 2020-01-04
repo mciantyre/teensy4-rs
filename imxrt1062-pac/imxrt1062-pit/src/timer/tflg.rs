@@ -14,17 +14,14 @@ impl crate::ResetValue for super::TFLG {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum TIF_A {
     #[doc = "0: Timeout has not yet occurred."]
-    TIF_0,
+    TIF_0 = 0,
     #[doc = "1: Timeout has occurred."]
-    TIF_1,
+    TIF_1 = 1,
 }
 impl From<TIF_A> for bool {
     #[inline(always)]
     fn from(variant: TIF_A) -> Self {
-        match variant {
-            TIF_A::TIF_0 => false,
-            TIF_A::TIF_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `TIF`"]

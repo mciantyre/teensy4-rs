@@ -17,5 +17,5 @@ bare-metal = "0.2.0"
 cortex-m = "0.5.8"
 vcell = "0.1.0"
 EOF
-cargo fmt
+cargo fmt --all
 cd ..

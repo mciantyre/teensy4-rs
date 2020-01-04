@@ -12,16 +12,15 @@ impl crate::ResetValue for super::SW_MUX_CTL_PAD_GPIO_SPI_B0_03 {
 }
 #[doc = "MUX Mode Select Field.\n\nValue on reset: 5"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MUX_MODE_A {
     #[doc = "0: Select mux mode: ALT0 mux port: FLEXSPI2_B_DATA02 of instance: flexspi2"]
-    ALT0,
+    ALT0 = 0,
 }
 impl From<MUX_MODE_A> for u8 {
     #[inline(always)]
     fn from(variant: MUX_MODE_A) -> Self {
-        match variant {
-            MUX_MODE_A::ALT0 => 0,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MUX_MODE`"]
@@ -68,17 +67,14 @@ impl<'a> MUX_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SION_A {
     #[doc = "0: Input Path is determined by functionality"]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Force input path of pad GPIO_SPI_B0_03"]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<SION_A> for bool {
     #[inline(always)]
     fn from(variant: SION_A) -> Self {
-        match variant {
-            SION_A::DISABLED => false,
-            SION_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SION`"]

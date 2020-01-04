@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR6 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER1_TRM0_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER1_TRM0_INPUT_SEL_0,
+    QTIMER1_TRM0_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER1_TRM0_INPUT_SEL_1,
+    QTIMER1_TRM0_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER1_TRM0_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER1_TRM0_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER1_TRM0_INPUT_SEL_A::QTIMER1_TRM0_INPUT_SEL_0 => false,
-            QTIMER1_TRM0_INPUT_SEL_A::QTIMER1_TRM0_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER1_TRM0_INPUT_SEL`"]
@@ -92,17 +89,14 @@ impl<'a> QTIMER1_TRM0_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER1_TRM1_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER1_TRM1_INPUT_SEL_0,
+    QTIMER1_TRM1_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER1_TRM1_INPUT_SEL_1,
+    QTIMER1_TRM1_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER1_TRM1_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER1_TRM1_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER1_TRM1_INPUT_SEL_A::QTIMER1_TRM1_INPUT_SEL_0 => false,
-            QTIMER1_TRM1_INPUT_SEL_A::QTIMER1_TRM1_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER1_TRM1_INPUT_SEL`"]
@@ -170,17 +164,14 @@ impl<'a> QTIMER1_TRM1_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER1_TRM2_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER1_TRM2_INPUT_SEL_0,
+    QTIMER1_TRM2_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER1_TRM2_INPUT_SEL_1,
+    QTIMER1_TRM2_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER1_TRM2_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER1_TRM2_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER1_TRM2_INPUT_SEL_A::QTIMER1_TRM2_INPUT_SEL_0 => false,
-            QTIMER1_TRM2_INPUT_SEL_A::QTIMER1_TRM2_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER1_TRM2_INPUT_SEL`"]
@@ -248,17 +239,14 @@ impl<'a> QTIMER1_TRM2_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER1_TRM3_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER1_TRM3_INPUT_SEL_0,
+    QTIMER1_TRM3_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER1_TRM3_INPUT_SEL_1,
+    QTIMER1_TRM3_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER1_TRM3_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER1_TRM3_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER1_TRM3_INPUT_SEL_A::QTIMER1_TRM3_INPUT_SEL_0 => false,
-            QTIMER1_TRM3_INPUT_SEL_A::QTIMER1_TRM3_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER1_TRM3_INPUT_SEL`"]
@@ -326,17 +314,14 @@ impl<'a> QTIMER1_TRM3_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER2_TRM0_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER2_TRM0_INPUT_SEL_0,
+    QTIMER2_TRM0_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER2_TRM0_INPUT_SEL_1,
+    QTIMER2_TRM0_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER2_TRM0_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER2_TRM0_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER2_TRM0_INPUT_SEL_A::QTIMER2_TRM0_INPUT_SEL_0 => false,
-            QTIMER2_TRM0_INPUT_SEL_A::QTIMER2_TRM0_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER2_TRM0_INPUT_SEL`"]
@@ -404,17 +389,14 @@ impl<'a> QTIMER2_TRM0_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER2_TRM1_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER2_TRM1_INPUT_SEL_0,
+    QTIMER2_TRM1_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER2_TRM1_INPUT_SEL_1,
+    QTIMER2_TRM1_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER2_TRM1_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER2_TRM1_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER2_TRM1_INPUT_SEL_A::QTIMER2_TRM1_INPUT_SEL_0 => false,
-            QTIMER2_TRM1_INPUT_SEL_A::QTIMER2_TRM1_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER2_TRM1_INPUT_SEL`"]
@@ -482,17 +464,14 @@ impl<'a> QTIMER2_TRM1_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER2_TRM2_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER2_TRM2_INPUT_SEL_0,
+    QTIMER2_TRM2_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER2_TRM2_INPUT_SEL_1,
+    QTIMER2_TRM2_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER2_TRM2_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER2_TRM2_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER2_TRM2_INPUT_SEL_A::QTIMER2_TRM2_INPUT_SEL_0 => false,
-            QTIMER2_TRM2_INPUT_SEL_A::QTIMER2_TRM2_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER2_TRM2_INPUT_SEL`"]
@@ -560,17 +539,14 @@ impl<'a> QTIMER2_TRM2_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER2_TRM3_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER2_TRM3_INPUT_SEL_0,
+    QTIMER2_TRM3_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER2_TRM3_INPUT_SEL_1,
+    QTIMER2_TRM3_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER2_TRM3_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER2_TRM3_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER2_TRM3_INPUT_SEL_A::QTIMER2_TRM3_INPUT_SEL_0 => false,
-            QTIMER2_TRM3_INPUT_SEL_A::QTIMER2_TRM3_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER2_TRM3_INPUT_SEL`"]
@@ -638,17 +614,14 @@ impl<'a> QTIMER2_TRM3_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER3_TRM0_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER3_TRM0_INPUT_SEL_0,
+    QTIMER3_TRM0_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER3_TRM0_INPUT_SEL_1,
+    QTIMER3_TRM0_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER3_TRM0_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER3_TRM0_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER3_TRM0_INPUT_SEL_A::QTIMER3_TRM0_INPUT_SEL_0 => false,
-            QTIMER3_TRM0_INPUT_SEL_A::QTIMER3_TRM0_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER3_TRM0_INPUT_SEL`"]
@@ -716,17 +689,14 @@ impl<'a> QTIMER3_TRM0_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER3_TRM1_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER3_TRM1_INPUT_SEL_0,
+    QTIMER3_TRM1_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER3_TRM1_INPUT_SEL_1,
+    QTIMER3_TRM1_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER3_TRM1_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER3_TRM1_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER3_TRM1_INPUT_SEL_A::QTIMER3_TRM1_INPUT_SEL_0 => false,
-            QTIMER3_TRM1_INPUT_SEL_A::QTIMER3_TRM1_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER3_TRM1_INPUT_SEL`"]
@@ -794,17 +764,14 @@ impl<'a> QTIMER3_TRM1_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER3_TRM2_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER3_TRM2_INPUT_SEL_0,
+    QTIMER3_TRM2_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER3_TRM2_INPUT_SEL_1,
+    QTIMER3_TRM2_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER3_TRM2_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER3_TRM2_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER3_TRM2_INPUT_SEL_A::QTIMER3_TRM2_INPUT_SEL_0 => false,
-            QTIMER3_TRM2_INPUT_SEL_A::QTIMER3_TRM2_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER3_TRM2_INPUT_SEL`"]
@@ -872,17 +839,14 @@ impl<'a> QTIMER3_TRM2_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER3_TRM3_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER3_TRM3_INPUT_SEL_0,
+    QTIMER3_TRM3_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER3_TRM3_INPUT_SEL_1,
+    QTIMER3_TRM3_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER3_TRM3_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER3_TRM3_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER3_TRM3_INPUT_SEL_A::QTIMER3_TRM3_INPUT_SEL_0 => false,
-            QTIMER3_TRM3_INPUT_SEL_A::QTIMER3_TRM3_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER3_TRM3_INPUT_SEL`"]
@@ -950,17 +914,14 @@ impl<'a> QTIMER3_TRM3_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER4_TRM0_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER4_TRM0_INPUT_SEL_0,
+    QTIMER4_TRM0_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER4_TRM0_INPUT_SEL_1,
+    QTIMER4_TRM0_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER4_TRM0_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER4_TRM0_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER4_TRM0_INPUT_SEL_A::QTIMER4_TRM0_INPUT_SEL_0 => false,
-            QTIMER4_TRM0_INPUT_SEL_A::QTIMER4_TRM0_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER4_TRM0_INPUT_SEL`"]
@@ -1028,17 +989,14 @@ impl<'a> QTIMER4_TRM0_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER4_TRM1_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER4_TRM1_INPUT_SEL_0,
+    QTIMER4_TRM1_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER4_TRM1_INPUT_SEL_1,
+    QTIMER4_TRM1_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER4_TRM1_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER4_TRM1_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER4_TRM1_INPUT_SEL_A::QTIMER4_TRM1_INPUT_SEL_0 => false,
-            QTIMER4_TRM1_INPUT_SEL_A::QTIMER4_TRM1_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER4_TRM1_INPUT_SEL`"]
@@ -1106,17 +1064,14 @@ impl<'a> QTIMER4_TRM1_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER4_TRM2_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER4_TRM2_INPUT_SEL_0,
+    QTIMER4_TRM2_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER4_TRM2_INPUT_SEL_1,
+    QTIMER4_TRM2_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER4_TRM2_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER4_TRM2_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER4_TRM2_INPUT_SEL_A::QTIMER4_TRM2_INPUT_SEL_0 => false,
-            QTIMER4_TRM2_INPUT_SEL_A::QTIMER4_TRM2_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER4_TRM2_INPUT_SEL`"]
@@ -1184,17 +1139,14 @@ impl<'a> QTIMER4_TRM2_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum QTIMER4_TRM3_INPUT_SEL_A {
     #[doc = "0: input from IOMUX"]
-    QTIMER4_TRM3_INPUT_SEL_0,
+    QTIMER4_TRM3_INPUT_SEL_0 = 0,
     #[doc = "1: input from XBAR"]
-    QTIMER4_TRM3_INPUT_SEL_1,
+    QTIMER4_TRM3_INPUT_SEL_1 = 1,
 }
 impl From<QTIMER4_TRM3_INPUT_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: QTIMER4_TRM3_INPUT_SEL_A) -> Self {
-        match variant {
-            QTIMER4_TRM3_INPUT_SEL_A::QTIMER4_TRM3_INPUT_SEL_0 => false,
-            QTIMER4_TRM3_INPUT_SEL_A::QTIMER4_TRM3_INPUT_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `QTIMER4_TRM3_INPUT_SEL`"]
@@ -1262,17 +1214,14 @@ impl<'a> QTIMER4_TRM3_INPUT_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_4_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_4_0,
+    IOMUXC_XBAR_DIR_SEL_4_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_4_1,
+    IOMUXC_XBAR_DIR_SEL_4_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_4_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_4_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_4_A::IOMUXC_XBAR_DIR_SEL_4_0 => false,
-            IOMUXC_XBAR_DIR_SEL_4_A::IOMUXC_XBAR_DIR_SEL_4_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_4`"]
@@ -1340,17 +1289,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_4_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_5_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_5_0,
+    IOMUXC_XBAR_DIR_SEL_5_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_5_1,
+    IOMUXC_XBAR_DIR_SEL_5_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_5_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_5_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_5_A::IOMUXC_XBAR_DIR_SEL_5_0 => false,
-            IOMUXC_XBAR_DIR_SEL_5_A::IOMUXC_XBAR_DIR_SEL_5_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_5`"]
@@ -1418,17 +1364,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_5_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_6_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_6_0,
+    IOMUXC_XBAR_DIR_SEL_6_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_6_1,
+    IOMUXC_XBAR_DIR_SEL_6_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_6_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_6_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_6_A::IOMUXC_XBAR_DIR_SEL_6_0 => false,
-            IOMUXC_XBAR_DIR_SEL_6_A::IOMUXC_XBAR_DIR_SEL_6_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_6`"]
@@ -1496,17 +1439,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_6_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_7_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_7_0,
+    IOMUXC_XBAR_DIR_SEL_7_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_7_1,
+    IOMUXC_XBAR_DIR_SEL_7_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_7_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_7_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_7_A::IOMUXC_XBAR_DIR_SEL_7_0 => false,
-            IOMUXC_XBAR_DIR_SEL_7_A::IOMUXC_XBAR_DIR_SEL_7_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_7`"]
@@ -1574,17 +1514,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_7_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_8_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_8_0,
+    IOMUXC_XBAR_DIR_SEL_8_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_8_1,
+    IOMUXC_XBAR_DIR_SEL_8_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_8_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_8_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_8_A::IOMUXC_XBAR_DIR_SEL_8_0 => false,
-            IOMUXC_XBAR_DIR_SEL_8_A::IOMUXC_XBAR_DIR_SEL_8_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_8`"]
@@ -1652,17 +1589,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_8_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_9_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_9_0,
+    IOMUXC_XBAR_DIR_SEL_9_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_9_1,
+    IOMUXC_XBAR_DIR_SEL_9_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_9_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_9_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_9_A::IOMUXC_XBAR_DIR_SEL_9_0 => false,
-            IOMUXC_XBAR_DIR_SEL_9_A::IOMUXC_XBAR_DIR_SEL_9_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_9`"]
@@ -1730,17 +1664,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_9_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_10_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_10_0,
+    IOMUXC_XBAR_DIR_SEL_10_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_10_1,
+    IOMUXC_XBAR_DIR_SEL_10_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_10_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_10_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_10_A::IOMUXC_XBAR_DIR_SEL_10_0 => false,
-            IOMUXC_XBAR_DIR_SEL_10_A::IOMUXC_XBAR_DIR_SEL_10_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_10`"]
@@ -1808,17 +1739,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_10_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_11_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_11_0,
+    IOMUXC_XBAR_DIR_SEL_11_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_11_1,
+    IOMUXC_XBAR_DIR_SEL_11_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_11_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_11_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_11_A::IOMUXC_XBAR_DIR_SEL_11_0 => false,
-            IOMUXC_XBAR_DIR_SEL_11_A::IOMUXC_XBAR_DIR_SEL_11_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_11`"]
@@ -1886,17 +1814,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_11_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_12_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_12_0,
+    IOMUXC_XBAR_DIR_SEL_12_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_12_1,
+    IOMUXC_XBAR_DIR_SEL_12_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_12_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_12_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_12_A::IOMUXC_XBAR_DIR_SEL_12_0 => false,
-            IOMUXC_XBAR_DIR_SEL_12_A::IOMUXC_XBAR_DIR_SEL_12_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_12`"]
@@ -1964,17 +1889,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_12_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_13_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_13_0,
+    IOMUXC_XBAR_DIR_SEL_13_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_13_1,
+    IOMUXC_XBAR_DIR_SEL_13_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_13_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_13_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_13_A::IOMUXC_XBAR_DIR_SEL_13_0 => false,
-            IOMUXC_XBAR_DIR_SEL_13_A::IOMUXC_XBAR_DIR_SEL_13_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_13`"]
@@ -2042,17 +1964,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_13_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_14_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_14_0,
+    IOMUXC_XBAR_DIR_SEL_14_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_14_1,
+    IOMUXC_XBAR_DIR_SEL_14_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_14_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_14_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_14_A::IOMUXC_XBAR_DIR_SEL_14_0 => false,
-            IOMUXC_XBAR_DIR_SEL_14_A::IOMUXC_XBAR_DIR_SEL_14_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_14`"]
@@ -2120,17 +2039,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_14_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_15_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_15_0,
+    IOMUXC_XBAR_DIR_SEL_15_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_15_1,
+    IOMUXC_XBAR_DIR_SEL_15_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_15_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_15_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_15_A::IOMUXC_XBAR_DIR_SEL_15_0 => false,
-            IOMUXC_XBAR_DIR_SEL_15_A::IOMUXC_XBAR_DIR_SEL_15_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_15`"]
@@ -2198,17 +2114,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_15_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_16_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_16_0,
+    IOMUXC_XBAR_DIR_SEL_16_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_16_1,
+    IOMUXC_XBAR_DIR_SEL_16_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_16_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_16_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_16_A::IOMUXC_XBAR_DIR_SEL_16_0 => false,
-            IOMUXC_XBAR_DIR_SEL_16_A::IOMUXC_XBAR_DIR_SEL_16_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_16`"]
@@ -2276,17 +2189,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_16_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_17_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_17_0,
+    IOMUXC_XBAR_DIR_SEL_17_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_17_1,
+    IOMUXC_XBAR_DIR_SEL_17_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_17_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_17_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_17_A::IOMUXC_XBAR_DIR_SEL_17_0 => false,
-            IOMUXC_XBAR_DIR_SEL_17_A::IOMUXC_XBAR_DIR_SEL_17_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_17`"]
@@ -2354,17 +2264,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_17_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_18_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_18_0,
+    IOMUXC_XBAR_DIR_SEL_18_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_18_1,
+    IOMUXC_XBAR_DIR_SEL_18_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_18_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_18_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_18_A::IOMUXC_XBAR_DIR_SEL_18_0 => false,
-            IOMUXC_XBAR_DIR_SEL_18_A::IOMUXC_XBAR_DIR_SEL_18_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_18`"]
@@ -2432,17 +2339,14 @@ impl<'a> IOMUXC_XBAR_DIR_SEL_18_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum IOMUXC_XBAR_DIR_SEL_19_A {
     #[doc = "0: XBAR_INOUT as input"]
-    IOMUXC_XBAR_DIR_SEL_19_0,
+    IOMUXC_XBAR_DIR_SEL_19_0 = 0,
     #[doc = "1: XBAR_INOUT as output"]
-    IOMUXC_XBAR_DIR_SEL_19_1,
+    IOMUXC_XBAR_DIR_SEL_19_1 = 1,
 }
 impl From<IOMUXC_XBAR_DIR_SEL_19_A> for bool {
     #[inline(always)]
     fn from(variant: IOMUXC_XBAR_DIR_SEL_19_A) -> Self {
-        match variant {
-            IOMUXC_XBAR_DIR_SEL_19_A::IOMUXC_XBAR_DIR_SEL_19_0 => false,
-            IOMUXC_XBAR_DIR_SEL_19_A::IOMUXC_XBAR_DIR_SEL_19_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `IOMUXC_XBAR_DIR_SEL_19`"]

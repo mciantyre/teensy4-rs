@@ -3,12 +3,21 @@ name = "imxrt1062-rt"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+Custom cortex-m-rt specifically for the iMXRT1062 family of processors.
+Part of the teensy4-rs project.
+"""
 
 # TODO if the changes in the cortex-m-rt-macros
 # crate are accepted upstream, use the normal
 # dependency.
 [dependencies.cortex-m-rt-macros]
 git = "https://github.com/rust-embedded/cortex-m-rt.git"
+
+[dependencies.cortex-m]
+version = "0.6.1"
 
 [build-dependencies]
 cc = "1.0.48"

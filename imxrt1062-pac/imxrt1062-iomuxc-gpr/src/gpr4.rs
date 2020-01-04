@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR4 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EDMA_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    EDMA_STOP_REQ_0,
+    EDMA_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    EDMA_STOP_REQ_1,
+    EDMA_STOP_REQ_1 = 1,
 }
 impl From<EDMA_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: EDMA_STOP_REQ_A) -> Self {
-        match variant {
-            EDMA_STOP_REQ_A::EDMA_STOP_REQ_0 => false,
-            EDMA_STOP_REQ_A::EDMA_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EDMA_STOP_REQ`"]
@@ -92,17 +89,14 @@ impl<'a> EDMA_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CAN1_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    CAN1_STOP_REQ_0,
+    CAN1_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    CAN1_STOP_REQ_1,
+    CAN1_STOP_REQ_1 = 1,
 }
 impl From<CAN1_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: CAN1_STOP_REQ_A) -> Self {
-        match variant {
-            CAN1_STOP_REQ_A::CAN1_STOP_REQ_0 => false,
-            CAN1_STOP_REQ_A::CAN1_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CAN1_STOP_REQ`"]
@@ -170,17 +164,14 @@ impl<'a> CAN1_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CAN2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    CAN2_STOP_REQ_0,
+    CAN2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    CAN2_STOP_REQ_1,
+    CAN2_STOP_REQ_1 = 1,
 }
 impl From<CAN2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: CAN2_STOP_REQ_A) -> Self {
-        match variant {
-            CAN2_STOP_REQ_A::CAN2_STOP_REQ_0 => false,
-            CAN2_STOP_REQ_A::CAN2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CAN2_STOP_REQ`"]
@@ -248,17 +239,14 @@ impl<'a> CAN2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum TRNG_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    TRNG_STOP_REQ_0,
+    TRNG_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    TRNG_STOP_REQ_1,
+    TRNG_STOP_REQ_1 = 1,
 }
 impl From<TRNG_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: TRNG_STOP_REQ_A) -> Self {
-        match variant {
-            TRNG_STOP_REQ_A::TRNG_STOP_REQ_0 => false,
-            TRNG_STOP_REQ_A::TRNG_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `TRNG_STOP_REQ`"]
@@ -326,17 +314,14 @@ impl<'a> TRNG_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    ENET_STOP_REQ_0,
+    ENET_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    ENET_STOP_REQ_1,
+    ENET_STOP_REQ_1 = 1,
 }
 impl From<ENET_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: ENET_STOP_REQ_A) -> Self {
-        match variant {
-            ENET_STOP_REQ_A::ENET_STOP_REQ_0 => false,
-            ENET_STOP_REQ_A::ENET_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET_STOP_REQ`"]
@@ -404,17 +389,14 @@ impl<'a> ENET_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI1_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    SAI1_STOP_REQ_0,
+    SAI1_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    SAI1_STOP_REQ_1,
+    SAI1_STOP_REQ_1 = 1,
 }
 impl From<SAI1_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: SAI1_STOP_REQ_A) -> Self {
-        match variant {
-            SAI1_STOP_REQ_A::SAI1_STOP_REQ_0 => false,
-            SAI1_STOP_REQ_A::SAI1_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI1_STOP_REQ`"]
@@ -482,17 +464,14 @@ impl<'a> SAI1_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    SAI2_STOP_REQ_0,
+    SAI2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    SAI2_STOP_REQ_1,
+    SAI2_STOP_REQ_1 = 1,
 }
 impl From<SAI2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: SAI2_STOP_REQ_A) -> Self {
-        match variant {
-            SAI2_STOP_REQ_A::SAI2_STOP_REQ_0 => false,
-            SAI2_STOP_REQ_A::SAI2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI2_STOP_REQ`"]
@@ -560,17 +539,14 @@ impl<'a> SAI2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI3_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    SAI3_STOP_REQ_0,
+    SAI3_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    SAI3_STOP_REQ_1,
+    SAI3_STOP_REQ_1 = 1,
 }
 impl From<SAI3_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: SAI3_STOP_REQ_A) -> Self {
-        match variant {
-            SAI3_STOP_REQ_A::SAI3_STOP_REQ_0 => false,
-            SAI3_STOP_REQ_A::SAI3_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI3_STOP_REQ`"]
@@ -638,17 +614,14 @@ impl<'a> SAI3_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    ENET2_STOP_REQ_0,
+    ENET2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    ENET2_STOP_REQ_1,
+    ENET2_STOP_REQ_1 = 1,
 }
 impl From<ENET2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: ENET2_STOP_REQ_A) -> Self {
-        match variant {
-            ENET2_STOP_REQ_A::ENET2_STOP_REQ_0 => false,
-            ENET2_STOP_REQ_A::ENET2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET2_STOP_REQ`"]
@@ -716,17 +689,14 @@ impl<'a> ENET2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SEMC_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    SEMC_STOP_REQ_0,
+    SEMC_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    SEMC_STOP_REQ_1,
+    SEMC_STOP_REQ_1 = 1,
 }
 impl From<SEMC_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: SEMC_STOP_REQ_A) -> Self {
-        match variant {
-            SEMC_STOP_REQ_A::SEMC_STOP_REQ_0 => false,
-            SEMC_STOP_REQ_A::SEMC_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SEMC_STOP_REQ`"]
@@ -794,17 +764,14 @@ impl<'a> SEMC_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PIT_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    PIT_STOP_REQ_0,
+    PIT_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    PIT_STOP_REQ_1,
+    PIT_STOP_REQ_1 = 1,
 }
 impl From<PIT_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: PIT_STOP_REQ_A) -> Self {
-        match variant {
-            PIT_STOP_REQ_A::PIT_STOP_REQ_0 => false,
-            PIT_STOP_REQ_A::PIT_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PIT_STOP_REQ`"]
@@ -872,17 +839,14 @@ impl<'a> PIT_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXSPI_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    FLEXSPI_STOP_REQ_0,
+    FLEXSPI_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    FLEXSPI_STOP_REQ_1,
+    FLEXSPI_STOP_REQ_1 = 1,
 }
 impl From<FLEXSPI_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXSPI_STOP_REQ_A) -> Self {
-        match variant {
-            FLEXSPI_STOP_REQ_A::FLEXSPI_STOP_REQ_0 => false,
-            FLEXSPI_STOP_REQ_A::FLEXSPI_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXSPI_STOP_REQ`"]
@@ -950,17 +914,14 @@ impl<'a> FLEXSPI_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO1_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    FLEXIO1_STOP_REQ_0,
+    FLEXIO1_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    FLEXIO1_STOP_REQ_1,
+    FLEXIO1_STOP_REQ_1 = 1,
 }
 impl From<FLEXIO1_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO1_STOP_REQ_A) -> Self {
-        match variant {
-            FLEXIO1_STOP_REQ_A::FLEXIO1_STOP_REQ_0 => false,
-            FLEXIO1_STOP_REQ_A::FLEXIO1_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO1_STOP_REQ`"]
@@ -1028,17 +989,14 @@ impl<'a> FLEXIO1_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    FLEXIO2_STOP_REQ_0,
+    FLEXIO2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    FLEXIO2_STOP_REQ_1,
+    FLEXIO2_STOP_REQ_1 = 1,
 }
 impl From<FLEXIO2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO2_STOP_REQ_A) -> Self {
-        match variant {
-            FLEXIO2_STOP_REQ_A::FLEXIO2_STOP_REQ_0 => false,
-            FLEXIO2_STOP_REQ_A::FLEXIO2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO2_STOP_REQ`"]
@@ -1106,17 +1064,14 @@ impl<'a> FLEXIO2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO3_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    FLEXIO3_STOP_REQ_0,
+    FLEXIO3_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    FLEXIO3_STOP_REQ_1,
+    FLEXIO3_STOP_REQ_1 = 1,
 }
 impl From<FLEXIO3_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO3_STOP_REQ_A) -> Self {
-        match variant {
-            FLEXIO3_STOP_REQ_A::FLEXIO3_STOP_REQ_0 => false,
-            FLEXIO3_STOP_REQ_A::FLEXIO3_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO3_STOP_REQ`"]
@@ -1184,17 +1139,14 @@ impl<'a> FLEXIO3_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXSPI2_STOP_REQ_A {
     #[doc = "0: stop request off"]
-    FLEXSPI2_STOP_REQ_0,
+    FLEXSPI2_STOP_REQ_0 = 0,
     #[doc = "1: stop request on"]
-    FLEXSPI2_STOP_REQ_1,
+    FLEXSPI2_STOP_REQ_1 = 1,
 }
 impl From<FLEXSPI2_STOP_REQ_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXSPI2_STOP_REQ_A) -> Self {
-        match variant {
-            FLEXSPI2_STOP_REQ_A::FLEXSPI2_STOP_REQ_0 => false,
-            FLEXSPI2_STOP_REQ_A::FLEXSPI2_STOP_REQ_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXSPI2_STOP_REQ`"]
@@ -1262,17 +1214,14 @@ impl<'a> FLEXSPI2_STOP_REQ_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EDMA_STOP_ACK_A {
     #[doc = "0: EDMA stop acknowledge is not asserted"]
-    EDMA_STOP_ACK_0,
+    EDMA_STOP_ACK_0 = 0,
     #[doc = "1: EDMA stop acknowledge is asserted (EDMA is in STOP mode)."]
-    EDMA_STOP_ACK_1,
+    EDMA_STOP_ACK_1 = 1,
 }
 impl From<EDMA_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: EDMA_STOP_ACK_A) -> Self {
-        match variant {
-            EDMA_STOP_ACK_A::EDMA_STOP_ACK_0 => false,
-            EDMA_STOP_ACK_A::EDMA_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EDMA_STOP_ACK`"]
@@ -1301,17 +1250,14 @@ impl EDMA_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CAN1_STOP_ACK_A {
     #[doc = "0: CAN1 stop acknowledge is not asserted"]
-    CAN1_STOP_ACK_0,
+    CAN1_STOP_ACK_0 = 0,
     #[doc = "1: CAN1 stop acknowledge is asserted"]
-    CAN1_STOP_ACK_1,
+    CAN1_STOP_ACK_1 = 1,
 }
 impl From<CAN1_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: CAN1_STOP_ACK_A) -> Self {
-        match variant {
-            CAN1_STOP_ACK_A::CAN1_STOP_ACK_0 => false,
-            CAN1_STOP_ACK_A::CAN1_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CAN1_STOP_ACK`"]
@@ -1340,17 +1286,14 @@ impl CAN1_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CAN2_STOP_ACK_A {
     #[doc = "0: CAN2 stop acknowledge is not asserted"]
-    CAN2_STOP_ACK_0,
+    CAN2_STOP_ACK_0 = 0,
     #[doc = "1: CAN2 stop acknowledge is asserted"]
-    CAN2_STOP_ACK_1,
+    CAN2_STOP_ACK_1 = 1,
 }
 impl From<CAN2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: CAN2_STOP_ACK_A) -> Self {
-        match variant {
-            CAN2_STOP_ACK_A::CAN2_STOP_ACK_0 => false,
-            CAN2_STOP_ACK_A::CAN2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CAN2_STOP_ACK`"]
@@ -1379,17 +1322,14 @@ impl CAN2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum TRNG_STOP_ACK_A {
     #[doc = "0: TRNG stop acknowledge is not asserted"]
-    TRNG_STOP_ACK_0,
+    TRNG_STOP_ACK_0 = 0,
     #[doc = "1: TRNG stop acknowledge is asserted"]
-    TRNG_STOP_ACK_1,
+    TRNG_STOP_ACK_1 = 1,
 }
 impl From<TRNG_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: TRNG_STOP_ACK_A) -> Self {
-        match variant {
-            TRNG_STOP_ACK_A::TRNG_STOP_ACK_0 => false,
-            TRNG_STOP_ACK_A::TRNG_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `TRNG_STOP_ACK`"]
@@ -1418,17 +1358,14 @@ impl TRNG_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET_STOP_ACK_A {
     #[doc = "0: ENET1 stop acknowledge is not asserted"]
-    ENET_STOP_ACK_0,
+    ENET_STOP_ACK_0 = 0,
     #[doc = "1: ENET1 stop acknowledge is asserted"]
-    ENET_STOP_ACK_1,
+    ENET_STOP_ACK_1 = 1,
 }
 impl From<ENET_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: ENET_STOP_ACK_A) -> Self {
-        match variant {
-            ENET_STOP_ACK_A::ENET_STOP_ACK_0 => false,
-            ENET_STOP_ACK_A::ENET_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET_STOP_ACK`"]
@@ -1457,17 +1394,14 @@ impl ENET_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI1_STOP_ACK_A {
     #[doc = "0: SAI1 stop acknowledge is not asserted"]
-    SAI1_STOP_ACK_0,
+    SAI1_STOP_ACK_0 = 0,
     #[doc = "1: SAI1 stop acknowledge is asserted"]
-    SAI1_STOP_ACK_1,
+    SAI1_STOP_ACK_1 = 1,
 }
 impl From<SAI1_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: SAI1_STOP_ACK_A) -> Self {
-        match variant {
-            SAI1_STOP_ACK_A::SAI1_STOP_ACK_0 => false,
-            SAI1_STOP_ACK_A::SAI1_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI1_STOP_ACK`"]
@@ -1496,17 +1430,14 @@ impl SAI1_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI2_STOP_ACK_A {
     #[doc = "0: SAI2 stop acknowledge is not asserted"]
-    SAI2_STOP_ACK_0,
+    SAI2_STOP_ACK_0 = 0,
     #[doc = "1: SAI2 stop acknowledge is asserted"]
-    SAI2_STOP_ACK_1,
+    SAI2_STOP_ACK_1 = 1,
 }
 impl From<SAI2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: SAI2_STOP_ACK_A) -> Self {
-        match variant {
-            SAI2_STOP_ACK_A::SAI2_STOP_ACK_0 => false,
-            SAI2_STOP_ACK_A::SAI2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI2_STOP_ACK`"]
@@ -1535,17 +1466,14 @@ impl SAI2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI3_STOP_ACK_A {
     #[doc = "0: SAI3 stop acknowledge is not asserted"]
-    SAI3_STOP_ACK_0,
+    SAI3_STOP_ACK_0 = 0,
     #[doc = "1: SAI3 stop acknowledge is asserted"]
-    SAI3_STOP_ACK_1,
+    SAI3_STOP_ACK_1 = 1,
 }
 impl From<SAI3_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: SAI3_STOP_ACK_A) -> Self {
-        match variant {
-            SAI3_STOP_ACK_A::SAI3_STOP_ACK_0 => false,
-            SAI3_STOP_ACK_A::SAI3_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI3_STOP_ACK`"]
@@ -1574,17 +1502,14 @@ impl SAI3_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET2_STOP_ACK_A {
     #[doc = "0: ENET2 stop acknowledge is not asserted"]
-    ENET2_STOP_ACK_0,
+    ENET2_STOP_ACK_0 = 0,
     #[doc = "1: ENET2 stop acknowledge is asserted"]
-    ENET2_STOP_ACK_1,
+    ENET2_STOP_ACK_1 = 1,
 }
 impl From<ENET2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: ENET2_STOP_ACK_A) -> Self {
-        match variant {
-            ENET2_STOP_ACK_A::ENET2_STOP_ACK_0 => false,
-            ENET2_STOP_ACK_A::ENET2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET2_STOP_ACK`"]
@@ -1613,17 +1538,14 @@ impl ENET2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SEMC_STOP_ACK_A {
     #[doc = "0: SEMC stop acknowledge is not asserted"]
-    SEMC_STOP_ACK_0,
+    SEMC_STOP_ACK_0 = 0,
     #[doc = "1: SEMC stop acknowledge is asserted"]
-    SEMC_STOP_ACK_1,
+    SEMC_STOP_ACK_1 = 1,
 }
 impl From<SEMC_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: SEMC_STOP_ACK_A) -> Self {
-        match variant {
-            SEMC_STOP_ACK_A::SEMC_STOP_ACK_0 => false,
-            SEMC_STOP_ACK_A::SEMC_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SEMC_STOP_ACK`"]
@@ -1652,17 +1574,14 @@ impl SEMC_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PIT_STOP_ACK_A {
     #[doc = "0: PIT stop acknowledge is not asserted"]
-    PIT_STOP_ACK_0,
+    PIT_STOP_ACK_0 = 0,
     #[doc = "1: PIT stop acknowledge is asserted"]
-    PIT_STOP_ACK_1,
+    PIT_STOP_ACK_1 = 1,
 }
 impl From<PIT_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: PIT_STOP_ACK_A) -> Self {
-        match variant {
-            PIT_STOP_ACK_A::PIT_STOP_ACK_0 => false,
-            PIT_STOP_ACK_A::PIT_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PIT_STOP_ACK`"]
@@ -1691,17 +1610,14 @@ impl PIT_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXSPI_STOP_ACK_A {
     #[doc = "0: FLEXSPI stop acknowledge is not asserted"]
-    FLEXSPI_STOP_ACK_0,
+    FLEXSPI_STOP_ACK_0 = 0,
     #[doc = "1: FLEXSPI stop acknowledge is asserted"]
-    FLEXSPI_STOP_ACK_1,
+    FLEXSPI_STOP_ACK_1 = 1,
 }
 impl From<FLEXSPI_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXSPI_STOP_ACK_A) -> Self {
-        match variant {
-            FLEXSPI_STOP_ACK_A::FLEXSPI_STOP_ACK_0 => false,
-            FLEXSPI_STOP_ACK_A::FLEXSPI_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXSPI_STOP_ACK`"]
@@ -1730,17 +1646,14 @@ impl FLEXSPI_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO1_STOP_ACK_A {
     #[doc = "0: FLEXIO1 stop acknowledge is not asserted"]
-    FLEXIO1_STOP_ACK_0,
+    FLEXIO1_STOP_ACK_0 = 0,
     #[doc = "1: FLEXIO1 stop acknowledge is asserted"]
-    FLEXIO1_STOP_ACK_1,
+    FLEXIO1_STOP_ACK_1 = 1,
 }
 impl From<FLEXIO1_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO1_STOP_ACK_A) -> Self {
-        match variant {
-            FLEXIO1_STOP_ACK_A::FLEXIO1_STOP_ACK_0 => false,
-            FLEXIO1_STOP_ACK_A::FLEXIO1_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO1_STOP_ACK`"]
@@ -1769,17 +1682,14 @@ impl FLEXIO1_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO2_STOP_ACK_A {
     #[doc = "0: FLEXIO2 stop acknowledge is not asserted"]
-    FLEXIO2_STOP_ACK_0,
+    FLEXIO2_STOP_ACK_0 = 0,
     #[doc = "1: FLEXIO2 stop acknowledge is asserted (FLEXIO2 is in STOP mode)"]
-    FLEXIO2_STOP_ACK_1,
+    FLEXIO2_STOP_ACK_1 = 1,
 }
 impl From<FLEXIO2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO2_STOP_ACK_A) -> Self {
-        match variant {
-            FLEXIO2_STOP_ACK_A::FLEXIO2_STOP_ACK_0 => false,
-            FLEXIO2_STOP_ACK_A::FLEXIO2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO2_STOP_ACK`"]
@@ -1808,17 +1718,14 @@ impl FLEXIO2_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO3_STOP_ACK_A {
     #[doc = "0: FLEXIO3 stop acknowledge is not asserted"]
-    FLEXIO3_STOP_ACK_0,
+    FLEXIO3_STOP_ACK_0 = 0,
     #[doc = "1: FLEXIO3 stop acknowledge is asserted"]
-    FLEXIO3_STOP_ACK_1,
+    FLEXIO3_STOP_ACK_1 = 1,
 }
 impl From<FLEXIO3_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO3_STOP_ACK_A) -> Self {
-        match variant {
-            FLEXIO3_STOP_ACK_A::FLEXIO3_STOP_ACK_0 => false,
-            FLEXIO3_STOP_ACK_A::FLEXIO3_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO3_STOP_ACK`"]
@@ -1847,17 +1754,14 @@ impl FLEXIO3_STOP_ACK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXSPI2_STOP_ACK_A {
     #[doc = "0: FLEXSPI2 stop acknowledge is not asserted"]
-    FLEXSPI2_STOP_ACK_0,
+    FLEXSPI2_STOP_ACK_0 = 0,
     #[doc = "1: FLEXSPI2 stop acknowledge is asserted"]
-    FLEXSPI2_STOP_ACK_1,
+    FLEXSPI2_STOP_ACK_1 = 1,
 }
 impl From<FLEXSPI2_STOP_ACK_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXSPI2_STOP_ACK_A) -> Self {
-        match variant {
-            FLEXSPI2_STOP_ACK_A::FLEXSPI2_STOP_ACK_0 => false,
-            FLEXSPI2_STOP_ACK_A::FLEXSPI2_STOP_ACK_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXSPI2_STOP_ACK`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CISR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LRF_PLL_A {
     #[doc = "0: interrupt is not generated due to lock ready of all enabled and not bypaseed PLLs"]
-    LRF_PLL_0,
+    LRF_PLL_0 = 0,
     #[doc = "1: interrupt generated due to lock ready of all enabled and not bypaseed PLLs"]
-    LRF_PLL_1,
+    LRF_PLL_1 = 1,
 }
 impl From<LRF_PLL_A> for bool {
     #[inline(always)]
     fn from(variant: LRF_PLL_A) -> Self {
-        match variant {
-            LRF_PLL_A::LRF_PLL_0 => false,
-            LRF_PLL_A::LRF_PLL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LRF_PLL`"]
@@ -92,17 +89,14 @@ impl<'a> LRF_PLL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COSC_READY_A {
     #[doc = "0: interrupt is not generated due to on board oscillator ready"]
-    COSC_READY_0,
+    COSC_READY_0 = 0,
     #[doc = "1: interrupt generated due to on board oscillator ready"]
-    COSC_READY_1,
+    COSC_READY_1 = 1,
 }
 impl From<COSC_READY_A> for bool {
     #[inline(always)]
     fn from(variant: COSC_READY_A) -> Self {
-        match variant {
-            COSC_READY_A::COSC_READY_0 => false,
-            COSC_READY_A::COSC_READY_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COSC_READY`"]
@@ -170,17 +164,14 @@ impl<'a> COSC_READY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SEMC_PODF_LOADED_A {
     #[doc = "0: interrupt is not generated due to frequency change of semc_podf"]
-    SEMC_PODF_LOADED_0,
+    SEMC_PODF_LOADED_0 = 0,
     #[doc = "1: interrupt generated due to frequency change of semc_podf"]
-    SEMC_PODF_LOADED_1,
+    SEMC_PODF_LOADED_1 = 1,
 }
 impl From<SEMC_PODF_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: SEMC_PODF_LOADED_A) -> Self {
-        match variant {
-            SEMC_PODF_LOADED_A::SEMC_PODF_LOADED_0 => false,
-            SEMC_PODF_LOADED_A::SEMC_PODF_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SEMC_PODF_LOADED`"]
@@ -248,17 +239,14 @@ impl<'a> SEMC_PODF_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PERIPH2_CLK_SEL_LOADED_A {
     #[doc = "0: interrupt is not generated due to frequency change of periph2_clk_sel"]
-    PERIPH2_CLK_SEL_LOADED_0,
+    PERIPH2_CLK_SEL_LOADED_0 = 0,
     #[doc = "1: interrupt generated due to frequency change of periph2_clk_sel"]
-    PERIPH2_CLK_SEL_LOADED_1,
+    PERIPH2_CLK_SEL_LOADED_1 = 1,
 }
 impl From<PERIPH2_CLK_SEL_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: PERIPH2_CLK_SEL_LOADED_A) -> Self {
-        match variant {
-            PERIPH2_CLK_SEL_LOADED_A::PERIPH2_CLK_SEL_LOADED_0 => false,
-            PERIPH2_CLK_SEL_LOADED_A::PERIPH2_CLK_SEL_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PERIPH2_CLK_SEL_LOADED`"]
@@ -326,17 +314,14 @@ impl<'a> PERIPH2_CLK_SEL_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum AHB_PODF_LOADED_A {
     #[doc = "0: interrupt is not generated due to frequency change of ahb_podf"]
-    AHB_PODF_LOADED_0,
+    AHB_PODF_LOADED_0 = 0,
     #[doc = "1: interrupt generated due to frequency change of ahb_podf"]
-    AHB_PODF_LOADED_1,
+    AHB_PODF_LOADED_1 = 1,
 }
 impl From<AHB_PODF_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: AHB_PODF_LOADED_A) -> Self {
-        match variant {
-            AHB_PODF_LOADED_A::AHB_PODF_LOADED_0 => false,
-            AHB_PODF_LOADED_A::AHB_PODF_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `AHB_PODF_LOADED`"]
@@ -404,17 +389,14 @@ impl<'a> AHB_PODF_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PERIPH_CLK_SEL_LOADED_A {
     #[doc = "0: interrupt is not generated due to update of periph_clk_sel."]
-    PERIPH_CLK_SEL_LOADED_0,
+    PERIPH_CLK_SEL_LOADED_0 = 0,
     #[doc = "1: interrupt generated due to update of periph_clk_sel."]
-    PERIPH_CLK_SEL_LOADED_1,
+    PERIPH_CLK_SEL_LOADED_1 = 1,
 }
 impl From<PERIPH_CLK_SEL_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: PERIPH_CLK_SEL_LOADED_A) -> Self {
-        match variant {
-            PERIPH_CLK_SEL_LOADED_A::PERIPH_CLK_SEL_LOADED_0 => false,
-            PERIPH_CLK_SEL_LOADED_A::PERIPH_CLK_SEL_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PERIPH_CLK_SEL_LOADED`"]
@@ -482,17 +464,14 @@ impl<'a> PERIPH_CLK_SEL_LOADED_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ARM_PODF_LOADED_A {
     #[doc = "0: interrupt is not generated due to frequency change of arm_podf"]
-    ARM_PODF_LOADED_0,
+    ARM_PODF_LOADED_0 = 0,
     #[doc = "1: interrupt generated due to frequency change of arm_podf"]
-    ARM_PODF_LOADED_1,
+    ARM_PODF_LOADED_1 = 1,
 }
 impl From<ARM_PODF_LOADED_A> for bool {
     #[inline(always)]
     fn from(variant: ARM_PODF_LOADED_A) -> Self {
-        match variant {
-            ARM_PODF_LOADED_A::ARM_PODF_LOADED_0 => false,
-            ARM_PODF_LOADED_A::ARM_PODF_LOADED_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ARM_PODF_LOADED`"]

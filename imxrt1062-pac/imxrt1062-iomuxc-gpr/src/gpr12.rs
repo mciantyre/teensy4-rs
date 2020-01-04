@@ -14,17 +14,14 @@ impl crate::ResetValue for super::GPR12 {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO1_IPG_STOP_MODE_A {
     #[doc = "0: FlexIO1 is functional in Stop mode."]
-    FLEXIO1_IPG_STOP_MODE_0,
+    FLEXIO1_IPG_STOP_MODE_0 = 0,
     #[doc = "1: When this bit is equal to 1'b1 and ipg_stop is asserted, FlexIO1 is not functional in Stop mode."]
-    FLEXIO1_IPG_STOP_MODE_1,
+    FLEXIO1_IPG_STOP_MODE_1 = 1,
 }
 impl From<FLEXIO1_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO1_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            FLEXIO1_IPG_STOP_MODE_A::FLEXIO1_IPG_STOP_MODE_0 => false,
-            FLEXIO1_IPG_STOP_MODE_A::FLEXIO1_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO1_IPG_STOP_MODE`"]
@@ -92,17 +89,14 @@ impl<'a> FLEXIO1_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO1_IPG_DOZE_A {
     #[doc = "0: FLEXIO1 is not in doze mode"]
-    FLEXIO1_IPG_DOZE_0,
+    FLEXIO1_IPG_DOZE_0 = 0,
     #[doc = "1: FLEXIO1 is in doze mode"]
-    FLEXIO1_IPG_DOZE_1,
+    FLEXIO1_IPG_DOZE_1 = 1,
 }
 impl From<FLEXIO1_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO1_IPG_DOZE_A) -> Self {
-        match variant {
-            FLEXIO1_IPG_DOZE_A::FLEXIO1_IPG_DOZE_0 => false,
-            FLEXIO1_IPG_DOZE_A::FLEXIO1_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO1_IPG_DOZE`"]
@@ -170,17 +164,14 @@ impl<'a> FLEXIO1_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO2_IPG_STOP_MODE_A {
     #[doc = "0: FlexIO2 is functional in Stop mode."]
-    FLEXIO2_IPG_STOP_MODE_0,
+    FLEXIO2_IPG_STOP_MODE_0 = 0,
     #[doc = "1: When this bit is equal to 1'b1 and ipg_stop is asserted, FlexIO2 is not functional in Stop mode."]
-    FLEXIO2_IPG_STOP_MODE_1,
+    FLEXIO2_IPG_STOP_MODE_1 = 1,
 }
 impl From<FLEXIO2_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO2_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            FLEXIO2_IPG_STOP_MODE_A::FLEXIO2_IPG_STOP_MODE_0 => false,
-            FLEXIO2_IPG_STOP_MODE_A::FLEXIO2_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO2_IPG_STOP_MODE`"]
@@ -248,17 +239,14 @@ impl<'a> FLEXIO2_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO2_IPG_DOZE_A {
     #[doc = "0: FLEXIO2 is not in doze mode"]
-    FLEXIO2_IPG_DOZE_0,
+    FLEXIO2_IPG_DOZE_0 = 0,
     #[doc = "1: FLEXIO2 is in doze mode"]
-    FLEXIO2_IPG_DOZE_1,
+    FLEXIO2_IPG_DOZE_1 = 1,
 }
 impl From<FLEXIO2_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO2_IPG_DOZE_A) -> Self {
-        match variant {
-            FLEXIO2_IPG_DOZE_A::FLEXIO2_IPG_DOZE_0 => false,
-            FLEXIO2_IPG_DOZE_A::FLEXIO2_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO2_IPG_DOZE`"]
@@ -326,17 +314,14 @@ impl<'a> FLEXIO2_IPG_DOZE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACMP_IPG_STOP_MODE_A {
     #[doc = "0: ACMP is functional in Stop mode."]
-    ACMP_IPG_STOP_MODE_0,
+    ACMP_IPG_STOP_MODE_0 = 0,
     #[doc = "1: When this bit is equal to 1'b1 and ipg_stop is asserted, ACMP is not functional in Stop mode."]
-    ACMP_IPG_STOP_MODE_1,
+    ACMP_IPG_STOP_MODE_1 = 1,
 }
 impl From<ACMP_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: ACMP_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            ACMP_IPG_STOP_MODE_A::ACMP_IPG_STOP_MODE_0 => false,
-            ACMP_IPG_STOP_MODE_A::ACMP_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACMP_IPG_STOP_MODE`"]
@@ -404,17 +389,14 @@ impl<'a> ACMP_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO3_IPG_STOP_MODE_A {
     #[doc = "0: FlexIO3 is functional in Stop mode."]
-    FLEXIO3_IPG_STOP_MODE_0,
+    FLEXIO3_IPG_STOP_MODE_0 = 0,
     #[doc = "1: When this bit is equal to 1'b1 and ipg_stop is asserted, FlexIO3 is not functional in Stop mode."]
-    FLEXIO3_IPG_STOP_MODE_1,
+    FLEXIO3_IPG_STOP_MODE_1 = 1,
 }
 impl From<FLEXIO3_IPG_STOP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO3_IPG_STOP_MODE_A) -> Self {
-        match variant {
-            FLEXIO3_IPG_STOP_MODE_A::FLEXIO3_IPG_STOP_MODE_0 => false,
-            FLEXIO3_IPG_STOP_MODE_A::FLEXIO3_IPG_STOP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO3_IPG_STOP_MODE`"]
@@ -482,17 +464,14 @@ impl<'a> FLEXIO3_IPG_STOP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FLEXIO3_IPG_DOZE_A {
     #[doc = "0: FLEXIO3 is not in doze mode"]
-    FLEXIO3_IPG_DOZE_0,
+    FLEXIO3_IPG_DOZE_0 = 0,
     #[doc = "1: FLEXIO3 is in doze mode"]
-    FLEXIO3_IPG_DOZE_1,
+    FLEXIO3_IPG_DOZE_1 = 1,
 }
 impl From<FLEXIO3_IPG_DOZE_A> for bool {
     #[inline(always)]
     fn from(variant: FLEXIO3_IPG_DOZE_A) -> Self {
-        match variant {
-            FLEXIO3_IPG_DOZE_A::FLEXIO3_IPG_DOZE_0 => false,
-            FLEXIO3_IPG_DOZE_A::FLEXIO3_IPG_DOZE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FLEXIO3_IPG_DOZE`"]

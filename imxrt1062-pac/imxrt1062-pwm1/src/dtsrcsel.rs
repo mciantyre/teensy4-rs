@@ -18,7 +18,8 @@ pub enum SMSEL45_A {
     SMSEL45_0 = 0,
     #[doc = "1: Inverted generated SM0PWM45 signal is used by the deadtime logic."]
     SMSEL45_1 = 1,
-    #[doc = "2: SWCOUT\\[SM0OUT45\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM0OUT45\\]
+is used by the deadtime logic."]
     SMSEL45_2 = 2,
     #[doc = "3: PWM0_EXTB signal is used by the deadtime logic."]
     SMSEL45_3 = 3,
@@ -86,7 +87,8 @@ impl<'a> SMSEL45_W<'a> {
     pub fn smsel45_1(self) -> &'a mut W {
         self.variant(SMSEL45_A::SMSEL45_1)
     }
-    #[doc = "SWCOUT\\[SM0OUT45\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM0OUT45\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn smsel45_2(self) -> &'a mut W {
         self.variant(SMSEL45_A::SMSEL45_2)
@@ -111,7 +113,8 @@ pub enum SMSEL23_A {
     SMSEL23_0 = 0,
     #[doc = "1: Inverted generated SM0PWM23 signal is used by the deadtime logic."]
     SMSEL23_1 = 1,
-    #[doc = "2: SWCOUT\\[SM0OUT23\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM0OUT23\\]
+is used by the deadtime logic."]
     SMSEL23_2 = 2,
     #[doc = "3: PWM0_EXTA signal is used by the deadtime logic."]
     SMSEL23_3 = 3,
@@ -179,7 +182,8 @@ impl<'a> SMSEL23_W<'a> {
     pub fn smsel23_1(self) -> &'a mut W {
         self.variant(SMSEL23_A::SMSEL23_1)
     }
-    #[doc = "SWCOUT\\[SM0OUT23\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM0OUT23\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn smsel23_2(self) -> &'a mut W {
         self.variant(SMSEL23_A::SMSEL23_2)
@@ -204,7 +208,8 @@ pub enum SM1SEL45_A {
     SM1SEL45_0 = 0,
     #[doc = "1: Inverted generated SM1PWM45 signal is used by the deadtime logic."]
     SM1SEL45_1 = 1,
-    #[doc = "2: SWCOUT\\[SM1OUT45\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM1OUT45\\]
+is used by the deadtime logic."]
     SM1SEL45_2 = 2,
     #[doc = "3: PWM1_EXTB signal is used by the deadtime logic."]
     SM1SEL45_3 = 3,
@@ -272,7 +277,8 @@ impl<'a> SM1SEL45_W<'a> {
     pub fn sm1sel45_1(self) -> &'a mut W {
         self.variant(SM1SEL45_A::SM1SEL45_1)
     }
-    #[doc = "SWCOUT\\[SM1OUT45\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM1OUT45\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn sm1sel45_2(self) -> &'a mut W {
         self.variant(SM1SEL45_A::SM1SEL45_2)
@@ -297,7 +303,8 @@ pub enum SM1SEL23_A {
     SM1SEL23_0 = 0,
     #[doc = "1: Inverted generated SM1PWM23 signal is used by the deadtime logic."]
     SM1SEL23_1 = 1,
-    #[doc = "2: SWCOUT\\[SM1OUT23\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM1OUT23\\]
+is used by the deadtime logic."]
     SM1SEL23_2 = 2,
     #[doc = "3: PWM1_EXTA signal is used by the deadtime logic."]
     SM1SEL23_3 = 3,
@@ -365,7 +372,8 @@ impl<'a> SM1SEL23_W<'a> {
     pub fn sm1sel23_1(self) -> &'a mut W {
         self.variant(SM1SEL23_A::SM1SEL23_1)
     }
-    #[doc = "SWCOUT\\[SM1OUT23\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM1OUT23\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn sm1sel23_2(self) -> &'a mut W {
         self.variant(SM1SEL23_A::SM1SEL23_2)
@@ -390,7 +398,8 @@ pub enum SM2SEL45_A {
     SM2SEL45_0 = 0,
     #[doc = "1: Inverted generated SM2PWM45 signal is used by the deadtime logic."]
     SM2SEL45_1 = 1,
-    #[doc = "2: SWCOUT\\[SM2OUT45\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM2OUT45\\]
+is used by the deadtime logic."]
     SM2SEL45_2 = 2,
     #[doc = "3: PWM2_EXTB signal is used by the deadtime logic."]
     SM2SEL45_3 = 3,
@@ -458,7 +467,8 @@ impl<'a> SM2SEL45_W<'a> {
     pub fn sm2sel45_1(self) -> &'a mut W {
         self.variant(SM2SEL45_A::SM2SEL45_1)
     }
-    #[doc = "SWCOUT\\[SM2OUT45\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM2OUT45\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn sm2sel45_2(self) -> &'a mut W {
         self.variant(SM2SEL45_A::SM2SEL45_2)
@@ -483,7 +493,8 @@ pub enum SM2SEL23_A {
     SM2SEL23_0 = 0,
     #[doc = "1: Inverted generated SM2PWM23 signal is used by the deadtime logic."]
     SM2SEL23_1 = 1,
-    #[doc = "2: SWCOUT\\[SM2OUT23\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM2OUT23\\]
+is used by the deadtime logic."]
     SM2SEL23_2 = 2,
     #[doc = "3: PWM2_EXTA signal is used by the deadtime logic."]
     SM2SEL23_3 = 3,
@@ -551,7 +562,8 @@ impl<'a> SM2SEL23_W<'a> {
     pub fn sm2sel23_1(self) -> &'a mut W {
         self.variant(SM2SEL23_A::SM2SEL23_1)
     }
-    #[doc = "SWCOUT\\[SM2OUT23\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM2OUT23\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn sm2sel23_2(self) -> &'a mut W {
         self.variant(SM2SEL23_A::SM2SEL23_2)
@@ -576,7 +588,8 @@ pub enum SM3SEL45_A {
     SM3SEL45_0 = 0,
     #[doc = "1: Inverted generated SM3PWM45 signal is used by the deadtime logic."]
     SM3SEL45_1 = 1,
-    #[doc = "2: SWCOUT\\[SM3OUT45\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM3OUT45\\]
+is used by the deadtime logic."]
     SM3SEL45_2 = 2,
     #[doc = "3: PWM3_EXTB signal is used by the deadtime logic."]
     SM3SEL45_3 = 3,
@@ -644,7 +657,8 @@ impl<'a> SM3SEL45_W<'a> {
     pub fn sm3sel45_1(self) -> &'a mut W {
         self.variant(SM3SEL45_A::SM3SEL45_1)
     }
-    #[doc = "SWCOUT\\[SM3OUT45\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM3OUT45\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn sm3sel45_2(self) -> &'a mut W {
         self.variant(SM3SEL45_A::SM3SEL45_2)
@@ -669,7 +683,8 @@ pub enum SM3SEL23_A {
     SM3SEL23_0 = 0,
     #[doc = "1: Inverted generated SM3PWM23 signal is used by the deadtime logic."]
     SM3SEL23_1 = 1,
-    #[doc = "2: SWCOUT\\[SM3OUT23\\] is used by the deadtime logic."]
+    #[doc = "2: SWCOUT\\[SM3OUT23\\]
+is used by the deadtime logic."]
     SM3SEL23_2 = 2,
     #[doc = "3: PWM3_EXTA signal is used by the deadtime logic."]
     SM3SEL23_3 = 3,
@@ -737,7 +752,8 @@ impl<'a> SM3SEL23_W<'a> {
     pub fn sm3sel23_1(self) -> &'a mut W {
         self.variant(SM3SEL23_A::SM3SEL23_1)
     }
-    #[doc = "SWCOUT\\[SM3OUT23\\] is used by the deadtime logic."]
+    #[doc = "SWCOUT\\[SM3OUT23\\]
+is used by the deadtime logic."]
     #[inline(always)]
     pub fn sm3sel23_2(self) -> &'a mut W {
         self.variant(SM3SEL23_A::SM3SEL23_2)

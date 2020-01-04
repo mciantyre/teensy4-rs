@@ -223,9 +223,11 @@ impl<'a> CFA1_W<'a> {
 #[doc = "Reload Flag\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RF_A {
-    #[doc = "0: No new reload cycle since last STS\\[RF\\] clearing"]
+    #[doc = "0: No new reload cycle since last STS\\[RF\\]
+clearing"]
     RF_0 = 0,
-    #[doc = "1: New reload cycle since last STS\\[RF\\] clearing"]
+    #[doc = "1: New reload cycle since last STS\\[RF\\]
+clearing"]
     RF_1 = 1,
 }
 impl From<RF_A> for bool {
@@ -268,12 +270,14 @@ impl<'a> RF_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "No new reload cycle since last STS\\[RF\\] clearing"]
+    #[doc = "No new reload cycle since last STS\\[RF\\]
+clearing"]
     #[inline(always)]
     pub fn rf_0(self) -> &'a mut W {
         self.variant(RF_A::RF_0)
     }
-    #[doc = "New reload cycle since last STS\\[RF\\] clearing"]
+    #[doc = "New reload cycle since last STS\\[RF\\]
+clearing"]
     #[inline(always)]
     pub fn rf_1(self) -> &'a mut W {
         self.variant(RF_A::RF_1)
@@ -300,7 +304,8 @@ impl<'a> RF_W<'a> {
 pub enum REF_A {
     #[doc = "0: No reload error occurred."]
     REF_0 = 0,
-    #[doc = "1: Reload signal occurred with non-coherent data and MCTRL\\[LDOK\\] = 0."]
+    #[doc = "1: Reload signal occurred with non-coherent data and MCTRL\\[LDOK\\]
+= 0."]
     REF_1 = 1,
 }
 impl From<REF_A> for bool {
@@ -348,7 +353,8 @@ impl<'a> REF_W<'a> {
     pub fn ref_0(self) -> &'a mut W {
         self.variant(REF_A::REF_0)
     }
-    #[doc = "Reload signal occurred with non-coherent data and MCTRL\\[LDOK\\] = 0."]
+    #[doc = "Reload signal occurred with non-coherent data and MCTRL\\[LDOK\\]
+= 0."]
     #[inline(always)]
     pub fn ref_1(self) -> &'a mut W {
         self.variant(REF_A::REF_1)

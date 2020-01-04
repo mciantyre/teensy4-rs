@@ -1,9 +1,4 @@
-static C_SRCS: &[&str] = &[
-    "./src/cache.c",
-    "./src/fault.c",
-    "./src/ivt.c",
-    "./src/reset.c",
-];
+static C_SRCS: &[&str] = &["./src/fault.c", "./src/ivt.c", "./src/reset.c"];
 
 use std::env;
 use std::fs::File;

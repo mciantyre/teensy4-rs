@@ -14,17 +14,14 @@ impl crate::ResetValue for super::CR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EN_A {
     #[doc = "0: GPT is disabled."]
-    EN_0,
+    EN_0 = 0,
     #[doc = "1: GPT is enabled."]
-    EN_1,
+    EN_1 = 1,
 }
 impl From<EN_A> for bool {
     #[inline(always)]
     fn from(variant: EN_A) -> Self {
-        match variant {
-            EN_A::EN_0 => false,
-            EN_A::EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EN`"]
@@ -92,17 +89,14 @@ impl<'a> EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENMOD_A {
     #[doc = "0: GPT counter will retain its value when it is disabled."]
-    ENMOD_0,
+    ENMOD_0 = 0,
     #[doc = "1: GPT counter value is reset to 0 when it is disabled."]
-    ENMOD_1,
+    ENMOD_1 = 1,
 }
 impl From<ENMOD_A> for bool {
     #[inline(always)]
     fn from(variant: ENMOD_A) -> Self {
-        match variant {
-            ENMOD_A::ENMOD_0 => false,
-            ENMOD_A::ENMOD_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENMOD`"]
@@ -170,17 +164,14 @@ impl<'a> ENMOD_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DBGEN_A {
     #[doc = "0: GPT is disabled in debug mode."]
-    DBGEN_0,
+    DBGEN_0 = 0,
     #[doc = "1: GPT is enabled in debug mode."]
-    DBGEN_1,
+    DBGEN_1 = 1,
 }
 impl From<DBGEN_A> for bool {
     #[inline(always)]
     fn from(variant: DBGEN_A) -> Self {
-        match variant {
-            DBGEN_A::DBGEN_0 => false,
-            DBGEN_A::DBGEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DBGEN`"]
@@ -248,17 +239,14 @@ impl<'a> DBGEN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum WAITEN_A {
     #[doc = "0: GPT is disabled in wait mode."]
-    WAITEN_0,
+    WAITEN_0 = 0,
     #[doc = "1: GPT is enabled in wait mode."]
-    WAITEN_1,
+    WAITEN_1 = 1,
 }
 impl From<WAITEN_A> for bool {
     #[inline(always)]
     fn from(variant: WAITEN_A) -> Self {
-        match variant {
-            WAITEN_A::WAITEN_0 => false,
-            WAITEN_A::WAITEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `WAITEN`"]
@@ -326,17 +314,14 @@ impl<'a> WAITEN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DOZEEN_A {
     #[doc = "0: GPT is disabled in doze mode."]
-    DOZEEN_0,
+    DOZEEN_0 = 0,
     #[doc = "1: GPT is enabled in doze mode."]
-    DOZEEN_1,
+    DOZEEN_1 = 1,
 }
 impl From<DOZEEN_A> for bool {
     #[inline(always)]
     fn from(variant: DOZEEN_A) -> Self {
-        match variant {
-            DOZEEN_A::DOZEEN_0 => false,
-            DOZEEN_A::DOZEEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DOZEEN`"]
@@ -404,17 +389,14 @@ impl<'a> DOZEEN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum STOPEN_A {
     #[doc = "0: GPT is disabled in Stop mode."]
-    STOPEN_0,
+    STOPEN_0 = 0,
     #[doc = "1: GPT is enabled in Stop mode."]
-    STOPEN_1,
+    STOPEN_1 = 1,
 }
 impl From<STOPEN_A> for bool {
     #[inline(always)]
     fn from(variant: STOPEN_A) -> Self {
-        match variant {
-            STOPEN_A::STOPEN_0 => false,
-            STOPEN_A::STOPEN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `STOPEN`"]
@@ -480,31 +462,25 @@ impl<'a> STOPEN_W<'a> {
 }
 #[doc = "Clock Source select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CLKSRC_A {
     #[doc = "0: No clock"]
-    CLKSRC_0,
+    CLKSRC_0 = 0,
     #[doc = "1: Peripheral Clock (ipg_clk)"]
-    CLKSRC_1,
+    CLKSRC_1 = 1,
     #[doc = "2: High Frequency Reference Clock (ipg_clk_highfreq)"]
-    CLKSRC_2,
+    CLKSRC_2 = 2,
     #[doc = "3: External Clock"]
-    CLKSRC_3,
+    CLKSRC_3 = 3,
     #[doc = "4: Low Frequency Reference Clock (ipg_clk_32k)"]
-    CLKSRC_4,
+    CLKSRC_4 = 4,
     #[doc = "5: Crystal oscillator as Reference Clock (ipg_clk_24M)"]
-    CLKSRC_5,
+    CLKSRC_5 = 5,
 }
 impl From<CLKSRC_A> for u8 {
     #[inline(always)]
     fn from(variant: CLKSRC_A) -> Self {
-        match variant {
-            CLKSRC_A::CLKSRC_0 => 0,
-            CLKSRC_A::CLKSRC_1 => 1,
-            CLKSRC_A::CLKSRC_2 => 2,
-            CLKSRC_A::CLKSRC_3 => 3,
-            CLKSRC_A::CLKSRC_4 => 4,
-            CLKSRC_A::CLKSRC_5 => 5,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CLKSRC`"]
@@ -606,17 +582,14 @@ impl<'a> CLKSRC_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FRR_A {
     #[doc = "0: Restart mode"]
-    FRR_0,
+    FRR_0 = 0,
     #[doc = "1: Free-Run mode"]
-    FRR_1,
+    FRR_1 = 1,
 }
 impl From<FRR_A> for bool {
     #[inline(always)]
     fn from(variant: FRR_A) -> Self {
-        match variant {
-            FRR_A::FRR_0 => false,
-            FRR_A::FRR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FRR`"]
@@ -684,17 +657,14 @@ impl<'a> FRR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EN_24M_A {
     #[doc = "0: 24M clock disabled"]
-    EN_24M_0,
+    EN_24M_0 = 0,
     #[doc = "1: 24M clock enabled"]
-    EN_24M_1,
+    EN_24M_1 = 1,
 }
 impl From<EN_24M_A> for bool {
     #[inline(always)]
     fn from(variant: EN_24M_A) -> Self {
-        match variant {
-            EN_24M_A::EN_24M_0 => false,
-            EN_24M_A::EN_24M_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EN_24M`"]
@@ -762,17 +732,14 @@ impl<'a> EN_24M_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SWR_A {
     #[doc = "0: GPT is not in reset state"]
-    SWR_0,
+    SWR_0 = 0,
     #[doc = "1: GPT is in reset state"]
-    SWR_1,
+    SWR_1 = 1,
 }
 impl From<SWR_A> for bool {
     #[inline(always)]
     fn from(variant: SWR_A) -> Self {
-        match variant {
-            SWR_A::SWR_0 => false,
-            SWR_A::SWR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SWR`"]
@@ -852,25 +819,21 @@ impl<'a> IM1_W<'a> {
 }
 #[doc = "IM2 (bits 19-18, Input Capture Channel 2 operating mode) IM1 (bits 17-16, Input Capture Channel 1 operating mode) The IMn bit field determines the transition on the input pin (for Input capture channel n), which will trigger a capture event\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum IM2_A {
     #[doc = "0: capture disabled"]
-    IM2_0,
+    IM2_0 = 0,
     #[doc = "1: capture on rising edge only"]
-    IM2_1,
+    IM2_1 = 1,
     #[doc = "2: capture on falling edge only"]
-    IM2_2,
+    IM2_2 = 2,
     #[doc = "3: capture on both edges"]
-    IM2_3,
+    IM2_3 = 3,
 }
 impl From<IM2_A> for u8 {
     #[inline(always)]
     fn from(variant: IM2_A) -> Self {
-        match variant {
-            IM2_A::IM2_0 => 0,
-            IM2_A::IM2_1 => 1,
-            IM2_A::IM2_2 => 2,
-            IM2_A::IM2_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `IM2`"]
@@ -977,28 +940,23 @@ impl<'a> OM2_W<'a> {
 }
 #[doc = "OM3 (bits 28-26) controls the Output Compare Channel 3 operating mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum OM3_A {
     #[doc = "0: Output disconnected. No response on pin."]
-    OM3_0,
+    OM3_0 = 0,
     #[doc = "1: Toggle output pin"]
-    OM3_1,
+    OM3_1 = 1,
     #[doc = "2: Clear output pin"]
-    OM3_2,
+    OM3_2 = 2,
     #[doc = "3: Set output pin"]
-    OM3_3,
+    OM3_3 = 3,
     #[doc = "4: Generate an active low pulse (that is one input clock wide) on the output pin."]
-    OM3_4,
+    OM3_4 = 4,
 }
 impl From<OM3_A> for u8 {
     #[inline(always)]
     fn from(variant: OM3_A) -> Self {
-        match variant {
-            OM3_A::OM3_0 => 0,
-            OM3_A::OM3_1 => 1,
-            OM3_A::OM3_2 => 2,
-            OM3_A::OM3_3 => 3,
-            OM3_A::OM3_4 => 4,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `OM3`"]
@@ -1137,17 +1095,14 @@ impl<'a> FO2_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FO3_A {
     #[doc = "0: Writing a 0 has no effect."]
-    FO3_0,
+    FO3_0 = 0,
     #[doc = "1: Causes the programmed pin action on the timer Output Compare n pin; the OFn flag is not set."]
-    FO3_1,
+    FO3_1 = 1,
 }
 impl From<FO3_A> for bool {
     #[inline(always)]
     fn from(variant: FO3_A) -> Self {
-        match variant {
-            FO3_A::FO3_0 => false,
-            FO3_A::FO3_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FO3`"]

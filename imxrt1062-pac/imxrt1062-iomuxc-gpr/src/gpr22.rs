@@ -13,18 +13,17 @@ impl crate::ResetValue for super::GPR22 {
 #[doc = "lock M7_APC_AC_R2_BOT field for changes\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LOCK_M7_APC_AC_R2_BOT_A {
-    #[doc = "0: Register field \\[31:1\\] is not locked"]
-    LOCK_M7_APC_AC_R2_BOT_0,
-    #[doc = "1: Register field \\[31:1\\] is locked (read access only)"]
-    LOCK_M7_APC_AC_R2_BOT_1,
+    #[doc = "0: Register field \\[31:1\\]
+is not locked"]
+    LOCK_M7_APC_AC_R2_BOT_0 = 0,
+    #[doc = "1: Register field \\[31:1\\]
+is locked (read access only)"]
+    LOCK_M7_APC_AC_R2_BOT_1 = 1,
 }
 impl From<LOCK_M7_APC_AC_R2_BOT_A> for bool {
     #[inline(always)]
     fn from(variant: LOCK_M7_APC_AC_R2_BOT_A) -> Self {
-        match variant {
-            LOCK_M7_APC_AC_R2_BOT_A::LOCK_M7_APC_AC_R2_BOT_0 => false,
-            LOCK_M7_APC_AC_R2_BOT_A::LOCK_M7_APC_AC_R2_BOT_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LOCK_M7_APC_AC_R2_BOT`"]
@@ -61,12 +60,14 @@ impl<'a> LOCK_M7_APC_AC_R2_BOT_W<'a> {
             self.bit(variant.into())
         }
     }
-    #[doc = "Register field \\[31:1\\] is not locked"]
+    #[doc = "Register field \\[31:1\\]
+is not locked"]
     #[inline(always)]
     pub fn lock_m7_apc_ac_r2_bot_0(self) -> &'a mut W {
         self.variant(LOCK_M7_APC_AC_R2_BOT_A::LOCK_M7_APC_AC_R2_BOT_0)
     }
-    #[doc = "Register field \\[31:1\\] is locked (read access only)"]
+    #[doc = "Register field \\[31:1\\]
+is locked (read access only)"]
     #[inline(always)]
     pub fn lock_m7_apc_ac_r2_bot_1(self) -> &'a mut W {
         self.variant(LOCK_M7_APC_AC_R2_BOT_A::LOCK_M7_APC_AC_R2_BOT_1)

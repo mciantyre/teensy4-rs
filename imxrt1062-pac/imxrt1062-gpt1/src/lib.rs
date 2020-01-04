@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -29,7 +30,7 @@ pub struct RegisterBlock {
     #[doc = "0x24 - GPT Counter Register"]
     pub cnt: CNT,
 }
-#[doc = "GPT Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cr](cr) module"]
+#[doc = "GPT Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cr](cr) module"]
 pub type CR = crate::Reg<u32, _CR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -40,7 +41,7 @@ impl crate::Readable for CR {}
 impl crate::Writable for CR {}
 #[doc = "GPT Control Register"]
 pub mod cr;
-#[doc = "GPT Prescaler Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pr](pr) module"]
+#[doc = "GPT Prescaler Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pr](pr) module"]
 pub type PR = crate::Reg<u32, _PR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -51,7 +52,7 @@ impl crate::Readable for PR {}
 impl crate::Writable for PR {}
 #[doc = "GPT Prescaler Register"]
 pub mod pr;
-#[doc = "GPT Status Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [sr](sr) module"]
+#[doc = "GPT Status Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sr](sr) module"]
 pub type SR = crate::Reg<u32, _SR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -62,7 +63,7 @@ impl crate::Readable for SR {}
 impl crate::Writable for SR {}
 #[doc = "GPT Status Register"]
 pub mod sr;
-#[doc = "GPT Interrupt Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ir](ir) module"]
+#[doc = "GPT Interrupt Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ir](ir) module"]
 pub type IR = crate::Reg<u32, _IR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -73,7 +74,7 @@ impl crate::Readable for IR {}
 impl crate::Writable for IR {}
 #[doc = "GPT Interrupt Register"]
 pub mod ir;
-#[doc = "GPT Output Compare Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ocr1](ocr1) module"]
+#[doc = "GPT Output Compare Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ocr1](ocr1) module"]
 pub type OCR1 = crate::Reg<u32, _OCR1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -84,7 +85,7 @@ impl crate::Readable for OCR1 {}
 impl crate::Writable for OCR1 {}
 #[doc = "GPT Output Compare Register 1"]
 pub mod ocr1;
-#[doc = "GPT Output Compare Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ocr2](ocr2) module"]
+#[doc = "GPT Output Compare Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ocr2](ocr2) module"]
 pub type OCR2 = crate::Reg<u32, _OCR2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -95,7 +96,7 @@ impl crate::Readable for OCR2 {}
 impl crate::Writable for OCR2 {}
 #[doc = "GPT Output Compare Register 2"]
 pub mod ocr2;
-#[doc = "GPT Output Compare Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [ocr3](ocr3) module"]
+#[doc = "GPT Output Compare Register 3\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ocr3](ocr3) module"]
 pub type OCR3 = crate::Reg<u32, _OCR3>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -106,7 +107,7 @@ impl crate::Readable for OCR3 {}
 impl crate::Writable for OCR3 {}
 #[doc = "GPT Output Compare Register 3"]
 pub mod ocr3;
-#[doc = "GPT Input Capture Register 1\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [icr1](icr1) module"]
+#[doc = "GPT Input Capture Register 1\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icr1](icr1) module"]
 pub type ICR1 = crate::Reg<u32, _ICR1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -115,7 +116,7 @@ pub struct _ICR1;
 impl crate::Readable for ICR1 {}
 #[doc = "GPT Input Capture Register 1"]
 pub mod icr1;
-#[doc = "GPT Input Capture Register 2\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [icr2](icr2) module"]
+#[doc = "GPT Input Capture Register 2\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [icr2](icr2) module"]
 pub type ICR2 = crate::Reg<u32, _ICR2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -124,7 +125,7 @@ pub struct _ICR2;
 impl crate::Readable for ICR2 {}
 #[doc = "GPT Input Capture Register 2"]
 pub mod icr2;
-#[doc = "GPT Counter Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [cnt](cnt) module"]
+#[doc = "GPT Counter Register\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [cnt](cnt) module"]
 pub type CNT = crate::Reg<u32, _CNT>;
 #[allow(missing_docs)]
 #[doc(hidden)]

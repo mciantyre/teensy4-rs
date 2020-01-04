@@ -12,25 +12,21 @@ impl crate::ResetValue for super::CBCMR {
 }
 #[doc = "Selector for lpspi clock multiplexer\n\nValue on reset: 2"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LPSPI_CLK_SEL_A {
     #[doc = "0: derive clock from PLL3 PFD1 clk"]
-    LPSPI_CLK_SEL_0,
+    LPSPI_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL3 PFD0"]
-    LPSPI_CLK_SEL_1,
+    LPSPI_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from PLL2"]
-    LPSPI_CLK_SEL_2,
+    LPSPI_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from PLL2 PFD2"]
-    LPSPI_CLK_SEL_3,
+    LPSPI_CLK_SEL_3 = 3,
 }
 impl From<LPSPI_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: LPSPI_CLK_SEL_A) -> Self {
-        match variant {
-            LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_0 => 0,
-            LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_1 => 1,
-            LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_2 => 2,
-            LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LPSPI_CLK_SEL`"]
@@ -109,25 +105,21 @@ impl<'a> LPSPI_CLK_SEL_W<'a> {
 }
 #[doc = "Selector for flexspi2 clock multiplexer\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXSPI2_CLK_SEL_A {
     #[doc = "0: derive clock from PLL2 PFD2"]
-    FLEXSPI2_CLK_SEL_0,
+    FLEXSPI2_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL3 PFD0"]
-    FLEXSPI2_CLK_SEL_1,
+    FLEXSPI2_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from PLL3 PFD1"]
-    FLEXSPI2_CLK_SEL_2,
+    FLEXSPI2_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from PLL2 (pll2_main_clk)"]
-    FLEXSPI2_CLK_SEL_3,
+    FLEXSPI2_CLK_SEL_3 = 3,
 }
 impl From<FLEXSPI2_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXSPI2_CLK_SEL_A) -> Self {
-        match variant {
-            FLEXSPI2_CLK_SEL_A::FLEXSPI2_CLK_SEL_0 => 0,
-            FLEXSPI2_CLK_SEL_A::FLEXSPI2_CLK_SEL_1 => 1,
-            FLEXSPI2_CLK_SEL_A::FLEXSPI2_CLK_SEL_2 => 2,
-            FLEXSPI2_CLK_SEL_A::FLEXSPI2_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXSPI2_CLK_SEL`"]
@@ -206,22 +198,19 @@ impl<'a> FLEXSPI2_CLK_SEL_W<'a> {
 }
 #[doc = "Selector for peripheral clk2 clock multiplexer\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PERIPH_CLK2_SEL_A {
     #[doc = "0: derive clock from pll3_sw_clk"]
-    PERIPH_CLK2_SEL_0,
+    PERIPH_CLK2_SEL_0 = 0,
     #[doc = "1: derive clock from osc_clk (pll1_ref_clk)"]
-    PERIPH_CLK2_SEL_1,
+    PERIPH_CLK2_SEL_1 = 1,
     #[doc = "2: derive clock from pll2_bypass_clk"]
-    PERIPH_CLK2_SEL_2,
+    PERIPH_CLK2_SEL_2 = 2,
 }
 impl From<PERIPH_CLK2_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: PERIPH_CLK2_SEL_A) -> Self {
-        match variant {
-            PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_0 => 0,
-            PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_1 => 1,
-            PERIPH_CLK2_SEL_A::PERIPH_CLK2_SEL_2 => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PERIPH_CLK2_SEL`"]
@@ -288,25 +277,21 @@ impl<'a> PERIPH_CLK2_SEL_W<'a> {
 }
 #[doc = "Selector for Trace clock multiplexer\n\nValue on reset: 2"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum TRACE_CLK_SEL_A {
     #[doc = "0: derive clock from PLL2"]
-    TRACE_CLK_SEL_0,
+    TRACE_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL2 PFD2"]
-    TRACE_CLK_SEL_1,
+    TRACE_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from PLL2 PFD0"]
-    TRACE_CLK_SEL_2,
+    TRACE_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from PLL2 PFD1"]
-    TRACE_CLK_SEL_3,
+    TRACE_CLK_SEL_3 = 3,
 }
 impl From<TRACE_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: TRACE_CLK_SEL_A) -> Self {
-        match variant {
-            TRACE_CLK_SEL_A::TRACE_CLK_SEL_0 => 0,
-            TRACE_CLK_SEL_A::TRACE_CLK_SEL_1 => 1,
-            TRACE_CLK_SEL_A::TRACE_CLK_SEL_2 => 2,
-            TRACE_CLK_SEL_A::TRACE_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `TRACE_CLK_SEL`"]
@@ -385,25 +370,21 @@ impl<'a> TRACE_CLK_SEL_W<'a> {
 }
 #[doc = "Selector for pre_periph clock multiplexer\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PRE_PERIPH_CLK_SEL_A {
     #[doc = "0: derive clock from PLL2"]
-    PRE_PERIPH_CLK_SEL_0,
+    PRE_PERIPH_CLK_SEL_0 = 0,
     #[doc = "1: derive clock from PLL2 PFD2"]
-    PRE_PERIPH_CLK_SEL_1,
+    PRE_PERIPH_CLK_SEL_1 = 1,
     #[doc = "2: derive clock from PLL2 PFD0"]
-    PRE_PERIPH_CLK_SEL_2,
+    PRE_PERIPH_CLK_SEL_2 = 2,
     #[doc = "3: derive clock from divided PLL1"]
-    PRE_PERIPH_CLK_SEL_3,
+    PRE_PERIPH_CLK_SEL_3 = 3,
 }
 impl From<PRE_PERIPH_CLK_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: PRE_PERIPH_CLK_SEL_A) -> Self {
-        match variant {
-            PRE_PERIPH_CLK_SEL_A::PRE_PERIPH_CLK_SEL_0 => 0,
-            PRE_PERIPH_CLK_SEL_A::PRE_PERIPH_CLK_SEL_1 => 1,
-            PRE_PERIPH_CLK_SEL_A::PRE_PERIPH_CLK_SEL_2 => 2,
-            PRE_PERIPH_CLK_SEL_A::PRE_PERIPH_CLK_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PRE_PERIPH_CLK_SEL`"]
@@ -482,37 +463,29 @@ impl<'a> PRE_PERIPH_CLK_SEL_W<'a> {
 }
 #[doc = "Post-divider for LCDIF clock.\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LCDIF_PODF_A {
     #[doc = "0: divide by 1"]
-    LCDIF_PODF_0,
+    LCDIF_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    LCDIF_PODF_1,
+    LCDIF_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    LCDIF_PODF_2,
+    LCDIF_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    LCDIF_PODF_3,
+    LCDIF_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    LCDIF_PODF_4,
+    LCDIF_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    LCDIF_PODF_5,
+    LCDIF_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    LCDIF_PODF_6,
+    LCDIF_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    LCDIF_PODF_7,
+    LCDIF_PODF_7 = 7,
 }
 impl From<LCDIF_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: LCDIF_PODF_A) -> Self {
-        match variant {
-            LCDIF_PODF_A::LCDIF_PODF_0 => 0,
-            LCDIF_PODF_A::LCDIF_PODF_1 => 1,
-            LCDIF_PODF_A::LCDIF_PODF_2 => 2,
-            LCDIF_PODF_A::LCDIF_PODF_3 => 3,
-            LCDIF_PODF_A::LCDIF_PODF_4 => 4,
-            LCDIF_PODF_A::LCDIF_PODF_5 => 5,
-            LCDIF_PODF_A::LCDIF_PODF_6 => 6,
-            LCDIF_PODF_A::LCDIF_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LCDIF_PODF`"]
@@ -635,37 +608,29 @@ impl<'a> LCDIF_PODF_W<'a> {
 }
 #[doc = "Divider for LPSPI. Divider should be updated when output clock is gated.\n\nValue on reset: 3"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum LPSPI_PODF_A {
     #[doc = "0: divide by 1"]
-    LPSPI_PODF_0,
+    LPSPI_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    LPSPI_PODF_1,
+    LPSPI_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    LPSPI_PODF_2,
+    LPSPI_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    LPSPI_PODF_3,
+    LPSPI_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    LPSPI_PODF_4,
+    LPSPI_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    LPSPI_PODF_5,
+    LPSPI_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    LPSPI_PODF_6,
+    LPSPI_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    LPSPI_PODF_7,
+    LPSPI_PODF_7 = 7,
 }
 impl From<LPSPI_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: LPSPI_PODF_A) -> Self {
-        match variant {
-            LPSPI_PODF_A::LPSPI_PODF_0 => 0,
-            LPSPI_PODF_A::LPSPI_PODF_1 => 1,
-            LPSPI_PODF_A::LPSPI_PODF_2 => 2,
-            LPSPI_PODF_A::LPSPI_PODF_3 => 3,
-            LPSPI_PODF_A::LPSPI_PODF_4 => 4,
-            LPSPI_PODF_A::LPSPI_PODF_5 => 5,
-            LPSPI_PODF_A::LPSPI_PODF_6 => 6,
-            LPSPI_PODF_A::LPSPI_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `LPSPI_PODF`"]
@@ -788,37 +753,29 @@ impl<'a> LPSPI_PODF_W<'a> {
 }
 #[doc = "Divider for flexspi2 clock root.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum FLEXSPI2_PODF_A {
     #[doc = "0: divide by 1"]
-    FLEXSPI2_PODF_0,
+    FLEXSPI2_PODF_0 = 0,
     #[doc = "1: divide by 2"]
-    FLEXSPI2_PODF_1,
+    FLEXSPI2_PODF_1 = 1,
     #[doc = "2: divide by 3"]
-    FLEXSPI2_PODF_2,
+    FLEXSPI2_PODF_2 = 2,
     #[doc = "3: divide by 4"]
-    FLEXSPI2_PODF_3,
+    FLEXSPI2_PODF_3 = 3,
     #[doc = "4: divide by 5"]
-    FLEXSPI2_PODF_4,
+    FLEXSPI2_PODF_4 = 4,
     #[doc = "5: divide by 6"]
-    FLEXSPI2_PODF_5,
+    FLEXSPI2_PODF_5 = 5,
     #[doc = "6: divide by 7"]
-    FLEXSPI2_PODF_6,
+    FLEXSPI2_PODF_6 = 6,
     #[doc = "7: divide by 8"]
-    FLEXSPI2_PODF_7,
+    FLEXSPI2_PODF_7 = 7,
 }
 impl From<FLEXSPI2_PODF_A> for u8 {
     #[inline(always)]
     fn from(variant: FLEXSPI2_PODF_A) -> Self {
-        match variant {
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_0 => 0,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_1 => 1,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_2 => 2,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_3 => 3,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_4 => 4,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_5 => 5,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_6 => 6,
-            FLEXSPI2_PODF_A::FLEXSPI2_PODF_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FLEXSPI2_PODF`"]

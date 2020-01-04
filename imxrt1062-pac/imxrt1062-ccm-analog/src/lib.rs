@@ -3,7 +3,8 @@
 #![allow(clippy::all)]
 #![no_std]
 
-include!("../../generic.rs");
+mod generic;
+pub use generic::*;
 
 #[doc = r"Register block"]
 #[repr(C)]
@@ -127,7 +128,7 @@ pub struct RegisterBlock {
     #[doc = "0x17c - Miscellaneous Register 2"]
     pub misc2_tog: MISC2_TOG,
 }
-#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_arm](pll_arm) module"]
+#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_arm](pll_arm) module"]
 pub type PLL_ARM = crate::Reg<u32, _PLL_ARM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -138,7 +139,7 @@ impl crate::Readable for PLL_ARM {}
 impl crate::Writable for PLL_ARM {}
 #[doc = "Analog ARM PLL control Register"]
 pub mod pll_arm;
-#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_arm_set](pll_arm_set) module"]
+#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_arm_set](pll_arm_set) module"]
 pub type PLL_ARM_SET = crate::Reg<u32, _PLL_ARM_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -149,7 +150,7 @@ impl crate::Readable for PLL_ARM_SET {}
 impl crate::Writable for PLL_ARM_SET {}
 #[doc = "Analog ARM PLL control Register"]
 pub mod pll_arm_set;
-#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_arm_clr](pll_arm_clr) module"]
+#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_arm_clr](pll_arm_clr) module"]
 pub type PLL_ARM_CLR = crate::Reg<u32, _PLL_ARM_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -160,7 +161,7 @@ impl crate::Readable for PLL_ARM_CLR {}
 impl crate::Writable for PLL_ARM_CLR {}
 #[doc = "Analog ARM PLL control Register"]
 pub mod pll_arm_clr;
-#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_arm_tog](pll_arm_tog) module"]
+#[doc = "Analog ARM PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_arm_tog](pll_arm_tog) module"]
 pub type PLL_ARM_TOG = crate::Reg<u32, _PLL_ARM_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -171,7 +172,7 @@ impl crate::Readable for PLL_ARM_TOG {}
 impl crate::Writable for PLL_ARM_TOG {}
 #[doc = "Analog ARM PLL control Register"]
 pub mod pll_arm_tog;
-#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb1](pll_usb1) module"]
+#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb1](pll_usb1) module"]
 pub type PLL_USB1 = crate::Reg<u32, _PLL_USB1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -182,7 +183,7 @@ impl crate::Readable for PLL_USB1 {}
 impl crate::Writable for PLL_USB1 {}
 #[doc = "Analog USB1 480MHz PLL Control Register"]
 pub mod pll_usb1;
-#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb1_set](pll_usb1_set) module"]
+#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb1_set](pll_usb1_set) module"]
 pub type PLL_USB1_SET = crate::Reg<u32, _PLL_USB1_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -193,7 +194,7 @@ impl crate::Readable for PLL_USB1_SET {}
 impl crate::Writable for PLL_USB1_SET {}
 #[doc = "Analog USB1 480MHz PLL Control Register"]
 pub mod pll_usb1_set;
-#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb1_clr](pll_usb1_clr) module"]
+#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb1_clr](pll_usb1_clr) module"]
 pub type PLL_USB1_CLR = crate::Reg<u32, _PLL_USB1_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -204,7 +205,7 @@ impl crate::Readable for PLL_USB1_CLR {}
 impl crate::Writable for PLL_USB1_CLR {}
 #[doc = "Analog USB1 480MHz PLL Control Register"]
 pub mod pll_usb1_clr;
-#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb1_tog](pll_usb1_tog) module"]
+#[doc = "Analog USB1 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb1_tog](pll_usb1_tog) module"]
 pub type PLL_USB1_TOG = crate::Reg<u32, _PLL_USB1_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -215,7 +216,7 @@ impl crate::Readable for PLL_USB1_TOG {}
 impl crate::Writable for PLL_USB1_TOG {}
 #[doc = "Analog USB1 480MHz PLL Control Register"]
 pub mod pll_usb1_tog;
-#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb2](pll_usb2) module"]
+#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb2](pll_usb2) module"]
 pub type PLL_USB2 = crate::Reg<u32, _PLL_USB2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -226,7 +227,7 @@ impl crate::Readable for PLL_USB2 {}
 impl crate::Writable for PLL_USB2 {}
 #[doc = "Analog USB2 480MHz PLL Control Register"]
 pub mod pll_usb2;
-#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb2_set](pll_usb2_set) module"]
+#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb2_set](pll_usb2_set) module"]
 pub type PLL_USB2_SET = crate::Reg<u32, _PLL_USB2_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -237,7 +238,7 @@ impl crate::Readable for PLL_USB2_SET {}
 impl crate::Writable for PLL_USB2_SET {}
 #[doc = "Analog USB2 480MHz PLL Control Register"]
 pub mod pll_usb2_set;
-#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb2_clr](pll_usb2_clr) module"]
+#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb2_clr](pll_usb2_clr) module"]
 pub type PLL_USB2_CLR = crate::Reg<u32, _PLL_USB2_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -248,7 +249,7 @@ impl crate::Readable for PLL_USB2_CLR {}
 impl crate::Writable for PLL_USB2_CLR {}
 #[doc = "Analog USB2 480MHz PLL Control Register"]
 pub mod pll_usb2_clr;
-#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_usb2_tog](pll_usb2_tog) module"]
+#[doc = "Analog USB2 480MHz PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_usb2_tog](pll_usb2_tog) module"]
 pub type PLL_USB2_TOG = crate::Reg<u32, _PLL_USB2_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -259,7 +260,7 @@ impl crate::Readable for PLL_USB2_TOG {}
 impl crate::Writable for PLL_USB2_TOG {}
 #[doc = "Analog USB2 480MHz PLL Control Register"]
 pub mod pll_usb2_tog;
-#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys](pll_sys) module"]
+#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys](pll_sys) module"]
 pub type PLL_SYS = crate::Reg<u32, _PLL_SYS>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -270,7 +271,7 @@ impl crate::Readable for PLL_SYS {}
 impl crate::Writable for PLL_SYS {}
 #[doc = "Analog System PLL Control Register"]
 pub mod pll_sys;
-#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys_set](pll_sys_set) module"]
+#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys_set](pll_sys_set) module"]
 pub type PLL_SYS_SET = crate::Reg<u32, _PLL_SYS_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -281,7 +282,7 @@ impl crate::Readable for PLL_SYS_SET {}
 impl crate::Writable for PLL_SYS_SET {}
 #[doc = "Analog System PLL Control Register"]
 pub mod pll_sys_set;
-#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys_clr](pll_sys_clr) module"]
+#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys_clr](pll_sys_clr) module"]
 pub type PLL_SYS_CLR = crate::Reg<u32, _PLL_SYS_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -292,7 +293,7 @@ impl crate::Readable for PLL_SYS_CLR {}
 impl crate::Writable for PLL_SYS_CLR {}
 #[doc = "Analog System PLL Control Register"]
 pub mod pll_sys_clr;
-#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys_tog](pll_sys_tog) module"]
+#[doc = "Analog System PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys_tog](pll_sys_tog) module"]
 pub type PLL_SYS_TOG = crate::Reg<u32, _PLL_SYS_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -303,7 +304,7 @@ impl crate::Readable for PLL_SYS_TOG {}
 impl crate::Writable for PLL_SYS_TOG {}
 #[doc = "Analog System PLL Control Register"]
 pub mod pll_sys_tog;
-#[doc = "528MHz System PLL Spread Spectrum Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys_ss](pll_sys_ss) module"]
+#[doc = "528MHz System PLL Spread Spectrum Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys_ss](pll_sys_ss) module"]
 pub type PLL_SYS_SS = crate::Reg<u32, _PLL_SYS_SS>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -314,7 +315,7 @@ impl crate::Readable for PLL_SYS_SS {}
 impl crate::Writable for PLL_SYS_SS {}
 #[doc = "528MHz System PLL Spread Spectrum Register"]
 pub mod pll_sys_ss;
-#[doc = "Numerator of 528MHz System PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys_num](pll_sys_num) module"]
+#[doc = "Numerator of 528MHz System PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys_num](pll_sys_num) module"]
 pub type PLL_SYS_NUM = crate::Reg<u32, _PLL_SYS_NUM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -325,7 +326,7 @@ impl crate::Readable for PLL_SYS_NUM {}
 impl crate::Writable for PLL_SYS_NUM {}
 #[doc = "Numerator of 528MHz System PLL Fractional Loop Divider Register"]
 pub mod pll_sys_num;
-#[doc = "Denominator of 528MHz System PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_sys_denom](pll_sys_denom) module"]
+#[doc = "Denominator of 528MHz System PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_sys_denom](pll_sys_denom) module"]
 pub type PLL_SYS_DENOM = crate::Reg<u32, _PLL_SYS_DENOM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -336,7 +337,7 @@ impl crate::Readable for PLL_SYS_DENOM {}
 impl crate::Writable for PLL_SYS_DENOM {}
 #[doc = "Denominator of 528MHz System PLL Fractional Loop Divider Register"]
 pub mod pll_sys_denom;
-#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_audio](pll_audio) module"]
+#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_audio](pll_audio) module"]
 pub type PLL_AUDIO = crate::Reg<u32, _PLL_AUDIO>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -347,7 +348,7 @@ impl crate::Readable for PLL_AUDIO {}
 impl crate::Writable for PLL_AUDIO {}
 #[doc = "Analog Audio PLL control Register"]
 pub mod pll_audio;
-#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_audio_set](pll_audio_set) module"]
+#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_audio_set](pll_audio_set) module"]
 pub type PLL_AUDIO_SET = crate::Reg<u32, _PLL_AUDIO_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -358,7 +359,7 @@ impl crate::Readable for PLL_AUDIO_SET {}
 impl crate::Writable for PLL_AUDIO_SET {}
 #[doc = "Analog Audio PLL control Register"]
 pub mod pll_audio_set;
-#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_audio_clr](pll_audio_clr) module"]
+#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_audio_clr](pll_audio_clr) module"]
 pub type PLL_AUDIO_CLR = crate::Reg<u32, _PLL_AUDIO_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -369,7 +370,7 @@ impl crate::Readable for PLL_AUDIO_CLR {}
 impl crate::Writable for PLL_AUDIO_CLR {}
 #[doc = "Analog Audio PLL control Register"]
 pub mod pll_audio_clr;
-#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_audio_tog](pll_audio_tog) module"]
+#[doc = "Analog Audio PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_audio_tog](pll_audio_tog) module"]
 pub type PLL_AUDIO_TOG = crate::Reg<u32, _PLL_AUDIO_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -380,7 +381,7 @@ impl crate::Readable for PLL_AUDIO_TOG {}
 impl crate::Writable for PLL_AUDIO_TOG {}
 #[doc = "Analog Audio PLL control Register"]
 pub mod pll_audio_tog;
-#[doc = "Numerator of Audio PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_audio_num](pll_audio_num) module"]
+#[doc = "Numerator of Audio PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_audio_num](pll_audio_num) module"]
 pub type PLL_AUDIO_NUM = crate::Reg<u32, _PLL_AUDIO_NUM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -391,7 +392,7 @@ impl crate::Readable for PLL_AUDIO_NUM {}
 impl crate::Writable for PLL_AUDIO_NUM {}
 #[doc = "Numerator of Audio PLL Fractional Loop Divider Register"]
 pub mod pll_audio_num;
-#[doc = "Denominator of Audio PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_audio_denom](pll_audio_denom) module"]
+#[doc = "Denominator of Audio PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_audio_denom](pll_audio_denom) module"]
 pub type PLL_AUDIO_DENOM = crate::Reg<u32, _PLL_AUDIO_DENOM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -402,7 +403,7 @@ impl crate::Readable for PLL_AUDIO_DENOM {}
 impl crate::Writable for PLL_AUDIO_DENOM {}
 #[doc = "Denominator of Audio PLL Fractional Loop Divider Register"]
 pub mod pll_audio_denom;
-#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_video](pll_video) module"]
+#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_video](pll_video) module"]
 pub type PLL_VIDEO = crate::Reg<u32, _PLL_VIDEO>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -413,7 +414,7 @@ impl crate::Readable for PLL_VIDEO {}
 impl crate::Writable for PLL_VIDEO {}
 #[doc = "Analog Video PLL control Register"]
 pub mod pll_video;
-#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_video_set](pll_video_set) module"]
+#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_video_set](pll_video_set) module"]
 pub type PLL_VIDEO_SET = crate::Reg<u32, _PLL_VIDEO_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -424,7 +425,7 @@ impl crate::Readable for PLL_VIDEO_SET {}
 impl crate::Writable for PLL_VIDEO_SET {}
 #[doc = "Analog Video PLL control Register"]
 pub mod pll_video_set;
-#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_video_clr](pll_video_clr) module"]
+#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_video_clr](pll_video_clr) module"]
 pub type PLL_VIDEO_CLR = crate::Reg<u32, _PLL_VIDEO_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -435,7 +436,7 @@ impl crate::Readable for PLL_VIDEO_CLR {}
 impl crate::Writable for PLL_VIDEO_CLR {}
 #[doc = "Analog Video PLL control Register"]
 pub mod pll_video_clr;
-#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_video_tog](pll_video_tog) module"]
+#[doc = "Analog Video PLL control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_video_tog](pll_video_tog) module"]
 pub type PLL_VIDEO_TOG = crate::Reg<u32, _PLL_VIDEO_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -446,7 +447,7 @@ impl crate::Readable for PLL_VIDEO_TOG {}
 impl crate::Writable for PLL_VIDEO_TOG {}
 #[doc = "Analog Video PLL control Register"]
 pub mod pll_video_tog;
-#[doc = "Numerator of Video PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_video_num](pll_video_num) module"]
+#[doc = "Numerator of Video PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_video_num](pll_video_num) module"]
 pub type PLL_VIDEO_NUM = crate::Reg<u32, _PLL_VIDEO_NUM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -457,7 +458,7 @@ impl crate::Readable for PLL_VIDEO_NUM {}
 impl crate::Writable for PLL_VIDEO_NUM {}
 #[doc = "Numerator of Video PLL Fractional Loop Divider Register"]
 pub mod pll_video_num;
-#[doc = "Denominator of Video PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_video_denom](pll_video_denom) module"]
+#[doc = "Denominator of Video PLL Fractional Loop Divider Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_video_denom](pll_video_denom) module"]
 pub type PLL_VIDEO_DENOM = crate::Reg<u32, _PLL_VIDEO_DENOM>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -468,7 +469,7 @@ impl crate::Readable for PLL_VIDEO_DENOM {}
 impl crate::Writable for PLL_VIDEO_DENOM {}
 #[doc = "Denominator of Video PLL Fractional Loop Divider Register"]
 pub mod pll_video_denom;
-#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_enet](pll_enet) module"]
+#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_enet](pll_enet) module"]
 pub type PLL_ENET = crate::Reg<u32, _PLL_ENET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -479,7 +480,7 @@ impl crate::Readable for PLL_ENET {}
 impl crate::Writable for PLL_ENET {}
 #[doc = "Analog ENET PLL Control Register"]
 pub mod pll_enet;
-#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_enet_set](pll_enet_set) module"]
+#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_enet_set](pll_enet_set) module"]
 pub type PLL_ENET_SET = crate::Reg<u32, _PLL_ENET_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -490,7 +491,7 @@ impl crate::Readable for PLL_ENET_SET {}
 impl crate::Writable for PLL_ENET_SET {}
 #[doc = "Analog ENET PLL Control Register"]
 pub mod pll_enet_set;
-#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_enet_clr](pll_enet_clr) module"]
+#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_enet_clr](pll_enet_clr) module"]
 pub type PLL_ENET_CLR = crate::Reg<u32, _PLL_ENET_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -501,7 +502,7 @@ impl crate::Readable for PLL_ENET_CLR {}
 impl crate::Writable for PLL_ENET_CLR {}
 #[doc = "Analog ENET PLL Control Register"]
 pub mod pll_enet_clr;
-#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pll_enet_tog](pll_enet_tog) module"]
+#[doc = "Analog ENET PLL Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pll_enet_tog](pll_enet_tog) module"]
 pub type PLL_ENET_TOG = crate::Reg<u32, _PLL_ENET_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -512,7 +513,7 @@ impl crate::Readable for PLL_ENET_TOG {}
 impl crate::Writable for PLL_ENET_TOG {}
 #[doc = "Analog ENET PLL Control Register"]
 pub mod pll_enet_tog;
-#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_480](pfd_480) module"]
+#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_480](pfd_480) module"]
 pub type PFD_480 = crate::Reg<u32, _PFD_480>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -523,7 +524,7 @@ impl crate::Readable for PFD_480 {}
 impl crate::Writable for PFD_480 {}
 #[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register"]
 pub mod pfd_480;
-#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_480_set](pfd_480_set) module"]
+#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_480_set](pfd_480_set) module"]
 pub type PFD_480_SET = crate::Reg<u32, _PFD_480_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -534,7 +535,7 @@ impl crate::Readable for PFD_480_SET {}
 impl crate::Writable for PFD_480_SET {}
 #[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register"]
 pub mod pfd_480_set;
-#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_480_clr](pfd_480_clr) module"]
+#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_480_clr](pfd_480_clr) module"]
 pub type PFD_480_CLR = crate::Reg<u32, _PFD_480_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -545,7 +546,7 @@ impl crate::Readable for PFD_480_CLR {}
 impl crate::Writable for PFD_480_CLR {}
 #[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register"]
 pub mod pfd_480_clr;
-#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_480_tog](pfd_480_tog) module"]
+#[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_480_tog](pfd_480_tog) module"]
 pub type PFD_480_TOG = crate::Reg<u32, _PFD_480_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -556,7 +557,7 @@ impl crate::Readable for PFD_480_TOG {}
 impl crate::Writable for PFD_480_TOG {}
 #[doc = "480MHz Clock (PLL3) Phase Fractional Divider Control Register"]
 pub mod pfd_480_tog;
-#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_528](pfd_528) module"]
+#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_528](pfd_528) module"]
 pub type PFD_528 = crate::Reg<u32, _PFD_528>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -567,7 +568,7 @@ impl crate::Readable for PFD_528 {}
 impl crate::Writable for PFD_528 {}
 #[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register"]
 pub mod pfd_528;
-#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_528_set](pfd_528_set) module"]
+#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_528_set](pfd_528_set) module"]
 pub type PFD_528_SET = crate::Reg<u32, _PFD_528_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -578,7 +579,7 @@ impl crate::Readable for PFD_528_SET {}
 impl crate::Writable for PFD_528_SET {}
 #[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register"]
 pub mod pfd_528_set;
-#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_528_clr](pfd_528_clr) module"]
+#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_528_clr](pfd_528_clr) module"]
 pub type PFD_528_CLR = crate::Reg<u32, _PFD_528_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -589,7 +590,7 @@ impl crate::Readable for PFD_528_CLR {}
 impl crate::Writable for PFD_528_CLR {}
 #[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register"]
 pub mod pfd_528_clr;
-#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [pfd_528_tog](pfd_528_tog) module"]
+#[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pfd_528_tog](pfd_528_tog) module"]
 pub type PFD_528_TOG = crate::Reg<u32, _PFD_528_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -600,7 +601,7 @@ impl crate::Readable for PFD_528_TOG {}
 impl crate::Writable for PFD_528_TOG {}
 #[doc = "528MHz Clock (PLL2) Phase Fractional Divider Control Register"]
 pub mod pfd_528_tog;
-#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc0](misc0) module"]
+#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc0](misc0) module"]
 pub type MISC0 = crate::Reg<u32, _MISC0>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -611,7 +612,7 @@ impl crate::Readable for MISC0 {}
 impl crate::Writable for MISC0 {}
 #[doc = "Miscellaneous Register 0"]
 pub mod misc0;
-#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc0_set](misc0_set) module"]
+#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc0_set](misc0_set) module"]
 pub type MISC0_SET = crate::Reg<u32, _MISC0_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -622,7 +623,7 @@ impl crate::Readable for MISC0_SET {}
 impl crate::Writable for MISC0_SET {}
 #[doc = "Miscellaneous Register 0"]
 pub mod misc0_set;
-#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc0_clr](misc0_clr) module"]
+#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc0_clr](misc0_clr) module"]
 pub type MISC0_CLR = crate::Reg<u32, _MISC0_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -633,7 +634,7 @@ impl crate::Readable for MISC0_CLR {}
 impl crate::Writable for MISC0_CLR {}
 #[doc = "Miscellaneous Register 0"]
 pub mod misc0_clr;
-#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc0_tog](misc0_tog) module"]
+#[doc = "Miscellaneous Register 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc0_tog](misc0_tog) module"]
 pub type MISC0_TOG = crate::Reg<u32, _MISC0_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -644,7 +645,7 @@ impl crate::Readable for MISC0_TOG {}
 impl crate::Writable for MISC0_TOG {}
 #[doc = "Miscellaneous Register 0"]
 pub mod misc0_tog;
-#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc1](misc1) module"]
+#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc1](misc1) module"]
 pub type MISC1 = crate::Reg<u32, _MISC1>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -655,7 +656,7 @@ impl crate::Readable for MISC1 {}
 impl crate::Writable for MISC1 {}
 #[doc = "Miscellaneous Register 1"]
 pub mod misc1;
-#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc1_set](misc1_set) module"]
+#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc1_set](misc1_set) module"]
 pub type MISC1_SET = crate::Reg<u32, _MISC1_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -666,7 +667,7 @@ impl crate::Readable for MISC1_SET {}
 impl crate::Writable for MISC1_SET {}
 #[doc = "Miscellaneous Register 1"]
 pub mod misc1_set;
-#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc1_clr](misc1_clr) module"]
+#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc1_clr](misc1_clr) module"]
 pub type MISC1_CLR = crate::Reg<u32, _MISC1_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -677,7 +678,7 @@ impl crate::Readable for MISC1_CLR {}
 impl crate::Writable for MISC1_CLR {}
 #[doc = "Miscellaneous Register 1"]
 pub mod misc1_clr;
-#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc1_tog](misc1_tog) module"]
+#[doc = "Miscellaneous Register 1\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc1_tog](misc1_tog) module"]
 pub type MISC1_TOG = crate::Reg<u32, _MISC1_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -688,7 +689,7 @@ impl crate::Readable for MISC1_TOG {}
 impl crate::Writable for MISC1_TOG {}
 #[doc = "Miscellaneous Register 1"]
 pub mod misc1_tog;
-#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc2](misc2) module"]
+#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc2](misc2) module"]
 pub type MISC2 = crate::Reg<u32, _MISC2>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -699,7 +700,7 @@ impl crate::Readable for MISC2 {}
 impl crate::Writable for MISC2 {}
 #[doc = "Miscellaneous Register 2"]
 pub mod misc2;
-#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc2_set](misc2_set) module"]
+#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc2_set](misc2_set) module"]
 pub type MISC2_SET = crate::Reg<u32, _MISC2_SET>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -710,7 +711,7 @@ impl crate::Readable for MISC2_SET {}
 impl crate::Writable for MISC2_SET {}
 #[doc = "Miscellaneous Register 2"]
 pub mod misc2_set;
-#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc2_clr](misc2_clr) module"]
+#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc2_clr](misc2_clr) module"]
 pub type MISC2_CLR = crate::Reg<u32, _MISC2_CLR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -721,7 +722,7 @@ impl crate::Readable for MISC2_CLR {}
 impl crate::Writable for MISC2_CLR {}
 #[doc = "Miscellaneous Register 2"]
 pub mod misc2_clr;
-#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [misc2_tog](misc2_tog) module"]
+#[doc = "Miscellaneous Register 2\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [misc2_tog](misc2_tog) module"]
 pub type MISC2_TOG = crate::Reg<u32, _MISC2_TOG>;
 #[allow(missing_docs)]
 #[doc(hidden)]

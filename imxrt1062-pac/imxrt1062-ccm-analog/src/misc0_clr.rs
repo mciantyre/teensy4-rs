@@ -38,17 +38,14 @@ impl<'a> REFTOP_PWD_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REFTOP_SELFBIASOFF_A {
     #[doc = "0: Uses coarse bias currents for startup"]
-    REFTOP_SELFBIASOFF_0,
+    REFTOP_SELFBIASOFF_0 = 0,
     #[doc = "1: Uses bandgap-based bias currents for best performance."]
-    REFTOP_SELFBIASOFF_1,
+    REFTOP_SELFBIASOFF_1 = 1,
 }
 impl From<REFTOP_SELFBIASOFF_A> for bool {
     #[inline(always)]
     fn from(variant: REFTOP_SELFBIASOFF_A) -> Self {
-        match variant {
-            REFTOP_SELFBIASOFF_A::REFTOP_SELFBIASOFF_0 => false,
-            REFTOP_SELFBIASOFF_A::REFTOP_SELFBIASOFF_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `REFTOP_SELFBIASOFF`"]
@@ -114,37 +111,29 @@ impl<'a> REFTOP_SELFBIASOFF_W<'a> {
 }
 #[doc = "Not related to CCM. See Power Management Unit (PMU)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REFTOP_VBGADJ_A {
     #[doc = "0: Nominal VBG"]
-    REFTOP_VBGADJ_0,
+    REFTOP_VBGADJ_0 = 0,
     #[doc = "1: VBG+0.78%"]
-    REFTOP_VBGADJ_1,
+    REFTOP_VBGADJ_1 = 1,
     #[doc = "2: VBG+1.56%"]
-    REFTOP_VBGADJ_2,
+    REFTOP_VBGADJ_2 = 2,
     #[doc = "3: VBG+2.34%"]
-    REFTOP_VBGADJ_3,
+    REFTOP_VBGADJ_3 = 3,
     #[doc = "4: VBG-0.78%"]
-    REFTOP_VBGADJ_4,
+    REFTOP_VBGADJ_4 = 4,
     #[doc = "5: VBG-1.56%"]
-    REFTOP_VBGADJ_5,
+    REFTOP_VBGADJ_5 = 5,
     #[doc = "6: VBG-2.34%"]
-    REFTOP_VBGADJ_6,
+    REFTOP_VBGADJ_6 = 6,
     #[doc = "7: VBG-3.12%"]
-    REFTOP_VBGADJ_7,
+    REFTOP_VBGADJ_7 = 7,
 }
 impl From<REFTOP_VBGADJ_A> for u8 {
     #[inline(always)]
     fn from(variant: REFTOP_VBGADJ_A) -> Self {
-        match variant {
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_0 => 0,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_1 => 1,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_2 => 2,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_3 => 3,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_4 => 4,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_5 => 5,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_6 => 6,
-            REFTOP_VBGADJ_A::REFTOP_VBGADJ_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REFTOP_VBGADJ`"]
@@ -291,25 +280,21 @@ impl<'a> REFTOP_VBGUP_W<'a> {
 }
 #[doc = "Configure the analog behavior in stop mode.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum STOP_MODE_CONFIG_A {
     #[doc = "0: All analog except RTC powered down on stop mode assertion."]
-    STOP_MODE_CONFIG_0,
+    STOP_MODE_CONFIG_0 = 0,
     #[doc = "1: Beside RTC, analog bandgap, 1p1 and 2p5 regulators are also on."]
-    STOP_MODE_CONFIG_1,
+    STOP_MODE_CONFIG_1 = 1,
     #[doc = "2: Beside RTC, 1p1 and 2p5 regulators are also on, low-power bandgap is selected so that the normal analog bandgap together with the rest analog is powered down."]
-    STOP_MODE_CONFIG_2,
+    STOP_MODE_CONFIG_2 = 2,
     #[doc = "3: Beside RTC, low-power bandgap is selected and the rest analog is powered down."]
-    STOP_MODE_CONFIG_3,
+    STOP_MODE_CONFIG_3 = 3,
 }
 impl From<STOP_MODE_CONFIG_A> for u8 {
     #[inline(always)]
     fn from(variant: STOP_MODE_CONFIG_A) -> Self {
-        match variant {
-            STOP_MODE_CONFIG_A::STOP_MODE_CONFIG_0 => 0,
-            STOP_MODE_CONFIG_A::STOP_MODE_CONFIG_1 => 1,
-            STOP_MODE_CONFIG_A::STOP_MODE_CONFIG_2 => 2,
-            STOP_MODE_CONFIG_A::STOP_MODE_CONFIG_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `STOP_MODE_CONFIG`"]
@@ -390,17 +375,14 @@ impl<'a> STOP_MODE_CONFIG_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DISCON_HIGH_SNVS_A {
     #[doc = "0: Turn on the switch"]
-    DISCON_HIGH_SNVS_0,
+    DISCON_HIGH_SNVS_0 = 0,
     #[doc = "1: Turn off the switch"]
-    DISCON_HIGH_SNVS_1,
+    DISCON_HIGH_SNVS_1 = 1,
 }
 impl From<DISCON_HIGH_SNVS_A> for bool {
     #[inline(always)]
     fn from(variant: DISCON_HIGH_SNVS_A) -> Self {
-        match variant {
-            DISCON_HIGH_SNVS_A::DISCON_HIGH_SNVS_0 => false,
-            DISCON_HIGH_SNVS_A::DISCON_HIGH_SNVS_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DISCON_HIGH_SNVS`"]
@@ -466,25 +448,21 @@ impl<'a> DISCON_HIGH_SNVS_W<'a> {
 }
 #[doc = "This field determines the bias current in the 24MHz oscillator\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum OSC_I_A {
     #[doc = "0: Nominal"]
-    NOMINAL,
+    NOMINAL = 0,
     #[doc = "1: Decrease current by 12.5%"]
-    MINUS_12_5_PERCENT,
+    MINUS_12_5_PERCENT = 1,
     #[doc = "2: Decrease current by 25.0%"]
-    MINUS_25_PERCENT,
+    MINUS_25_PERCENT = 2,
     #[doc = "3: Decrease current by 37.5%"]
-    MINUS_37_5_PERCENT,
+    MINUS_37_5_PERCENT = 3,
 }
 impl From<OSC_I_A> for u8 {
     #[inline(always)]
     fn from(variant: OSC_I_A) -> Self {
-        match variant {
-            OSC_I_A::NOMINAL => 0,
-            OSC_I_A::MINUS_12_5_PERCENT => 1,
-            OSC_I_A::MINUS_25_PERCENT => 2,
-            OSC_I_A::MINUS_37_5_PERCENT => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `OSC_I`"]
@@ -591,17 +569,14 @@ impl<'a> OSC_XTALOK_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CLKGATE_CTRL_A {
     #[doc = "0: Allow the logic to automatically gate the clock when the XTAL is powered down."]
-    ALLOW_AUTO_GATE,
+    ALLOW_AUTO_GATE = 0,
     #[doc = "1: Prevent the logic from ever gating off the clock."]
-    NO_AUTO_GATE,
+    NO_AUTO_GATE = 1,
 }
 impl From<CLKGATE_CTRL_A> for bool {
     #[inline(always)]
     fn from(variant: CLKGATE_CTRL_A) -> Self {
-        match variant {
-            CLKGATE_CTRL_A::ALLOW_AUTO_GATE => false,
-            CLKGATE_CTRL_A::NO_AUTO_GATE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CLKGATE_CTRL`"]
@@ -667,37 +642,29 @@ impl<'a> CLKGATE_CTRL_W<'a> {
 }
 #[doc = "This field specifies the delay between powering up the XTAL 24MHz clock and releasing the clock to the digital logic inside the analog block\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum CLKGATE_DELAY_A {
     #[doc = "0: 0.5ms"]
-    CLKGATE_DELAY_0,
+    CLKGATE_DELAY_0 = 0,
     #[doc = "1: 1.0ms"]
-    CLKGATE_DELAY_1,
+    CLKGATE_DELAY_1 = 1,
     #[doc = "2: 2.0ms"]
-    CLKGATE_DELAY_2,
+    CLKGATE_DELAY_2 = 2,
     #[doc = "3: 3.0ms"]
-    CLKGATE_DELAY_3,
+    CLKGATE_DELAY_3 = 3,
     #[doc = "4: 4.0ms"]
-    CLKGATE_DELAY_4,
+    CLKGATE_DELAY_4 = 4,
     #[doc = "5: 5.0ms"]
-    CLKGATE_DELAY_5,
+    CLKGATE_DELAY_5 = 5,
     #[doc = "6: 6.0ms"]
-    CLKGATE_DELAY_6,
+    CLKGATE_DELAY_6 = 6,
     #[doc = "7: 7.0ms"]
-    CLKGATE_DELAY_7,
+    CLKGATE_DELAY_7 = 7,
 }
 impl From<CLKGATE_DELAY_A> for u8 {
     #[inline(always)]
     fn from(variant: CLKGATE_DELAY_A) -> Self {
-        match variant {
-            CLKGATE_DELAY_A::CLKGATE_DELAY_0 => 0,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_1 => 1,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_2 => 2,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_3 => 3,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_4 => 4,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_5 => 5,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_6 => 6,
-            CLKGATE_DELAY_A::CLKGATE_DELAY_7 => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `CLKGATE_DELAY`"]
@@ -822,17 +789,14 @@ impl<'a> CLKGATE_DELAY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RTC_XTAL_SOURCE_A {
     #[doc = "0: Internal ring oscillator"]
-    RTC_XTAL_SOURCE_0,
+    RTC_XTAL_SOURCE_0 = 0,
     #[doc = "1: RTC_XTAL"]
-    RTC_XTAL_SOURCE_1,
+    RTC_XTAL_SOURCE_1 = 1,
 }
 impl From<RTC_XTAL_SOURCE_A> for bool {
     #[inline(always)]
     fn from(variant: RTC_XTAL_SOURCE_A) -> Self {
-        match variant {
-            RTC_XTAL_SOURCE_A::RTC_XTAL_SOURCE_0 => false,
-            RTC_XTAL_SOURCE_A::RTC_XTAL_SOURCE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RTC_XTAL_SOURCE`"]

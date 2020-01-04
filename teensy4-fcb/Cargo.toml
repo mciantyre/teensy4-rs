@@ -3,13 +3,25 @@ name = "teensy4-fcb"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+Firmware Configuration Block (FCB) generation for the Teensy 4.
+Part of the teensy4-rs project.
+"""
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "cortex-m",
+    "teensy4",
+]
 
 [build-dependencies]
-imxrt1062-fcb-gen = { path = "../imxrt1062-fcb-gen" }
+imxrt1062-fcb-gen = { version = "0.1.0", path = "../imxrt1062-fcb-gen" }
 
 [lib]
 bench = false

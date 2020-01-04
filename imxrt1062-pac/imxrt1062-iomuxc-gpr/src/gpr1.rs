@@ -12,31 +12,25 @@ impl crate::ResetValue for super::GPR1 {
 }
 #[doc = "SAI1 MCLK1 source select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI1_MCLK1_SEL_A {
     #[doc = "0: ccm.ssi1_clk_root"]
-    SAI1_MCLK1_SEL_0,
+    SAI1_MCLK1_SEL_0 = 0,
     #[doc = "1: ccm.ssi2_clk_root"]
-    SAI1_MCLK1_SEL_1,
+    SAI1_MCLK1_SEL_1 = 1,
     #[doc = "2: ccm.ssi3_clk_root"]
-    SAI1_MCLK1_SEL_2,
+    SAI1_MCLK1_SEL_2 = 2,
     #[doc = "3: iomux.sai1_ipg_clk_sai_mclk"]
-    SAI1_MCLK1_SEL_3,
+    SAI1_MCLK1_SEL_3 = 3,
     #[doc = "4: iomux.sai2_ipg_clk_sai_mclk"]
-    SAI1_MCLK1_SEL_4,
+    SAI1_MCLK1_SEL_4 = 4,
     #[doc = "5: iomux.sai3_ipg_clk_sai_mclk"]
-    SAI1_MCLK1_SEL_5,
+    SAI1_MCLK1_SEL_5 = 5,
 }
 impl From<SAI1_MCLK1_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI1_MCLK1_SEL_A) -> Self {
-        match variant {
-            SAI1_MCLK1_SEL_A::SAI1_MCLK1_SEL_0 => 0,
-            SAI1_MCLK1_SEL_A::SAI1_MCLK1_SEL_1 => 1,
-            SAI1_MCLK1_SEL_A::SAI1_MCLK1_SEL_2 => 2,
-            SAI1_MCLK1_SEL_A::SAI1_MCLK1_SEL_3 => 3,
-            SAI1_MCLK1_SEL_A::SAI1_MCLK1_SEL_4 => 4,
-            SAI1_MCLK1_SEL_A::SAI1_MCLK1_SEL_5 => 5,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI1_MCLK1_SEL`"]
@@ -136,31 +130,25 @@ impl<'a> SAI1_MCLK1_SEL_W<'a> {
 }
 #[doc = "SAI1 MCLK2 source select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI1_MCLK2_SEL_A {
     #[doc = "0: ccm.ssi1_clk_root"]
-    SAI1_MCLK2_SEL_0,
+    SAI1_MCLK2_SEL_0 = 0,
     #[doc = "1: ccm.ssi2_clk_root"]
-    SAI1_MCLK2_SEL_1,
+    SAI1_MCLK2_SEL_1 = 1,
     #[doc = "2: ccm.ssi3_clk_root"]
-    SAI1_MCLK2_SEL_2,
+    SAI1_MCLK2_SEL_2 = 2,
     #[doc = "3: iomux.sai1_ipg_clk_sai_mclk"]
-    SAI1_MCLK2_SEL_3,
+    SAI1_MCLK2_SEL_3 = 3,
     #[doc = "4: iomux.sai2_ipg_clk_sai_mclk"]
-    SAI1_MCLK2_SEL_4,
+    SAI1_MCLK2_SEL_4 = 4,
     #[doc = "5: iomux.sai3_ipg_clk_sai_mclk"]
-    SAI1_MCLK2_SEL_5,
+    SAI1_MCLK2_SEL_5 = 5,
 }
 impl From<SAI1_MCLK2_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI1_MCLK2_SEL_A) -> Self {
-        match variant {
-            SAI1_MCLK2_SEL_A::SAI1_MCLK2_SEL_0 => 0,
-            SAI1_MCLK2_SEL_A::SAI1_MCLK2_SEL_1 => 1,
-            SAI1_MCLK2_SEL_A::SAI1_MCLK2_SEL_2 => 2,
-            SAI1_MCLK2_SEL_A::SAI1_MCLK2_SEL_3 => 3,
-            SAI1_MCLK2_SEL_A::SAI1_MCLK2_SEL_4 => 4,
-            SAI1_MCLK2_SEL_A::SAI1_MCLK2_SEL_5 => 5,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI1_MCLK2_SEL`"]
@@ -260,25 +248,21 @@ impl<'a> SAI1_MCLK2_SEL_W<'a> {
 }
 #[doc = "SAI1 MCLK3 source select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI1_MCLK3_SEL_A {
     #[doc = "0: ccm.spdif0_clk_root"]
-    SAI1_MCLK3_SEL_0,
+    SAI1_MCLK3_SEL_0 = 0,
     #[doc = "1: iomux.spdif_tx_clk2"]
-    SAI1_MCLK3_SEL_1,
+    SAI1_MCLK3_SEL_1 = 1,
     #[doc = "2: spdif.spdif_srclk"]
-    SAI1_MCLK3_SEL_2,
+    SAI1_MCLK3_SEL_2 = 2,
     #[doc = "3: spdif.spdif_outclock"]
-    SAI1_MCLK3_SEL_3,
+    SAI1_MCLK3_SEL_3 = 3,
 }
 impl From<SAI1_MCLK3_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI1_MCLK3_SEL_A) -> Self {
-        match variant {
-            SAI1_MCLK3_SEL_A::SAI1_MCLK3_SEL_0 => 0,
-            SAI1_MCLK3_SEL_A::SAI1_MCLK3_SEL_1 => 1,
-            SAI1_MCLK3_SEL_A::SAI1_MCLK3_SEL_2 => 2,
-            SAI1_MCLK3_SEL_A::SAI1_MCLK3_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI1_MCLK3_SEL`"]
@@ -357,25 +341,21 @@ impl<'a> SAI1_MCLK3_SEL_W<'a> {
 }
 #[doc = "SAI2 MCLK3 source select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI2_MCLK3_SEL_A {
     #[doc = "0: ccm.spdif0_clk_root"]
-    SAI2_MCLK3_SEL_0,
+    SAI2_MCLK3_SEL_0 = 0,
     #[doc = "1: iomux.spdif_tx_clk2"]
-    SAI2_MCLK3_SEL_1,
+    SAI2_MCLK3_SEL_1 = 1,
     #[doc = "2: spdif.spdif_srclk"]
-    SAI2_MCLK3_SEL_2,
+    SAI2_MCLK3_SEL_2 = 2,
     #[doc = "3: spdif.spdif_outclock"]
-    SAI2_MCLK3_SEL_3,
+    SAI2_MCLK3_SEL_3 = 3,
 }
 impl From<SAI2_MCLK3_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI2_MCLK3_SEL_A) -> Self {
-        match variant {
-            SAI2_MCLK3_SEL_A::SAI2_MCLK3_SEL_0 => 0,
-            SAI2_MCLK3_SEL_A::SAI2_MCLK3_SEL_1 => 1,
-            SAI2_MCLK3_SEL_A::SAI2_MCLK3_SEL_2 => 2,
-            SAI2_MCLK3_SEL_A::SAI2_MCLK3_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI2_MCLK3_SEL`"]
@@ -454,25 +434,21 @@ impl<'a> SAI2_MCLK3_SEL_W<'a> {
 }
 #[doc = "SAI3 MCLK3 source select\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAI3_MCLK3_SEL_A {
     #[doc = "0: ccm.spdif0_clk_root"]
-    SAI3_MCLK3_SEL_0,
+    SAI3_MCLK3_SEL_0 = 0,
     #[doc = "1: iomux.spdif_tx_clk2"]
-    SAI3_MCLK3_SEL_1,
+    SAI3_MCLK3_SEL_1 = 1,
     #[doc = "2: spdif.spdif_srclk"]
-    SAI3_MCLK3_SEL_2,
+    SAI3_MCLK3_SEL_2 = 2,
     #[doc = "3: spdif.spdif_outclock"]
-    SAI3_MCLK3_SEL_3,
+    SAI3_MCLK3_SEL_3 = 3,
 }
 impl From<SAI3_MCLK3_SEL_A> for u8 {
     #[inline(always)]
     fn from(variant: SAI3_MCLK3_SEL_A) -> Self {
-        match variant {
-            SAI3_MCLK3_SEL_A::SAI3_MCLK3_SEL_0 => 0,
-            SAI3_MCLK3_SEL_A::SAI3_MCLK3_SEL_1 => 1,
-            SAI3_MCLK3_SEL_A::SAI3_MCLK3_SEL_2 => 2,
-            SAI3_MCLK3_SEL_A::SAI3_MCLK3_SEL_3 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAI3_MCLK3_SEL`"]
@@ -553,17 +529,14 @@ impl<'a> SAI3_MCLK3_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum GINT_A {
     #[doc = "0: Global interrupt request is not asserted."]
-    GINT_0,
+    GINT_0 = 0,
     #[doc = "1: Global interrupt request is asserted."]
-    GINT_1,
+    GINT_1 = 1,
 }
 impl From<GINT_A> for bool {
     #[inline(always)]
     fn from(variant: GINT_A) -> Self {
-        match variant {
-            GINT_A::GINT_0 => false,
-            GINT_A::GINT_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `GINT`"]
@@ -631,17 +604,14 @@ impl<'a> GINT_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET1_CLK_SEL_A {
     #[doc = "0: ENET1 TX reference clock driven by ref_enetpll. This clock is also output to pins via the IOMUX. ENET_REF_CLK1 function."]
-    ENET1_CLK_SEL_0,
+    ENET1_CLK_SEL_0 = 0,
     #[doc = "1: Gets ENET1 TX reference clock from the ENET1_TX_CLK pin. In this use case, an external OSC provides the clock for both the external PHY and the internal controller."]
-    ENET1_CLK_SEL_1,
+    ENET1_CLK_SEL_1 = 1,
 }
 impl From<ENET1_CLK_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: ENET1_CLK_SEL_A) -> Self {
-        match variant {
-            ENET1_CLK_SEL_A::ENET1_CLK_SEL_0 => false,
-            ENET1_CLK_SEL_A::ENET1_CLK_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET1_CLK_SEL`"]
@@ -709,17 +679,14 @@ impl<'a> ENET1_CLK_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET2_CLK_SEL_A {
     #[doc = "0: ENET2 TX reference clock driven by ref_enetpll. This clock is also output to pins via the IOMUX. ENET2_REF_CLK function."]
-    ENET2_CLK_SEL_0,
+    ENET2_CLK_SEL_0 = 0,
     #[doc = "1: Gets ENET2 TX reference clock from the ENET2_TX_CLK pin. In this use case, an external OSC provides the clock for both the external PHY and the internal controller."]
-    ENET2_CLK_SEL_1,
+    ENET2_CLK_SEL_1 = 1,
 }
 impl From<ENET2_CLK_SEL_A> for bool {
     #[inline(always)]
     fn from(variant: ENET2_CLK_SEL_A) -> Self {
-        match variant {
-            ENET2_CLK_SEL_A::ENET2_CLK_SEL_0 => false,
-            ENET2_CLK_SEL_A::ENET2_CLK_SEL_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET2_CLK_SEL`"]
@@ -787,17 +754,14 @@ impl<'a> ENET2_CLK_SEL_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum USB_EXP_MODE_A {
     #[doc = "0: Exposure mode is disabled."]
-    USB_EXP_MODE_0,
+    USB_EXP_MODE_0 = 0,
     #[doc = "1: Exposure mode is enabled."]
-    USB_EXP_MODE_1,
+    USB_EXP_MODE_1 = 1,
 }
 impl From<USB_EXP_MODE_A> for bool {
     #[inline(always)]
     fn from(variant: USB_EXP_MODE_A) -> Self {
-        match variant {
-            USB_EXP_MODE_A::USB_EXP_MODE_0 => false,
-            USB_EXP_MODE_A::USB_EXP_MODE_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `USB_EXP_MODE`"]
@@ -865,17 +829,14 @@ impl<'a> USB_EXP_MODE_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET1_TX_CLK_DIR_A {
     #[doc = "0: ENET1_TX_CLK output driver is disabled"]
-    ENET1_TX_CLK_DIR_0,
+    ENET1_TX_CLK_DIR_0 = 0,
     #[doc = "1: ENET1_TX_CLK output driver is enabled"]
-    ENET1_TX_CLK_DIR_1,
+    ENET1_TX_CLK_DIR_1 = 1,
 }
 impl From<ENET1_TX_CLK_DIR_A> for bool {
     #[inline(always)]
     fn from(variant: ENET1_TX_CLK_DIR_A) -> Self {
-        match variant {
-            ENET1_TX_CLK_DIR_A::ENET1_TX_CLK_DIR_0 => false,
-            ENET1_TX_CLK_DIR_A::ENET1_TX_CLK_DIR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET1_TX_CLK_DIR`"]
@@ -943,17 +904,14 @@ impl<'a> ENET1_TX_CLK_DIR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET2_TX_CLK_DIR_A {
     #[doc = "0: ENET2_TX_CLK output driver is disabled"]
-    ENET2_TX_CLK_DIR_0,
+    ENET2_TX_CLK_DIR_0 = 0,
     #[doc = "1: ENET2_TX_CLK output driver is enabled"]
-    ENET2_TX_CLK_DIR_1,
+    ENET2_TX_CLK_DIR_1 = 1,
 }
 impl From<ENET2_TX_CLK_DIR_A> for bool {
     #[inline(always)]
     fn from(variant: ENET2_TX_CLK_DIR_A) -> Self {
-        match variant {
-            ENET2_TX_CLK_DIR_A::ENET2_TX_CLK_DIR_0 => false,
-            ENET2_TX_CLK_DIR_A::ENET2_TX_CLK_DIR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET2_TX_CLK_DIR`"]
@@ -1021,17 +979,14 @@ impl<'a> ENET2_TX_CLK_DIR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI1_MCLK_DIR_A {
     #[doc = "0: sai1.MCLK is input signal"]
-    SAI1_MCLK_DIR_0,
+    SAI1_MCLK_DIR_0 = 0,
     #[doc = "1: sai1.MCLK is output signal"]
-    SAI1_MCLK_DIR_1,
+    SAI1_MCLK_DIR_1 = 1,
 }
 impl From<SAI1_MCLK_DIR_A> for bool {
     #[inline(always)]
     fn from(variant: SAI1_MCLK_DIR_A) -> Self {
-        match variant {
-            SAI1_MCLK_DIR_A::SAI1_MCLK_DIR_0 => false,
-            SAI1_MCLK_DIR_A::SAI1_MCLK_DIR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI1_MCLK_DIR`"]
@@ -1099,17 +1054,14 @@ impl<'a> SAI1_MCLK_DIR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI2_MCLK_DIR_A {
     #[doc = "0: sai2.MCLK is input signal"]
-    SAI2_MCLK_DIR_0,
+    SAI2_MCLK_DIR_0 = 0,
     #[doc = "1: sai2.MCLK is output signal"]
-    SAI2_MCLK_DIR_1,
+    SAI2_MCLK_DIR_1 = 1,
 }
 impl From<SAI2_MCLK_DIR_A> for bool {
     #[inline(always)]
     fn from(variant: SAI2_MCLK_DIR_A) -> Self {
-        match variant {
-            SAI2_MCLK_DIR_A::SAI2_MCLK_DIR_0 => false,
-            SAI2_MCLK_DIR_A::SAI2_MCLK_DIR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI2_MCLK_DIR`"]
@@ -1177,17 +1129,14 @@ impl<'a> SAI2_MCLK_DIR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAI3_MCLK_DIR_A {
     #[doc = "0: sai3.MCLK is input signal"]
-    SAI3_MCLK_DIR_0,
+    SAI3_MCLK_DIR_0 = 0,
     #[doc = "1: sai3.MCLK is output signal"]
-    SAI3_MCLK_DIR_1,
+    SAI3_MCLK_DIR_1 = 1,
 }
 impl From<SAI3_MCLK_DIR_A> for bool {
     #[inline(always)]
     fn from(variant: SAI3_MCLK_DIR_A) -> Self {
-        match variant {
-            SAI3_MCLK_DIR_A::SAI3_MCLK_DIR_0 => false,
-            SAI3_MCLK_DIR_A::SAI3_MCLK_DIR_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAI3_MCLK_DIR`"]
@@ -1255,17 +1204,14 @@ impl<'a> SAI3_MCLK_DIR_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum EXC_MON_A {
     #[doc = "0: OKAY response"]
-    EXC_MON_0,
+    EXC_MON_0 = 0,
     #[doc = "1: SLVError response (default)"]
-    EXC_MON_1,
+    EXC_MON_1 = 1,
 }
 impl From<EXC_MON_A> for bool {
     #[inline(always)]
     fn from(variant: EXC_MON_A) -> Self {
-        match variant {
-            EXC_MON_A::EXC_MON_0 => false,
-            EXC_MON_A::EXC_MON_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `EXC_MON`"]
@@ -1333,17 +1279,14 @@ impl<'a> EXC_MON_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENET_IPG_CLK_S_EN_A {
     #[doc = "0: ipg_clk_s is gated when there is no IPS access"]
-    ENET_IPG_CLK_S_EN_0,
+    ENET_IPG_CLK_S_EN_0 = 0,
     #[doc = "1: ipg_clk_s is always on"]
-    ENET_IPG_CLK_S_EN_1,
+    ENET_IPG_CLK_S_EN_1 = 1,
 }
 impl From<ENET_IPG_CLK_S_EN_A> for bool {
     #[inline(always)]
     fn from(variant: ENET_IPG_CLK_S_EN_A) -> Self {
-        match variant {
-            ENET_IPG_CLK_S_EN_A::ENET_IPG_CLK_S_EN_0 => false,
-            ENET_IPG_CLK_S_EN_A::ENET_IPG_CLK_S_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENET_IPG_CLK_S_EN`"]
@@ -1411,17 +1354,14 @@ impl<'a> ENET_IPG_CLK_S_EN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CM7_FORCE_HCLK_EN_A {
     #[doc = "0: AHB clock is not running (gated)"]
-    CM7_FORCE_HCLK_EN_0,
+    CM7_FORCE_HCLK_EN_0 = 0,
     #[doc = "1: AHB clock is running (enabled)"]
-    CM7_FORCE_HCLK_EN_1,
+    CM7_FORCE_HCLK_EN_1 = 1,
 }
 impl From<CM7_FORCE_HCLK_EN_A> for bool {
     #[inline(always)]
     fn from(variant: CM7_FORCE_HCLK_EN_A) -> Self {
-        match variant {
-            CM7_FORCE_HCLK_EN_A::CM7_FORCE_HCLK_EN_0 => false,
-            CM7_FORCE_HCLK_EN_A::CM7_FORCE_HCLK_EN_1 => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CM7_FORCE_HCLK_EN`"]
