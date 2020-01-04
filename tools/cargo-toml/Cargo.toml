@@ -1,0 +1,17 @@
+[package]
+name = "cargo-toml"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+publish = false
+description = """
+A small library to provide programatic access to Cargo.toml files.
+This is to support the developer tooling in the teensy4-rs project.
+"""
+
+[dependencies]
+toml = "0.5.5"
+
+[dependencies.serde]
+features = ["derive"]
+version = "1.0.104"
