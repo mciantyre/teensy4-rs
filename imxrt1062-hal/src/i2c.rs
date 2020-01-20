@@ -4,11 +4,10 @@ pub use crate::iomuxc::i2c::module;
 
 use crate::ccm;
 use crate::iomuxc::{daisy, i2c};
-use core::convert::TryFrom;
 use core::marker::PhantomData;
 use embedded_hal::blocking;
 use imxrt1062_pac as pac;
-use pac::lpi2c1::mtdr::CMD_AW;
+use pac::lpi2c1::msr;
 
 /// Unclocked I2C modules
 ///
@@ -259,6 +258,8 @@ pub struct PinLowTimeoutError;
 #[derive(Debug)]
 pub struct BusIdleTimeoutError;
 
+const RETRIES: usize = 100_000;
+
 impl<M> I2C<M>
 where
     M: module::Module,
@@ -347,31 +348,16 @@ where
     }
 
     #[inline(always)]
-    fn wait_idle(&mut self) {
-        log::trace!("Waiting for I2C IDLE...");
-        loop {
-            let status = self.reg.msr.read();
-            // Bus is idle
-            if status.bbf().bit_is_clear()
-            // Master is busy; we already have the bus
-            || status.mbf().bit_is_set()
-            {
-                log::trace!("I2C bus IDLE");
-                break;
+    fn wait<F>(&mut self, on: F) -> Result<(), Error>
+    where
+        F: Fn(msr::R) -> bool,
+    {
+        for _ in 0..RETRIES {
+            if on(self.check_errors()?) {
+                return Ok(());
             }
         }
-    }
-
-    #[inline(always)]
-    fn wait_stop(&mut self) {
-        log::trace!("Waiting for I2C STOP...");
-        loop {
-            let status = self.reg.msr.read();
-            if status.sdf().bit_is_set() {
-                log::trace!("I2C STOP asserted");
-                break;
-            }
-        }
+        return Err(Error::WaitTimeout);
     }
 
     /// Clears all master status flags that are required to be
@@ -398,9 +384,16 @@ where
         });
     }
 
+    #[inline(always)]
+    fn clear_fifo(&mut self) {
+        self.reg
+            .mcr
+            .modify(|_, w| w.rrf().set_bit().rtf().set_bit());
+    }
+
     /// Check master status flags for erroneous conditions
     #[inline(always)]
-    fn check_errors(&mut self) -> Result<(), Error> {
+    fn check_errors(&mut self) -> Result<msr::R, Error> {
         let status = self.reg.msr.read();
         if status.pltf().bit_is_set() {
             Err(Error::PinLowTimeout)
@@ -411,51 +404,8 @@ where
         } else if status.fef().bit_is_set() {
             Err(Error::FIFO)
         } else {
-            Ok(())
+            Ok(status)
         }
-    }
-
-    // Enqueues all the commands in the MTDR FIFO
-    fn enqueue_mtdr<C>(&mut self, mut commands: C) -> Result<(), Error>
-    where
-        C: Iterator<Item = Command>,
-    {
-        const FIFO_SIZE: u8 = 4;
-
-        commands.try_for_each(|command| loop {
-            self.check_errors()?;
-            let fifo_used = self.reg.mfsr.read().txcount().bits();
-            if fifo_used < FIFO_SIZE {
-                self.reg.mtdr.write(|w| {
-                    w.cmd().variant(command.into());
-                    match command {
-                        Command::Start(data)   |
-                        Command::Data(data)    |
-                        Command::Receive(data) => unsafe {
-                            // Safety: data field is 8 bits
-                            w.data().bits(data)
-                        },
-                        Command::Stop => w,
-                    }
-                });
-                return Ok(());
-            }
-        })
-    }
-
-    /// Retrieves data from the MRDR FIFO, placing each byte in the buffer
-    fn retrieve_mrdr<'a, C>(&mut self, mut buffer: C) -> Result<(), Error>
-    where
-        C: Iterator<Item = &'a mut u8>,
-    {
-        buffer.try_for_each(|slot| loop {
-            self.check_errors()?;
-            let mrdr = self.reg.mrdr.read();
-            if mrdr.rxempty().bit_is_clear() {
-                *slot = mrdr.data().bits();
-                return Ok(());
-            }
-        })
     }
 }
 
@@ -471,39 +421,14 @@ pub enum Error {
     FIFO,
     /// Requesting too much data in a receive; upper limit is `u8::MAX`
     RequestTooMuchData,
+    /// Busy-wait on an internal flag was too long
+    WaitTimeout,
 }
 
-const READ: u8 = 1;
-const WRITE: u8 = 0;
-
-#[derive(Clone, Copy)]
-enum Command {
-    Start(u8),
-    Data(u8),
-    Receive(u8),
-    Stop,
-}
-
-impl Command {
-    fn start(addr: u8, direction: u8) -> Self {
-        Command::Start(addr << 1 | direction)
-    }
-    fn receive(len: u8) -> Self {
-        // Receive commands are for the value + 1, so we subtract
-        // 1 to account for the off-by-one
-        Command::Receive(len.saturating_sub(1))
-    }
-}
-
-impl From<Command> for CMD_AW {
-    fn from(cmd: Command) -> Self {
-        match cmd {
-            Command::Start(..) => CMD_AW::CMD_4,
-            Command::Data(..) => CMD_AW::CMD_0,
-            Command::Receive(_) => CMD_AW::CMD_1,
-            Command::Stop => CMD_AW::CMD_2,
-        }
-    }
+macro_rules! target_fn {
+    ($name:expr) => {
+        concat!(module_path!(), "::", $name)
+    };
 }
 
 impl<M> blocking::i2c::Write for I2C<M>
@@ -513,29 +438,30 @@ where
     type Error = Error;
 
     fn write(&mut self, addr: u8, bytes: &[u8]) -> Result<(), Self::Error> {
-        <Self as blocking::i2c::WriteIter>::write(self, addr, bytes.iter().cloned())
-    }
-}
-
-impl<M> blocking::i2c::WriteIter for I2C<M>
-where
-    M: module::Module,
-{
-    type Error = Error;
-
-    fn write<I>(&mut self, addr: u8, bytes: I) -> Result<(), Self::Error>
-    where
-        I: IntoIterator<Item = u8>,
-    {
-        self.wait_idle();
+        self.clear_fifo();
         self.clear_status();
+        log::trace!(target: target_fn!("write"), "WAIT MBF & TDF");
+        self.wait(|msr| msr.mbf().bit_is_clear() && msr.tdf().bit_is_set())?;
 
-        let transmission = core::iter::once(Command::start(addr, WRITE))
-            .chain(bytes.into_iter().map(Command::Data))
-            .chain(core::iter::once(Command::Stop));
+        log::trace!(target: target_fn!("write"), "START");
+        self.reg
+            .mtdr
+            .write(|w| unsafe { w.data().bits(addr << 1) }.cmd().cmd_4());
 
-        self.enqueue_mtdr(transmission)?;
-        self.wait_stop();
+        log::trace!(target: target_fn!("write"), "'{:?}' -> 0x{:X}", bytes, addr);
+        for byte in bytes {
+            self.wait(|msr| msr.tdf().bit_is_set())?;
+            self.reg.mtdr.write(|w| unsafe { w.data().bits(*byte) });
+        }
+
+        log::trace!(target: target_fn!("write"), "WAIT TDF");
+        self.wait(|msr| msr.tdf().bit_is_set())?;
+        log::trace!(target: target_fn!("write"), "STOP");
+        self.reg.mtdr.write(|w| w.cmd().cmd_2());
+
+        log::trace!(target: target_fn!("write"), "WAIT EPF");
+        self.wait(|msr| msr.epf().bit_is_set())?;
+
         Ok(())
     }
 }
@@ -548,46 +474,75 @@ where
     fn write_read(
         &mut self,
         address: u8,
-        bytes: &[u8],
-        buffer: &mut [u8],
+        output: &[u8],
+        input: &mut [u8],
     ) -> Result<(), Self::Error> {
-        use blocking::i2c::WriteIterRead;
-        self.write_iter_read(address, bytes.iter().cloned(), buffer)
-    }
-}
-
-impl<M> blocking::i2c::WriteIterRead for I2C<M>
-where
-    M: module::Module,
-{
-    type Error = Error;
-
-    fn write_iter_read<B>(
-        &mut self,
-        address: u8,
-        bytes: B,
-        buffer: &mut [u8],
-    ) -> Result<(), Self::Error>
-    where
-        B: IntoIterator<Item = u8>,
-    {
-        let receive_len = u8::try_from(buffer.len()).map_err(|_| Error::RequestTooMuchData)?;
-
-        self.wait_idle();
-        self.clear_status();
-
-        self.enqueue_mtdr(
-            core::iter::once(Command::start(address, WRITE))
-                .chain(bytes.into_iter().map(Command::Data)),
-        )?;
-
-        if receive_len > 0 {
-            let recv_cmds = [Command::start(address, READ), Command::receive(receive_len)];
-            self.enqueue_mtdr(recv_cmds.iter().cloned())?;
-            self.retrieve_mrdr(buffer.iter_mut())?;
+        if input.len() > 256 {
+            return Err(Error::RequestTooMuchData);
         }
-        self.enqueue_mtdr(core::iter::once(Command::Stop))?;
-        self.wait_stop();
+
+        self.clear_fifo();
+        self.clear_status();
+        log::trace!(target: target_fn!("write_read"), "WAIT MBF & TDF");
+        self.wait(|msr| msr.mbf().bit_is_clear() && msr.tdf().bit_is_set())?;
+
+        log::trace!(target: target_fn!("write_read"), "START");
+        self.reg
+            .mtdr
+            .write(|w| unsafe { w.data().bits(address << 1) }.cmd().cmd_4());
+
+        log::trace!(target: target_fn!("write_read"), "'{:?}' -> 0x{:X}", output, address);
+        for byte in output {
+            self.wait(|msr| msr.tdf().bit_is_set())?;
+            self.reg.mtdr.write(|w| unsafe { w.data().bits(*byte) });
+        }
+
+        log::trace!(target: target_fn!("write_read"), "REPEAT START");
+        self.reg
+            .mtdr
+            .write(|w| unsafe { w.data().bits(address << 1 | 1) }.cmd().cmd_4());
+
+        log::trace!(target: target_fn!("write_read"), "WAIT EPF");
+        self.wait(|msr| msr.epf().bit_is_set())?;
+        self.reg.msr.write(|w| w.epf().set_bit());
+
+        if input.len() > 0 {
+            log::trace!(target: target_fn!("write_read"), "WAIT TDF");
+            self.wait(|msr| msr.tdf().bit_is_set())?;
+
+            log::trace!(target: target_fn!("write_read"), "'{}' -> 0x{:X}", input.len() - 1, address);
+            self.reg.mtdr.write(|w| {
+                unsafe { w.data().bits((input.len() - 1) as u8) }
+                    .cmd()
+                    .cmd_1()
+            });
+
+            log::trace!(target: target_fn!("write_read"), "WAIT DATA");
+            for i in 0..input.len() {
+                let mut j = 0;
+                loop {
+                    self.check_errors()?;
+                    let mrdr = self.reg.mrdr.read();
+                    if !mrdr.rxempty().bit_is_set() {
+                        input[i] = mrdr.data().bits();
+                        break;
+                    }
+                    j += 1;
+                    if j > RETRIES {
+                        return Err(Error::WaitTimeout);
+                    }
+                }
+            }
+        }
+
+        log::trace!(target: target_fn!("write_read"), "WAIT TDF");
+        self.wait(|msr| msr.tdf().bit_is_set())?;
+        log::trace!(target: target_fn!("write_read"), "STOP");
+        self.reg.mtdr.write(|w| w.cmd().cmd_2());
+
+        log::trace!(target: target_fn!("write_read"), "WAIT EPF");
+        self.wait(|msr| msr.epf().bit_is_set())?;
+
         Ok(())
     }
 }
@@ -599,18 +554,58 @@ where
     type Error = Error;
 
     fn read(&mut self, address: u8, buffer: &mut [u8]) -> Result<(), Self::Error> {
-        let receive_len = u8::try_from(buffer.len()).map_err(|_| Error::RequestTooMuchData)?;
-        if receive_len == 0 {
+        if buffer.len() > 256 {
+            return Err(Error::RequestTooMuchData);
+        }
+
+        if buffer.len() == 0 {
             return Ok(());
         }
 
-        self.wait_idle();
+        self.clear_fifo();
         self.clear_status();
-        let recv_cmds = [Command::start(address, READ), Command::receive(receive_len)];
-        self.enqueue_mtdr(recv_cmds.iter().cloned())?;
-        self.retrieve_mrdr(buffer.iter_mut())?;
-        self.enqueue_mtdr(core::iter::once(Command::Stop))?;
-        self.wait_stop();
+        log::trace!(target: target_fn!("read"), "WAIT MBF & TDF");
+        self.wait(|msr| msr.mbf().bit_is_clear() && msr.tdf().bit_is_set())?;
+
+        log::trace!(target: target_fn!("read"), "START");
+        self.reg
+            .mtdr
+            .write(|w| unsafe { w.data().bits(address << 1 | 1) }.cmd().cmd_4());
+
+        log::trace!(target: target_fn!("read"), "WAIT TDF");
+        self.wait(|msr| msr.tdf().bit_is_set())?;
+
+        log::trace!(target: target_fn!("read"), "'{}' -> 0x{:X}", buffer.len() - 1, address);
+        self.reg.mtdr.write(|w| {
+            unsafe { w.data().bits((buffer.len() - 1) as u8) }
+                .cmd()
+                .cmd_1()
+        });
+
+        log::trace!(target: target_fn!("read"), "WAIT DATA");
+        for i in 0..buffer.len() {
+            let mut j = 0;
+            loop {
+                self.check_errors()?;
+                let mrdr = self.reg.mrdr.read();
+                if !mrdr.rxempty().bit_is_set() {
+                    buffer[i] = mrdr.data().bits();
+                    break;
+                }
+                j += 1;
+                if j > RETRIES {
+                    return Err(Error::WaitTimeout);
+                }
+                core::sync::atomic::spin_loop_hint();
+            }
+        }
+
+        log::trace!(target: target_fn!("read"), "STOP");
+        self.reg.mtdr.write(|w| w.cmd().cmd_2());
+
+        log::trace!(target: target_fn!("read"), "WAIT EPF");
+        self.wait(|msr| msr.epf().bit_is_set())?;
+
         Ok(())
     }
 }
