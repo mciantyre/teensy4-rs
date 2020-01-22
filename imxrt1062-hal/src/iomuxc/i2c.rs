@@ -67,8 +67,9 @@ macro_rules! pin_config {
 impl Pin for GPIO_AD_B1_07<Alt1> {
     type Wire = SCL;
     type Module = module::_3;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_ad_b1_07
             .write(|w| pin_config!(w));
@@ -76,6 +77,7 @@ impl Pin for GPIO_AD_B1_07<Alt1> {
 }
 
 impl IntoDaisy for GPIO_AD_B1_07<Alt1> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c3_scl_select_input
@@ -87,8 +89,9 @@ impl IntoDaisy for GPIO_AD_B1_07<Alt1> {
 impl Pin for GPIO_AD_B1_06<Alt1> {
     type Wire = SDA;
     type Module = module::_3;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_ad_b1_06
             .write(|w| pin_config!(w));
@@ -96,6 +99,7 @@ impl Pin for GPIO_AD_B1_06<Alt1> {
 }
 
 impl IntoDaisy for GPIO_AD_B1_06<Alt1> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c3_sda_select_input
@@ -107,8 +111,9 @@ impl IntoDaisy for GPIO_AD_B1_06<Alt1> {
 impl Pin for GPIO_AD_B1_01<Alt3> {
     type Wire = SDA;
     type Module = module::_1;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_ad_b1_01
             .write(|w| pin_config!(w));
@@ -116,6 +121,7 @@ impl Pin for GPIO_AD_B1_01<Alt3> {
 }
 
 impl IntoDaisy for GPIO_AD_B1_01<Alt3> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c1_sda_select_input
@@ -127,8 +133,9 @@ impl IntoDaisy for GPIO_AD_B1_01<Alt3> {
 impl Pin for GPIO_AD_B1_00<Alt3> {
     type Wire = SCL;
     type Module = module::_1;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_ad_b1_00
             .write(|w| pin_config!(w));
@@ -136,6 +143,7 @@ impl Pin for GPIO_AD_B1_00<Alt3> {
 }
 
 impl IntoDaisy for GPIO_AD_B1_00<Alt3> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c1_scl_select_input
@@ -147,8 +155,9 @@ impl IntoDaisy for GPIO_AD_B1_00<Alt3> {
 impl Pin for GPIO_AD_B0_12<Alt0> {
     type Wire = SCL;
     type Module = module::_4;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_ad_b0_12
             .write(|w| pin_config!(w));
@@ -156,6 +165,7 @@ impl Pin for GPIO_AD_B0_12<Alt0> {
 }
 
 impl IntoDaisy for GPIO_AD_B0_12<Alt0> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c4_scl_select_input
@@ -167,8 +177,9 @@ impl IntoDaisy for GPIO_AD_B0_12<Alt0> {
 impl Pin for GPIO_AD_B0_13<Alt0> {
     type Wire = SDA;
     type Module = module::_4;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_ad_b0_13
             .write(|w| pin_config!(w));
@@ -176,6 +187,7 @@ impl Pin for GPIO_AD_B0_13<Alt0> {
 }
 
 impl IntoDaisy for GPIO_AD_B0_13<Alt0> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c4_sda_select_input
@@ -187,8 +199,9 @@ impl IntoDaisy for GPIO_AD_B0_13<Alt0> {
 impl Pin for GPIO_SD_B0_01<Alt2> {
     type Wire = SDA;
     type Module = module::_3;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_sd_b0_01
             .write(|w| pin_config!(w));
@@ -196,6 +209,7 @@ impl Pin for GPIO_SD_B0_01<Alt2> {
 }
 
 impl IntoDaisy for GPIO_SD_B0_01<Alt2> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c3_sda_select_input
@@ -207,8 +221,9 @@ impl IntoDaisy for GPIO_SD_B0_01<Alt2> {
 impl Pin for GPIO_SD_B0_00<Alt2> {
     type Wire = SCL;
     type Module = module::_3;
-
+    #[inline(always)]
     fn configure(&mut self) {
+        self.sion_enable();
         self.iomuxc()
             .sw_pad_ctl_pad_gpio_sd_b0_00
             .write(|w| pin_config!(w));
@@ -216,6 +231,7 @@ impl Pin for GPIO_SD_B0_00<Alt2> {
 }
 
 impl IntoDaisy for GPIO_SD_B0_00<Alt2> {
+    #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
             .lpi2c3_scl_select_input

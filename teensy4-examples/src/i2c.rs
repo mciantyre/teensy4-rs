@@ -15,7 +15,7 @@ const SLAVE_ADDRESS: u8 = 0x68; // MPU9250
 /// value that's specific for a MPU variant.
 fn who_am_i<I>(i2c: &mut I) -> Result<u8, I::Error>
 where
-    I: i2c::WriteRead
+    I: i2c::WriteRead,
 {
     const WHO_AM_I: u8 = 0x75;
     let mut out = [0; 1];

@@ -219,7 +219,7 @@ impl ClockSpeed {
             sethold,
             datavd
         );
-        reg.mccr0.modify(|_, w| {
+        reg.mccr0.write(|w| {
             // Safety: fields are 6 bits
             w.clkhi()
                 .bits(clkhi)
@@ -230,7 +230,7 @@ impl ClockSpeed {
                 .datavd()
                 .bits(datavd)
         });
-        reg.mcfgr1.modify(|_, w| w.prescale().variant(prescalar));
+        reg.mcfgr1.write(|w| w.prescale().variant(prescalar));
     }
 }
 
@@ -270,15 +270,20 @@ where
             _module: PhantomData,
             source_clock,
         };
+        i2c.reg.mcr.write_with_zero(|w| w.rst().set_bit());
         // Enables I2C master
         i2c.set_clock_speed(ClockSpeed::KHz100).unwrap();
+        i2c.reg.mfcr.write(|w| unsafe {
+            // Safety: fields are two bits
+            w.rxwater().bits(0b01).txwater().bits(0b01)
+        });
         i2c
     }
 
     fn with_master_disabled<F: FnMut() -> R, R>(&self, mut act: F) -> R {
-        self.reg.mcr.modify(|_, w| w.men().clear_bit());
+        self.reg.mcr.reset();
         let res = act();
-        self.reg.mcr.modify(|_, w| w.men().set_bit());
+        self.reg.mcr.write_with_zero(|w| w.men().set_bit());
         res
     }
 
@@ -491,7 +496,12 @@ where
             .mtdr
             .write(|w| unsafe { w.data().bits(address << 1) }.cmd().cmd_4());
 
-        log::trace!(target: target_fn!("write_read"), "'{:?}' -> 0x{:X}", output, address);
+        log::trace!(
+            target: target_fn!("write_read"),
+            "'{:?}' -> 0x{:X}",
+            output,
+            address
+        );
         for byte in output {
             self.wait(|msr| msr.tdf().bit_is_set())?;
             self.reg.mtdr.write(|w| unsafe { w.data().bits(*byte) });
@@ -510,7 +520,12 @@ where
             log::trace!(target: target_fn!("write_read"), "WAIT TDF");
             self.wait(|msr| msr.tdf().bit_is_set())?;
 
-            log::trace!(target: target_fn!("write_read"), "'{}' -> 0x{:X}", input.len() - 1, address);
+            log::trace!(
+                target: target_fn!("write_read"),
+                "'{}' -> 0x{:X}",
+                input.len() - 1,
+                address
+            );
             self.reg.mtdr.write(|w| {
                 unsafe { w.data().bits((input.len() - 1) as u8) }
                     .cmd()
@@ -575,7 +590,12 @@ where
         log::trace!(target: target_fn!("read"), "WAIT TDF");
         self.wait(|msr| msr.tdf().bit_is_set())?;
 
-        log::trace!(target: target_fn!("read"), "'{}' -> 0x{:X}", buffer.len() - 1, address);
+        log::trace!(
+            target: target_fn!("read"),
+            "'{}' -> 0x{:X}",
+            buffer.len() - 1,
+            address
+        );
         self.reg.mtdr.write(|w| {
             unsafe { w.data().bits((buffer.len() - 1) as u8) }
                 .cmd()
