@@ -168,7 +168,7 @@ impl ClockSpeed {
 
         // prescale = 1, 2, 4, 8, ... 128
         // divider = 2 ^ prescale
-        let dividers = PRESCALARS.into_iter().copied().map(ccm::Divider::from);
+        let dividers = PRESCALARS.iter().copied().map(ccm::Divider::from);
         let clkhis = (1u32..32u32).map(ccm::Ticks);
         // possibilities = every divider with every clkhi (8 * 30 == 240 possibilities)
         let possibilities =
@@ -362,7 +362,7 @@ where
                 return Ok(());
             }
         }
-        return Err(Error::WaitTimeout);
+        Err(Error::WaitTimeout)
     }
 
     /// Clears all master status flags that are required to be
@@ -516,7 +516,7 @@ where
         self.wait(|msr| msr.epf().bit_is_set())?;
         self.reg.msr.write(|w| w.epf().set_bit());
 
-        if input.len() > 0 {
+        if !input.is_empty() {
             log::trace!(target: target_fn!("write_read"), "WAIT TDF");
             self.wait(|msr| msr.tdf().bit_is_set())?;
 
@@ -533,13 +533,13 @@ where
             });
 
             log::trace!(target: target_fn!("write_read"), "WAIT DATA");
-            for i in 0..input.len() {
+            for slot in input.iter_mut() {
                 let mut j = 0;
                 loop {
                     self.check_errors()?;
                     let mrdr = self.reg.mrdr.read();
                     if !mrdr.rxempty().bit_is_set() {
-                        input[i] = mrdr.data().bits();
+                        *slot = mrdr.data().bits();
                         break;
                     }
                     j += 1;
@@ -573,7 +573,7 @@ where
             return Err(Error::RequestTooMuchData);
         }
 
-        if buffer.len() == 0 {
+        if buffer.is_empty() {
             return Ok(());
         }
 
@@ -603,13 +603,13 @@ where
         });
 
         log::trace!(target: target_fn!("read"), "WAIT DATA");
-        for i in 0..buffer.len() {
+        for slot in buffer.iter_mut() {
             let mut j = 0;
             loop {
                 self.check_errors()?;
                 let mrdr = self.reg.mrdr.read();
                 if !mrdr.rxempty().bit_is_set() {
-                    buffer[i] = mrdr.data().bits();
+                    *slot = mrdr.data().bits();
                     break;
                 }
                 j += 1;
