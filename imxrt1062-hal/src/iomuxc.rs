@@ -10,6 +10,7 @@ pub mod daisy;
 pub mod gpio;
 pub mod i2c;
 pub mod pwm;
+pub mod uart;
 
 // IOMUXC section of docs originally state that there are up to 8
 // alternative modes. However, some have up to 10 (like GPIO_AD_B1_00)
