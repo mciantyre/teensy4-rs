@@ -159,8 +159,10 @@ pub struct Peripherals {
     pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
     /// Teensy pins
     pub pins: Pins,
-    /// Unclocked I2C peripheral
+    /// Unclocked I2C peripherals
     pub i2c: hal::i2c::Unclocked,
+    /// Unclocked UART peripherals
+    pub uart: hal::uart::Unclocked,
 }
 
 /// SYSTICK external clock frequency
@@ -208,6 +210,7 @@ impl Peripherals {
                 p37: p.iomuxc.gpio_sd_b0_00,
             },
             i2c: p.i2c,
+            uart: p.uart,
         }
     }
 }
