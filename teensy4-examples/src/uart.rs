@@ -1,7 +1,11 @@
 //! Loopback over UART
 //!
 //! Connect Teensy pins 16 and 17 together. We transfer
-//! from one pin, and receive on the other.
+//! from one pin, and receive on the other. Demonstrates
+//! the usage of the TX and RX FIFOs.
+//!
+//! It's not the most advanced example. The RX FIFO could
+//! overrun if we're not reading fast enough.
 
 #![no_std]
 #![no_main]
@@ -12,11 +16,57 @@ use bsp::rt::entry;
 use teensy4_bsp as bsp;
 
 use embedded_hal::digital::v2::ToggleableOutputPin;
-use embedded_hal::serial::Write;
+use embedded_hal::serial::{Read, Write};
+
+/// Change the TX FIFO sizes to see how the FIFO affects the number
+/// of `WouldBlock`s that we would see. Setting this to zero disables
+/// the FIFO.
+const TX_FIFO_SIZE: u8 = 4;
+
+/// Writes `bytes` to the provided `uart`. The function will count the
+/// number of blocks that we hit, and will log how many blocks we
+/// required to transmit `bytes`.
+fn write<W: Write<u8>>(uart: &mut W, bytes: &[u8]) -> Result<(), W::Error> {
+    let mut blocks = 0;
+    for byte in bytes {
+        loop {
+            match uart.write(*byte) {
+                Ok(()) => break,
+                Err(nb::Error::WouldBlock) => blocks += 1,
+                Err(nb::Error::Other(err)) => return Err(err),
+            }
+        }
+    }
+    log::info!("{} blocks to transmit {:?}", blocks, bytes);
+    Ok(())
+}
+
+/// Reads from `uart` into `bytes`. The function will count the
+/// number of blocks that we hit, and it will log how many blocks
+/// we required to receive `bytes`.
+fn read<R: Read<u8>>(uart: &mut R, bytes: &mut [u8]) -> Result<(), R::Error> {
+    let mut blocks = 0;
+    for byte in bytes.iter_mut() {
+        loop {
+            match uart.read() {
+                Ok(b) => {
+                    *byte = b;
+                    break;
+                }
+                Err(nb::Error::WouldBlock) => blocks += 1,
+                Err(nb::Error::Other(err)) => return Err(err),
+            }
+        }
+    }
+    log::info!("{} blocks to receive {:?}", blocks, bytes);
+    Ok(())
+}
 
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
+    peripherals.log.init(Default::default());
+    bsp::delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,
@@ -27,13 +77,22 @@ fn main() -> ! {
         .init(
             peripherals.pins.p17.alt2(),
             peripherals.pins.p16.alt2(),
-            9600,
+            115_200,
         )
         .unwrap();
+    let fifo_size = uart3.set_tx_fifo(core::num::NonZeroU8::new(TX_FIFO_SIZE));
+    log::info!("Setting TX FIFO to {}", fifo_size);
+    // If this is disabled, we won't receive the four bytes from the transfer!
+    uart3.set_rx_fifo(true);
     loop {
-        peripherals.led.toggle().unwrap();
-        nb::block!(uart3.write(0xBE)).unwrap();
-        nb::block!(uart3.write(0xEF)).unwrap();
         bsp::delay(1_000);
+        peripherals.led.toggle().unwrap();
+        write(&mut uart3, &[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
+        bsp::delay(1);
+        let mut buffer = [0; 4];
+        match read(&mut uart3, &mut buffer) {
+            Ok(_) => continue,
+            Err(err) => log::warn!("Receiver error: {:?}", err.flags),
+        }
     }
 }
