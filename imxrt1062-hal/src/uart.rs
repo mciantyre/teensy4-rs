@@ -100,6 +100,18 @@ pub struct UART<M> {
     _module: PhantomData<M>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Parity {
+    Even,
+    Odd,
+}
+
+impl Parity {
+    fn bit(self) -> bool {
+        self == Parity::Odd
+    }
+}
+
 impl<M> UART<M>
 where
     M: module::Module,
@@ -117,6 +129,20 @@ where
         uart.set_baud(baud)?;
         uart.reg.ctrl.modify(|_, w| w.te().set_bit().re().set_bit());
         Ok(uart)
+    }
+
+    /// Specify parity bit settings. If there is no parity, use `None`.
+    pub fn set_parity(&mut self, parity: Option<Parity>) {
+        self.while_disabled(|this| {
+            this.reg.ctrl.modify(|_, w| {
+                w.pe()
+                    .bit(parity.is_some())
+                    .m()
+                    .bit(parity.is_some())
+                    .pt()
+                    .bit(parity.map(|p| p.bit()).unwrap_or(false))
+            });
+        });
     }
 
     /// Controls the TX FIFO.

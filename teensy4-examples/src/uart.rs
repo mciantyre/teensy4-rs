@@ -22,6 +22,8 @@ use embedded_hal::serial::{Read, Write};
 /// of `WouldBlock`s that we would see. Setting this to zero disables
 /// the FIFO.
 const TX_FIFO_SIZE: u8 = 4;
+/// Change me to affect the partity bit generation
+const PARITY: Option<bsp::hal::uart::Parity> = Some(bsp::hal::uart::Parity::Odd);
 
 /// Writes `bytes` to the provided `uart`. The function will count the
 /// number of blocks that we hit, and will log how many blocks we
@@ -84,6 +86,7 @@ fn main() -> ! {
     log::info!("Setting TX FIFO to {}", fifo_size);
     // If this is disabled, we won't receive the four bytes from the transfer!
     uart3.set_rx_fifo(true);
+    uart3.set_parity(PARITY);
     loop {
         bsp::delay(1_000);
         peripherals.led.toggle().unwrap();
