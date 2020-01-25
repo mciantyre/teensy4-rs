@@ -1,40 +1,50 @@
 //! UART pin multiplexing
 
 pub mod module {
+    use crate::pac;
     pub trait Module {
         const IDX: usize;
+        type Reg: core::ops::Deref<Target = pac::lpuart1::RegisterBlock>;
     }
     pub struct _1;
     impl Module for _1 {
         const IDX: usize = 1;
+        type Reg = pac::LPUART1;
     }
     pub struct _2;
     impl Module for _2 {
         const IDX: usize = 2;
+        type Reg = pac::LPUART2;
     }
     pub struct _3;
     impl Module for _3 {
         const IDX: usize = 3;
+        type Reg = pac::LPUART3;
     }
     pub struct _4;
     impl Module for _4 {
         const IDX: usize = 4;
+        type Reg = pac::LPUART4;
     }
     pub struct _5;
     impl Module for _5 {
         const IDX: usize = 5;
+        type Reg = pac::LPUART5;
     }
     pub struct _6;
     impl Module for _6 {
         const IDX: usize = 6;
+        type Reg = pac::LPUART6;
     }
     pub struct _7;
     impl Module for _7 {
         const IDX: usize = 7;
+        type Reg = pac::LPUART7;
     }
     pub struct _8;
     impl Module for _8 {
         const IDX: usize = 8;
+        type Reg = pac::LPUART8;
     }
 }
 

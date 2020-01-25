@@ -12,19 +12,18 @@ use core::marker::PhantomData;
 /// An uninitialized UART peripheral
 ///
 /// Call `init()` to initialize the peripheral
-pub struct Uninit<M> {
+pub struct Uninit<M: module::Module> {
     effective_clock: ccm::Frequency,
     _module: PhantomData<M>,
-    reg: &'static pac::lpuart1::RegisterBlock,
+    reg: M::Reg,
 }
 
-impl<M> Uninit<M> {
-    fn new(effective_clock: ccm::Frequency, reg: *const pac::lpuart1::RegisterBlock) -> Self {
+impl<M: module::Module> Uninit<M> {
+    fn new(effective_clock: ccm::Frequency, reg: M::Reg) -> Self {
         Uninit {
             effective_clock,
             _module: PhantomData,
-            // Safety: register is static
-            reg: unsafe { &*reg },
+            reg,
         }
     }
 }
@@ -44,10 +43,35 @@ pub struct UARTs {
 /// The `Unclocked` UART represents all UART peripherals
 /// that do not have an activated clock. In order to obtain
 /// any UART peripheral, the `Unclocked` type must be clocked.
-pub struct Unclocked {}
+#[allow(dead_code)] // Remove once all UARTs peripherals are implemented
+pub struct Unclocked {
+    uart1: pac::LPUART1,
+    uart2: pac::LPUART2,
+    uart3: pac::LPUART3,
+    uart4: pac::LPUART4,
+    uart5: pac::LPUART5,
+    uart6: pac::LPUART6,
+    uart7: pac::LPUART7,
+}
 impl Unclocked {
-    pub(crate) fn new() -> Self {
-        Unclocked {}
+    pub(crate) fn new(
+        uart1: pac::LPUART1,
+        uart2: pac::LPUART2,
+        uart3: pac::LPUART3,
+        uart4: pac::LPUART4,
+        uart5: pac::LPUART5,
+        uart6: pac::LPUART6,
+        uart7: pac::LPUART7,
+    ) -> Self {
+        Unclocked {
+            uart1,
+            uart2,
+            uart3,
+            uart4,
+            uart5,
+            uart6,
+            uart7,
+        }
     }
 
     /// Enable all clocks for the UART peripherals. Returns a collection
@@ -80,9 +104,9 @@ impl Unclocked {
 
         let effective_clock = ccm::Frequency::from(clock_select) / ccm::Divider::from(prescalar);
         UARTs {
-            uart1: Uninit::new(effective_clock, pac::LPUART1::ptr()),
-            uart3: Uninit::new(effective_clock, pac::LPUART3::ptr()),
-            uart6: Uninit::new(effective_clock, pac::LPUART6::ptr()),
+            uart1: Uninit::new(effective_clock, self.uart1),
+            uart3: Uninit::new(effective_clock, self.uart3),
+            uart6: Uninit::new(effective_clock, self.uart6),
         }
     }
 }
@@ -114,8 +138,8 @@ where
 /// An initialized UART peripheral
 ///
 /// Call `read()` or `write()` to transmit bytes.
-pub struct UART<M> {
-    reg: &'static pac::lpuart1::RegisterBlock,
+pub struct UART<M: module::Module> {
+    reg: M::Reg,
     effective_clock: ccm::Frequency,
     _module: PhantomData<M>,
 }
@@ -140,7 +164,7 @@ where
     M: module::Module,
 {
     fn start(
-        reg: &'static pac::lpuart1::RegisterBlock,
+        reg: M::Reg,
         effective_clock: ccm::Frequency,
         baud: u32,
     ) -> Result<Self, ccm::uart::TimingsError> {
@@ -150,7 +174,9 @@ where
             _module: PhantomData,
         };
         uart.set_baud(baud)?;
-        uart.reg.ctrl.modify(|_, w| w.te().set_bit().re().set_bit());
+        // Compiler can't infer type...?
+        let reg: &M::Reg = &uart.reg;
+        reg.ctrl.modify(|_, w| w.te().set_bit().re().set_bit());
         Ok(uart)
     }
 

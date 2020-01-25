@@ -63,7 +63,9 @@ impl Peripherals {
             dcdc: dcdc::DCDC(p.DCDC),
             pwm2: pwm::UnclockedController::new(),
             i2c: i2c::Unclocked::new(),
-            uart: uart::Unclocked::new(),
+            uart: uart::Unclocked::new(
+                p.LPUART1, p.LPUART2, p.LPUART3, p.LPUART4, p.LPUART5, p.LPUART6, p.LPUART7,
+            ),
         }
     }
 }
