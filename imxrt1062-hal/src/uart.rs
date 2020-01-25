@@ -1,10 +1,17 @@
-//! Low Power Universal Asynchronous Receiver/Transmit
+//! Low Power Universal Asynchronous Receiver/Transmit (LPUART)
+//!
+//! The UART module provides a serial peripheral that implements
+//! the `embedded_hal::serial` traits. The peripheral is sufficient
+//! for implementing basic serial communications.
 
 use crate::ccm;
 pub use crate::iomuxc::uart::{self, module};
 use crate::pac;
 use core::marker::PhantomData;
 
+/// An uninitialized UART peripheral
+///
+/// Call `init()` to initialize the peripheral
 pub struct Uninit<M> {
     effective_clock: ccm::Frequency,
     _module: PhantomData<M>,
@@ -22,18 +29,29 @@ impl<M> Uninit<M> {
     }
 }
 
+/// All available UARTs
+///
+/// All UARTs are uninitialized. Call `init()` to take and initialize the
+/// peripheral.
 pub struct UARTs {
     pub uart1: Uninit<module::_1>,
     pub uart3: Uninit<module::_3>,
     pub uart6: Uninit<module::_6>,
 }
 
+/// Unclocked UART peripherals
+///
+/// The `Unclocked` UART represents all UART peripherals
+/// that do not have an activated clock. In order to obtain
+/// any UART peripheral, the `Unclocked` type must be clocked.
 pub struct Unclocked {}
 impl Unclocked {
     pub(crate) fn new() -> Self {
         Unclocked {}
     }
 
+    /// Enable all clocks for the UART peripherals. Returns a collection
+    /// of UART peripherals.
     pub fn clock(
         self,
         ccm: &mut ccm::Handle,
@@ -52,7 +70,7 @@ impl Unclocked {
             w.uart_clk_sel()
                 .variant(clock_select.into())
                 .uart_clk_podf()
-                .variant(prescalar.into())
+                .variant(prescalar)
         });
 
         // Enable clocks
@@ -94,15 +112,20 @@ where
 }
 
 /// An initialized UART peripheral
+///
+/// Call `read()` or `write()` to transmit bytes.
 pub struct UART<M> {
     reg: &'static pac::lpuart1::RegisterBlock,
     effective_clock: ccm::Frequency,
     _module: PhantomData<M>,
 }
 
+/// Parity selection
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Parity {
+    /// Even parity (the 'E' in 8E1, for example)
     Even,
+    /// Odd parity (the 'O' in 8O1, for example)
     Odd,
 }
 
@@ -180,6 +203,8 @@ where
         })
     }
 
+    /// Enable or disable the RX FIFO. The maximum size of the FIFO is based on
+    /// the underlying hardware. An iMXRT1062's RX FIFO is 4 bytes.
     pub fn set_rx_fifo(&mut self, enable: bool) {
         self.while_disabled(|this| {
             this.reg.fifo.modify(|_, w| w.rxfe().bit(enable));
