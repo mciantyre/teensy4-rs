@@ -271,7 +271,7 @@ where
         self.while_disabled(|this| {
             if let Some(requested_size) = size {
                 // Maximum TX FIFO size supported by this device
-                let max_size = this.reg.param.read().txfifo().bits() << 1;
+                let max_size = 1 << this.reg.param.read().txfifo().bits();
                 let tx_fifo_size = max_size.min(requested_size.get());
                 this.reg.water.modify(|_, w| unsafe {
                     // Safety: max size is one less than PARAM[TXFIFO].
