@@ -6,6 +6,7 @@ rust:
 matrix:
   allow_failures:
     - rust: nightly
+    - rust: beta
   fast_finish: true
 before_install:
   - sudo apt-get update
