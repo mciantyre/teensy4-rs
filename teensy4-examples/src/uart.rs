@@ -24,6 +24,8 @@ use embedded_hal::serial::{Read, Write};
 const TX_FIFO_SIZE: u8 = 4;
 /// Change me to affect the partity bit generation
 const PARITY: Option<bsp::hal::uart::Parity> = Some(bsp::hal::uart::Parity::Odd);
+/// Change me to invert all output data, and to treat all input data as inverted
+const INVERTED: bool = true;
 
 /// Writes `bytes` to the provided `uart`. The function will count the
 /// number of blocks that we hit, and will log how many blocks we
@@ -87,6 +89,8 @@ fn main() -> ! {
     // If this is disabled, we won't receive the four bytes from the transfer!
     uart3.set_rx_fifo(true);
     uart3.set_parity(PARITY);
+    uart3.set_rx_inversion(INVERTED);
+    uart3.set_tx_inversion(INVERTED);
     loop {
         bsp::delay(1_000);
         peripherals.led.toggle().unwrap();

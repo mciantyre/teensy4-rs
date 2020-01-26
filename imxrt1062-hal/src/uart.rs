@@ -181,6 +181,9 @@ where
     }
 
     /// Specify parity bit settings. If there is no parity, use `None`.
+    ///
+    /// Calling this method will temporarily disable the peripheral,
+    /// flusing all data from all FIFOs.
     pub fn set_parity(&mut self, parity: Option<Parity>) {
         self.while_disabled(|this| {
             this.reg.ctrl.modify(|_, w| {
@@ -194,6 +197,28 @@ where
         });
     }
 
+    /// Reverse the polarity of received data, affecting all data bits, start
+    /// and stop bits, and polarity bits.
+    ///
+    /// The default inversion state is `false`. Note that calling this method
+    /// will temporarily disable the peripheral, flusing all data from all FIFOs.
+    pub fn set_rx_inversion(&mut self, inverted: bool) {
+        self.while_disabled(|this| {
+            this.reg.stat.modify(|_, w| w.rxinv().bit(inverted));
+        });
+    }
+
+    /// Reverse the polarity of transferred data, affecting all data bits,
+    /// start and stop bits, and polarity bits.
+    ///
+    /// The default inversion state is `false`. Note that calling this method
+    /// will temporarily disable the peripheral, flusing all data from all FIFOs.
+    pub fn set_tx_inversion(&mut self, inverted: bool) {
+        self.while_disabled(|this| {
+            this.reg.ctrl.modify(|_, w| w.txinv().bit(inverted));
+        });
+    }
+
     /// Controls the TX FIFO.
     ///
     /// If size is `Some(n)`, where `n > 0`, the method will enable the TX
@@ -204,7 +229,7 @@ where
     /// If size is `None`, the method disables the TX FIFO. The return is 0.
     ///
     /// The method temporarily disables the UART bus, flushing any data in
-    /// the TX FIFO.
+    /// the *both* TX and RX FIFOs.
     pub fn set_tx_fifo(&mut self, size: Option<core::num::NonZeroU8>) -> u8 {
         self.while_disabled(|this| {
             if let Some(requested_size) = size {
@@ -231,6 +256,9 @@ where
 
     /// Enable or disable the RX FIFO. The maximum size of the FIFO is based on
     /// the underlying hardware. An iMXRT1062's RX FIFO is 4 bytes.
+    ///
+    /// Calling this method temporarily disables the peripheral, flusing all data
+    /// from *both* TX and RX FIFOs.
     pub fn set_rx_fifo(&mut self, enable: bool) {
         self.while_disabled(|this| {
             this.reg.fifo.modify(|_, w| w.rxfe().bit(enable));
@@ -255,6 +283,9 @@ where
 
     /// Set the baud rate for the UART bus. Returns a `TimingsError` if there was
     /// an error computing the values that describe the baud rate.
+    ///
+    /// Calling this method temporarily disables the peripheral, flusing all data
+    /// from *both* TX and RX FIFOs.
     pub fn set_baud(&mut self, baud: u32) -> Result<(), ccm::uart::TimingsError> {
         let timings = ccm::uart::timings(self.effective_clock, baud)?;
         self.while_disabled(|this| {
