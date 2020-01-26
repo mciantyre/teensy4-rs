@@ -102,7 +102,7 @@ impl<Chan: channel::Channel> PIT<Chan> {
     }
 
     fn disabled<F: FnMut()>(&self, mut act: F) {
-        self.timer.tctrl.reset();
+        self.timer.tctrl.modify(|_, w| w.ten().clear_bit());
         act();
         self.timer.tctrl.modify(|_, w| w.ten().set_bit());
     }
@@ -119,6 +119,19 @@ impl<Chan: channel::Channel> PIT<Chan> {
     fn clear_tif(&mut self) {
         // W1C
         self.timer.tflg.write(|w| w.tif().set_bit());
+    }
+
+    /// Enable the timer to trigger an interrupt when the timer expires
+    pub fn set_interrupt_enable(&mut self, interrupt: bool) {
+        self.disabled(|| {
+            self.timer.tctrl.modify(|_, w| w.tie().bit(interrupt));
+        });
+    }
+
+    /// Returns `true` if the timer will trigger an interrupt when
+    /// it expires.
+    pub fn interrupt_enable(&self) -> bool {
+        self.timer.tctrl.read().tie().bit_is_set()
     }
 }
 
@@ -157,6 +170,18 @@ pub struct ChainedPIT<C0, C1> {
     upper: PIT<C1>,
 }
 
+impl<C0, C1> ChainedPIT<C0, C1>
+where
+    C1: channel::Channel,
+{
+    pub fn set_interrupt_enable(&mut self, interrupt: bool) {
+        self.upper.set_interrupt_enable(interrupt);
+    }
+    pub fn interrupt_enable(&self) -> bool {
+        self.upper.interrupt_enable()
+    }
+}
+
 /// Chain two timers together, returning a `ChainedPIT` timer that can
 /// count twice as many ticks.
 ///
@@ -166,9 +191,12 @@ pub struct ChainedPIT<C0, C1> {
 ///
 /// We do not support chaining more than two timers.
 pub fn chain<C1: channel::Channel>(
-    lower: PIT<<C1 as channel::Channel>::ChainedTo>,
+    mut lower: PIT<<C1 as channel::Channel>::ChainedTo>,
     upper: PIT<C1>,
 ) -> ChainedPIT<<C1 as channel::Channel>::ChainedTo, C1> {
+    // We can only enable the interrupt for the upper timer.
+    // Otherwise, we'll interrupt early.
+    lower.set_interrupt_enable(false);
     ChainedPIT { lower, upper }
 }
 
@@ -199,8 +227,7 @@ where
     }
 
     fn wait(&mut self) -> nb::Result<(), void::Void> {
-        if self.lower.tif() && self.upper.tif() {
-            self.lower.clear_tif();
+        if self.upper.tif() {
             self.upper.clear_tif();
             Ok(())
         } else {
