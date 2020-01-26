@@ -1,11 +1,13 @@
 //! Loopback over UART
 //!
-//! Connect Teensy pins 16 and 17 together. We transfer
+//! Connect Teensy pins 14 and 15 together. We transfer
 //! from one pin, and receive on the other. Demonstrates
 //! the usage of the TX and RX FIFOs.
 //!
 //! It's not the most advanced example. The RX FIFO could
 //! overrun if we're not reading fast enough.
+//!
+//! See the `const` configurations for settings.
 
 #![no_std]
 #![no_main]
@@ -18,6 +20,7 @@ use teensy4_bsp as bsp;
 use embedded_hal::digital::v2::ToggleableOutputPin;
 use embedded_hal::serial::{Read, Write};
 
+const BAUD: u32 = 115_200;
 /// Change the TX FIFO sizes to see how the FIFO affects the number
 /// of `WouldBlock`s that we would see. Setting this to zero disables
 /// the FIFO.
@@ -76,28 +79,28 @@ fn main() -> ! {
         bsp::hal::ccm::uart::ClockSelect::OSC,
         bsp::hal::ccm::uart::PrescalarSelect::DIVIDE_1,
     );
-    let mut uart3 = uarts
-        .uart3
+    let mut uart = uarts
+        .uart2
         .init(
-            peripherals.pins.p17.alt2(),
-            peripherals.pins.p16.alt2(),
-            115_200,
+            peripherals.pins.p14.alt2(),
+            peripherals.pins.p15.alt2(),
+            BAUD,
         )
         .unwrap();
-    let fifo_size = uart3.set_tx_fifo(core::num::NonZeroU8::new(TX_FIFO_SIZE));
+    let fifo_size = uart.set_tx_fifo(core::num::NonZeroU8::new(TX_FIFO_SIZE));
     log::info!("Setting TX FIFO to {}", fifo_size);
     // If this is disabled, we won't receive the four bytes from the transfer!
-    uart3.set_rx_fifo(true);
-    uart3.set_parity(PARITY);
-    uart3.set_rx_inversion(INVERTED);
-    uart3.set_tx_inversion(INVERTED);
+    uart.set_rx_fifo(true);
+    uart.set_parity(PARITY);
+    uart.set_rx_inversion(INVERTED);
+    uart.set_tx_inversion(INVERTED);
     loop {
         bsp::delay(1_000);
         peripherals.led.toggle().unwrap();
-        write(&mut uart3, &[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
+        write(&mut uart, &[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
         bsp::delay(1);
         let mut buffer = [0; 4];
-        match read(&mut uart3, &mut buffer) {
+        match read(&mut uart, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),
         }

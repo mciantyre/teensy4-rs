@@ -135,7 +135,9 @@ macro_rules! _tx_config {
 
 use crate::iomuxc::{
     gpio::{
-        GPIO_AD_B0_02, GPIO_AD_B0_03, GPIO_AD_B0_12, GPIO_AD_B0_13, GPIO_AD_B1_06, GPIO_AD_B1_07,
+        GPIO_AD_B0_02, GPIO_AD_B0_03, GPIO_AD_B0_12, GPIO_AD_B0_13, GPIO_AD_B1_02, GPIO_AD_B1_03,
+        GPIO_AD_B1_06, GPIO_AD_B1_07, GPIO_AD_B1_10, GPIO_AD_B1_11, GPIO_B1_00, GPIO_B1_01,
+        GPIO_EMC_31, GPIO_EMC_32,
     },
     Alt2,
 };
@@ -211,4 +213,28 @@ uart! {
     module::_3,
     tx: GPIO_AD_B1_06<Alt2>, lpuart3_tx_select_input, gpio_ad_b1_06_alt2,
     rx: GPIO_AD_B1_07<Alt2>, lpuart3_rx_select_input, gpio_ad_b1_07_alt2,
+}
+
+uart! {
+    module::_4,
+    tx: GPIO_B1_00<Alt2>, lpuart4_tx_select_input, gpio_b1_00_alt2,
+    rx: GPIO_B1_01<Alt2>, lpuart4_rx_select_input, gpio_b1_01_alt2,
+}
+
+uart! {
+    module::_2,
+    tx: GPIO_AD_B1_02<Alt2>, lpuart2_tx_select_input, gpio_ad_b1_02_alt2,
+    rx: GPIO_AD_B1_03<Alt2>, lpuart2_rx_select_input, gpio_ad_b1_03_alt2,
+}
+
+uart! {
+    module::_7,
+    tx: GPIO_EMC_31<Alt2>, lpuart7_tx_select_input, gpio_emc_31_alt2,
+    rx: GPIO_EMC_32<Alt2>, lpuart7_rx_select_input, gpio_emc_32_alt2,
+}
+
+uart! {
+    module::_8,
+    tx: GPIO_AD_B1_10<Alt2>, lpuart8_tx_select_input, gpio_ad_b1_10_alt2,
+    rx: GPIO_AD_B1_11<Alt2>, lpuart8_rx_select_input, gpio_ad_b1_11_alt2,
 }

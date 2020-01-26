@@ -121,22 +121,42 @@ pub use hal::pac::SYST;
 /// Note that pin 13 is not exposed, as it is already allocated
 /// as the `LED`.
 pub struct Pins {
+    /// Pin 0
+    pub p0: hal::iomuxc::gpio::GPIO_AD_B0_03<hal::iomuxc::Alt5>,
+    /// Pin 1
+    pub p1: hal::iomuxc::gpio::GPIO_AD_B0_02<hal::iomuxc::Alt5>,
     /// Pin 6
     pub p6: hal::iomuxc::gpio::GPIO_B0_10<hal::iomuxc::Alt5>,
+    /// Pin 7
+    pub p7: hal::iomuxc::gpio::GPIO_B1_01<hal::iomuxc::Alt5>,
+    /// Pin 8
+    pub p8: hal::iomuxc::gpio::GPIO_B1_00<hal::iomuxc::Alt5>,
     /// Pin 9
     pub p9: hal::iomuxc::gpio::GPIO_B0_11<hal::iomuxc::Alt5>,
+    /// Pin 14
+    pub p14: hal::iomuxc::gpio::GPIO_AD_B1_02<hal::iomuxc::Alt5>,
+    /// Pin 15
+    pub p15: hal::iomuxc::gpio::GPIO_AD_B1_03<hal::iomuxc::Alt5>,
     /// Pin 16
     pub p16: hal::iomuxc::gpio::GPIO_AD_B1_07<hal::iomuxc::Alt5>,
     /// Pin 17
     pub p17: hal::iomuxc::gpio::GPIO_AD_B1_06<hal::iomuxc::Alt5>,
     /// Pin 18
     pub p18: hal::iomuxc::gpio::GPIO_AD_B1_01<hal::iomuxc::Alt5>,
-    /// pin 19
+    /// Pin 19
     pub p19: hal::iomuxc::gpio::GPIO_AD_B1_00<hal::iomuxc::Alt5>,
+    /// Pin 20
+    pub p20: hal::iomuxc::gpio::GPIO_AD_B1_10<hal::iomuxc::Alt5>,
+    /// Pin 21
+    pub p21: hal::iomuxc::gpio::GPIO_AD_B1_11<hal::iomuxc::Alt5>,
     /// Pin 24
     pub p24: hal::iomuxc::gpio::GPIO_AD_B0_12<hal::iomuxc::Alt5>,
     /// Pin 25
     pub p25: hal::iomuxc::gpio::GPIO_AD_B0_13<hal::iomuxc::Alt5>,
+    /// Pin 28
+    pub p28: hal::iomuxc::gpio::GPIO_EMC_32<hal::iomuxc::Alt5>,
+    /// Pin 29
+    pub p29: hal::iomuxc::gpio::GPIO_EMC_31<hal::iomuxc::Alt5>,
     /// Pin 36
     pub p36: hal::iomuxc::gpio::GPIO_SD_B0_01<hal::iomuxc::Alt5>,
     /// Pin 37
@@ -198,14 +218,24 @@ impl Peripherals {
             dcdc: p.dcdc,
             pwm2: p.pwm2,
             pins: Pins {
+                p0: p.iomuxc.gpio_ad_b0_03,
+                p1: p.iomuxc.gpio_ad_b0_02,
                 p6: p.iomuxc.gpio_b0_10,
+                p7: p.iomuxc.gpio_b1_01,
+                p8: p.iomuxc.gpio_b1_00,
                 p9: p.iomuxc.gpio_b0_11,
+                p14: p.iomuxc.gpio_ad_b1_02,
+                p15: p.iomuxc.gpio_ad_b1_03,
                 p16: p.iomuxc.gpio_ad_b1_07,
                 p17: p.iomuxc.gpio_ad_b1_06,
                 p18: p.iomuxc.gpio_ad_b1_01,
                 p19: p.iomuxc.gpio_ad_b1_00,
+                p20: p.iomuxc.gpio_ad_b1_10,
+                p21: p.iomuxc.gpio_ad_b1_11,
                 p24: p.iomuxc.gpio_ad_b0_12,
                 p25: p.iomuxc.gpio_ad_b0_13,
+                p28: p.iomuxc.gpio_emc_32,
+                p29: p.iomuxc.gpio_emc_31,
                 p36: p.iomuxc.gpio_sd_b0_01,
                 p37: p.iomuxc.gpio_sd_b0_00,
             },

@@ -34,8 +34,13 @@ impl<M: module::Module> Uninit<M> {
 /// peripheral.
 pub struct UARTs {
     pub uart1: Uninit<module::_1>,
+    pub uart2: Uninit<module::_2>,
     pub uart3: Uninit<module::_3>,
+    pub uart4: Uninit<module::_4>,
+    pub uart5: Uninit<module::_5>,
     pub uart6: Uninit<module::_6>,
+    pub uart7: Uninit<module::_7>,
+    pub uart8: Uninit<module::_8>,
 }
 
 /// Unclocked UART peripherals
@@ -45,35 +50,16 @@ pub struct UARTs {
 /// any UART peripheral, the `Unclocked` type must be clocked.
 #[allow(dead_code)] // Remove once all UARTs peripherals are implemented
 pub struct Unclocked {
-    uart1: pac::LPUART1,
-    uart2: pac::LPUART2,
-    uart3: pac::LPUART3,
-    uart4: pac::LPUART4,
-    uart5: pac::LPUART5,
-    uart6: pac::LPUART6,
-    uart7: pac::LPUART7,
+    pub(crate) uart1: pac::LPUART1,
+    pub(crate) uart2: pac::LPUART2,
+    pub(crate) uart3: pac::LPUART3,
+    pub(crate) uart4: pac::LPUART4,
+    pub(crate) uart5: pac::LPUART5,
+    pub(crate) uart6: pac::LPUART6,
+    pub(crate) uart7: pac::LPUART7,
+    pub(crate) uart8: pac::LPUART8,
 }
 impl Unclocked {
-    pub(crate) fn new(
-        uart1: pac::LPUART1,
-        uart2: pac::LPUART2,
-        uart3: pac::LPUART3,
-        uart4: pac::LPUART4,
-        uart5: pac::LPUART5,
-        uart6: pac::LPUART6,
-        uart7: pac::LPUART7,
-    ) -> Self {
-        Unclocked {
-            uart1,
-            uart2,
-            uart3,
-            uart4,
-            uart5,
-            uart6,
-            uart7,
-        }
-    }
-
     /// Enable all clocks for the UART peripherals. Returns a collection
     /// of UART peripherals.
     pub fn clock(
@@ -84,11 +70,36 @@ impl Unclocked {
     ) -> UARTs {
         let (ccm, _) = ccm.raw();
 
-        // Disable clocks before modifying selection
-        ccm.ccgr5.modify(|_, w| unsafe { w.cg12().bits(0b00) }); // UART1
-        ccm.ccgr0.modify(|_, w| unsafe { w.cg6().bits(0b00) }); // UART3
-        ccm.ccgr3.modify(|_, w| unsafe { w.cg3().bits(0b00) }); // UART6
+        //
+        // See table 13-4 for clock gating registers
+        //
 
+        // -----------------------------------------
+        // Disable clocks before modifying selection
+        ccm.ccgr5.modify(|_, w| unsafe {
+            w.cg12()
+                .bits(0b00) // UART1
+                .cg13()
+                .bits(0b00) // UART7
+        });
+        ccm.ccgr0.modify(|_, w| unsafe {
+            w.cg14()
+                .bits(0b00) // UART2
+                .cg6()
+                .bits(0b00) // UART3
+        });
+        ccm.ccgr1.modify(|_, w| unsafe { w.cg12().bits(0b00) }); // UART4
+        ccm.ccgr3.modify(|_, w| unsafe {
+            w.cg1()
+                .bits(0b00) // UART5
+                .cg3()
+                .bits(0b00) // UART6
+        });
+        ccm.ccgr6.modify(|_, w| unsafe { w.cg7().bits(0b00) }); // UART8
+
+        // -----------------------------------------
+
+        // -------------------------
         // Select clocks & prescalar
         ccm.cscdr1.write(|w| {
             w.uart_clk_sel()
@@ -96,17 +107,43 @@ impl Unclocked {
                 .uart_clk_podf()
                 .variant(prescalar)
         });
+        // -------------------------
 
+        // -------------
         // Enable clocks
-        ccm.ccgr5.modify(|_, w| unsafe { w.cg12().bits(0b11) }); // UART1
-        ccm.ccgr0.modify(|_, w| unsafe { w.cg6().bits(0b11) }); // UART3
-        ccm.ccgr3.modify(|_, w| unsafe { w.cg3().bits(0b11) }); // UART6
+        ccm.ccgr5.modify(|_, w| unsafe {
+            w.cg12()
+                .bits(0b11) // UART1
+                .cg13()
+                .bits(0b11) // UART7
+        });
+        ccm.ccgr0.modify(|_, w| unsafe {
+            w.cg14()
+                .bits(0b11) // UART2
+                .cg6()
+                .bits(0b11) // UART3
+        });
+        ccm.ccgr1.modify(|_, w| unsafe { w.cg12().bits(0b11) }); // UART4
+        ccm.ccgr3.modify(|_, w| unsafe {
+            w.cg1()
+                .bits(0b11) // UART5
+                .cg3()
+                .bits(0b11) // UART6
+        });
+        ccm.ccgr6.modify(|_, w| unsafe { w.cg7().bits(0b11) }); // UART8
+
+        // -------------
 
         let effective_clock = ccm::Frequency::from(clock_select) / ccm::Divider::from(prescalar);
         UARTs {
             uart1: Uninit::new(effective_clock, self.uart1),
+            uart2: Uninit::new(effective_clock, self.uart2),
             uart3: Uninit::new(effective_clock, self.uart3),
+            uart4: Uninit::new(effective_clock, self.uart4),
+            uart5: Uninit::new(effective_clock, self.uart5),
             uart6: Uninit::new(effective_clock, self.uart6),
+            uart7: Uninit::new(effective_clock, self.uart7),
+            uart8: Uninit::new(effective_clock, self.uart8),
         }
     }
 }
