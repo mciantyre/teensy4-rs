@@ -65,6 +65,7 @@ pub trait Pin {
 macro_rules! _rx_config {
     // Pad RX configuration and daisy selection
     ($daisy_reg:ident, $daisy_value:ident) => {
+        #[inline(always)]
         fn configure(&mut self) {
             self.iomuxc().$daisy_reg.write(|w| w.daisy().$daisy_value());
             self.pad().write(|w| {
