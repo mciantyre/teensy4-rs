@@ -5,13 +5,33 @@
 
 extern crate panic_halt;
 
-use bsp::rt::entry;
+use bsp::hal::pit;
+use bsp::interrupt;
+use bsp::rt::{entry, interrupt};
 use embedded_hal::{digital::v2::ToggleableOutputPin, timer::CountDown};
 use teensy4_bsp as bsp;
+
+static mut TIMER: Option<pit::PIT<pit::channel::_3>> = None;
+
+#[interrupt]
+unsafe fn PIT() {
+    // If this timer expired, `wait()` returns `Ok(())`
+    // after re-arming the timer. On the other hand,
+    // `wait()` returns `Err(WouldBlock)` if the timer
+    // didn't expire. Use this to change state.
+    let _ = TIMER.as_mut().unwrap().wait();
+}
 
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
+    // When flashing a debug build, I'm finding that
+    // the chip is likely to crash if we don't put this
+    // delay here. I've narrowed it down to something
+    // with the WFI in the loop, maybe...? If I instead
+    // busy-loop on an atomic U32, I don't crash in debug
+    // builds.
+    bsp::delay(25);
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
         &mut periphs.ccm.handle,
@@ -42,13 +62,19 @@ fn main() -> ! {
         bsp::hal::ccm::perclk::CLKSEL::IPG(ipg_hz),
     );
 
-    let (_, _, timer2, timer3) = periphs.pit.clock(cfg);
-    let mut timer = bsp::hal::pit::chain(timer2, timer3);
+    let (_, _, _, mut timer) = periphs.pit.clock(cfg);
+    timer.set_interrupt_enable(true);
+    unsafe {
+        TIMER = Some(timer);
+        TIMER
+            .as_mut()
+            .unwrap()
+            .start(core::time::Duration::from_millis(250));
+        cortex_m::peripheral::NVIC::unmask(interrupt::PIT);
+    }
     let mut led = periphs.led;
-
-    timer.start(core::time::Duration::from_millis(250));
     loop {
-        nb::block!(timer.wait()).unwrap();
         led.toggle().unwrap();
+        cortex_m::asm::wfi();
     }
 }
