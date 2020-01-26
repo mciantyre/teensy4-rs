@@ -477,3 +477,104 @@ pub mod i2c {
         }
     }
 }
+
+pub mod uart {
+    use super::{pac::ccm, Divider, Frequency, OSCILLATOR_FREQUENCY};
+
+    #[derive(Clone, Copy)]
+    #[non_exhaustive] // Not all variants added
+    pub enum ClockSelect {
+        /// Oscillator clock
+        OSC,
+    }
+
+    impl From<ClockSelect> for ccm::cscdr1::UART_CLK_SEL_A {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::OSC => ccm::cscdr1::UART_CLK_SEL_A::UART_CLK_SEL_1,
+            }
+        }
+    }
+
+    pub type PrescalarSelect = ccm::cscdr1::UART_CLK_PODF_A;
+
+    impl From<PrescalarSelect> for Divider {
+        fn from(prescale: PrescalarSelect) -> Divider {
+            Divider((u8::from(prescale) as u32) + 1)
+        }
+    }
+
+    impl From<ClockSelect> for Frequency {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::OSC => OSCILLATOR_FREQUENCY,
+            }
+        }
+    }
+
+    /// An opaque type that describes timing configurations
+    pub struct Timings {
+        /// OSR register value. Accounts for the -1. May be written
+        /// directly to the register
+        pub(crate) osr: u8,
+        /// True if we need to set BOTHEDGE given the OSR value
+        pub(crate) both_edge: bool,
+        /// SBR value;
+        pub(crate) sbr: u16,
+    }
+
+    #[derive(Clone, Copy, Debug)]
+    pub enum TimingsError {
+        DivideByZero,
+        OutOfRange,
+    }
+
+    /// Compute timings for a UART peripheral. Returns the timings,
+    /// or a string describing an error.
+    pub(crate) fn timings(effective_clock: Frequency, baud: u32) -> Result<Timings, TimingsError> {
+        let effective_clock = effective_clock.0;
+
+        //        effective_clock
+        // baud = ---------------
+        //         (OSR+1)(SBR)
+        //
+        // Solve for SBR:
+        //
+        //       effective_clock
+        // SBR = ---------------
+        //        (OSR+1)(baud)
+        //
+        // After selecting SBR, calculate effective baud.
+        // Minimize the error over all OSRs.
+
+        let base_clock: u32 = effective_clock
+            .checked_div(baud)
+            .ok_or(TimingsError::DivideByZero)?;
+        let mut error = u32::max_value();
+        let mut best_osr = 16;
+        let mut best_sbr = 1;
+
+        for osr in 4..=32 {
+            let sbr = base_clock
+                .checked_div(osr)
+                .ok_or(TimingsError::DivideByZero)?;
+            let sbr = sbr.max(1).min(8191);
+            let effective_baud = effective_clock
+                .checked_div(osr * sbr)
+                .ok_or(TimingsError::DivideByZero)?;
+            let err = effective_baud.max(baud) - effective_baud.min(baud);
+            if err < error {
+                best_osr = osr;
+                best_sbr = sbr;
+                error = err
+            }
+        }
+
+        use core::convert::TryFrom;
+        Ok(Timings {
+            osr: u8::try_from(best_osr - 1).map_err(|_| TimingsError::OutOfRange)?,
+            sbr: u16::try_from(best_sbr).map_err(|_| TimingsError::OutOfRange)?,
+            both_edge: best_osr < 8,
+        })
+    }
+}

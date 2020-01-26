@@ -70,9 +70,7 @@ impl Pin for GPIO_AD_B1_07<Alt1> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_ad_b1_07
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -92,9 +90,7 @@ impl Pin for GPIO_AD_B1_06<Alt1> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_ad_b1_06
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -114,9 +110,7 @@ impl Pin for GPIO_AD_B1_01<Alt3> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_ad_b1_01
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -136,9 +130,7 @@ impl Pin for GPIO_AD_B1_00<Alt3> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_ad_b1_00
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -158,9 +150,7 @@ impl Pin for GPIO_AD_B0_12<Alt0> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_ad_b0_12
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -180,9 +170,7 @@ impl Pin for GPIO_AD_B0_13<Alt0> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_ad_b0_13
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -202,9 +190,7 @@ impl Pin for GPIO_SD_B0_01<Alt2> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_sd_b0_01
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 
@@ -224,9 +210,7 @@ impl Pin for GPIO_SD_B0_00<Alt2> {
     #[inline(always)]
     fn configure(&mut self) {
         self.sion_enable();
-        self.iomuxc()
-            .sw_pad_ctl_pad_gpio_sd_b0_00
-            .write(|w| pin_config!(w));
+        self.pad().write(|w| pin_config!(w));
     }
 }
 

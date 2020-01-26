@@ -21,6 +21,7 @@ keywords = [
 ]
 
 [dependencies]
+bitflags = "1.2.1"
 cortex-m = "0.6.1"
 embedded-hal = "0.2.3"
 imxrt1062-pac = { version = "0.2.0", path = "../imxrt1062-pac" }
