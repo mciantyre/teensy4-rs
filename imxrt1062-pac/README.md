@@ -1,8 +1,12 @@
 # iMXRT1062 Peripheral Access Crates
 
-The top-level peripheral access crate (PAC), `imxrt1062-pac`, re-exports all processor peripheral crates. The code in these crates os auto-generated using `svd2rust`, then migrated into this file structure using some semi-automated tooling.
+The top-level peripheral access crate (PAC), `imxrt1062-pac`, re-exports all processor peripheral crates. The code in these crates is auto-generated using `svd2rust`, then migrated into this file structure using some semi-automated tooling (available in the top-level `tools` directory). 
 
-The rest of the README describes the process of adding a new iMXRT1062 peripheral into the PAC. The audience for this walkthrough is an embedded Rust developer who is interested in patching an existing PAC crate with changes made in the SVD file.
+If you would like to build your own hardware-abstraction layer for the iMXRT106x, consider including the `imxrt1062-pac` as a dependency. If you'd like to create a very specialized HAL, consider selecting the peripherals of interest as your dependencies.
+
+Unlike most of the crates in this directory, the `imxrt1062-core` crate does not represent a peripheral. Instead, it defines the interrupt table, interrupt names, and interrupt numbers. If you're building your own HAL, you may want this crate to automatically configure the interrupt table.
+
+The rest of the README describes how you might add a new iMXRT1062 peripheral into the PAC. The audience for this walkthrough is an embedded Rust developer who is interested in patching an existing PAC crate with changes made in the SVD file.
 
 ## Requirements
 
@@ -31,18 +35,5 @@ test = false
 ```
 
 The tool may also specify that there are no tests and benchmarks in the crate. This is to prevent RLS from complaining about missing `test` or `bench` crates.
-
-Once the crate is available, follow these manual steps:
-
-- re-export the crate from `imxrt1062-pac`, removing the `imxrt1062-` prefix. The tool may output the lines for you to insert into the `lib.rs` file.
-
-```rust
-// imxrt1062-pac/src/lib.rs
-pub use imxrt1062_adc1 as adc1;
-```
-
-- un-comment any related code in `imxrt1062-pac/src/lib.rs` so that the peripheral will be exported by the top-level `Peripherals` struct. Skip this step is all the peripherals are already uncommented.
-
-After following the above procedure, the `adc1` module should be accessible from the `imxrt1062-pac` crate.
 
 If you notice any issues with this approach, or have suggestions for better approaches, please let us know!
