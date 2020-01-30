@@ -50,6 +50,12 @@ test = false
 bench = false
 
 [[bin]]
+name = "timer"
+path = "src/timer.rs"
+test = false
+bench = false
+
+[[bin]]
 name = "uart"
 path = "src/uart.rs"
 test = false

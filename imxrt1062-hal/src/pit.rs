@@ -101,10 +101,12 @@ impl<Chan: channel::Channel> PIT<Chan> {
         }
     }
 
-    fn disabled<F: FnMut()>(&self, mut act: F) {
+    fn disabled<F: FnMut(&Self) -> R, R>(&self, mut act: F) -> R {
+        let enabled = self.timer.tctrl.read().ten().bit_is_set();
         self.timer.tctrl.modify(|_, w| w.ten().clear_bit());
-        act();
-        self.timer.tctrl.modify(|_, w| w.ten().set_bit());
+        let res = act(self);
+        self.timer.tctrl.modify(|_, w| w.ten().bit(enabled));
+        res
     }
 
     fn ldval(&self, val: u32) {
@@ -116,22 +118,71 @@ impl<Chan: channel::Channel> PIT<Chan> {
         self.timer.tflg.read().tif().bit_is_set()
     }
 
-    fn clear_tif(&mut self) {
+    fn clear_tif(&self) {
         // W1C
         self.timer.tflg.write(|w| w.tif().set_bit());
     }
 
+    /// Returns the period of the clock ticks. This is the inverse
+    /// of the clock frequency
+    pub fn clock_period(&self) -> core::time::Duration {
+        (self.clock_hz / self.divider).into()
+    }
+
+    /// Measure the execution duration of `act` with this timer. Returns the duration
+    /// of the action, or `None` if the timer expired before the action completed.
+    ///
+    /// `time` will measure the difference of counts in a 32 bit register. The counter
+    /// changes every clock period. The clock accuracy is based on our ability to round
+    /// integers. Consider choosing the input clock frequency and prescalars to define
+    /// a clock that can accurately measure your workloads.
+    ///
+    /// The method will disable any interrupts that this timer has enabled. It will also
+    /// reset the timer to execute this measurement.
+    ///
+    /// If you need a 64 bit timer, use the `chain` function to combine timer 0 and
+    /// timer 1. The two can crate the 'lifetime' timer, which is capable of measuring
+    /// larger intervals.
+    pub fn time<F: FnMut() -> R, R>(&mut self, mut act: F) -> (R, Option<core::time::Duration>) {
+        const STARTING_LDVAL: u32 = u32::max_value();
+        self.with_interrupts_disabled(|this| {
+            this.disabled(|this| {
+                this.clear_tif();
+                this.ldval(STARTING_LDVAL);
+                self.timer.tctrl.modify(|_, w| w.ten().set_bit());
+                let res = act();
+                if this.tif() {
+                    // Action took too long and the timer expired
+                    (res, None)
+                } else {
+                    let counter = this.timer.cval.read().tvl().bits();
+                    let ticks = STARTING_LDVAL - counter;
+                    let clock_period: core::time::Duration = (this.clock_hz / this.divider).into();
+                    (res, Some(ticks * clock_period))
+                }
+            })
+        })
+    }
+
     /// Enable the timer to trigger an interrupt when the timer expires
     pub fn set_interrupt_enable(&mut self, interrupt: bool) {
-        self.disabled(|| {
-            self.timer.tctrl.modify(|_, w| w.tie().bit(interrupt));
-        });
+        self.timer.tctrl.modify(|_, w| w.tie().bit(interrupt));
     }
 
     /// Returns `true` if the timer will trigger an interrupt when
     /// it expires.
     pub fn interrupt_enable(&self) -> bool {
         self.timer.tctrl.read().tie().bit_is_set()
+    }
+
+    fn with_interrupts_disabled<F: FnMut(&Self) -> R, R>(&self, mut act: F) -> R {
+        let interrupt_enabled = self.interrupt_enable();
+        self.timer.tctrl.modify(|_, w| w.tie().clear_bit());
+        let res = act(self);
+        self.timer
+            .tctrl
+            .modify(|_, w| w.tie().bit(interrupt_enabled));
+        res
     }
 }
 
@@ -147,9 +198,10 @@ impl<Chan: channel::Channel> CountDown for PIT<Chan> {
             // Ratio of freq / div was zero, or divider was zero
             Err(TicksError::DivideByZero) => Ticks(0),
         };
-        self.disabled(|| {
-            self.ldval(ticks.0);
-        });
+        self.clear_tif();
+        self.timer.tctrl.modify(|_, w| w.ten().clear_bit());
+        self.ldval(ticks.0);
+        self.timer.tctrl.modify(|_, w| w.ten().set_bit());
     }
 
     fn wait(&mut self) -> nb::Result<(), void::Void> {
@@ -217,21 +269,74 @@ where
             // Ratio of freq / div was zero, or divider was zero
             Err(TicksError::DivideByZero) => Ticks(0),
         };
-        self.lower.disabled(|| {
-            self.upper.disabled(|| {
-                self.upper.timer.tctrl.modify(|_, w| w.chn().set_bit());
-                self.upper.ldval((ticks.0 >> 32) as u32);
-                self.lower.ldval((ticks.0 & 0xFFFF_FFFF) as u32)
-            })
-        });
+        self.lower.timer.tctrl.modify(|_, w| w.ten().clear_bit());
+        self.upper.timer.tctrl.modify(|_, w| w.ten().clear_bit());
+
+        self.upper.clear_tif();
+        self.upper.timer.tctrl.modify(|_, w| w.chn().set_bit());
+        self.upper.ldval((ticks.0 >> 32) as u32);
+        self.lower.ldval((ticks.0 & 0xFFFF_FFFF) as u32);
+
+        self.lower.timer.tctrl.modify(|_, w| w.ten().set_bit());
+        self.upper.timer.tctrl.modify(|_, w| w.ten().set_bit());
     }
 
     fn wait(&mut self) -> nb::Result<(), void::Void> {
         if self.upper.tif() {
-            self.upper.clear_tif();
             Ok(())
         } else {
             Err(nb::Error::WouldBlock)
         }
+    }
+}
+
+/// The lifetime timer is PIT0 chained to PIT1.
+/// It allows us to time over 64 bits with no
+/// carry.
+impl ChainedPIT<channel::_0, channel::_1> {
+    /// Time the execution duration of `act`. Returns the time it took to run `act`,
+    /// or `None` if the timer expired.
+    ///
+    /// See the notes on `PIT::time`. Unlike `PIT::time`, this `time` method uses
+    /// a 64 bit register, which can help measure larger intervals. As with `PIT::time`,
+    /// this function will temporarily disable interrupts and reset any currently-running
+    /// timer.
+    ///
+    /// This method is only available when chaining timer 0 to timer 1.
+    pub fn time<F: Fn() -> R, R>(&mut self, act: F) -> (R, Option<core::time::Duration>) {
+        const STARTING_LDVAL: u32 = u32::max_value();
+        self.upper.with_interrupts_disabled(|upper| {
+            self.lower.disabled(|lower| {
+                upper.disabled(|upper| {
+                    upper.clear_tif();
+                    upper.ldval(STARTING_LDVAL);
+                    lower.ldval(STARTING_LDVAL);
+
+                    upper.timer.tctrl.modify(|_, w| w.chn().set_bit());
+                    upper.timer.tctrl.modify(|_, w| w.ten().set_bit());
+                    lower.timer.tctrl.modify(|_, w| w.ten().set_bit());
+
+                    let res = act();
+
+                    if upper.tif() {
+                        (res, None)
+                    } else {
+                        let pit = unsafe { &*pac::PIT::ptr() };
+
+                        let lifetime: u64 = (pit.ltmr64h.read().bits() as u64) << 32;
+                        let lifetime = lifetime | (pit.ltmr64l.read().bits() as u64);
+                        let ticks = u64::max_value() - lifetime;
+                        // Betting that this isn't lossy...
+                        let clock_period: u64 =
+                            core::time::Duration::from(upper.clock_hz / upper.divider).as_nanos()
+                                as u64;
+                        (
+                            res,
+                            Some(core::time::Duration::from_nanos(ticks * clock_period)),
+                        )
+                    }
+                })
+            })
+        })
     }
 }

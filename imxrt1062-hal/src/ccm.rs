@@ -316,6 +316,12 @@ pub fn ticks<R: TicksRepr>(
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Frequency(u32);
 
+impl From<Frequency> for core::time::Duration {
+    fn from(hz: Frequency) -> core::time::Duration {
+        core::time::Duration::from_nanos((1_000_000_000u32 / hz.0).into())
+    }
+}
+
 impl From<Frequency> for Ticks<u32> {
     fn from(hz: Frequency) -> Ticks<u32> {
         Ticks(hz.0)
