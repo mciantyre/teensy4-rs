@@ -355,6 +355,43 @@ where
                 .set_bit()
         });
     }
+
+    /// Enable the receiver interrupt associated with this UART
+    ///
+    /// The interrupt will trigger when there are at least `watermark` number of
+    /// bytes in the RX FIFO. Returns the maximum-allowable watermark level that
+    /// was set in hardware. A watermark of `Some(0)` means that we should interrupt
+    /// as soon as a byte is read.
+    ///
+    /// If the watermark is greater than 0, ensure that you call `set_rx_fifo` before this
+    /// method. Otherwise, the return will be 0 despite the supplied watermark.
+    ///
+    /// Disable receiver interrupt by setting `watermark` to `None`. The return is always 0
+    /// when disabling the receiver interrupt.
+    pub fn set_receiver_interrupt(&mut self, watermark: Option<u8>) -> u8 {
+        self.while_disabled(|this| {
+            if let Some(watermark) = watermark {
+                let rx_fifo_size = if this.reg.fifo.read().rxfe().bit_is_set() && watermark > 0 {
+                    // Use the FIFO watermark to define interrupt frequency.
+                    let max_size = 1 << this.reg.param.read().rxfifo().bits();
+                    let fifo_size = max_size.min(watermark);
+                    this.reg.water.modify(|_, w| unsafe {
+                        // Safety: see justification in set_tx_fifo
+                        w.rxwater().bits(fifo_size)
+                    });
+                    fifo_size
+                } else {
+                    // User has not enable the RX FIFO, or the watermark is zero.
+                    0
+                };
+                this.reg.ctrl.modify(|_, w| w.rie().set_bit());
+                rx_fifo_size
+            } else {
+                this.reg.ctrl.modify(|_, w| w.rie().clear_bit());
+                0
+            }
+        })
+    }
 }
 
 use embedded_hal::serial;
