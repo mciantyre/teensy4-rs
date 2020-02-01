@@ -373,7 +373,7 @@ where
             if let Some(watermark) = watermark {
                 let rx_fifo_size = if this.reg.fifo.read().rxfe().bit_is_set() && watermark > 0 {
                     // Use the FIFO watermark to define interrupt frequency.
-                    let max_size = this.reg.param.read().rxfifo().bits() << 1;
+                    let max_size = 1 << this.reg.param.read().rxfifo().bits();
                     let fifo_size = max_size.min(watermark);
                     this.reg.water.modify(|_, w| unsafe {
                         // Safety: see justification in set_tx_fifo
