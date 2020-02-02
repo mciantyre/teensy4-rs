@@ -72,7 +72,7 @@ fn read<R: Read<u8>>(uart: &mut R, bytes: &mut [u8]) -> Result<(), R::Error> {
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.log.init(Default::default());
+    peripherals.usb.init(Default::default());
     bsp::delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,

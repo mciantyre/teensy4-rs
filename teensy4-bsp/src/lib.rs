@@ -104,7 +104,7 @@
 // Need to reference this so that it doesn't get stripped out
 extern crate teensy4_fcb;
 
-pub mod log;
+pub mod usb;
 
 pub use hal::pac::interrupt;
 pub use imxrt1062_hal as hal;
@@ -171,8 +171,8 @@ pub struct Peripherals {
     pub ccm: hal::ccm::CCM,
     /// PIT timers (forwarded from the HAL)
     pub pit: hal::pit::UnclockedPIT,
-    /// The USB logger
-    pub log: log::Logging,
+    /// The USB logger and serial reader
+    pub usb: usb::USB,
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
     /// PWM2 controller
@@ -214,7 +214,7 @@ impl Peripherals {
             },
             ccm: p.ccm,
             pit: p.pit,
-            log: log::Logging::new(),
+            usb: usb::USB::new(),
             dcdc: p.dcdc,
             pwm2: p.pwm2,
             pins: Pins {

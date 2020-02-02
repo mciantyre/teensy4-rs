@@ -1,4 +1,6 @@
-//! A [`log`]() implementation for logging over USB
+//! Teensy 4 USB, taken from the original Teensy 4 C libraries.
+//!
+//! The USB stack provides a [`log`] implementation for logging over USB
 //!
 //! This is `Serial.println()` in Rust. Use the macros of the
 //! [`log`] crate to write data over USB. Messages can be read
@@ -20,7 +22,7 @@ use teensy4_usb_sys as usbsys;
 ///
 /// If the default configuration is good for you, use `Default::default()`
 /// as the argument to `init()`.
-pub struct Config {
+pub struct LoggingConfig {
     /// The max log level
     ///
     /// By default, we select the static max level. Users may
@@ -35,9 +37,9 @@ pub struct Config {
     pub filters: &'static [(&'static str, Option<::log::LevelFilter>)],
 }
 
-impl Default for Config {
-    fn default() -> Config {
-        Config {
+impl Default for LoggingConfig {
+    fn default() -> LoggingConfig {
+        LoggingConfig {
             max_level: ::log::STATIC_MAX_LEVEL,
             filters: &[],
         }
@@ -48,17 +50,18 @@ impl Default for Config {
 ///
 /// Calling `init()` will initialize the USB stack and enable the USB interrupt.
 /// Once initialized, messages will be written over USB.
-pub struct Logging(&'static mut Logger);
+pub struct USB(&'static mut Logger);
 
-impl Logging {
-    /// Initializes the logger.
+impl USB {
+    /// Initializes the USB stack. This prepares the logging back-end. Returns a `Reader`
+    /// that can read USB serial messages.
     ///
     /// To select the default logger behavior, specify `Default::default()` as the
     /// argument for `config`.
     ///
     /// This may only be called once. If this is not called, we do not initialize the logger,
     /// and log messages will not be written to the USB host.
-    pub fn init(self, config: Config) {
+    pub fn init(self, config: LoggingConfig) -> Reader {
         self.0.enabled = true;
         self.0.filters = config.filters;
         ::log::set_logger(self.0)
@@ -69,6 +72,7 @@ impl Logging {
             usbsys::usb_init();
             cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
         }
+        Reader(core::marker::PhantomData)
     }
 
     /// # Safety
@@ -78,7 +82,7 @@ impl Logging {
     /// into their state. There can only be one Logging struct, so
     /// there's only one reference to the logger singleton.
     pub(super) fn new() -> Self {
-        unsafe { Logging(&mut LOGGER) }
+        unsafe { USB(&mut LOGGER) }
     }
 }
 
@@ -180,5 +184,20 @@ impl<'a> fmt::Write for Cursor<'a> {
 impl<'a> AsRef<[u8]> for Cursor<'a> {
     fn as_ref(&self) -> &[u8] {
         &self.buffer[..self.offset]
+    }
+}
+
+/// A type that can read USB serial messages from a host
+pub struct Reader(core::marker::PhantomData<*const ()>);
+
+/// OK to transfer across 'thread' boundaries, but not safe for
+/// multi-threaded access (Sync).
+unsafe impl Send for Reader {}
+
+impl Reader {
+    /// Read from the USB serial endpoint into buffer. Returns the number
+    /// of bytes read, or zero if there is no data.
+    pub fn read(&mut self, buffer: &mut [u8]) -> usize {
+        usbsys::serial_read(buffer)
     }
 }

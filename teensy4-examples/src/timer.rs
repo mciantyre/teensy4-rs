@@ -18,7 +18,7 @@ use teensy4_bsp as bsp;
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
     bsp::delay(25);
-    periphs.log.init(Default::default());
+    periphs.usb.init(Default::default());
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
