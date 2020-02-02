@@ -55,14 +55,22 @@ extern "C" {
     /// The implementation never appears to return a negative value,
     /// despite returning an integer.
     fn usb_serial_write(buffer: *const u8, size: u32) -> i32;
+    /// Read from the USB serila endpoint
+    fn usb_serial_read(buffer: *mut u8, size: u32) -> i32;
 }
 
 /// Writes the buffer of data to the USB host
 ///
 /// TODO error handling, return the number of bytes written, etc.
 pub fn serial_write<B: AsRef<[u8]>>(buffer: &B) {
+    let buffer = buffer.as_ref();
     unsafe {
-        let buffer = buffer.as_ref();
         usb_serial_write(buffer.as_ptr(), buffer.len() as u32);
     }
+}
+
+/// Reads a buffer of data from the USB serial endpoint
+pub fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> usize {
+    let buffer = buffer.as_mut();
+    unsafe { usb_serial_read(buffer.as_mut_ptr(), buffer.len() as u32) as usize }
 }

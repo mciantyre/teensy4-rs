@@ -26,7 +26,7 @@ where
 #[bsp::rt::entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.log.init(Default::default());
+    peripherals.usb.init(Default::default());
     bsp::delay(5000);
 
     log::info!("Enabling I2C clocks...");

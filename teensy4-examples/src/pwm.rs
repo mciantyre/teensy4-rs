@@ -21,7 +21,7 @@ fn main() -> ! {
     // Prepare all the BSP peripherals
     let mut p = bsp::Peripherals::take().unwrap();
     // Initialize the logging, so we can use it in the PWM loop below
-    p.log.init(Default::default());
+    p.usb.init(Default::default());
     // Delay is only to let a user set-up their USB serial connection...
     bsp::delay(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules
