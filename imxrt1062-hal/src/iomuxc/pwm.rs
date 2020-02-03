@@ -20,26 +20,15 @@ pub mod output {
 /// Type tags that designate a PWM module
 pub mod module {
     /// Describes a PWM pin's associated module
-    pub trait Module {
-        /// Numeric value (1, 2, 3, 4) representing the module
-        const IDX: usize;
-    }
+    pub trait Module {}
     pub struct _1;
-    impl Module for _1 {
-        const IDX: usize = 1;
-    }
+    impl Module for _1 {}
     pub struct _2;
-    impl Module for _2 {
-        const IDX: usize = 2;
-    }
+    impl Module for _2 {}
     pub struct _3;
-    impl Module for _3 {
-        const IDX: usize = 3;
-    }
+    impl Module for _3 {}
     pub struct _4;
-    impl Module for _4 {
-        const IDX: usize = 4;
-    }
+    impl Module for _4 {}
 }
 
 /// Type tags for PWM submodules

@@ -42,7 +42,10 @@ pub struct Peripherals {
     pub ccm: ccm::CCM,
     pub pit: pit::UnclockedPIT,
     pub dcdc: dcdc::DCDC,
+    pub pwm1: pwm::UnclockedController<pwm::module::_1>,
     pub pwm2: pwm::UnclockedController<pwm::module::_2>,
+    pub pwm3: pwm::UnclockedController<pwm::module::_3>,
+    pub pwm4: pwm::UnclockedController<pwm::module::_4>,
     pub i2c: i2c::Unclocked,
     pub uart: uart::Unclocked,
 }
@@ -61,7 +64,10 @@ impl Peripherals {
             ccm: ccm::CCM::new(p.CCM, p.CCM_ANALOG),
             pit: pit::UnclockedPIT::new(p.PIT),
             dcdc: dcdc::DCDC(p.DCDC),
+            pwm1: pwm::UnclockedController::new(),
             pwm2: pwm::UnclockedController::new(),
+            pwm3: pwm::UnclockedController::new(),
+            pwm4: pwm::UnclockedController::new(),
             i2c: i2c::Unclocked::new(),
             uart: uart::Unclocked {
                 uart1: p.LPUART1,
