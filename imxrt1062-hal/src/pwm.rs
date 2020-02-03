@@ -306,9 +306,10 @@ where
     }
 
     fn get_duty(&self) -> Self::Duty {
-        // TODO not sure if that's right...
         let sm = <S as submodule::Submodule>::submodule(self.reg.0);
-        sm.smval3.read().bits()
+        let modulo: u32 = sm.smval1.read().bits() as u32;
+        let cval: u32 = sm.smval3.read().bits() as u32;
+        ((cval << 16) / (modulo + 1)) as u16
     }
 
     fn get_max_duty(&self) -> Self::Duty {
@@ -358,9 +359,10 @@ where
     }
 
     fn get_duty(&self) -> Self::Duty {
-        // TODO not sure if that's right...
         let sm = <S as submodule::Submodule>::submodule(self.reg.0);
-        sm.smval5.read().bits()
+        let modulo: u32 = sm.smval1.read().bits() as u32;
+        let cval: u32 = sm.smval5.read().bits() as u32;
+        ((cval << 16) / (modulo + 1)) as u16
     }
 
     fn get_max_duty(&self) -> Self::Duty {
