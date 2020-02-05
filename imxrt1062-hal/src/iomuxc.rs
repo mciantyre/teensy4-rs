@@ -74,6 +74,11 @@ pub struct IOMUXC {
     //
     // GPIO_EMC
     //
+    pub gpio_emc_04: gpio::GPIO_EMC_04<Alt5>,
+    pub gpio_emc_05: gpio::GPIO_EMC_05<Alt5>,
+    pub gpio_emc_06: gpio::GPIO_EMC_06<Alt5>,
+    pub gpio_emc_07: gpio::GPIO_EMC_07<Alt5>,
+    pub gpio_emc_08: gpio::GPIO_EMC_08<Alt5>,
     pub gpio_emc_31: gpio::GPIO_EMC_31<Alt5>,
     pub gpio_emc_32: gpio::GPIO_EMC_32<Alt5>,
     //
@@ -122,6 +127,11 @@ impl IOMUXC {
             //
             // GPIO_EMC
             //
+            gpio_emc_04: gpio::GPIO_EMC_04::new(&iomuxc),
+            gpio_emc_05: gpio::GPIO_EMC_05::new(&iomuxc),
+            gpio_emc_06: gpio::GPIO_EMC_06::new(&iomuxc),
+            gpio_emc_07: gpio::GPIO_EMC_07::new(&iomuxc),
+            gpio_emc_08: gpio::GPIO_EMC_08::new(&iomuxc),
             gpio_emc_31: gpio::GPIO_EMC_31::new(&iomuxc),
             gpio_emc_32: gpio::GPIO_EMC_32::new(&iomuxc),
 

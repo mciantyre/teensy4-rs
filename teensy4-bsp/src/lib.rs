@@ -125,6 +125,14 @@ pub struct Pins {
     pub p0: hal::iomuxc::gpio::GPIO_AD_B0_03<hal::iomuxc::Alt5>,
     /// Pin 1
     pub p1: hal::iomuxc::gpio::GPIO_AD_B0_02<hal::iomuxc::Alt5>,
+    /// Pin 2
+    pub p2: hal::iomuxc::gpio::GPIO_EMC_04<hal::iomuxc::Alt5>,
+    /// Pin 3
+    pub p3: hal::iomuxc::gpio::GPIO_EMC_05<hal::iomuxc::Alt5>,
+    /// Pin 4
+    pub p4: hal::iomuxc::gpio::GPIO_EMC_06<hal::iomuxc::Alt5>,
+    /// Pin 5
+    pub p5: hal::iomuxc::gpio::GPIO_EMC_08<hal::iomuxc::Alt5>,
     /// Pin 6
     pub p6: hal::iomuxc::gpio::GPIO_B0_10<hal::iomuxc::Alt5>,
     /// Pin 7
@@ -157,6 +165,8 @@ pub struct Pins {
     pub p28: hal::iomuxc::gpio::GPIO_EMC_32<hal::iomuxc::Alt5>,
     /// Pin 29
     pub p29: hal::iomuxc::gpio::GPIO_EMC_31<hal::iomuxc::Alt5>,
+    /// Pin 33
+    pub p33: hal::iomuxc::gpio::GPIO_EMC_07<hal::iomuxc::Alt5>,
     /// Pin 36
     pub p36: hal::iomuxc::gpio::GPIO_SD_B0_01<hal::iomuxc::Alt5>,
     /// Pin 37
@@ -175,8 +185,14 @@ pub struct Peripherals {
     pub usb: usb::USB,
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
+    /// PWM1 controller
+    pub pwm1: hal::pwm::UnclockedController<hal::pwm::module::_1>,
     /// PWM2 controller
     pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
+    /// PWM3 controller
+    pub pwm3: hal::pwm::UnclockedController<hal::pwm::module::_3>,
+    /// PWM4 controller
+    pub pwm4: hal::pwm::UnclockedController<hal::pwm::module::_4>,
     /// Teensy pins
     pub pins: Pins,
     /// Unclocked I2C peripherals
@@ -216,10 +232,17 @@ impl Peripherals {
             pit: p.pit,
             usb: usb::USB::new(),
             dcdc: p.dcdc,
+            pwm1: p.pwm1,
             pwm2: p.pwm2,
+            pwm3: p.pwm3,
+            pwm4: p.pwm4,
             pins: Pins {
                 p0: p.iomuxc.gpio_ad_b0_03,
                 p1: p.iomuxc.gpio_ad_b0_02,
+                p2: p.iomuxc.gpio_emc_04,
+                p3: p.iomuxc.gpio_emc_05,
+                p4: p.iomuxc.gpio_emc_06,
+                p5: p.iomuxc.gpio_emc_08,
                 p6: p.iomuxc.gpio_b0_10,
                 p7: p.iomuxc.gpio_b1_01,
                 p8: p.iomuxc.gpio_b1_00,
@@ -236,6 +259,7 @@ impl Peripherals {
                 p25: p.iomuxc.gpio_ad_b0_13,
                 p28: p.iomuxc.gpio_emc_32,
                 p29: p.iomuxc.gpio_emc_31,
+                p33: p.iomuxc.gpio_emc_07,
                 p36: p.iomuxc.gpio_sd_b0_01,
                 p37: p.iomuxc.gpio_sd_b0_00,
             },

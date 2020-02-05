@@ -1,8 +1,11 @@
 //! PWM pin labels
 
 use crate::iomuxc::{
-    gpio::{GPIO_B0_10, GPIO_B0_11},
-    Alt2,
+    gpio::{
+        GPIO_B0_10, GPIO_B0_11, GPIO_B1_00, GPIO_B1_01, GPIO_EMC_04, GPIO_EMC_05, GPIO_EMC_06,
+        GPIO_EMC_08,
+    },
+    Alt1, Alt2, Alt6,
 };
 
 /// Type tags that designate a PWM pin output designation
@@ -20,26 +23,15 @@ pub mod output {
 /// Type tags that designate a PWM module
 pub mod module {
     /// Describes a PWM pin's associated module
-    pub trait Module {
-        /// Numeric value (1, 2, 3, 4) representing the module
-        const IDX: usize;
-    }
+    pub trait Module {}
     pub struct _1;
-    impl Module for _1 {
-        const IDX: usize = 1;
-    }
+    impl Module for _1 {}
     pub struct _2;
-    impl Module for _2 {
-        const IDX: usize = 2;
-    }
+    impl Module for _2 {}
     pub struct _3;
-    impl Module for _3 {
-        const IDX: usize = 3;
-    }
+    impl Module for _3 {}
     pub struct _4;
-    impl Module for _4 {
-        const IDX: usize = 4;
-    }
+    impl Module for _4 {}
 }
 
 /// Type tags for PWM submodules
@@ -109,4 +101,40 @@ impl Pin for GPIO_B0_11<Alt2> {
     type Output = output::B;
     type Module = module::_2; // FlexPWM2
     type Submodule = submodule::_2; // FlexPWM2
+}
+
+impl Pin for GPIO_B1_01<Alt6> {
+    type Output = output::B;
+    type Module = module::_1;
+    type Submodule = submodule::_3;
+}
+
+impl Pin for GPIO_B1_00<Alt6> {
+    type Output = output::A;
+    type Module = module::_1;
+    type Submodule = submodule::_3;
+}
+
+impl Pin for GPIO_EMC_04<Alt1> {
+    type Output = output::A;
+    type Module = module::_4;
+    type Submodule = submodule::_2;
+}
+
+impl Pin for GPIO_EMC_05<Alt1> {
+    type Output = output::B;
+    type Module = module::_4;
+    type Submodule = submodule::_2;
+}
+
+impl Pin for GPIO_EMC_06<Alt1> {
+    type Output = output::A;
+    type Module = module::_2;
+    type Submodule = submodule::_0;
+}
+
+impl Pin for GPIO_EMC_08<Alt1> {
+    type Output = output::A;
+    type Module = module::_2;
+    type Submodule = submodule::_1;
 }
