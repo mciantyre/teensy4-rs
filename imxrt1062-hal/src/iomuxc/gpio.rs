@@ -21,3 +21,6 @@ pub use emc::*;
 
 mod sd_b0;
 pub use sd_b0::*;
+
+mod sd_b1;
+pub use sd_b1::*;
