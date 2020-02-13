@@ -44,18 +44,21 @@ use crate::iomuxc::{
     daisy::{Daisy, IntoDaisy},
     gpio::{
         GPIO_AD_B0_00, GPIO_AD_B0_01, GPIO_AD_B0_02, GPIO_AD_B0_03, GPIO_B0_00, GPIO_B0_01,
-        GPIO_B0_02, GPIO_B0_03, GPIO_SD_B0_00, GPIO_SD_B0_01, GPIO_SD_B0_02, GPIO_SD_B0_03,
-        GPIO_SD_B1_06, GPIO_SD_B1_07, GPIO_SD_B1_08, GPIO_SD_B1_09,
+        GPIO_B0_02, GPIO_B0_03, GPIO_EMC_30, GPIO_SD_B0_00, GPIO_SD_B0_01, GPIO_SD_B0_02,
+        GPIO_SD_B0_03, GPIO_SD_B1_06, GPIO_SD_B1_07, GPIO_SD_B1_08, GPIO_SD_B1_09,
     },
-    Alt4, Alt7,
+    Alt3, Alt4, Alt7,
 };
 
 macro_rules! pin_config {
     ($w:expr) => {
-        // TODO: not sure what to do here...
-        $w
+        $w.dse().dse_7_r0_7().speed().speed_2_medium_100mhz()
     };
 }
+
+//
+// Note: The pad mapping below is *not* complete
+//
 
 // SPI 1
 
@@ -139,6 +142,27 @@ impl IntoDaisy for GPIO_SD_B0_01<Alt4> {
         self.iomuxc()
             .lpspi1_pcs0_select_input
             .write(|w| w.daisy().gpio_sd_b0_01_alt4());
+        Daisy::new(self)
+    }
+}
+
+impl Pin for GPIO_EMC_30<Alt3> {
+    type Wire = PCS0;
+    type Module = module::_1;
+
+    #[inline(always)]
+    fn configure(&mut self) {
+        self.sion_enable();
+        self.pad().write(|w| pin_config!(w));
+    }
+}
+
+impl IntoDaisy for GPIO_EMC_30<Alt3> {
+    #[inline(always)]
+    fn into_daisy(self) -> Daisy<Self> {
+        self.iomuxc()
+            .lpspi1_pcs0_select_input
+            .write(|w| w.daisy().gpio_emc_30_alt3());
         Daisy::new(self)
     }
 }
@@ -317,7 +341,7 @@ impl IntoDaisy for GPIO_AD_B0_03<Alt7> {
 
 // SPI 4
 
-impl Pin for GPIO_B0_03<Alt7> {
+impl Pin for GPIO_B0_03<Alt3> {
     type Wire = SCK;
     type Module = module::_4;
 
@@ -328,7 +352,7 @@ impl Pin for GPIO_B0_03<Alt7> {
     }
 }
 
-impl IntoDaisy for GPIO_B0_03<Alt7> {
+impl IntoDaisy for GPIO_B0_03<Alt3> {
     #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
@@ -338,7 +362,7 @@ impl IntoDaisy for GPIO_B0_03<Alt7> {
     }
 }
 
-impl Pin for GPIO_B0_02<Alt7> {
+impl Pin for GPIO_B0_02<Alt3> {
     type Wire = SDO;
     type Module = module::_4;
 
@@ -349,7 +373,7 @@ impl Pin for GPIO_B0_02<Alt7> {
     }
 }
 
-impl IntoDaisy for GPIO_B0_02<Alt7> {
+impl IntoDaisy for GPIO_B0_02<Alt3> {
     #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
@@ -359,7 +383,7 @@ impl IntoDaisy for GPIO_B0_02<Alt7> {
     }
 }
 
-impl Pin for GPIO_B0_01<Alt7> {
+impl Pin for GPIO_B0_01<Alt3> {
     type Wire = SDI;
     type Module = module::_4;
 
@@ -370,7 +394,7 @@ impl Pin for GPIO_B0_01<Alt7> {
     }
 }
 
-impl IntoDaisy for GPIO_B0_01<Alt7> {
+impl IntoDaisy for GPIO_B0_01<Alt3> {
     #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()
@@ -380,7 +404,7 @@ impl IntoDaisy for GPIO_B0_01<Alt7> {
     }
 }
 
-impl Pin for GPIO_B0_00<Alt7> {
+impl Pin for GPIO_B0_00<Alt3> {
     type Wire = PCS0;
     type Module = module::_4;
 
@@ -391,7 +415,7 @@ impl Pin for GPIO_B0_00<Alt7> {
     }
 }
 
-impl IntoDaisy for GPIO_B0_00<Alt7> {
+impl IntoDaisy for GPIO_B0_00<Alt3> {
     #[inline(always)]
     fn into_daisy(self) -> Daisy<Self> {
         self.iomuxc()

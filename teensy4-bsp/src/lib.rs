@@ -110,7 +110,7 @@ pub use hal::pac::interrupt;
 pub use imxrt1062_hal as hal;
 pub use imxrt1062_rt as rt;
 pub use teensy4_usb_sys::serial_write;
-pub type LED = hal::gpio::IO03<hal::gpio::GPIO7, hal::gpio::Output>;
+pub type LED = hal::gpio::GPIO2IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
 pub use hal::ccm::CCM;
 pub use hal::pac::PIT;
@@ -226,7 +226,7 @@ impl Peripherals {
         Peripherals {
             led: {
                 let pad = p.iomuxc.gpio_b0_03;
-                hal::gpio::IO03::gpio2(pad).fast(&mut p.iomuxc.gpr).output()
+                hal::gpio::GPIO2IO03::gpio3(pad).fast(&mut p.iomuxc.gpr).output()
             },
             ccm: p.ccm,
             pit: p.pit,

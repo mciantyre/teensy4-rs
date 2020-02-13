@@ -24,6 +24,7 @@ pub mod i2c;
 pub mod iomuxc;
 pub mod pit;
 pub mod pwm;
+pub mod spi;
 pub mod uart;
 
 pub mod dcdc {
@@ -47,6 +48,7 @@ pub struct Peripherals {
     pub pwm3: pwm::UnclockedController<pwm::module::_3>,
     pub pwm4: pwm::UnclockedController<pwm::module::_4>,
     pub i2c: i2c::Unclocked,
+    pub spi: spi::Unclocked,
     pub uart: uart::Unclocked,
 }
 
@@ -69,6 +71,7 @@ impl Peripherals {
             pwm3: pwm::UnclockedController::new(),
             pwm4: pwm::UnclockedController::new(),
             i2c: i2c::Unclocked::new(),
+            spi: spi::Unclocked::new(),
             uart: uart::Unclocked {
                 uart1: p.LPUART1,
                 uart2: p.LPUART2,

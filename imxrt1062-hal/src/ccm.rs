@@ -484,6 +484,50 @@ pub mod i2c {
     }
 }
 
+/// Timing configurations for SPI peripherals
+pub mod spi {
+    use super::{pac::ccm, Divider, Frequency};
+
+    #[derive(Clone, Copy)]
+    #[non_exhaustive] // Not all variants added
+    pub enum ClockSelect {
+        Pll3Pfd1,
+        Pll3Pfd0,
+        Pll2,
+        Pll2Pfd2,
+    }
+
+    impl From<ClockSelect> for ccm::cbcmr::LPSPI_CLK_SEL_A {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::Pll3Pfd1 => ccm::cbcmr::LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_0,
+                ClockSelect::Pll3Pfd0 => ccm::cbcmr::LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_1,
+                ClockSelect::Pll2 => ccm::cbcmr::LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_2,
+                ClockSelect::Pll2Pfd2 => ccm::cbcmr::LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_3,
+            }
+        }
+    }
+
+    pub type PrescalarSelect = ccm::cbcmr::LPSPI_PODF_A;
+
+    impl From<ClockSelect> for Frequency {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::Pll3Pfd1 => Frequency(664615384),
+                ClockSelect::Pll3Pfd0 => Frequency(720000000),
+                ClockSelect::Pll2 => Frequency(528000000),
+                ClockSelect::Pll2Pfd2 => Frequency(396000000),
+            }
+        }
+    }
+
+    impl From<PrescalarSelect> for Divider {
+        fn from(prescalar_select: PrescalarSelect) -> Self {
+            Divider((u8::from(prescalar_select) as u32) + 1)
+        }
+    }
+}
+
 pub mod uart {
     use super::{pac::ccm, Divider, Frequency, OSCILLATOR_FREQUENCY};
 
