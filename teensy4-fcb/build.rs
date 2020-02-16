@@ -1,4 +1,75 @@
-use imxrt1062_fcb_gen::*;
+use imxrt_fcb_gen::serial_flash::opcodes::sdr::*;
+use imxrt_fcb_gen::serial_flash::*;
+
+//
+// Sequences for lookup table
+//
+
+const SEQ_READ: Sequence = Sequence([
+    Instr::new(CMD, Pads::One, 0xEB),
+    Instr::new(RADDR, Pads::Four, 0x18),
+    Instr::new(DUMMY, Pads::Four, 0x06),
+    Instr::new(READ, Pads::Four, 0x04),
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+]);
+
+const SEQ_READ_STATUS: Sequence = Sequence([
+    Instr::new(CMD, Pads::One, 0x05),
+    Instr::new(READ, Pads::One, 0x04),
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+]);
+
+const SEQ_WRITE_ENABLE: Sequence = Sequence([
+    Instr::new(CMD, Pads::One, 0x06),
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+]);
+
+const SEQ_ERASE_SECTOR: Sequence = Sequence([
+    Instr::new(CMD, Pads::One, 0x20),
+    Instr::new(RADDR, Pads::One, 0x18),
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+]);
+
+const SEQ_PAGE_PROGRAM: Sequence = Sequence([
+    Instr::new(CMD, Pads::One, 0x02),
+    Instr::new(RADDR, Pads::One, 0x18),
+    Instr::new(WRITE, Pads::One, 0x04),
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+]);
+
+const SEQ_CHIP_ERASE: Sequence = Sequence([
+    Instr::new(CMD, Pads::One, 0x60),
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+    STOP,
+]);
 
 use std::env;
 use std::fs::File;
@@ -6,28 +77,22 @@ use std::io::Write;
 use std::path::Path;
 
 fn main() {
-    // We're using serial NOR flash.
     let nor_cb = nor::ConfigurationBlock {
         page_size: nor::PageSize::new(256),
         sector_size: nor::SectorSize::new(4096),
         ip_cmd_serial_clk_freq: nor::SerialClockFrequency::MHz30,
     };
-    // Load the lookup table with our magic numbers. Numbers
-    // that are not specifed are set to `0`.
     let lookup_table = {
-        let mut lookup = LookupTable::new();
-        lookup.insert_u32(0, 0x0A18_04EB);
-        lookup.insert_u32(1, 0x2604_3206);
-        lookup.insert_u32(4, 0x2404_0405);
-        lookup.insert_u32(12, 0x0000_0406);
-        lookup.insert_u32(20, 0x0818_0420);
-        lookup.insert_u32(32, 0x0818_04D8);
-        lookup.insert_u32(36, 0x0818_0402);
-        lookup.insert_u32(37, 0x0000_2004);
-        lookup.insert_u32(44, 0x0000_0460);
-        lookup
+        use imxrt_fcb_gen::serial_flash::SequenceCommand::*;
+        let mut lut = LookupTable::new();
+        lut[Read] = SEQ_READ;
+        lut[ReadStatus] = SEQ_READ_STATUS;
+        lut[WriteEnable] = SEQ_WRITE_ENABLE;
+        lut[EraseSector] = SEQ_ERASE_SECTOR;
+        lut[PageProgram] = SEQ_PAGE_PROGRAM;
+        lut[ChipErase] = SEQ_CHIP_ERASE;
+        lut
     };
-    // Define the FCB
     let builder = Builder {
         read_sample_clock_source: ReadSampleClockSource::LoopbackFromDQSPad,
         cs_hold_time: CSHoldTime::new(0x01),
@@ -45,7 +110,6 @@ fn main() {
         device_type: DeviceType::SerialNOR(nor_cb),
         lookup_table,
     };
-    // Build the FCB
     let fcb = builder.build().unwrap();
 
     let out_dir = env::var("OUT_DIR").unwrap();

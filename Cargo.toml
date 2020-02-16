@@ -6,6 +6,3 @@ members = [
     "teensy4-examples",
     "teensy4-fcb"
 ]
-exclude = [
-    "imxrt1062-fcb-gen",
-]

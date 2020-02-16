@@ -21,7 +21,7 @@ keywords = [
 ]
 
 [build-dependencies]
-imxrt1062-fcb-gen = { version = "0.1.0", path = "../imxrt1062-fcb-gen" }
+imxrt-fcb-gen = { version = "0.1.0", path = "../../imxrt-fcb-gen", features = ["imxrt1062"] }
 
 [lib]
 bench = false
