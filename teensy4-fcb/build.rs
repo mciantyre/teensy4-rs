@@ -1,12 +1,25 @@
 use imxrt_boot_gen::serial_flash::opcodes::sdr::*;
 use imxrt_boot_gen::serial_flash::*;
 
+/// Instructions for the Winbond W25Q16JV
+/// SPI flash memory controller
+mod winbond {
+    pub const FAST_READ_QUAD_IO: u8 = 0xEB;
+    pub const READ_STATUS_REGISTER_1: u8 = 0x05;
+    pub const WRITE_ENABLE: u8 = 0x06;
+    pub const SECTOR_ERASE: u8 = 0x20;
+    pub const PAGE_PROGRAM: u8 = 0x02;
+    pub const CHIP_ERASE: u8 = 0x60;
+}
+
+use winbond::*;
+
 //
 // Sequences for lookup table
 //
 
 const SEQ_READ: Sequence = Sequence([
-    Instr::new(CMD, Pads::One, 0xEB),
+    Instr::new(CMD, Pads::One, FAST_READ_QUAD_IO),
     Instr::new(RADDR, Pads::Four, 0x18),
     Instr::new(DUMMY, Pads::Four, 0x06),
     Instr::new(READ, Pads::Four, 0x04),
@@ -17,7 +30,7 @@ const SEQ_READ: Sequence = Sequence([
 ]);
 
 const SEQ_READ_STATUS: Sequence = Sequence([
-    Instr::new(CMD, Pads::One, 0x05),
+    Instr::new(CMD, Pads::One, READ_STATUS_REGISTER_1),
     Instr::new(READ, Pads::One, 0x04),
     STOP,
     STOP,
@@ -28,7 +41,7 @@ const SEQ_READ_STATUS: Sequence = Sequence([
 ]);
 
 const SEQ_WRITE_ENABLE: Sequence = Sequence([
-    Instr::new(CMD, Pads::One, 0x06),
+    Instr::new(CMD, Pads::One, WRITE_ENABLE),
     STOP,
     STOP,
     STOP,
@@ -39,7 +52,7 @@ const SEQ_WRITE_ENABLE: Sequence = Sequence([
 ]);
 
 const SEQ_ERASE_SECTOR: Sequence = Sequence([
-    Instr::new(CMD, Pads::One, 0x20),
+    Instr::new(CMD, Pads::One, SECTOR_ERASE),
     Instr::new(RADDR, Pads::One, 0x18),
     STOP,
     STOP,
@@ -50,7 +63,7 @@ const SEQ_ERASE_SECTOR: Sequence = Sequence([
 ]);
 
 const SEQ_PAGE_PROGRAM: Sequence = Sequence([
-    Instr::new(CMD, Pads::One, 0x02),
+    Instr::new(CMD, Pads::One, PAGE_PROGRAM),
     Instr::new(RADDR, Pads::One, 0x18),
     Instr::new(WRITE, Pads::One, 0x04),
     STOP,
@@ -61,7 +74,7 @@ const SEQ_PAGE_PROGRAM: Sequence = Sequence([
 ]);
 
 const SEQ_CHIP_ERASE: Sequence = Sequence([
-    Instr::new(CMD, Pads::One, 0x60),
+    Instr::new(CMD, Pads::One, CHIP_ERASE),
     STOP,
     STOP,
     STOP,
