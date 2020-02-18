@@ -350,6 +350,8 @@ where
             }
         }
 
+        log::trace!(target: target_fn!("transfer"), "DONE");
+
         Ok(())
     }
 }
@@ -398,6 +400,8 @@ where
             }
         }
 
-        Ok(bytes)
+        log::trace!(target: target_fn!("transfer"), "DONE");
+
+        Ok(&bytes[..recv_idx])
     }
 }
