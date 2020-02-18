@@ -513,10 +513,10 @@ pub mod spi {
     impl From<ClockSelect> for Frequency {
         fn from(clock_select: ClockSelect) -> Self {
             match clock_select {
-                ClockSelect::Pll3Pfd1 => Frequency(664615384),
-                ClockSelect::Pll3Pfd0 => Frequency(720000000),
-                ClockSelect::Pll2 => Frequency(528000000),
-                ClockSelect::Pll2Pfd2 => Frequency(396000000),
+                ClockSelect::Pll3Pfd1 => Frequency(664_615_384),
+                ClockSelect::Pll3Pfd0 => Frequency(720_000_000),
+                ClockSelect::Pll2 => Frequency(528_000_000),
+                ClockSelect::Pll2Pfd2 => Frequency(396_000_000),
             }
         }
     }
