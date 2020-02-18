@@ -13,8 +13,8 @@ const LED_PERIOD_MS: u32 = 1_000;
 
 #[rt::entry]
 fn main() -> ! {
-    let p = bsp::Peripherals::take().unwrap();
-    let mut led = p.led;
+    let mut p = bsp::Peripherals::take().unwrap();
+    let mut led: bsp::LED = bsp::configure_led(&mut p.gpr, p.pins.p13);
 
     loop {
         bsp::delay(LED_PERIOD_MS);

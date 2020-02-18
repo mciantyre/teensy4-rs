@@ -94,9 +94,10 @@ fn main() -> ! {
     uart.set_parity(PARITY);
     uart.set_rx_inversion(INVERTED);
     uart.set_tx_inversion(INVERTED);
+    let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
     loop {
         bsp::delay(1_000);
-        peripherals.led.toggle().unwrap();
+        led.toggle().unwrap();
         write(&mut uart, &[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
         bsp::delay(1);
         let mut buffer = [0; 4];
