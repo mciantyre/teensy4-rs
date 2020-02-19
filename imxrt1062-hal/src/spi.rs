@@ -151,8 +151,8 @@ impl ClockSpeed {
             div += 1;
         }
 
-        // 0 < div < 255, and the true coefficient is really div + 2
-        let div = div.checked_sub(2).unwrap_or(0).min(255).max(0) as u8;
+        // 0 <= div <= 255, and the true coefficient is really div + 2
+        let div = div.saturating_sub(2).min(255).max(0) as u8;
 
         reg.ccr.write(|w|
             // Safety: 0 <= div <= 255, and also of type u8
