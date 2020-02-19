@@ -5,7 +5,6 @@ pub use crate::iomuxc::spi::module;
 use crate::ccm;
 use crate::iomuxc::{daisy, spi};
 use core::marker::PhantomData;
-use embedded_hal::blocking;
 use imxrt1062_pac as pac;
 use pac::lpspi1::sr;
 
@@ -179,6 +178,11 @@ pub struct SPI<M> {
 pub struct ClockSpeedError;
 
 /// Indicates an error when computing the parameters that control
+/// the mode.
+#[derive(Debug)]
+pub struct ModeError;
+
+/// Indicates an error when computing the parameters that control
 /// the pin low timeout
 #[derive(Debug)]
 pub struct PinLowTimeoutError;
@@ -203,6 +207,10 @@ where
         spi.reg.cr.write_with_zero(|w| w.rst().set_bit());
         // Enables SPI master
         spi.set_clock_speed(ClockSpeed::default()).unwrap();
+        spi.reg
+            .cfgr1
+            .write(|w| w.master().master_1().sample().sample_1());
+        spi.set_mode(embedded_hal::spi::MODE_0);
         spi.reg.fcr.write(|w| unsafe {
             // Safety: fields are four bits
             w.rxwater().bits(0xf).txwater().bits(0xf)
@@ -217,14 +225,25 @@ where
         res
     }
 
+    pub fn set_mode(&mut self, mode: embedded_hal::spi::Mode) -> Result<(), ModeError> {
+        self.with_master_disabled(|| unsafe {
+            self.reg.tcr.write(|w| {
+                w.framesz()
+                    .bits(0xf)
+                    .cpol()
+                    .bit(mode.polarity == embedded_hal::spi::Polarity::IdleHigh)
+                    .cpha()
+                    .bit(mode.phase == embedded_hal::spi::Phase::CaptureOnSecondTransition)
+            });
+            Ok(())
+        })
+    }
+
     /// Set the SPI master clock speed
     pub fn set_clock_speed(&mut self, clock_speed: ClockSpeed) -> Result<(), ClockSpeedError> {
         self.with_master_disabled(|| unsafe {
             // Safety: master is disabled
             clock_speed.set(self.source_clock, self.reg);
-            self.reg
-                .cfgr1
-                .write(|w| w.master().master_1().sample().sample_1());
             Ok(())
         })
     }
@@ -299,109 +318,43 @@ pub enum Error {
     WaitTimeout,
 }
 
-macro_rules! target_fn {
-    ($name:expr) => {
-        concat!(module_path!(), "::", $name)
-    };
-}
-
-impl<M> blocking::spi::Write<u8> for SPI<M>
+impl<M> embedded_hal::spi::FullDuplex<u8> for SPI<M>
 where
     M: module::Module,
 {
     type Error = Error;
 
-    fn write(&mut self, bytes: &[u8]) -> Result<(), Self::Error> {
-        self.clear_fifo();
-        self.clear_status();
-        log::trace!(target: target_fn!("write"), "WAIT MBF & TDF");
-        self.wait(|sr| sr.mbf().bit_is_clear() && sr.tdf().bit_is_set())?;
-
-        log::trace!(target: target_fn!("write"), "CLEAR QUEUE");
-        self.reg.cr.write(|w| w.rrf().rrf_1().men().men_1());
-
-        log::trace!(target: target_fn!("write"), "START");
-
-        let mut recv_count = 0;
-
-        for byte in bytes {
-            let rsr = &self.reg.rsr;
-            let rdr = &self.reg.rdr;
-            self.wait(|sr| {
-                if rsr.read().rxempty().bit_is_clear() {
-                    rdr.read().data().bits(); // discard received data
-                    recv_count += 1;
-                }
-
-                sr.tdf().bit_is_set()
-            })?;
-            self.reg
-                .tdr
-                .write(|w| unsafe { w.data().bits(*byte as u32) });
+    fn read(&mut self) -> nb::Result<u8, Self::Error> {
+        let sr = self.check_errors()?;
+        if sr.mbf().bit_is_set() {
+            return Err(nb::Error::WouldBlock);
         }
 
-        log::trace!(target: target_fn!("write"), "WAIT TDF");
+        if self.reg.rsr.read().rxempty().bit_is_clear() {
+            let word = self.reg.rdr.read().data().bits();
+            Ok(word as u8)
+        } else {
+            Err(nb::Error::WouldBlock)
+        }
+    }
+
+    /// Sends a word to the slave
+    fn send(&mut self, word: u8) -> nb::Result<(), Self::Error> {
+        let sr = self.check_errors()?;
+        if sr.mbf().bit_is_set() || sr.tdf().bit_is_clear() {
+            return Err(nb::Error::WouldBlock);
+        }
+
+        self.reg
+            .tdr
+            .write(|w| unsafe { w.data().bits(word as u32) });
         self.wait(|msr| msr.tdf().bit_is_set())?;
-
-        while recv_count < bytes.len() {
-            if self.reg.rsr.read().rxempty().bit_is_clear() {
-                self.reg.rdr.read().data().bits(); // discard received data
-                recv_count += 1;
-            }
-        }
-
-        log::trace!(target: target_fn!("transfer"), "DONE");
-
         Ok(())
     }
 }
 
-impl<M> blocking::spi::Transfer<u8> for SPI<M>
-where
-    M: module::Module,
-{
-    type Error = Error;
+impl<M> embedded_hal::blocking::spi::write::Default<u8> for SPI<M> where M: module::Module {}
 
-    fn transfer<'w>(&mut self, bytes: &'w mut [u8]) -> Result<&'w [u8], Self::Error> {
-        self.clear_fifo();
-        self.clear_status();
-        log::trace!(target: target_fn!("transfer"), "WAIT MBF & TDF");
-        self.wait(|sr| sr.mbf().bit_is_clear() && sr.tdf().bit_is_set())?;
+impl<M> embedded_hal::blocking::spi::transfer::Default<u8> for SPI<M> where M: module::Module {}
 
-        log::trace!(target: target_fn!("transfer"), "CLEAR QUEUE");
-        self.reg.cr.write(|w| w.rrf().rrf_1().men().men_1());
-
-        log::trace!(target: target_fn!("transfer"), "START");
-
-        let mut recv_idx = 0;
-        for send_idx in 0..bytes.len() {
-            let rsr = &self.reg.rsr;
-            let rdr = &self.reg.rdr;
-            self.wait(|sr| {
-                if rsr.read().rxempty().bit_is_clear() {
-                    bytes[recv_idx] = rdr.read().data().bits() as u8;
-                    recv_idx += 1;
-                }
-
-                sr.tdf().bit_is_set()
-            })?;
-            self.reg
-                .tdr
-                .write(|w| unsafe { w.data().bits(bytes[send_idx] as u32) });
-        }
-
-        log::trace!(target: target_fn!("transfer"), "WAIT TDF");
-        self.wait(|msr| msr.tdf().bit_is_set())?;
-
-        while recv_idx < bytes.len() {
-            if self.reg.rsr.read().rxempty().bit_is_clear() {
-                bytes[recv_idx] = self.reg.rdr.read().data().bits() as u8;
-                recv_idx += 1;
-            }
-        }
-
-        log::trace!(target: target_fn!("transfer"), "DONE");
-
-        Ok(&bytes[..recv_idx])
-    }
-}
+impl<M> embedded_hal::blocking::spi::write_iter::Default<u8> for SPI<M> where M: module::Module {}
