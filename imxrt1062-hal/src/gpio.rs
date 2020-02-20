@@ -188,8 +188,7 @@ macro_rules! ios {
     };
 }
 
-// Bank 1; these are really controlled by IOMUXC_GPR_GPR26 but for some reason I can't access that
-// register here.
+// Bank 1
 ios! {
     0, GPIO1IO00: [GPIO1, gpio0, crate::iomuxc::gpio::GPIO_AD_B0_00<crate::iomuxc::Alt5>, FAST: (GPIO6, gpr26)],
     1, GPIO1IO01: [GPIO1, gpio1, crate::iomuxc::gpio::GPIO_AD_B0_01<crate::iomuxc::Alt5>, FAST: (GPIO6, gpr26)],
