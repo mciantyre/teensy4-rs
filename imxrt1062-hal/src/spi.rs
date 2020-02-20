@@ -210,7 +210,7 @@ where
         spi.reg
             .cfgr1
             .write(|w| w.master().master_1().sample().sample_1());
-        spi.set_mode(embedded_hal::spi::MODE_0);
+        spi.set_mode(embedded_hal::spi::MODE_0).unwrap();
         spi.reg.fcr.write(|w| unsafe {
             // Safety: fields are four bits
             w.rxwater().bits(0xf).txwater().bits(0xf)
@@ -265,7 +265,6 @@ where
     /// low before acting as an SPI master.
     ///
     /// All flags are W1C.
-    #[inline(always)]
     fn clear_status(&mut self) {
         self.reg.sr.write(|w| {
             w.wcf()
@@ -283,8 +282,9 @@ where
         });
     }
 
-    #[inline(always)]
-    fn clear_fifo(&mut self) {
+    // TODO: for now I believe this is required to be public for the cases where an user wishes
+    // to clear the FIFO.  It would be a bit cleaner if we had SPI transaction methods
+    pub fn clear_fifo(&mut self) {
         self.reg.cr.modify(|_, w| w.rrf().set_bit().rtf().set_bit());
     }
 
@@ -341,6 +341,7 @@ where
     /// Sends a word to the slave
     fn send(&mut self, word: u8) -> nb::Result<(), Self::Error> {
         let sr = self.check_errors()?;
+        self.clear_status();
         if sr.mbf().bit_is_set() || sr.tdf().bit_is_clear() {
             return Err(nb::Error::WouldBlock);
         }
