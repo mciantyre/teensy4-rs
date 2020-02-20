@@ -2,7 +2,6 @@
 
 #![allow(non_camel_case_types)]
 
-
 #[macro_use]
 mod macros;
 
@@ -159,6 +158,10 @@ impl IOMUXC {
 pub struct GPR(());
 
 impl GPR {
+    pub(crate) fn gpr26(&mut self) -> &crate::pac::iomuxc_gpr::GPR26 {
+        unsafe { &(*crate::pac::IOMUXC_GPR::ptr()).gpr26 }
+    }
+
     pub(crate) fn gpr27(&mut self) -> &crate::pac::iomuxc_gpr::GPR27 {
         unsafe { &(*crate::pac::IOMUXC_GPR::ptr()).gpr27 }
     }
