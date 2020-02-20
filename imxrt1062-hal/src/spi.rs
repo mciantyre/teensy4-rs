@@ -99,7 +99,7 @@ where
         }
     }
 
-    /// Builds an SPI peripheral from the SDO, SDI, SCK and PCS0 pins. The return
+    /// Builds an SPI peripheral from the SDO, SDI and SCK pins. The return
     /// is a configured SPI master running at 8Mhz.
     pub fn build<SDO, SDI, SCK>(self, mut sdo: SDO, mut sdi: SDI, mut sck: SCK) -> SPI<M>
     where
