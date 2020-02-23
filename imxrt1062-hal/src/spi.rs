@@ -205,7 +205,7 @@ where
             source_clock,
         };
         spi.reg.cr.write_with_zero(|w| w.rst().set_bit());
-        // Enables SPI master
+        spi.reg.cr.write_with_zero(|w| w.rst().clear_bit());
         spi.set_clock_speed(ClockSpeed::default()).unwrap();
         spi.reg
             .cfgr1
@@ -215,13 +215,15 @@ where
             // Safety: fields are four bits
             w.rxwater().bits(0xf).txwater().bits(0xf)
         });
+        spi.reg.cr.write_with_zero(|w| w.men().set_bit());
         spi
     }
 
     fn with_master_disabled<F: FnMut() -> R, R>(&self, mut act: F) -> R {
-        self.reg.cr.reset();
+        let men = self.reg.cr.read().men().bit_is_set();
+        self.reg.cr.modify(|_, w| w.men().clear_bit());
         let res = act();
-        self.reg.cr.write_with_zero(|w| w.men().set_bit());
+        self.reg.cr.modify(|_, w| w.men().bit(men));
         res
     }
 
@@ -229,7 +231,7 @@ where
         self.with_master_disabled(|| unsafe {
             self.reg.tcr.write(|w| {
                 w.framesz()
-                    .bits(0xf)
+                    .bits(7)
                     .cpol()
                     .bit(mode.polarity == embedded_hal::spi::Polarity::IdleHigh)
                     .cpha()
