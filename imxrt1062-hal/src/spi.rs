@@ -77,6 +77,25 @@ impl Unclocked {
     }
 }
 
+use embedded_hal::digital::v2::OutputPin;
+
+pub struct ChipSelect<M> {
+    _module: PhantomData<M>,
+}
+
+impl<M> OutputPin for ChipSelect<M>
+where
+    M: module::Module,
+{
+    type Error = core::convert::Infallible;
+    fn set_high(&mut self) -> Result<(), Self::Error> {
+        Ok(())
+    }
+    fn set_low(&mut self) -> Result<(), Self::Error> {
+        Ok(())
+    }
+}
+
 /// A SPI builder that can build a SPI peripheral
 pub struct Builder<M> {
     _module: PhantomData<M>,
@@ -154,10 +173,13 @@ impl ClockSpeed {
         let div = div.saturating_sub(2).min(255).max(0) as u8;
 
         reg.ccr.write(|w|
-            // Safety: 0 <= div <= 255, and also of type u8
+            // Safety: all fields are u8 size, no illegal values
             w.sckdiv().bits(div)
-                // Not sure why we want exactly this delay tbh, but it matches the Arduino SPI lib
-                .dbt().bits(div / 2));
+             .dbt().bits(div / 2)
+             // Both of these delays are arbitrary choices, and they should
+             // probably be configurable by the end-user.
+             .sckpcs().bits(0x1F)
+             .pcssck().bits(0x1F));
     }
 }
 
@@ -227,18 +249,25 @@ where
         res
     }
 
+    pub fn chip_select_handle<PCS>(&mut self, mut pcs: PCS) -> ChipSelect<M>
+    where
+        PCS: spi::Pin<Module = M, Wire = spi::PCS0> + daisy::IntoDaisy,
+    {
+        pcs.configure();
+        let _ = pcs.into_daisy();
+        ChipSelect {
+            _module: PhantomData,
+        }
+    }
+
     pub fn set_mode(&mut self, mode: embedded_hal::spi::Mode) -> Result<(), ModeError> {
-        self.with_master_disabled(|| unsafe {
-            self.reg.tcr.write(|w| {
-                w.framesz()
-                    .bits(7)
-                    .cpol()
-                    .bit(mode.polarity == embedded_hal::spi::Polarity::IdleHigh)
-                    .cpha()
-                    .bit(mode.phase == embedded_hal::spi::Phase::CaptureOnSecondTransition)
-            });
-            Ok(())
-        })
+        self.reg.tcr.modify(|_, w| {
+            w.cpol()
+                .bit(mode.polarity == embedded_hal::spi::Polarity::IdleHigh)
+                .cpha()
+                .bit(mode.phase == embedded_hal::spi::Phase::CaptureOnSecondTransition)
+        });
+        Ok(())
     }
 
     /// Set the SPI master clock speed
@@ -304,6 +333,43 @@ where
             Ok(status)
         }
     }
+
+    #[inline(always)]
+    fn send<Word: Into<u32> + Copy>(&mut self, word: Word) -> nb::Result<(), Error> {
+        let sr = self.check_errors()?;
+        self.clear_status();
+        self.reg.tcr.modify(|_, w| unsafe {
+            // Safety: 12 bits, this is only called when type Word is u8 or u16,
+            // so it's only a value of 15 or 7. Will also work for a u32, if that
+            // was needed in the future.
+            w.framesz()
+                .bits((core::mem::size_of::<Word>() * 8 - 1) as u16)
+        });
+        if sr.mbf().bit_is_set() || sr.tdf().bit_is_clear() {
+            return Err(nb::Error::WouldBlock);
+        }
+
+        self.reg
+            .tdr
+            .write(|w| unsafe { w.data().bits(word.into()) });
+        self.wait(|msr| msr.tdf().bit_is_set())?;
+        Ok(())
+    }
+
+    #[inline(always)]
+    fn read(&mut self) -> nb::Result<u32, Error> {
+        let sr = self.check_errors()?;
+        if sr.mbf().bit_is_set() {
+            return Err(nb::Error::WouldBlock);
+        }
+
+        if self.reg.rsr.read().rxempty().bit_is_clear() {
+            let word = self.reg.rdr.read().data().bits();
+            Ok(word)
+        } else {
+            Err(nb::Error::WouldBlock)
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -327,37 +393,33 @@ where
     type Error = Error;
 
     fn read(&mut self) -> nb::Result<u8, Self::Error> {
-        let sr = self.check_errors()?;
-        if sr.mbf().bit_is_set() {
-            return Err(nb::Error::WouldBlock);
-        }
-
-        if self.reg.rsr.read().rxempty().bit_is_clear() {
-            let word = self.reg.rdr.read().data().bits();
-            Ok(word as u8)
-        } else {
-            Err(nb::Error::WouldBlock)
-        }
+        Self::read(self).map(|w| w as u8)
     }
 
-    /// Sends a word to the slave
     fn send(&mut self, word: u8) -> nb::Result<(), Self::Error> {
-        let sr = self.check_errors()?;
-        self.clear_status();
-        if sr.mbf().bit_is_set() || sr.tdf().bit_is_clear() {
-            return Err(nb::Error::WouldBlock);
-        }
-
-        self.reg
-            .tdr
-            .write(|w| unsafe { w.data().bits(word as u32) });
-        self.wait(|msr| msr.tdf().bit_is_set())?;
-        Ok(())
+        Self::send::<u8>(self, word)
     }
 }
 
 impl<M> embedded_hal::blocking::spi::write::Default<u8> for SPI<M> where M: module::Module {}
-
 impl<M> embedded_hal::blocking::spi::transfer::Default<u8> for SPI<M> where M: module::Module {}
-
 impl<M> embedded_hal::blocking::spi::write_iter::Default<u8> for SPI<M> where M: module::Module {}
+
+impl<M> embedded_hal::spi::FullDuplex<u16> for SPI<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+
+    fn read(&mut self) -> nb::Result<u16, Self::Error> {
+        Self::read(self).map(|w| w as u16)
+    }
+
+    fn send(&mut self, word: u16) -> nb::Result<(), Self::Error> {
+        Self::send::<u16>(self, word)
+    }
+}
+
+impl<M> embedded_hal::blocking::spi::write::Default<u16> for SPI<M> where M: module::Module {}
+impl<M> embedded_hal::blocking::spi::transfer::Default<u16> for SPI<M> where M: module::Module {}
+impl<M> embedded_hal::blocking::spi::write_iter::Default<u16> for SPI<M> where M: module::Module {}
