@@ -1,4 +1,17 @@
 //! SPI support
+//!
+//! The module provides an implementation of the `embedded_hal::spi::FullDuplex` trait.
+//! All blocking implementations are provided by the default implementations from
+//! `embedded_hal`.
+//!
+//! # Chip selects (CS) for SPI peripherals
+//!
+//! The iMXRT SPI peripherals have one or more peripheral-controlled chip selects (CS). Using
+//! the peripheral-controlled CS means that you do not need a GPIO to coordinate SPI operations.
+//! The peripheral-controlled CS is disabled by default. Use the `enable_chip_select_N`, where
+//! `N` is the CS number, to enable the peripheral-controlled CS. Your hardware must be wired to
+//! accomodate this selection. If you do not want to use the peripheral-controlled CS, you may
+//! select your own GPIO.
 
 pub use crate::iomuxc::spi::module;
 
@@ -77,25 +90,6 @@ impl Unclocked {
     }
 }
 
-use embedded_hal::digital::v2::OutputPin;
-
-pub struct ChipSelect<M> {
-    _module: PhantomData<M>,
-}
-
-impl<M> OutputPin for ChipSelect<M>
-where
-    M: module::Module,
-{
-    type Error = core::convert::Infallible;
-    fn set_high(&mut self) -> Result<(), Self::Error> {
-        Ok(())
-    }
-    fn set_low(&mut self) -> Result<(), Self::Error> {
-        Ok(())
-    }
-}
-
 /// A SPI builder that can build a SPI peripheral
 pub struct Builder<M> {
     _module: PhantomData<M>,
@@ -118,8 +112,8 @@ where
         }
     }
 
-    /// Builds an SPI peripheral from the SDO, SDI and SCK pins. The return
-    /// is a configured SPI master running at 8Mhz.
+    /// Builds a SPI peripheral from the SDO, SDI and SCK pins. The return
+    /// is a configured SPI master running at 8MHz.
     pub fn build<SDO, SDI, SCK>(self, mut sdo: SDO, mut sdi: SDI, mut sck: SCK) -> SPI<M>
     where
         SDO: spi::Pin<Module = M, Wire = spi::SDO> + daisy::IntoDaisy,
@@ -138,8 +132,9 @@ where
     }
 }
 
-/// SPI Clock speed
-#[derive(Clone, Copy, Debug)]
+/// SPI Clock speed, in Hz
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct ClockSpeed(pub u32);
 
 impl Default for ClockSpeed {
@@ -249,17 +244,19 @@ where
         res
     }
 
-    pub fn chip_select_handle<PCS>(&mut self, mut pcs: PCS) -> ChipSelect<M>
+    /// Enables the peripheral-controlled chip select 0 (PCS0)
+    ///
+    /// Using the peripheral-controlled chip select is typically more efficient,
+    /// and it means that software doesn't need to cooridnate its control.
+    pub fn enable_chip_select_0<PCS>(&mut self, mut pcs: PCS)
     where
         PCS: spi::Pin<Module = M, Wire = spi::PCS0> + daisy::IntoDaisy,
     {
         pcs.configure();
         let _ = pcs.into_daisy();
-        ChipSelect {
-            _module: PhantomData,
-        }
     }
 
+    /// Set the SPI mode for the peripheral
     pub fn set_mode(&mut self, mode: embedded_hal::spi::Mode) -> Result<(), ModeError> {
         self.reg.tcr.modify(|_, w| {
             w.cpol()
@@ -313,6 +310,7 @@ where
         });
     }
 
+    /// Clear any existing data in the SPI receive or transfer FIFOs
     // TODO: for now I believe this is required to be public for the cases where an user wishes
     // to clear the FIFO.  It would be a bit cleaner if we had SPI transaction methods
     pub fn clear_fifo(&mut self) {
@@ -372,6 +370,7 @@ where
     }
 }
 
+/// An error that occured during a SPI operation
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Error {
     /// A generic transmit error
@@ -380,8 +379,6 @@ pub enum Error {
     Receive,
     /// Data mismatch error
     DataMismatch,
-    /// Requesting too much data in a receive; upper limit is `u8::MAX`
-    RequestTooMuchData,
     /// Busy-wait on an internal flag was too long
     WaitTimeout,
 }

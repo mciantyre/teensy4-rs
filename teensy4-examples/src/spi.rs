@@ -69,10 +69,21 @@ fn main() -> ! {
         }
     };
 
-    // We're using the SPI's default chip select pin. This returns a
+    // We're using the SPI's default chip select pin. This uses a
     // dummy `OutputPin` that does nothing! If you'd rather use any
     // GPIO, replace this line to construct a GPIO from another pin.
-    let mut cs4 = spi4.chip_select_handle(peripherals.pins.p10.alt3());
+    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
+    struct DummyCS;
+    impl embedded_hal::digital::v2::OutputPin for DummyCS {
+        type Error = core::convert::Infallible;
+        fn set_high(&mut self) -> Result<(), Self::Error> {
+            Ok(())
+        }
+        fn set_low(&mut self) -> Result<(), Self::Error> {
+            Ok(())
+        }
+    }
+    let mut cs4 = DummyCS;
     log::info!("Waiting 5 seconds before querying MPU9250...");
     bsp::delay(4000);
 
