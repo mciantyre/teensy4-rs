@@ -72,7 +72,7 @@ fn main() -> ! {
             .start(core::time::Duration::from_millis(250));
         cortex_m::peripheral::NVIC::unmask(interrupt::PIT);
     }
-    let mut led = periphs.led;
+    let mut led = bsp::configure_led(&mut periphs.gpr, periphs.pins.p13);
     loop {
         led.toggle().unwrap();
         cortex_m::asm::wfi();

@@ -484,6 +484,41 @@ pub mod i2c {
     }
 }
 
+/// Timing configurations for SPI peripherals
+pub mod spi {
+    use super::{pac::ccm, Divider, Frequency};
+
+    #[derive(Clone, Copy)]
+    #[non_exhaustive] // Not all variants added
+    pub enum ClockSelect {
+        Pll2,
+    }
+
+    impl From<ClockSelect> for ccm::cbcmr::LPSPI_CLK_SEL_A {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::Pll2 => ccm::cbcmr::LPSPI_CLK_SEL_A::LPSPI_CLK_SEL_2,
+            }
+        }
+    }
+
+    pub type PrescalarSelect = ccm::cbcmr::LPSPI_PODF_A;
+
+    impl From<ClockSelect> for Frequency {
+        fn from(clock_select: ClockSelect) -> Self {
+            match clock_select {
+                ClockSelect::Pll2 => Frequency(528_000_000),
+            }
+        }
+    }
+
+    impl From<PrescalarSelect> for Divider {
+        fn from(prescalar_select: PrescalarSelect) -> Self {
+            Divider((u8::from(prescalar_select) as u32) + 1)
+        }
+    }
+}
+
 pub mod uart {
     use super::{pac::ccm, Divider, Frequency, OSCILLATOR_FREQUENCY};
 
