@@ -2,19 +2,22 @@
 
 A collection of crates that support the development of Rust applications and libraries for the Teensy 4.
 
-Status: prototype. We can
+Status: prototype.
 
+We can
 - blink the LED
-- register exceptions
-- register interrupts
+- statically register exceptions
+- statically register interrupts
 - log over USB
+- read serial data over USB
 - measure intervals with periodic interrupt timers
 - talk to I2C slave devices
 - control PWM outputs (single pin)
 - accept serial (UART) data (although the hardware receiver buffer is small)
 - transmit serial (UART) data
+- send and receive data over SPI peripherals
 
-We've measured a few things things, like I2C, UART, and timer timings. No one has built a fully-fledged application with these crates, yet...
+We've measured a few things things, like I2C, UART, SPI, and timer timings. No one has built a fully-fledged application with these crates, yet...
 
 [![Build Status](https://travis-ci.org/mciantyre/teensy4-rs.svg?branch=master)](https://travis-ci.org/mciantyre/teensy4-rs)
 
