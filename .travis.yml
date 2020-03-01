@@ -29,4 +29,3 @@ script:
   - cargo test --target $RUST_HOST_TARGET
   - cargo clippy --target $RUST_HOST_TARGET -- --deny warnings
   - cd ..
-cache: cargo
