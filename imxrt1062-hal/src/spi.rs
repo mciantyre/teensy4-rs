@@ -1,4 +1,17 @@
 //! SPI support
+//!
+//! The module provides an implementation of the `embedded_hal::spi::FullDuplex` trait.
+//! All blocking implementations are provided by the default implementations from
+//! `embedded_hal`.
+//!
+//! # Chip selects (CS) for SPI peripherals
+//!
+//! The iMXRT SPI peripherals have one or more peripheral-controlled chip selects (CS). Using
+//! the peripheral-controlled CS means that you do not need a GPIO to coordinate SPI operations.
+//! The peripheral-controlled CS is disabled by default. Use the `enable_chip_select_N`, where
+//! `N` is the CS number, to enable the peripheral-controlled CS. Your hardware must be wired to
+//! accomodate this selection. If you do not want to use the peripheral-controlled CS, you may
+//! select your own GPIO.
 
 pub use crate::iomuxc::spi::module;
 
@@ -99,8 +112,8 @@ where
         }
     }
 
-    /// Builds an SPI peripheral from the SDO, SDI and SCK pins. The return
-    /// is a configured SPI master running at 8Mhz.
+    /// Builds a SPI peripheral from the SDO, SDI and SCK pins. The return
+    /// is a configured SPI master running at 8MHz.
     pub fn build<SDO, SDI, SCK>(self, mut sdo: SDO, mut sdi: SDI, mut sck: SCK) -> SPI<M>
     where
         SDO: spi::Pin<Module = M, Wire = spi::SDO> + daisy::IntoDaisy,
@@ -119,8 +132,9 @@ where
     }
 }
 
-/// SPI Clock speed
-#[derive(Clone, Copy, Debug)]
+/// SPI Clock speed, in Hz
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[repr(transparent)]
 pub struct ClockSpeed(pub u32);
 
 impl Default for ClockSpeed {
@@ -154,10 +168,13 @@ impl ClockSpeed {
         let div = div.saturating_sub(2).min(255).max(0) as u8;
 
         reg.ccr.write(|w|
-            // Safety: 0 <= div <= 255, and also of type u8
+            // Safety: all fields are u8 size, no illegal values
             w.sckdiv().bits(div)
-                // Not sure why we want exactly this delay tbh, but it matches the Arduino SPI lib
-                .dbt().bits(div / 2));
+             .dbt().bits(div / 2)
+             // Both of these delays are arbitrary choices, and they should
+             // probably be configurable by the end-user.
+             .sckpcs().bits(0x1F)
+             .pcssck().bits(0x1F));
     }
 }
 
@@ -227,18 +244,27 @@ where
         res
     }
 
+    /// Enables the peripheral-controlled chip select 0 (PCS0)
+    ///
+    /// Using the peripheral-controlled chip select is typically more efficient,
+    /// and it means that software doesn't need to cooridnate its control.
+    pub fn enable_chip_select_0<PCS>(&mut self, mut pcs: PCS)
+    where
+        PCS: spi::Pin<Module = M, Wire = spi::PCS0> + daisy::IntoDaisy,
+    {
+        pcs.configure();
+        let _ = pcs.into_daisy();
+    }
+
+    /// Set the SPI mode for the peripheral
     pub fn set_mode(&mut self, mode: embedded_hal::spi::Mode) -> Result<(), ModeError> {
-        self.with_master_disabled(|| unsafe {
-            self.reg.tcr.write(|w| {
-                w.framesz()
-                    .bits(7)
-                    .cpol()
-                    .bit(mode.polarity == embedded_hal::spi::Polarity::IdleHigh)
-                    .cpha()
-                    .bit(mode.phase == embedded_hal::spi::Phase::CaptureOnSecondTransition)
-            });
-            Ok(())
-        })
+        self.reg.tcr.modify(|_, w| {
+            w.cpol()
+                .bit(mode.polarity == embedded_hal::spi::Polarity::IdleHigh)
+                .cpha()
+                .bit(mode.phase == embedded_hal::spi::Phase::CaptureOnSecondTransition)
+        });
+        Ok(())
     }
 
     /// Set the SPI master clock speed
@@ -284,6 +310,7 @@ where
         });
     }
 
+    /// Clear any existing data in the SPI receive or transfer FIFOs
     // TODO: for now I believe this is required to be public for the cases where an user wishes
     // to clear the FIFO.  It would be a bit cleaner if we had SPI transaction methods
     pub fn clear_fifo(&mut self) {
@@ -304,8 +331,46 @@ where
             Ok(status)
         }
     }
+
+    #[inline(always)]
+    fn send<Word: Into<u32> + Copy>(&mut self, word: Word) -> nb::Result<(), Error> {
+        let sr = self.check_errors()?;
+        self.clear_status();
+        self.reg.tcr.modify(|_, w| unsafe {
+            // Safety: 12 bits, this is only called when type Word is u8 or u16,
+            // so it's only a value of 15 or 7. Will also work for a u32, if that
+            // was needed in the future.
+            w.framesz()
+                .bits((core::mem::size_of::<Word>() * 8 - 1) as u16)
+        });
+        if sr.mbf().bit_is_set() || sr.tdf().bit_is_clear() {
+            return Err(nb::Error::WouldBlock);
+        }
+
+        self.reg
+            .tdr
+            .write(|w| unsafe { w.data().bits(word.into()) });
+        self.wait(|msr| msr.tdf().bit_is_set())?;
+        Ok(())
+    }
+
+    #[inline(always)]
+    fn read(&mut self) -> nb::Result<u32, Error> {
+        let sr = self.check_errors()?;
+        if sr.mbf().bit_is_set() {
+            return Err(nb::Error::WouldBlock);
+        }
+
+        if self.reg.rsr.read().rxempty().bit_is_clear() {
+            let word = self.reg.rdr.read().data().bits();
+            Ok(word)
+        } else {
+            Err(nb::Error::WouldBlock)
+        }
+    }
 }
 
+/// An error that occured during a SPI operation
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Error {
     /// A generic transmit error
@@ -314,8 +379,6 @@ pub enum Error {
     Receive,
     /// Data mismatch error
     DataMismatch,
-    /// Requesting too much data in a receive; upper limit is `u8::MAX`
-    RequestTooMuchData,
     /// Busy-wait on an internal flag was too long
     WaitTimeout,
 }
@@ -327,37 +390,33 @@ where
     type Error = Error;
 
     fn read(&mut self) -> nb::Result<u8, Self::Error> {
-        let sr = self.check_errors()?;
-        if sr.mbf().bit_is_set() {
-            return Err(nb::Error::WouldBlock);
-        }
-
-        if self.reg.rsr.read().rxempty().bit_is_clear() {
-            let word = self.reg.rdr.read().data().bits();
-            Ok(word as u8)
-        } else {
-            Err(nb::Error::WouldBlock)
-        }
+        Self::read(self).map(|w| w as u8)
     }
 
-    /// Sends a word to the slave
     fn send(&mut self, word: u8) -> nb::Result<(), Self::Error> {
-        let sr = self.check_errors()?;
-        self.clear_status();
-        if sr.mbf().bit_is_set() || sr.tdf().bit_is_clear() {
-            return Err(nb::Error::WouldBlock);
-        }
-
-        self.reg
-            .tdr
-            .write(|w| unsafe { w.data().bits(word as u32) });
-        self.wait(|msr| msr.tdf().bit_is_set())?;
-        Ok(())
+        Self::send::<u8>(self, word)
     }
 }
 
 impl<M> embedded_hal::blocking::spi::write::Default<u8> for SPI<M> where M: module::Module {}
-
 impl<M> embedded_hal::blocking::spi::transfer::Default<u8> for SPI<M> where M: module::Module {}
-
 impl<M> embedded_hal::blocking::spi::write_iter::Default<u8> for SPI<M> where M: module::Module {}
+
+impl<M> embedded_hal::spi::FullDuplex<u16> for SPI<M>
+where
+    M: module::Module,
+{
+    type Error = Error;
+
+    fn read(&mut self) -> nb::Result<u16, Self::Error> {
+        Self::read(self).map(|w| w as u16)
+    }
+
+    fn send(&mut self, word: u16) -> nb::Result<(), Self::Error> {
+        Self::send::<u16>(self, word)
+    }
+}
+
+impl<M> embedded_hal::blocking::spi::write::Default<u16> for SPI<M> where M: module::Module {}
+impl<M> embedded_hal::blocking::spi::transfer::Default<u16> for SPI<M> where M: module::Module {}
+impl<M> embedded_hal::blocking::spi::write_iter::Default<u16> for SPI<M> where M: module::Module {}
