@@ -229,7 +229,9 @@ impl Peripherals {
         Some(Peripherals::new(p))
     }
 
-    fn new(mut p: hal::Peripherals) -> Peripherals {
+    /// Instantiate the system peripherals, given HAL peripherals that have been initialized in
+    /// some other way, e.g. managed by the RTFM framework.
+    pub fn new(mut p: hal::Peripherals) -> Peripherals {
         p.systick.disable_counter();
         p.systick
             .set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);

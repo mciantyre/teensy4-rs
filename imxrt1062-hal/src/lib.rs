@@ -59,7 +59,7 @@ impl Peripherals {
         Some(Peripherals::new(p, cp))
     }
 
-    fn new(p: pac::Peripherals, cp: pac::CorePeripherals) -> Self {
+    pub fn new(p: pac::Peripherals, cp: pac::CorePeripherals) -> Self {
         Peripherals {
             iomuxc: iomuxc::IOMUXC::new(p.IOMUXC),
             systick: cp.SYST,
