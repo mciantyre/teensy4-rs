@@ -106,16 +106,14 @@ extern crate teensy4_fcb;
 
 pub mod usb;
 
-pub use hal::pac::interrupt;
-pub use imxrt1062_hal as hal;
+pub use hal::ral::interrupt;
 pub use imxrt1062_rt as rt;
+pub use imxrt_hal as hal;
 pub use teensy4_usb_sys::serial_write;
 
 pub type LED = hal::gpio::GPIO2IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
 pub use hal::ccm::CCM;
-pub use hal::pac::PIT;
-pub use hal::pac::SYST;
 
 /// Teensy pins that do not yet have a function
 ///
@@ -195,20 +193,20 @@ pub struct Peripherals {
     pub usb: usb::USB,
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
-    /// PWM1 controller
-    pub pwm1: hal::pwm::UnclockedController<hal::pwm::module::_1>,
-    /// PWM2 controller
-    pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
-    /// PWM3 controller
-    pub pwm3: hal::pwm::UnclockedController<hal::pwm::module::_3>,
-    /// PWM4 controller
-    pub pwm4: hal::pwm::UnclockedController<hal::pwm::module::_4>,
+    // /// PWM1 controller
+    // pub pwm1: hal::pwm::UnclockedController<hal::pwm::module::_1>,
+    // /// PWM2 controller
+    // pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
+    // /// PWM3 controller
+    // pub pwm3: hal::pwm::UnclockedController<hal::pwm::module::_3>,
+    // /// PWM4 controller
+    // pub pwm4: hal::pwm::UnclockedController<hal::pwm::module::_4>,
     /// Teensy pins
     pub pins: Pins,
     /// Unclocked I2C peripherals
     pub i2c: hal::i2c::Unclocked,
-    /// Unclocked SPI peripherals
-    pub spi: hal::spi::Unclocked,
+    // /// Unclocked SPI peripherals
+    // pub spi: hal::spi::Unclocked,
     /// Unclocked UART peripherals
     pub uart: hal::uart::Unclocked,
     /// General purpose registers, used when configuring GPIO pins.
@@ -226,26 +224,30 @@ impl Peripherals {
     /// Instantiate the system peripherals. This may only be called once!
     pub fn take() -> Option<Self> {
         let p = hal::Peripherals::take()?;
+        let mut cp = cortex_m::Peripherals::take()?;
+        Self::set_systick(&mut cp.SYST);
         Some(Peripherals::new(p))
     }
 
-    fn new(mut p: hal::Peripherals) -> Peripherals {
-        p.systick.disable_counter();
-        p.systick
-            .set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
-        p.systick.set_reload((SYSTICK_EXT_FREQ / 1000) - 1);
-        p.systick.clear_current();
-        p.systick.enable_counter();
-        p.systick.enable_interrupt();
+    fn set_systick(systick: &mut cortex_m::peripheral::SYST) {
+        systick.disable_counter();
+        systick.set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
+        systick.set_reload((SYSTICK_EXT_FREQ / 1000) - 1);
+        systick.clear_current();
+        systick.enable_counter();
+        systick.enable_interrupt();
+    }
+
+    fn new(p: hal::Peripherals) -> Peripherals {
         Peripherals {
             ccm: p.ccm,
             pit: p.pit,
             usb: usb::USB::new(),
             dcdc: p.dcdc,
-            pwm1: p.pwm1,
-            pwm2: p.pwm2,
-            pwm3: p.pwm3,
-            pwm4: p.pwm4,
+            // pwm1: p.pwm1,
+            // pwm2: p.pwm2,
+            // pwm3: p.pwm3,
+            // pwm4: p.pwm4,
             pins: Pins {
                 p0: p.iomuxc.gpio_ad_b0_03,
                 p1: p.iomuxc.gpio_ad_b0_02,
@@ -280,7 +282,7 @@ impl Peripherals {
                 p37: p.iomuxc.gpio_sd_b0_00,
             },
             i2c: p.i2c,
-            spi: p.spi,
+            // spi: p.spi,
             uart: p.uart,
             gpr: p.iomuxc.gpr,
         }

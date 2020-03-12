@@ -12,7 +12,7 @@ Part of the teensy4-rs project.
 
 [dependencies]
 cortex-m = "0.6.1"
-imxrt1062-hal = { path = "../imxrt1062-hal" }
+imxrt-hal = { path = "../../imxrt/imxrt/imxrt-hal", features = ["imxrt1062", "rt"] }
 imxrt1062-rt = { path = "../imxrt1062-rt" }
 log = "0.4.8"
 teensy4-fcb = { path = "../teensy4-fcb" }
