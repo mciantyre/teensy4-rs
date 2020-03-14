@@ -136,15 +136,14 @@ impl ::log::Log for Logger {
     fn log(&self, record: &::log::Record) {
         if self.enabled(record.metadata()) {
             use core::fmt::Write;
-            // Stack space for writing
-            let mut buffer = [0; 256];
-            let mut cursor = Cursor::new(&mut buffer);
-            write!(&mut cursor, "[{} {}]: ", record.level(), record.target()).expect("infallible");
-            usbsys::serial_write(&cursor);
-            cursor.clear();
-            writeln!(&mut cursor, "{}\r", record.args()).expect("infallible");
-            usbsys::serial_write(&cursor);
-            cursor.clear();
+            write!(
+                Writer,
+                "[{} {}]: {}\r\n",
+                record.level(),
+                record.target(),
+                record.args()
+            )
+            .expect("infallible");
         }
     }
 
@@ -153,37 +152,20 @@ impl ::log::Log for Logger {
     }
 }
 
-/// Custom cursor for writing into buffers
-struct Cursor<'a> {
-    buffer: &'a mut [u8],
-    offset: usize,
-}
+// TODO: make this public?
+struct Writer;
 
-impl<'a> Cursor<'a> {
-    fn new(buffer: &'a mut [u8]) -> Self {
-        Cursor { buffer, offset: 0 }
-    }
-
-    fn clear(&mut self) {
-        self.offset = 0;
-    }
-}
-
-impl<'a> fmt::Write for Cursor<'a> {
-    fn write_str(&mut self, msg: &str) -> fmt::Result {
-        let src = msg.as_bytes();
-        let buf = &mut self.buffer[self.offset..];
-        let len = core::cmp::min(buf.len(), src.len());
-        let buf = &mut buf[..len];
-        buf.copy_from_slice(src);
-        self.offset += len;
+impl fmt::Write for Writer {
+    fn write_str(&mut self, string: &str) -> fmt::Result {
+        let mut at_linefeed = false;
+        for line in string.split("\n") {
+            if at_linefeed {
+                usbsys::serial_write("\r\n");
+            }
+            usbsys::serial_write(line.as_bytes());
+            at_linefeed = true;
+        }
         Ok(())
-    }
-}
-
-impl<'a> AsRef<[u8]> for Cursor<'a> {
-    fn as_ref(&self) -> &[u8] {
-        &self.buffer[..self.offset]
     }
 }
 
