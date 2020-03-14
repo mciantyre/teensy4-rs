@@ -162,7 +162,10 @@ impl fmt::Write for Writer {
             if at_linefeed {
                 usbsys::serial_write("\r\n");
             }
-            usbsys::serial_write(line.as_bytes());
+            let bytes = line.as_bytes();
+            if !bytes.is_empty() {
+                usbsys::serial_write(bytes);
+            }
             at_linefeed = true;
         }
         Ok(())
