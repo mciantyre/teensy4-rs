@@ -72,7 +72,7 @@ impl USB {
             usbsys::usb_init();
             cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
         }
-        Reader(())
+        Reader(core::marker::PhantomData)
     }
 
     /// # Safety
@@ -173,7 +173,8 @@ impl fmt::Write for Writer {
 }
 
 /// A type that can read USB serial messages from a host
-pub struct Reader(());
+// Uses a raw `*const ()` to ensure that Reader is not Send or Sync
+pub struct Reader(core::marker::PhantomData<*const ()>);
 
 /// OK to transfer across 'thread' boundaries, but not safe for
 /// multi-threaded access (Sync).
