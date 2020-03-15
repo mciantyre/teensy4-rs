@@ -136,9 +136,9 @@ impl ::log::Log for Logger {
     fn log(&self, record: &::log::Record) {
         if self.enabled(record.metadata()) {
             use core::fmt::Write;
-            write!(
+            writeln!(
                 Writer,
-                "[{} {}]: {}\r\n",
+                "[{} {}]: {}",
                 record.level(),
                 record.target(),
                 record.args()
