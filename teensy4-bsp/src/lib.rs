@@ -193,14 +193,14 @@ pub struct Peripherals {
     pub usb: usb::USB,
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
-    // /// PWM1 controller
-    // pub pwm1: hal::pwm::UnclockedController<hal::pwm::module::_1>,
-    // /// PWM2 controller
-    // pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
-    // /// PWM3 controller
-    // pub pwm3: hal::pwm::UnclockedController<hal::pwm::module::_3>,
-    // /// PWM4 controller
-    // pub pwm4: hal::pwm::UnclockedController<hal::pwm::module::_4>,
+    /// PWM1 controller
+    pub pwm1: hal::pwm::Unclocked<hal::pwm::module::_1>,
+    /// PWM2 controller
+    pub pwm2: hal::pwm::Unclocked<hal::pwm::module::_2>,
+    /// PWM3 controller
+    pub pwm3: hal::pwm::Unclocked<hal::pwm::module::_3>,
+    /// PWM4 controller
+    pub pwm4: hal::pwm::Unclocked<hal::pwm::module::_4>,
     /// Teensy pins
     pub pins: Pins,
     /// Unclocked I2C peripherals
@@ -244,10 +244,10 @@ impl Peripherals {
             pit: p.pit,
             usb: usb::USB::new(),
             dcdc: p.dcdc,
-            // pwm1: p.pwm1,
-            // pwm2: p.pwm2,
-            // pwm3: p.pwm3,
-            // pwm4: p.pwm4,
+            pwm1: p.pwm1,
+            pwm2: p.pwm2,
+            pwm3: p.pwm3,
+            pwm4: p.pwm4,
             pins: Pins {
                 p0: p.iomuxc.gpio_ad_b0_03,
                 p1: p.iomuxc.gpio_ad_b0_02,
