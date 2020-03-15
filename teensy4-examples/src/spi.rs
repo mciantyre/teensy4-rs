@@ -130,7 +130,7 @@ fn transact<'a, O: OutputPin, F: FnOnce() -> R + 'a, R>(cs: &'a mut O, act: F) -
 
 /// Creates a read instruction for the MPU9250
 const fn read(address: u8) -> u16 {
-    (((address as u16) | (1 << 7)) << 8)
+    ((address as u16) | (1 << 7)) << 8
 }
 
 /// Creates a write instruction for the MPU9250

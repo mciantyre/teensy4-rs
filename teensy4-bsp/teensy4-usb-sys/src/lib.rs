@@ -62,7 +62,7 @@ extern "C" {
 /// Writes the buffer of data to the USB host
 ///
 /// TODO error handling, return the number of bytes written, etc.
-pub fn serial_write<B: AsRef<[u8]>>(buffer: &B) {
+pub fn serial_write<B: AsRef<[u8]>>(buffer: B) {
     let buffer = buffer.as_ref();
     unsafe {
         usb_serial_write(buffer.as_ptr(), buffer.len() as u32);
