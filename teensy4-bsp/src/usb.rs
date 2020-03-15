@@ -158,7 +158,7 @@ struct Writer;
 impl fmt::Write for Writer {
     fn write_str(&mut self, string: &str) -> fmt::Result {
         let mut at_linefeed = false;
-        for line in string.split("\n") {
+        for line in string.split('\n') {
             if at_linefeed {
                 usbsys::serial_write("\r\n");
             }
