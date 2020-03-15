@@ -205,8 +205,8 @@ pub struct Peripherals {
     pub pins: Pins,
     /// Unclocked I2C peripherals
     pub i2c: hal::i2c::Unclocked,
-    // /// Unclocked SPI peripherals
-    // pub spi: hal::spi::Unclocked,
+    /// Unclocked SPI peripherals
+    pub spi: hal::spi::Unclocked,
     /// Unclocked UART peripherals
     pub uart: hal::uart::Unclocked,
     /// General purpose registers, used when configuring GPIO pins.
@@ -282,7 +282,7 @@ impl Peripherals {
                 p37: p.iomuxc.gpio_sd_b0_00,
             },
             i2c: p.i2c,
-            // spi: p.spi,
+            spi: p.spi,
             uart: p.uart,
             gpr: p.iomuxc.gpr,
         }
