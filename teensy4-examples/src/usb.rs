@@ -1,5 +1,9 @@
 //! Demonstrates our ability to log over USB, and read
 //! USB serial messages from a USB host.
+//!
+//! Success criteria: you see log messages when connecting
+//! to the Teensy 4 using PuTTY of another serial console.
+//! Baud rate is 9600.
 
 #![no_std]
 #![no_main]

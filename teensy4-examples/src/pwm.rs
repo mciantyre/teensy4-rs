@@ -1,6 +1,14 @@
 //! The example shows how to allocate PWM controllers and pins,
 //! set duty cycles, and enable / disable PWM pins. We use
 //! pin 6 and pin 9 of the Teensy board.
+//!
+//! Success criteria: pin 6 starts at 25% duty cycle, and pin 9
+//! starts at 50% duty cycle. They stay that way for 200ms. Pin 9
+//! turns off, and pin 6 stays on for another 200ms. Both pins are
+//! then disabled for 400ms. Switch the duty cycles between the two
+//! pins, and re-run the loop.
+//!
+//! Success criteria: the switching period is 1ms (1KHz).
 
 #![no_std]
 #![no_main]

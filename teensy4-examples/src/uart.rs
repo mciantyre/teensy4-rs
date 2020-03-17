@@ -8,6 +8,12 @@
 //! overrun if we're not reading fast enough.
 //!
 //! See the `const` configurations for settings.
+//!
+//! Success criteria: the loopback is reported as successful
+//! over USB logging. Changing the settings below demonstrate
+//! the same ideal behavior. When decreasing the `TX_FIFO_SIZE`,
+//! we see an increase of blocked reads. The transfer
+//! content is `0xDEADBEEF`.
 
 #![no_std]
 #![no_main]
@@ -20,15 +26,15 @@ use teensy4_bsp as bsp;
 use embedded_hal::digital::v2::ToggleableOutputPin;
 use embedded_hal::serial::{Read, Write};
 
-const BAUD: u32 = 115_200;
+const BAUD: u32 = 9600;
 /// Change the TX FIFO sizes to see how the FIFO affects the number
 /// of `WouldBlock`s that we would see. Setting this to zero disables
 /// the FIFO.
 const TX_FIFO_SIZE: u8 = 4;
 /// Change me to affect the partity bit generation
-const PARITY: Option<bsp::hal::uart::Parity> = Some(bsp::hal::uart::Parity::Odd);
+const PARITY: Option<bsp::hal::uart::Parity> = None;
 /// Change me to invert all output data, and to treat all input data as inverted
-const INVERTED: bool = true;
+const INVERTED: bool = false;
 
 /// Writes `bytes` to the provided `uart`. The function will count the
 /// number of blocks that we hit, and will log how many blocks we

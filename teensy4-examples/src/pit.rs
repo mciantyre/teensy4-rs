@@ -1,4 +1,9 @@
 //! Enables a PIT timer to test interrupts
+//!
+//! Success criteria: the LED is on for 250ms,
+//! then off for 250ms, then on for 250ms, then off
+//! for 250ms... This is observable using a scope, or
+//! a really good eye, finger, and stopwatch.
 
 #![no_std]
 #![no_main]

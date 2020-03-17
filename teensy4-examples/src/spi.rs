@@ -13,6 +13,10 @@
 //! than relying on an arbitrary GPIO to control the chip select. However, you
 //! may consider using an arbitrary GPIO for chip select. The example supports
 //! that as well.
+//!
+//! Success criteria: the SPI clock rate is 1MHz. We can read both the MPU9250's
+//! `WHO_AM_I` register (returns 0x71), and also the AK8963's `WHO_AM_I` register
+//! (returns 0x48).
 
 #![no_std]
 #![no_main]

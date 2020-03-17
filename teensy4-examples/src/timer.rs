@@ -1,7 +1,11 @@
 //! Demonstrates how to use a periodic interrupt
 //! timer (PIT) to measure a duration.
-
-//! Enables a PIT timer to test interrupts
+//!
+//! Success criteria: the chained timer measures 500ms, and
+//! timer 2 measures the 200us delay implemented by timer 3.
+//! The times are reported over USB. While in the spin loops,
+//! the LED is enabled, so it should be possible to measure
+//! the delay by watching the LED.
 
 #![no_std]
 #![no_main]
