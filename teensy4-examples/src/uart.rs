@@ -26,7 +26,7 @@ use teensy4_bsp as bsp;
 use embedded_hal::digital::v2::ToggleableOutputPin;
 use embedded_hal::serial::{Read, Write};
 
-const BAUD: u32 = 9600;
+const BAUD: u32 = 115200;
 /// Change the TX FIFO sizes to see how the FIFO affects the number
 /// of `WouldBlock`s that we would see. Setting this to zero disables
 /// the FIFO.
@@ -35,6 +35,8 @@ const TX_FIFO_SIZE: u8 = 4;
 const PARITY: Option<bsp::hal::uart::Parity> = None;
 /// Change me to invert all output data, and to treat all input data as inverted
 const INVERTED: bool = false;
+/// The data you want to send and receive
+const DATA: [u8; 4] = [0xDE, 0xAD, 0xBE, 0xEF];
 
 /// Writes `bytes` to the provided `uart`. The function will count the
 /// number of blocks that we hit, and will log how many blocks we
@@ -104,9 +106,9 @@ fn main() -> ! {
     loop {
         bsp::delay(1_000);
         led.toggle().unwrap();
-        write(&mut uart, &[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
+        let mut buffer = DATA;
+        write(&mut uart, &buffer).unwrap();
         bsp::delay(1);
-        let mut buffer = [0; 4];
         match read(&mut uart, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),
