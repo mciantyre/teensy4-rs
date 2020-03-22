@@ -7,6 +7,18 @@ import argparse
 import pathlib
 import subprocess
 import sys
+import shutil
+import time
+import toml
+
+def remove_crate(crate_path):
+    with open("Cargo.toml", "r") as f:
+        cargo_toml = toml.load(f)
+    cargo_toml["workspace"]["members"].remove(str(crate_path))
+    with open("Cargo.toml", "w") as f:
+        toml.dump(cargo_toml, f)
+    shutil.rmtree(crate_path)
+    print(f"Removed '{crate_path}'")
 
 def build_cargo_publish(dry_run, allow_dirty):
     def _call(crate_path):
@@ -26,11 +38,12 @@ def build_cargo_publish(dry_run, allow_dirty):
             subprocess.run(cmd, check=True, capture_output=True)
             dry_run_notice = "(dry run)" if dry_run else ""
             print(f"Crate '{crate_path}' published OK {dry_run_notice}")
+
         except subprocess.CalledProcessError as e:
             if b"crate version" in e.stderr and b"is already uploaded" in e.stderr:
                 print(f"publish-pacs: skipping crate '{crate_path}', since the version already exists in crates.io")
             else:
-                print(e)
+                print(e.stderr, e.stdout)
                 raise
         
     return _call
@@ -64,3 +77,5 @@ subcrates = [
 ]
 for subcrate in subcrates:
     cargo_publish(subcrate)
+    remove_crate(subcrate)
+    time.sleep(30)
