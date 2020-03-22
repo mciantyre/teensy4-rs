@@ -140,7 +140,7 @@ fn update_pac_dependencies(output_pac: &Path, crate_names: &[String]) {
         ::toml::de::from_slice(&file).unwrap()
     };
     for crate_name in crate_names {
-        krate.add_versioned_dependency(crate_name, crate_name, "0.1.0");
+        krate.add_versioned_dependency(crate_name, crate_name, "0.1.1");
     }
     let new_toml = ::toml::ser::to_string_pretty(&krate).unwrap();
     fs::write(&output_pac_toml, new_toml).unwrap();
@@ -152,6 +152,7 @@ fn add_cargo_contents(output_pac: &Path) {
         let file = fs::read(&output_pac_toml).unwrap();
         ::toml::de::from_slice(&file).unwrap()
     };
+    krate.set_version("0.1.1");
     krate.set_categories(&["embedded", "hardware-support", "no-std"]);
     krate.set_keywords(&["arm", "svd2rust", "imxrt1062", "cortex-m"]);
     krate.set_license("MIT OR Apache-2.0");

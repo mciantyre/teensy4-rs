@@ -1,6 +1,6 @@
 [package]
 name = 'imxrt1062-usdhc1'
-version = '0.1.0'
+version = '0.1.1'
 categories = [
     'embedded',
     'hardware-support',

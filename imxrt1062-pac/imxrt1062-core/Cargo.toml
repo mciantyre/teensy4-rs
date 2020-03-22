@@ -1,6 +1,6 @@
 [package]
 name = "imxrt1062-core"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
