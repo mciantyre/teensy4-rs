@@ -7,7 +7,5 @@ members = [
     "teensy4-fcb"
 ]
 exclude = [
-    "tools",
     "imxrt1062-fcb-gen",
-    "svd/imxrt1062"
 ]
