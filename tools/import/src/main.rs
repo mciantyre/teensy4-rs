@@ -159,7 +159,10 @@ fn add_cargo_contents(output_pac: &Path) {
     krate.set_description(
         r#"An imxrt1062-pac subcrate. See the imxrt1062-pac for more details.
 
-Part of the teensy4-rs project.        
+This crate is not maintained. Consider using the register access layer provided by the
+[imxrt-rs](https://github.com/imxrt-rs/imxrt-rs) project.
+
+Formerly part of the teensy4-rs project.
 "#,
     );
     let new_toml = ::toml::ser::to_string_pretty(&krate).unwrap();
