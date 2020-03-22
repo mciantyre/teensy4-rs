@@ -14,7 +14,11 @@ keywords = [
 ]
 description = '''
 Peripheral Access Crates (PAC) for the iMXRT1062 family of processors.
-Part of the teensy4-rs project.
+
+This crate is not maintained. Consider using the register access layer provided by the
+[imxrt-rs](https://github.com/imxrt-rs/imxrt-rs) project.
+
+Formerly part of the teensy4-rs project.
 '''
 license = 'MIT OR Apache-2.0'
 repository = 'https://github.com/mciantyre/teensy4-rs'

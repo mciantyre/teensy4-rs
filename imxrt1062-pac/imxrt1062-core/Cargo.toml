@@ -8,6 +8,9 @@ repository = "https://github.com/mciantyre/teensy4-rs"
 description = """
 An imxrt1062-pac subcrate. See the imxrt1062-pac for more details.
 
+This crate is not maintained. Consider using the register access layer provided by the
+[imxrt-rs](https://github.com/imxrt-rs/imxrt-rs) project.
+
 Part of the teensy4-rs project.
 """
 categories = [

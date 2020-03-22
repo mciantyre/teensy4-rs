@@ -7,7 +7,11 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/mciantyre/teensy4-rs"
 description = """
 Hardware abstraction layer (HAL) for the iMXRT1062 family of processors.
-Part of the teensy4-rs project.
+
+This crate is deprecated, and users should favor the hardware abstraction layer provided by the
+[imxrt-rs](https://github.com/imxrt-rs/imxrt-rs) project.
+
+Formerly part of the teensy4-rs project.
 """
 categories = [
     "embedded",
