@@ -33,17 +33,37 @@ PROVIDE(DefaultHandler = DefaultHandler_);
 
 SECTIONS
 {
+    /* 4KiB (0x1000) offset since we're booting from FlexSPI NOR */
+    _image_vector_table = ORIGIN(FLASH) + 0x1000;
+
     /* The boot section contains all the special things that allow the IMXRT1062 to boot */
     .boot :
     {
         /* Firmware Configuration Block (FCB) */
         KEEP(*(.fcb));
         FILL(0xFFFFFFFF);
-        /* 4KiB (0x1000) offset since we're booting from FlexSPI NOR */
-        . = ORIGIN(FLASH) + 0x1000;
-        /* Image Vector Table (IVT) defined in C (ivt.c) */
-        KEEP(*(.boot.ivt));
-        KEEP(*(.boot.data));
+        . = _image_vector_table;
+        /* ------------------
+         * Image Vector Table
+         * ------------------
+         */
+        LONG(0x402000D1);           /* Header, magic number */
+        LONG(__svectors);           /* Address of the vectors table */
+        LONG(0x00000000);           /* RESERVED */
+        LONG(0x00000000);           /* Device Configuration Data (unused) */
+        LONG(_boot_data);           /* Address to boot data */
+        LONG(_image_vector_table);  /* Self reference, required by boot ROM */
+        LONG(0x00000000);           /* Command Sequence File (unused) */
+        LONG(0x00000000);           /* RESERVED */
+        /* ---------
+         * Boot data
+         * ---------
+         */
+        _boot_data = .;
+        LONG(ORIGIN(FLASH));        /* Start of image (origin of flash) */
+        LONG(__lflash);             /* Length of flash */
+        LONG(0);                    /* Plugin flag (unused) */
+        /* --------- */
         KEEP(*(.boot.reset));
         KEEP(*(.boot.tcm));
         KEEP(*(.HardFaultTrampoline));
@@ -52,7 +72,8 @@ SECTIONS
         /* It must be 1024-byte aligned */
         . = ALIGN(1024);
         __svectors = .;
-        KEEP(*(.vector_table));
+        LONG(0x20010000); /* Initial stack pointer */
+        LONG(_reset);     /* Pointer to the reset handler */
         KEEP(*(.vector_table.exceptions));
         KEEP(*(.vector_table.interrupts));
         *(.flashmem); /* Compatibility with USB stack */
@@ -139,4 +160,4 @@ ERROR(teensy4-rt): .bss is not 4-byte aligned");
 ASSERT(__stext % 4 == 0 && __etext % 4 == 0, "
 ERROR(teensy4-rt): .text is not 4-byte aligned");
 
-ENTRY(image_vector_table);
+ENTRY(_image_vector_table);
