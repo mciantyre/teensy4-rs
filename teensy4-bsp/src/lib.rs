@@ -31,7 +31,7 @@
 //!
 //! Although it's not exported publicly, the BSP crate links in the
 //! `teensy4-fcb` crate, which provides a Firmware Configuration Block (FCB)
-//! specific to the Teensy 4. See the `imxrt1062-fcb-gen` crate for details
+//! specific to the Teensy 4. See the `teensy4-fcb` crate for details
 //! on FCBs.
 //!
 //! ## Physical Pins to Pads and Alternative Functions

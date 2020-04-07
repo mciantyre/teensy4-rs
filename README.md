@@ -77,11 +77,10 @@ $ docker run -it --rm -v $PWD:/build rust_teensy led
 
 The project has a model similar to other embedded Rust projects. We have a custom runtime crate to support our processor and memory layout. We use a separate iMXRT register access layer (RAL) and hardware abstraction layer (HAL). The RAL and HAL are provided by the [`imxrt-rs` project](https://github.com/imxrt-rs/imxrt-rs). We add a board support package (BSP) for the Teensy 4 in this repository. The list below describes the project layout:
 
-- `imxrt1062-fcb-gen`: a Rust crate used in other crates' build scripts. It provides an API for generating a Firmware Configuration Block (FCB), a memory region required to boot iMXRT106x processors. Other crates may use this crate to define custom FCBs for their iMXRT106x-based systems.
 - `imxrt1062-rt`: an API-compatible fork of the `cortex-m-rt` crate that describes the system's memory layout, startup sequence, and interrupt table. The runtime crate let's a user write a normal `main()` function. See the "Runtime" notes to learn why this is a fork of the `cortex-m-rt` crate.
 - `teensy4-bsp`: a board support package (BSP) for the Teensy 4. The BSP provides access to the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log messages over USB. If you would like to develop Rust applications for the Teensy 4, start here.
 - `teensy4-examples`: a collection of examples which run out-of-the-box on the Teensy 4. Take a look at the examples if you're interested in using these crates.
-- `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the `imxrt1062-fcb-gen` crate.
+- `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the [`imxrt-boot-gen`](https://github.com/imxrt-rs/imxrt-boot-gen) crate.
 
 Although we strive for compatibility with existing crates and frameworks, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
 
