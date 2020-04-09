@@ -7,11 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
     steps:
     - name: Install build dependencies
       run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
+
+  build:
+    needs: [install]
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - uses: actions-rs/toolchain@v1
       with:
@@ -33,12 +38,13 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
           command: fmt
-          args: --all -- --check
+          args: --verbose --all -- --check
 
   clippy:
+    needs: [install]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
             toolchain: stable
@@ -48,5 +54,5 @@ jobs:
       - uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --target thumbv7em-none-eabihf -- -D warnings
+          args: --verbose --target thumbv7em-none-eabihf -- -D warnings
           name: Run clippy
