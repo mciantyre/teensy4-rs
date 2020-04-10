@@ -19,7 +19,7 @@ We can
 
 We've measured a few things things, like I2C, UART, SPI, and timer timings. No one has built a fully-fledged application with these crates, yet...
 
-[![Build Status](https://travis-ci.org/mciantyre/teensy4-rs.svg?branch=master)](https://travis-ci.org/mciantyre/teensy4-rs)
+![Code Checks](https://github.com/mciantyre/teensy4-rs/workflows/Code%20Checks/badge.svg)
 
 ## Dependencies
 

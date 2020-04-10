@@ -26,7 +26,7 @@ use teensy4_bsp as bsp;
 use embedded_hal::digital::v2::ToggleableOutputPin;
 use embedded_hal::serial::{Read, Write};
 
-const BAUD: u32 = 115200;
+const BAUD: u32 = 115_200;
 /// Change the TX FIFO sizes to see how the FIFO affects the number
 /// of `WouldBlock`s that we would see. Setting this to zero disables
 /// the FIFO.
