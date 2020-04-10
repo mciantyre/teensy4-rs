@@ -12,7 +12,7 @@ MEMORY
 EXTERN(_reset);
 /* This might get stripped out in dependent crates, but it's important to keep around. */
 /* It's put into the FCB block below. */
-EXTERN(FIRMWARE_CONFIGURATION_BLOCK);
+EXTERN(FLEXSPI_CONFIGURATION_BLOCK);
 
 EXTERN(__EXCEPTIONS);
 EXTERN(__INTERRUPTS);

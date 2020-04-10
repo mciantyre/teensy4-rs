@@ -1,4 +1,6 @@
 //! The example simply enables the LED
+//!
+//! Success criteria: the LED turns on!
 
 #![no_std]
 #![no_main]

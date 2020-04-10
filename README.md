@@ -19,7 +19,7 @@ We can
 
 We've measured a few things things, like I2C, UART, SPI, and timer timings. No one has built a fully-fledged application with these crates, yet...
 
-[![Build Status](https://travis-ci.org/mciantyre/teensy4-rs.svg?branch=master)](https://travis-ci.org/mciantyre/teensy4-rs)
+![Code Checks](https://github.com/mciantyre/teensy4-rs/workflows/Code%20Checks/badge.svg)
 
 ## Dependencies
 
@@ -55,7 +55,7 @@ The `cargo-generate` template is great for quickly starting a project. But, if y
 
 As of this writing:
 
-- all of `imxrt1062-pac`, `imxrt1062-rt`, and `teensy4-fcb` crates are necessary to successfully link a Teensy 4 Rust application. This requirement should be lifted in the future. See the discussion in the project structure section (below).
+- both the `imxrt1062-rt`, and `teensy4-fcb` crates are necessary to successfully link a Teensy 4 Rust application.
 - not all of the crates are published to crates.io, so we must either clone the repo and reference them locally, or reference the two crates via the git repository.
 
 These crates are guaranteed to build when targeting `thumbv7em-none-eabihf`; we do not support any other targets.
@@ -75,16 +75,12 @@ $ docker run -it --rm -v $PWD:/build rust_teensy led
 
 ## Project Structure
 
-The project has a model similar to other embedded Rust projects: we have a runtime crate, a peripheral access crate (PAC), and a board support package (BSP) for the Teensy 4. We also have a few crates that are unique to our system. The list below describes the project layout:
+The project has a model similar to other embedded Rust projects. We have a custom runtime crate to support our processor and memory layout. We use a separate iMXRT register access layer (RAL) and hardware abstraction layer (HAL). The RAL and HAL are provided by the [`imxrt-rs` project](https://github.com/imxrt-rs/imxrt-rs). We add a board support package (BSP) for the Teensy 4 in this repository. The list below describes the project layout:
 
-- `imxrt1062-fcb-gen`: a Rust crate used in other crates' build scripts. It provides an API for generating a Firmware Configuration Block (FCB), a memory region required to boot iMXRT106x processors. Other crates may use this crate to define custom FCBs for their iMXRT106x-based systems.
-- `imxrt1062-hal`: a hardware abstraction layer (HAL) for the iMXRT106x. It provides implementations of the [`embedded-hal` traits](https://crates.io/crates/embedded-hal) for the processor's peripherals.
-- `imxrt1062-pac`: a collection of Peripheral Access Crates (PAC), providing read / write APIs for processor registers. The crates are generated from [`svd2rust`](https://docs.rs/svd2rust/0.16.1/svd2rust/), with some custom tooling to generate a unique crate for each peripheral. See the "Peripheral access crates" notes to learn how this PAC might be different from other PACs.
 - `imxrt1062-rt`: an API-compatible fork of the `cortex-m-rt` crate that describes the system's memory layout, startup sequence, and interrupt table. The runtime crate let's a user write a normal `main()` function. See the "Runtime" notes to learn why this is a fork of the `cortex-m-rt` crate.
 - `teensy4-bsp`: a board support package (BSP) for the Teensy 4. The BSP provides access to the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log messages over USB. If you would like to develop Rust applications for the Teensy 4, start here.
 - `teensy4-examples`: a collection of examples which run out-of-the-box on the Teensy 4. Take a look at the examples if you're interested in using these crates.
-- `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the `imxrt1062-fcb-gen` crate.
-- `tools`: small Rust binaries intended to run on your development host. `tools` provides a Rust binary that will help import PAC crates. See the "Peripheral access crates" notes (below) for more information.
+- `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the [`imxrt-boot-gen`](https://github.com/imxrt-rs/imxrt-boot-gen) crate.
 
 Although we strive for compatibility with existing crates and frameworks, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
 
@@ -109,16 +105,6 @@ Just as the `cortex-m-rt` crate will call a user's `main()` function, the `imxrt
 To support compatibility with the `cortex-m-rt` crate, the `imxrt1062-rt` crate uses the same link sections as the `cortex-m-rt` crate. However, the `imxrt1062-rt` crate may locate memory in different regions. Specifically, all instructions are placed into ITCM, and all data is placed into DTCM.
 
 It is our hope that the `imxrt1062-rt` crate can be transparently replaced with the `cortext-m-rt` crate once the necessary features are available. If you think that the `imxrt1062-rt` crate is be diverging from the `cortex-m-rt` crate and might miss that goal, please file an issue!
-
-### Peripheral access crates
-
-An embedded Rust developer might use [`svd2rust`](https://docs.rs/svd2rust/0.16.1/svd2rust/) to auto-generate the peripheral access crate (PAC) for the iMXRT106x. The iMXRT106x SVD is readily [available online](https://developer.arm.com/tools-and-software/embedded/cmsis), and `svd2rust` is able to create the PAC without too many issues. However, [as mpasternacki noted](https://users.rust-lang.org/t/svd2rust-generates-an-enormous-crate/32372), the output PAC from `svd2rust` is extremely large, and it takes an inordinate amount of time to compile. One bottleneck is that the PAC mega-crate cannot be compiled in parallel, since the Rust compiler treats each crate as a translation unit. In order to compile the iMXRT106x peripheral modules in parallel, the peripherals would have to be broken apart into separate, indepdent crates.
-
-Rather than using the output of `svd2rust` as the single PAC, we expose each peripheral as its own crate under `imxrt1062-pac`. The API is the same as one might find with any PAC generated via `svd2rust`, so there's no additional learning curve to understand the peripheral APIs. In fact, anyone who is currently using a monolithic iMXRT106x PAC should be able to adopt the `imxrt1062-pac` without issue.
-
-The approach has some limitations: each peripheral crate ends up having its own copy of the types described in `generic.rs`. It also requires that we've generated the original PAC via `svd2rust`, although this process is documented and automated in the [`svd` directory](svd/README.md). Finally, and most importantly, the approach has not yet shown to scale in practice. Let us know if you have alternative approaches!
-
-The `imxrt1062-core` PAC subcrate defines the interrupt table and interrupt handlers, which is why it's necessary to use it with the `imxrt1062-rt` crate. As mentioned earlier, this requirement should be lifted in the future.
 
 ## Contributing
 

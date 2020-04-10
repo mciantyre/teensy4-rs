@@ -31,7 +31,7 @@
 //!
 //! Although it's not exported publicly, the BSP crate links in the
 //! `teensy4-fcb` crate, which provides a Firmware Configuration Block (FCB)
-//! specific to the Teensy 4. See the `imxrt1062-fcb-gen` crate for details
+//! specific to the Teensy 4. See the `teensy4-fcb` crate for details
 //! on FCBs.
 //!
 //! ## Physical Pins to Pads and Alternative Functions
@@ -106,16 +106,14 @@ extern crate teensy4_fcb;
 
 pub mod usb;
 
-pub use hal::pac::interrupt;
-pub use imxrt1062_hal as hal;
+pub use hal::ral::interrupt;
 pub use imxrt1062_rt as rt;
+pub use imxrt_hal as hal;
 pub use teensy4_usb_sys::serial_write;
 
 pub type LED = hal::gpio::GPIO2IO03<hal::gpio::GPIO7, hal::gpio::Output>;
 
 pub use hal::ccm::CCM;
-pub use hal::pac::PIT;
-pub use hal::pac::SYST;
 
 /// Teensy pins that do not yet have a function
 ///
@@ -196,13 +194,13 @@ pub struct Peripherals {
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
     /// PWM1 controller
-    pub pwm1: hal::pwm::UnclockedController<hal::pwm::module::_1>,
+    pub pwm1: hal::pwm::Unclocked<hal::pwm::module::_1>,
     /// PWM2 controller
-    pub pwm2: hal::pwm::UnclockedController<hal::pwm::module::_2>,
+    pub pwm2: hal::pwm::Unclocked<hal::pwm::module::_2>,
     /// PWM3 controller
-    pub pwm3: hal::pwm::UnclockedController<hal::pwm::module::_3>,
+    pub pwm3: hal::pwm::Unclocked<hal::pwm::module::_3>,
     /// PWM4 controller
-    pub pwm4: hal::pwm::UnclockedController<hal::pwm::module::_4>,
+    pub pwm4: hal::pwm::Unclocked<hal::pwm::module::_4>,
     /// Teensy pins
     pub pins: Pins,
     /// Unclocked I2C peripherals
@@ -226,17 +224,21 @@ impl Peripherals {
     /// Instantiate the system peripherals. This may only be called once!
     pub fn take() -> Option<Self> {
         let p = hal::Peripherals::take()?;
+        let mut cp = cortex_m::Peripherals::take()?;
+        Self::set_systick(&mut cp.SYST);
         Some(Peripherals::new(p))
     }
 
-    fn new(mut p: hal::Peripherals) -> Peripherals {
-        p.systick.disable_counter();
-        p.systick
-            .set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
-        p.systick.set_reload((SYSTICK_EXT_FREQ / 1000) - 1);
-        p.systick.clear_current();
-        p.systick.enable_counter();
-        p.systick.enable_interrupt();
+    fn set_systick(systick: &mut cortex_m::peripheral::SYST) {
+        systick.disable_counter();
+        systick.set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);
+        systick.set_reload((SYSTICK_EXT_FREQ / 1000) - 1);
+        systick.clear_current();
+        systick.enable_counter();
+        systick.enable_interrupt();
+    }
+
+    fn new(p: hal::Peripherals) -> Peripherals {
         Peripherals {
             ccm: p.ccm,
             pit: p.pit,

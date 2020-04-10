@@ -8,6 +8,12 @@
 //! overrun if we're not reading fast enough.
 //!
 //! See the `const` configurations for settings.
+//!
+//! Success criteria: the loopback is reported as successful
+//! over USB logging. Changing the settings below demonstrate
+//! the same ideal behavior. When decreasing the `TX_FIFO_SIZE`,
+//! we see an increase of blocked reads. The transfer
+//! content is `0xDEADBEEF`.
 
 #![no_std]
 #![no_main]
@@ -26,9 +32,11 @@ const BAUD: u32 = 115_200;
 /// the FIFO.
 const TX_FIFO_SIZE: u8 = 4;
 /// Change me to affect the partity bit generation
-const PARITY: Option<bsp::hal::uart::Parity> = Some(bsp::hal::uart::Parity::Odd);
+const PARITY: Option<bsp::hal::uart::Parity> = None;
 /// Change me to invert all output data, and to treat all input data as inverted
-const INVERTED: bool = true;
+const INVERTED: bool = false;
+/// The data you want to send and receive
+const DATA: [u8; 4] = [0xDE, 0xAD, 0xBE, 0xEF];
 
 /// Writes `bytes` to the provided `uart`. The function will count the
 /// number of blocks that we hit, and will log how many blocks we
@@ -98,9 +106,9 @@ fn main() -> ! {
     loop {
         bsp::delay(1_000);
         led.toggle().unwrap();
-        write(&mut uart, &[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
+        let mut buffer = DATA;
+        write(&mut uart, &buffer).unwrap();
         bsp::delay(1);
-        let mut buffer = [0; 4];
         match read(&mut uart, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),

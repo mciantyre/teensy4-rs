@@ -1,14 +1,23 @@
 //! The example shows how to allocate PWM controllers and pins,
 //! set duty cycles, and enable / disable PWM pins. We use
 //! pin 6 and pin 9 of the Teensy board.
+//!
+//! Success criteria: pin 6 starts at 25% duty cycle, and pin 9
+//! starts at 50% duty cycle. They stay that way for 200ms. Pin 9
+//! turns off, and pin 6 stays on for another 200ms. Both pins are
+//! then disabled for 400ms. Switch the duty cycles between the two
+//! pins, and re-run the loop.
+//!
+//! Success criteria: the switching period is 1ms (1KHz).
 
 #![no_std]
 #![no_main]
 
 extern crate panic_halt;
 
+use bsp::hal::pwm::Channel;
 use bsp::rt;
-use embedded_hal::PwmPin;
+use embedded_hal::Pwm;
 use teensy4_bsp as bsp;
 
 /// Helper function to represent a duty cycle as a percent
@@ -34,8 +43,10 @@ fn main() -> ! {
     let mut pwm2 = p.pwm2.clock(&mut p.ccm.handle);
     // Get the outputs from the PWM2 module, submodule 2.
     // Set a 1KHz switching frequency, using a prescalar of 32.
-    let (mut pin_a, mut pin_b) = pwm2
+    let mut sm2 = pwm2
+        .sm2
         .outputs(
+            &mut pwm2.handle,
             p.pins.p6.alt2(),
             p.pins.p9.alt2(),
             bsp::hal::pwm::Timing {
@@ -44,30 +55,30 @@ fn main() -> ! {
                 switching_period: core::time::Duration::from_micros(1000),
             },
         )
-        .unwrap()
-        .split();
+        .unwrap();
 
     // Two different duty cycles that will be swapped to show
     // different duty cycles on the same PWM pins
     let (mut duty1, mut duty2) = (core::u16::MAX / 4, core::u16::MAX / 2);
+    let mut ctrl = sm2.control(&mut pwm2.handle);
     loop {
         log::info!(
             "Setting duty cycles {} and {}...",
             percent(duty1),
             percent(duty2)
         );
-        pin_a.enable();
-        pin_b.enable();
-        pin_a.set_duty(duty1);
-        pin_b.set_duty(duty2);
+        ctrl.enable(Channel::A);
+        ctrl.enable(Channel::B);
+        ctrl.set_duty(Channel::A, duty1);
+        ctrl.set_duty(Channel::B, duty2);
         bsp::delay(200);
 
         log::info!("Disabling 'B' PWM...");
-        pin_b.disable();
+        ctrl.disable(Channel::B);
         bsp::delay(200);
 
         log::info!("Disabling 'A' PWM...");
-        pin_a.disable();
+        ctrl.disable(Channel::A);
         bsp::delay(400);
 
         core::mem::swap(&mut duty1, &mut duty2);

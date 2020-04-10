@@ -1,5 +1,8 @@
 //! Implements the systick exception and uses it
 //! to toggle the LED every second.
+//!
+//! Success critera: the LED is on for 1 second, then off
+//! for 1 second, then on for 1 second, then off for 1 second.
 
 #![no_std]
 #![no_main]

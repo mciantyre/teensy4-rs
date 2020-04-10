@@ -1,6 +1,6 @@
 [package]
 name = "teensy4-fcb"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -20,8 +20,9 @@ keywords = [
     "teensy4",
 ]
 
-[build-dependencies]
-imxrt1062-fcb-gen = { version = "0.1.0", path = "../imxrt1062-fcb-gen" }
+[build-dependencies.imxrt-boot-gen]
+version = "0.1.0"
+features = ["imxrt1062"]
 
 [lib]
 bench = false
