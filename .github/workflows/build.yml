@@ -22,7 +22,6 @@ jobs:
   # Since we don't have any automated tests right now, we can use a clippy
   # run to check the build and surface linting errors.
   clippy:
-    needs: [install]
     runs-on: ubuntu-latest
     steps:
       - name: Install build dependencies
