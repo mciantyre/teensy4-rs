@@ -7,27 +7,6 @@ on:
     branches: [ master ]
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install build dependencies
-      run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
-
-  build:
-    needs: [install]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        target: thumbv7em-none-eabihf
-        override: true
-    - uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --target thumbv7em-none-eabihf
-        name: Build teensy4-rs workspace
 
   format:
     runs-on: ubuntu-latest
@@ -39,11 +18,15 @@ jobs:
       with:
           command: fmt
           args: --verbose --all -- --check
-
+  
+  # Since we don't have any automated tests right now, we can use a clippy
+  # run to check the build and surface linting errors.
   clippy:
     needs: [install]
     runs-on: ubuntu-latest
     steps:
+      - name: Install build dependencies
+        run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
