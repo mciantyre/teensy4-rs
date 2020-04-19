@@ -211,6 +211,10 @@ pub struct Peripherals {
     pub uart: hal::uart::Unclocked,
     /// General purpose registers, used when configuring GPIO pins.
     pub gpr: hal::iomuxc::GPR,
+    /// General purpose timer 1
+    pub gpt1: hal::gpt::Unclocked,
+    /// General purpose timer 2
+    pub gpt2: hal::gpt::Unclocked,
 }
 
 /// SYSTICK external clock frequency
@@ -285,6 +289,8 @@ impl Peripherals {
             spi: p.spi,
             uart: p.uart,
             gpr: p.iomuxc.gpr,
+            gpt1: p.gpt1,
+            gpt2: p.gpt2,
         }
     }
 }
