@@ -34,10 +34,11 @@ fn main() -> ! {
     let mut cfg = periphs.ccm.perclk.configure(
         &mut periphs.ccm.handle,
         bsp::hal::ccm::perclk::PODF::DIVIDE_3,
-        bsp::hal::ccm::perclk::CLKSEL::OSC,
+        bsp::hal::ccm::perclk::CLKSEL::IPG(ipg_hz),
     );
 
     let mut gpt2 = periphs.gpt2.clock(&mut cfg);
+    gpt2.set_mode(bsp::hal::gpt::Mode::FreeRunning);
     gpt2.set_enable(true);
 
     let (timer0, timer1, _, mut timer3) = periphs.pit.clock(&mut cfg);

@@ -45,6 +45,8 @@ fn main() -> ! {
     let mut gpt1 = periphs.gpt1.clock(&mut cfg);
 
     gpt1.set_output_interrupt_on_compare(OCR, true);
+    gpt1.set_wait_mode_enable(true);
+    gpt1.set_mode(bsp::hal::gpt::Mode::FreeRunning);
 
     unsafe {
         TIMER = Some(gpt1);
