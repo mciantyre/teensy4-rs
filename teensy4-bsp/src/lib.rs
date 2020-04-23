@@ -215,6 +215,8 @@ pub struct Peripherals {
     pub gpt1: hal::gpt::Unclocked,
     /// General purpose timer 2
     pub gpt2: hal::gpt::Unclocked,
+    /// DMA channels
+    pub dma: hal::dma::Unclocked,
 }
 
 /// SYSTICK external clock frequency
@@ -291,6 +293,7 @@ impl Peripherals {
             gpr: p.iomuxc.gpr,
             gpt1: p.gpt1,
             gpt2: p.gpt2,
+            dma: p.dma,
         }
     }
 }

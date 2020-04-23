@@ -20,10 +20,16 @@ panic-halt = "0.2.0"
 teensy4-bsp = { version = "0.1.0", path = "../teensy4-bsp" }
 
 [[bin]]
+name = "dma_uart"
+path = "src/dma_uart.rs"
+test = false
+bench = false
+
+[[bin]]
 name = "gpt"
 path = "src/gpt.rs"
-test = false # Disable RLS warnings about "no test crate"
-bench = false # Disable RLS warnings about "no bench crate"
+test = false
+bench = false
 
 [[bin]]
 name = "i2c"
