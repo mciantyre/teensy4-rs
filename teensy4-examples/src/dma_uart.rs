@@ -71,9 +71,9 @@ fn main() -> ! {
     let tx_channel = dma_channels[7].take().unwrap();
     let rx_channel = dma_channels[23].take().unwrap();
 
-    let config = bsp::hal::dma::Config {
-        interrupt_on_completion: true,
-    };
+    let config = bsp::hal::dma::ConfigBuilder::new()
+        .interrupt_on_completion(true)
+        .build();
 
     let dma_uart = unsafe {
         DMA_PERIPHERAL = Some(bsp::hal::dma::Peripheral::new_transfer_receive(
