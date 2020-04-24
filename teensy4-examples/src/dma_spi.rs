@@ -134,9 +134,14 @@ fn main() -> ! {
         // Start the receive first, then the transfer, since the
         // transfer causes data to be received.
         unsafe {
+            bsp::delay(500);
+
             // Safety: buffer on stack, but always in scope
             if let Err(err) = spi.start_receive(&mut rx_buffer) {
                 log::warn!("Unable to start DMA receive: {:?}", err);
+                if let dma::Error::Setup(es) = err {
+                    log::warn!("{}", es);
+                }
                 loop {
                     core::sync::atomic::spin_loop_hint();
                 }
@@ -144,6 +149,9 @@ fn main() -> ! {
             // Safety: buffer on stack, but always in scope
             if let Err(err) = spi.start_transfer(&tx_buffer) {
                 log::warn!("Unable to start DMA transfer: {:?}", err);
+                if let dma::Error::Setup(es) = err {
+                    log::warn!("{}", es);
+                }
                 spi.receive_cancel();
                 loop {
                     core::sync::atomic::spin_loop_hint();
@@ -161,8 +169,6 @@ fn main() -> ! {
                     rx_buffer[0] & 0xFF
                 );
                 continue 'start;
-            } else {
-                bsp::delay(500);
             }
         }
     }
