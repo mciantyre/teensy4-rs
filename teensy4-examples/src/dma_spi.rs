@@ -1,7 +1,9 @@
 //! Demonstrates DMA-based SPI transfers and receives
 //!
-//! We read the WHO_AM_I register from an MPU9250. This example is contrived,
-//! since we're only writing and reading one byte. But, it's a quick test.
+//! We read the WHO_AM_I register from an MPU9250, then we read accelerometer
+//! values. The MPU9250 supports full-duplex transfers of `u16`s. We can
+//! support full-duplex SPI with two DMA channels: one for transfer with
+//! SPI, and one for receive with SPI.
 //!
 //! Pinout:
 //!
@@ -14,7 +16,8 @@
 //! toggle a GPIO while a transfer is in progress.
 //!
 //! Success criteria: the clock runs at 1MHz. We read `0x71` as the
-//! WHO_AM_I register value.
+//! WHO_AM_I register value. We read 6DOF values (accelerometer and
+//! magnetometer) at 2Hz.
 //!
 //! This example is very similar to the blocking SPI example. If this
 //! example isn't working, make sure `spi.rs` works with the same
@@ -35,6 +38,9 @@ use core::sync::atomic::{AtomicBool, Ordering};
 const SPI_BAUD_RATE_HZ: u32 = 1_000_000;
 
 /// DMA interrupt matches the two selected DMA channels
+///
+/// It clears the interrupt, and completes the transfer.
+/// We'll WFI, then check the flag to see if we triggered.
 #[interrupt]
 unsafe fn DMA9_DMA25() {
     let spi = SPI_DMA.as_mut().unwrap();
@@ -54,6 +60,49 @@ static mut SPI_DMA: Option<dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::spi::mod
     None;
 
 static FLAG: AtomicBool = AtomicBool::new(false);
+
+/// Prepares a SPI transaction that writes and reads data using DMA
+///
+/// `prepare_transfer` never returns if there is an error.
+///
+/// # Safety
+///
+/// Caller must ensure that the lifetime of the two buffers is greater
+/// than the lifetime of the DMA transfer.
+unsafe fn prepare_transfer<P>(
+    spi: &mut dma::Peripheral<P, u16>,
+    tx_buffer: &[u16],
+    rx_buffer: &mut [u16],
+) where
+    P: dma::Source<u16> + dma::Destination<u16>,
+    <P as dma::Source<u16>>::Error: core::fmt::Debug,
+    <P as dma::Destination<u16>>::Error: core::fmt::Debug,
+{
+    //   Prime the transfers
+    //
+    // Start the receive first, then the transfer, since the
+    // transfer causes data to be received.
+    if let Err(err) = spi.start_receive(rx_buffer) {
+        log::warn!("Unable to start DMA receive: {:?}", err);
+        if let dma::Error::Setup(es) = err {
+            log::warn!("{}", es);
+        }
+        loop {
+            core::sync::atomic::spin_loop_hint();
+        }
+    }
+
+    if let Err(err) = spi.start_transfer(tx_buffer) {
+        log::warn!("Unable to start DMA transfer: {:?}", err);
+        if let dma::Error::Setup(es) = err {
+            log::warn!("{}", es);
+        }
+        spi.receive_cancel();
+        loop {
+            core::sync::atomic::spin_loop_hint();
+        }
+    }
+}
 
 #[entry]
 fn main() -> ! {
@@ -115,6 +164,9 @@ fn main() -> ! {
         .interrupt_on_completion(true)
         .build();
 
+    // We only want to interrupt when the receive completes. When
+    // the receive completes, we know that we're also done transferring
+    // data.
     let spi = unsafe {
         SPI_DMA = Some(dma::transfer_receive_u16(
             spi4,
@@ -125,50 +177,59 @@ fn main() -> ! {
         SPI_DMA.as_mut().unwrap()
     };
 
-    'start: loop {
+    //
+    // Query and wait for response to WHO_AM_I
+    //
+
+    'who_am_i: loop {
         let tx_buffer = [read(WHO_AM_I)];
         let mut rx_buffer: [u16; 1] = [0; 1];
 
-        // Prime the transfers
-        //
-        // Start the receive first, then the transfer, since the
-        // transfer causes data to be received.
+        bsp::delay(500);
         unsafe {
-            bsp::delay(500);
-
-            // Safety: buffer on stack, but always in scope
-            if let Err(err) = spi.start_receive(&mut rx_buffer) {
-                log::warn!("Unable to start DMA receive: {:?}", err);
-                if let dma::Error::Setup(es) = err {
-                    log::warn!("{}", es);
-                }
-                loop {
-                    core::sync::atomic::spin_loop_hint();
-                }
-            }
-            // Safety: buffer on stack, but always in scope
-            if let Err(err) = spi.start_transfer(&tx_buffer) {
-                log::warn!("Unable to start DMA transfer: {:?}", err);
-                if let dma::Error::Setup(es) = err {
-                    log::warn!("{}", es);
-                }
-                spi.receive_cancel();
-                loop {
-                    core::sync::atomic::spin_loop_hint();
-                }
-            }
+            // Safey: memory exists on the stack for the lifetime
+            // of the transfer.
+            prepare_transfer(spi, &tx_buffer, &mut rx_buffer);
         }
 
-        log::info!("Started DMA transfers");
+        log::info!("Started DMA transfers for WHO_AM_I");
         FLAG.store(false, Ordering::Release);
         loop {
             cortex_m::asm::wfi();
             if FLAG.load(Ordering::Acquire) {
-                log::info!(
-                    "Completed SPI tranfer! WHO_AM_I = {:#X}",
-                    rx_buffer[0] & 0xFF
-                );
-                continue 'start;
+                if 0x71 == rx_buffer[0] {
+                    log::info!(
+                        "Completed SPI tranfer! WHO_AM_I = {:#X}",
+                        rx_buffer[0] & 0xFF
+                    );
+                    break 'who_am_i;
+                } else {
+                    log::warn!("Incorrect WHO_AM_I {:#X} received!", rx_buffer[0]);
+                }
+            }
+        }
+    }
+
+    //
+    // Loop and report 6DOF measurements
+    //
+    log::info!("Dropping into loop for 6DOF readings...");
+    'query_6dof: loop {
+        let tx_buffer = command_3dof();
+        let mut rx_buffer: [u16; 6] = [0; 6];
+
+        bsp::delay(500);
+        unsafe {
+            // Safety: buffer on stack, but always in scope
+            prepare_transfer(spi, &tx_buffer, &mut rx_buffer);
+        }
+
+        FLAG.store(false, Ordering::Release);
+        loop {
+            cortex_m::asm::wfi();
+            if FLAG.load(Ordering::Acquire) {
+                log_6dof(&rx_buffer);
+                continue 'query_6dof;
             }
         }
     }
@@ -179,4 +240,27 @@ const WHO_AM_I: u8 = 0x75;
 /// Creates a read instruction for the MPU9250
 const fn read(address: u8) -> u16 {
     ((address as u16) | (1 << 7)) << 8
+}
+
+/// Creates a command that can read all accelerometer values
+fn command_3dof() -> [u16; 6] {
+    let accelerometer_registers = 0x3B..=0x40;
+    let commands = accelerometer_registers.map(read);
+    let mut buffer: [u16; 6] = [0; 6];
+    for (dst, src) in buffer.iter_mut().zip(commands) {
+        *dst = src;
+    }
+    buffer
+}
+
+/// Prints the 6DOF values to the info log
+fn log_6dof(raw: &[u16; 6]) {
+    const LABELS: [&str; 3] = ["ACC_X", "ACC_Y", "ACC_Z"];
+    let values = raw
+        .chunks(2)
+        .map(|pairs| (pairs[0] << 8) | (pairs[1] & 0xFF));
+    LABELS
+        .iter()
+        .zip(values)
+        .for_each(|(label, value)| log::info!("{}: {} ", label, value));
 }
