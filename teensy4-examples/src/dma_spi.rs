@@ -16,8 +16,7 @@
 //! toggle a GPIO while a transfer is in progress.
 //!
 //! Success criteria: the clock runs at 1MHz. We read `0x71` as the
-//! WHO_AM_I register value. We read 6DOF values (accelerometer and
-//! magnetometer) at 2Hz.
+//! WHO_AM_I register value. We read MPU measurements at 2Hz
 //!
 //! This example is very similar to the blocking SPI example. If this
 //! example isn't working, make sure `spi.rs` works with the same
@@ -134,6 +133,7 @@ fn main() -> ! {
         peripherals.pins.p12.alt3(),
         peripherals.pins.p13.alt3(),
     );
+    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
 
     match spi4.set_clock_speed(bsp::hal::spi::ClockSpeed(SPI_BAUD_RATE_HZ)) {
         Ok(()) => {
@@ -150,8 +150,6 @@ fn main() -> ! {
             }
         }
     };
-
-    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
 
     //
     // DMA setup
@@ -211,10 +209,10 @@ fn main() -> ! {
     }
 
     //
-    // Loop and report 6DOF measurements
+    // Loop and report measurements
     //
-    log::info!("Dropping into loop for 6DOF readings...");
-    'query_6dof: loop {
+    log::info!("Dropping into loop for readings...");
+    'measurements: loop {
         let tx_buffer = command_3dof();
         let mut rx_buffer: [u16; 6] = [0; 6];
 
@@ -229,7 +227,7 @@ fn main() -> ! {
             cortex_m::asm::wfi();
             if FLAG.load(Ordering::Acquire) {
                 log_6dof(&rx_buffer);
-                continue 'query_6dof;
+                continue 'measurements;
             }
         }
     }
