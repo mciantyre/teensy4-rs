@@ -1,4 +1,17 @@
 //! Demonstrates a DMA-based UART transfer and receive
+//!
+//! The example waits for a UART character, then echos that
+//! character back to the user with a header. Each received
+//! character causes the LED to toggle. Received bytes and
+//! replies are logged over USB.
+//!
+//! Each receive is a DMA transfer of one byte from a UART
+//! peripheral. Then, each response is a multi-byte DMA
+//! transfer to the UART peripheral.
+//!
+//! Pinout:
+//! - Pin 14: UART2_TX
+//! - Pin 15: UART2_RX
 
 #![no_std]
 #![no_main]
@@ -13,24 +26,19 @@ use embedded_hal::digital::v2::ToggleableOutputPin;
 
 use core::sync::atomic::{AtomicBool, Ordering};
 
+/// Modify your baud rate here
 const BAUD: u32 = 115_200;
-const RX_TRANSFER_SIZE: usize = 1;
-const TX_TRANSFER_SIZE: usize = 50;
-
-const BUFFER_SIZE: usize = 128; // Arbitrary size; might not use it all
-static mut RX_BUFFER: [u8; BUFFER_SIZE] = [0; BUFFER_SIZE];
-static mut TX_BUFFER: [u8; BUFFER_SIZE] = [0; BUFFER_SIZE];
 
 /// A DMA peripheral adapter around the UART2 peripheral. It sends bytes.
 static mut DMA_PERIPHERAL: Option<
     bsp::hal::dma::Peripheral<bsp::hal::uart::UART<bsp::hal::uart::module::_2>, u8>,
 > = None;
 
+/// Flags for the main loop
 static TX_READY: AtomicBool = AtomicBool::new(false);
 static RX_READY: AtomicBool = AtomicBool::new(false);
 
-static mut LED: Option<bsp::LED> = None;
-
+/// The DMA interrupt matches the selected DMA channels in the demo's setup.
 #[bsp::rt::interrupt]
 unsafe fn DMA7_DMA23() {
     let uart = DMA_PERIPHERAL.as_mut().unwrap();
@@ -44,7 +52,6 @@ unsafe fn DMA7_DMA23() {
         uart.receive_clear_interrupt();
         uart.receive_clear_complete();
         RX_READY.store(true, Ordering::Release);
-        LED.as_mut().unwrap().toggle().unwrap();
     }
 }
 
@@ -84,77 +91,44 @@ fn main() -> ! {
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA7_DMA23);
         DMA_PERIPHERAL.as_mut().unwrap()
     };
+    let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
 
-    let led = unsafe {
-        LED = Some(bsp::configure_led(
-            &mut peripherals.gpr,
-            peripherals.pins.p13,
-        ));
-        LED.as_mut().unwrap()
-    };
-    let mut alphabet = (b'A'..b'Z').cycle();
+    let mut rx_buffer: [u8; 1] = [0; 1];
+    // Received: X
+    const REPLY_OFFSET: usize = 10;
+    let mut tx_buffer: [u8; 13] = [
+        b'R', b'e', b'c', b'e', b'i', b'v', b'e', b'd', b':', b' ', 0, b'\r', b'\n',
+    ];
 
-    let rx_buffer = unsafe { &mut RX_BUFFER };
-    let tx_buffer = unsafe { &mut TX_BUFFER };
+    'start: loop {
+        RX_READY.store(false, Ordering::Release);
+        TX_READY.store(false, Ordering::Release);
 
-    // Schedule an initial receive
-    let res = unsafe { dma_uart.start_receive(&mut rx_buffer[..RX_TRANSFER_SIZE]) };
-    if let Err(err) = res {
-        log::warn!("Error scheduling initial DMA receive: {:?}", err);
-    } else {
-        log::info!(
-            "Scheduled an intial DMA receive of {} bytes OK",
-            RX_TRANSFER_SIZE
-        );
-    }
-
-    // Start sending some data
-    let letter = alphabet.next().unwrap();
-    for byte in tx_buffer.iter_mut().take(TX_TRANSFER_SIZE) {
-        *byte = letter;
-    }
-    let res = unsafe { dma_uart.start_transfer(&mut tx_buffer[..TX_TRANSFER_SIZE]) };
-    if let Err(err) = res {
-        log::warn!("Error scheduling initial DMA transfer: {:?}", err);
-    } else {
-        log::info!(
-            "Scheduled an intial DMA transfer of {} bytes OK",
-            TX_TRANSFER_SIZE
-        );
-    }
-
-    loop {
-        bsp::delay(1_000);
-
-        if RX_READY.load(Ordering::Acquire) {
-            log::info!("Received data: {:?}", &rx_buffer[..RX_TRANSFER_SIZE]);
-            log::info!(
-                "Scheduling another receive for {} bytes...",
-                RX_TRANSFER_SIZE
-            );
-            RX_READY.store(false, Ordering::Release);
-            let res = unsafe { dma_uart.start_receive(&mut rx_buffer[..RX_TRANSFER_SIZE]) };
-            if let Err(err) = res {
-                log::warn!("Error scheduling initial DMA receive: {:?}", err);
-            } else {
-                log::info!(
-                    "Scheduled an intial DMA receive of {} bytes OK",
-                    RX_TRANSFER_SIZE
-                );
+        // Schedule an initial receive
+        let res = unsafe { dma_uart.start_receive(&mut rx_buffer) };
+        if let Err(err) = res {
+            log::warn!("Error scheduling DMA receive: {:?}", err);
+            loop {
+                core::sync::atomic::spin_loop_hint();
             }
         }
 
-        if TX_READY.load(Ordering::Acquire) {
-            log::info!("Transferred {} bytes of data!", TX_TRANSFER_SIZE);
-            log::info!("Scheduling another transfer...");
-            TX_READY.store(false, Ordering::Release);
-            let letter = alphabet.next().unwrap();
-            for byte in tx_buffer.iter_mut().take(TX_TRANSFER_SIZE) {
-                *byte = letter;
-            }
-            let res = unsafe { dma_uart.start_transfer(&mut tx_buffer[..TX_TRANSFER_SIZE]) };
-            if let Err(err) = res {
-                log::warn!("Error scheduling DMA transfer: {:?}", err);
+        loop {
+            cortex_m::asm::wfi();
+            if RX_READY.load(Ordering::Acquire) {
+                led.toggle().unwrap();
+                RX_READY.store(false, Ordering::Release);
+                log::info!("Received: {}", rx_buffer[0]);
+                tx_buffer[REPLY_OFFSET] = rx_buffer[0];
+                let res = unsafe { dma_uart.start_transfer(&tx_buffer) };
+                if let Err(err) = res {
+                    log::warn!("Error scheduling DMA transfer: {:?}", err);
+                    loop {
+                        core::sync::atomic::spin_loop_hint();
+                    }
+                }
+            } else if TX_READY.load(Ordering::Acquire) {
+                continue 'start;
             }
         }
     }
