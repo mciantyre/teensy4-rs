@@ -43,7 +43,7 @@ zero_bss(uint32_t *sbss, const uint32_t *const ebss) {
 __attribute__((section(".boot.reset"), naked)) void _reset(void) {
   // Initialize TCM regions
   IOMUXC_GPR_GPR(17) = (uint32_t)&__flexram_bank_config;
-  IOMUXC_GPR_GPR(16) = 0x00000007;
+  IOMUXC_GPR_GPR(16) = 0x00200007;
   IOMUXC_GPR_GPR(14) = 0x00AA0000;
 
   // Reconfigure the stack pointer(s) based on the DTCM / ITCM separation
