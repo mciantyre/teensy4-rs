@@ -16,7 +16,8 @@
 //! toggle a GPIO while a transfer is in progress.
 //!
 //! Success criteria: the clock runs at 1MHz. We read `0x71` as the
-//! WHO_AM_I register value. We read MPU measurements at 2Hz
+//! WHO_AM_I register value. We read MPU measurements at 2Hz. The first time
+//! our interrupt handler is hit, we set pin 20 high.
 //!
 //! This example is very similar to the blocking SPI example. If this
 //! example isn't working, make sure `spi.rs` works with the same
@@ -32,7 +33,11 @@ use bsp::interrupt;
 use bsp::rt::{entry, interrupt};
 use teensy4_bsp as bsp;
 
-use core::sync::atomic::{AtomicBool, Ordering};
+use core::{
+    cell::RefCell,
+    sync::atomic::{AtomicBool, Ordering},
+};
+use cortex_m::interrupt::{free, Mutex};
 
 const SPI_BAUD_RATE_HZ: u32 = 1_000_000;
 
@@ -43,20 +48,42 @@ const SPI_BAUD_RATE_HZ: u32 = 1_000_000;
 #[interrupt]
 unsafe fn DMA9_DMA25() {
     let spi = SPI_DMA.as_mut().unwrap();
-    while spi.receive_interrupt() {
+    while spi.is_receive_interrupt() {
         spi.receive_clear_interrupt();
     }
-    while spi.receive_complete() {
-        spi.receive_clear_complete();
+
+    let cs = cortex_m::interrupt::CriticalSection::new();
+    if spi.is_receive_complete() {
+        let rx_buffer = RX_BUFFER.borrow(&cs);
+        *rx_buffer.borrow_mut() = spi.receive_complete();
     }
-    while spi.transfer_complete() {
-        spi.transfer_clear_complete();
+
+    if spi.is_transfer_complete() {
+        let tx_buffer = TX_BUFFER.borrow(&cs);
+        *tx_buffer.borrow_mut() = spi.transfer_complete();
     }
+
+    let hardware_flag = HARDWARE_FLAG.as_mut().unwrap();
+    use embedded_hal::digital::v2::OutputPin;
+    hardware_flag.set_high().unwrap();
+
     FLAG.store(true, Ordering::Release);
 }
 
-static mut SPI_DMA: Option<dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::spi::module::_4>, u16>> =
-    None;
+type TxBuffer = dma::Linear<u16>;
+type RxBuffer = dma::Linear<u16>;
+
+static TX_MEM: dma::Buffer<[u16; 32]> = dma::Buffer::new([0; 32]);
+static RX_MEM: dma::Buffer<[u16; 32]> = dma::Buffer::new([0; 32]);
+
+static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(None));
+static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
+
+type SpiDma =
+    dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::spi::module::_4>, u16, TxBuffer, RxBuffer>;
+
+// TODO types should be Send
+static mut SPI_DMA: Option<SpiDma> = None;
 
 static FLAG: AtomicBool = AtomicBool::new(false);
 
@@ -68,33 +95,26 @@ static FLAG: AtomicBool = AtomicBool::new(false);
 ///
 /// Caller must ensure that the lifetime of the two buffers is greater
 /// than the lifetime of the DMA transfer.
-unsafe fn prepare_transfer<P>(
-    spi: &mut dma::Peripheral<P, u16>,
-    tx_buffer: &[u16],
-    rx_buffer: &mut [u16],
-) where
-    P: dma::Source<u16> + dma::Destination<u16>,
-    <P as dma::Source<u16>>::Error: core::fmt::Debug,
-    <P as dma::Destination<u16>>::Error: core::fmt::Debug,
-{
+fn prepare_transfer(spi: &mut SpiDma) {
     //   Prime the transfers
     //
     // Start the receive first, then the transfer, since the
     // transfer causes data to be received.
-    if let Err(err) = spi.start_receive(rx_buffer) {
-        log::warn!("Unable to start DMA receive: {:?}", err);
+    let (tx_buffer, rx_buffer) = take_buffers();
+    if let Err((_, err)) = spi.start_receive(rx_buffer) {
+        log::error!("Unable to start DMA receive: {:?}", err);
         if let dma::Error::Setup(es) = err {
-            log::warn!("{}", es);
+            log::error!("{}", es);
         }
         loop {
             core::sync::atomic::spin_loop_hint();
         }
     }
 
-    if let Err(err) = spi.start_transfer(tx_buffer) {
-        log::warn!("Unable to start DMA transfer: {:?}", err);
+    if let Err((_, err)) = spi.start_transfer(tx_buffer) {
+        log::error!("Unable to start DMA transfer: {:?}", err);
         if let dma::Error::Setup(es) = err {
-            log::warn!("{}", es);
+            log::error!("{}", es);
         }
         spi.receive_cancel();
         loop {
@@ -102,6 +122,44 @@ unsafe fn prepare_transfer<P>(
         }
     }
 }
+
+fn take_buffers() -> (TxBuffer, RxBuffer) {
+    let (tx_buffer, rx_buffer) = free(|cs| {
+        let tx_buffer = TX_BUFFER.borrow(cs).borrow_mut().take();
+        let rx_buffer = RX_BUFFER.borrow(cs).borrow_mut().take();
+        (tx_buffer, rx_buffer)
+    });
+    if tx_buffer.is_none() || rx_buffer.is_none() {
+        log::error!(
+            "Buffers are none! tx.is_none() == {}, rx.is_none() == {}",
+            tx_buffer.is_none(),
+            rx_buffer.is_none()
+        );
+        loop {
+            core::sync::atomic::spin_loop_hint();
+        }
+    }
+
+    (tx_buffer.unwrap(), rx_buffer.unwrap())
+}
+
+fn tx_buffer_mut<F: FnOnce(&mut TxBuffer) -> R, R>(act: F) -> Option<R> {
+    free(move |cs| {
+        let mut tx_buffer = TX_BUFFER.borrow(cs).borrow_mut();
+        tx_buffer.as_mut().map(act)
+    })
+}
+
+fn rx_buffer_mut<F: FnOnce(&mut RxBuffer) -> R, R>(act: F) -> Option<R> {
+    free(move |cs| {
+        let mut rx_buffer = RX_BUFFER.borrow(cs).borrow_mut();
+        rx_buffer.as_mut().map(act)
+    })
+}
+
+// Pin 20
+type HardwareFlag = bsp::hal::gpio::GPIO1IO26<bsp::hal::gpio::GPIO1, bsp::hal::gpio::Output>;
+static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 
 #[entry]
 fn main() -> ! {
@@ -113,6 +171,12 @@ fn main() -> ! {
         &mut peripherals.ccm.handle,
         &mut peripherals.dcdc,
     );
+
+    unsafe {
+        let p20 = peripherals.pins.p20;
+        use bsp::hal::gpio::IntoGpio;
+        HARDWARE_FLAG = Some(p20.alt5().into_gpio().output());
+    }
 
     //
     // SPI setup
@@ -166,43 +230,69 @@ fn main() -> ! {
     // the receive completes, we know that we're also done transferring
     // data.
     let spi = unsafe {
-        SPI_DMA = Some(dma::transfer_receive_u16(
+        SPI_DMA = Some(dma::bidirectional_u16(
             spi4,
-            (tx_channel, dma::ConfigBuilder::default().build()),
+            (tx_channel, dma::ConfigBuilder::new().build()),
             (rx_channel, rx_config),
         ));
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA9_DMA25);
         SPI_DMA.as_mut().unwrap()
     };
 
+    // Prepare transfer and receive buffers
+    let tx_buffer = dma::Linear::new(&TX_MEM).unwrap();
+    let rx_buffer = dma::Linear::new(&RX_MEM).unwrap();
+    free(move |cs| {
+        *TX_BUFFER.borrow(cs).borrow_mut() = Some(tx_buffer);
+        *RX_BUFFER.borrow(cs).borrow_mut() = Some(rx_buffer);
+    });
+
     //
     // Query and wait for response to WHO_AM_I
     //
 
     'who_am_i: loop {
-        let tx_buffer = [read(WHO_AM_I)];
-        let mut rx_buffer: [u16; 1] = [0; 1];
-
-        bsp::delay(500);
-        unsafe {
-            // Safey: memory exists on the stack for the lifetime
-            // of the transfer.
-            prepare_transfer(spi, &tx_buffer, &mut rx_buffer);
+        if tx_buffer_mut(|tx| {
+            tx.as_mut_elements()[0] = read(WHO_AM_I);
+            tx.set_transfer_len(1);
+        })
+        .is_none()
+        {
+            log::error!("Cannot prepare transfer buffer");
+            loop {
+                core::sync::atomic::spin_loop_hint();
+            }
         }
+        if rx_buffer_mut(|rx| {
+            rx.set_transfer_len(1);
+        })
+        .is_none()
+        {
+            log::error!("Cannot prepare receive buffer");
+            loop {
+                core::sync::atomic::spin_loop_hint();
+            }
+        }
+        bsp::delay(500);
 
         log::info!("Started DMA transfers for WHO_AM_I");
         FLAG.store(false, Ordering::Release);
+        prepare_transfer(spi);
         loop {
             cortex_m::asm::wfi();
             if FLAG.load(Ordering::Acquire) {
-                if 0x71 == rx_buffer[0] {
-                    log::info!(
-                        "Completed SPI tranfer! WHO_AM_I = {:#X}",
-                        rx_buffer[0] & 0xFF
-                    );
-                    break 'who_am_i;
+                if let Some(who_am_i) = rx_buffer_mut(|rx| rx.as_elements()[0]) {
+                    if 0x71 == who_am_i {
+                        log::info!("Completed SPI tranfer! WHO_AM_I = {:#X}", who_am_i & 0xFF);
+                        break 'who_am_i;
+                    } else {
+                        log::warn!("Incorrect WHO_AM_I {:#X} received!", who_am_i);
+                    }
                 } else {
-                    log::warn!("Incorrect WHO_AM_I {:#X} received!", rx_buffer[0]);
+                    log::error!("RX buffer was inaccessible!");
+                    loop {
+                        core::sync::atomic::spin_loop_hint();
+                    }
                 }
             }
         }
@@ -213,21 +303,39 @@ fn main() -> ! {
     //
     log::info!("Dropping into loop for readings...");
     'measurements: loop {
-        let tx_buffer = command_3dof();
-        let mut rx_buffer: [u16; 6] = [0; 6];
-
-        bsp::delay(500);
-        unsafe {
-            // Safety: buffer on stack, but always in scope
-            prepare_transfer(spi, &tx_buffer, &mut rx_buffer);
+        let cmds = command_3dof();
+        if let None = tx_buffer_mut(|tx| {
+            tx.as_mut_elements()[..cmds.len()].copy_from_slice(&cmds);
+            tx.set_transfer_len(cmds.len());
+        }) {
+            log::error!("Unable to modify transfer buffer!");
+            loop {
+                core::sync::atomic::spin_loop_hint();
+            }
+        }
+        if let None = rx_buffer_mut(|rx| {
+            rx.set_transfer_len(cmds.len());
+        }) {
+            log::error!("Unable to modify receive buffer!");
+            loop {
+                core::sync::atomic::spin_loop_hint();
+            }
         }
 
+        bsp::delay(500);
         FLAG.store(false, Ordering::Release);
+        prepare_transfer(spi);
         loop {
             cortex_m::asm::wfi();
             if FLAG.load(Ordering::Acquire) {
-                log_6dof(&rx_buffer);
-                continue 'measurements;
+                if let Some(rx_buffer) = rx_buffer_mut(|rx| {
+                    let mut readings = [0; 6];
+                    readings.copy_from_slice(&rx.as_elements()[..6]);
+                    readings
+                }) {
+                    log_6dof(&rx_buffer);
+                    continue 'measurements;
+                }
             }
         }
     }

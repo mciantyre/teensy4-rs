@@ -24,15 +24,36 @@ use teensy4_bsp as bsp;
 
 use embedded_hal::digital::v2::ToggleableOutputPin;
 
-use core::sync::atomic::{AtomicBool, Ordering};
+use core::{
+    cell::RefCell,
+    sync::atomic::{AtomicBool, Ordering},
+};
+use cortex_m::interrupt::{free, Mutex};
 
 /// Modify your baud rate here
 const BAUD: u32 = 115_200;
 
+type TxBuffer = bsp::hal::dma::Linear<u8>;
+type RxBuffer = bsp::hal::dma::Circular<u8>;
+
+#[repr(align(64))]
+struct Align64(bsp::hal::dma::Buffer<[u8; 64]>);
+
+static TX_MEM: bsp::hal::dma::Buffer<[u8; 64]> = bsp::hal::dma::Buffer::new([0; 64]);
+static RX_MEM: Align64 = Align64(bsp::hal::dma::Buffer::new([0; 64]));
+
+static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(None));
+static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
+
+type DmaUart = bsp::hal::dma::Peripheral<
+    bsp::hal::uart::UART<bsp::hal::uart::module::_2>,
+    u8,
+    TxBuffer,
+    RxBuffer,
+>;
+
 /// A DMA peripheral adapter around the UART2 peripheral. It sends bytes.
-static mut DMA_PERIPHERAL: Option<
-    bsp::hal::dma::Peripheral<bsp::hal::uart::UART<bsp::hal::uart::module::_2>, u8>,
-> = None;
+static mut DMA_PERIPHERAL: Option<DmaUart> = None;
 
 /// Flags for the main loop
 static TX_READY: AtomicBool = AtomicBool::new(false);
@@ -43,14 +64,20 @@ static RX_READY: AtomicBool = AtomicBool::new(false);
 unsafe fn DMA7_DMA23() {
     let uart = DMA_PERIPHERAL.as_mut().unwrap();
 
-    while uart.transfer_interrupt() {
+    // Safe to create a critical section. This won't be preempted by a higher-priority
+    // exception.
+    let cs = cortex_m::interrupt::CriticalSection::new();
+
+    if uart.is_transfer_interrupt() {
         uart.transfer_clear_interrupt();
-        uart.transfer_clear_complete();
+        let mut tx_buffer = TX_BUFFER.borrow(&cs).borrow_mut();
+        *tx_buffer = uart.transfer_complete();
         TX_READY.store(true, Ordering::Release);
     }
-    while uart.receive_interrupt() {
+    if uart.is_receive_interrupt() {
         uart.receive_clear_interrupt();
-        uart.receive_clear_complete();
+        let mut rx_buffer = RX_BUFFER.borrow(&cs).borrow_mut();
+        *rx_buffer = uart.receive_complete();
         RX_READY.store(true, Ordering::Release);
     }
 }
@@ -83,7 +110,7 @@ fn main() -> ! {
         .build();
 
     let dma_uart = unsafe {
-        DMA_PERIPHERAL = Some(bsp::hal::dma::Peripheral::new_transfer_receive(
+        DMA_PERIPHERAL = Some(bsp::hal::dma::Peripheral::new_bidirectional(
             uart,
             (tx_channel, config),
             (rx_channel, config),
@@ -93,21 +120,38 @@ fn main() -> ! {
     };
     let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
 
-    let mut rx_buffer: [u8; 1] = [0; 1];
-    // Received: X
-    const REPLY_OFFSET: usize = 10;
-    let mut tx_buffer: [u8; 13] = [
-        b'R', b'e', b'c', b'e', b'i', b'v', b'e', b'd', b':', b' ', 0, b'\r', b'\n',
-    ];
+    let rx_buffer = match bsp::hal::dma::Circular::new(&RX_MEM.0) {
+        Ok(circular) => circular,
+        Err(error) => {
+            log::error!("Unable to create circular RX buffer: {:?}", error);
+            loop {}
+        }
+    };
+
+    free(|cs| {
+        *RX_BUFFER.borrow(cs).borrow_mut() = Some(rx_buffer);
+        *TX_BUFFER.borrow(cs).borrow_mut() = bsp::hal::dma::Linear::new(&TX_MEM);
+    });
 
     'start: loop {
         RX_READY.store(false, Ordering::Release);
         TX_READY.store(false, Ordering::Release);
 
+        let mut rx_buffer = match free(|cs| RX_BUFFER.borrow(cs).borrow_mut().take()) {
+            None => {
+                log::error!("No receive buffer!");
+                loop {
+                    core::sync::atomic::spin_loop_hint();
+                }
+            }
+            Some(rx_buffer) => rx_buffer,
+        };
+        rx_buffer.reserve(1);
+
         // Schedule an initial receive
-        let res = unsafe { dma_uart.start_receive(&mut rx_buffer) };
+        let res = dma_uart.start_receive(rx_buffer);
         if let Err(err) = res {
-            log::warn!("Error scheduling DMA receive: {:?}", err);
+            log::error!("Error scheduling DMA receive: {:?}", err);
             loop {
                 core::sync::atomic::spin_loop_hint();
             }
@@ -118,9 +162,29 @@ fn main() -> ! {
             if RX_READY.load(Ordering::Acquire) {
                 led.toggle().unwrap();
                 RX_READY.store(false, Ordering::Release);
-                log::info!("Received: {}", rx_buffer[0]);
-                tx_buffer[REPLY_OFFSET] = rx_buffer[0];
-                let res = unsafe { dma_uart.start_transfer(&tx_buffer) };
+                let mut rx_buffer = free(|cs| RX_BUFFER.borrow(cs).borrow_mut().take()).unwrap();
+                let value = match rx_buffer.pop() {
+                    Some(v) => v,
+                    None => {
+                        log::warn!("Nothing to pop! Returning '0'");
+                        0
+                    }
+                };
+                free(|cs| *RX_BUFFER.borrow(cs).borrow_mut() = Some(rx_buffer));
+                log::info!("Received: {}", value);
+                let mut tx_buffer = match free(|cs| TX_BUFFER.borrow(cs).borrow_mut().take()) {
+                    None => {
+                        log::error!("No transfer buffer!");
+                        loop {
+                            core::sync::atomic::spin_loop_hint();
+                        }
+                    }
+                    Some(tx_buffer) => tx_buffer,
+                };
+
+                tx_buffer.as_mut_elements()[0] = value;
+                tx_buffer.set_transfer_len(1);
+                let res = dma_uart.start_transfer(tx_buffer);
                 if let Err(err) = res {
                     log::warn!("Error scheduling DMA transfer: {:?}", err);
                     loop {
