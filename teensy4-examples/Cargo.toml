@@ -20,6 +20,12 @@ panic-halt = "0.2.0"
 teensy4-bsp = { version = "0.1.0", path = "../teensy4-bsp" }
 
 [[bin]]
+name = "dma_memcpy"
+path = "src/dma_memcpy.rs"
+test = false
+bench = false
+
+[[bin]]
 name = "dma_spi"
 path = "src/dma_spi.rs"
 test = false
