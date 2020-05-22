@@ -22,7 +22,6 @@ extern uint32_t __sitext;
 extern uint32_t __sdata;
 extern uint32_t __edata;
 extern uint32_t __sidata;
-extern uint32_t __estack;
 extern void _start(void);
 
 __attribute__((always_inline)) inline static void
@@ -45,10 +44,6 @@ __attribute__((section(".boot.reset"), naked)) void _reset(void) {
   IOMUXC_GPR_GPR(17) = (uint32_t)&__flexram_bank_config;
   IOMUXC_GPR_GPR(16) = 0x00200007;
   IOMUXC_GPR_GPR(14) = 0x00AA0000;
-
-  // Reconfigure the stack pointer(s) based on the DTCM / ITCM separation
-  __asm__ volatile("msr MSP, %0" : : "r"((uint32_t)&__estack) :);
-  __asm__ volatile("msr PSP, %0" : : "r"((uint32_t)&__estack) :);
 
   // Copy text and data into TCM regions
   init_data(&__stext, &__etext, &__sitext);

@@ -33,16 +33,14 @@ PROVIDE(DefaultHandler = DefaultHandler_);
 
 SECTIONS
 {
-    /* 4KiB (0x1000) offset since we're booting from FlexSPI NOR */
-    _image_vector_table = ORIGIN(FLASH) + 0x1000;
-
     /* The boot section contains all the special things that allow the IMXRT1062 to boot */
     .boot :
     {
         /* Firmware Configuration Block (FCB) */
         KEEP(*(.fcb));
         FILL(0xFFFFFFFF);
-        . = _image_vector_table;
+        . = ORIGIN(FLASH) + 0x1000;
+        _ivt = .;
         /* ------------------
          * Image Vector Table
          * ------------------
@@ -52,7 +50,7 @@ SECTIONS
         LONG(0x00000000);           /* RESERVED */
         LONG(0x00000000);           /* Device Configuration Data (unused) */
         LONG(_boot_data);           /* Address to boot data */
-        LONG(_image_vector_table);  /* Self reference, required by boot ROM */
+        LONG(_ivt);                 /* Self reference, required by boot ROM */
         LONG(0x00000000);           /* Command Sequence File (unused) */
         LONG(0x00000000);           /* RESERVED */
         /* ---------
@@ -61,8 +59,8 @@ SECTIONS
          */
         _boot_data = .;
         LONG(ORIGIN(FLASH));        /* Start of image (origin of flash) */
-        LONG(__lflash);             /* Length of flash */
-        LONG(0);                    /* Plugin flag (unused) */
+        LONG(_lflash);              /* Length of flash */
+        LONG(0x00000000);           /* Plugin flag (unused) */
         /* --------- */
         KEEP(*(.boot.reset));
         KEEP(*(.boot.tcm));
@@ -72,7 +70,7 @@ SECTIONS
         /* It must be 1024-byte aligned */
         . = ALIGN(1024);
         __svectors = .;
-        LONG(0x20010000); /* Initial stack pointer */
+        LONG(__stack); /* Initial stack pointer */
         LONG(_reset);     /* Pointer to the reset handler */
         KEEP(*(.vector_table.exceptions));
         KEEP(*(.vector_table.interrupts));
@@ -132,13 +130,13 @@ SECTIONS
     }
 
     /* The length of flash is required for the boot data */
-    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
+    _lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
 
     /* The following are used to compute the FlexRAM banks for ITCM / DTCM */
     _itcm_block_count = (SIZEOF(.text) + 0x7FFF) >> 15;
     __flexram_bank_config = 0xAAAAAAAA | ((1 << (_itcm_block_count * 2)) - 1);
     /* We reconfigure the stack pointer based on the ITCM / DTCM separation */
-    __estack = ORIGIN(DTCM) + ((16 - _itcm_block_count) << 15);
+    __stack = ORIGIN(DTCM) + ((16 - _itcm_block_count) << 15);
 }
 
 /* Asserts that check some Rust requirements */
@@ -160,4 +158,4 @@ ERROR(teensy4-rt): .bss is not 4-byte aligned");
 ASSERT(__stext % 4 == 0 && __etext % 4 == 0, "
 ERROR(teensy4-rt): .text is not 4-byte aligned");
 
-ENTRY(_image_vector_table);
+ENTRY(_ivt);
