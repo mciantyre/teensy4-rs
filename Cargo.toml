@@ -1,8 +1,8 @@
 [workspace]
 members = [
-    "imxrt1062-rt",
     "teensy4-bsp",
     "teensy4-bsp/teensy4-usb-sys",
     "teensy4-examples",
-    "teensy4-fcb"
+    "teensy4-fcb",
+    "teensy4-rt",
 ]

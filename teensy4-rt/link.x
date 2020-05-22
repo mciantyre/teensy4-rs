@@ -122,21 +122,21 @@ SECTIONS
 
 /* Asserts that check some Rust requirements */
 ASSERT(ORIGIN(FLASH) % 4 == 0, "
-ERROR(imxrt1062-rt): the start of the FLASH region must be 4-byte aligned");
+ERROR(teensy4-rt): the start of the FLASH region must be 4-byte aligned");
 
 ASSERT(ORIGIN(RAM) % 4 == 0, "
-ERROR(imxrt1062-rt): the start of the RAM region must be 4-byte aligned");
+ERROR(teensy4-rt): the start of the RAM region must be 4-byte aligned");
 
 ASSERT(__sdata % 4 == 0 && __edata % 4 == 0, "
-ERROR(imxrt1062-rt): .data is not 4-byte aligned");
+ERROR(teensy4-rt): .data is not 4-byte aligned");
 
 ASSERT(__sidata % 4 == 0, "
-ERROR(imxrt1062-rt): the LMA of .data is not 4-byte aligned");
+ERROR(teensy4-rt): the LMA of .data is not 4-byte aligned");
 
 ASSERT(__sbss % 4 == 0 && __ebss % 4 == 0, "
-ERROR(imxrt1062-rt): .bss is not 4-byte aligned");
+ERROR(teensy4-rt): .bss is not 4-byte aligned");
 
 ASSERT(__stext % 4 == 0 && __etext % 4 == 0, "
-ERROR(imxrt1062-rt): .text is not 4-byte aligned");
+ERROR(teensy4-rt): .text is not 4-byte aligned");
 
 ENTRY(image_vector_table);

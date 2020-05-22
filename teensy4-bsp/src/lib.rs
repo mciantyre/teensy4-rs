@@ -20,8 +20,8 @@
 //!
 //! The BSP re-exports the following:
 //!
-//! - the `imxrt1062-rt` crate, as `rt`
-//! - the `imxrt1062-hal` crate, as `hal`
+//! - the `teensy4-rt` crate, as `rt`
+//! - the `imxrt-hal` crate, as `hal`
 //!
 //! See the accompanying documentation of each crate for more
 //! information.
@@ -107,8 +107,8 @@ extern crate teensy4_fcb;
 pub mod usb;
 
 pub use hal::ral::interrupt;
-pub use imxrt1062_rt as rt;
 pub use imxrt_hal as hal;
+pub use teensy4_rt as rt;
 pub use teensy4_usb_sys::serial_write;
 
 pub type LED = hal::gpio::GPIO2IO03<hal::gpio::GPIO7, hal::gpio::Output>;
@@ -328,7 +328,7 @@ pub extern "C" fn delay(millis: u32) {
 
 /// Scoping of data related to SYSTICK
 mod systick {
-    use imxrt1062_rt::exception;
+    use teensy4_rt::exception;
 
     #[no_mangle]
     static mut systick_millis_count: u32 = 0;

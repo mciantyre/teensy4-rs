@@ -12,9 +12,9 @@ Part of the teensy4-rs project.
 
 [dependencies]
 cortex-m = "0.6.1"
-imxrt1062-rt = { path = "../imxrt1062-rt" }
 log = "0.4.8"
 teensy4-fcb = { path = "../teensy4-fcb" }
+teensy4-rt = { path = "../teensy4-rt" }
 teensy4-usb-sys = { path = "teensy4-usb-sys" }
 
 [dependencies.imxrt-hal]
