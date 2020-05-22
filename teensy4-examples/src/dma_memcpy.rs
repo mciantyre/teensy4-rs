@@ -16,18 +16,20 @@ use teensy4_bsp as bsp;
 /// Valid types include any of the unsigned integers.
 type Element = u32;
 
+const BUFFER_SIZE: usize = 4096;
+
 // We're using circular buffers for both the TX and RX buffers.
 // When using the circular buffers, we need to align the underlying
 // memory to a multiple of the memory size.
-#[repr(align(128))]
-struct Alignment(dma::Buffer<[Element; 32]>);
+#[repr(align(16384))]
+struct Alignment(dma::Buffer<[Element; BUFFER_SIZE]>);
 
 // Memory that backs the DMA buffers
-static TX_MEMORY: Alignment = Alignment(dma::Buffer::new([0; 32]));
-static RX_MEMORY: Alignment = Alignment(dma::Buffer::new([0; 32]));
+static TX_MEMORY: Alignment = Alignment(dma::Buffer::new([0; BUFFER_SIZE]));
+static RX_MEMORY: Alignment = Alignment(dma::Buffer::new([0; BUFFER_SIZE]));
 
 // Number of elements to move for each DMA memcpy
-const NUMBER_OF_ELEMENTS: Element = 23;
+const NUMBER_OF_ELEMENTS: Element = (BUFFER_SIZE - 7) as Element;
 
 #[entry]
 fn main() -> ! {
@@ -79,10 +81,18 @@ fn main() -> ! {
             log::info!("Transfer started...");
         }
 
-        while !memcpy.is_complete() {}
+        if (start + 1) % 3 != 0 {
+            while !memcpy.is_complete() {}
+        } else {
+            log::info!("Cancelling this, and every third, transfer...");
+        }
 
         let (tx, rx) = match memcpy.complete() {
-            Some(buffers) => buffers,
+            Some(Ok(buffers)) => buffers,
+            Some(Err(buffers)) => {
+                log::info!("Memcpy was cancelled!");
+                buffers
+            }
             None => {
                 log::error!("Memcpy didn't give us back the buffers!");
                 loop {
@@ -90,24 +100,27 @@ fn main() -> ! {
                 }
             }
         };
+
         tx_buffer = tx;
         rx_buffer = rx;
 
+        let mut ok = true;
         if rx_buffer.len() != NUMBER_OF_ELEMENTS as usize {
             log::warn!(
                 "Expected {} elements in the receive queue, but found {} elements",
                 NUMBER_OF_ELEMENTS,
                 rx_buffer.len()
             );
+            ok = false;
         }
         if !tx_buffer.is_empty() {
             log::warn!(
                 "Expected there to be 0 elements in the transfer queue, but found {} elements",
                 tx_buffer.len()
             );
+            ok = false;
         }
 
-        let mut ok = true;
         for (actual, expected) in rx_buffer.drain().zip(pattern) {
             if actual != expected {
                 log::warn!(
@@ -125,6 +138,7 @@ fn main() -> ! {
         }
 
         rx_buffer.clear();
+        tx_buffer.clear();
 
         start += 1;
         bsp::delay(5_000);
