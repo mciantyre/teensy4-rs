@@ -103,13 +103,14 @@ fn main() -> ! {
     uart.set_rx_inversion(INVERTED);
     uart.set_tx_inversion(INVERTED);
     let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
+    let (mut tx, mut rx) = uart.split();
     loop {
         bsp::delay(1_000);
         led.toggle().unwrap();
         let mut buffer = DATA;
-        write(&mut uart, &buffer).unwrap();
+        write(&mut tx, &buffer).unwrap();
         bsp::delay(1);
-        match read(&mut uart, &mut buffer) {
+        match read(&mut rx, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),
         }
