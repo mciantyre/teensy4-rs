@@ -15,6 +15,7 @@ Part of the teensy4-rs project.
 cortex-m = "0.6.1"
 embedded-hal = "0.2.3"
 log = { version = "0.4.8", features = ["release_max_level_info"] }
+imxrt-uart-log = { path = "../../imxrt/uart-log" }
 nb = "0.1.2"
 panic-halt = "0.2.0"
 teensy4-bsp = { version = "0.1.0", path = "../teensy4-bsp" }
@@ -52,6 +53,12 @@ bench = false
 [[bin]]
 name = "led"
 path = "src/led.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "log_uart"
+path = "src/log_uart.rs"
 test = false
 bench = false
 
