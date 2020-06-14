@@ -252,22 +252,19 @@ fn main() -> ! {
     //
 
     'who_am_i: loop {
-        if tx_buffer_mut(|tx| {
+        let prep_tx = |tx: &mut dma::Linear<u16>| {
             tx.as_mut_elements()[0] = read(WHO_AM_I);
             tx.set_transfer_len(1);
-        })
-        .is_none()
-        {
+        };
+        if tx_buffer_mut(prep_tx).is_none() {
             log::error!("Cannot prepare transfer buffer");
             loop {
                 core::sync::atomic::spin_loop_hint();
             }
         }
-        if rx_buffer_mut(|rx| {
-            rx.set_transfer_len(1);
-        })
-        .is_none()
-        {
+
+        let prep_rx = |rx: &mut dma::Linear<u16>| rx.set_transfer_len(1);
+        if rx_buffer_mut(prep_rx).is_none() {
             log::error!("Cannot prepare receive buffer");
             loop {
                 core::sync::atomic::spin_loop_hint();

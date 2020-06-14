@@ -104,15 +104,16 @@ fn main() -> ! {
         tx_buffer = tx;
         rx_buffer = rx;
 
-        let mut ok = true;
-        if rx_buffer.len() != NUMBER_OF_ELEMENTS as usize {
+        let mut ok = if rx_buffer.len() != NUMBER_OF_ELEMENTS as usize {
             log::warn!(
                 "Expected {} elements in the receive queue, but found {} elements",
                 NUMBER_OF_ELEMENTS,
                 rx_buffer.len()
             );
-            ok = false;
-        }
+            false
+        } else {
+            true
+        };
         if !tx_buffer.is_empty() {
             log::warn!(
                 "Expected there to be 0 elements in the transfer queue, but found {} elements",
