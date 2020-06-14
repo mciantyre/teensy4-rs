@@ -62,7 +62,7 @@ extern "C" {
 }
 
 #[doc(hidden)]
-#[link_section = ".vector_table.exceptions"]
+#[cfg_attr(target_arch = "arm", link_section = ".vector_table.exceptions")]
 #[no_mangle]
 pub static __EXCEPTIONS: [Vector; NUM_EXCEPTIONS] = [
     // Exception 2: Non Maskable Interrupt.

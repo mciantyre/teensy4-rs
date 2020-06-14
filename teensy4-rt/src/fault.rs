@@ -51,7 +51,7 @@ impl fmt::Debug for ExceptionFrame {
 }
 
 #[doc(hidden)]
-#[link_section = ".HardFault.default"]
+#[cfg_attr(target_arch = "arm", link_section = ".HardFault.default")]
 #[no_mangle]
 pub unsafe extern "C" fn HardFault_(_: &ExceptionFrame) -> ! {
     loop {
