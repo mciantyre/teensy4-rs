@@ -108,7 +108,7 @@ It is our hope that the `imxrt1062-rt` crate can be transparently replaced with 
 
 ## Contributing
 
-We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop applications for the Teensy 4. Submit an issue to help us identify bugs, feature requests, or documentation gaps.
+We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop Teensy 4 applications. Submit an issue to help us identify bugs, feature requests, or documentation gaps. See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidance, and to learn about the best issue tracker for your request.
 
 ## Q/A
 
