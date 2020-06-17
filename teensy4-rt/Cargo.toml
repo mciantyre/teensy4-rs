@@ -19,9 +19,6 @@ git = "https://github.com/rust-embedded/cortex-m-rt.git"
 [dependencies.cortex-m]
 version = "0.6.1"
 
-[build-dependencies]
-cc = "1.0.48"
-
 [lib]
 bench = false
 test = false
