@@ -111,16 +111,15 @@ fn main() -> ! {
                 rx_buffer.len()
             );
             false
-        } else {
-            true
-        };
-        if !tx_buffer.is_empty() {
+        } else if !tx_buffer.is_empty() {
             log::warn!(
                 "Expected there to be 0 elements in the transfer queue, but found {} elements",
                 tx_buffer.len()
             );
-            ok = false;
-        }
+            false
+        } else {
+            true
+        };
 
         for (actual, expected) in rx_buffer.drain().zip(pattern) {
             if actual != expected {

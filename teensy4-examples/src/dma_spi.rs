@@ -301,18 +301,22 @@ fn main() -> ! {
     log::info!("Dropping into loop for readings...");
     'measurements: loop {
         let cmds = command_3dof();
-        if let None = tx_buffer_mut(|tx| {
+        if tx_buffer_mut(|tx| {
             tx.as_mut_elements()[..cmds.len()].copy_from_slice(&cmds);
             tx.set_transfer_len(cmds.len());
-        }) {
+        })
+        .is_none()
+        {
             log::error!("Unable to modify transfer buffer!");
             loop {
                 core::sync::atomic::spin_loop_hint();
             }
         }
-        if let None = rx_buffer_mut(|rx| {
+        if rx_buffer_mut(|rx| {
             rx.set_transfer_len(cmds.len());
-        }) {
+        })
+        .is_none()
+        {
             log::error!("Unable to modify receive buffer!");
             loop {
                 core::sync::atomic::spin_loop_hint();
