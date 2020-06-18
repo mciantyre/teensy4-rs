@@ -5,10 +5,6 @@
 //! character causes the LED to toggle. Received bytes and
 //! replies are logged over USB.
 //!
-//! Each receive is a DMA transfer of one byte from a UART
-//! peripheral. Then, each response is a multi-byte DMA
-//! transfer to the UART peripheral.
-//!
 //! Pinout:
 //! - Pin 14: UART2_TX
 //! - Pin 15: UART2_RX
