@@ -24,8 +24,6 @@ jobs:
   clippy:
     runs-on: ubuntu-latest
     steps:
-      - name: Install build dependencies
-        run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
@@ -38,3 +36,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --verbose --target thumbv7em-none-eabihf -- -D warnings
           name: Run clippy
+
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+            toolchain: stable
+            components: llvm-tools-preview
+            target: thumbv7em-none-eabihf
+            override: true
+      - name: Build the LED example using hardware-test.sh
+        run: ./hardware-test.sh led

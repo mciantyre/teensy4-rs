@@ -26,11 +26,17 @@ We've measured a few things things, like I2C, UART, SPI, and timer timings. No o
 - A Rust installation. We use the latest, stable Rust compiler. Minimum-Supported Rust Version (MSRV) is 1.40. Recommended installation via `rustup`.
 - The `thumbv7-none-eabihf` Rust target, which may be installed via `rustup`:
 
-```bash
-$ rustup target add thumbv7em-none-eabihf
-```
+    ```bash
+    $ rustup target add thumbv7em-none-eabihf
+    ```
 
-- The [GNU ARM Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm) for compiling the C sources we need to bootstrap startup (in `teensy4-rt`) and the USB stack in the BSP. Specifically, we need the C compiler and archiver available on our path to build the runtime crate. For deploying to a Teensy 4 using the command-line loader, we'll also need `arm-none-eabi-objcopy` (ARM binutils).
+- A capable `objcopy` for transforming Rust binaries into hex files. The tooling in the repository uses `rust-objcopy`, which is available through `llvm-tools-preview`:
+
+    ```bash
+    $ rustup component add llvm-tools-preview
+    ```
+
+    Alternatively, you may use `arm-none-eabi-objcopy` (available from ARM binutils).
 
 - Optionally, a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli) available on our path. We have a script to rapidly test example programs in the `teensy4-examples`, and it makes use of `teensy_loader_cli`. To load applications onto the Teensy 4, we may also use the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html), which is also available with the Teensyduino add-ons.
 
@@ -42,7 +48,7 @@ The best way to test your setup is to use the `hardware-test.sh` script (`hardwa
 ./hardware-test.sh led
 ```
 
-If all goes well, the `led` example should turn on the Teensy 4's LED.
+This will generate an `out` directory, with a `led.hex` file. You should download this to your Teensy 4 using one of the loader applications. If all goes well, the `led` example should turn on the Teensy 4's LED.
 
 Use our `cargo-generate` template, [`teensy4-rs-template`](https://github.com/mciantyre/teensy4-rs-template), to bootstrap your own teensy4-rs project based on these libraries:
 
@@ -114,7 +120,7 @@ We welcome support! There are known issues that anyone can address in the issues
 
 *When will this be on crates.io?*
 
-After we evaluate whether or not this is a good or bad approach to developing Rust applications for the Teensy 4, we will either release these crates to crates.io, or recommend an alternative solution.
+After we evaluate whether or not this is a good or bad approach to developing Rust applications for the Teensy 4, we will either release these crates to crates.io, or recommend an alternative solution. We also need to wait for all of our dependencies to become available on crates.io. As of this writing, we're waiting on an unreleased `cortex-m-rt-macros` crate.
 
 ## Acknowledgements and References
 
