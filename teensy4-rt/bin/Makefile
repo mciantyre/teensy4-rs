@@ -5,9 +5,9 @@ CFLAGS= -Wall -MMD -g -O2 -ffunction-sections -fdata-sections -mcpu=cortex-m7 -m
 SRCS=$(wildcard *.c)
 OBJS=$(SRCS:.c=.o)
 
-libboot.a: $(OBJS)
+libt4boot.a: $(OBJS)
 	$(AR) -rcs $@ $(OBJS)
 
 .PHONY: clean
 clean:
-	rm -f libboot.a *.o *.d
+	rm -f libt4boot.a *.o *.d
