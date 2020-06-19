@@ -18,9 +18,8 @@ teensy4-rt = { path = "../teensy4-rt" }
 teensy4-usb-sys = { path = "teensy4-usb-sys" }
 
 [dependencies.imxrt-hal]
-version = "0.2.1"
+version = "0.3.0"
 features = ["imxrt1062", "rt"]
-path = "../../imxrt/imxrt/imxrt-hal"
 
 [lib]
 bench = false
