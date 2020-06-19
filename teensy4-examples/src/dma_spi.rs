@@ -301,22 +301,21 @@ fn main() -> ! {
     log::info!("Dropping into loop for readings...");
     'measurements: loop {
         let cmds = command_3dof();
-        if tx_buffer_mut(|tx| {
+        let set_tx_buf = |tx: &mut dma::Linear<u16>| {
             tx.as_mut_elements()[..cmds.len()].copy_from_slice(&cmds);
             tx.set_transfer_len(cmds.len());
-        })
-        .is_none()
-        {
+        };
+        if tx_buffer_mut(set_tx_buf).is_none() {
             log::error!("Unable to modify transfer buffer!");
             loop {
                 core::sync::atomic::spin_loop_hint();
             }
         }
-        if rx_buffer_mut(|rx| {
+
+        let set_rx_buf = |rx: &mut dma::Linear<u16>| {
             rx.set_transfer_len(cmds.len());
-        })
-        .is_none()
-        {
+        };
+        if rx_buffer_mut(set_rx_buf).is_none() {
             log::error!("Unable to modify receive buffer!");
             loop {
                 core::sync::atomic::spin_loop_hint();
