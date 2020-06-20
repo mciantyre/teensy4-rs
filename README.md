@@ -2,7 +2,7 @@
 
 A collection of crates for Rust development on the Teensy 4.
 
-Status: prototype.
+Status: unreleased prototype
 
 We can
 - blink the LED
@@ -24,20 +24,22 @@ We've measured a few things things, like I2C, UART, SPI, and timer timings. No o
 
 ## Dependencies
 
-- A Rust installation; recommended installation via `rustup`.
-- The `thumbv7em-none-eabihf` Rust target, which may be installed via `rustup`:
+- A Rust installation; recommended installation using `rustup`. We support the latest, stable Rust toolchain.
+- The `thumbv7em-none-eabihf` Rust target, which may be installed using `rustup`:
 
     ```bash
     $ rustup target add thumbv7em-none-eabihf
     ```
 
-- A capable `objcopy` for transforming Rust binaries into hex files. The documentation and tooling in the project uses the LLVM `objcopy` provided by [`cargo binutils`](https://github.com/rust-embedded/cargo-binutils).
+- A capable `objcopy` for transforming Rust binaries into hex files. The documentation and tooling in the project uses the LLVM `objcopy` provided by [`cargo binutils`]. Install [`cargo binutils`] if you want to precisely follow this documentation.
 
-- Either a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli), or the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html). The latter is available with the Teensyduino add-ons.
+[`cargo binutils`]: https://github.com/rust-embedded/cargo-binutils
+
+- To download programs to your Teensy 4, you'll need either a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli), or the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html). The latter is available with the Teensyduino add-ons.
 
 ## Getting started
 
-Use our `cargo-generate` template, [`teensy4-rs-template`](https://github.com/mciantyre/teensy4-rs-template), to bootstrap your own teensy4-rs project based on these libraries:
+Use our `cargo generate` template, [`teensy4-rs-template`](https://github.com/mciantyre/teensy4-rs-template), to bootstrap your own `teensy4-rs` project based on these libraries:
 
 ```
 cargo install cargo-generate
@@ -46,9 +48,9 @@ cd hello-world
 cargo objcopy --release -- -O ihex hello-world.hex
 ```
 
-Download `hellow-world.hex` to your Teensy 4!
+Download `hello-world.hex` to your Teensy 4!
 
-See the Rust documentation for API information. In particular, study the `imxrt-hal` APIs, since the BSP forwards many of the HAL's interfaces:
+See the Rust documentation for API information. In particular, study the [`imxrt-hal` APIs](https://docs.rs/imxrt-hal/0.3.0/imxrt_hal/), since the BSP forwards many of the HAL's interfaces:
 
 ```
 cargo doc --open
@@ -78,7 +80,7 @@ Although we strive for compatibility with existing crates and frameworks, we've 
 
 An embedded Rust developer might use the [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) to bootstrap a Cortex-M system. However, [#164](https://github.com/rust-embedded/cortex-m-rt/issues/164) notes that the `cortex-m-rt` crate cannot yet support devices with custom memory layouts. The iMXRT106x is one of the systems with a custom memory layout; in particular, we have tightly-coupled memory (TCM) regions for instructions (ITCM) and data (DTCM). We also need to place special arrays (the FCB) in memory in order to properly boot. Given these requirements, we need a custom runtime crate that can initialize the system.
 
-The `teensy4-rt` crate is a fork of the `cortex-m-rt` crate that is customized to support a minimal iMXRT1062 startup and runtime. Like the `cortex-m-rt` crate, the `teensy3-rt` crate
+The `teensy4-rt` crate is a fork of the `cortex-m-rt` crate that is customized to support a minimal iMXRT1062 startup and runtime. Like the `cortex-m-rt` crate, the `teensy4-rt` crate
 
 - populates the vector table for correct booting and exception / interrupt dispatch
 - initializes static variables
@@ -98,7 +100,9 @@ It is our hope that the `teensy4-rt` crate can be transparently replaced with th
 
 ## Contributing
 
-We welcome support! There are known issues that anyone can address in the issues tracker. And, the best way to contribute is to start using the crates to develop Teensy 4 applications. Submit an issue to help us identify bugs, feature requests, or documentation gaps. See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidance, and to learn about the best issue tracker for your request.
+We welcome support! A great way to contribute is to start using the crates to develop Teensy 4 applications. Submit an issue to help us identify bugs, feature requests, or documentation gaps. See [CONTRIBUTING.md](CONTRIBUTING.md) to learn about the best issue tracker for your request.
+
+If you want to directly contribute to the `teensy4-rs` project, read the development guidance in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Q/A
 
@@ -122,11 +126,21 @@ We also need to wait for all of our dependencies to become available on crates.i
     path = "path/to/cloned/teensy4-rs/teensy4-bsp"
     ```
 
+#### There's more C than Rust! How is this a Rust project?
+
+There used to be more Rust code here. But today, most Rust development happens in the [`imxrt-rs` project](https://github.com/imxrt-rs/imxrt-rs).
+
+We have C sources in this project because
+
+- we can't easily express the equivalent Rust code on a stable compiler (runtime support)
+- we haven't written a Rust implementation to replace it (USB support)
+
+We precompile these C sources so that our users do not need an ARM toolchain to compile the crates.
+
 ## Acknowledgements and References
 
 - The [Teensy 4](https://www.pjrc.com/store/teensy40.html) is wonderful, and that's thanks to the hard work of PJRC and friends. We can find the Teensy code used in the Arduino plugins [here](https://github.com/PaulStoffregen/cores). The code greatly influenced this library.
 - The Rust Cortex M team, specifically the [`cortex-m-rt`](https://github.com/rust-embedded/cortex-m-rt) crate.
-
 
 ## License
 
