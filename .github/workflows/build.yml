@@ -34,12 +34,15 @@ jobs:
       - uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --verbose --target thumbv7em-none-eabihf -- -D warnings
+          args: --verbose --workspace --examples --target thumbv7em-none-eabihf -- -D warnings
           name: Run clippy
 
-  examples:
+  precompiled:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build all examples
-        run: make
+      - name: Install build dependencies
+        run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
+      - name: Build runtime support
+        run: make libt4boot
+      - name: Build USB stack
+        run: make libt4usb
