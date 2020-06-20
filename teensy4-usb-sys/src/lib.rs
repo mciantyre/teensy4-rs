@@ -37,7 +37,7 @@
 
 #![no_std]
 
-#[link(name = "usbsys")]
+#[link(name = "t4usb")]
 extern "C" {
     /// Initialize the USB PLL and clocks.
     ///

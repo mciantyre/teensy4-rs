@@ -1,8 +1,39 @@
+[package]
+name = "teensy4-bsp"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+Rust-based BSP for the Teensy 4.
+Part of the teensy4-rs project.
+"""
+
+[dependencies]
+cortex-m = "0.6.2"
+log = "0.4.8"
+teensy4-fcb = { path = "teensy4-fcb" }
+teensy4-rt = { path = "teensy4-rt" }
+teensy4-usb-sys = { path = "teensy4-usb-sys" }
+
+[dependencies.imxrt-hal]
+version = "0.3.0"
+features = ["imxrt1062", "rt"]
+
+[dev-dependencies]
+embedded-hal = "0.2.4"
+nb = "0.1.2"
+panic-halt = "0.2.0"
+
 [workspace]
 members = [
-    "imxrt1062-rt",
-    "teensy4-bsp",
-    "teensy4-bsp/teensy4-usb-sys",
-    "teensy4-examples",
-    "teensy4-fcb"
+    "teensy4-fcb",
+    "teensy4-rt",
+    "teensy4-usb-sys",
 ]
+
+# Don't optimize build dependencies, like proc macros.
+# Helps with build times.
+[profile.release.build-override]
+opt-level = 0

@@ -1,8 +1,9 @@
 //! Demonstrates how to use a periodic interrupt
-//! timer (PIT) to measure a duration.
+//! timer (PIT) and general purpose timer
+//! (GPT) to measure a duration.
 //!
 //! Success criteria: the chained timer measures 500ms, and
-//! timer 2 measures the 200us delay implemented by timer 3.
+//! GPT 2 measures the 200us delay implemented by timer 3.
 //! The times are reported over USB. While in the spin loops,
 //! the LED is enabled, so it should be possible to measure
 //! the delay by watching the LED.
@@ -30,13 +31,17 @@ fn main() -> ! {
         &mut periphs.dcdc,
     );
 
-    let cfg = periphs.ccm.perclk.configure(
+    let mut cfg = periphs.ccm.perclk.configure(
         &mut periphs.ccm.handle,
         bsp::hal::ccm::perclk::PODF::DIVIDE_3,
         bsp::hal::ccm::perclk::CLKSEL::IPG(ipg_hz),
     );
 
-    let (timer0, timer1, mut timer2, mut timer3) = periphs.pit.clock(cfg);
+    let mut gpt2 = periphs.gpt2.clock(&mut cfg);
+    gpt2.set_mode(bsp::hal::gpt::Mode::FreeRunning);
+    gpt2.set_enable(true);
+
+    let (timer0, timer1, _, mut timer3) = periphs.pit.clock(&mut cfg);
     let mut timer = pit::chain(timer0, timer1);
     let mut led: bsp::LED = bsp::configure_led(&mut periphs.gpr, periphs.pins.p13);
     loop {
@@ -53,15 +58,12 @@ fn main() -> ! {
         bsp::delay(100);
 
         timer3.start(core::time::Duration::from_micros(200));
-        let (_, period) = timer2.time(|| {
+        let (_, period) = gpt2.time(|| {
             led.set_high().unwrap();
             nb::block!(timer3.wait()).unwrap();
             led.set_low().unwrap();
         });
-        match period {
-            Some(period) => log::info!("Timed a {:?} long event with timer 2", period),
-            None => log::warn!("Timer 2 expired!"),
-        }
+        log::info!("GPT2 timed a {:?} long event", period);
 
         bsp::delay(100);
     }

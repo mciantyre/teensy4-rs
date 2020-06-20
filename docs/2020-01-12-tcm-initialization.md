@@ -6,7 +6,7 @@ It wasn't OK. Code placement matters, and it better be inlined if it needs to co
 
 ## Tightly-Coupled Memory on the Teensy 4
 
-Tightly-coupled memory (TCM) is low-latency memory, allowing for faster access without the unpredictability of a cache. On the Teensy 4, I can configure one TCM region for instructions (ITCM), and another TCM region for data (DTCM). Each region can be sized up to 512KiB. The [`imxrt1062-rt` crate] in the `teensy4-rs` project provides the memory layout for the Teensy 4, and it decides to use the maximum size for each region. Given its ideal latency properties, it makes sense to use the ITCM and DTCM regions as much as possible. I designed the runtime crate to place all `.text` into ITCM, and all `.data` into DTCM.
+Tightly-coupled memory (TCM) is low-latency memory, allowing for faster access without the unpredictability of a cache. On the Teensy 4, I can configure one TCM region for instructions (ITCM), and another TCM region for data (DTCM). Each region can be sized up to 512KiB. The [`teensy4-rt` crate] in the `teensy4-rs` project provides the memory layout for the Teensy 4, and it decides to use the maximum size for each region. Given its ideal latency properties, it makes sense to use the ITCM and DTCM regions as much as possible. I designed the runtime crate to place all `.text` into ITCM, and all `.data` into DTCM.
 
 The implications of "puts all `.text` into ITCM" weren't initially apparent. I had been compiling all my startup and application code in `release` mode, which allowed the Rust compiler to agressively inline functions. As soon as I switched to debug mode, the compiler didn't inline all functions. I knew that I was relying on inlined functions for my own start-up routines. But, what I hadn't realized is that I was also relying on inlining of *Rust* functions, like [`ptr::offset`](https://doc.rust-lang.org/std/primitive.pointer.html#method.offset-1) and [`ptr::write`](https://doc.rust-lang.org/std/primitive.pointer.html#method.write). My startup code could never work if it were written in Rust.
 
@@ -141,6 +141,6 @@ __attribute__((section(".boot.reset"), naked)) void _reset(void) {
 
 The forced inline places the initialization code directly into the `_reset` reset handler. More importantly, my ability to increment addressess, load from memory, and store into memory isn't affected by the compiler's ability to inline code. The code is truly zero-cost and behaves consistently across optimization settings.
 
-[`imxrt1062-rt` crate]: https://github.com/mciantyre/teensy4-rs
+[`teensy4-rt` crate]: https://github.com/mciantyre/teensy4-rs
 [`cortex-m-rt` crate]: https://crates.io/crates/cortex-m-rt
 [`r0` crate]: https://crates.io/crates/r0

@@ -61,13 +61,13 @@ fn main() -> ! {
         ],
     );
 
-    let cfg = periphs.ccm.perclk.configure(
+    let mut cfg = periphs.ccm.perclk.configure(
         &mut periphs.ccm.handle,
         bsp::hal::ccm::perclk::PODF::DIVIDE_3,
         bsp::hal::ccm::perclk::CLKSEL::IPG(ipg_hz),
     );
 
-    let (_, _, _, mut timer) = periphs.pit.clock(cfg);
+    let (_, _, _, mut timer) = periphs.pit.clock(&mut cfg);
     timer.set_interrupt_enable(true);
     unsafe {
         TIMER = Some(timer);

@@ -1,11 +1,15 @@
 //! A Rust board support package (BSP) for the Teensy 4.
 //!
-//! As of this writing, the BSP is very primitive. It exposes
-//! only the LED, and it configures facilities for logging over USB.
-//! Otherwise, it simply forwards components from the HAL for your
-//! own usage. This will be addressed as the HAL becomes more developed.
+//! The BSP is mainly a pass-through of the `imxrt-hal` hardware abstraction layer.
+//! The BSP restricts the processor pads that are available, since the physical Teensy
+//! only has a few user-accessible pins. From these pins, you may construct peripherals
+//! and perform I/O.
 //!
-//! The BSP does assume some facilities of the processor:
+//! The BSP also exposes a USB logging interface. See the [`usb`](usb/index.html) module
+//! for more details.
+//!
+//! The BSP does assume some facilities of the processor, both which are required for the
+//! USB stack:
 //!
 //! - it registers the `SysTick` exception handler, and configures
 //!   SYSTICK for a 1ms interrupt.
@@ -20,8 +24,8 @@
 //!
 //! The BSP re-exports the following:
 //!
-//! - the `imxrt1062-rt` crate, as `rt`
-//! - the `imxrt1062-hal` crate, as `hal`
+//! - the `teensy4-rt` crate, as `rt`
+//! - the `imxrt-hal` crate, as `hal`
 //!
 //! See the accompanying documentation of each crate for more
 //! information.
@@ -107,13 +111,12 @@ extern crate teensy4_fcb;
 pub mod usb;
 
 pub use hal::ral::interrupt;
-pub use imxrt1062_rt as rt;
+
 pub use imxrt_hal as hal;
-pub use teensy4_usb_sys::serial_write;
+pub use teensy4_rt as rt;
 
+/// The LED in its final configuration
 pub type LED = hal::gpio::GPIO2IO03<hal::gpio::GPIO7, hal::gpio::Output>;
-
-pub use hal::ccm::CCM;
 
 /// Teensy pins that do not yet have a function
 ///
@@ -184,6 +187,13 @@ pub struct Pins {
 }
 
 /// All peripherals available on the Teensy4
+///
+/// Nearly all of these are re-exports from the HAL. Exclusions include
+///
+/// - `usb`, which is a USB logger
+/// - `pins`, which are the Teensy 4's available pins
+///
+/// See the [module-level documentation](index.html) for more information.
 pub struct Peripherals {
     /// Clock control module (forwarded from the HAL)
     pub ccm: hal::ccm::CCM,
@@ -211,6 +221,12 @@ pub struct Peripherals {
     pub uart: hal::uart::Unclocked,
     /// General purpose registers, used when configuring GPIO pins.
     pub gpr: hal::iomuxc::GPR,
+    /// General purpose timer 1
+    pub gpt1: hal::gpt::Unclocked,
+    /// General purpose timer 2
+    pub gpt2: hal::gpt::Unclocked,
+    /// DMA channels
+    pub dma: hal::dma::Unclocked,
 }
 
 /// SYSTICK external clock frequency
@@ -285,16 +301,20 @@ impl Peripherals {
             spi: p.spi,
             uart: p.uart,
             gpr: p.iomuxc.gpr,
+            gpt1: p.gpt1,
+            gpt2: p.gpt2,
+            dma: p.dma,
         }
     }
 }
 
-pub fn configure_led(
-    gpr: &mut hal::iomuxc::GPR,
-    pad: hal::iomuxc::gpio::GPIO_B0_03<hal::iomuxc::Alt5>,
-) -> LED {
+/// Configure the board's LED
+///
+/// Returns a GPIO that's physically tied to the LED. Use the returned handle
+/// to drive the LED.
+pub fn configure_led<A>(gpr: &mut hal::iomuxc::GPR, pad: hal::iomuxc::gpio::GPIO_B0_03<A>) -> LED {
     use hal::gpio::IntoGpio;
-    pad.into_gpio().fast(gpr).output()
+    pad.alt5().into_gpio().fast(gpr).output()
 }
 
 /// Blocks for at least `millis` milliseconds
@@ -319,7 +339,7 @@ pub extern "C" fn delay(millis: u32) {
 
 /// Scoping of data related to SYSTICK
 mod systick {
-    use imxrt1062_rt::exception;
+    use teensy4_rt::exception;
 
     #[no_mangle]
     static mut systick_millis_count: u32 = 0;

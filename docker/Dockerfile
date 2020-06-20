@@ -1,8 +1,12 @@
+# This provides a minimal Docker image that you can use for your
+# Teensy 4 development. It should be useful with the teensy4-rs-template.
+
 FROM rust    
 
-RUN rustup target add thumbv7em-none-eabihf
-RUN apt-get update && apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi jq
+RUN rustup target add thumbv7em-none-eabihf && \
+    rustup component add llvm-tools-preview && \
+    cargo install cargo-binutils
 
 WORKDIR /build
 
-ENTRYPOINT ["./hardware-test.sh"]
+ENTRYPOINT ["cargo objcopy --release -- -O ihex"]

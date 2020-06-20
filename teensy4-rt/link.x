@@ -39,11 +39,29 @@ SECTIONS
         /* Firmware Configuration Block (FCB) */
         KEEP(*(.fcb));
         FILL(0xFFFFFFFF);
-        /* 4KiB (0x1000) offset since we're booting from FlexSPI NOR */
         . = ORIGIN(FLASH) + 0x1000;
-        /* Image Vector Table (IVT) defined in C (ivt.c) */
-        KEEP(*(.boot.ivt));
-        KEEP(*(.boot.data));
+        _ivt = .;
+        /* ------------------
+         * Image Vector Table
+         * ------------------
+         */
+        LONG(0x402000D1);           /* Header, magic number */
+        LONG(__svectors);           /* Address of the vectors table */
+        LONG(0x00000000);           /* RESERVED */
+        LONG(0x00000000);           /* Device Configuration Data (unused) */
+        LONG(_boot_data);           /* Address to boot data */
+        LONG(_ivt);                 /* Self reference, required by boot ROM */
+        LONG(0x00000000);           /* Command Sequence File (unused) */
+        LONG(0x00000000);           /* RESERVED */
+        /* ---------
+         * Boot data
+         * ---------
+         */
+        _boot_data = .;
+        LONG(ORIGIN(FLASH));        /* Start of image (origin of flash) */
+        LONG(_lflash);              /* Length of flash */
+        LONG(0x00000000);           /* Plugin flag (unused) */
+        /* --------- */
         KEEP(*(.boot.reset));
         KEEP(*(.boot.tcm));
         KEEP(*(.HardFaultTrampoline));
@@ -52,7 +70,8 @@ SECTIONS
         /* It must be 1024-byte aligned */
         . = ALIGN(1024);
         __svectors = .;
-        KEEP(*(.vector_table));
+        LONG(__stack); /* Initial stack pointer */
+        LONG(_reset);     /* Pointer to the reset handler */
         KEEP(*(.vector_table.exceptions));
         KEEP(*(.vector_table.interrupts));
         *(.flashmem); /* Compatibility with USB stack */
@@ -111,32 +130,32 @@ SECTIONS
     }
 
     /* The length of flash is required for the boot data */
-    __lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
+    _lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
 
     /* The following are used to compute the FlexRAM banks for ITCM / DTCM */
     _itcm_block_count = (SIZEOF(.text) + 0x7FFF) >> 15;
     __flexram_bank_config = 0xAAAAAAAA | ((1 << (_itcm_block_count * 2)) - 1);
     /* We reconfigure the stack pointer based on the ITCM / DTCM separation */
-    __estack = ORIGIN(DTCM) + ((16 - _itcm_block_count) << 15);
+    __stack = ORIGIN(DTCM) + ((16 - _itcm_block_count) << 15);
 }
 
 /* Asserts that check some Rust requirements */
 ASSERT(ORIGIN(FLASH) % 4 == 0, "
-ERROR(imxrt1062-rt): the start of the FLASH region must be 4-byte aligned");
+ERROR(teensy4-rt): the start of the FLASH region must be 4-byte aligned");
 
 ASSERT(ORIGIN(RAM) % 4 == 0, "
-ERROR(imxrt1062-rt): the start of the RAM region must be 4-byte aligned");
+ERROR(teensy4-rt): the start of the RAM region must be 4-byte aligned");
 
 ASSERT(__sdata % 4 == 0 && __edata % 4 == 0, "
-ERROR(imxrt1062-rt): .data is not 4-byte aligned");
+ERROR(teensy4-rt): .data is not 4-byte aligned");
 
 ASSERT(__sidata % 4 == 0, "
-ERROR(imxrt1062-rt): the LMA of .data is not 4-byte aligned");
+ERROR(teensy4-rt): the LMA of .data is not 4-byte aligned");
 
 ASSERT(__sbss % 4 == 0 && __ebss % 4 == 0, "
-ERROR(imxrt1062-rt): .bss is not 4-byte aligned");
+ERROR(teensy4-rt): .bss is not 4-byte aligned");
 
 ASSERT(__stext % 4 == 0 && __etext % 4 == 0, "
-ERROR(imxrt1062-rt): .text is not 4-byte aligned");
+ERROR(teensy4-rt): .text is not 4-byte aligned");
 
-ENTRY(image_vector_table);
+ENTRY(_ivt);
