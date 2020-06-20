@@ -32,3 +32,8 @@ members = [
     "teensy4-rt",
     "teensy4-usb-sys",
 ]
+
+# Don't optimize build dependencies, like proc macros.
+# Helps with build times.
+[profile.release.build-override]
+opt-level = 0
