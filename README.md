@@ -1,6 +1,6 @@
 # teensy4-rs
 
-A collection of crates that support the development of Rust applications and libraries for the Teensy 4.
+A collection of crates for Rust development on the Teensy 4.
 
 Status: prototype.
 
@@ -16,6 +16,7 @@ We can
 - accept serial (UART) data (although the hardware receiver buffer is small)
 - transmit serial (UART) data
 - send and receive data over SPI peripherals
+- use DMA channels
 
 We've measured a few things things, like I2C, UART, SPI, and timer timings. No one has built a fully-fledged application with these crates, yet...
 
@@ -23,70 +24,53 @@ We've measured a few things things, like I2C, UART, SPI, and timer timings. No o
 
 ## Dependencies
 
-- A Rust installation. We use the latest, stable Rust compiler. Minimum-Supported Rust Version (MSRV) is 1.40. Recommended installation via `rustup`.
-- The `thumbv7-none-eabihf` Rust target, which may be installed via `rustup`:
+- A Rust installation; recommended installation via `rustup`.
+- The `thumbv7em-none-eabihf` Rust target, which may be installed via `rustup`:
 
     ```bash
     $ rustup target add thumbv7em-none-eabihf
     ```
 
-- A capable `objcopy` for transforming Rust binaries into hex files. The tooling in the repository uses `rust-objcopy`, which is available through `llvm-tools-preview`:
+- A capable `objcopy` for transforming Rust binaries into hex files. The documentation and tooling in the project uses the LLVM `objcopy` provided by [`cargo binutils`](https://github.com/rust-embedded/cargo-binutils).
 
-    ```bash
-    $ rustup component add llvm-tools-preview
-    ```
-
-    Alternatively, you may use `arm-none-eabi-objcopy` (available from ARM binutils).
-
-- Optionally, a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli) available on our path. We have a script to rapidly test example programs in the `teensy4-examples`, and it makes use of `teensy_loader_cli`. To load applications onto the Teensy 4, we may also use the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html), which is also available with the Teensyduino add-ons.
+- Either a build of [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli), or the [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html). The latter is available with the Teensyduino add-ons.
 
 ## Getting started
-
-The best way to test your setup is to use the `hardware-test.sh` script (`hardware-test.bat` for Windows) to compile one of the examples. With a Teensy 4 connected to your system, build and load an example:
-
-```
-./hardware-test.sh led
-```
-
-This will generate an `out` directory, with a `led.hex` file. You should download this to your Teensy 4 using one of the loader applications. If all goes well, the `led` example should turn on the Teensy 4's LED.
 
 Use our `cargo-generate` template, [`teensy4-rs-template`](https://github.com/mciantyre/teensy4-rs-template), to bootstrap your own teensy4-rs project based on these libraries:
 
 ```
 cargo install cargo-generate
 cargo generate --git https://github.com/mciantyre/teensy4-rs-template --name hello-world
+cd hello-world
+cargo objcopy --release -- -O ihex hello-world.hex
 ```
 
-The `cargo-generate` template is great for quickly starting a project. But, if you'd like to manually set up a project, check out the getting started guide [here](docs/2020-01-03-getting-started.md).
+Download `hellow-world.hex` to your Teensy 4!
 
-As of this writing:
-
-- both the `teensy4-rt`, and `teensy4-fcb` crates are necessary to successfully link a Teensy 4 Rust application.
-- not all of the crates are published to crates.io, so we must either clone the repo and reference them locally, or reference the two crates via the git repository.
-
-These crates are guaranteed to build when targeting `thumbv7em-none-eabihf`; we do not support any other targets.
-
-To build the project in a Docker container, use our custom Docker image, available in the `docker` directory:
+See the Rust documentation for API information. In particular, study the `imxrt-hal` APIs, since the BSP forwards many of the HAL's interfaces:
 
 ```
-$ cd docker
-$ docker build -t rust_teensy . 
+cargo doc --open
 ```
 
-Then, run the Docker image to build examples. In the snippet below, we build the `led` example: 
+Try the various examples in this project's `examples` directory if you'd like to test your system:
 
 ```
-$ docker run -it --rm -v $PWD:/build rust_teensy led
+cargo objcopy --release --example led -- -O ihex led.hex
 ```
 
 ## Project Structure
 
-The project has a model similar to other embedded Rust projects. We have a custom runtime crate to support our processor and memory layout. We use a separate iMXRT register access layer (RAL) and hardware abstraction layer (HAL). The RAL and HAL are provided by the [`imxrt-rs` project](https://github.com/imxrt-rs/imxrt-rs). We add a board support package (BSP) for the Teensy 4 in this repository. The list below describes the project layout:
+The project has a model similar to other embedded Rust projects. We have a custom runtime crate to support our processor and memory layout. We use a separate iMXRT register access layer (RAL) and hardware abstraction layer (HAL). The RAL and HAL are provided by the [`imxrt-rs` project](https://github.com/imxrt-rs/imxrt-rs).
+
+The main crate is a board support package (BSP) for the Teensy 4, called `teensy4-bsp`. The BSP provides access to the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log messages over USB. If you would like to develop Rust applications for the Teensy 4, start by depending on the `teensy4-bsp`.
+
+The BSP relies on the following additional crates, which are part of the BSP's workspace:
 
 - `teensy4-rt`: an API-compatible fork of the `cortex-m-rt` crate that describes the system's memory layout, startup sequence, and interrupt table. The runtime crate let's a user write a normal `main()` function. Unlike the `cortex-m-rt`, which tries to be a general runtime crate, the `teensy4-rt` crate is specific to the Teensy 4. See the "Runtime" notes to learn why this is a fork of the `cortex-m-rt` crate.
-- `teensy4-bsp`: a board support package (BSP) for the Teensy 4. The BSP provides access to the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log messages over USB. If you would like to develop Rust applications for the Teensy 4, start here.
-- `teensy4-examples`: a collection of examples which run out-of-the-box on the Teensy 4. Take a look at the examples if you're interested in using these crates.
 - `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the [`imxrt-boot-gen`](https://github.com/imxrt-rs/imxrt-boot-gen) crate.
+- `teensy4-usb-sys`: bindings to the Teensy 4's USB stack, which is written in C.
 
 Although we strive for compatibility with existing crates and frameworks, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
 
@@ -118,14 +102,29 @@ We welcome support! There are known issues that anyone can address in the issues
 
 ## Q/A
 
-*When will this be on crates.io?*
+#### When will this be on crates.io?
 
-After we evaluate whether or not this is a good or bad approach to developing Rust applications for the Teensy 4, we will either release these crates to crates.io, or recommend an alternative solution. We also need to wait for all of our dependencies to become available on crates.io. As of this writing, we're waiting on an unreleased `cortex-m-rt-macros` crate.
+After we evaluate whether or not this is a good or bad approach to developing Rust applications for the Teensy 4, we will either release these crates to crates.io, or recommend an alternative solution.
+
+We also need to wait for all of our dependencies to become available on crates.io. As of this writing, we're waiting on an unreleased `cortex-m-rt-macros` crate. Until we release to crates.io, either
+
+- use a git dependency (the default behavior of the [`teensy4-rs-template`](https://github.com/mciantyre/teensy4-rs-template))
+
+    ```toml
+    [dependencies.teensy4-bsp]
+    git = "https://github.com/mciantyre/teensy4-rs.git"
+    ```
+
+- clone this repository, and specify the path to the dependency:
+
+    ```toml
+    [dependencies.teensy4-bsp]
+    path = "path/to/cloned/teensy4-rs/teensy4-bsp"
+    ```
 
 ## Acknowledgements and References
 
 - The [Teensy 4](https://www.pjrc.com/store/teensy40.html) is wonderful, and that's thanks to the hard work of PJRC and friends. We can find the Teensy code used in the Arduino plugins [here](https://github.com/PaulStoffregen/cores). The code greatly influenced this library.
-- I'm not the only developer tackling the "Rust on Teensy 4" challenge. Check out mpasternacki's work [here](https://gitlab.com/teensy-rs/teensy-4) as an alternative approach towards the same problem.
 - The Rust Cortex M team, specifically the [`cortex-m-rt`](https://github.com/rust-embedded/cortex-m-rt) crate.
 
 

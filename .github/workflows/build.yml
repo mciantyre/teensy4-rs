@@ -37,15 +37,9 @@ jobs:
           args: --verbose --target thumbv7em-none-eabihf -- -D warnings
           name: Run clippy
 
-  example:
+  examples:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-            toolchain: stable
-            components: llvm-tools-preview
-            target: thumbv7em-none-eabihf
-            override: true
-      - name: Build the LED example using hardware-test.sh
-        run: ./hardware-test.sh led
+      - name: Build all examples
+        run: make

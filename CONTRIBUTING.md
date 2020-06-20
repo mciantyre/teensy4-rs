@@ -53,13 +53,19 @@ Open an issue in the [`teensy4-rs`] project. It may be that we haven't released 
 
 ## Development
 
-To develop the `teensy4-rs` crates, ensure that you have the build dependencies described in the [README](README.md). We recommend installing (or building from source) the [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli) command line Teensy loader, since it's used in some of our automation scripts. The graphical [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html) will also work.
+To develop the `teensy4-rs` crates, ensure that you have the build dependencies described in the [README](README.md). We recommend installing (or building from source) the [`teensy_loader_cli`](https://github.com/PaulStoffregen/teensy_loader_cli) command line Teensy loader, since it's used in some of our automation. The graphical [Teensy Loader Application](https://www.pjrc.com/teensy/loader.html) will also work.
 
 Following the "getting started" guide in the [README](README.md) to test examples against your physical Teensy 4. If everything works, you're ready to contribute! But, before jumping in, make sure that your changes belong in the `teensy4-rs` project.
 
 If you'd like to add a new peripheral or processor capability, add the feature to the [`imxrt-hal`] crate. Then, integrate it in the `teensy4-bsp`. By first adding the peripheral to the `imxrt-hal` crate, you'll help other users who use the i.MX RT processors in other projects. See the `imxrt-hal`'s [contributing guidelines](https://github.com/imxrt-rs/imxrt-rs/blob/master/CONTRIBUTING.md) to learn about `imxrt-hal` development.
 
 If you'd like to change how the Teensy 4 starts up, or the Teensy 4's memory layout, make those changes here, in the [`teensy4-rs`] project.
+
+### Additional Developer Dependencies
+
+We check-in precompiled libraries for both the `teensy4-rt` runtime crate and the `teensy4-usb-sys` USB bindings crate. The former represents select startup routines that are written in C. The latter is the majority of the Teensy 4's USB stack, which is also written in C.
+
+To compile the two supporting libraries, you'll need the [GNU ARM Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm). Once you have `arm-none-eabi-gcc` on your `PATH`, you may build both libraries using `make` at the top of the repo. Consult the `Makefile` for the relevant targets.
 
 ### Workflow
 
