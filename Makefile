@@ -41,7 +41,7 @@ all:
 	@cargo build $(MODE) --examples
 	@for example in $(EXAMPLES);\
 		do cargo objcopy $(MODE) --example $$example \
-			-- -O ihex -R .eeprom $(TARGET_EXAMPLES)/$$example.hex;\
+			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
 		done
 
 .PHONY: example_%
@@ -53,7 +53,7 @@ example_%:
 objcopy_%: example_%
 	@cargo objcopy \
 		$(MODE) --example $(subst objcopy_,,$@) \
-		-- -O ihex -R .eeprom \
+		-- -O ihex \
 		$(TARGET_EXAMPLES)/$(subst objcopy_,,$@).hex
 
 .PHONY: download_%
