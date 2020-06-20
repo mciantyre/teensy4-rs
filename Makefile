@@ -2,7 +2,9 @@ RUSTUP ?= rustup
 CARGO ?= cargo
 TEENSY_LOADER ?= teensy_loader_cli
 MODE ?= --release
+INSTALL_DEPS ?= 1
 
+ifneq ($(INSTALL_DEPS),0)
 # Ensure the thumbv7em-none-eabihf component is installed
 THUMBV7EM_NONE_EABIHF_INSTALLED := $(shell $(RUSTUP) component list | grep 'rust-std-thumbv7em-none-eabihf.*(installed)' > /dev/null; echo $$?)
 ifeq ($(THUMBV7EM_NONE_EABIHF_INSTALLED), 1)
@@ -29,6 +31,7 @@ ifeq ($(TEENSY_LOADER_INSTALLED),0)
 else
   LOADER := echo
 endif
+endif # INSTALL_DEPS != 0
 
 TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
 EXAMPLES := $(shell ls examples | xargs basename | cut -f 1 -d .)

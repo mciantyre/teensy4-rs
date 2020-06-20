@@ -44,6 +44,6 @@ jobs:
         run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
       - uses: actions/checkout@v2
       - name: Build runtime support
-        run: make libt4boot
+        run: INSTALL_DEPS=0 make libt4boot
       - name: Build USB stack
-        run: make libt4usb
+        run: INSTALL_DEPS=0 make libt4usb
