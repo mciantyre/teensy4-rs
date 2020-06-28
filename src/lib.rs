@@ -258,6 +258,18 @@ impl Peripherals {
         Some(Peripherals::new(p))
     }
 
+    #[cfg(feature = "rtic")]
+    /// Steal all of the HAL's peripherals.
+    ///
+    /// # Safety
+    ///
+    /// NOTE: This constructor is only intended for use with the `rtic` crate. This is **not** an
+    /// alternative to the `take` constructor. The `take` constructor sets the system timer
+    /// interrupt while this constructor does not seeing as `rtic` will take care of this for us.
+    pub unsafe fn steal() -> Self {
+        Self::new(hal::Peripherals::steal())
+    }
+
     fn set_systick(systick: &mut cortex_m::peripheral::SYST) {
         systick.disable_counter();
         systick.set_clock_source(cortex_m::peripheral::syst::SystClkSource::External);

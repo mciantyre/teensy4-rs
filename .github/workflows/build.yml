@@ -34,7 +34,7 @@ jobs:
       - uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --verbose --workspace --examples --target thumbv7em-none-eabihf -- -D warnings
+          args: --verbose --all-features --workspace --examples --target thumbv7em-none-eabihf -- -D warnings
           name: Run clippy
 
   precompiled:
