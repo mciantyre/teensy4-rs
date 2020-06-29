@@ -15,7 +15,10 @@ cortex-m = "0.6.2"
 cortex-m-rt = "0.6.12"
 log = "0.4.8"
 teensy4-fcb = { path = "teensy4-fcb" }
-teensy4-usb-sys = { path = "teensy4-usb-sys" }
+
+[dependencies.teensy4-usb-sys]
+path = "teensy4-usb-sys"
+optional = true
 
 [dependencies.imxrt-hal]
 version = "0.3.0"
@@ -33,6 +36,19 @@ members = [
     "teensy4-rt",
     "teensy4-usb-sys",
 ]
+
+[features]
+# Default features established for prototype development
+default = ["usb-logging", "systick"]
+# Enables the USB logging stack
+#
+# This will introduce the teensy4-usb-sys bindings into the build
+# graph. It also requires systick, since the USB stack depends on
+# the systick counter for timekeeping.
+usb-logging = ["systick", "teensy4-usb-sys"]
+# Include a definition of the SysTick exception handler. This enables
+# a simple delay() spinloop that waits for the timer to elapse.
+systick = []
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.

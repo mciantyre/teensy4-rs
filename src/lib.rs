@@ -9,12 +9,14 @@
 //! for more details.
 //!
 //! The BSP does assume some facilities of the processor, both which are required for the
-//! USB stack:
+//! USB stack. Each are controllable through feature-flags. Each feature is on by default.
 //!
 //! - it registers the `SysTick` exception handler, and configures
-//!   SYSTICK for a 1ms interrupt.
+//!   SYSTICK for a 1ms interrupt. Enabled with the `"systick"` feature,
+//!   which is on by default.
 //! - it registers the `USB_OTG1` interrupt, and uses the USB1
-//!   peripheral for logging.
+//!   peripheral for logging. Enabled with the `"usb-logging"` feature,
+//!   which is on by default. Depends on the `"systick"` feature.
 //!
 //! These peripherals and capabilities are not exported from the BSP.
 //! If a user also registers a `SysTick` or `USB_OTG1` handler, it may
@@ -108,6 +110,7 @@
 // Need to reference this so that it doesn't get stripped out
 extern crate teensy4_fcb;
 
+#[cfg(feature = "usb-logging")]
 pub mod usb;
 
 pub use hal::ral::interrupt;
@@ -200,6 +203,7 @@ pub struct Peripherals {
     /// PIT timers (forwarded from the HAL)
     pub pit: hal::pit::UnclockedPIT,
     /// The USB logger and serial reader
+    #[cfg(feature = "usb-logging")]
     pub usb: usb::USB,
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
@@ -258,6 +262,7 @@ impl Peripherals {
         Peripherals {
             ccm: p.ccm,
             pit: p.pit,
+            #[cfg(feature = "usb-logging")]
             usb: usb::USB::new(),
             dcdc: p.dcdc,
             pwm1: p.pwm1,
@@ -322,6 +327,7 @@ pub fn configure_led<A>(gpr: &mut hal::iomuxc::GPR, pad: hal::iomuxc::gpio::GPIO
 /// `delay()` will spin-loop on updates from SYSTICK, until
 /// `millis` milliseconds have elapsed. SYSTICK has a 1ms
 /// interrupt interval, so the minimal delay is around 1ms.
+#[cfg(feature = "systick")]
 #[no_mangle]
 pub extern "C" fn delay(millis: u32) {
     if 0 == millis {
@@ -338,6 +344,7 @@ pub extern "C" fn delay(millis: u32) {
 }
 
 /// Scoping of data related to SYSTICK
+#[cfg(feature = "systick")]
 mod systick {
     use crate::rt::exception;
 
