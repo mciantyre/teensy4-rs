@@ -98,6 +98,8 @@ To support compatibility with the `cortex-m-rt` crate, the `teensy4-rt` crate us
 
 It is our hope that the `teensy4-rt` crate can be transparently replaced with the `cortext-m-rt` crate once the necessary features are available. If you think that the `teensy4-rt` crate is be diverging from the `cortex-m-rt` crate and might miss that goal, please file an issue!
 
+In the meantime, a patch for the `cortex-m-rt` crate is provided within the `cortex-m-rt-patch` directory. See [cortex-m-rt-patch/README.md](./cortex-m-rt-patch/README.md) for details on how to use the patch.
+
 ## Contributing
 
 We welcome support! A great way to contribute is to start using the crates to develop Teensy 4 applications. Submit an issue to help us identify bugs, feature requests, or documentation gaps. See [CONTRIBUTING.md](CONTRIBUTING.md) to learn about the best issue tracker for your request.
