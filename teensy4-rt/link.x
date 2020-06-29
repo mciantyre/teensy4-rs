@@ -129,6 +129,12 @@ SECTIONS
         *(.ARM.extab.*);
     }
 
+    .uninit (NOLOAD) :
+    {
+        *(.uninit .uninit.*);
+        . = ALIGN(16);
+    } > DTCM
+
     /* The length of flash is required for the boot data */
     _lflash = SIZEOF(.boot) + SIZEOF(.text) + SIZEOF(.data);
 
