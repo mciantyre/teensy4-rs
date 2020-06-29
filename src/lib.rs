@@ -119,6 +119,9 @@ pub mod usb;
 pub use systick::SysTick;
 
 pub use hal::ral::interrupt;
+// `rtic` expects these in the root.
+#[cfg(feature = "rtic")]
+pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 
 pub use cortex_m_rt as rt;
 pub use imxrt_hal as hal;
