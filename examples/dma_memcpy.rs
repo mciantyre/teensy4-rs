@@ -35,7 +35,7 @@ const NUMBER_OF_ELEMENTS: Element = (BUFFER_SIZE - 7) as Element;
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     peripherals.usb.init(Default::default());
-    bsp::delay(5_000);
+    peripherals.systick.delay(5_000);
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
     let channel = dma_channels[13].take().unwrap();
@@ -141,6 +141,6 @@ fn main() -> ! {
         tx_buffer.clear();
 
         start += 1;
-        bsp::delay(5_000);
+        peripherals.systick.delay(5_000);
     }
 }

@@ -41,7 +41,7 @@ fn main() -> ! {
         &mut peripherals.dcdc,
     );
 
-    bsp::delay(5000);
+    peripherals.systick.delay(5000);
     log::info!("Initializing SPI4 clocks...");
 
     let (_, _, _, spi4_builder) = peripherals.spi.clock(
@@ -89,9 +89,9 @@ fn main() -> ! {
     }
     let mut cs4 = DummyCS;
     log::info!("Waiting 5 seconds before querying MPU9250...");
-    bsp::delay(4000);
+    peripherals.systick.delay(4000);
 
-    match ak8963_init(&mut spi4, &mut cs4) {
+    match ak8963_init(&mut peripherals.systick, &mut spi4, &mut cs4) {
         Ok(()) => (),
         Err(err) => {
             log::warn!("Unable to initialize AK8963: {:?}", err);
@@ -101,7 +101,7 @@ fn main() -> ! {
         }
     };
     loop {
-        bsp::delay(1000);
+        peripherals.systick.delay(1000);
         match who_am_i(&mut spi4, &mut cs4) {
             Ok(who) => log::info!("Received {:#X} for WHO_AM_I", who),
             Err(err) => log::warn!("Error when querying WHO_AM_I: {:?}", err),
@@ -144,6 +144,7 @@ const fn write(address: u8, value: u8) -> u16 {
 
 /// Initialize the MPU9250's on-board magnetometer (the AK8963)
 fn ak8963_init<SPI: Transfer<u16>, CS: OutputPin>(
+    systick: &mut bsp::SysTick, // TODO could be embedded_hal's DelayMs trait
     spi: &mut SPI,
     cs: &mut CS,
 ) -> Result<(), SPI::Error> {
@@ -152,7 +153,7 @@ fn ak8963_init<SPI: Transfer<u16>, CS: OutputPin>(
     const USER_CTRL_I2C_MST_RST: u8 = 1 << 1;
     const USER_CTRL_I2C_IF_DIS: u8 = 1 << 4;
     const USER_CTRL_I2C_MST_EN: u8 = 1 << 5;
-    bsp::delay(100);
+    systick.delay(100);
     transact(cs, || {
         spi.transfer(&mut [write(
             USER_CTRL,
@@ -160,12 +161,12 @@ fn ak8963_init<SPI: Transfer<u16>, CS: OutputPin>(
         )])
         .map(|_| ())
     })?;
-    bsp::delay(100);
+    systick.delay(100);
     transact(cs, || {
         spi.transfer(&mut [write(I2C_MST_CTRL, 0x0D)]) // 400KHz
             .map(|_| ())
     })?;
-    bsp::delay(100);
+    systick.delay(100);
     Ok(())
 }
 

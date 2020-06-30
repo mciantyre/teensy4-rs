@@ -82,7 +82,7 @@ unsafe fn DMA7_DMA23() {
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     peripherals.usb.init(Default::default());
-    bsp::delay(5_000);
+    peripherals.systick.delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,

@@ -23,7 +23,7 @@ fn main() -> ! {
         filters: &[("usb", None)],
         ..Default::default()
     });
-    bsp::delay(2000);
+    p.systick.delay(2000);
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
@@ -50,6 +50,6 @@ fn main() -> ! {
         log::debug!("Sleeping for 1 second...");
         log::trace!("{} + {} = {}", 3, 2, 3 + 2);
         led.toggle().unwrap();
-        bsp::delay(5000);
+        p.systick.delay(5000);
     }
 }

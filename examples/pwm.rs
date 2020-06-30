@@ -32,13 +32,13 @@ fn main() -> ! {
     // Initialize the logging, so we can use it in the PWM loop below
     p.usb.init(Default::default());
     // Delay is only to let a user set-up their USB serial connection...
-    bsp::delay(5000);
+    p.systick.delay(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules
     let (_, ipg_hz) =
         p.ccm
             .pll1
             .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    bsp::delay(100);
+    p.systick.delay(100);
     // Enable the clocks for the PWM2 module
     let mut pwm2 = p.pwm2.clock(&mut p.ccm.handle);
     // Get the outputs from the PWM2 module, submodule 2.
@@ -71,15 +71,15 @@ fn main() -> ! {
         ctrl.enable(Channel::B);
         ctrl.set_duty(Channel::A, duty1);
         ctrl.set_duty(Channel::B, duty2);
-        bsp::delay(200);
+        p.systick.delay(200);
 
         log::info!("Disabling 'B' PWM...");
         ctrl.disable(Channel::B);
-        bsp::delay(200);
+        p.systick.delay(200);
 
         log::info!("Disabling 'A' PWM...");
         ctrl.disable(Channel::A);
-        bsp::delay(400);
+        p.systick.delay(400);
 
         core::mem::swap(&mut duty1, &mut duty2);
     }
