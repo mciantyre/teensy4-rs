@@ -202,6 +202,7 @@ pub struct Pins {
 /// - `pins`, which are the Teensy 4's available pins
 ///
 /// See the [module-level documentation](index.html) for more information.
+#[non_exhaustive]
 pub struct Peripherals {
     /// Clock control module (forwarded from the HAL)
     pub ccm: hal::ccm::CCM,
