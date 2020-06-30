@@ -12,20 +12,27 @@ Part of the teensy4-rs project.
 
 [dependencies]
 cortex-m = "0.6.2"
-cortex-m-rt = "0.6.12"
-log = "0.4.8"
+cortex-m-rt = "0.6.12" # Note: not the 'real' cortex-m-rt
 teensy4-fcb = { path = "teensy4-fcb" }
-
-[dependencies.teensy4-usb-sys]
-path = "teensy4-usb-sys"
-optional = true
 
 [dependencies.imxrt-hal]
 version = "0.3.0"
 features = ["imxrt1062", "rt"]
 
+# Tied to "systick" feature, since
+# SysTick implements a blocking delay trait
 [dependencies.embedded-hal]
 version = "0.2.4"
+optional = true
+
+# Only need logging when "usb-logging" is enabled
+[dependencies.log]
+version = "0.4.8"
+optional = true
+
+# Only needed when "usb-logging" is enabled
+[dependencies.teensy4-usb-sys]
+path = "teensy4-usb-sys"
 optional = true
 
 [dev-dependencies]
@@ -49,7 +56,7 @@ default = ["usb-logging", "systick"]
 # This will introduce the teensy4-usb-sys bindings into the build
 # graph. It also requires systick, since the USB stack depends on
 # the systick counter for timekeeping.
-usb-logging = ["systick", "teensy4-usb-sys"]
+usb-logging = ["systick", "teensy4-usb-sys", "log"]
 # Include a definition of the SysTick exception handler. This enables
 # a simple delay() spinloop that waits for the timer to elapse.
 systick = ["embedded-hal"]
