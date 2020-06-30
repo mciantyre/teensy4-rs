@@ -22,7 +22,7 @@ use teensy4_bsp as bsp;
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
-    bsp::delay(25);
+    periphs.systick.delay(25);
     periphs.usb.init(Default::default());
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
@@ -44,10 +44,11 @@ fn main() -> ! {
     let (timer0, timer1, _, mut timer3) = periphs.pit.clock(&mut cfg);
     let mut timer = pit::chain(timer0, timer1);
     let mut led: bsp::LED = bsp::configure_led(&mut periphs.gpr, periphs.pins.p13);
+    let mut systick = periphs.systick;
     loop {
         let (_, period) = timer.time(|| {
             led.set_high().unwrap();
-            bsp::delay(500);
+            systick.delay(500);
             led.set_low().unwrap();
         });
         match period {
@@ -55,7 +56,7 @@ fn main() -> ! {
             None => log::warn!("Lifetime timer expired!"),
         };
 
-        bsp::delay(100);
+        systick.delay(100);
 
         timer3.start(core::time::Duration::from_micros(200));
         let (_, period) = gpt2.time(|| {
@@ -65,6 +66,6 @@ fn main() -> ! {
         });
         log::info!("GPT2 timed a {:?} long event", period);
 
-        bsp::delay(100);
+        systick.delay(100);
     }
 }

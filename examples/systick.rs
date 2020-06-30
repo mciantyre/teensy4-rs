@@ -20,7 +20,7 @@ fn main() -> ! {
     let mut led: bsp::LED = bsp::configure_led(&mut p.gpr, p.pins.p13);
 
     loop {
-        bsp::delay(LED_PERIOD_MS);
+        p.systick.delay(LED_PERIOD_MS);
         led.toggle().unwrap();
     }
 }

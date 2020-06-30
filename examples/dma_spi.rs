@@ -182,7 +182,7 @@ fn main() -> ! {
     // SPI setup
     //
 
-    bsp::delay(5000);
+    peripherals.systick.delay(5000);
     log::info!("Initializing SPI4 clocks...");
 
     let (_, _, _, spi4_builder) = peripherals.spi.clock(
@@ -270,7 +270,7 @@ fn main() -> ! {
                 core::sync::atomic::spin_loop_hint();
             }
         }
-        bsp::delay(500);
+        peripherals.systick.delay(500);
 
         log::info!("Started DMA transfers for WHO_AM_I");
         FLAG.store(false, Ordering::Release);
@@ -322,7 +322,7 @@ fn main() -> ! {
             }
         }
 
-        bsp::delay(500);
+        peripherals.systick.delay(500);
         FLAG.store(false, Ordering::Release);
         prepare_transfer(spi);
         loop {

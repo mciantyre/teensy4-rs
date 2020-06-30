@@ -36,7 +36,7 @@ fn main() -> ! {
     // with the WFI in the loop, maybe...? If I instead
     // busy-loop on an atomic U32, I don't crash in debug
     // builds.
-    bsp::delay(25);
+    periphs.systick.delay(25);
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
         &mut periphs.ccm.handle,

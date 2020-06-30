@@ -44,7 +44,7 @@ where
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     peripherals.usb.init(Default::default());
-    bsp::delay(5000);
+    peripherals.systick.delay(5000);
 
     log::info!("Enabling I2C clocks...");
     let (_, _, i2c3_builder, _) = peripherals.i2c.clock(
@@ -72,7 +72,7 @@ fn main() -> ! {
 
     log::info!("Starting I/O loop...");
     loop {
-        bsp::delay(1000);
+        peripherals.systick.delay(1000);
         log::info!("Querying WHO_AM_I...");
         match who_am_i(&mut i2c3) {
             Ok(who) => log::info!("Received 0x{:X} for WHO_AM_I", who),

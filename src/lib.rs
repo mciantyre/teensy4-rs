@@ -110,8 +110,13 @@
 // Need to reference this so that it doesn't get stripped out
 extern crate teensy4_fcb;
 
+#[cfg(feature = "systick")]
+mod systick;
 #[cfg(feature = "usb-logging")]
 pub mod usb;
+
+#[cfg(feature = "systick")]
+pub use systick::SysTick;
 
 pub use hal::ral::interrupt;
 
@@ -231,6 +236,9 @@ pub struct Peripherals {
     pub gpt2: hal::gpt::Unclocked,
     /// DMA channels
     pub dma: hal::dma::Unclocked,
+    /// The SysTick delay timer
+    #[cfg(feature = "systick")]
+    pub systick: SysTick,
 }
 
 /// SYSTICK external clock frequency
@@ -309,6 +317,8 @@ impl Peripherals {
             gpt1: p.gpt1,
             gpt2: p.gpt2,
             dma: p.dma,
+            #[cfg(feature = "systick")]
+            systick: SysTick::new(),
         }
     }
 }
@@ -320,52 +330,6 @@ impl Peripherals {
 pub fn configure_led<A>(gpr: &mut hal::iomuxc::GPR, pad: hal::iomuxc::gpio::GPIO_B0_03<A>) -> LED {
     use hal::gpio::IntoGpio;
     pad.alt5().into_gpio().fast(gpr).output()
-}
-
-/// Blocks for at least `millis` milliseconds
-///
-/// `delay()` will spin-loop on updates from SYSTICK, until
-/// `millis` milliseconds have elapsed. SYSTICK has a 1ms
-/// interrupt interval, so the minimal delay is around 1ms.
-#[cfg(feature = "systick")]
-#[no_mangle]
-pub extern "C" fn delay(millis: u32) {
-    if 0 == millis {
-        return;
-    }
-    let start = systick::read();
-    let target = start + millis;
-    loop {
-        let count = systick::read();
-        if count >= target {
-            return;
-        }
-    }
-}
-
-/// Scoping of data related to SYSTICK
-#[cfg(feature = "systick")]
-mod systick {
-    use crate::rt::exception;
-
-    #[no_mangle]
-    static mut systick_millis_count: u32 = 0;
-
-    #[exception]
-    fn SysTick() {
-        unsafe {
-            let ms = core::ptr::read_volatile(&systick_millis_count);
-            let ms = ms.wrapping_add(1);
-            core::ptr::write_volatile(&mut systick_millis_count, ms);
-        }
-    }
-
-    /// Read the systick counter. Returns an absolute value describing
-    /// the number of milliseconds since the SYSTICK handler was enabled.
-    /// This may be used to implement coarse timing.
-    pub fn read() -> u32 {
-        unsafe { core::ptr::read_volatile(&systick_millis_count) }
-    }
 }
 
 /// TODO(mciantyre) define a better yield

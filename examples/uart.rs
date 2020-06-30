@@ -81,7 +81,7 @@ fn read<R: Read<u8>>(uart: &mut R, bytes: &mut [u8]) -> Result<(), R::Error> {
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     peripherals.usb.init(Default::default());
-    bsp::delay(5_000);
+    peripherals.systick.delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,
@@ -105,11 +105,11 @@ fn main() -> ! {
     let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
     let (mut tx, mut rx) = uart.split();
     loop {
-        bsp::delay(1_000);
+        peripherals.systick.delay(1_000);
         led.toggle().unwrap();
         let mut buffer = DATA;
         write(&mut tx, &buffer).unwrap();
-        bsp::delay(1);
+        peripherals.systick.delay(1);
         match read(&mut rx, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),
