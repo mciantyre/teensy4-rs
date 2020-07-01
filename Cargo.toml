@@ -87,8 +87,8 @@ opt-level = 0
 path = "cortex-m-rt-patch"
 
 # Patch `imxrt-hal` so that we may access the `hal::Peripherals::steal`
-# constructor. This branch also ensures that we use the `crates.io` instance of
-# `imxrt-ral` as the git dependency requires extra code generation steps.
+# constructor. This patch should be removed once a new version of
+# `imxrt-hal` is published with the new constructor.
 [patch.crates-io.imxrt-hal]
-git = "https://github.com/mitchmindtree/imxrt-rs"
-branch = "proto/rtic-backup"
+git = "https://github.com/imxrt-rs/imxrt-rs"
+branch = "master"
