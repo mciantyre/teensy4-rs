@@ -66,3 +66,15 @@ impl embedded_hal::blocking::delay::DelayMs<u32> for SysTick {
         self::delay(ms);
     }
 }
+
+impl embedded_hal::blocking::delay::DelayMs<u16> for SysTick {
+    fn delay_ms(&mut self, ms: u16) {
+        self::delay(ms.into());
+    }
+}
+
+impl embedded_hal::blocking::delay::DelayMs<u8> for SysTick {
+    fn delay_ms(&mut self, ms: u8) {
+        self::delay(ms.into());
+    }
+}
