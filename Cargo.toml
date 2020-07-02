@@ -45,6 +45,10 @@ panic-halt = "0.2.0"
 name = "rtic_led"
 path = "examples/rtic_led.rs"
 required-features = ["rtic"]
+[[example]]
+name = "rtic_blink"
+path = "examples/rtic_blink.rs"
+required-features = ["rtic"]
 
 [workspace]
 members = [
