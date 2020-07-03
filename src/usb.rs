@@ -8,9 +8,11 @@
 //!
 //! [`log`]: https://crates.io/crates/log
 
-use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
 use core::fmt;
 use teensy4_usb_sys as usbsys;
+
+#[cfg(not(feature = "rtic"))]
+use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
 
 /// Logging configuration
 ///
@@ -86,6 +88,7 @@ impl USB {
     }
 }
 
+#[cfg(not(feature = "rtic"))]
 #[crate::rt::interrupt]
 fn USB_OTG1() {
     unsafe {
