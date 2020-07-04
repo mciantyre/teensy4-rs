@@ -36,9 +36,26 @@ path = "teensy4-usb-sys"
 optional = true
 
 [dev-dependencies]
+cortex-m-rtic = "0.5.3"
 embedded-hal = "0.2.4"
+heapless = "0.5.5"
+log = "0.4.8"
+imxrt-uart-log = "0.1.0"
 nb = "0.1.2"
 panic-halt = "0.2.0"
+
+[[example]]
+name = "rtic_led"
+path = "examples/rtic_led.rs"
+required-features = ["rtic"]
+[[example]]
+name = "rtic_blink"
+path = "examples/rtic_blink.rs"
+required-features = ["rtic"]
+[[example]]
+name = "rtic_uart_log"
+path = "examples/rtic_uart_log.rs"
+required-features = ["rtic"]
 
 [workspace]
 members = [
@@ -59,7 +76,16 @@ default = ["usb-logging", "systick"]
 usb-logging = ["systick", "teensy4-usb-sys", "log"]
 # Include a definition of the SysTick exception handler. This enables
 # a simple delay() spinloop that waits for the timer to elapse.
+#
+# NOTE: This feature is incompatible with the `rtic` crate as `rtic`
+# provides its own `SysTick` definition.
 systick = ["embedded-hal"]
+# Provides the `Peripherals::steal` constructor required by `rtic`.
+#
+# NOTE: When using this feature along with the `rtic` crate the
+# default features must first be disabled in order to avoid a
+# duplicate definition of `SysTick`.
+rtic = []
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
@@ -70,3 +96,10 @@ opt-level = 0
 # https://github.com/mciantyre/teensy4-rs#runtime
 [patch.crates-io.cortex-m-rt]
 path = "cortex-m-rt-patch"
+
+# Patch `imxrt-hal` so that we may access the `hal::Peripherals::steal`
+# constructor. This patch should be removed once a new version of
+# `imxrt-hal` is published with the new constructor.
+[patch.crates-io.imxrt-hal]
+git = "https://github.com/imxrt-rs/imxrt-rs"
+branch = "master"

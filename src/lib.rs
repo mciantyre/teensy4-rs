@@ -119,6 +119,9 @@ pub mod usb;
 pub use systick::SysTick;
 
 pub use hal::ral::interrupt;
+// `rtic` expects these in the root.
+#[cfg(feature = "rtic")]
+pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 
 pub use cortex_m_rt as rt;
 pub use imxrt_hal as hal;
@@ -256,6 +259,18 @@ impl Peripherals {
         let mut cp = cortex_m::Peripherals::take()?;
         Self::set_systick(&mut cp.SYST);
         Some(Peripherals::new(p))
+    }
+
+    #[cfg(feature = "rtic")]
+    /// Steal all of the HAL's peripherals.
+    ///
+    /// # Safety
+    ///
+    /// NOTE: This constructor is only intended for use with the `rtic` crate. This is **not** an
+    /// alternative to the `take` constructor. The `take` constructor sets the system timer
+    /// interrupt while this constructor does not seeing as `rtic` will take care of this for us.
+    pub unsafe fn steal() -> Self {
+        Self::new(hal::Peripherals::steal())
     }
 
     fn set_systick(systick: &mut cortex_m::peripheral::SYST) {
