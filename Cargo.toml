@@ -38,6 +38,9 @@ optional = true
 [dev-dependencies]
 cortex-m-rtic = "0.5.3"
 embedded-hal = "0.2.4"
+heapless = "0.5.5"
+log = "0.4.8"
+imxrt-uart-log = "0.1.0"
 nb = "0.1.2"
 panic-halt = "0.2.0"
 
@@ -48,6 +51,10 @@ required-features = ["rtic"]
 [[example]]
 name = "rtic_blink"
 path = "examples/rtic_blink.rs"
+required-features = ["rtic"]
+[[example]]
+name = "rtic_uart_log"
+path = "examples/rtic_uart_log.rs"
 required-features = ["rtic"]
 
 [workspace]
