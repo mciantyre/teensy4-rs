@@ -13,8 +13,6 @@ extern crate panic_halt;
 use bsp::rt;
 use teensy4_bsp as bsp;
 
-use embedded_hal::digital::v2::ToggleableOutputPin;
-
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
@@ -27,7 +25,7 @@ fn main() -> ! {
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    let mut led: bsp::LED = bsp::configure_led(&mut p.gpr, p.pins.p13);
+    let mut led: bsp::LED = bsp::configure_led(p.pins.p13);
     let mut buffer = [0; 256];
     loop {
         let bytes_read = usb_reader.read(&mut buffer);
@@ -49,7 +47,7 @@ fn main() -> ! {
         log::info!("It's 31'C outside");
         log::debug!("Sleeping for 1 second...");
         log::trace!("{} + {} = {}", 3, 2, 3 + 2);
-        led.toggle().unwrap();
+        led.toggle();
         p.systick.delay(5000);
     }
 }

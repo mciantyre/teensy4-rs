@@ -35,6 +35,7 @@ endif # INSTALL_DEPS != 0
 
 TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
 EXAMPLES := $(shell ls examples | xargs basename | cut -f 1 -d .)
+RTIC_EXAMPLES := $(shell ls examples | grep rtic | xargs basename | cut -f 1 -d .)
 
 .PHONY: all
 all:
@@ -42,6 +43,14 @@ all:
 	@for example in $(EXAMPLES);\
 		do cargo objcopy $(MODE) --example $$example \
 			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
+		done
+
+# Build all RTIC-related examples
+.PHONY: rtic
+rtic:
+	@for example in $(RTIC_EXAMPLES);\
+		do cargo build $(MODE) --example $$example \
+			--no-default-features --features=rtic;\
 		done
 
 .PHONY: example_%

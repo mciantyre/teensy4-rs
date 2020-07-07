@@ -80,7 +80,7 @@ static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(Non
 static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
 
 type SpiDma =
-    dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::spi::module::_4>, u16, TxBuffer, RxBuffer>;
+    dma::Peripheral<bsp::hal::spi::SPI<imxrt_iomuxc::consts::U4>, u16, TxBuffer, RxBuffer>;
 
 // TODO types should be Send
 static mut SPI_DMA: Option<SpiDma> = None;
@@ -158,7 +158,7 @@ fn rx_buffer_mut<F: FnOnce(&mut RxBuffer) -> R, R>(act: F) -> Option<R> {
 }
 
 // Pin 20
-type HardwareFlag = bsp::hal::gpio::GPIO1IO26<bsp::hal::gpio::GPIO1, bsp::hal::gpio::Output>;
+type HardwareFlag = bsp::hal::gpio::GPIO<imxrt106x_iomuxc::ad_b1::AD_B1_10, bsp::hal::gpio::Output>;
 static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 
 #[entry]
@@ -174,8 +174,7 @@ fn main() -> ! {
 
     unsafe {
         let p20 = peripherals.pins.p20;
-        use bsp::hal::gpio::IntoGpio;
-        HARDWARE_FLAG = Some(p20.alt5().into_gpio().output());
+        HARDWARE_FLAG = Some(bsp::hal::gpio::GPIO::new(p20).output());
     }
 
     //
@@ -193,11 +192,11 @@ fn main() -> ! {
 
     log::info!("Constructing SPI4 peripheral...");
     let mut spi4 = spi4_builder.build(
-        peripherals.pins.p11.alt3(),
-        peripherals.pins.p12.alt3(),
-        peripherals.pins.p13.alt3(),
+        peripherals.pins.p11,
+        peripherals.pins.p12,
+        peripherals.pins.p13,
     );
-    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
+    spi4.enable_chip_select_0(peripherals.pins.p10);
 
     match spi4.set_clock_speed(bsp::hal::spi::ClockSpeed(SPI_BAUD_RATE_HZ)) {
         Ok(()) => {

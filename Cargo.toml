@@ -17,7 +17,14 @@ teensy4-fcb = { path = "teensy4-fcb" }
 
 [dependencies.imxrt-hal]
 version = "0.3.0"
+path = "../imxrt/imxrt/imxrt-hal"
 features = ["imxrt1062", "rt"]
+
+[dependencies.imxrt-iomuxc]
+path = "../imxrt/iomuxc"
+
+[dependencies.imxrt106x-iomuxc]
+path = "../imxrt/iomuxc/imxrt106x-iomuxc"
 
 # Tied to "systick" feature, since
 # SysTick implements a blocking delay trait
@@ -48,14 +55,17 @@ panic-halt = "0.2.0"
 name = "rtic_led"
 path = "examples/rtic_led.rs"
 required-features = ["rtic"]
+
 [[example]]
 name = "rtic_blink"
 path = "examples/rtic_blink.rs"
 required-features = ["rtic"]
+
 [[example]]
 name = "rtic_uart_log"
 path = "examples/rtic_uart_log.rs"
 required-features = ["rtic"]
+
 [[example]]
 name = "rtic_dma_uart_log"
 path = "examples/rtic_dma_uart_log.rs"

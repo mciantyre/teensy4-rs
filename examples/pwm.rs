@@ -47,8 +47,8 @@ fn main() -> ! {
         .sm2
         .outputs(
             &mut pwm2.handle,
-            p.pins.p6.alt2(),
-            p.pins.p9.alt2(),
+            p.pins.p6,
+            p.pins.p9,
             bsp::hal::pwm::Timing {
                 clock_select: bsp::hal::ccm::pwm::ClockSelect::IPG(ipg_hz),
                 prescalar: bsp::hal::ccm::pwm::Prescalar::PRSC_5,

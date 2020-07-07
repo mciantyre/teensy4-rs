@@ -15,8 +15,8 @@ use embedded_hal::digital::v2::OutputPin;
 
 #[entry]
 fn main() -> ! {
-    let mut peripherals = bsp::Peripherals::take().unwrap();
-    let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
+    let peripherals = bsp::Peripherals::take().unwrap();
+    let mut led = bsp::configure_led(peripherals.pins.p13);
 
     loop {
         led.set_high().unwrap();

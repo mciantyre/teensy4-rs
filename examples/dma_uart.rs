@@ -18,8 +18,6 @@ use bsp::interrupt;
 use bsp::rt::entry;
 use teensy4_bsp as bsp;
 
-use embedded_hal::digital::v2::ToggleableOutputPin;
-
 use core::{
     cell::RefCell,
     sync::atomic::{AtomicBool, Ordering},
@@ -42,7 +40,7 @@ static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(Non
 static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
 
 type DmaUart = bsp::hal::dma::Peripheral<
-    bsp::hal::uart::UART<bsp::hal::uart::module::_2>,
+    bsp::hal::uart::UART<imxrt_iomuxc::consts::U2>,
     u8,
     TxBuffer,
     RxBuffer,
@@ -90,11 +88,7 @@ fn main() -> ! {
     );
     let uart = uarts
         .uart2
-        .init(
-            peripherals.pins.p14.alt2(),
-            peripherals.pins.p15.alt2(),
-            BAUD,
-        )
+        .init(peripherals.pins.p14, peripherals.pins.p15, BAUD)
         .unwrap();
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
@@ -114,7 +108,7 @@ fn main() -> ! {
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA7_DMA23);
         DMA_PERIPHERAL.as_mut().unwrap()
     };
-    let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
+    let mut led = bsp::configure_led(peripherals.pins.p13);
 
     let rx_buffer = match bsp::hal::dma::Circular::new(&RX_MEM.0) {
         Ok(circular) => circular,
@@ -156,7 +150,7 @@ fn main() -> ! {
         loop {
             cortex_m::asm::wfi();
             if RX_READY.load(Ordering::Acquire) {
-                led.toggle().unwrap();
+                led.toggle();
                 RX_READY.store(false, Ordering::Release);
                 let mut rx_buffer = free(|cs| RX_BUFFER.borrow(cs).borrow_mut().take()).unwrap();
                 let value = match rx_buffer.pop() {

@@ -23,7 +23,6 @@ extern crate panic_halt;
 use bsp::rt::entry;
 use teensy4_bsp as bsp;
 
-use embedded_hal::digital::v2::ToggleableOutputPin;
 use embedded_hal::serial::{Read, Write};
 
 const BAUD: u32 = 115_200;
@@ -89,11 +88,7 @@ fn main() -> ! {
     );
     let mut uart = uarts
         .uart2
-        .init(
-            peripherals.pins.p14.alt2(),
-            peripherals.pins.p15.alt2(),
-            BAUD,
-        )
+        .init(peripherals.pins.p14, peripherals.pins.p15, BAUD)
         .unwrap();
     let fifo_size = uart.set_tx_fifo(core::num::NonZeroU8::new(TX_FIFO_SIZE));
     log::info!("Setting TX FIFO to {}", fifo_size);
@@ -102,11 +97,11 @@ fn main() -> ! {
     uart.set_parity(PARITY);
     uart.set_rx_inversion(INVERTED);
     uart.set_tx_inversion(INVERTED);
-    let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
+    let mut led = bsp::configure_led(peripherals.pins.p13);
     let (mut tx, mut rx) = uart.split();
     loop {
         peripherals.systick.delay(1_000);
-        led.toggle().unwrap();
+        led.toggle();
         let mut buffer = DATA;
         write(&mut tx, &buffer).unwrap();
         peripherals.systick.delay(1);

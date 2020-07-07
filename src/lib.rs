@@ -127,74 +127,77 @@ pub use cortex_m_rt as rt;
 pub use imxrt_hal as hal;
 
 /// The LED in its final configuration
-pub type LED = hal::gpio::GPIO2IO03<hal::gpio::GPIO7, hal::gpio::Output>;
+pub type LED = hal::gpio::GPIO<iomuxc::b0::B0_03, hal::gpio::Output>;
+
+use imxrt106x_iomuxc as iomuxc;
+use imxrt_iomuxc::consts::{U1, U2, U3, U4};
 
 /// Teensy pins that do not yet have a function
 ///
 /// Pin 13 can be used for several things; one common usage is for the on-board LED.
 pub struct Pins {
     /// Pin 0
-    pub p0: hal::iomuxc::gpio::GPIO_AD_B0_03<hal::iomuxc::Alt5>,
+    pub p0: iomuxc::ad_b0::AD_B0_03,
     /// Pin 1
-    pub p1: hal::iomuxc::gpio::GPIO_AD_B0_02<hal::iomuxc::Alt5>,
+    pub p1: iomuxc::ad_b0::AD_B0_02,
     /// Pin 2
-    pub p2: hal::iomuxc::gpio::GPIO_EMC_04<hal::iomuxc::Alt5>,
+    pub p2: iomuxc::emc::EMC_04,
     /// Pin 3
-    pub p3: hal::iomuxc::gpio::GPIO_EMC_05<hal::iomuxc::Alt5>,
+    pub p3: iomuxc::emc::EMC_05,
     /// Pin 4
-    pub p4: hal::iomuxc::gpio::GPIO_EMC_06<hal::iomuxc::Alt5>,
+    pub p4: iomuxc::emc::EMC_06,
     /// Pin 5
-    pub p5: hal::iomuxc::gpio::GPIO_EMC_08<hal::iomuxc::Alt5>,
+    pub p5: iomuxc::emc::EMC_08,
     /// Pin 6
-    pub p6: hal::iomuxc::gpio::GPIO_B0_10<hal::iomuxc::Alt5>,
+    pub p6: iomuxc::b0::B0_10,
     /// Pin 7
-    pub p7: hal::iomuxc::gpio::GPIO_B1_01<hal::iomuxc::Alt5>,
+    pub p7: iomuxc::b1::B1_01,
     /// Pin 8
-    pub p8: hal::iomuxc::gpio::GPIO_B1_00<hal::iomuxc::Alt5>,
+    pub p8: iomuxc::b1::B1_00,
     /// Pin 9
-    pub p9: hal::iomuxc::gpio::GPIO_B0_11<hal::iomuxc::Alt5>,
+    pub p9: iomuxc::b0::B0_11,
     /// Pin 10
-    pub p10: hal::iomuxc::gpio::GPIO_B0_00<hal::iomuxc::Alt5>,
+    pub p10: iomuxc::b0::B0_00,
     /// Pin 11
-    pub p11: hal::iomuxc::gpio::GPIO_B0_02<hal::iomuxc::Alt5>,
+    pub p11: iomuxc::b0::B0_02,
     /// Pin 12
-    pub p12: hal::iomuxc::gpio::GPIO_B0_01<hal::iomuxc::Alt5>,
+    pub p12: iomuxc::b0::B0_01,
     /// Pin 13
-    pub p13: hal::iomuxc::gpio::GPIO_B0_03<hal::iomuxc::Alt5>,
+    pub p13: iomuxc::b0::B0_03,
     /// Pin 14
-    pub p14: hal::iomuxc::gpio::GPIO_AD_B1_02<hal::iomuxc::Alt5>,
+    pub p14: iomuxc::ad_b1::AD_B1_02,
     /// Pin 15
-    pub p15: hal::iomuxc::gpio::GPIO_AD_B1_03<hal::iomuxc::Alt5>,
+    pub p15: iomuxc::ad_b1::AD_B1_03,
     /// Pin 16
-    pub p16: hal::iomuxc::gpio::GPIO_AD_B1_07<hal::iomuxc::Alt5>,
+    pub p16: iomuxc::ad_b1::AD_B1_07,
     /// Pin 17
-    pub p17: hal::iomuxc::gpio::GPIO_AD_B1_06<hal::iomuxc::Alt5>,
+    pub p17: iomuxc::ad_b1::AD_B1_06,
     /// Pin 18
-    pub p18: hal::iomuxc::gpio::GPIO_AD_B1_01<hal::iomuxc::Alt5>,
+    pub p18: iomuxc::ad_b1::AD_B1_01,
     /// Pin 19
-    pub p19: hal::iomuxc::gpio::GPIO_AD_B1_00<hal::iomuxc::Alt5>,
+    pub p19: iomuxc::ad_b1::AD_B1_00,
     /// Pin 20
-    pub p20: hal::iomuxc::gpio::GPIO_AD_B1_10<hal::iomuxc::Alt5>,
+    pub p20: iomuxc::ad_b1::AD_B1_10,
     /// Pin 21
-    pub p21: hal::iomuxc::gpio::GPIO_AD_B1_11<hal::iomuxc::Alt5>,
+    pub p21: iomuxc::ad_b1::AD_B1_11,
     /// Pin 22
-    pub p22: hal::iomuxc::gpio::GPIO_AD_B1_08<hal::iomuxc::Alt5>,
+    pub p22: iomuxc::ad_b1::AD_B1_08,
     /// Pin 23
-    pub p23: hal::iomuxc::gpio::GPIO_AD_B1_09<hal::iomuxc::Alt5>,
+    pub p23: iomuxc::ad_b1::AD_B1_09,
     /// Pin 24
-    pub p24: hal::iomuxc::gpio::GPIO_AD_B0_12<hal::iomuxc::Alt5>,
+    pub p24: iomuxc::ad_b0::AD_B0_12,
     /// Pin 25
-    pub p25: hal::iomuxc::gpio::GPIO_AD_B0_13<hal::iomuxc::Alt5>,
+    pub p25: iomuxc::ad_b0::AD_B0_13,
     /// Pin 28
-    pub p28: hal::iomuxc::gpio::GPIO_EMC_32<hal::iomuxc::Alt5>,
+    pub p28: iomuxc::emc::EMC_32,
     /// Pin 29
-    pub p29: hal::iomuxc::gpio::GPIO_EMC_31<hal::iomuxc::Alt5>,
+    pub p29: iomuxc::emc::EMC_31,
     /// Pin 33
-    pub p33: hal::iomuxc::gpio::GPIO_EMC_07<hal::iomuxc::Alt5>,
+    pub p33: iomuxc::emc::EMC_07,
     /// Pin 36
-    pub p36: hal::iomuxc::gpio::GPIO_SD_B0_01<hal::iomuxc::Alt5>,
+    pub p36: iomuxc::sd_b0::SD_B0_01,
     /// Pin 37
-    pub p37: hal::iomuxc::gpio::GPIO_SD_B0_00<hal::iomuxc::Alt5>,
+    pub p37: iomuxc::sd_b0::SD_B0_00,
 }
 
 /// All peripherals available on the Teensy4
@@ -217,13 +220,13 @@ pub struct Peripherals {
     /// DCDC converters
     pub dcdc: hal::dcdc::DCDC,
     /// PWM1 controller
-    pub pwm1: hal::pwm::Unclocked<hal::pwm::module::_1>,
+    pub pwm1: hal::pwm::Unclocked<U1>,
     /// PWM2 controller
-    pub pwm2: hal::pwm::Unclocked<hal::pwm::module::_2>,
+    pub pwm2: hal::pwm::Unclocked<U2>,
     /// PWM3 controller
-    pub pwm3: hal::pwm::Unclocked<hal::pwm::module::_3>,
+    pub pwm3: hal::pwm::Unclocked<U3>,
     /// PWM4 controller
-    pub pwm4: hal::pwm::Unclocked<hal::pwm::module::_4>,
+    pub pwm4: hal::pwm::Unclocked<U4>,
     /// Teensy pins
     pub pins: Pins,
     /// Unclocked I2C peripherals
@@ -232,8 +235,6 @@ pub struct Peripherals {
     pub spi: hal::spi::Unclocked,
     /// Unclocked UART peripherals
     pub uart: hal::uart::Unclocked,
-    /// General purpose registers, used when configuring GPIO pins.
-    pub gpr: hal::iomuxc::GPR,
     /// General purpose timer 1
     pub gpt1: hal::gpt::Unclocked,
     /// General purpose timer 2
@@ -294,42 +295,41 @@ impl Peripherals {
             pwm3: p.pwm3,
             pwm4: p.pwm4,
             pins: Pins {
-                p0: p.iomuxc.gpio_ad_b0_03,
-                p1: p.iomuxc.gpio_ad_b0_02,
-                p2: p.iomuxc.gpio_emc_04,
-                p3: p.iomuxc.gpio_emc_05,
-                p4: p.iomuxc.gpio_emc_06,
-                p5: p.iomuxc.gpio_emc_08,
-                p6: p.iomuxc.gpio_b0_10,
-                p7: p.iomuxc.gpio_b1_01,
-                p8: p.iomuxc.gpio_b1_00,
-                p9: p.iomuxc.gpio_b0_11,
-                p10: p.iomuxc.gpio_b0_00,
-                p11: p.iomuxc.gpio_b0_02,
-                p12: p.iomuxc.gpio_b0_01,
-                p13: p.iomuxc.gpio_b0_03,
-                p14: p.iomuxc.gpio_ad_b1_02,
-                p15: p.iomuxc.gpio_ad_b1_03,
-                p16: p.iomuxc.gpio_ad_b1_07,
-                p17: p.iomuxc.gpio_ad_b1_06,
-                p18: p.iomuxc.gpio_ad_b1_01,
-                p19: p.iomuxc.gpio_ad_b1_00,
-                p20: p.iomuxc.gpio_ad_b1_10,
-                p21: p.iomuxc.gpio_ad_b1_11,
-                p22: p.iomuxc.gpio_ad_b1_08,
-                p23: p.iomuxc.gpio_ad_b1_09,
-                p24: p.iomuxc.gpio_ad_b0_12,
-                p25: p.iomuxc.gpio_ad_b0_13,
-                p28: p.iomuxc.gpio_emc_32,
-                p29: p.iomuxc.gpio_emc_31,
-                p33: p.iomuxc.gpio_emc_07,
-                p36: p.iomuxc.gpio_sd_b0_01,
-                p37: p.iomuxc.gpio_sd_b0_00,
+                p0: p.iomuxc.ad_b0.p03,
+                p1: p.iomuxc.ad_b0.p02,
+                p2: p.iomuxc.emc.p04,
+                p3: p.iomuxc.emc.p05,
+                p4: p.iomuxc.emc.p06,
+                p5: p.iomuxc.emc.p08,
+                p6: p.iomuxc.b0.p10,
+                p7: p.iomuxc.b1.p01,
+                p8: p.iomuxc.b1.p00,
+                p9: p.iomuxc.b0.p11,
+                p10: p.iomuxc.b0.p00,
+                p11: p.iomuxc.b0.p02,
+                p12: p.iomuxc.b0.p01,
+                p13: p.iomuxc.b0.p03,
+                p14: p.iomuxc.ad_b1.p02,
+                p15: p.iomuxc.ad_b1.p03,
+                p16: p.iomuxc.ad_b1.p07,
+                p17: p.iomuxc.ad_b1.p06,
+                p18: p.iomuxc.ad_b1.p01,
+                p19: p.iomuxc.ad_b1.p00,
+                p20: p.iomuxc.ad_b1.p10,
+                p21: p.iomuxc.ad_b1.p11,
+                p22: p.iomuxc.ad_b1.p08,
+                p23: p.iomuxc.ad_b1.p09,
+                p24: p.iomuxc.ad_b0.p12,
+                p25: p.iomuxc.ad_b0.p13,
+                p28: p.iomuxc.emc.p32,
+                p29: p.iomuxc.emc.p31,
+                p33: p.iomuxc.emc.p07,
+                p36: p.iomuxc.sd_b0.p01,
+                p37: p.iomuxc.sd_b0.p00,
             },
             i2c: p.i2c,
             spi: p.spi,
             uart: p.uart,
-            gpr: p.iomuxc.gpr,
             gpt1: p.gpt1,
             gpt2: p.gpt2,
             dma: p.dma,
@@ -343,9 +343,10 @@ impl Peripherals {
 ///
 /// Returns a GPIO that's physically tied to the LED. Use the returned handle
 /// to drive the LED.
-pub fn configure_led<A>(gpr: &mut hal::iomuxc::GPR, pad: hal::iomuxc::gpio::GPIO_B0_03<A>) -> LED {
-    use hal::gpio::IntoGpio;
-    pad.alt5().into_gpio().fast(gpr).output()
+pub fn configure_led(pad: iomuxc::b0::B0_03) -> LED {
+    let mut led = hal::gpio::GPIO::new(pad);
+    led.set_fast(true);
+    led.output()
 }
 
 /// TODO(mciantyre) define a better yield

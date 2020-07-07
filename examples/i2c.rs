@@ -54,7 +54,7 @@ fn main() -> ! {
     );
 
     log::info!("Constructing I2C3 instance on pins 16 and 17...");
-    let mut i2c3 = i2c3_builder.build(peripherals.pins.p16.alt1(), peripherals.pins.p17.alt1());
+    let mut i2c3 = i2c3_builder.build(peripherals.pins.p16, peripherals.pins.p17);
 
     if let Err(err) = i2c3.set_bus_idle_timeout(core::time::Duration::from_micros(200)) {
         log::warn!("Error when setting bus idle timeout: {:?}", err);
@@ -71,11 +71,13 @@ fn main() -> ! {
     }
 
     log::info!("Starting I/O loop...");
+    let mut counter = 0;
     loop {
         peripherals.systick.delay(1000);
         log::info!("Querying WHO_AM_I...");
+        counter += 1;
         match who_am_i(&mut i2c3) {
-            Ok(who) => log::info!("Received 0x{:X} for WHO_AM_I", who),
+            Ok(who) => log::info!("Received 0x{:X} for WHO_AM_I (iter = {})", who, counter),
             Err(err) => {
                 log::warn!("Error reading WHO_AM_I: {:?}", err);
                 continue;

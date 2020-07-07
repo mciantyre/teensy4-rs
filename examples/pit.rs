@@ -13,7 +13,7 @@ extern crate panic_halt;
 use bsp::hal::pit;
 use bsp::interrupt;
 use bsp::rt::{entry, interrupt};
-use embedded_hal::{digital::v2::ToggleableOutputPin, timer::CountDown};
+use embedded_hal::timer::CountDown;
 use teensy4_bsp as bsp;
 
 static mut TIMER: Option<pit::PIT<pit::channel::_3>> = None;
@@ -77,9 +77,9 @@ fn main() -> ! {
             .start(core::time::Duration::from_millis(250));
         cortex_m::peripheral::NVIC::unmask(interrupt::PIT);
     }
-    let mut led = bsp::configure_led(&mut periphs.gpr, periphs.pins.p13);
+    let mut led = bsp::configure_led(periphs.pins.p13);
     loop {
-        led.toggle().unwrap();
+        led.toggle();
         cortex_m::asm::wfi();
     }
 }

@@ -43,7 +43,7 @@ fn main() -> ! {
 
     let (timer0, timer1, _, mut timer3) = periphs.pit.clock(&mut cfg);
     let mut timer = pit::chain(timer0, timer1);
-    let mut led: bsp::LED = bsp::configure_led(&mut periphs.gpr, periphs.pins.p13);
+    let mut led: bsp::LED = bsp::configure_led(periphs.pins.p13);
     let mut systick = periphs.systick;
     loop {
         let (_, period) = timer.time(|| {

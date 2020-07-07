@@ -52,9 +52,9 @@ fn main() -> ! {
 
     log::info!("Constructing SPI4 peripheral...");
     let mut spi4 = spi4_builder.build(
-        peripherals.pins.p11.alt3(),
-        peripherals.pins.p12.alt3(),
-        peripherals.pins.p13.alt3(),
+        peripherals.pins.p11,
+        peripherals.pins.p12,
+        peripherals.pins.p13,
     );
 
     match spi4.set_clock_speed(bsp::hal::spi::ClockSpeed(SPI_BAUD_RATE_HZ)) {
@@ -76,7 +76,7 @@ fn main() -> ! {
     // We're using the SPI's default chip select pin. This uses a
     // dummy `OutputPin` that does nothing! If you'd rather use any
     // GPIO, replace this line to construct a GPIO from another pin.
-    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
+    spi4.enable_chip_select_0(peripherals.pins.p10);
     struct DummyCS;
     impl embedded_hal::digital::v2::OutputPin for DummyCS {
         type Error = core::convert::Infallible;
