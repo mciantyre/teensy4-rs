@@ -56,6 +56,10 @@ required-features = ["rtic"]
 name = "rtic_uart_log"
 path = "examples/rtic_uart_log.rs"
 required-features = ["rtic"]
+[[example]]
+name = "rtic_dma_uart_log"
+path = "examples/rtic_dma_uart_log.rs"
+required-features = ["rtic"]
 
 [workspace]
 members = [
