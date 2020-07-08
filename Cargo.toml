@@ -20,12 +20,6 @@ version = "0.3.0"
 path = "../imxrt/imxrt/imxrt-hal"
 features = ["imxrt1062", "rt"]
 
-[dependencies.imxrt-iomuxc]
-path = "../imxrt/iomuxc"
-
-[dependencies.imxrt106x-iomuxc]
-path = "../imxrt/iomuxc/imxrt106x-iomuxc"
-
 # Tied to "systick" feature, since
 # SysTick implements a blocking delay trait
 [dependencies.embedded-hal]

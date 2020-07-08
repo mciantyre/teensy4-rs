@@ -80,7 +80,7 @@ static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(Non
 static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
 
 type SpiDma =
-    dma::Peripheral<bsp::hal::spi::SPI<imxrt_iomuxc::consts::U4>, u16, TxBuffer, RxBuffer>;
+    dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::iomuxc::consts::U4>, u16, TxBuffer, RxBuffer>;
 
 // TODO types should be Send
 static mut SPI_DMA: Option<SpiDma> = None;
@@ -158,7 +158,7 @@ fn rx_buffer_mut<F: FnOnce(&mut RxBuffer) -> R, R>(act: F) -> Option<R> {
 }
 
 // Pin 20
-type HardwareFlag = bsp::hal::gpio::GPIO<imxrt106x_iomuxc::ad_b1::AD_B1_10, bsp::hal::gpio::Output>;
+type HardwareFlag = bsp::hal::gpio::GPIO<bsp::hal::iomuxc::ad_b1::AD_B1_10, bsp::hal::gpio::Output>;
 static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 
 #[entry]

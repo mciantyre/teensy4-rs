@@ -129,8 +129,8 @@ pub use imxrt_hal as hal;
 /// The LED in its final configuration
 pub type LED = hal::gpio::GPIO<iomuxc::b0::B0_03, hal::gpio::Output>;
 
-use imxrt106x_iomuxc as iomuxc;
-use imxrt_iomuxc::consts::{U1, U2, U3, U4};
+use hal::iomuxc as iomuxc;
+use iomuxc::consts::{U1, U2, U3, U4};
 
 /// Teensy pins that do not yet have a function
 ///

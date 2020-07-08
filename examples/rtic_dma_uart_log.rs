@@ -41,7 +41,7 @@ type Producer = heapless::spsc::Producer<'static, Ty, Cap>;
 type Consumer = heapless::spsc::Consumer<'static, Ty, Cap>;
 
 // The UART receiver.
-type UartRx = bsp::hal::uart::Rx<imxrt_iomuxc::consts::U2>;
+type UartRx = bsp::hal::uart::Rx<bsp::hal::iomuxc::consts::U2>;
 
 #[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
 const APP: () = {

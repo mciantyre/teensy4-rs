@@ -40,7 +40,7 @@ static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(Non
 static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
 
 type DmaUart = bsp::hal::dma::Peripheral<
-    bsp::hal::uart::UART<imxrt_iomuxc::consts::U2>,
+    bsp::hal::uart::UART<bsp::hal::iomuxc::consts::U2>,
     u8,
     TxBuffer,
     RxBuffer,
