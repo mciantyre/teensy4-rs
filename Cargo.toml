@@ -17,7 +17,8 @@ teensy4-fcb = { path = "teensy4-fcb" }
 
 [dependencies.imxrt-hal]
 version = "0.3.0"
-path = "../imxrt/imxrt/imxrt-hal"
+git = "https://github.com/imxrt-rs/imxrt-rs.git"
+branch = "iomuxc-integration"
 features = ["imxrt1062", "rt"]
 
 # Tied to "systick" feature, since
