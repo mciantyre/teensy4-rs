@@ -106,4 +106,4 @@ path = "cortex-m-rt-patch"
 # `imxrt-hal` is published with the new constructor.
 [patch.crates-io.imxrt-hal]
 git = "https://github.com/imxrt-rs/imxrt-rs"
-branch = "master"
+rev = "0305aed"
