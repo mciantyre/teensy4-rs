@@ -18,7 +18,7 @@ teensy4-fcb = { path = "teensy4-fcb" }
 [dependencies.imxrt-hal]
 version = "0.3.0"
 git = "https://github.com/imxrt-rs/imxrt-rs.git"
-branch = "iomuxc-integration"
+rev = "1815db6"
 features = ["imxrt1062", "rt"]
 
 # Tied to "systick" feature, since
@@ -106,9 +106,3 @@ opt-level = 0
 [patch.crates-io.cortex-m-rt]
 path = "cortex-m-rt-patch"
 
-# Patch `imxrt-hal` so that we may access the `hal::Peripherals::steal`
-# constructor. This patch should be removed once a new version of
-# `imxrt-hal` is published with the new constructor.
-[patch.crates-io.imxrt-hal]
-git = "https://github.com/imxrt-rs/imxrt-rs"
-rev = "0305aed"

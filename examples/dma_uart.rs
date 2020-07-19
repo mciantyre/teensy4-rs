@@ -92,18 +92,15 @@ fn main() -> ! {
         .unwrap();
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
-    let tx_channel = dma_channels[7].take().unwrap();
-    let rx_channel = dma_channels[23].take().unwrap();
+    let mut tx_channel = dma_channels[7].take().unwrap();
+    let mut rx_channel = dma_channels[23].take().unwrap();
 
-    let config = bsp::hal::dma::ConfigBuilder::new()
-        .interrupt_on_completion(true)
-        .build();
+    tx_channel.set_interrupt_on_completion(true);
+    rx_channel.set_interrupt_on_completion(true);
 
     let dma_uart = unsafe {
         DMA_PERIPHERAL = Some(bsp::hal::dma::Peripheral::new_bidirectional(
-            uart,
-            (tx_channel, config),
-            (rx_channel, config),
+            uart, tx_channel, rx_channel,
         ));
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA7_DMA23);
         DMA_PERIPHERAL.as_mut().unwrap()

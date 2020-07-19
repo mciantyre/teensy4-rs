@@ -220,20 +220,14 @@ fn main() -> ! {
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
     let tx_channel = dma_channels[9].take().unwrap();
-    let rx_channel = dma_channels[25].take().unwrap();
-    let rx_config = dma::ConfigBuilder::new()
-        .interrupt_on_completion(true)
-        .build();
+    let mut rx_channel = dma_channels[25].take().unwrap();
+    rx_channel.set_interrupt_on_completion(true);
 
     // We only want to interrupt when the receive completes. When
     // the receive completes, we know that we're also done transferring
     // data.
     let spi = unsafe {
-        SPI_DMA = Some(dma::bidirectional_u16(
-            spi4,
-            (tx_channel, dma::ConfigBuilder::new().build()),
-            (rx_channel, rx_config),
-        ));
+        SPI_DMA = Some(dma::bidirectional_u16(spi4, tx_channel, rx_channel));
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA9_DMA25);
         SPI_DMA.as_mut().unwrap()
     };
