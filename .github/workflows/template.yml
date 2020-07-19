@@ -5,10 +5,10 @@ name: Check Template
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, staging, trying ]
 
 jobs:
-  build:
+  template:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
@@ -33,5 +33,12 @@ jobs:
           use-tool-cache: true
       - name: Generate the template
         run: cargo generate --git https://github.com/mciantyre/teensy4-rs-template --name krate
+      # https://stackoverflow.com/questions/58033366/how-to-get-current-branch-within-github-actions
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Update template to target integration branch
+        run: sed -i '' "s/branch = \"master\"/branch = \"${{ steps.extract_branch.outputs.branch }}\"/g" krate/Cargo.toml
       - name: Check the template
         run: cd krate && cargo build && cargo objcopy -- -O ihex krate.hex
