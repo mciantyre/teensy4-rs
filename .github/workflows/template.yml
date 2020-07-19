@@ -39,6 +39,6 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - name: Update template to target integration branch
-        run: sed -i '' "s/branch = \"master\"/branch = \"${{ steps.extract_branch.outputs.branch }}\"/g" krate/Cargo.toml
+        run: sed -i "s/branch = \"master\"/branch = \"${{ steps.extract_branch.outputs.branch }}\"/g" krate/Cargo.toml
       - name: Check the template
         run: cd krate && cargo build && cargo objcopy -- -O ihex krate.hex
