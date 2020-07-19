@@ -1,0 +1,7 @@
+status = [
+    "clippy",
+    "format",
+    "precompiled",
+    "template"
+]
+delete_merged_branches = true
