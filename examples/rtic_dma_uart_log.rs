@@ -149,7 +149,7 @@ const APP: () = {
     #[task(binds = DMA7_DMA23, resources = [dma_interrupt_count])]
     fn dma7_dma23(cx: dma7_dma23::Context) {
         *cx.resources.dma_interrupt_count += 1;
-        imxrt_uart_log::dma::poll()
+        imxrt_uart_log::dma::poll();
     }
 
     // RTIC requires that unused interrupts are declared in an extern block when
