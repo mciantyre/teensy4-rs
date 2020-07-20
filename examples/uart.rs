@@ -79,17 +79,16 @@ fn read<R: Read<u8>>(uart: &mut R, bytes: &mut [u8]) -> Result<(), R::Error> {
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
-    peripherals.systick.delay(5_000);
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let pins = bsp::t40::pins(peripherals.iomuxc);
+    bsp::usb_init(&systick, Default::default()).unwrap();
+    systick.delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,
         bsp::hal::ccm::uart::PrescalarSelect::DIVIDE_1,
     );
-    let mut uart = uarts
-        .uart2
-        .init(peripherals.pins.p14, peripherals.pins.p15, BAUD)
-        .unwrap();
+    let mut uart = uarts.uart2.init(pins.p14, pins.p15, BAUD).unwrap();
     let fifo_size = uart.set_tx_fifo(core::num::NonZeroU8::new(TX_FIFO_SIZE));
     log::info!("Setting TX FIFO to {}", fifo_size);
     // If this is disabled, we won't receive the four bytes from the transfer!
@@ -97,14 +96,14 @@ fn main() -> ! {
     uart.set_parity(PARITY);
     uart.set_rx_inversion(INVERTED);
     uart.set_tx_inversion(INVERTED);
-    let mut led = bsp::configure_led(peripherals.pins.p13);
+    let mut led = bsp::configure_led(pins.p13);
     let (mut tx, mut rx) = uart.split();
     loop {
-        peripherals.systick.delay(1_000);
+        systick.delay(1_000);
         led.toggle();
         let mut buffer = DATA;
         write(&mut tx, &buffer).unwrap();
-        peripherals.systick.delay(1);
+        systick.delay(1);
         match read(&mut rx, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),

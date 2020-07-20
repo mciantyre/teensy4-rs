@@ -164,7 +164,9 @@ static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    bsp::usb_init(&systick, Default::default()).unwrap();
+    let pins = bsp::t40::pins(peripherals.iomuxc);
 
     peripherals.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
@@ -173,7 +175,7 @@ fn main() -> ! {
     );
 
     unsafe {
-        let p20 = peripherals.pins.p20;
+        let p20 = pins.p20;
         HARDWARE_FLAG = Some(bsp::hal::gpio::GPIO::new(p20).output());
     }
 
@@ -181,7 +183,7 @@ fn main() -> ! {
     // SPI setup
     //
 
-    peripherals.systick.delay(5000);
+    systick.delay(5000);
     log::info!("Initializing SPI4 clocks...");
 
     let (_, _, _, spi4_builder) = peripherals.spi.clock(
@@ -191,12 +193,8 @@ fn main() -> ! {
     );
 
     log::info!("Constructing SPI4 peripheral...");
-    let mut spi4 = spi4_builder.build(
-        peripherals.pins.p11,
-        peripherals.pins.p12,
-        peripherals.pins.p13,
-    );
-    spi4.enable_chip_select_0(peripherals.pins.p10);
+    let mut spi4 = spi4_builder.build(pins.p11, pins.p12, pins.p13);
+    spi4.enable_chip_select_0(pins.p10);
 
     match spi4.set_clock_speed(bsp::hal::spi::ClockSpeed(SPI_BAUD_RATE_HZ)) {
         Ok(()) => {
@@ -263,7 +261,7 @@ fn main() -> ! {
                 core::sync::atomic::spin_loop_hint();
             }
         }
-        peripherals.systick.delay(500);
+        systick.delay(500);
 
         log::info!("Started DMA transfers for WHO_AM_I");
         FLAG.store(false, Ordering::Release);
@@ -315,7 +313,7 @@ fn main() -> ! {
             }
         }
 
-        peripherals.systick.delay(500);
+        systick.delay(500);
         FLAG.store(false, Ordering::Release);
         prepare_transfer(spi);
         loop {

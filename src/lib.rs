@@ -76,9 +76,9 @@ pub use hal::ral::interrupt;
 pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 
 pub use cortex_m_rt as rt;
-pub use imxrt_hal as hal;
-
 use hal::iomuxc;
+pub use hal::Peripherals;
+pub use imxrt_hal as hal;
 
 /// The LED in its final configuration
 pub type LED = hal::gpio::GPIO<iomuxc::b0::B0_03, hal::gpio::Output>;

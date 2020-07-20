@@ -53,8 +53,8 @@ const APP: () = {
 
         // Schedule the first blink.
         cx.schedule.blink(cx.start + PERIOD.cycles()).unwrap();
-
-        let mut led = bsp::configure_led(cx.device.pins.p13);
+        let pins = bsp::t40::pins(cx.device.iomuxc);
+        let mut led = bsp::configure_led(pins.p13);
         led.set_high().unwrap();
 
         init::LateResources { led }

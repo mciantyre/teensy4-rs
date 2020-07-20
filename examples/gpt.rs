@@ -28,6 +28,7 @@ unsafe fn GPT1() {
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
+    let pins = bsp::t40::pins(periphs.iomuxc);
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
@@ -52,7 +53,7 @@ fn main() -> ! {
         cortex_m::peripheral::NVIC::unmask(interrupt::GPT1);
     }
 
-    let mut led = bsp::configure_led(periphs.pins.p13);
+    let mut led = bsp::configure_led(pins.p13);
     loop {
         let gpt1 = unsafe { TIMER.as_mut().unwrap() };
         gpt1.set_enable(false);

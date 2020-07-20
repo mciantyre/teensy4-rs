@@ -22,8 +22,9 @@ use teensy4_bsp as bsp;
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
-    periphs.systick.delay(25);
-    periphs.usb.init(Default::default());
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let pins = bsp::t40::pins(periphs.iomuxc);
+    bsp::usb_init(&systick, Default::default()).unwrap();
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
@@ -43,8 +44,7 @@ fn main() -> ! {
 
     let (timer0, timer1, _, mut timer3) = periphs.pit.clock(&mut cfg);
     let mut timer = pit::chain(timer0, timer1);
-    let mut led: bsp::LED = bsp::configure_led(periphs.pins.p13);
-    let mut systick = periphs.systick;
+    let mut led: bsp::LED = bsp::configure_led(pins.p13);
     loop {
         let (_, period) = timer.time(|| {
             led.set_high().unwrap();

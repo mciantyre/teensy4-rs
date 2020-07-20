@@ -16,16 +16,22 @@ use teensy4_bsp as bsp;
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
+    let pins = bsp::t40::pins(p.iomuxc);
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Initialize the USB stack with the default logging settings
-    let mut usb_reader = p.usb.init(bsp::usb::LoggingConfig {
-        filters: &[("usb", None)],
-        ..Default::default()
-    });
-    p.systick.delay(2000);
+    let mut usb_reader = bsp::usb_init(
+        &systick,
+        bsp::usb::LoggingConfig {
+            filters: &[("usb", None)],
+            ..Default::default()
+        },
+    )
+    .unwrap();
+    systick.delay(2000);
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    let mut led: bsp::LED = bsp::configure_led(p.pins.p13);
+    let mut led: bsp::LED = bsp::configure_led(pins.p13);
     let mut buffer = [0; 256];
     loop {
         let bytes_read = usb_reader.read(&mut buffer);
@@ -48,6 +54,6 @@ fn main() -> ! {
         log::debug!("Sleeping for 1 second...");
         log::trace!("{} + {} = {}", 3, 2, 3 + 2);
         led.toggle();
-        p.systick.delay(5000);
+        systick.delay(5000);
     }
 }

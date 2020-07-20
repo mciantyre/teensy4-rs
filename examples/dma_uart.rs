@@ -79,17 +79,17 @@ unsafe fn DMA7_DMA23() {
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
-    peripherals.systick.delay(5_000);
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    bsp::usb_init(&systick, Default::default()).unwrap();
+    let pins = bsp::t40::pins(peripherals.iomuxc);
+
+    systick.delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,
         bsp::hal::ccm::uart::PrescalarSelect::DIVIDE_1,
     );
-    let uart = uarts
-        .uart2
-        .init(peripherals.pins.p14, peripherals.pins.p15, BAUD)
-        .unwrap();
+    let uart = uarts.uart2.init(pins.p14, pins.p15, BAUD).unwrap();
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
     let mut tx_channel = dma_channels[7].take().unwrap();
@@ -105,7 +105,7 @@ fn main() -> ! {
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA7_DMA23);
         DMA_PERIPHERAL.as_mut().unwrap()
     };
-    let mut led = bsp::configure_led(peripherals.pins.p13);
+    let mut led = bsp::configure_led(pins.p13);
 
     let rx_buffer = match bsp::hal::dma::Circular::new(&RX_MEM.0) {
         Ok(circular) => circular,

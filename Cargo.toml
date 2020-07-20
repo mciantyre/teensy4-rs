@@ -96,7 +96,7 @@ systick = ["embedded-hal"]
 # NOTE: When using this feature along with the `rtic` crate the
 # default features must first be disabled in order to avoid a
 # duplicate definition of `SysTick`.
-rtic = []
+rtic = ["imxrt-hal/rtic"]
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
