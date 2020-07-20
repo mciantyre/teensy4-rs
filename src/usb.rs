@@ -9,7 +9,10 @@
 //! [`log`]: https://crates.io/crates/log
 
 use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
-use core::fmt;
+use core::{
+    fmt,
+    sync::atomic::{AtomicBool, Ordering},
+};
 use teensy4_usb_sys as usbsys;
 
 /// Logging configuration
@@ -46,58 +49,61 @@ impl Default for LoggingConfig {
     }
 }
 
-/// A handle that enables USB I/O
+/// Indicate an error when preparing the USB stack
+#[derive(Debug)]
+pub enum Error {
+    /// The error indicates that you've already set the logger, either from this
+    /// interface or through another logging interface.
+    SetLogger,
+    /// The USB stack is already in use
+    AlreadySet,
+}
+
+impl From<::log::SetLoggerError> for Error {
+    fn from(_: ::log::SetLoggerError) -> Self {
+        Error::SetLogger
+    }
+}
+
+static TAKEN: AtomicBool = AtomicBool::new(false);
+
+/// Initializes the USB stack. This prepares the logging back-end. Returns a `Reader`
+/// that can read USB serial messages.
 ///
-/// Calling `init` will initialize the USB stack and enable the USB interrupt.
-/// Once initialized, messages will be written over USB. Alternatively, use `split`
-/// to turn the USB into `Reader` and `Writer` halves.
-pub struct USB(&'static mut Logger);
-
-impl USB {
-    /// Initializes the USB stack. This prepares the logging back-end. Returns a `Reader`
-    /// that can read USB serial messages.
-    ///
-    /// To select the default logger behavior, specify `Default::default()` as the
-    /// argument for `config`.
-    ///
-    /// This may only be called once. If this is not called, we do not initialize the logger,
-    /// and log messages will not be written to the USB host.
-    pub fn init(self, config: LoggingConfig) -> Reader {
-        self.0.enabled = true;
-        self.0.filters = config.filters;
-        ::log::set_logger(self.0)
-            .map(|_| ::log::set_max_level(config.max_level))
-            .unwrap();
-        Self::start();
-        Reader(core::marker::PhantomData)
+/// To select the default logger behavior, specify `Default::default()` as the
+/// argument for `config`.
+///
+/// Before configuring the USB logger, you'll need to configure [`SysTick`](struct.SysTick.html).
+/// Once you've configured `SysTick`, supply its reference here.
+///
+/// This may only be called once. If this is not called, we do not initialize the logger,
+/// and log messages will not be written to the USB host. Returns a
+/// [`SetLoggerError`](struct.SetLoggerError.html) if the logging subsystem already has a
+/// logger.
+pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> {
+    let taken = TAKEN.swap(true, Ordering::SeqCst);
+    if taken {
+        return Err(Error::AlreadySet);
     }
+    unsafe {
+        LOGGER.enabled = true;
+        LOGGER.filters = config.filters;
 
-    /// # Safety
-    ///
-    /// This is only called once, when we're setting up peripherals.
-    /// If `init()` is called, we will set the members of the struct
-    /// into their state. There can only be one Logging struct, so
-    /// there's only one reference to the logger singleton.
-    pub(super) fn new() -> Self {
-        unsafe { USB(&mut LOGGER) }
-    }
+        ::log::set_logger(&LOGGER).map(|_| ::log::set_max_level(config.max_level))?;
 
-    #[inline(always)]
-    fn start() {
-        unsafe {
-            usbsys::usb_pll_start();
-            usbsys::usb_init();
-            cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
-        }
+        usbsys::usb_pll_start();
+        usbsys::usb_init();
+        cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
     }
+    Ok(Reader(core::marker::PhantomData))
+}
 
-    /// Split the USB handle into reader and writer halves
-    pub fn split(self) -> (Reader, Writer) {
-        Self::start();
-        ((Reader(core::marker::PhantomData)), unsafe {
-            Writer::new()
-        })
+pub fn split() -> Result<(Reader, Writer), Error> {
+    let taken = TAKEN.swap(true, Ordering::SeqCst);
+    if taken {
+        return Err(Error::AlreadySet);
     }
+    Ok((Reader(core::marker::PhantomData), unsafe { Writer::new() }))
 }
 
 #[crate::rt::interrupt]
