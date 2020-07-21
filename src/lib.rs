@@ -54,6 +54,7 @@
 //!   continuous days, or risk a millisecond counter wrap-around.
 
 #![no_std]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 // Need to reference this so that it doesn't get stripped out
 extern crate teensy4_fcb;
@@ -63,6 +64,7 @@ pub mod t40;
 #[cfg(feature = "systick")]
 mod systick;
 #[cfg(feature = "usb-logging")]
+#[cfg_attr(docsrs, doc(cfg(feature = "usb-logging")))]
 pub mod usb;
 
 #[cfg(feature = "systick")]
@@ -70,6 +72,7 @@ pub use systick::SysTick;
 
 pub use hal::ral::interrupt;
 // `rtic` expects these in the root.
+#[doc(hidden)]
 #[cfg(feature = "rtic")]
 pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 

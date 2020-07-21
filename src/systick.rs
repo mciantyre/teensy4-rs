@@ -55,6 +55,7 @@ const SYSTICK_EXT_FREQ: u32 = 100_000;
 ///
 /// `SysTick` implements the `embedded_hal`'s `DelayMs` trait. It
 /// may be used to implement simple, blocking delays.
+#[cfg_attr(docsrs, doc(cfg(feature = "systick")))]
 pub struct SysTick(cortex_m::peripheral::SYST);
 
 impl SysTick {

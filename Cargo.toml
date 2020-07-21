@@ -108,3 +108,6 @@ opt-level = 0
 [patch.crates-io.cortex-m-rt]
 path = "cortex-m-rt-patch"
 
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
