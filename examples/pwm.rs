@@ -32,7 +32,7 @@ fn main() -> ! {
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::pins(p.iomuxc);
     // Initialize the logging, so we can use it in the PWM loop below
-    bsp::usb_init(&systick, Default::default()).unwrap();
+    bsp::usb::init(&systick, Default::default()).unwrap();
     // Delay is only to let a user set-up their USB serial connection...
     systick.delay(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules

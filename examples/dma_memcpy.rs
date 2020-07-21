@@ -35,7 +35,7 @@ const NUMBER_OF_ELEMENTS: Element = (BUFFER_SIZE - 7) as Element;
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    bsp::usb_init(&systick, Default::default()).unwrap();
+    bsp::usb::init(&systick, Default::default()).unwrap();
     systick.delay(5_000);
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);

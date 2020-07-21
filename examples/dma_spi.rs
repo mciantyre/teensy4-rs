@@ -165,7 +165,7 @@ static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    bsp::usb_init(&systick, Default::default()).unwrap();
+    bsp::usb::init(&systick, Default::default()).unwrap();
     let pins = bsp::t40::pins(peripherals.iomuxc);
 
     peripherals.ccm.pll1.set_arm_clock(

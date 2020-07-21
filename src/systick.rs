@@ -26,11 +26,11 @@ fn read() -> u32 {
 
 /// Blocks for at least `millis` milliseconds
 ///
-/// `delay()` will spin-loop on updates from SYSTICK, until
+/// `delay` will spin-loop on updates from SYSTICK, until
 /// `millis` milliseconds have elapsed. SYSTICK has a 1ms
 /// interrupt interval, so the minimal delay is around 1ms.
 #[no_mangle]
-pub extern "C" fn delay(millis: u32) {
+extern "C" fn delay(millis: u32) {
     if 0 == millis {
         return;
     }
@@ -60,12 +60,12 @@ pub struct SysTick(cortex_m::peripheral::SYST);
 impl SysTick {
     /// Convert the normal cortex-m SYST peripheral into a Teensy `SysTick`
     ///
-    /// `new()` will configure the systick counter for a 1ms tick. When `new()` returns,
+    /// `new` will configure the systick counter for a 1ms tick. When `new()` returns,
     /// systick is counting.
     ///
     /// # Safety
     ///
-    /// `new()` is safe because it assumes that it has the only `SYST` instance.
+    /// `new` is safe because it assumes that it has the only `SYST` instance.
     /// The only way you could acquire two `SysTick` is if you've unsafely obtained
     /// a second `SYST` instance.
     pub fn new(mut systick: cortex_m::peripheral::SYST) -> SysTick {

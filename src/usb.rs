@@ -3,8 +3,7 @@
 //! The USB stack provides a [`log`] implementation for logging over USB
 //!
 //! This is `Serial.println()` in Rust. Use the macros of the
-//! [`log`] crate to write data over USB. Messages can be read
-//! back using `screen` or `PuTTY`.
+//! [`log`] crate to write data over USB.
 //!
 //! [`log`]: https://crates.io/crates/log
 
@@ -24,7 +23,7 @@ use teensy4_usb_sys as usbsys;
 /// Set the `filters` collection to specify log targets of interest.
 ///
 /// If the default configuration is good for you, use `Default::default()`
-/// as the argument to `init()`.
+/// as the argument to [`init`](fn.init.html).
 pub struct LoggingConfig {
     /// The max log level
     ///

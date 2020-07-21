@@ -67,8 +67,6 @@ pub mod usb;
 
 #[cfg(feature = "systick")]
 pub use systick::SysTick;
-#[cfg(feature = "usb-logging")]
-pub use usb::{init as usb_init, LoggingConfig};
 
 pub use hal::ral::interrupt;
 // `rtic` expects these in the root.
@@ -80,7 +78,9 @@ use hal::iomuxc;
 pub use hal::Peripherals;
 pub use imxrt_hal as hal;
 
-/// The LED in its final configuration
+/// The LED
+///
+/// See [`configure_led`](fn.configure_led.html) to prepare the LED.
 pub type LED = hal::gpio::GPIO<iomuxc::b0::B0_03, hal::gpio::Output>;
 
 /// Configure the board's LED
