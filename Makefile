@@ -3,6 +3,7 @@ CARGO ?= cargo
 TEENSY_LOADER ?= teensy_loader_cli
 MODE ?= --release
 INSTALL_DEPS ?= 1
+HOST ?= $(shell rustc --version --verbose | grep host | cut -d ' ' -f 2)
 
 ifneq ($(INSTALL_DEPS),0)
 # Ensure the thumbv7em-none-eabihf component is installed
@@ -78,3 +79,8 @@ libt4usb:
 .PHONY: clean
 clean:
 	@cargo clean
+
+.PHONY: test
+test:
+	@cargo +nightly test --lib --tests --target $(HOST)
+	@cargo +nightly test --doc --target $(HOST)

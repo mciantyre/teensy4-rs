@@ -13,6 +13,16 @@
 //! |  37  |`SD_B0_00`|          |`FlexPWM1_0_A`|  `I2C3_SCL`  |           |  `SPI1_SCK`  |                  |              |         |         |         |
 //! |  38  |`SD_B0_05`|          |`FlexPWM1_2_B`|  `UART8_RX`  |           |              |                  |              |         |         |         |
 //! |  39  |`SD_B0_04`|          |`FlexPWM1_2_A`|  `UART8_TX`  |           |              |                  |              |         |         |         |
+//!
+//! # Example: get Teensy 4.0 pins
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//!
+//! let peripherals = bsp::Peripherals::take().unwrap();
+//! let pins = bsp::t40::pins(peripherals.iomuxc);
+//! let led = bsp::configure_led(pins.p13);
+//! ```
 
 pub use crate::common::*;
 use crate::hal::iomuxc::{sd_b0::*, ErasedPad};

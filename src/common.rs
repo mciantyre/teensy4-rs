@@ -2,14 +2,35 @@
 //!
 //! # Common Pinout
 //!
-//! The Teensy 4.0 and 4.1 have many similar pad to pin mappings. This module provides
+//! The Teensy 4.0 and 4.1 share many pins. This module provides
 //! the pins that are common across both boards. For pins that are unique to
 //! each board, and to acquire all of a board's pins, see the [`t40`](../t40/index.html)
 //! and [`t41`](../t41/index.html) modules.
 //!
-//! ## This table is incomplete
+//! Note that this pin API is optional, provided only for convenience. You are free to
+//! configure the pins using the pad identifiers, instead of the physical pin identifiers.
 //!
-//! We believe this table's contents are accurate. But, there may be alternate functions that are not
+//! The following examples are equivalent ways to configure the LED. The first uses the
+//! pins API. The second uses the processor pad that drivers the LED.
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//! let peripherals = bsp::Peripherals::take().unwrap();
+//! let pins = bsp::t40::pins(peripherals.iomuxc);
+//! let led = bsp::configure_led(pins.p13);
+//! ```
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//! let peripherals = bsp::Peripherals::take().unwrap();
+//! let led = bsp::configure_led(peripherals.iomuxc.b0.p03);
+//! ```
+//!
+//! ## Common pin table
+//!
+//! **This table is incomplete**
+//!
+//! We believe this table is accurate. But, there may be alternate functions that are not
 //! documented, and we're maintaining this table on a best-effort basis. Besides this table,
 //! there are two other ways to identify which pads support which peripheral:
 //!

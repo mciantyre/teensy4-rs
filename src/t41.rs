@@ -15,6 +15,16 @@
 //! |  39  |`AD_B1_13`|          |              |              |           |              |                  |              |         |         |         |
 //! |  40  |`AD_B1_04`|          |              |              |           |              |                  |              |         |         |         |
 //! |  41  |`AD_B1_05`|          |              |              |           |              |                  |              |         |         |         |
+//!
+//! # Example
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//!
+//! let peripherals = bsp::Peripherals::take().unwrap();
+//! let pins = bsp::t41::pins(peripherals.iomuxc);
+//! let led = bsp::configure_led(pins.p13);
+//! ```
 
 pub use crate::common::*;
 use crate::hal::iomuxc::{ad_b1::*, b1::*, ErasedPad};

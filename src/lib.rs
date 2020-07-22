@@ -42,6 +42,35 @@
 //!
 //! # Examples
 //!
+//! Turn on a Teensy 4.0's LED:
+//!
+//! ```no_run
+//! # #![feature(lang_items)]
+//! #![no_std]
+//! #![no_main]
+//!
+//! extern crate panic_halt;
+//!
+//! use bsp::rt::entry;
+//! use cortex_m::asm::wfi;
+//! use teensy4_bsp as bsp;
+//!
+//! use embedded_hal::digital::v2::OutputPin;
+//!
+//! #[entry]
+//! fn main() -> ! {
+//!     let peripherals = bsp::Peripherals::take().unwrap();
+//!     let pins = bsp::t40::pins(peripherals.iomuxc);
+//!     let mut led = bsp::configure_led(pins.p13);
+//!
+//!     loop {
+//!         led.set_high().unwrap();
+//!         wfi();
+//!     }
+//! }
+//! # #[lang = "eh_personality"] extern fn eh_personality() {}
+//! ```
+//!
 //! See the `teensy4-examples` crate for build-able, run-able
 //! examples. The examples utilize this BSP crate to blink LEDs,
 //! establish timers, and log data over USB.
@@ -57,6 +86,7 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 // Need to reference this so that it doesn't get stripped out
+#[cfg(target_arch = "arm")]
 extern crate teensy4_fcb;
 
 pub mod common;
