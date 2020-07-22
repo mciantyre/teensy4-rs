@@ -22,7 +22,7 @@
 //! If a user also registers a `SysTick` or `USB_OTG1` handler, it may
 //! result in a duplicate definition error.
 //!
-//! ## Re-exports
+//! # Re-exports
 //!
 //! The BSP re-exports the following:
 //!
@@ -40,7 +40,7 @@
 //! specific to the Teensy 4. See the `teensy4-fcb` crate for details
 //! on FCBs.
 //!
-//! ## Examples
+//! # Examples
 //!
 //! See the `teensy4-examples` crate for build-able, run-able
 //! examples. The examples utilize this BSP crate to blink LEDs,
@@ -59,7 +59,9 @@
 // Need to reference this so that it doesn't get stripped out
 extern crate teensy4_fcb;
 
+pub mod common;
 pub mod t40;
+pub mod t41;
 
 #[cfg(feature = "systick")]
 mod systick;
@@ -84,7 +86,7 @@ pub use imxrt_hal as hal;
 /// The LED
 ///
 /// See [`configure_led`](fn.configure_led.html) to prepare the LED.
-pub type LED = hal::gpio::GPIO<iomuxc::b0::B0_03, hal::gpio::Output>;
+pub type LED = hal::gpio::GPIO<common::P13, hal::gpio::Output>;
 
 /// Configure the board's LED
 ///
