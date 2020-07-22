@@ -35,14 +35,18 @@ endif
 endif # INSTALL_DEPS != 0
 
 TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
-EXAMPLES := $(shell ls examples | xargs basename | cut -f 1 -d .)
+EXAMPLES := $(shell ls examples | grep -v rtic | xargs basename | cut -f 1 -d .)
 RTIC_EXAMPLES := $(shell ls examples | grep rtic | xargs basename | cut -f 1 -d .)
 
 .PHONY: all
 all:
-	@cargo build $(MODE) --examples
 	@for example in $(EXAMPLES);\
 		do cargo objcopy $(MODE) --example $$example \
+			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
+		done
+	@for example in $(RTIC_EXAMPLES);\
+		do cargo objcopy $(MODE) --example $$example \
+			--no-default-features --features=rtic \
 			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
 		done
 
@@ -53,22 +57,6 @@ rtic:
 		do cargo build $(MODE) --example $$example \
 			--no-default-features --features=rtic;\
 		done
-
-.PHONY: example_%
-example_%:
-	@cargo build \
-		$(MODE) --example $(subst example_,,$@)
-
-.PHONY: objcopy_%
-objcopy_%: example_%
-	@cargo objcopy \
-		$(MODE) --example $(subst objcopy_,,$@) \
-		-- -O ihex \
-		$(TARGET_EXAMPLES)/$(subst objcopy_,,$@).hex
-
-.PHONY: download_%
-download_%: objcopy_%
-	@$(LOADER) $(TARGET_EXAMPLES)/$(subst download_,,$@).hex
 
 libt4boot:
 	@make -C teensy4-rt/bin
