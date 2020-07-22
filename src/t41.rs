@@ -1,4 +1,4 @@
-//! Teensy 4.1 specific API
+//! Teensy 4.1 specific APIs
 //!
 //! # Pins unique to the Teensy 4.1
 //!
@@ -17,7 +17,7 @@
 //! |  41  |`AD_B1_05`|          |              |              |           |              |                  |              |         |         |         |
 
 pub use crate::common::*;
-use crate::hal::iomuxc::{ad_b1::*, b1::*};
+use crate::hal::iomuxc::{ad_b1::*, b1::*, ErasedPad};
 
 /// Pin 34 (4.1)
 pub type P34 = B1_13;
@@ -35,6 +35,14 @@ pub type P39 = AD_B1_13;
 pub type P40 = AD_B1_04;
 /// Pin 41 (4.1)
 pub type P41 = AD_B1_05;
+
+/// Type-erased Teensy 4.1 pins
+///
+/// To get pin 13, the LED, index into the 13th element of this array:
+/// `erased_pins[13]`.
+///
+/// Use [`Pins::erase`] to erase pin types.
+pub type ErasedPins = [ErasedPad; 42];
 
 /// Teensy 4.1 pins
 ///
@@ -174,5 +182,56 @@ pub fn pins(iomuxc: crate::hal::iomuxc::Pads) -> Pins {
         p39: iomuxc.ad_b1.p13,
         p40: iomuxc.ad_b1.p04,
         p41: iomuxc.ad_b1.p05,
+    }
+}
+
+impl Pins {
+    /// Erase the types of all pins
+    pub fn erase(self) -> ErasedPins {
+        [
+            self.p0.erase(),
+            self.p1.erase(),
+            self.p2.erase(),
+            self.p3.erase(),
+            self.p4.erase(),
+            self.p5.erase(),
+            self.p6.erase(),
+            self.p7.erase(),
+            self.p8.erase(),
+            self.p9.erase(),
+            self.p10.erase(),
+            self.p11.erase(),
+            self.p12.erase(),
+            self.p13.erase(),
+            self.p14.erase(),
+            self.p15.erase(),
+            self.p16.erase(),
+            self.p17.erase(),
+            self.p18.erase(),
+            self.p19.erase(),
+            self.p20.erase(),
+            self.p21.erase(),
+            self.p22.erase(),
+            self.p23.erase(),
+            self.p24.erase(),
+            self.p25.erase(),
+            self.p26.erase(),
+            self.p27.erase(),
+            self.p28.erase(),
+            self.p29.erase(),
+            self.p30.erase(),
+            self.p31.erase(),
+            self.p32.erase(),
+            self.p33.erase(),
+            // END OF COMMON PINS
+            self.p34.erase(),
+            self.p35.erase(),
+            self.p36.erase(),
+            self.p37.erase(),
+            self.p38.erase(),
+            self.p39.erase(),
+            self.p40.erase(),
+            self.p41.erase(),
+        ]
     }
 }
