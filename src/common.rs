@@ -2,7 +2,7 @@
 //!
 //! # Common Pinout
 //!
-//! The Teensy 4.0 and 4.1 have many similar pad to pin mappings. This table documents
+//! The Teensy 4.0 and 4.1 have many similar pad to pin mappings. This module provides
 //! the pins that are common across both boards. For pins that are unique to
 //! each board, and to acquire all of a board's pins, see the [`t40`](../t40/index.html)
 //! and [`t41`](../t41/index.html) modules.

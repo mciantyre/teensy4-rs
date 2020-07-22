@@ -2,7 +2,7 @@
 //!
 //! # Pins unique to the Teensy 4.1
 //!
-//! See the [`common` documentation](../common/index.html) for pins that are consistent
+//! See the [`common` module](../common/index.html) for pins that are consistent
 //! across both boards.
 //!
 //! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
@@ -41,7 +41,7 @@ pub type P41 = AD_B1_05;
 /// To get pin 13, the LED, index into the 13th element of this array:
 /// `erased_pins[13]`.
 ///
-/// Use [`Pins::erase`] to erase pin types.
+/// Use [`Pins::erase`](struct.Pins.html#method.erase) to erase pin types.
 pub type ErasedPins = [ErasedPad; 42];
 
 /// Teensy 4.1 pins

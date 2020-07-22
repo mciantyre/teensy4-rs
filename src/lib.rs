@@ -79,7 +79,6 @@ pub use hal::ral::interrupt;
 pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 
 pub use cortex_m_rt as rt;
-use hal::iomuxc;
 pub use hal::Peripherals;
 pub use imxrt_hal as hal;
 
@@ -92,7 +91,7 @@ pub type LED = hal::gpio::GPIO<common::P13, hal::gpio::Output>;
 ///
 /// Returns a GPIO that's physically tied to the LED. Use the returned handle
 /// to drive the LED.
-pub fn configure_led(pad: iomuxc::b0::B0_03) -> LED {
+pub fn configure_led(pad: common::P13) -> LED {
     let mut led = hal::gpio::GPIO::new(pad);
     led.set_fast(true);
     led.output()
