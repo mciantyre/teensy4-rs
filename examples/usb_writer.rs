@@ -13,13 +13,15 @@ use teensy4_bsp as bsp;
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
+    let pins = bsp::t40::pins(p.iomuxc);
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
-    let (mut reader, mut writer) = p.usb.split();
-    p.systick.delay(2000);
+    let (mut reader, mut writer) = bsp::usb::split().unwrap();
+    systick.delay(2000);
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    let mut led: bsp::LED = bsp::configure_led(p.pins.p13);
+    let mut led: bsp::LED = bsp::configure_led(pins.p13);
     let mut buffer = [0; 256];
     loop {
         let bytes_read = reader.read(&mut buffer);
@@ -38,6 +40,6 @@ fn main() -> ! {
 
         writeln!(writer, "Hello world! 3 + 2 = {}", 3 + 2).unwrap();
         led.toggle();
-        p.systick.delay(5000);
+        systick.delay(5000);
     }
 }
