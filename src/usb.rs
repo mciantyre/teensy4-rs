@@ -46,10 +46,11 @@ impl Default for LoggingConfig {
     }
 }
 
-/// A handle that enables logging
+/// A handle that enables USB I/O
 ///
-/// Calling `init()` will initialize the USB stack and enable the USB interrupt.
-/// Once initialized, messages will be written over USB.
+/// Calling `init` will initialize the USB stack and enable the USB interrupt.
+/// Once initialized, messages will be written over USB. Alternatively, use `split`
+/// to turn the USB into `Reader` and `Writer` halves.
 pub struct USB(&'static mut Logger);
 
 impl USB {
@@ -67,11 +68,7 @@ impl USB {
         ::log::set_logger(self.0)
             .map(|_| ::log::set_max_level(config.max_level))
             .unwrap();
-        unsafe {
-            usbsys::usb_pll_start();
-            usbsys::usb_init();
-            cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
-        }
+        Self::start();
         Reader(core::marker::PhantomData)
     }
 
@@ -83,6 +80,23 @@ impl USB {
     /// there's only one reference to the logger singleton.
     pub(super) fn new() -> Self {
         unsafe { USB(&mut LOGGER) }
+    }
+
+    #[inline(always)]
+    fn start() {
+        unsafe {
+            usbsys::usb_pll_start();
+            usbsys::usb_init();
+            cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
+        }
+    }
+
+    /// Split the USB handle into reader and writer halves
+    pub fn split(self) -> (Reader, Writer) {
+        Self::start();
+        ((Reader(core::marker::PhantomData)), unsafe {
+            Writer::new()
+        })
     }
 }
 
@@ -137,7 +151,7 @@ impl ::log::Log for Logger {
         if self.enabled(record.metadata()) {
             use core::fmt::Write;
             writeln!(
-                Writer,
+                unsafe { Writer::new() },
                 "[{} {}]: {}",
                 record.level(),
                 record.target(),
@@ -152,8 +166,25 @@ impl ::log::Log for Logger {
     }
 }
 
-// TODO: make this public?
-struct Writer;
+/// A type that can send data to a USB serial host
+///
+/// Use [`Writer::write`](struct.Writer.html#method.write) to write byte
+/// buffers. Or, use the standard `write!()` macro to serialize data to
+/// the writer.
+pub struct Writer(core::marker::PhantomData<*const ()>);
+
+impl Writer {
+    const unsafe fn new() -> Self {
+        Writer(core::marker::PhantomData)
+    }
+
+    /// Writes raw bytes to the USB serial host
+    pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> usize {
+        usbsys::serial_write(buffer) as usize
+    }
+}
+
+unsafe impl Send for Writer {}
 
 impl fmt::Write for Writer {
     fn write_str(&mut self, string: &str) -> fmt::Result {
@@ -164,7 +195,7 @@ impl fmt::Write for Writer {
             }
             let bytes = line.as_bytes();
             if !bytes.is_empty() {
-                usbsys::serial_write(bytes);
+                self.write(bytes);
             }
             at_linefeed = true;
         }

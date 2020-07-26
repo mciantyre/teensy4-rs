@@ -59,14 +59,11 @@ extern "C" {
     fn usb_serial_read(buffer: *mut u8, size: u32) -> i32;
 }
 
-/// Writes the buffer of data to the USB host
-///
-/// TODO error handling, return the number of bytes written, etc.
-pub fn serial_write<B: AsRef<[u8]>>(buffer: B) {
+/// Writes the buffer of data to the USB host, returning the number
+/// of bytes written
+pub fn serial_write<B: AsRef<[u8]>>(buffer: B) -> u32 {
     let buffer = buffer.as_ref();
-    unsafe {
-        usb_serial_write(buffer.as_ptr(), buffer.len() as u32);
-    }
+    unsafe { usb_serial_write(buffer.as_ptr(), buffer.len() as u32) as u32 }
 }
 
 /// Reads a buffer of data from the USB serial endpoint
