@@ -1,0 +1,35 @@
+name: Publish Documentation
+
+on:
+  push:
+    branches: [ master, staging, trying ]
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+    container:
+      image: rustops/crates-build-env:latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions-rs/toolchain@v1
+      name: Install toolchain
+      with:
+        toolchain: nightly
+        target: thumbv7em-none-eabihf
+        override: true
+
+    - name: Generate docs
+      run: cargo rustdoc --all-features -- --cfg docsrs
+
+    - name: Write redirect
+      run: echo "<meta http-equiv=\"refresh\" content=\"0;url=teensy4_bsp\">" > target/thumbv7em-none-eabihf/doc/index.html
+
+    - name: Deploy to GitHub pages
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: target/thumbv7em-none-eabihf/doc
+        publish_branch: gh-pages

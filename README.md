@@ -22,6 +22,8 @@ We've measured a few things things, like I2C, UART, SPI, and timer timings. No o
 
 ![Code Checks](https://github.com/mciantyre/teensy4-rs/workflows/Code%20Checks/badge.svg)
 
+#### [API Docs](https://mciantyre.github.io/teensy4-rs/)
+
 ## Dependencies
 
 - A Rust installation; recommended installation using `rustup`. We support the latest, stable Rust toolchain.
