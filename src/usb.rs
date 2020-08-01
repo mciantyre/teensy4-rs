@@ -34,7 +34,7 @@
 //!
 //! let core_peripherals = cortex_m::Peripherals::take().unwrap();
 //! let mut systick = bsp::SysTick::new(core_peripherals.SYST);
-//! let (mut reader, mut writer) = bsp::usb::split().unwrap();
+//! let (mut reader, mut writer) = bsp::usb::split(&systick).unwrap();
 //!
 //! write!(writer, "Hello world! 3 + 2 = {}", 5);
 //! ```
@@ -129,7 +129,7 @@ pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> 
     Ok(Reader(core::marker::PhantomData))
 }
 
-pub fn split() -> Result<(Reader, Writer), Error> {
+pub fn split(_: &crate::SysTick) -> Result<(Reader, Writer), Error> {
     let taken = TAKEN.swap(true, Ordering::SeqCst);
     if taken {
         return Err(Error::AlreadySet);

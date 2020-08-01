@@ -16,7 +16,7 @@ fn main() -> ! {
     let pins = bsp::t40::pins(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
-    let (mut reader, mut writer) = bsp::usb::split().unwrap();
+    let (mut reader, mut writer) = bsp::usb::split(&systick).unwrap();
     systick.delay(2000);
     p.ccm
         .pll1
