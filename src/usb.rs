@@ -6,6 +6,38 @@
 //! [`log`] crate to write data over USB.
 //!
 //! [`log`]: https://crates.io/crates/log
+//!
+//! # Logging Example
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//!
+//! let core_peripherals = cortex_m::Peripherals::take().unwrap();
+//! let mut systick = bsp::SysTick::new(core_peripherals.SYST);
+//! bsp::usb::init(
+//!     &systick,
+//!     bsp::usb::LoggingConfig {
+//!         filters: &[("motor", None)],
+//!         ..Default::default()
+//!     },
+//! )
+//! .unwrap();
+//!
+//! log::info!("Hello world! 3 + 2 = {}", 5);
+//! ```
+//!
+//! # Reader / Writer Example
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//! use core::fmt::Write;
+//!
+//! let core_peripherals = cortex_m::Peripherals::take().unwrap();
+//! let mut systick = bsp::SysTick::new(core_peripherals.SYST);
+//! let (mut reader, mut writer) = bsp::usb::split().unwrap();
+//!
+//! write!(writer, "Hello world! 3 + 2 = {}", 5);
+//! ```
 
 use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
 use core::{

@@ -14,6 +14,7 @@
 //! pins API. The second uses the processor pad that drivers the LED.
 //!
 //! ```no_run
+//! // Using the BSP's pin API
 //! use teensy4_bsp as bsp;
 //! let peripherals = bsp::Peripherals::take().unwrap();
 //! let pins = bsp::t40::pins(peripherals.iomuxc);
@@ -21,6 +22,7 @@
 //! ```
 //!
 //! ```no_run
+//! // Using i.MX RT pads instead of Teensy pins
 //! use teensy4_bsp as bsp;
 //! let peripherals = bsp::Peripherals::take().unwrap();
 //! let led = bsp::configure_led(peripherals.iomuxc.b0.p03);

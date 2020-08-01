@@ -1,14 +1,17 @@
-//! A Rust board support package (BSP) for the Teensy 4.
+//! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and
+//! 4.1 boards.
 //!
-//! The BSP is mainly a pass-through of the `imxrt-hal` hardware abstraction layer.
+//! Peripherals are re-exported from the [`imxrt-rs`](https://docs.rs/imxrt-hal/latest/imxrt_hal/)
+//! hardware abstraction layer. See the HAL's documentation for more information on creating
+//! and using peripherals.
+//!
 //! The BSP restricts the processor pads that are available, since the physical Teensy
 //! only has a few user-accessible pins. From these pins, you may construct peripherals
-//! and perform I/O.
+//! and perform I/O. The two Teensy 4 boards support many of the same pins; see the
+//! [`common`](common/index.html) module for those similar pins. To construct Teensy 4.0
+//! or 4.1 pins, see the corresponding `pins` function in each of the corresponding modules.
 //!
-//! The BSP also exposes a USB logging interface. See the [`usb`](usb/index.html) module
-//! for more details.
-//!
-//! The BSP does assume some facilities of the processor, both which are required for the
+//! The BSP assumes some facilities of the processor, both which are required for the
 //! USB stack. Each are controllable through feature-flags. Each feature is on by default.
 //!
 //! - it registers the `SysTick` exception handler, and configures
@@ -18,7 +21,6 @@
 //!   peripheral for logging. Enabled with the `"usb-logging"` feature,
 //!   which is on by default. Depends on the `"systick"` feature.
 //!
-//! These peripherals and capabilities are not exported from the BSP.
 //! If a user also registers a `SysTick` or `USB_OTG1` handler, it may
 //! result in a duplicate definition error.
 //!
@@ -74,6 +76,37 @@
 //! See the `teensy4-examples` crate for build-able, run-able
 //! examples. The examples utilize this BSP crate to blink LEDs,
 //! establish timers, and log data over USB.
+//!
+//! # Using RTIC
+//!
+//! To develop Teensy 4 applications with the RTIC framework,
+//!
+//! 1. disables the `teensy4-bsp`'s default features
+//! 2. enable the BSP's `"rtic"` feature
+//! 3. patch the `cortex-m-rt` crate with the Teensy 4's special runtime, available in
+//!    the `teensy4-bsp`'s repository.
+//!
+//! All three steps can be summarized by this `Cargo.toml` snippet:
+//!
+//! ```toml
+//! [dependencies.teensy4-bsp]
+//! git = "https://github.com/mciantyre/teensy4-rs"
+//! branch = "master"
+//! default-features = false
+//! features = ["rtic"]
+//!
+//! [patch.crates-io.cortex-m-rt]
+//! git = "https://github.com/mciantyre/teensy4-rs"
+//! branch = "master"
+//! ```
+//!
+//! You need to disable the BSP's default features, which disables the `"systick"` feature,
+//! to enable RTIC's SYSTICK handler. This means that you cannot use the USB logger when
+//! developing RTIC applications. Consider using the [`imxrt-uart-log`](https://crates.io/crates/imxrt-uart-log)
+//! crate for an alternate logging implementation.
+//!
+//! You need to replace the typical `cortex-m-rt` runtime with our custom runtime. The patch
+//! above lets us replace RTIC's runtime crate with an API-compatible runtime.
 //!
 //! ## Notice of alpha status
 //!
