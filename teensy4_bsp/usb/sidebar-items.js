@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["LoggingConfig","Logging configuration"],["Reader","A type that can read USB serial messages from a host"],["USB","A handle that enables USB I/O"],["Writer","A type that can send data to a USB serial host"]]});
