@@ -68,7 +68,12 @@ libt4usb:
 clean:
 	@cargo clean
 
+# Skipping the USB feature testing
+#
+# We can't link the t4usb library when testing on our host, since
+# it's compiled for a different architecture. The documentation tests
+# still work.
 .PHONY: test
 test:
-	@cargo +nightly test --lib --tests --target $(HOST)
-	@cargo +nightly test --doc --target $(HOST)
+	@cargo +nightly test --lib --tests --target $(HOST) --no-default-features --features systick
+	@cargo +nightly test --doc --target $(HOST) --all-features
