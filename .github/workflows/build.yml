@@ -54,3 +54,21 @@ jobs:
             override: true
       - name: Run unit and documentation tests
         run: INSTALL_DEPS=0 make test
+
+  xplat:
+    strategy:
+      matrix:
+        host: [ macos-latest, ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.host }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+            profile: minimal
+            toolchain: stable
+            target: thumbv7em-none-eabihf
+            override: true
+      - name: Build examples
+        run: cargo build --examples
+      - name: Build RTIC examples
+        run: cargo build --examples --no-default-features --features rtic

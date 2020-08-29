@@ -30,15 +30,7 @@ unsafe fn PIT() {
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::pins(periphs.iomuxc);
-    // When flashing a debug build, I'm finding that
-    // the chip is likely to crash if we don't put this
-    // delay here. I've narrowed it down to something
-    // with the WFI in the loop, maybe...? If I instead
-    // busy-loop on an atomic U32, I don't crash in debug
-    // builds.
-    systick.delay(25);
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
         &mut periphs.ccm.handle,
@@ -70,6 +62,12 @@ fn main() -> ! {
     );
 
     let (_, _, _, mut timer) = periphs.pit.clock(&mut cfg);
+
+    // Chip might stop running if we hit WFI out of reset too fast.
+    // So, block for 500ms, then drop into our loop.
+    timer.start(core::time::Duration::from_millis(500));
+    while timer.wait().is_err() {}
+
     timer.set_interrupt_enable(true);
     unsafe {
         TIMER = Some(timer);

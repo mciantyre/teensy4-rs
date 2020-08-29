@@ -4,6 +4,9 @@ status = [
     "format",
     "precompiled",
     "template",
-    "test"
+    "test",
+    "xplat (macos-latest)",
+    "xplat (ubuntu-latest)",
+    "xplat (windows-latest)"
 ]
 delete_merged_branches = true

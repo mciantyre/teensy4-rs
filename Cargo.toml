@@ -48,26 +48,6 @@ nb = "0.1.2"
 [dev-dependencies]
 panic-halt = "0.2.0"
 
-[[example]]
-name = "rtic_led"
-path = "examples/rtic_led.rs"
-required-features = ["rtic"]
-
-[[example]]
-name = "rtic_blink"
-path = "examples/rtic_blink.rs"
-required-features = ["rtic"]
-
-[[example]]
-name = "rtic_uart_log"
-path = "examples/rtic_uart_log.rs"
-required-features = ["rtic"]
-
-[[example]]
-name = "rtic_dma_uart_log"
-path = "examples/rtic_dma_uart_log.rs"
-required-features = ["rtic"]
-
 [workspace]
 members = [
     "cortex-m-rt-patch",
@@ -111,3 +91,88 @@ path = "cortex-m-rt-patch"
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
+
+##########
+# Examples
+##########
+
+# Examples that don't need any features
+
+[[example]]
+name = "gpt"
+required-features = []
+
+[[example]]
+name = "led"
+required-features = []
+
+[[example]]
+name = "pit"
+required-features = []
+
+# Examples that use SYSTICK as a timer
+
+[[example]]
+name = "systick"
+required-features = ["systick"]
+
+# Examples that require USB logging.
+# This implies the "systick" feature.
+
+[[example]]
+name = "dma_memcpy"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "dma_spi"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "dma_uart"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "i2c"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "pwm"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "spi"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "timer"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "uart"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "usb"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "usb_writer"
+required-features = ["usb-logging"]
+
+# RTIC examples
+
+[[example]]
+name = "rtic_led"
+required-features = ["rtic"]
+
+[[example]]
+name = "rtic_blink"
+required-features = ["rtic"]
+
+[[example]]
+name = "rtic_uart_log"
+required-features = ["rtic"]
+
+[[example]]
+name = "rtic_dma_uart_log"
+required-features = ["rtic"]
