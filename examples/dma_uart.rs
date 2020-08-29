@@ -18,8 +18,6 @@ use bsp::interrupt;
 use bsp::rt::entry;
 use teensy4_bsp as bsp;
 
-use embedded_hal::digital::v2::ToggleableOutputPin;
-
 use core::{
     cell::RefCell,
     sync::atomic::{AtomicBool, Ordering},
@@ -42,7 +40,7 @@ static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(Non
 static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
 
 type DmaUart = bsp::hal::dma::Peripheral<
-    bsp::hal::uart::UART<bsp::hal::uart::module::_2>,
+    bsp::hal::uart::UART<bsp::hal::iomuxc::consts::U2>,
     u8,
     TxBuffer,
     RxBuffer,
@@ -81,40 +79,33 @@ unsafe fn DMA7_DMA23() {
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
-    peripherals.systick.delay(5_000);
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    bsp::usb::init(&systick, Default::default()).unwrap();
+    let pins = bsp::t40::pins(peripherals.iomuxc);
+
+    systick.delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,
         bsp::hal::ccm::uart::PrescalarSelect::DIVIDE_1,
     );
-    let uart = uarts
-        .uart2
-        .init(
-            peripherals.pins.p14.alt2(),
-            peripherals.pins.p15.alt2(),
-            BAUD,
-        )
-        .unwrap();
+    let uart = uarts.uart2.init(pins.p14, pins.p15, BAUD).unwrap();
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
-    let tx_channel = dma_channels[7].take().unwrap();
-    let rx_channel = dma_channels[23].take().unwrap();
+    let mut tx_channel = dma_channels[7].take().unwrap();
+    let mut rx_channel = dma_channels[23].take().unwrap();
 
-    let config = bsp::hal::dma::ConfigBuilder::new()
-        .interrupt_on_completion(true)
-        .build();
+    tx_channel.set_interrupt_on_completion(true);
+    rx_channel.set_interrupt_on_completion(true);
 
     let dma_uart = unsafe {
         DMA_PERIPHERAL = Some(bsp::hal::dma::Peripheral::new_bidirectional(
-            uart,
-            (tx_channel, config),
-            (rx_channel, config),
+            uart, tx_channel, rx_channel,
         ));
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA7_DMA23);
         DMA_PERIPHERAL.as_mut().unwrap()
     };
-    let mut led = bsp::configure_led(&mut peripherals.gpr, peripherals.pins.p13);
+    let mut led = bsp::configure_led(pins.p13);
 
     let rx_buffer = match bsp::hal::dma::Circular::new(&RX_MEM.0) {
         Ok(circular) => circular,
@@ -156,7 +147,7 @@ fn main() -> ! {
         loop {
             cortex_m::asm::wfi();
             if RX_READY.load(Ordering::Acquire) {
-                led.toggle().unwrap();
+                led.toggle();
                 RX_READY.store(false, Ordering::Release);
                 let mut rx_buffer = free(|cs| RX_BUFFER.borrow(cs).borrow_mut().take()).unwrap();
                 let value = match rx_buffer.pop() {

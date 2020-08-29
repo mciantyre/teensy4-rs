@@ -80,7 +80,7 @@ static TX_BUFFER: Mutex<RefCell<Option<TxBuffer>>> = Mutex::new(RefCell::new(Non
 static RX_BUFFER: Mutex<RefCell<Option<RxBuffer>>> = Mutex::new(RefCell::new(None));
 
 type SpiDma =
-    dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::spi::module::_4>, u16, TxBuffer, RxBuffer>;
+    dma::Peripheral<bsp::hal::spi::SPI<bsp::hal::iomuxc::consts::U4>, u16, TxBuffer, RxBuffer>;
 
 // TODO types should be Send
 static mut SPI_DMA: Option<SpiDma> = None;
@@ -158,13 +158,15 @@ fn rx_buffer_mut<F: FnOnce(&mut RxBuffer) -> R, R>(act: F) -> Option<R> {
 }
 
 // Pin 20
-type HardwareFlag = bsp::hal::gpio::GPIO1IO26<bsp::hal::gpio::GPIO1, bsp::hal::gpio::Output>;
+type HardwareFlag = bsp::hal::gpio::GPIO<bsp::hal::iomuxc::ad_b1::AD_B1_10, bsp::hal::gpio::Output>;
 static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    bsp::usb::init(&systick, Default::default()).unwrap();
+    let pins = bsp::t40::pins(peripherals.iomuxc);
 
     peripherals.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
@@ -173,16 +175,15 @@ fn main() -> ! {
     );
 
     unsafe {
-        let p20 = peripherals.pins.p20;
-        use bsp::hal::gpio::IntoGpio;
-        HARDWARE_FLAG = Some(p20.alt5().into_gpio().output());
+        let p20 = pins.p20;
+        HARDWARE_FLAG = Some(bsp::hal::gpio::GPIO::new(p20).output());
     }
 
     //
     // SPI setup
     //
 
-    peripherals.systick.delay(5000);
+    systick.delay(5000);
     log::info!("Initializing SPI4 clocks...");
 
     let (_, _, _, spi4_builder) = peripherals.spi.clock(
@@ -192,12 +193,8 @@ fn main() -> ! {
     );
 
     log::info!("Constructing SPI4 peripheral...");
-    let mut spi4 = spi4_builder.build(
-        peripherals.pins.p11.alt3(),
-        peripherals.pins.p12.alt3(),
-        peripherals.pins.p13.alt3(),
-    );
-    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
+    let mut spi4 = spi4_builder.build(pins.p11, pins.p12, pins.p13);
+    spi4.enable_chip_select_0(pins.p10);
 
     match spi4.set_clock_speed(bsp::hal::spi::ClockSpeed(SPI_BAUD_RATE_HZ)) {
         Ok(()) => {
@@ -221,20 +218,14 @@ fn main() -> ! {
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
     let tx_channel = dma_channels[9].take().unwrap();
-    let rx_channel = dma_channels[25].take().unwrap();
-    let rx_config = dma::ConfigBuilder::new()
-        .interrupt_on_completion(true)
-        .build();
+    let mut rx_channel = dma_channels[25].take().unwrap();
+    rx_channel.set_interrupt_on_completion(true);
 
     // We only want to interrupt when the receive completes. When
     // the receive completes, we know that we're also done transferring
     // data.
     let spi = unsafe {
-        SPI_DMA = Some(dma::bidirectional_u16(
-            spi4,
-            (tx_channel, dma::ConfigBuilder::new().build()),
-            (rx_channel, rx_config),
-        ));
+        SPI_DMA = Some(dma::bidirectional_u16(spi4, tx_channel, rx_channel));
         cortex_m::peripheral::NVIC::unmask(interrupt::DMA9_DMA25);
         SPI_DMA.as_mut().unwrap()
     };
@@ -270,7 +261,7 @@ fn main() -> ! {
                 core::sync::atomic::spin_loop_hint();
             }
         }
-        peripherals.systick.delay(500);
+        systick.delay(500);
 
         log::info!("Started DMA transfers for WHO_AM_I");
         FLAG.store(false, Ordering::Release);
@@ -322,7 +313,7 @@ fn main() -> ! {
             }
         }
 
-        peripherals.systick.delay(500);
+        systick.delay(500);
         FLAG.store(false, Ordering::Release);
         prepare_transfer(spi);
         loop {

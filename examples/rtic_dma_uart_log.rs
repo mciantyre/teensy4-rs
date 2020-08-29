@@ -22,7 +22,7 @@
 #![no_std]
 #![no_main]
 
-use embedded_hal::digital::v2::{OutputPin, ToggleableOutputPin};
+use embedded_hal::digital::v2::OutputPin;
 use embedded_hal::serial::Read;
 use heapless::consts::U256;
 use panic_halt as _;
@@ -41,7 +41,7 @@ type Producer = heapless::spsc::Producer<'static, Ty, Cap>;
 type Consumer = heapless::spsc::Consumer<'static, Ty, Cap>;
 
 // The UART receiver.
-type UartRx = bsp::hal::uart::Rx<bsp::hal::iomuxc::uart::module::_2>;
+type UartRx = bsp::hal::uart::Rx<bsp::hal::iomuxc::consts::U2>;
 
 #[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
 const APP: () = {
@@ -66,6 +66,8 @@ const APP: () = {
             &mut cx.device.dcdc,
         );
 
+        let pins = bsp::t40::pins(cx.device.iomuxc);
+
         // DMA setup.
         let mut dma_channels = cx.device.dma.clock(&mut cx.device.ccm.handle);
         let channel = dma_channels[7].take().unwrap();
@@ -76,10 +78,7 @@ const APP: () = {
             bsp::hal::ccm::uart::ClockSelect::OSC,
             bsp::hal::ccm::uart::PrescalarSelect::DIVIDE_1,
         );
-        let mut uart = uarts
-            .uart2
-            .init(cx.device.pins.p14.alt2(), cx.device.pins.p15.alt2(), BAUD)
-            .unwrap();
+        let mut uart = uarts.uart2.init(pins.p14, pins.p15, BAUD).unwrap();
         uart.set_tx_fifo(core::num::NonZeroU8::new(TX_FIFO_SIZE));
         uart.set_rx_fifo(true);
         uart.set_receiver_interrupt(Some(0));
@@ -93,7 +92,7 @@ const APP: () = {
         let (q_tx, q_rx) = unsafe { Q.split() };
 
         // LED setup.
-        let mut led = bsp::configure_led(&mut cx.device.gpr, cx.device.pins.p13);
+        let mut led = bsp::configure_led(pins.p13);
         led.set_high().unwrap();
 
         // Schedule the first blink.
@@ -132,7 +131,7 @@ const APP: () = {
         }
 
         // Toggle the LED.
-        cx.resources.led.toggle().unwrap();
+        cx.resources.led.toggle();
 
         // Schedule the following blink.
         cx.schedule.blink(cx.scheduled + PERIOD.cycles()).unwrap();
@@ -149,7 +148,7 @@ const APP: () = {
     #[task(binds = DMA7_DMA23, resources = [dma_interrupt_count])]
     fn dma7_dma23(cx: dma7_dma23::Context) {
         *cx.resources.dma_interrupt_count += 1;
-        imxrt_uart_log::dma::poll()
+        imxrt_uart_log::dma::poll();
     }
 
     // RTIC requires that unused interrupts are declared in an extern block when

@@ -33,7 +33,9 @@ const SPI_BAUD_RATE_HZ: u32 = 1_000_000;
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    bsp::usb::init(&systick, Default::default()).unwrap();
+    let pins = bsp::t40::pins(peripherals.iomuxc);
 
     peripherals.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
@@ -41,7 +43,7 @@ fn main() -> ! {
         &mut peripherals.dcdc,
     );
 
-    peripherals.systick.delay(5000);
+    systick.delay(5000);
     log::info!("Initializing SPI4 clocks...");
 
     let (_, _, _, spi4_builder) = peripherals.spi.clock(
@@ -51,11 +53,7 @@ fn main() -> ! {
     );
 
     log::info!("Constructing SPI4 peripheral...");
-    let mut spi4 = spi4_builder.build(
-        peripherals.pins.p11.alt3(),
-        peripherals.pins.p12.alt3(),
-        peripherals.pins.p13.alt3(),
-    );
+    let mut spi4 = spi4_builder.build(pins.p11, pins.p12, pins.p13);
 
     match spi4.set_clock_speed(bsp::hal::spi::ClockSpeed(SPI_BAUD_RATE_HZ)) {
         Ok(()) => {
@@ -76,7 +74,7 @@ fn main() -> ! {
     // We're using the SPI's default chip select pin. This uses a
     // dummy `OutputPin` that does nothing! If you'd rather use any
     // GPIO, replace this line to construct a GPIO from another pin.
-    spi4.enable_chip_select_0(peripherals.pins.p10.alt3());
+    spi4.enable_chip_select_0(pins.p10);
     struct DummyCS;
     impl embedded_hal::digital::v2::OutputPin for DummyCS {
         type Error = core::convert::Infallible;
@@ -89,9 +87,9 @@ fn main() -> ! {
     }
     let mut cs4 = DummyCS;
     log::info!("Waiting 5 seconds before querying MPU9250...");
-    peripherals.systick.delay(4000);
+    systick.delay(4000);
 
-    match ak8963_init(&mut peripherals.systick, &mut spi4, &mut cs4) {
+    match ak8963_init(&mut systick, &mut spi4, &mut cs4) {
         Ok(()) => (),
         Err(err) => {
             log::warn!("Unable to initialize AK8963: {:?}", err);
@@ -101,7 +99,7 @@ fn main() -> ! {
         }
     };
     loop {
-        peripherals.systick.delay(1000);
+        systick.delay(1000);
         match who_am_i(&mut spi4, &mut cs4) {
             Ok(who) => log::info!("Received {:#X} for WHO_AM_I", who),
             Err(err) => log::warn!("Error when querying WHO_AM_I: {:?}", err),

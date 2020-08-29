@@ -3,6 +3,7 @@ status = [
     "doc",
     "format",
     "precompiled",
-    "template"
+    "template",
+    "test"
 ]
 delete_merged_branches = true

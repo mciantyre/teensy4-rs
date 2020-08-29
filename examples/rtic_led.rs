@@ -24,9 +24,9 @@ const APP: () = {
         let _core: cortex_m::Peripherals = cx.core;
 
         // Device-specific peripherals
-        let mut device: bsp::Peripherals = cx.device;
-
-        let mut led = bsp::configure_led(&mut device.gpr, device.pins.p13);
+        let device: bsp::Peripherals = cx.device;
+        let pins = bsp::t40::pins(device.iomuxc);
+        let mut led = bsp::configure_led(pins.p13);
         led.set_high().unwrap();
     }
     #[idle]

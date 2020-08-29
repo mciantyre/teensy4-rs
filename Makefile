@@ -3,12 +3,13 @@ CARGO ?= cargo
 TEENSY_LOADER ?= teensy_loader_cli
 MODE ?= --release
 INSTALL_DEPS ?= 1
+HOST ?= $(shell rustc --version --verbose | grep host | cut -d ' ' -f 2)
 
 ifneq ($(INSTALL_DEPS),0)
 # Ensure the thumbv7em-none-eabihf component is installed
 THUMBV7EM_NONE_EABIHF_INSTALLED := $(shell $(RUSTUP) component list | grep 'rust-std-thumbv7em-none-eabihf.*(installed)' > /dev/null; echo $$?)
 ifeq ($(THUMBV7EM_NONE_EABIHF_INSTALLED), 1)
-  $(shell $(RUSTUP) component add thumbv7em-none-eabihf)
+  $(shell $(RUSTUP) target add thumbv7em-none-eabihf)
 endif
 
 # Ensure llvm-tools-preview is installed
@@ -34,31 +35,28 @@ endif
 endif # INSTALL_DEPS != 0
 
 TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
-EXAMPLES := $(shell ls examples | xargs basename | cut -f 1 -d .)
+EXAMPLES := $(shell ls -1 examples | grep -v rtic | cut -f 1 -d .)
+RTIC_EXAMPLES := $(shell ls -1 examples | grep rtic | cut -f 1 -d .)
 
 .PHONY: all
 all:
-	@cargo build $(MODE) --examples
 	@for example in $(EXAMPLES);\
 		do cargo objcopy $(MODE) --example $$example \
 			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
 		done
+	@for example in $(RTIC_EXAMPLES);\
+		do cargo objcopy $(MODE) --example $$example \
+			--no-default-features --features=rtic \
+			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
+		done
 
-.PHONY: example_%
-example_%:
-	@cargo build \
-		$(MODE) --example $(subst example_,,$@)
-
-.PHONY: objcopy_%
-objcopy_%: example_%
-	@cargo objcopy \
-		$(MODE) --example $(subst objcopy_,,$@) \
-		-- -O ihex \
-		$(TARGET_EXAMPLES)/$(subst objcopy_,,$@).hex
-
-.PHONY: download_%
-download_%: objcopy_%
-	@$(LOADER) $(TARGET_EXAMPLES)/$(subst download_,,$@).hex
+# Build all RTIC-related examples
+.PHONY: rtic
+rtic:
+	@for example in $(RTIC_EXAMPLES);\
+		do cargo build $(MODE) --example $$example \
+			--no-default-features --features=rtic;\
+		done
 
 libt4boot:
 	@make -C teensy4-rt/bin
@@ -69,3 +67,13 @@ libt4usb:
 .PHONY: clean
 clean:
 	@cargo clean
+
+# Skipping the USB feature testing
+#
+# We can't link the t4usb library when testing on our host, since
+# it's compiled for a different architecture. The documentation tests
+# still work.
+.PHONY: test
+test:
+	@cargo +nightly test --lib --tests --target $(HOST) --no-default-features --features systick
+	@cargo +nightly test --doc --target $(HOST) --all-features

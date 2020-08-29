@@ -29,16 +29,18 @@ fn percent(duty: u16) -> f32 {
 fn main() -> ! {
     // Prepare all the BSP peripherals
     let mut p = bsp::Peripherals::take().unwrap();
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let pins = bsp::t40::pins(p.iomuxc);
     // Initialize the logging, so we can use it in the PWM loop below
-    p.usb.init(Default::default());
+    bsp::usb::init(&systick, Default::default()).unwrap();
     // Delay is only to let a user set-up their USB serial connection...
-    p.systick.delay(5000);
+    systick.delay(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules
     let (_, ipg_hz) =
         p.ccm
             .pll1
             .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    p.systick.delay(100);
+    systick.delay(100);
     // Enable the clocks for the PWM2 module
     let mut pwm2 = p.pwm2.clock(&mut p.ccm.handle);
     // Get the outputs from the PWM2 module, submodule 2.
@@ -47,8 +49,8 @@ fn main() -> ! {
         .sm2
         .outputs(
             &mut pwm2.handle,
-            p.pins.p6.alt2(),
-            p.pins.p9.alt2(),
+            pins.p6,
+            pins.p9,
             bsp::hal::pwm::Timing {
                 clock_select: bsp::hal::ccm::pwm::ClockSelect::IPG(ipg_hz),
                 prescalar: bsp::hal::ccm::pwm::Prescalar::PRSC_5,
@@ -71,15 +73,15 @@ fn main() -> ! {
         ctrl.enable(Channel::B);
         ctrl.set_duty(Channel::A, duty1);
         ctrl.set_duty(Channel::B, duty2);
-        p.systick.delay(200);
+        systick.delay(200);
 
         log::info!("Disabling 'B' PWM...");
         ctrl.disable(Channel::B);
-        p.systick.delay(200);
+        systick.delay(200);
 
         log::info!("Disabling 'A' PWM...");
         ctrl.disable(Channel::A);
-        p.systick.delay(400);
+        systick.delay(400);
 
         core::mem::swap(&mut duty1, &mut duty2);
     }

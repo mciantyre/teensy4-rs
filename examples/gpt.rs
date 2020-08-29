@@ -11,7 +11,6 @@ extern crate panic_halt;
 use bsp::hal::gpt;
 use bsp::interrupt;
 use bsp::rt::{entry, interrupt};
-use embedded_hal::digital::v2::ToggleableOutputPin;
 use teensy4_bsp as bsp;
 
 use core::time::Duration;
@@ -29,6 +28,7 @@ unsafe fn GPT1() {
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
+    let pins = bsp::t40::pins(periphs.iomuxc);
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
@@ -53,13 +53,13 @@ fn main() -> ! {
         cortex_m::peripheral::NVIC::unmask(interrupt::GPT1);
     }
 
-    let mut led = bsp::configure_led(&mut periphs.gpr, periphs.pins.p13);
+    let mut led = bsp::configure_led(pins.p13);
     loop {
         let gpt1 = unsafe { TIMER.as_mut().unwrap() };
         gpt1.set_enable(false);
         gpt1.set_output_compare_duration(OCR, Duration::from_millis(400));
         gpt1.set_enable(true);
         cortex_m::asm::wfi();
-        led.toggle().unwrap();
+        led.toggle();
     }
 }

@@ -43,8 +43,10 @@ where
 #[bsp::rt::entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    peripherals.usb.init(Default::default());
-    peripherals.systick.delay(5000);
+    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let pins = bsp::t40::pins(peripherals.iomuxc);
+    bsp::usb::init(&systick, Default::default()).unwrap();
+    systick.delay(5000);
 
     log::info!("Enabling I2C clocks...");
     let (_, _, i2c3_builder, _) = peripherals.i2c.clock(
@@ -54,7 +56,7 @@ fn main() -> ! {
     );
 
     log::info!("Constructing I2C3 instance on pins 16 and 17...");
-    let mut i2c3 = i2c3_builder.build(peripherals.pins.p16.alt1(), peripherals.pins.p17.alt1());
+    let mut i2c3 = i2c3_builder.build(pins.p16, pins.p17);
 
     if let Err(err) = i2c3.set_bus_idle_timeout(core::time::Duration::from_micros(200)) {
         log::warn!("Error when setting bus idle timeout: {:?}", err);
@@ -71,11 +73,13 @@ fn main() -> ! {
     }
 
     log::info!("Starting I/O loop...");
+    let mut counter = 0;
     loop {
-        peripherals.systick.delay(1000);
+        systick.delay(1000);
         log::info!("Querying WHO_AM_I...");
+        counter += 1;
         match who_am_i(&mut i2c3) {
-            Ok(who) => log::info!("Received 0x{:X} for WHO_AM_I", who),
+            Ok(who) => log::info!("Received 0x{:X} for WHO_AM_I (iter = {})", who, counter),
             Err(err) => {
                 log::warn!("Error reading WHO_AM_I: {:?}", err);
                 continue;

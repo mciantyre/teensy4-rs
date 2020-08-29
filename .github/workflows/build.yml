@@ -17,8 +17,6 @@ jobs:
           command: fmt
           args: --verbose --all -- --check
   
-  # Since we don't have any automated tests right now, we can use a clippy
-  # run to check the build and surface linting errors.
   clippy:
     runs-on: ubuntu-latest
     steps:
@@ -45,3 +43,14 @@ jobs:
         run: INSTALL_DEPS=0 make libt4boot
       - name: Build USB stack
         run: INSTALL_DEPS=0 make libt4usb
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+            toolchain: nightly
+            override: true
+      - name: Run unit and documentation tests
+        run: INSTALL_DEPS=0 make test

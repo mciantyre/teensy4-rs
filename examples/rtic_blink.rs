@@ -10,7 +10,7 @@
 #![no_std]
 #![no_main]
 
-use embedded_hal::digital::v2::{OutputPin, ToggleableOutputPin};
+use embedded_hal::digital::v2::OutputPin;
 use panic_halt as _;
 use rtic::cyccnt::U32Ext;
 use teensy4_bsp as bsp;
@@ -53,8 +53,8 @@ const APP: () = {
 
         // Schedule the first blink.
         cx.schedule.blink(cx.start + PERIOD.cycles()).unwrap();
-
-        let mut led = bsp::configure_led(&mut cx.device.gpr, cx.device.pins.p13);
+        let pins = bsp::t40::pins(cx.device.iomuxc);
+        let mut led = bsp::configure_led(pins.p13);
         led.set_high().unwrap();
 
         init::LateResources { led }
@@ -62,7 +62,7 @@ const APP: () = {
 
     #[task(resources = [led], schedule = [blink])]
     fn blink(cx: blink::Context) {
-        cx.resources.led.toggle().unwrap();
+        cx.resources.led.toggle();
         // Schedule the following blink.
         cx.schedule.blink(cx.scheduled + PERIOD.cycles()).unwrap();
     }
