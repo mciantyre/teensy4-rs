@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/usb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>usb.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../teensy4_bsp/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/usb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>usb.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../teensy4_bsp/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -218,19 +219,90 @@
 <span id="218">218</span>
 <span id="219">219</span>
 <span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Teensy 4 USB, taken from the original Teensy 4 C libraries.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The USB stack provides a [`log`] implementation for logging over USB</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This is `Serial.println()` in Rust. Use the macros of the</span>
-<span class="doccomment">//! [`log`] crate to write data over USB. Messages can be read</span>
-<span class="doccomment">//! back using `screen` or `PuTTY`.</span>
+<span class="doccomment">//! [`log`] crate to write data over USB.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! [`log`]: https://crates.io/crates/log</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Logging Example</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```no_run</span>
+<span class="doccomment">//! use teensy4_bsp as bsp;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let core_peripherals = cortex_m::Peripherals::take().unwrap();</span>
+<span class="doccomment">//! let mut systick = bsp::SysTick::new(core_peripherals.SYST);</span>
+<span class="doccomment">//! bsp::usb::init(</span>
+<span class="doccomment">//!     &amp;systick,</span>
+<span class="doccomment">//!     bsp::usb::LoggingConfig {</span>
+<span class="doccomment">//!         filters: &amp;[(&quot;motor&quot;, None)],</span>
+<span class="doccomment">//!         ..Default::default()</span>
+<span class="doccomment">//!     },</span>
+<span class="doccomment">//! )</span>
+<span class="doccomment">//! .unwrap();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! log::info!(&quot;Hello world! 3 + 2 = {}&quot;, 5);</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Reader / Writer Example</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```no_run</span>
+<span class="doccomment">//! use teensy4_bsp as bsp;</span>
+<span class="doccomment">//! use core::fmt::Write;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let core_peripherals = cortex_m::Peripherals::take().unwrap();</span>
+<span class="doccomment">//! let mut systick = bsp::SysTick::new(core_peripherals.SYST);</span>
+<span class="doccomment">//! let (mut reader, mut writer) = bsp::usb::split(&amp;systick).unwrap();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! write!(writer, &quot;Hello world! 3 + 2 = {}&quot;, 5);</span>
+<span class="doccomment">//! ```</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">interrupt</span>; <span class="comment">// bring in interrupt variants for #[interrupt] macro</span>
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">fmt</span>;
+<span class="kw">use</span> <span class="ident">core</span>::{
+    <span class="ident">fmt</span>,
+    <span class="ident">sync</span>::<span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>},
+};
 <span class="kw">use</span> <span class="ident">teensy4_usb_sys</span> <span class="kw">as</span> <span class="ident">usbsys</span>;
 
 <span class="doccomment">/// Logging configuration</span>
@@ -242,7 +314,7 @@
 <span class="doccomment">/// Set the `filters` collection to specify log targets of interest.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If the default configuration is good for you, use `Default::default()`</span>
-<span class="doccomment">/// as the argument to `init()`.</span>
+<span class="doccomment">/// as the argument to [`init`](fn.init.html).</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LoggingConfig</span> {
     <span class="doccomment">/// The max log level</span>
     <span class="doccomment">///</span>
@@ -267,58 +339,61 @@
     }
 }
 
-<span class="doccomment">/// A handle that enables USB I/O</span>
+<span class="doccomment">/// Indicate an error when preparing the USB stack</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
+    <span class="doccomment">/// The error indicates that you&#39;ve already set the logger, either from this</span>
+    <span class="doccomment">/// interface or through another logging interface.</span>
+    <span class="ident">SetLogger</span>,
+    <span class="doccomment">/// The USB stack is already in use</span>
+    <span class="ident">AlreadySet</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">log</span>::<span class="ident">SetLoggerError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="kw">_</span>: ::<span class="ident">log</span>::<span class="ident">SetLoggerError</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="ident">Error</span>::<span class="ident">SetLogger</span>
+    }
+}
+
+<span class="kw">static</span> <span class="ident">TAKEN</span>: <span class="ident">AtomicBool</span> <span class="op">=</span> <span class="ident">AtomicBool</span>::<span class="ident">new</span>(<span class="bool-val">false</span>);
+
+<span class="doccomment">/// Initializes the USB stack. This prepares the logging back-end. Returns a `Reader`</span>
+<span class="doccomment">/// that can read USB serial messages.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Calling `init` will initialize the USB stack and enable the USB interrupt.</span>
-<span class="doccomment">/// Once initialized, messages will be written over USB. Alternatively, use `split`</span>
-<span class="doccomment">/// to turn the USB into `Reader` and `Writer` halves.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">USB</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw-2">mut</span> <span class="ident">Logger</span>);
-
-<span class="kw">impl</span> <span class="ident">USB</span> {
-    <span class="doccomment">/// Initializes the USB stack. This prepares the logging back-end. Returns a `Reader`</span>
-    <span class="doccomment">/// that can read USB serial messages.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To select the default logger behavior, specify `Default::default()` as the</span>
-    <span class="doccomment">/// argument for `config`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This may only be called once. If this is not called, we do not initialize the logger,</span>
-    <span class="doccomment">/// and log messages will not be written to the USB host.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="self">self</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) <span class="op">-&gt;</span> <span class="ident">Reader</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">filters</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">filters</span>;
-        ::<span class="ident">log</span>::<span class="ident">set_logger</span>(<span class="self">self</span>.<span class="number">0</span>)
-            .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ::<span class="ident">log</span>::<span class="ident">set_max_level</span>(<span class="ident">config</span>.<span class="ident">max_level</span>))
-            .<span class="ident">unwrap</span>();
-        <span class="self">Self</span>::<span class="ident">start</span>();
-        <span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>)
+<span class="doccomment">/// To select the default logger behavior, specify `Default::default()` as the</span>
+<span class="doccomment">/// argument for `config`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Before configuring the USB logger, you&#39;ll need to configure [`SysTick`](struct.SysTick.html).</span>
+<span class="doccomment">/// Once you&#39;ve configured `SysTick`, supply its reference here.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This may only be called once. If this is not called, we do not initialize the logger,</span>
+<span class="doccomment">/// and log messages will not be written to the USB host. Returns a</span>
+<span class="doccomment">/// [`SetLoggerError`](struct.SetLoggerError.html) if the logging subsystem already has a</span>
+<span class="doccomment">/// logger.</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Reader</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">taken</span> <span class="op">=</span> <span class="ident">TAKEN</span>.<span class="ident">swap</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>);
+    <span class="kw">if</span> <span class="ident">taken</span> {
+        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AlreadySet</span>);
     }
+    <span class="kw">unsafe</span> {
+        <span class="ident">LOGGER</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="bool-val">true</span>;
+        <span class="ident">LOGGER</span>.<span class="ident">filters</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">filters</span>;
 
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is only called once, when we&#39;re setting up peripherals.</span>
-    <span class="doccomment">/// If `init()` is called, we will set the members of the struct</span>
-    <span class="doccomment">/// into their state. There can only be one Logging struct, so</span>
-    <span class="doccomment">/// there&#39;s only one reference to the logger singleton.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">USB</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">LOGGER</span>) }
-    }
+        ::<span class="ident">log</span>::<span class="ident">set_logger</span>(<span class="kw-2">&amp;</span><span class="ident">LOGGER</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ::<span class="ident">log</span>::<span class="ident">set_max_level</span>(<span class="ident">config</span>.<span class="ident">max_level</span>))<span class="question-mark">?</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">start</span>() {
-        <span class="kw">unsafe</span> {
-            <span class="ident">usbsys</span>::<span class="ident">usb_pll_start</span>();
-            <span class="ident">usbsys</span>::<span class="ident">usb_init</span>();
-            <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">NVIC</span>::<span class="ident">unmask</span>(<span class="kw">crate</span>::<span class="ident">interrupt</span>::<span class="ident">USB_OTG1</span>);
-        }
+        <span class="ident">usbsys</span>::<span class="ident">usb_pll_start</span>();
+        <span class="ident">usbsys</span>::<span class="ident">usb_init</span>();
+        <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">NVIC</span>::<span class="ident">unmask</span>(<span class="kw">crate</span>::<span class="ident">interrupt</span>::<span class="ident">USB_OTG1</span>);
     }
+    <span class="prelude-val">Ok</span>(<span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>))
+}
 
-    <span class="doccomment">/// Split the USB handle into reader and writer halves</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split</span>(<span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">Reader</span>, <span class="ident">Writer</span>) {
-        <span class="self">Self</span>::<span class="ident">start</span>();
-        ((<span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>)), <span class="kw">unsafe</span> {
-            <span class="ident">Writer</span>::<span class="ident">new</span>()
-        })
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Reader</span>, <span class="ident">Writer</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">taken</span> <span class="op">=</span> <span class="ident">TAKEN</span>.<span class="ident">swap</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>);
+    <span class="kw">if</span> <span class="ident">taken</span> {
+        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AlreadySet</span>);
     }
+    <span class="prelude-val">Ok</span>((<span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>), <span class="kw">unsafe</span> { <span class="ident">Writer</span>::<span class="ident">new</span>() }))
 }
 
 <span class="attribute">#[<span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">interrupt</span>]</span>

@@ -1,11 +1,15 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `teensy4_bsp` crate."><meta name="keywords" content="rust, rustlang, rust-lang, teensy4_bsp"><title>teensy4_bsp - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../teensy4_bsp/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate teensy4_bsp</p><div class='block version'><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all teensy4_bsp's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'teensy4_bsp', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/teensy4_bsp/lib.rs.html#1-356' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>teensy4_bsp</a></span></h1><div class='docblock'><p>A Rust board support package (BSP) for the Teensy 4.</p>
-<p>The BSP is mainly a pass-through of the <code>imxrt-hal</code> hardware abstraction layer.
-The BSP restricts the processor pads that are available, since the physical Teensy
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `teensy4_bsp` crate."><meta name="keywords" content="rust, rustlang, rust-lang, teensy4_bsp"><title>teensy4_bsp - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../teensy4_bsp/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate teensy4_bsp</p><div class='block version'><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all teensy4_bsp's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'teensy4_bsp', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/teensy4_bsp/lib.rs.html#1-168' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>teensy4_bsp</a></span></h1><div class='docblock'><p>A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and
+4.1 boards.</p>
+<p>Peripherals are re-exported from the <a href="https://docs.rs/imxrt-hal/latest/imxrt_hal/"><code>imxrt-rs</code></a>
+hardware abstraction layer. See the HAL's documentation for more information on creating
+and using peripherals.</p>
+<p>The BSP restricts the processor pads that are available, since the physical Teensy
 only has a few user-accessible pins. From these pins, you may construct peripherals
-and perform I/O.</p>
-<p>The BSP also exposes a USB logging interface. See the <a href="usb/index.html"><code>usb</code></a> module
-for more details.</p>
-<p>The BSP does assume some facilities of the processor, both which are required for the
+and perform I/O. The two Teensy 4 boards support many of the same pins; see the
+<a href="common/index.html"><code>common</code></a> module for those similar pins. To construct Teensy 4.0
+or 4.1 pins, see the corresponding <code>pins</code> function in each of the corresponding modules.</p>
+<p>The BSP assumes some facilities of the processor, both which are required for the
 USB stack. Each are controllable through feature-flags. Each feature is on by default.</p>
 <ul>
 <li>it registers the <code>SysTick</code> exception handler, and configures
@@ -15,10 +19,9 @@ which is on by default.</li>
 peripheral for logging. Enabled with the <code>&quot;usb-logging&quot;</code> feature,
 which is on by default. Depends on the <code>&quot;systick&quot;</code> feature.</li>
 </ul>
-<p>These peripherals and capabilities are not exported from the BSP.
-If a user also registers a <code>SysTick</code> or <code>USB_OTG1</code> handler, it may
+<p>If a user also registers a <code>SysTick</code> or <code>USB_OTG1</code> handler, it may
 result in a duplicate definition error.</p>
-<h2 id="re-exports" class="section-header"><a href="#re-exports">Re-exports</a></h2>
+<h1 id="re-exports" class="section-header"><a href="#re-exports">Re-exports</a></h1>
 <p>The BSP re-exports the following:</p>
 <ul>
 <li>the <code>teensy4-rt</code> crate, as <code>rt</code></li>
@@ -32,60 +35,60 @@ are re-exported in the BSP namespace.</p>
 <code>teensy4-fcb</code> crate, which provides a Firmware Configuration Block (FCB)
 specific to the Teensy 4. See the <code>teensy4-fcb</code> crate for details
 on FCBs.</p>
-<h2 id="physical-pins-to-pads-and-alternative-functions" class="section-header"><a href="#physical-pins-to-pads-and-alternative-functions">Physical Pins to Pads and Alternative Functions</a></h2>
-<p>The sparse table below describes the Teensy 4 pins, the pad ID, and some of the notable alternative functionalities
-for each pin. We add entries to the table as we add capabilities to the underlying HAL crate. Contributions to complete
-this table are welcome! If a pad's alternatives are not listed here, consult the iMXRT1060 reference manual.</p>
-<table><thead><tr><th>Pin</th><th>Pad ID</th><th>Alt0</th><th>Alt1</th><th>Alt2</th><th>Alt3</th><th>Alt4</th><th>Alt5</th><th>Alt6</th><th>Alt7</th><th>Alt8</th><th>Alt9</th></tr></thead><tbody>
-<tr><td>0</td><td><code>AD_B0_03</code></td><td></td><td></td><td><code>UART6_RX</code></td><td></td><td><code>FlexPWM1_1_X</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>1</td><td><code>AD_B0_02</code></td><td></td><td></td><td><code>UART6_TX</code></td><td></td><td><code>FlexPWM1_0_X</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>2</td><td><code>EMC_04</code></td><td></td><td><code>FlexPWM4_2_A</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>3</td><td><code>EMC_05</code></td><td></td><td><code>FlexPWM4_2_B</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>4</td><td><code>EMC_06</code></td><td></td><td><code>FlexPWM2_0_A</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>5</td><td><code>EMC_08</code></td><td></td><td><code>FlexPWM2_1_A</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>6</td><td><code>B0_10</code></td><td></td><td></td><td><code>FlexPWM2_2_A</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>7</td><td><code>B1_01</code></td><td></td><td></td><td><code>UART4_RX</code></td><td></td><td></td><td></td><td><code>FlexPWM1_3_B</code></td><td></td><td></td><td></td></tr>
-<tr><td>8</td><td><code>B1_00</code></td><td></td><td></td><td><code>UART4_TX</code></td><td></td><td></td><td></td><td><code>FlexPWM1_3_A</code></td><td></td><td></td><td></td></tr>
-<tr><td>9</td><td><code>B0_11</code></td><td></td><td></td><td><code>FlexPWM2_2_B</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>10</td><td><code>B0_00</code></td><td></td><td></td><td></td><td><code>SPI4_PCS0</code></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>11</td><td><code>B0_02</code></td><td></td><td></td><td></td><td><code>SPI4_SDO</code></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>12</td><td><code>B0_01</code></td><td></td><td></td><td></td><td><code>SPI4_SDI</code></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>13</td><td><code>B0_03</code></td><td></td><td></td><td></td><td><code>SPI4_SCK</code></td><td></td><td><code>GPIO2_3</code> (<code>LED</code>)</td><td></td><td></td><td></td><td></td></tr>
-<tr><td>14</td><td><code>AD_B1_02</code></td><td></td><td></td><td><code>UART2_TX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>15</td><td><code>AD_B1_03</code></td><td></td><td></td><td><code>UART2_RX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>16</td><td><code>AD_B1_07</code></td><td></td><td><code>I2C3_SCL</code></td><td><code>UART3_RX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>17</td><td><code>AD_B1_06</code></td><td></td><td><code>I2C3_SDA</code></td><td><code>UART3_TX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>18</td><td><code>AD_B1_01</code></td><td></td><td></td><td></td><td><code>I2C1_SDA</code></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>19</td><td><code>AD_B1_00</code></td><td></td><td></td><td><code>UART2_CTS</code></td><td><code>I2C1_SCL</code></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>20</td><td><code>AD_B1_10</code></td><td></td><td></td><td><code>UART8_TX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>21</td><td><code>AD_B1_11</code></td><td></td><td></td><td><code>UART8_RX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>22</td><td><code>AD_B1_08</code></td><td></td><td><code>FlexPWM4_0_A</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>23</td><td><code>AD_B1_09</code></td><td></td><td><code>FlexPWM4_1_A</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>24</td><td><code>AD_B0_12</code></td><td><code>I2C4_SCL</code></td><td></td><td><code>UART1_TX</code></td><td></td><td><code>FlexPWM1_2_X</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>25</td><td><code>AD_B0_13</code></td><td><code>I2C4_SDA</code></td><td></td><td><code>UART1_RX</code></td><td></td><td><code>FlexPWM1_3_X</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>26</td><td><code>AD_B1_14</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>27</td><td><code>AD_B1_15</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>28</td><td><code>EMC_32</code></td><td></td><td><code>FlexPWM3_1_B</code></td><td><code>UART7_RX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>29</td><td><code>EMC_31</code></td><td></td><td><code>FlexPWM3_1_A</code></td><td><code>UART7_TX</code></td><td><code>SPI1_PCS1</code></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>30</td><td><code>EMC_37</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>31</td><td><code>EMC_36</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>32</td><td><code>B0_12</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>33</td><td><code>EMC_07</code></td><td></td><td><code>FlexPWM2_0_B</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>34</td><td><code>SD_B0_03</code></td><td></td><td><code>FlexPWM1_1_B</code></td><td></td><td></td><td><code>SPI1_SDI</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>35</td><td><code>SD_B0_02</code></td><td></td><td><code>FlexPWM1_1_A</code></td><td></td><td></td><td><code>SPI1_SDO</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>36</td><td><code>SD_B0_01</code></td><td></td><td><code>FlexPWM1_0_B</code></td><td><code>I2C3_SDA</code></td><td></td><td><code>SPI1_PCS0</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>37</td><td><code>SD_B0_00</code></td><td></td><td><code>FlexPWM1_0_A</code></td><td><code>I2C3_SCL</code></td><td></td><td><code>SPI1_SCK</code></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>38</td><td><code>SD_B0_05</code></td><td></td><td><code>FlexPWM1_2_B</code></td><td><code>UART8_RX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>39</td><td><code>SD_B0_04</code></td><td></td><td><code>FlexPWM1_2_A</code></td><td><code>UART8_TX</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody></table>
-<p>References:</p>
-<ul>
-<li><a href="https://www.pjrc.com/teensy/schematic.html">Teensy 4.0 Schematic Diagram</a></li>
-</ul>
-<h2 id="examples" class="section-header"><a href="#examples">Examples</a></h2>
+<h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1>
+<p>Turn on a Teensy 4.0's LED:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="attribute">#![<span class="ident">no_std</span>]</span>
+<span class="attribute">#![<span class="ident">no_main</span>]</span>
+
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">panic_halt</span>;
+
+<span class="kw">use</span> <span class="ident">bsp</span>::<span class="ident">rt</span>::<span class="ident">entry</span>;
+<span class="kw">use</span> <span class="ident">cortex_m</span>::<span class="ident">asm</span>::<span class="ident">wfi</span>;
+<span class="kw">use</span> <span class="ident">teensy4_bsp</span> <span class="kw">as</span> <span class="ident">bsp</span>;
+
+<span class="kw">use</span> <span class="ident">embedded_hal</span>::<span class="ident">digital</span>::<span class="ident">v2</span>::<span class="ident">OutputPin</span>;
+
+<span class="attribute">#[<span class="ident">entry</span>]</span>
+<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-&gt;</span> <span class="op">!</span> {
+    <span class="kw">let</span> <span class="ident">peripherals</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">Peripherals</span>::<span class="ident">take</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">pins</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">t40</span>::<span class="ident">pins</span>(<span class="ident">peripherals</span>.<span class="ident">iomuxc</span>);
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">configure_led</span>(<span class="ident">pins</span>.<span class="ident">p13</span>);
+
+    <span class="kw">loop</span> {
+        <span class="ident">led</span>.<span class="ident">set_high</span>().<span class="ident">unwrap</span>();
+        <span class="ident">wfi</span>();
+    }
+}</pre></div>
 <p>See the <code>teensy4-examples</code> crate for build-able, run-able
 examples. The examples utilize this BSP crate to blink LEDs,
 establish timers, and log data over USB.</p>
+<h1 id="using-rtic" class="section-header"><a href="#using-rtic">Using RTIC</a></h1>
+<p>To develop Teensy 4 applications with the RTIC framework,</p>
+<ol>
+<li>disables the <code>teensy4-bsp</code>'s default features</li>
+<li>enable the BSP's <code>&quot;rtic&quot;</code> feature</li>
+<li>patch the <code>cortex-m-rt</code> crate with the Teensy 4's special runtime, available in
+the <code>teensy4-bsp</code>'s repository.</li>
+</ol>
+<p>All three steps can be summarized by this <code>Cargo.toml</code> snippet:</p>
+<pre><code class="language-toml">[dependencies.teensy4-bsp]
+git = &quot;https://github.com/mciantyre/teensy4-rs&quot;
+branch = &quot;master&quot;
+default-features = false
+features = [&quot;rtic&quot;]
+
+[patch.crates-io.cortex-m-rt]
+git = &quot;https://github.com/mciantyre/teensy4-rs&quot;
+branch = &quot;master&quot;
+</code></pre>
+<p>You need to disable the BSP's default features, which disables the <code>&quot;systick&quot;</code> feature,
+to enable RTIC's SYSTICK handler. This means that you cannot use the USB logger when
+developing RTIC applications. Consider using the <a href="https://crates.io/crates/imxrt-uart-log"><code>imxrt-uart-log</code></a>
+crate for an alternate logging implementation.</p>
+<p>You need to replace the typical <code>cortex-m-rt</code> runtime with our custom runtime. The patch
+above lets us replace RTIC's runtime crate with an API-compatible runtime.</p>
 <h2 id="notice-of-alpha-status" class="section-header"><a href="#notice-of-alpha-status">Notice of alpha status</a></h2>
 <p>We've made some assumptions in this MVP BSP.</p>
 <ul>
@@ -94,18 +97,16 @@ continuous days, or risk a millisecond counter wrap-around.</li>
 </ul>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
 <table><tr><td><code>pub use cortex_m_rt as rt;</code></td></tr><tr><td><code>pub use imxrt_hal as hal;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
-<table><tr class='module-item'><td><a class="mod" href="usb/index.html" title='teensy4_bsp::usb mod'>usb</a></td><td class='docblock-short'><p>Teensy 4 USB, taken from the original Teensy 4 C libraries.</p>
+<table><tr class='module-item'><td><a class="mod" href="common/index.html" title='teensy4_bsp::common mod'>common</a></td><td class='docblock-short'><p>Common APIs across both the Teensy 4.0 and 4.1 boards</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="t40/index.html" title='teensy4_bsp::t40 mod'>t40</a></td><td class='docblock-short'><p>Teensy 4.0 specific APIs</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="t41/index.html" title='teensy4_bsp::t41 mod'>t41</a></td><td class='docblock-short'><p>Teensy 4.1 specific APIs</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="usb/index.html" title='teensy4_bsp::usb mod'>usb</a></td><td class='docblock-short'><span class="stab portability" title="This is supported on crate feature `usb-logging` only"><code>usb-logging</code></span><p>Teensy 4 USB, taken from the original Teensy 4 C libraries.</p>
 </td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table><tr class='module-item'><td><a class="struct" href="struct.Peripherals.html" title='teensy4_bsp::Peripherals struct'>Peripherals</a></td><td class='docblock-short'><p>All peripherals available on the Teensy4</p>
-</td></tr><tr class='module-item'><td><a class="struct" href="struct.Pins.html" title='teensy4_bsp::Pins struct'>Pins</a></td><td class='docblock-short'><p>Teensy pins that do not yet have a function</p>
-</td></tr><tr class='module-item'><td><a class="struct" href="struct.SysTick.html" title='teensy4_bsp::SysTick struct'>SysTick</a></td><td class='docblock-short'><p>A type that represents the system timer, SYSTICK</p>
+<table><tr class='module-item'><td><a class="struct" href="struct.Peripherals.html" title='teensy4_bsp::Peripherals struct'>Peripherals</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.SysTick.html" title='teensy4_bsp::SysTick struct'>SysTick</a></td><td class='docblock-short'><span class="stab portability" title="This is supported on crate feature `systick` only"><code>systick</code></span><p>A type that represents the system timer, SYSTICK</p>
 </td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table><tr class='module-item'><td><a class="enum" href="enum.Interrupt.html" title='teensy4_bsp::Interrupt enum'>Interrupt</a></td><td class='docblock-short'><p>Available interrupts for this device</p>
-</td></tr><tr class='module-item'><td><a class="enum" href="enum.interrupt.html" title='teensy4_bsp::interrupt enum'>interrupt</a></td><td class='docblock-short'><p>Available interrupts for this device</p>
-</td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
-<table><tr class='module-item'><td><a class="constant" href="constant.NVIC_PRIO_BITS.html" title='teensy4_bsp::NVIC_PRIO_BITS constant'>NVIC_PRIO_BITS</a></td><td class='docblock-short'><p>Number of priority bits implemented by the NVIC</p>
+<table><tr class='module-item'><td><a class="enum" href="enum.interrupt.html" title='teensy4_bsp::interrupt enum'>interrupt</a></td><td class='docblock-short'><p>Available interrupts for this device</p>
 </td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table><tr class='module-item'><td><a class="fn" href="fn.configure_led.html" title='teensy4_bsp::configure_led fn'>configure_led</a></td><td class='docblock-short'><p>Configure the board's LED</p>
 </td></tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
-<table><tr class='module-item'><td><a class="type" href="type.LED.html" title='teensy4_bsp::LED type'>LED</a></td><td class='docblock-short'><p>The LED in its final configuration</p>
+<table><tr class='module-item'><td><a class="type" href="type.LED.html" title='teensy4_bsp::LED type'>LED</a></td><td class='docblock-short'><p>The LED</p>
 </td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "teensy4_bsp";</script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
