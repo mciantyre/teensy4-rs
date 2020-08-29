@@ -9,7 +9,7 @@ ifneq ($(INSTALL_DEPS),0)
 # Ensure the thumbv7em-none-eabihf component is installed
 THUMBV7EM_NONE_EABIHF_INSTALLED := $(shell $(RUSTUP) component list | grep 'rust-std-thumbv7em-none-eabihf.*(installed)' > /dev/null; echo $$?)
 ifeq ($(THUMBV7EM_NONE_EABIHF_INSTALLED), 1)
-  $(shell $(RUSTUP) component add thumbv7em-none-eabihf)
+  $(shell $(RUSTUP) target add thumbv7em-none-eabihf)
 endif
 
 # Ensure llvm-tools-preview is installed
@@ -35,8 +35,8 @@ endif
 endif # INSTALL_DEPS != 0
 
 TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
-EXAMPLES := $(shell ls examples | grep -v rtic | xargs basename | cut -f 1 -d .)
-RTIC_EXAMPLES := $(shell ls examples | grep rtic | xargs basename | cut -f 1 -d .)
+EXAMPLES := $(shell ls -1 examples | grep -v rtic | cut -f 1 -d .)
+RTIC_EXAMPLES := $(shell ls -1 examples | grep rtic | cut -f 1 -d .)
 
 .PHONY: all
 all:
