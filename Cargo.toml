@@ -100,21 +100,24 @@ rustdoc-args = ["--cfg", "docsrs"]
 
 [[example]]
 name = "gpt"
+required-features = []
 
 [[example]]
 name = "led"
-
-# Examples that use SYSTICK as a timer
+required-features = []
 
 [[example]]
 name = "pit"
-required-features = ["systick"]
+required-features = []
+
+# Examples that use SYSTICK as a timer
 
 [[example]]
 name = "systick"
 required-features = ["systick"]
 
-# Examples that require USB logging
+# Examples that require USB logging.
+# This implies the "systick" feature.
 
 [[example]]
 name = "dma_memcpy"
