@@ -18,13 +18,8 @@ cortex-m-rt = "0.6.12" # Note: not the 'real' cortex-m-rt
 teensy4-fcb = { path = "teensy4-fcb" }
 
 [dependencies.imxrt-hal]
-version = "0.3.0"
-git = "https://github.com/imxrt-rs/imxrt-rs.git"
-rev = "1815db6"
+version = "0.4.0"
 features = ["imxrt1062", "rt"]
-
-[dev-dependencies.imxrt-uart-log]
-git = "https://github.com/imxrt-rs/imxrt-uart-log.git"
 
 # Tied to "systick" feature, since
 # SysTick implements a blocking delay trait
@@ -46,6 +41,7 @@ optional = true
 cortex-m-rtic = "0.5.3"
 embedded-hal = "0.2.4"
 heapless = "0.5.5"
+imxrt-uart-log = "0.2.0"
 log = "0.4.8"
 nb = "0.1.2"
 
