@@ -51,7 +51,7 @@ on FCBs.</p>
 <span class="kw">use</span> <span class="ident">embedded_hal</span>::<span class="ident">digital</span>::<span class="ident">v2</span>::<span class="ident">OutputPin</span>;
 
 <span class="attribute">#[<span class="ident">entry</span>]</span>
-<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="kw">let</span> <span class="ident">peripherals</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">Peripherals</span>::<span class="ident">take</span>().<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">pins</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">t40</span>::<span class="ident">pins</span>(<span class="ident">peripherals</span>.<span class="ident">iomuxc</span>);
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">configure_led</span>(<span class="ident">pins</span>.<span class="ident">p13</span>);

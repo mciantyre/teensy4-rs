@@ -137,7 +137,7 @@
 <span class="doccomment">/// Read the systick counter. Returns an absolute value describing</span>
 <span class="doccomment">/// the number of milliseconds since the SYSTICK handler was enabled.</span>
 <span class="doccomment">/// This may be used to implement coarse timing.</span>
-<span class="kw">fn</span> <span class="ident">read</span>() <span class="op">-&gt;</span> <span class="ident">u32</span> {
+<span class="kw">fn</span> <span class="ident">read</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">ptr</span>::<span class="ident">read_volatile</span>(<span class="kw-2">&amp;</span><span class="ident">systick_millis_count</span>) }
 }
 
@@ -148,14 +148,14 @@
 <span class="doccomment">/// interrupt interval, so the minimal delay is around 1ms.</span>
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">delay</span>(<span class="ident">millis</span>: <span class="ident">u32</span>) {
-    <span class="kw">if</span> <span class="number">0</span> <span class="op">==</span> <span class="ident">millis</span> {
+    <span class="kw">if</span> <span class="number">0</span> <span class="op">=</span><span class="op">=</span> <span class="ident">millis</span> {
         <span class="kw">return</span>;
     }
     <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">read</span>();
     <span class="kw">let</span> <span class="ident">target</span> <span class="op">=</span> <span class="ident">start</span> <span class="op">+</span> <span class="ident">millis</span>;
     <span class="kw">loop</span> {
         <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">read</span>();
-        <span class="kw">if</span> <span class="ident">count</span> <span class="op">&gt;=</span> <span class="ident">target</span> {
+        <span class="kw">if</span> <span class="ident">count</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">target</span> {
             <span class="kw">return</span>;
         }
     }
@@ -197,7 +197,7 @@
     <span class="doccomment">/// `new` is safe because it assumes that it has the only `SYST` instance.</span>
     <span class="doccomment">/// The only way you could acquire two `SysTick` is if you&#39;ve unsafely obtained</span>
     <span class="doccomment">/// a second `SYST` instance.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="kw-2">mut</span> <span class="ident">systick</span>: <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">SYST</span>) <span class="op">-&gt;</span> <span class="ident">SysTick</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="kw-2">mut</span> <span class="ident">systick</span>: <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">SYST</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SysTick</span> {
         <span class="ident">systick</span>.<span class="ident">disable_counter</span>();
         <span class="ident">systick</span>.<span class="ident">set_clock_source</span>(<span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">syst</span>::<span class="ident">SystClkSource</span>::<span class="ident">External</span>);
         <span class="ident">systick</span>.<span class="ident">set_reload</span>((<span class="ident">SYSTICK_EXT_FREQ</span> <span class="op">/</span> <span class="number">1000</span>) <span class="op">-</span> <span class="number">1</span>);

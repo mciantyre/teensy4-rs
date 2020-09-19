@@ -324,7 +324,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Returns a GPIO that&#39;s physically tied to the LED. Use the returned handle</span>
 <span class="doccomment">/// to drive the LED.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configure_led</span>(<span class="ident">pad</span>: <span class="ident">common</span>::<span class="ident">P13</span>) <span class="op">-&gt;</span> <span class="ident">LED</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configure_led</span>(<span class="ident">pad</span>: <span class="ident">common</span>::<span class="ident">P13</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LED</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="ident">hal</span>::<span class="ident">gpio</span>::<span class="ident">GPIO</span>::<span class="ident">new</span>(<span class="ident">pad</span>);
     <span class="ident">led</span>.<span class="ident">set_fast</span>(<span class="bool-val">true</span>);
     <span class="ident">led</span>.<span class="ident">output</span>()

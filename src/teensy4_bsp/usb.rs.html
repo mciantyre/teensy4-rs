@@ -331,7 +331,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">LoggingConfig</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="ident">LoggingConfig</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LoggingConfig</span> {
         <span class="ident">LoggingConfig</span> {
             <span class="ident">max_level</span>: ::<span class="ident">log</span>::<span class="ident">STATIC_MAX_LEVEL</span>,
             <span class="ident">filters</span>: <span class="kw-2">&amp;</span>[],
@@ -350,7 +350,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">log</span>::<span class="ident">SetLoggerError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="kw">_</span>: ::<span class="ident">log</span>::<span class="ident">SetLoggerError</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="kw">_</span>: ::<span class="ident">log</span>::<span class="ident">SetLoggerError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Error</span>::<span class="ident">SetLogger</span>
     }
 }
@@ -370,7 +370,7 @@
 <span class="doccomment">/// and log messages will not be written to the USB host. Returns a</span>
 <span class="doccomment">/// [`SetLoggerError`](struct.SetLoggerError.html) if the logging subsystem already has a</span>
 <span class="doccomment">/// logger.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Reader</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Reader</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">taken</span> <span class="op">=</span> <span class="ident">TAKEN</span>.<span class="ident">swap</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>);
     <span class="kw">if</span> <span class="ident">taken</span> {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AlreadySet</span>);
@@ -388,7 +388,7 @@
     <span class="prelude-val">Ok</span>(<span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>))
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Reader</span>, <span class="ident">Writer</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Reader</span>, <span class="ident">Writer</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">taken</span> <span class="op">=</span> <span class="ident">TAKEN</span>.<span class="ident">swap</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>);
     <span class="kw">if</span> <span class="ident">taken</span> {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AlreadySet</span>);
@@ -415,16 +415,16 @@
     <span class="doccomment">/// Returns true if the target is in the filter, else false if the target is</span>
     <span class="doccomment">/// not in the list of kept targets. If the filter collection is empty, return</span>
     <span class="doccomment">/// true.</span>
-    <span class="kw">fn</span> <span class="ident">filtered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span>::<span class="ident">log</span>::<span class="ident">Metadata</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">filtered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span>::<span class="ident">log</span>::<span class="ident">Metadata</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">filters</span>.<span class="ident">is_empty</span>() {
             <span class="bool-val">true</span>
         } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">idx</span>) <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">filters</span>
             .<span class="ident">iter</span>()
-            .<span class="ident">position</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="ident">target</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">target</span> <span class="op">==</span> <span class="ident">metadata</span>.<span class="ident">target</span>())
+            .<span class="ident">position</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="ident">target</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">target</span> <span class="op">=</span><span class="op">=</span> <span class="ident">metadata</span>.<span class="ident">target</span>())
         {
             <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">lvl</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">filters</span>[<span class="ident">idx</span>];
-            <span class="ident">lvl</span>.<span class="ident">is_none</span>() <span class="op">||</span> <span class="ident">lvl</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">lvl</span><span class="op">|</span> <span class="ident">metadata</span>.<span class="ident">level</span>() <span class="op">&lt;=</span> <span class="kw-2">*</span><span class="ident">lvl</span>).<span class="ident">is_some</span>()
+            <span class="ident">lvl</span>.<span class="ident">is_none</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">lvl</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">lvl</span><span class="op">|</span> <span class="ident">metadata</span>.<span class="ident">level</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">lvl</span>).<span class="ident">is_some</span>()
         } <span class="kw">else</span> {
             <span class="bool-val">false</span>
         }
@@ -437,9 +437,9 @@
 };
 
 <span class="kw">impl</span> ::<span class="ident">log</span>::<span class="ident">Log</span> <span class="kw">for</span> <span class="ident">Logger</span> {
-    <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span>::<span class="ident">log</span>::<span class="ident">Metadata</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span>::<span class="ident">log</span>::<span class="ident">Metadata</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">enabled</span> <span class="comment">// We&#39;re enabled</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">metadata</span>.<span class="ident">level</span>() <span class="op">&lt;=</span> ::<span class="ident">log</span>::<span class="ident">max_level</span>() <span class="comment">// The log level is appropriate</span>
+            <span class="op">&amp;&amp;</span> <span class="ident">metadata</span>.<span class="ident">level</span>() <span class="op">&lt;</span><span class="op">=</span> ::<span class="ident">log</span>::<span class="ident">max_level</span>() <span class="comment">// The log level is appropriate</span>
             <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">filtered</span>(<span class="ident">metadata</span>) <span class="comment">// The target is in the filter list</span>
     }
 
@@ -470,12 +470,12 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Writer</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> ()<span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">Writer</span> {
-    <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Writer</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>)
     }
 
     <span class="doccomment">/// Writes raw bytes to the USB serial host</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="ident">usbsys</span>::<span class="ident">serial_write</span>(<span class="ident">buffer</span>) <span class="kw">as</span> <span class="ident">usize</span>
     }
 }
@@ -483,7 +483,7 @@
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Writer</span> {}
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Write</span> <span class="kw">for</span> <span class="ident">Writer</span> {
-    <span class="kw">fn</span> <span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">at_linefeed</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="kw">for</span> <span class="ident">line</span> <span class="kw">in</span> <span class="ident">string</span>.<span class="ident">split</span>(<span class="string">&#39;\n&#39;</span>) {
             <span class="kw">if</span> <span class="ident">at_linefeed</span> {
@@ -510,7 +510,7 @@
 <span class="kw">impl</span> <span class="ident">Reader</span> {
     <span class="doccomment">/// Read from the USB serial endpoint into buffer. Returns the number</span>
     <span class="doccomment">/// of bytes read, or zero if there is no data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="ident">usbsys</span>::<span class="ident">serial_read</span>(<span class="ident">buffer</span>)
     }
 }

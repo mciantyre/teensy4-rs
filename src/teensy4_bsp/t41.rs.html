@@ -396,7 +396,7 @@
 }
 
 <span class="doccomment">/// Constrain the processor pads to the Teensy 4.1 pins</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pins</span>(<span class="ident">iomuxc</span>: <span class="kw">crate</span>::<span class="ident">hal</span>::<span class="ident">iomuxc</span>::<span class="ident">Pads</span>) <span class="op">-&gt;</span> <span class="ident">Pins</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pins</span>(<span class="ident">iomuxc</span>: <span class="kw">crate</span>::<span class="ident">hal</span>::<span class="ident">iomuxc</span>::<span class="ident">Pads</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pins</span> {
     <span class="ident">Pins</span> {
         <span class="ident">p0</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p03</span>,
         <span class="ident">p1</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p02</span>,
@@ -446,7 +446,7 @@
 
 <span class="kw">impl</span> <span class="ident">Pins</span> {
     <span class="doccomment">/// Erase the types of all pins</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">erase</span>(<span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">ErasedPins</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">erase</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ErasedPins</span> {
         [
             <span class="self">self</span>.<span class="ident">p0</span>.<span class="ident">erase</span>(),
             <span class="self">self</span>.<span class="ident">p1</span>.<span class="ident">erase</span>(),
