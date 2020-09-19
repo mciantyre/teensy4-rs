@@ -179,7 +179,7 @@
 <span class="doccomment">//! only has a few user-accessible pins. From these pins, you may construct peripherals</span>
 <span class="doccomment">//! and perform I/O. The two Teensy 4 boards support many of the same pins; see the</span>
 <span class="doccomment">//! [`common`](common/index.html) module for those similar pins. To construct Teensy 4.0</span>
-<span class="doccomment">//! or 4.1 pins, see the corresponding `pins` function in each of the corresponding modules.</span>
+<span class="doccomment">//! or 4.1 pins, see the corresponding `into_pins` function in each of the corresponding modules.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The BSP assumes some facilities of the processor, both which are required for the</span>
 <span class="doccomment">//! USB stack. Each are controllable through feature-flags. Each feature is on by default.</span>
@@ -232,7 +232,7 @@
 <span class="doccomment">//! #[entry]</span>
 <span class="doccomment">//! fn main() -&gt; ! {</span>
 <span class="doccomment">//!     let peripherals = bsp::Peripherals::take().unwrap();</span>
-<span class="doccomment">//!     let pins = bsp::t40::pins(peripherals.iomuxc);</span>
+<span class="doccomment">//!     let pins = bsp::t40::into_pins(peripherals.iomuxc);</span>
 <span class="doccomment">//!     let mut led = bsp::configure_led(pins.p13);</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     loop {</span>
@@ -292,9 +292,9 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">teensy4_fcb</span>;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">common</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">t40</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">t41</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">teensy4_pins</span>::<span class="ident">common</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">teensy4_pins</span>::<span class="ident">t40</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">teensy4_pins</span>::<span class="ident">t41</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;systick&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">systick</span>;

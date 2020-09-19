@@ -8,7 +8,7 @@ and using peripherals.</p>
 only has a few user-accessible pins. From these pins, you may construct peripherals
 and perform I/O. The two Teensy 4 boards support many of the same pins; see the
 <a href="common/index.html"><code>common</code></a> module for those similar pins. To construct Teensy 4.0
-or 4.1 pins, see the corresponding <code>pins</code> function in each of the corresponding modules.</p>
+or 4.1 pins, see the corresponding <code>into_pins</code> function in each of the corresponding modules.</p>
 <p>The BSP assumes some facilities of the processor, both which are required for the
 USB stack. Each are controllable through feature-flags. Each feature is on by default.</p>
 <ul>
@@ -53,7 +53,7 @@ on FCBs.</p>
 <span class="attribute">#[<span class="ident">entry</span>]</span>
 <span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
     <span class="kw">let</span> <span class="ident">peripherals</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">Peripherals</span>::<span class="ident">take</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">pins</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">t40</span>::<span class="ident">pins</span>(<span class="ident">peripherals</span>.<span class="ident">iomuxc</span>);
+    <span class="kw">let</span> <span class="ident">pins</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">t40</span>::<span class="ident">into_pins</span>(<span class="ident">peripherals</span>.<span class="ident">iomuxc</span>);
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="ident">bsp</span>::<span class="ident">configure_led</span>(<span class="ident">pins</span>.<span class="ident">p13</span>);
 
     <span class="kw">loop</span> {
@@ -97,7 +97,7 @@ continuous days, or risk a millisecond counter wrap-around.</li>
 </ul>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
 <table><tr><td><code>pub use cortex_m_rt as rt;</code></td></tr><tr><td><code>pub use imxrt_hal as hal;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
-<table><tr class='module-item'><td><a class="mod" href="common/index.html" title='teensy4_bsp::common mod'>common</a></td><td class='docblock-short'><p>Common APIs across both the Teensy 4.0 and 4.1 boards</p>
+<table><tr class='module-item'><td><a class="mod" href="common/index.html" title='teensy4_bsp::common mod'>common</a></td><td class='docblock-short'><p>Common pinout</p>
 </td></tr><tr class='module-item'><td><a class="mod" href="t40/index.html" title='teensy4_bsp::t40 mod'>t40</a></td><td class='docblock-short'><p>Teensy 4.0 specific APIs</p>
 </td></tr><tr class='module-item'><td><a class="mod" href="t41/index.html" title='teensy4_bsp::t41 mod'>t41</a></td><td class='docblock-short'><p>Teensy 4.1 specific APIs</p>
 </td></tr><tr class='module-item'><td><a class="mod" href="usb/index.html" title='teensy4_bsp::usb mod'>usb</a></td><td class='docblock-short'><span class="stab portability" title="This is supported on crate feature `usb-logging` only"><code>usb-logging</code></span><p>Teensy 4 USB, taken from the original Teensy 4 C libraries.</p>

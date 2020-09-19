@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["teensy4_bsp"] = [{"text":"impl Send for SysTick","synthetic":true,"types":[]},{"text":"impl Send for Pins","synthetic":true,"types":[]},{"text":"impl Send for Pins","synthetic":true,"types":[]},{"text":"impl Send for LoggingConfig","synthetic":true,"types":[]},{"text":"impl Send for Error","synthetic":true,"types":[]},{"text":"impl Send for Writer","synthetic":false,"types":[]},{"text":"impl Send for Reader","synthetic":false,"types":[]}];
+implementors["teensy4_bsp"] = [{"text":"impl Send for SysTick","synthetic":true,"types":[]},{"text":"impl Send for LoggingConfig","synthetic":true,"types":[]},{"text":"impl Send for Error","synthetic":true,"types":[]},{"text":"impl Send for Writer","synthetic":false,"types":[]},{"text":"impl Send for Reader","synthetic":false,"types":[]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
