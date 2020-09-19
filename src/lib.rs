@@ -122,9 +122,9 @@
 #[cfg(target_arch = "arm")]
 extern crate teensy4_fcb;
 
-pub mod common;
-pub mod t40;
-pub mod t41;
+pub use teensy4_pins::common;
+pub use teensy4_pins::t40;
+pub use teensy4_pins::t41;
 
 #[cfg(feature = "systick")]
 mod systick;

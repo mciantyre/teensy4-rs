@@ -1,0 +1,9 @@
+[package]
+name = "teensy4-pins"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+
+[dependencies.imxrt-iomuxc]
+version = "0.1.1"
+features = ["imxrt106x"]

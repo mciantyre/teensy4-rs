@@ -1,57 +1,63 @@
-//! Teensy 4.0 specific APIs
+//! Teensy 4.1 specific APIs
 //!
-//! # Pins unique to the Teensy 4.0
+//! # Pins unique to the Teensy 4.1
 //!
 //! See the [`common` module](../common/index.html) for pins that are consistent
 //! across both boards.
 //!
 //! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
 //! | ---- | -------- | -------- | ------------ | ------------ | --------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
-//! |  34  |`SD_B0_03`|          |`FlexPWM1_1_B`|              |           |  `SPI1_SDI`  |                  |              |         |         |         |
-//! |  35  |`SD_B0_02`|          |`FlexPWM1_1_A`|              |           |  `SPI1_SDO`  |                  |              |         |         |         |
-//! |  36  |`SD_B0_01`|          |`FlexPWM1_0_B`|  `I2C3_SDA`  |           |  `SPI1_PCS0` |                  |              |         |         |         |
-//! |  37  |`SD_B0_00`|          |`FlexPWM1_0_A`|  `I2C3_SCL`  |           |  `SPI1_SCK`  |                  |              |         |         |         |
-//! |  38  |`SD_B0_05`|          |`FlexPWM1_2_B`|  `UART8_RX`  |           |              |                  |              |         |         |         |
-//! |  39  |`SD_B0_04`|          |`FlexPWM1_2_A`|  `UART8_TX`  |           |              |                  |              |         |         |         |
+//! |  34  |`B1_13`   |          |              |              |           |              |                  |              |         |         |         |
+//! |  35  |`B1_12`   |          |              |              |           |              |                  |              |         |         |         |
+//! |  36  |`B1_02`   |          |              |              |           |              |                  |              |         |         |         |
+//! |  37  |`B1_03`   |          |              |              |           |              |                  |              |         |         |         |
+//! |  38  |`AD_B1_12`|          |              |              |           |              |                  |              |         |         |         |
+//! |  39  |`AD_B1_13`|          |              |              |           |              |                  |              |         |         |         |
+//! |  40  |`AD_B1_04`|          |              |              |           |              |                  |              |         |         |         |
+//! |  41  |`AD_B1_05`|          |              |              |           |              |                  |              |         |         |         |
 //!
-//! # Example: get Teensy 4.0 pins
+//! # Example
 //!
 //! ```no_run
 //! use teensy4_bsp as bsp;
 //!
 //! let peripherals = bsp::Peripherals::take().unwrap();
-//! let pins = bsp::t40::pins(peripherals.iomuxc);
+//! let pins = bsp::t41::pins(peripherals.iomuxc);
 //! let led = bsp::configure_led(pins.p13);
 //! ```
 
 pub use crate::common::*;
-use crate::hal::iomuxc::{sd_b0::*, ErasedPad};
+use crate::iomuxc::{ad_b1::*, b1::*, ErasedPad};
 
-/// Pin 34 (4.0)
-pub type P34 = SD_B0_03;
-/// Pin 35 (4.0)
-pub type P35 = SD_B0_02;
-/// Pin 36 (4.0)
-pub type P36 = SD_B0_01;
-/// Pin 37 (4.0)
-pub type P37 = SD_B0_00;
-/// Pin 38 (4.0)
-pub type P38 = SD_B0_05;
-/// Pin 39 (4.0)
-pub type P39 = SD_B0_04;
+/// Pin 34 (4.1)
+pub type P34 = B1_13;
+/// Pin 35 (4.1)
+pub type P35 = B1_12;
+/// Pin 36 (4.1)
+pub type P36 = B1_02;
+/// Pin 37 (4.1)
+pub type P37 = B1_03;
+/// Pin 38 (4.1)
+pub type P38 = AD_B1_12;
+/// Pin 39 (4.1)
+pub type P39 = AD_B1_13;
+/// Pin 40 (4.1)
+pub type P40 = AD_B1_04;
+/// Pin 41 (4.1)
+pub type P41 = AD_B1_05;
 
-/// Type-erased Teensy 4.0 pins
+/// Type-erased Teensy 4.1 pins
 ///
 /// To get pin 13, the LED, index into the 13th element of this array:
 /// `erased_pins[13]`.
 ///
 /// Use [`Pins::erase`](struct.Pins.html#method.erase) to erase pin types.
-pub type ErasedPins = [ErasedPad; 40];
+pub type ErasedPins = [ErasedPad; 42];
 
-/// Teensy 4.0 pins
+/// Teensy 4.1 pins
 ///
 /// See [`pins`](fn.pins.html) to constrain the processor's pads, and acquire
-/// Teensy 4.0 pins.
+/// Teensy 4.1 pins.
 pub struct Pins {
     /// Pin 0
     pub p0: P0,
@@ -134,10 +140,14 @@ pub struct Pins {
     pub p38: P38,
     /// Pin 39
     pub p39: P39,
+    /// Pin 40
+    pub p40: P40,
+    /// Pin 41
+    pub p41: P41,
 }
 
-/// Constrain the processor pads to the Teensy 4.0 pins
-pub fn pins(iomuxc: crate::hal::iomuxc::Pads) -> Pins {
+/// Constrain the processor pads to the Teensy 4.1 pins
+pub fn pins(iomuxc: crate::iomuxc::Pads) -> Pins {
     Pins {
         p0: iomuxc.ad_b0.p03,
         p1: iomuxc.ad_b0.p02,
@@ -174,12 +184,14 @@ pub fn pins(iomuxc: crate::hal::iomuxc::Pads) -> Pins {
         p32: iomuxc.b0.p12,
         p33: iomuxc.emc.p07,
         // END OF COMMON PINS
-        p34: iomuxc.sd_b0.p03,
-        p35: iomuxc.sd_b0.p02,
-        p36: iomuxc.sd_b0.p01,
-        p37: iomuxc.sd_b0.p00,
-        p38: iomuxc.sd_b0.p05,
-        p39: iomuxc.sd_b0.p04,
+        p34: iomuxc.b1.p13,
+        p35: iomuxc.b1.p12,
+        p36: iomuxc.b1.p02,
+        p37: iomuxc.b1.p03,
+        p38: iomuxc.ad_b1.p12,
+        p39: iomuxc.ad_b1.p13,
+        p40: iomuxc.ad_b1.p04,
+        p41: iomuxc.ad_b1.p05,
     }
 }
 
@@ -228,6 +240,8 @@ impl Pins {
             self.p37.erase(),
             self.p38.erase(),
             self.p39.erase(),
+            self.p40.erase(),
+            self.p41.erase(),
         ]
     }
 }

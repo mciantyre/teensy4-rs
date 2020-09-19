@@ -1,11 +1,11 @@
-//! Common APIs across both the Teensy 4.0 and 4.1 boards
+//! Hardware pins for the Teensy 4.0 and 4.1 boards
 //!
 //! # Common Pinout
 //!
 //! The Teensy 4.0 and 4.1 share many pins. This module provides
 //! the pins that are common across both boards. For pins that are unique to
-//! each board, and to acquire all of a board's pins, see the [`t40`](../t40/index.html)
-//! and [`t41`](../t41/index.html) modules.
+//! each board, and to acquire all of a board's pins, see the [`t40`](t40/index.html)
+//! and [`t41`](t41/index.html) modules.
 //!
 //! Note that this pin API is optional, provided only for convenience. You are free to
 //! configure the pins using the pad identifiers, instead of the physical pin identifiers.
@@ -84,73 +84,86 @@
 //! References:
 //! - [Teensy Schematics](https://www.pjrc.com/teensy/schematic.html)
 
-use crate::hal::iomuxc::{ad_b0::*, ad_b1::*, b0::*, b1::*, emc::*};
+#![no_std]
 
-/// Pin 0 (common)
-pub type P0 = AD_B0_03;
-/// Pin 1 (common)
-pub type P1 = AD_B0_02;
-/// Pin 2 (common)
-pub type P2 = EMC_04;
-/// Pin 3 (common)
-pub type P3 = EMC_05;
-/// Pin 4 (common)
-pub type P4 = EMC_06;
-/// Pin 5 (common)
-pub type P5 = EMC_08;
-/// Pin 6 (common)
-pub type P6 = B0_10;
-/// Pin 7 (common)
-pub type P7 = B1_01;
-/// Pin 8 (common)
-pub type P8 = B1_00;
-/// Pin 9 (common)
-pub type P9 = B0_11;
-/// Pin 10 (common)
-pub type P10 = B0_00;
-/// Pin 11 (common)
-pub type P11 = B0_02;
-/// Pin 12 (common)
-pub type P12 = B0_01;
-/// Pin 13 (common)
-pub type P13 = B0_03;
-/// Pin 14 (common)
-pub type P14 = AD_B1_02;
-/// Pin 15 (common)
-pub type P15 = AD_B1_03;
-/// Pin 16 (common)
-pub type P16 = AD_B1_07;
-/// Pin 17 (common)
-pub type P17 = AD_B1_06;
-/// Pin 18 (common)
-pub type P18 = AD_B1_01;
-/// Pin 19 (common)
-pub type P19 = AD_B1_00;
-/// Pin 20 (common)
-pub type P20 = AD_B1_10;
-/// Pin 21 (common)
-pub type P21 = AD_B1_11;
-/// Pin 22 (common)
-pub type P22 = AD_B1_08;
-/// Pin 23 (common)
-pub type P23 = AD_B1_09;
-/// Pin 24 (common)
-pub type P24 = AD_B0_12;
-/// Pin 25 (common)
-pub type P25 = AD_B0_13;
-/// Pin 26 (common)
-pub type P26 = AD_B1_14;
-/// Pin 27 (common)
-pub type P27 = AD_B1_15;
-/// Pin 28 (common)
-pub type P28 = EMC_32;
-/// Pin 29 (common)
-pub type P29 = EMC_31;
-/// Pin 30 (common)
-pub type P30 = EMC_37;
-/// Pin 31 (common)
-pub type P31 = EMC_36;
-/// Pin 32 (common)
-pub type P32 = B0_12;
-/// Pin 33 (common)
-pub type P33 = EMC_07;
+pub mod t40;
+pub mod t41;
+
+mod iomuxc {
+    pub use imxrt_iomuxc::imxrt106x::*;
+    pub use imxrt_iomuxc::prelude::*;
+}
+
+/// Pins that apply for both Teensy 4 form factors
+pub mod common {
+    use crate::iomuxc::{ad_b0::*, ad_b1::*, b0::*, b1::*, emc::*};
+
+    /// Pin 0 (common)
+    pub type P0 = AD_B0_03;
+    /// Pin 1 (common)
+    pub type P1 = AD_B0_02;
+    /// Pin 2 (common)
+    pub type P2 = EMC_04;
+    /// Pin 3 (common)
+    pub type P3 = EMC_05;
+    /// Pin 4 (common)
+    pub type P4 = EMC_06;
+    /// Pin 5 (common)
+    pub type P5 = EMC_08;
+    /// Pin 6 (common)
+    pub type P6 = B0_10;
+    /// Pin 7 (common)
+    pub type P7 = B1_01;
+    /// Pin 8 (common)
+    pub type P8 = B1_00;
+    /// Pin 9 (common)
+    pub type P9 = B0_11;
+    /// Pin 10 (common)
+    pub type P10 = B0_00;
+    /// Pin 11 (common)
+    pub type P11 = B0_02;
+    /// Pin 12 (common)
+    pub type P12 = B0_01;
+    /// Pin 13 (common)
+    pub type P13 = B0_03;
+    /// Pin 14 (common)
+    pub type P14 = AD_B1_02;
+    /// Pin 15 (common)
+    pub type P15 = AD_B1_03;
+    /// Pin 16 (common)
+    pub type P16 = AD_B1_07;
+    /// Pin 17 (common)
+    pub type P17 = AD_B1_06;
+    /// Pin 18 (common)
+    pub type P18 = AD_B1_01;
+    /// Pin 19 (common)
+    pub type P19 = AD_B1_00;
+    /// Pin 20 (common)
+    pub type P20 = AD_B1_10;
+    /// Pin 21 (common)
+    pub type P21 = AD_B1_11;
+    /// Pin 22 (common)
+    pub type P22 = AD_B1_08;
+    /// Pin 23 (common)
+    pub type P23 = AD_B1_09;
+    /// Pin 24 (common)
+    pub type P24 = AD_B0_12;
+    /// Pin 25 (common)
+    pub type P25 = AD_B0_13;
+    /// Pin 26 (common)
+    pub type P26 = AD_B1_14;
+    /// Pin 27 (common)
+    pub type P27 = AD_B1_15;
+    /// Pin 28 (common)
+    pub type P28 = EMC_32;
+    /// Pin 29 (common)
+    pub type P29 = EMC_31;
+    /// Pin 30 (common)
+    pub type P30 = EMC_37;
+    /// Pin 31 (common)
+    pub type P31 = EMC_36;
+    /// Pin 32 (common)
+    pub type P32 = B0_12;
+    /// Pin 33 (common)
+    pub type P33 = EMC_07;
+}
