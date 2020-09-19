@@ -2,7 +2,7 @@
 
 [package]
 name = "cortex-m-rt"
-version = "0.6.12"
+version = "0.6.999+teensy4"
 authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
 edition = "2018"
 
