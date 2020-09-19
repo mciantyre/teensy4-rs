@@ -1,6 +1,8 @@
 //! Teensy 4.0 specific APIs
 //!
-//! # Pins unique to the Teensy 4.0
+//! Use [`pins`](fn.pins.html) to constrain the processor pads into the pins available on the Teensy 4.0.
+//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](struct.Pins.html#method.new)
+//! method to generate pins.
 //!
 //! See the [`common` module](../common/index.html) for pins that are consistent
 //! across both boards.
@@ -13,16 +15,6 @@
 //! |  37  |`SD_B0_00`|          |`FlexPWM1_0_A`|  `I2C3_SCL`  |           |  `SPI1_SCK`  |                  |              |         |         |         |
 //! |  38  |`SD_B0_05`|          |`FlexPWM1_2_B`|  `UART8_RX`  |           |              |                  |              |         |         |         |
 //! |  39  |`SD_B0_04`|          |`FlexPWM1_2_A`|  `UART8_TX`  |           |              |                  |              |         |         |         |
-//!
-//! # Example: get Teensy 4.0 pins
-//!
-//! ```no_run
-//! use teensy4_bsp as bsp;
-//!
-//! let peripherals = bsp::Peripherals::take().unwrap();
-//! let pins = bsp::t40::pins(peripherals.iomuxc);
-//! let led = bsp::configure_led(pins.p13);
-//! ```
 
 pub use crate::common::*;
 use crate::iomuxc::{sd_b0::*, ErasedPad};
@@ -137,7 +129,7 @@ pub struct Pins {
 }
 
 /// Constrain the processor pads to the Teensy 4.0 pins
-pub fn pins(iomuxc: crate::iomuxc::Pads) -> Pins {
+pub const fn pins(iomuxc: crate::iomuxc::Pads) -> Pins {
     Pins {
         p0: iomuxc.ad_b0.p03,
         p1: iomuxc.ad_b0.p02,
@@ -184,6 +176,21 @@ pub fn pins(iomuxc: crate::iomuxc::Pads) -> Pins {
 }
 
 impl Pins {
+    /// Create an instance of `Pins` when you do not have a handle
+    /// to the processor pads
+    ///
+    /// # Safety
+    ///
+    /// Caller must ensure that the pins are not aliased elsewhere in
+    /// the program. This could include
+    ///
+    /// - an existing handle to the `imxrt-iomuxc` pads,
+    /// - another instance of `Pins` that was safely acquired
+    ///   using [`pins`](fn.pins.html).
+    pub const unsafe fn new() -> Self {
+        pins(crate::iomuxc::Pads::new())
+    }
+
     /// Erase the types of all pins
     pub fn erase(self) -> ErasedPins {
         [
