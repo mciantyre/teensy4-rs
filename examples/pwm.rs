@@ -30,7 +30,7 @@ fn main() -> ! {
     // Prepare all the BSP peripherals
     let mut p = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let pins = bsp::t40::pins(p.iomuxc);
+    let pins = bsp::t40::into_pins(p.iomuxc);
     // Initialize the logging, so we can use it in the PWM loop below
     bsp::usb::init(&systick, Default::default()).unwrap();
     // Delay is only to let a user set-up their USB serial connection...

@@ -23,7 +23,7 @@ use teensy4_bsp as bsp;
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let pins = bsp::t40::pins(periphs.iomuxc);
+    let pins = bsp::t40::into_pins(periphs.iomuxc);
     bsp::usb::init(&systick, Default::default()).unwrap();
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(

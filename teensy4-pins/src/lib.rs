@@ -15,7 +15,7 @@
 //!
 //! # Teensy 4.0
 //!
-//! To acquire Teensy 4.0 pins, call [`t40::pins`](t40/fn.pins.html) and provide all
+//! To acquire Teensy 4.0 pins, call [`t40::into_pins`](t40/fn.into_pins.html) and provide all
 //! of the processor pads:
 //!
 //! ```
@@ -24,14 +24,14 @@
 //!
 //! let pads = // Handle to all processor pads
 //!     # unsafe { Pads::new() };
-//! let pins = t40::pins(pads);
+//! let pins = t40::into_pins(pads);
 //! ```
 //!
 //! # Teensy 4.1
 //!
 //! The approach is the same as the Teensy 4.0, only with different functions.
 //!
-//! To acquire Teensy 4.1 pins, call [`t41::pins`](t41/fn.pins.html) and provide all
+//! To acquire Teensy 4.1 pins, call [`t41::into_pins`](t41/fn.into_pins.html) and provide all
 //! of the processor pads:
 //!
 //! ```
@@ -40,13 +40,13 @@
 //!
 //! let pads = // Handle to all processor pads
 //!     # unsafe { Pads::new() };
-//! let pins = t41::pins(pads);
+//! let pins = t41::into_pins(pads);
 //! ```
 //!
 //! # Safety
 //!
 //! The safe APIs expect to work on the only instance of the processor pads. If you don't have that
-//! available, or you need more flexibility, use the unsafe [`t40::Pins::new`](t40/struct.Pins.html#method.new)
+//! available, or you need more flexibility, use the unsafe [`t40::Pin::new`](t40/struct.Pins.html#method.new)
 //! or [`t41::Pins::new`](t41/struct.Pins.html#method.new) constructor methods to create an instance
 //! that may be aliasing another handle to the pads or pins.
 

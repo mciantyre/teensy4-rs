@@ -66,7 +66,7 @@ const APP: () = {
             &mut cx.device.dcdc,
         );
 
-        let pins = bsp::t40::pins(cx.device.iomuxc);
+        let pins = bsp::t40::into_pins(cx.device.iomuxc);
 
         // DMA setup.
         let mut dma_channels = cx.device.dma.clock(&mut cx.device.ccm.handle);

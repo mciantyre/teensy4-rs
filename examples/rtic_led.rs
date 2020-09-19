@@ -25,7 +25,7 @@ const APP: () = {
 
         // Device-specific peripherals
         let device: bsp::Peripherals = cx.device;
-        let pins = bsp::t40::pins(device.iomuxc);
+        let pins = bsp::t40::into_pins(device.iomuxc);
         let mut led = bsp::configure_led(pins.p13);
         led.set_high().unwrap();
     }
