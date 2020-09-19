@@ -4,9 +4,6 @@
 //! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](struct.Pins.html#method.new)
 //! method to generate pins.
 //!
-//! See the [`common` module](../common/index.html) for pins that are consistent
-//! across both boards.
-//!
 //! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
 //! | ---- | -------- | -------- | ------------ | ------------ | --------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
 //! |  34  |`B1_13`   |          |              |              |           |              |                  |              |         |         |         |
