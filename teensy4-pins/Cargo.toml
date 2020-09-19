@@ -1,0 +1,25 @@
+[package]
+name = "teensy4-pins"
+version = "0.1.0"
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/mciantyre/teensy4-rs"
+description = """
+Helpers for configuring and using a Teensy 4's pins.
+Part of the teensy4-rs project.
+"""
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "cortex-m",
+    "teensy4",
+]
+
+[dependencies.imxrt-iomuxc]
+version = "0.1.1"
+features = ["imxrt106x"]

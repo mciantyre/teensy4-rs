@@ -59,7 +59,7 @@ const APP: () = {
             &mut cx.device.dcdc,
         );
 
-        let pins = bsp::t40::pins(cx.device.iomuxc);
+        let pins = bsp::t40::into_pins(cx.device.iomuxc);
 
         // UART setup.
         let uarts = cx.device.uart.clock(

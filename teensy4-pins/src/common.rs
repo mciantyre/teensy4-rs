@@ -1,32 +1,9 @@
-//! Common APIs across both the Teensy 4.0 and 4.1 boards
-//!
-//! # Common Pinout
+//! Common pinout
 //!
 //! The Teensy 4.0 and 4.1 share many pins. This module provides
 //! the pins that are common across both boards. For pins that are unique to
 //! each board, and to acquire all of a board's pins, see the [`t40`](../t40/index.html)
 //! and [`t41`](../t41/index.html) modules.
-//!
-//! Note that this pin API is optional, provided only for convenience. You are free to
-//! configure the pins using the pad identifiers, instead of the physical pin identifiers.
-//!
-//! The following examples are equivalent ways to configure the LED. The first uses the
-//! pins API. The second uses the processor pad that drivers the LED.
-//!
-//! ```no_run
-//! // Using the BSP's pin API
-//! use teensy4_bsp as bsp;
-//! let peripherals = bsp::Peripherals::take().unwrap();
-//! let pins = bsp::t40::pins(peripherals.iomuxc);
-//! let led = bsp::configure_led(pins.p13);
-//! ```
-//!
-//! ```no_run
-//! // Using i.MX RT pads instead of Teensy pins
-//! use teensy4_bsp as bsp;
-//! let peripherals = bsp::Peripherals::take().unwrap();
-//! let led = bsp::configure_led(peripherals.iomuxc.b0.p03);
-//! ```
 //!
 //! ## Common pin table
 //!
@@ -84,7 +61,7 @@
 //! References:
 //! - [Teensy Schematics](https://www.pjrc.com/teensy/schematic.html)
 
-use crate::hal::iomuxc::{ad_b0::*, ad_b1::*, b0::*, b1::*, emc::*};
+use crate::iomuxc::{ad_b0::*, ad_b1::*, b0::*, b1::*, emc::*};
 
 /// Pin 0 (common)
 pub type P0 = AD_B0_03;

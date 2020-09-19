@@ -1,9 +1,8 @@
 //! Teensy 4.1 specific APIs
 //!
-//! # Pins unique to the Teensy 4.1
-//!
-//! See the [`common` module](../common/index.html) for pins that are consistent
-//! across both boards.
+//! Use [`into_pins`](fn.into_pins.html) to constrain the processor pads into the pins available on the Teensy 4.1.
+//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](struct.Pins.html#method.new)
+//! method to generate pins.
 //!
 //! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
 //! | ---- | -------- | -------- | ------------ | ------------ | --------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
@@ -15,19 +14,9 @@
 //! |  39  |`AD_B1_13`|          |              |              |           |              |                  |              |         |         |         |
 //! |  40  |`AD_B1_04`|          |              |              |           |              |                  |              |         |         |         |
 //! |  41  |`AD_B1_05`|          |              |              |           |              |                  |              |         |         |         |
-//!
-//! # Example
-//!
-//! ```no_run
-//! use teensy4_bsp as bsp;
-//!
-//! let peripherals = bsp::Peripherals::take().unwrap();
-//! let pins = bsp::t41::pins(peripherals.iomuxc);
-//! let led = bsp::configure_led(pins.p13);
-//! ```
 
 pub use crate::common::*;
-use crate::hal::iomuxc::{ad_b1::*, b1::*, ErasedPad};
+use crate::iomuxc::{ad_b1::*, b1::*, ErasedPad};
 
 /// Pin 34 (4.1)
 pub type P34 = B1_13;
@@ -56,8 +45,8 @@ pub type ErasedPins = [ErasedPad; 42];
 
 /// Teensy 4.1 pins
 ///
-/// See [`pins`](fn.pins.html) to constrain the processor's pads, and acquire
-/// Teensy 4.1 pins.
+/// See [`into_pins`](fn.into_pins.html) to safely constrain the processor's pads, and acquire
+/// Teensy 4.1 pins. Or, use [`new`](#method.new) to unsafely create pins.
 pub struct Pins {
     /// Pin 0
     pub p0: P0,
@@ -147,7 +136,7 @@ pub struct Pins {
 }
 
 /// Constrain the processor pads to the Teensy 4.1 pins
-pub fn pins(iomuxc: crate::hal::iomuxc::Pads) -> Pins {
+pub const fn into_pins(iomuxc: crate::iomuxc::Pads) -> Pins {
     Pins {
         p0: iomuxc.ad_b0.p03,
         p1: iomuxc.ad_b0.p02,
@@ -196,6 +185,21 @@ pub fn pins(iomuxc: crate::hal::iomuxc::Pads) -> Pins {
 }
 
 impl Pins {
+    /// Create an instance of `Pins` when you do not have a handle
+    /// to the processor pads
+    ///
+    /// # Safety
+    ///
+    /// Caller must ensure that the pins are not aliased elsewhere in
+    /// the program. This could include
+    ///
+    /// - an existing handle to the `imxrt-iomuxc` pads,
+    /// - another instance of `Pins` that was safely acquired
+    ///   using [`into_pins`](fn.into_pins.html).
+    pub const unsafe fn new() -> Self {
+        into_pins(crate::iomuxc::Pads::new())
+    }
+
     /// Erase the types of all pins
     pub fn erase(self) -> ErasedPins {
         [

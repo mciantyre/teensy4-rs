@@ -16,7 +16,7 @@ use teensy4_bsp as bsp;
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
-    let pins = bsp::t40::pins(p.iomuxc);
+    let pins = bsp::t40::into_pins(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Initialize the USB stack with the default logging settings
     let mut usb_reader = bsp::usb::init(

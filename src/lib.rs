@@ -9,7 +9,7 @@
 //! only has a few user-accessible pins. From these pins, you may construct peripherals
 //! and perform I/O. The two Teensy 4 boards support many of the same pins; see the
 //! [`common`](common/index.html) module for those similar pins. To construct Teensy 4.0
-//! or 4.1 pins, see the corresponding `pins` function in each of the corresponding modules.
+//! or 4.1 pins, see the corresponding `into_pins` function in each of the corresponding modules.
 //!
 //! The BSP assumes some facilities of the processor, both which are required for the
 //! USB stack. Each are controllable through feature-flags. Each feature is on by default.
@@ -62,7 +62,7 @@
 //! #[entry]
 //! fn main() -> ! {
 //!     let peripherals = bsp::Peripherals::take().unwrap();
-//!     let pins = bsp::t40::pins(peripherals.iomuxc);
+//!     let pins = bsp::t40::into_pins(peripherals.iomuxc);
 //!     let mut led = bsp::configure_led(pins.p13);
 //!
 //!     loop {
@@ -122,9 +122,9 @@
 #[cfg(target_arch = "arm")]
 extern crate teensy4_fcb;
 
-pub mod common;
-pub mod t40;
-pub mod t41;
+pub use teensy4_pins::common;
+pub use teensy4_pins::t40;
+pub use teensy4_pins::t41;
 
 #[cfg(feature = "systick")]
 mod systick;

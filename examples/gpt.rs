@@ -28,7 +28,7 @@ unsafe fn GPT1() {
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
-    let pins = bsp::t40::pins(periphs.iomuxc);
+    let pins = bsp::t40::into_pins(periphs.iomuxc);
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
