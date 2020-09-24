@@ -40,14 +40,13 @@ RTIC_EXAMPLES := $(shell ls -1 examples | grep rtic | cut -f 1 -d .)
 
 .PHONY: all
 all:
+	@cargo build --examples $(MODE)
 	@for example in $(EXAMPLES);\
-		do cargo objcopy $(MODE) --example $$example \
-			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
+		do rust-objcopy -O ihex $(TARGET_EXAMPLES)/$$example $(TARGET_EXAMPLES)/$$example.hex;\
 		done
+	@cargo build --examples $(MODE) --no-default-features --features=rtic
 	@for example in $(RTIC_EXAMPLES);\
-		do cargo objcopy $(MODE) --example $$example \
-			--no-default-features --features=rtic \
-			-- -O ihex $(TARGET_EXAMPLES)/$$example.hex;\
+		do rust-objcopy -O ihex $(TARGET_EXAMPLES)/$$example $(TARGET_EXAMPLES)/$$example.hex;\
 		done
 
 # Build all RTIC-related examples
