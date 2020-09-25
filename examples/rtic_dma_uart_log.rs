@@ -57,8 +57,6 @@ const APP: () = {
     fn init(mut cx: init::Context) -> init::LateResources {
         init_delay();
 
-        // Setup the clock for rtic scheduling.
-        cx.device.ccm.set_mode(bsp::hal::ccm::ClockMode::Run);
         cx.core.DWT.enable_cycle_counter();
         cx.device.ccm.pll1.set_arm_clock(
             bsp::hal::ccm::PLL1::ARM_HZ,

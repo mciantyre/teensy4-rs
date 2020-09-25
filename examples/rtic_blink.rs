@@ -28,18 +28,6 @@ const APP: () = {
     fn init(mut cx: init::Context) -> init::LateResources {
         init_delay();
 
-        // Set the clock mode to 'RUN'
-        //
-        // i.MX RT (106x) processors will not wake on SYSTICK. When we enter
-        // WFI or WFE, we'll enter WAIT mode by default. This will disable
-        // SYSTICK. So, if you're waiting for SYSTICK to wake you up, it won't
-        // happen. By setting ourselves to 'RUN' low-power mode, SYSTICK will
-        // still wake us up.
-        //
-        // See the CCM_CLPCR register for more information. The HAL docs also note
-        // this aspect of the processor.
-        cx.device.ccm.set_mode(bsp::hal::ccm::ClockMode::Run);
-
         // Initialise the monotonic CYCCNT timer.
         cx.core.DWT.enable_cycle_counter();
 
