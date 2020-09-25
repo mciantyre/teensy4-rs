@@ -22,6 +22,24 @@ pub unsafe extern "C" fn _start() -> ! {
     fpu::init();
     cache::init();
 
+    // Remain in 'run' when transitioning to low power mode.
+    // Do not transition to wait mode.
+    //
+    // This addresses an edge case identified when reprogramming
+    // the Teensy, and then immediately executing WFI.
+    // See https://github.com/mciantyre/teensy4-rs/issues/76 for
+    // more details.
+    //
+    // It's also useful for users who expect SYSTICK exceptions
+    // to unblock WFI, which isn't the default behavior.
+    //
+    // Ideally, we could figure out an approach that keeps the processor
+    // as close to the reset state as possible, while avoiding #76.
+    // For now, we'll go with this, which simplifies some downstream
+    // code.
+    const CCM_CLPCR: *mut u32 = 0x400F_C054 as *mut _;
+    CCM_CLPCR.write_volatile(CCM_CLPCR.read_volatile() & !0b11);
+
     extern "Rust" {
         fn main() -> !;
     }
