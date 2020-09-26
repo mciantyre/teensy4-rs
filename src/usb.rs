@@ -121,10 +121,7 @@ pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> 
         LOGGER.filters = config.filters;
 
         ::log::set_logger(&LOGGER).map(|_| ::log::set_max_level(config.max_level))?;
-
-        usbsys::usb_pll_start();
-        usbsys::usb_init();
-        cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
+        start();
     }
     Ok(Reader(core::marker::PhantomData))
 }
@@ -134,7 +131,20 @@ pub fn split(_: &crate::SysTick) -> Result<(Reader, Writer), Error> {
     if taken {
         return Err(Error::AlreadySet);
     }
+    unsafe { start() };
     Ok((Reader(core::marker::PhantomData), unsafe { Writer::new() }))
+}
+
+/// Initialize the USB stack
+///
+/// # Safety
+///
+/// Must only be called once.
+#[inline(always)]
+unsafe fn start() {
+    usbsys::usb_pll_start();
+    usbsys::usb_init();
+    cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
 }
 
 #[crate::rt::interrupt]
@@ -211,6 +221,11 @@ impl ::log::Log for Logger {
 pub struct Writer(core::marker::PhantomData<*const ()>);
 
 impl Writer {
+    /// # Safety
+    ///
+    /// There should only be one `Writer` instance in the program. It's
+    /// either given to the user, or it's used in the logger. The implementor
+    /// must ensure that `Writer` isn't used in both places!
     const unsafe fn new() -> Self {
         Writer(core::marker::PhantomData)
     }
