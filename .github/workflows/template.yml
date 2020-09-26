@@ -23,10 +23,10 @@ jobs:
           override: true
       - name: Install cargo-generate
         env:
-          PACKAGE: cargo-generate-v0.5.0-x86_64-unknown-linux-musl
+          VERSION: v0.5.1 # Keep this in sync with version in PACKAGE
+          PACKAGE: cargo-generate-v0.5.1-x86_64-unknown-linux-musl
         run: |
-          curl -LJO https://github.com/ashleygwilliams/cargo-generate/releases/latest/download/${PACKAGE}.tar.gz && \
-          tar -xvf ${PACKAGE}.tar.gz && \
+          curl -LJ https://github.com/ashleygwilliams/cargo-generate/releases/download/${VERSION}/${PACKAGE}.tar.gz | tar xz && \
           cp ${PACKAGE}/cargo-generate $(dirname $(which cargo)) && \
           cargo generate --help
       - uses: actions-rs/install@v0.1
