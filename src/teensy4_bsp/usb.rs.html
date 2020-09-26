@@ -258,6 +258,21 @@
 <span id="255">255</span>
 <span id="256">256</span>
 <span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Teensy 4 USB, taken from the original Teensy 4 C libraries.</span>
 <span class="doccomment">//!</span>
@@ -382,10 +397,7 @@
         <span class="ident">LOGGER</span>.<span class="ident">filters</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">filters</span>;
 
         ::<span class="ident">log</span>::<span class="ident">set_logger</span>(<span class="kw-2">&amp;</span><span class="ident">LOGGER</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ::<span class="ident">log</span>::<span class="ident">set_max_level</span>(<span class="ident">config</span>.<span class="ident">max_level</span>))<span class="question-mark">?</span>;
-
-        <span class="ident">usbsys</span>::<span class="ident">usb_pll_start</span>();
-        <span class="ident">usbsys</span>::<span class="ident">usb_init</span>();
-        <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">NVIC</span>::<span class="ident">unmask</span>(<span class="kw">crate</span>::<span class="ident">interrupt</span>::<span class="ident">USB_OTG1</span>);
+        <span class="ident">start</span>();
     }
     <span class="prelude-val">Ok</span>(<span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>))
 }
@@ -395,7 +407,20 @@
     <span class="kw">if</span> <span class="ident">taken</span> {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AlreadySet</span>);
     }
+    <span class="kw">unsafe</span> { <span class="ident">start</span>() };
     <span class="prelude-val">Ok</span>((<span class="ident">Reader</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>), <span class="kw">unsafe</span> { <span class="ident">Writer</span>::<span class="ident">new</span>() }))
+}
+
+<span class="doccomment">/// Initialize the USB stack</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Safety</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Must only be called once.</span>
+<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">start</span>() {
+    <span class="ident">usbsys</span>::<span class="ident">usb_pll_start</span>();
+    <span class="ident">usbsys</span>::<span class="ident">usb_init</span>();
+    <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">NVIC</span>::<span class="ident">unmask</span>(<span class="kw">crate</span>::<span class="ident">interrupt</span>::<span class="ident">USB_OTG1</span>);
 }
 
 <span class="attribute">#[<span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">interrupt</span>]</span>
@@ -472,6 +497,11 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Writer</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> ()<span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">Writer</span> {
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// There should only be one `Writer` instance in the program. It&#39;s</span>
+    <span class="doccomment">/// either given to the user, or it&#39;s used in the logger. The implementor</span>
+    <span class="doccomment">/// must ensure that `Writer` isn&#39;t used in both places!</span>
     <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">Writer</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>)
     }
