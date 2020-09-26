@@ -33,15 +33,14 @@ else
 endif
 endif # INSTALL_DEPS != 0
 
-TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
-EXAMPLES := $(shell ls -1 examples | grep -v rtic | cut -f 1 -d .)
+BSP_EXAMPLES := $(shell ls -1 examples/bsp/src | xargs basename | cut -f 1 -d .)
 RTIC_EXAMPLES := $(shell ls -1 examples/rtic/src | xargs basename | cut -f 1 -d .)
 
 .PHONY: all
 all:
-	@cargo build --examples --release
-	@for example in $(EXAMPLES);\
-		do rust-objcopy -O ihex $(TARGET_EXAMPLES)/$$example $(TARGET_EXAMPLES)/$$example.hex;\
+	@cargo build --release --workspace
+	@for example in $(BSP_EXAMPLES);\
+		do rust-objcopy -O ihex target/thumbv7em-none-eabihf/release/$$example target/thumbv7em-none-eabihf/$$example.hex;\
 		done
 	@cargo build --release --manifest-path examples/rtic/Cargo.toml
 	@for example in $(RTIC_EXAMPLES);\
