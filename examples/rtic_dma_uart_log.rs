@@ -55,8 +55,6 @@ const APP: () = {
 
     #[init(schedule = [blink])]
     fn init(mut cx: init::Context) -> init::LateResources {
-        init_delay();
-
         cx.core.DWT.enable_cycle_counter();
         cx.device.ccm.pll1.set_arm_clock(
             bsp::hal::ccm::PLL1::ARM_HZ,
@@ -156,14 +154,3 @@ const APP: () = {
         fn LPUART8();
     }
 };
-
-// If we reach WFI on teensy 4.0 too quickly it seems to halt. Here we wait a short while in `init`
-// to avoid this issue. The issue only appears to occur when rebooting the device (via the button),
-// however there appears to be no issue when power cycling the device.
-//
-// TODO: Investigate exactly why this appears to be necessary.
-fn init_delay() {
-    for _ in 0..10_000_000 {
-        core::sync::atomic::spin_loop_hint();
-    }
-}

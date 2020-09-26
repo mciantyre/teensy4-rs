@@ -63,11 +63,6 @@ fn main() -> ! {
 
     let (_, _, _, mut timer) = periphs.pit.clock(&mut cfg);
 
-    // Chip might stop running if we hit WFI out of reset too fast.
-    // So, block for 500ms, then drop into our loop.
-    timer.start(core::time::Duration::from_millis(500));
-    while timer.wait().is_err() {}
-
     timer.set_interrupt_enable(true);
     unsafe {
         TIMER = Some(timer);
