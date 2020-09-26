@@ -11,11 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: rustup component add rustfmt
-    - name: Check code formatting
+    - name: Check formatting of BSP and BSP examples
       uses: actions-rs/cargo@v1
       with:
           command: fmt
           args: --verbose --all -- --check
+    - name: Check formatting of RTIC examples
+      uses: actions-rs/cargo@v1
+      with:
+          command: fmt
+          args: --verbose --manifest-path examples/rtic/Cargo.toml -- --check
   
   clippy:
     runs-on: ubuntu-latest
@@ -30,8 +35,13 @@ jobs:
       - uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --verbose --all-features --workspace --examples --target thumbv7em-none-eabihf -- -D warnings
-          name: Run clippy
+          args: --verbose --workspace --target thumbv7em-none-eabihf -- -D warnings
+          name: Run clippy on BSP and BSP examples
+      - uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --verbose --manifest-path examples/rtic/Cargo.toml --target thumbv7em-none-eabihf -- -D warnings
+          name: Run clippy on RTIC examples
 
   precompiled:
     runs-on: ubuntu-latest
@@ -69,6 +79,6 @@ jobs:
             target: thumbv7em-none-eabihf
             override: true
       - name: Build examples
-        run: cargo build --examples
+        run: cargo build --workspace
       - name: Build RTIC examples
-        run: cargo build --examples --no-default-features --features rtic
+        run: cargo build --manifest-path examples/rtic/Cargo.toml
