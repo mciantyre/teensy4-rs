@@ -36,11 +36,6 @@ optional = true
 version = "0.4.8"
 optional = true
 
-# Only needed when "usb-logging" is enabled
-[dependencies.teensy4-usb-sys]
-path = "teensy4-usb-sys"
-optional = true
-
 [dev-dependencies]
 panic-halt = "0.2.0"
 
@@ -51,7 +46,6 @@ members = [
     "teensy4-fcb",
     "teensy4-pins",
     "teensy4-rt",
-    "teensy4-usb-sys",
 ]
 
 [features]
@@ -62,7 +56,7 @@ default = ["usb-logging", "systick"]
 # This will introduce the teensy4-usb-sys bindings into the build
 # graph. It also requires systick, since the USB stack depends on
 # the systick counter for timekeeping.
-usb-logging = ["systick", "teensy4-usb-sys", "log"]
+usb-logging = ["systick", "log"]
 # Include a definition of the SysTick exception handler. This enables
 # a simple delay() spinloop that waits for the timer to elapse.
 #

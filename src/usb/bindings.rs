@@ -35,8 +35,6 @@
 //! We define the attributes in the build script, specifing the
 //! macro values in the command-line compiler invocation.
 
-#![no_std]
-
 #[link(name = "t4usb")]
 extern "C" {
     /// Initialize the USB PLL and clocks.

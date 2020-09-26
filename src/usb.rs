@@ -44,7 +44,7 @@ use core::{
     fmt,
     sync::atomic::{AtomicBool, Ordering},
 };
-use teensy4_usb_sys as usbsys;
+mod bindings;
 
 /// Logging configuration
 ///
@@ -142,15 +142,15 @@ pub fn split(_: &crate::SysTick) -> Result<(Reader, Writer), Error> {
 /// Must only be called once.
 #[inline(always)]
 unsafe fn start() {
-    usbsys::usb_pll_start();
-    usbsys::usb_init();
+    bindings::usb_pll_start();
+    bindings::usb_init();
     cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
 }
 
 #[crate::rt::interrupt]
 fn USB_OTG1() {
     unsafe {
-        usbsys::isr();
+        bindings::isr();
     }
 }
 
@@ -209,7 +209,7 @@ impl ::log::Log for Logger {
     }
 
     fn flush(&self) {
-        unsafe { usbsys::usb_serial_flush_output() }
+        unsafe { bindings::usb_serial_flush_output() }
     }
 }
 
@@ -232,7 +232,7 @@ impl Writer {
 
     /// Writes raw bytes to the USB serial host
     pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> usize {
-        usbsys::serial_write(buffer) as usize
+        bindings::serial_write(buffer) as usize
     }
 }
 
@@ -243,7 +243,7 @@ impl fmt::Write for Writer {
         let mut at_linefeed = false;
         for line in string.split('\n') {
             if at_linefeed {
-                usbsys::serial_write("\r\n");
+                bindings::serial_write("\r\n");
             }
             let bytes = line.as_bytes();
             if !bytes.is_empty() {
@@ -267,6 +267,6 @@ impl Reader {
     /// Read from the USB serial endpoint into buffer. Returns the number
     /// of bytes read, or zero if there is no data.
     pub fn read(&mut self, buffer: &mut [u8]) -> usize {
-        usbsys::serial_read(buffer)
+        bindings::serial_read(buffer)
     }
 }

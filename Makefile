@@ -51,7 +51,7 @@ libt4boot:
 	@make -C teensy4-rt/bin
 
 libt4usb:
-	@make -C teensy4-usb-sys/bin
+	@make -C bin
 
 .PHONY: clean
 clean:
