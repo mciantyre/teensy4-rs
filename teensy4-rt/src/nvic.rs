@@ -23,6 +23,12 @@ unsafe fn set_priority(irqn: usize, priority: u8) {
     ptr::write_volatile(INTERRUPT_PRIORITY_BASE.add(irqn), priority);
 }
 
+const NUM_VECTORS: usize = 2 + NUM_EXCEPTIONS + NUM_IMXRT106X_INTERRUPTS;
+#[repr(align(1024))]
+struct VectorTable([Vector; NUM_VECTORS]);
+
+static mut VECTOR_TABLE: VectorTable = VectorTable([Vector { _reserved: 0 }; NUM_VECTORS]);
+
 /// Initialize the NVIC, registering default handlers for
 /// all interrupts.
 ///
@@ -31,15 +37,27 @@ unsafe fn set_priority(irqn: usize, priority: u8) {
 /// Writes to registers and should only be called once.
 #[inline(always)]
 pub unsafe fn init() {
+    extern "C" {
+        static __svectors: u32;
+    }
+
+    let input_table =
+        core::slice::from_raw_parts(&__svectors as *const u32 as *const Vector, NUM_VECTORS);
+
+    VECTOR_TABLE
+        .0
+        .iter_mut()
+        .zip(input_table.iter())
+        .for_each(|(dst, src)| {
+            ptr::write_volatile(dst, *src);
+        });
+
     for irq in 0..NUM_IMXRT106X_INTERRUPTS {
         set_priority(irq, 128);
     }
 
-    extern "C" {
-        static __svectors: u32;
-    }
     const SCB_VTOR: *mut u32 = 0xE000_ED08 as *mut u32;
-    ptr::write_volatile(SCB_VTOR, &__svectors as *const u32 as u32);
+    ptr::write_volatile(SCB_VTOR, VECTOR_TABLE.0.as_ptr() as u32);
 }
 
 #[doc(hidden)]

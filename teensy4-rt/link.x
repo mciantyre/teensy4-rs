@@ -63,7 +63,6 @@ SECTIONS
         LONG(0x00000000);           /* Plugin flag (unused) */
         /* --------- */
         KEEP(*(.boot.reset));
-        KEEP(*(.boot.tcm));
         KEEP(*(.HardFaultTrampoline));
         KEEP(*(.HardFault.*));
         /* Contains the reset vectors, exceptions, and interrupts. */

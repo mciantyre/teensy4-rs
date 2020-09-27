@@ -26,20 +26,6 @@ const APP: () = {
 
     #[init(schedule = [blink])]
     fn init(mut cx: init::Context) -> init::LateResources {
-        init_delay();
-
-        // Set the clock mode to 'RUN'
-        //
-        // i.MX RT (106x) processors will not wake on SYSTICK. When we enter
-        // WFI or WFE, we'll enter WAIT mode by default. This will disable
-        // SYSTICK. So, if you're waiting for SYSTICK to wake you up, it won't
-        // happen. By setting ourselves to 'RUN' low-power mode, SYSTICK will
-        // still wake us up.
-        //
-        // See the CCM_CLPCR register for more information. The HAL docs also note
-        // this aspect of the processor.
-        cx.device.ccm.set_mode(bsp::hal::ccm::ClockMode::Run);
-
         // Initialise the monotonic CYCCNT timer.
         cx.core.DWT.enable_cycle_counter();
 
@@ -74,14 +60,3 @@ const APP: () = {
         fn LPUART8();
     }
 };
-
-// If we reach WFI on teensy 4.0 too quickly it seems to halt. Here we wait a short while in `init`
-// to avoid this issue. The issue only appears to occur when rebooting the device (via the button),
-// however there appears to be no issue when power cycling the device.
-//
-// TODO: Investigate exactly why this appears to be necessary.
-fn init_delay() {
-    for _ in 0..10_000_000 {
-        core::sync::atomic::spin_loop_hint();
-    }
-}
