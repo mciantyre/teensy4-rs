@@ -97,6 +97,15 @@ path = "cortex-m-rt-patch"
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
+# Temporary patch for testing SRTC feature
+[patch.crates-io.imxrt-hal]
+git = "https://github.com/AlyoshaVasilieva/imxrt-rs"
+rev = "621b103"
+
+[patch.crates-io.imxrt-iomuxc]
+git = "https://github.com/AlyoshaVasilieva/imxrt-rs"
+rev = "621b103"
+
 ##########
 # Examples
 ##########
@@ -146,6 +155,10 @@ required-features = ["usb-logging"]
 
 [[example]]
 name = "spi"
+required-features = ["usb-logging"]
+
+[[example]]
+name = "srtc"
 required-features = ["usb-logging"]
 
 [[example]]
