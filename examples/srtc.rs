@@ -28,10 +28,11 @@
 
 extern crate panic_halt;
 
+use core::fmt::Write;
+
 use bsp::hal::srtc::{micros_to_ticks, EnabledState, SRTC};
 use bsp::rt;
 use bsp::usb;
-use core::fmt::Write;
 use teensy4_bsp as bsp;
 
 #[rt::entry]
@@ -50,7 +51,7 @@ fn main() -> ! {
         }
         EnabledState::SetTime(mut srtc) => {
             // SRTC wasn't on, request time from USB
-            set_time_from_usb(&mut systick, &mut reader, &mut writer, &mut srtc);
+            set_time_from_usb(&mut reader, &mut writer, &mut srtc);
             srtc
         }
     };
@@ -62,16 +63,10 @@ fn main() -> ! {
     }
 }
 
-fn set_time_from_usb(
-    systick: &mut bsp::SysTick,
-    reader: &mut usb::Reader,
-    writer: &mut usb::Writer,
-    rtc: &mut SRTC,
-) {
+fn set_time_from_usb(reader: &mut usb::Reader, writer: &mut usb::Writer, rtc: &mut SRTC) {
     writeln!(writer, "Send a message containing the current Unix time.").unwrap();
     let mut buffer = [0; 24]; // 20 char message + CR LF + an extra 2
     let (seconds, ns) = loop {
-        systick.delay(10);
         let count = reader.read(&mut buffer);
         if count == 0 {
             continue;
@@ -90,4 +85,5 @@ fn set_time_from_usb(
     let us = ns / 1000;
     let ticks = micros_to_ticks(us);
     rtc.set(seconds, ticks);
+    writeln!(writer, "Received time: {}.{:09}", seconds, ns).unwrap();
 }
