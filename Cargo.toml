@@ -99,12 +99,12 @@ rustdoc-args = ["--cfg", "docsrs"]
 
 # Temporary patch for testing SRTC feature
 [patch.crates-io.imxrt-hal]
-git = "https://github.com/AlyoshaVasilieva/imxrt-rs"
-rev = "621b103"
+git = "https://github.com/imxrt-rs/imxrt-rs"
+rev = "a85b279"
 
 [patch.crates-io.imxrt-iomuxc]
-git = "https://github.com/AlyoshaVasilieva/imxrt-rs"
-rev = "621b103"
+git = "https://github.com/imxrt-rs/imxrt-rs"
+rev = "a85b279"
 
 ##########
 # Examples
