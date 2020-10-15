@@ -320,7 +320,7 @@
     <span class="ident">fmt</span>,
     <span class="ident">sync</span>::<span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>},
 };
-<span class="kw">use</span> <span class="ident">teensy4_usb_sys</span> <span class="kw">as</span> <span class="ident">usbsys</span>;
+<span class="kw">mod</span> <span class="ident">bindings</span>;
 
 <span class="doccomment">/// Logging configuration</span>
 <span class="doccomment">///</span>
@@ -418,15 +418,15 @@
 <span class="doccomment">/// Must only be called once.</span>
 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">start</span>() {
-    <span class="ident">usbsys</span>::<span class="ident">usb_pll_start</span>();
-    <span class="ident">usbsys</span>::<span class="ident">usb_init</span>();
+    <span class="ident">bindings</span>::<span class="ident">usb_pll_start</span>();
+    <span class="ident">bindings</span>::<span class="ident">usb_init</span>();
     <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">NVIC</span>::<span class="ident">unmask</span>(<span class="kw">crate</span>::<span class="ident">interrupt</span>::<span class="ident">USB_OTG1</span>);
 }
 
 <span class="attribute">#[<span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">interrupt</span>]</span>
 <span class="kw">fn</span> <span class="ident">USB_OTG1</span>() {
     <span class="kw">unsafe</span> {
-        <span class="ident">usbsys</span>::<span class="ident">isr</span>();
+        <span class="ident">bindings</span>::<span class="ident">isr</span>();
     }
 }
 
@@ -485,7 +485,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">usbsys</span>::<span class="ident">usb_serial_flush_output</span>() }
+        <span class="kw">unsafe</span> { <span class="ident">bindings</span>::<span class="ident">usb_serial_flush_output</span>() }
     }
 }
 
@@ -508,7 +508,7 @@
 
     <span class="doccomment">/// Writes raw bytes to the USB serial host</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-        <span class="ident">usbsys</span>::<span class="ident">serial_write</span>(<span class="ident">buffer</span>) <span class="kw">as</span> <span class="ident">usize</span>
+        <span class="ident">bindings</span>::<span class="ident">serial_write</span>(<span class="ident">buffer</span>) <span class="kw">as</span> <span class="ident">usize</span>
     }
 }
 
@@ -519,7 +519,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">at_linefeed</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="kw">for</span> <span class="ident">line</span> <span class="kw">in</span> <span class="ident">string</span>.<span class="ident">split</span>(<span class="string">&#39;\n&#39;</span>) {
             <span class="kw">if</span> <span class="ident">at_linefeed</span> {
-                <span class="ident">usbsys</span>::<span class="ident">serial_write</span>(<span class="string">&quot;\r\n&quot;</span>);
+                <span class="ident">bindings</span>::<span class="ident">serial_write</span>(<span class="string">&quot;\r\n&quot;</span>);
             }
             <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">line</span>.<span class="ident">as_bytes</span>();
             <span class="kw">if</span> <span class="op">!</span><span class="ident">bytes</span>.<span class="ident">is_empty</span>() {
@@ -543,7 +543,7 @@
     <span class="doccomment">/// Read from the USB serial endpoint into buffer. Returns the number</span>
     <span class="doccomment">/// of bytes read, or zero if there is no data.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-        <span class="ident">usbsys</span>::<span class="ident">serial_read</span>(<span class="ident">buffer</span>)
+        <span class="ident">bindings</span>::<span class="ident">serial_read</span>(<span class="ident">buffer</span>)
     }
 }
 </pre></div>
