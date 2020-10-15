@@ -50,7 +50,7 @@ jobs:
         run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
       - uses: actions/checkout@v2
       - name: Build runtime support
-        run: INSTALL_DEPS=0 make libt4boot
+        run: INSTALL_DEPS=0 make libt4start
       - name: Build USB stack
         run: INSTALL_DEPS=0 make libt4usb
 
@@ -82,3 +82,26 @@ jobs:
         run: cargo build --workspace
       - name: Build RTIC examples
         run: cargo build --manifest-path examples/rtic/Cargo.toml
+  
+  # Covers feature combinations that may not already be used in
+  # the examples.
+  features:
+    startegy:
+      matrix:
+        features: [ "", "systick", "systick,rt", "usb-logging", "usb-logging,rt", "rtic", "rtic,rt" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+            profile: minimal
+            toolchain: stable
+            target: thumbv7em-none-eabihf
+            override: true
+      - name: Check features '${{ matrix.features }}'
+        uses: actions-rs/cargo@v1
+        env:
+          RUSTFLAGS: -D warnings
+      with:
+          command: check
+          args: --verbose --no-default-features --features="${{ matrix.features }}"
