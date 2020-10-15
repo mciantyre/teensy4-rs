@@ -3,11 +3,13 @@
 //! If we're compiling this module, it's because the `"systick"` feature
 //! is enabled.
 
+#[cfg(all(target_arch = "arm", feature = "rt"))]
 use crate::rt::exception;
 
 #[no_mangle]
 static mut systick_millis_count: u32 = 0;
 
+#[cfg(all(target_arch = "arm", feature = "rt"))]
 #[exception]
 fn SysTick() {
     unsafe {

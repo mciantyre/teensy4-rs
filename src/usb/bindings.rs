@@ -44,6 +44,7 @@ extern "C" {
     /// Initialize the USB module. Configures clocks, endpoints, and descriptors.
     pub fn usb_init();
     /// Runs the interrupt service routine.
+    #[cfg(all(target_arch = "arm", feature = "rt"))] // Only used with the "rt" feature
     pub fn isr();
     /// Flush the serial buffer
     pub fn usb_serial_flush_output();

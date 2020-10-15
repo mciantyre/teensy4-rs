@@ -47,30 +47,20 @@
 //! Turn on a Teensy 4.0's LED:
 //!
 //! ```no_run
-//! # #![feature(lang_items)]
-//! #![no_std]
-//! #![no_main]
-//!
-//! extern crate panic_halt;
-//!
-//! use cortex_m_rt::entry;
 //! use cortex_m::asm::wfi;
 //! use teensy4_bsp as bsp;
 //!
 //! use embedded_hal::digital::v2::OutputPin;
 //!
-//! #[entry]
-//! fn main() -> ! {
-//!     let peripherals = bsp::Peripherals::take().unwrap();
-//!     let pins = bsp::t40::into_pins(peripherals.iomuxc);
-//!     let mut led = bsp::configure_led(pins.p13);
 //!
-//!     loop {
-//!         led.set_high().unwrap();
-//!         wfi();
-//!     }
+//! let peripherals = bsp::Peripherals::take().unwrap();
+//! let pins = bsp::t40::into_pins(peripherals.iomuxc);
+//! let mut led = bsp::configure_led(pins.p13);
+//!
+//! loop {
+//!     led.set_high().unwrap();
+//!     wfi();
 //! }
-//! # #[lang = "eh_personality"] extern fn eh_personality() {}
 //! ```
 //!
 //! See the `teensy4-examples` crate for build-able, run-able
@@ -126,7 +116,7 @@ pub use teensy4_pins::common;
 pub use teensy4_pins::t40;
 pub use teensy4_pins::t41;
 
-#[cfg(feature = "rt")]
+#[cfg(all(target_arch = "arm", feature = "rt"))]
 mod rt;
 #[cfg(feature = "systick")]
 mod systick;

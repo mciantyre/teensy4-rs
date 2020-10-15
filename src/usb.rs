@@ -39,6 +39,7 @@
 //! write!(writer, "Hello world! 3 + 2 = {}", 5);
 //! ```
 
+#[cfg(all(target_arch = "arm", feature = "rt"))]
 use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
 use core::{
     fmt,
@@ -147,6 +148,7 @@ unsafe fn start() {
     cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
 }
 
+#[cfg(all(target_arch = "arm", feature = "rt"))]
 #[crate::rt::interrupt]
 fn USB_OTG1() {
     unsafe {

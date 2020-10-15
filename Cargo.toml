@@ -13,7 +13,7 @@ Part of the teensy4-rs project.
 [dependencies]
 cortex-m = "0.6.2"
 
-[dependencies.cortex-m-rt]
+[target.thumbv7em-none-eabihf.dependencies.cortex-m-rt]
 version = "0.6.12"
 optional = true
 features = ["device"]
@@ -52,7 +52,7 @@ members = [
 
 [features]
 # Default features established for prototype development
-default = ["usb-logging", "systick", "rt"]
+default = ["usb-logging", "systick"]
 # Enables the USB logging stack
 #
 # This will introduce the teensy4-usb-sys bindings into the build

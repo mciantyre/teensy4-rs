@@ -8,6 +8,7 @@ edition = "2018"
 [dependencies.teensy4-bsp]
 version = "0.1"
 path = "../../"
+features = ["rt"]
 
 [dependencies]
 cortex-m = "0.6.2"
