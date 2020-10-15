@@ -28,22 +28,18 @@ panic-halt = "0.2.0"
 
 [[bin]]
 name = "rtic_led"
-path = "src/rtic_led.rs"
 required-features = ["teensy4-bsp/rtic"]
 
 [[bin]]
 name = "rtic_blink"
-path = "src/rtic_blink.rs"
 required-features = ["teensy4-bsp/rtic"]
 
 [[bin]]
 name = "rtic_uart_log"
-path = "src/rtic_uart_log.rs"
 required-features = ["teensy4-bsp/rtic"]
 
 [[bin]]
 name = "rtic_dma_uart_log"
-path = "src/rtic_dma_uart_log.rs"
 required-features = ["teensy4-bsp/rtic"]
 
 # Don't optimize build dependencies, like proc macros.

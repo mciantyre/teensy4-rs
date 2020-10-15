@@ -33,8 +33,8 @@ else
 endif
 endif # INSTALL_DEPS != 0
 
-BSP_EXAMPLES := $(shell ls -1 examples/bsp/src | xargs basename | cut -f 1 -d .)
-RTIC_EXAMPLES := $(shell ls -1 examples/rtic/src | xargs basename | cut -f 1 -d .)
+BSP_EXAMPLES := $(shell ls -1 examples/bsp/src/bin | xargs basename | cut -f 1 -d .)
+RTIC_EXAMPLES := $(shell ls -1 examples/rtic/src/bin | xargs basename | cut -f 1 -d .)
 
 .PHONY: all
 all:

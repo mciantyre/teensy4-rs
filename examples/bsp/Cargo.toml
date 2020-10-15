@@ -20,24 +20,20 @@ panic-halt = "0.2.0"
 
 [[bin]]
 name = "gpt"
-path = "src/gpt.rs"
 required-features = []
 
 [[bin]]
 name = "led"
-path = "src/led.rs"
 required-features = []
 
 [[bin]]
 name = "pit"
-path = "src/pit.rs"
 required-features = []
 
 # Examples that use SYSTICK as a timer
 
 [[bin]]
 name = "systick"
-path = "src/systick.rs"
 required-features = ["teensy4-bsp/systick"]
 
 # Examples that require USB logging.
@@ -45,32 +41,26 @@ required-features = ["teensy4-bsp/systick"]
 
 [[bin]]
 name = "dma_memcpy"
-path = "src/dma_memcpy.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "dma_spi"
-path = "src/dma_spi.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "dma_uart"
-path = "src/dma_uart.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "i2c"
-path = "src/i2c.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "pwm"
-path = "src/pwm.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "spi"
-path = "src/spi.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[example]]
@@ -80,20 +70,16 @@ required-features = ["usb-logging"]
 
 [[bin]]
 name = "timer"
-path = "src/timer.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "uart"
-path = "src/uart.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "usb"
-path = "src/usb.rs"
 required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "usb_writer"
-path = "src/usb_writer.rs"
 required-features = ["teensy4-bsp/usb-logging"]
