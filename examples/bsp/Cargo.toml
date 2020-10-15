@@ -63,10 +63,9 @@ required-features = ["teensy4-bsp/usb-logging"]
 name = "spi"
 required-features = ["teensy4-bsp/usb-logging"]
 
-[[example]]
+[[bin]]
 name = "srtc"
-path = "src/srtc.rs"
-required-features = ["usb-logging"]
+required-features = ["teensy4-bsp/usb-logging"]
 
 [[bin]]
 name = "timer"
