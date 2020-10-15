@@ -1,0 +1,52 @@
+[package]
+name = "rtic"
+version = "0.1.0"
+publish = false
+authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
+edition = "2018"
+
+[dependencies.teensy4-bsp]
+version = "0.1"
+path = "../.."
+default-features = false
+features = ["rtic"]
+
+# Patch `cortex-m-rt` for reasons described here:
+# https://github.com/mciantyre/teensy4-rs#runtime
+[patch.crates-io.cortex-m-rt]
+path = "../../cortex-m-rt-patch"
+
+[dependencies]
+cortex-m = "0.6"
+cortex-m-rt = "0.6"
+cortex-m-rtic = "0.5.3"
+embedded-hal = "0.2.4"
+heapless = "0.5.5"
+imxrt-uart-log = "0.2.0"
+log = "0.4.8"
+panic-halt = "0.2.0"
+
+[[bin]]
+name = "rtic_led"
+required-features = ["teensy4-bsp/rtic"]
+
+[[bin]]
+name = "rtic_blink"
+required-features = ["teensy4-bsp/rtic"]
+
+[[bin]]
+name = "rtic_uart_log"
+required-features = ["teensy4-bsp/rtic"]
+
+[[bin]]
+name = "rtic_dma_uart_log"
+required-features = ["teensy4-bsp/rtic"]
+
+# Don't optimize build dependencies, like proc macros.
+# Helps with build times.
+[profile.release.build-override]
+opt-level = 0
+
+[workspace]
+# Not part of the main workspace to maintain
+# BSP feature separation.

@@ -1,7 +1,6 @@
 RUSTUP ?= rustup
 CARGO ?= cargo
 TEENSY_LOADER ?= teensy_loader_cli
-MODE ?= --release
 INSTALL_DEPS ?= 1
 HOST ?= $(shell rustc --version --verbose | grep host | cut -d ' ' -f 2)
 
@@ -34,38 +33,30 @@ else
 endif
 endif # INSTALL_DEPS != 0
 
-TARGET_EXAMPLES := target/thumbv7em-none-eabihf/release/examples
-EXAMPLES := $(shell ls -1 examples | grep -v rtic | cut -f 1 -d .)
-RTIC_EXAMPLES := $(shell ls -1 examples | grep rtic | cut -f 1 -d .)
+BSP_EXAMPLES := $(shell ls -1 examples/bsp/src/bin | xargs basename | cut -f 1 -d .)
+RTIC_EXAMPLES := $(shell ls -1 examples/rtic/src/bin | xargs basename | cut -f 1 -d .)
 
 .PHONY: all
 all:
-	@cargo build --examples $(MODE)
-	@for example in $(EXAMPLES);\
-		do rust-objcopy -O ihex $(TARGET_EXAMPLES)/$$example $(TARGET_EXAMPLES)/$$example.hex;\
+	@cargo build --release --workspace
+	@for example in $(BSP_EXAMPLES);\
+		do rust-objcopy -O ihex target/thumbv7em-none-eabihf/release/$$example target/thumbv7em-none-eabihf/$$example.hex;\
 		done
-	@cargo build --examples $(MODE) --no-default-features --features=rtic
+	@cargo build --release --manifest-path examples/rtic/Cargo.toml
 	@for example in $(RTIC_EXAMPLES);\
-		do rust-objcopy -O ihex $(TARGET_EXAMPLES)/$$example $(TARGET_EXAMPLES)/$$example.hex;\
-		done
-
-# Build all RTIC-related examples
-.PHONY: rtic
-rtic:
-	@for example in $(RTIC_EXAMPLES);\
-		do cargo build $(MODE) --example $$example \
-			--no-default-features --features=rtic;\
+		do rust-objcopy -O ihex examples/rtic/target/thumbv7em-none-eabihf/release/$$example target/thumbv7em-none-eabihf/$$example.hex;\
 		done
 
 libt4boot:
 	@make -C teensy4-rt/bin
 
 libt4usb:
-	@make -C teensy4-usb-sys/bin
+	@make -C bin
 
 .PHONY: clean
 clean:
 	@cargo clean
+	@cargo clean --manifest-path examples/rtic/Cargo.toml
 
 # Skipping the USB feature testing
 #
