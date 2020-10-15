@@ -58,11 +58,7 @@ See the Rust documentation for API information. In particular, study the [`imxrt
 cargo doc --open
 ```
 
-Try the various examples in this project's `examples` directory if you'd like to test your system:
-
-```
-cargo objcopy --release --example led -- -O ihex led.hex
-```
+Try the various examples in this project's [`examples` directory](examples/README.md) if you'd like to test your system.
 
 ## Project Structure
 
