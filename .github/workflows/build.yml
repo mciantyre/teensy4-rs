@@ -104,4 +104,4 @@ jobs:
           RUSTFLAGS: -D warnings
         with:
             command: check
-            args: --verbose --no-default-features --features="${{ matrix.features }}"
+            args: --verbose --no-default-features --features=${{ matrix.features }}
