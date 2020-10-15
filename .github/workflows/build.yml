@@ -86,7 +86,7 @@ jobs:
   # Covers feature combinations that may not already be used in
   # the examples.
   features:
-    startegy:
+    strategy:
       matrix:
         features: [ "", "systick", "systick,rt", "usb-logging", "usb-logging,rt", "rtic", "rtic,rt" ]
     runs-on: ubuntu-latest
