@@ -30,7 +30,7 @@ extern crate panic_halt;
 
 use bsp::hal::dma;
 use bsp::interrupt;
-use bsp::rt::{entry, interrupt};
+use cortex_m_rt::{entry, interrupt};
 use teensy4_bsp as bsp;
 
 use core::{

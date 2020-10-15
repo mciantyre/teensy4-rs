@@ -8,8 +8,9 @@
 
 extern crate panic_halt;
 
-use bsp::{hal::dma, rt::entry};
+use bsp::hal::dma;
 use core::iter::ExactSizeIterator;
+use cortex_m_rt::entry;
 use teensy4_bsp as bsp;
 
 /// Update me to play with different element types!

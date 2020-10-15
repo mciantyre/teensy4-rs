@@ -11,3 +11,4 @@ tools/.cargo
 
 *.o
 *.d
+*.hex

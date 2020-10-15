@@ -9,16 +9,11 @@ edition = "2018"
 version = "0.1"
 path = "../.."
 default-features = false
-features = ["rtic"]
-
-# Patch `cortex-m-rt` for reasons described here:
-# https://github.com/mciantyre/teensy4-rs#runtime
-[patch.crates-io.cortex-m-rt]
-path = "../../cortex-m-rt-patch"
+features = ["rtic", "rt"]
 
 [dependencies]
 cortex-m = "0.6"
-cortex-m-rt = "0.6"
+cortex-m-rt = "0.6.13"
 cortex-m-rtic = "0.5.3"
 embedded-hal = "0.2.4"
 heapless = "0.5.5"

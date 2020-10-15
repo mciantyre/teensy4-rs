@@ -15,7 +15,7 @@
 extern crate panic_halt;
 
 use bsp::interrupt;
-use bsp::rt::entry;
+use cortex_m_rt::entry;
 use teensy4_bsp as bsp;
 
 use core::{
@@ -54,7 +54,7 @@ static TX_READY: AtomicBool = AtomicBool::new(false);
 static RX_READY: AtomicBool = AtomicBool::new(false);
 
 /// The DMA interrupt matches the selected DMA channels in the demo's setup.
-#[bsp::rt::interrupt]
+#[cortex_m_rt::interrupt]
 unsafe fn DMA7_DMA23() {
     let uart = DMA_PERIPHERAL.as_mut().unwrap();
 

@@ -53,7 +53,7 @@
 //!
 //! extern crate panic_halt;
 //!
-//! use bsp::rt::entry;
+//! use cortex_m_rt::entry;
 //! use cortex_m::asm::wfi;
 //! use teensy4_bsp as bsp;
 //!
@@ -126,6 +126,8 @@ pub use teensy4_pins::common;
 pub use teensy4_pins::t40;
 pub use teensy4_pins::t41;
 
+#[cfg(feature = "rt")]
+mod rt;
 #[cfg(feature = "systick")]
 mod systick;
 #[cfg(feature = "usb-logging")]
@@ -141,7 +143,6 @@ pub use hal::ral::interrupt;
 #[cfg(feature = "rtic")]
 pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 
-pub use cortex_m_rt as rt;
 pub use hal::Peripherals;
 pub use imxrt_hal as hal;
 
