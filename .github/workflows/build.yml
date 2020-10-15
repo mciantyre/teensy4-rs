@@ -102,6 +102,6 @@ jobs:
         uses: actions-rs/cargo@v1
         env:
           RUSTFLAGS: -D warnings
-      with:
-          command: check
-          args: --verbose --no-default-features --features="${{ matrix.features }}"
+        with:
+            command: check
+            args: --verbose --no-default-features --features="${{ matrix.features }}"
