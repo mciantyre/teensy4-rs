@@ -40,7 +40,7 @@ where
     Ok(out[0])
 }
 
-#[bsp::rt::entry]
+#[cortex_m_rt::entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);

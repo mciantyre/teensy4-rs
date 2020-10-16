@@ -16,7 +16,7 @@
 extern crate panic_halt;
 
 use bsp::hal::pwm::Channel;
-use bsp::rt;
+use cortex_m_rt as rt;
 use embedded_hal::Pwm;
 use teensy4_bsp as bsp;
 

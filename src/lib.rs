@@ -5,115 +5,86 @@
 //! hardware abstraction layer. See the HAL's documentation for more information on creating
 //! and using peripherals.
 //!
-//! The BSP restricts the processor pads that are available, since the physical Teensy
-//! only has a few user-accessible pins. From these pins, you may construct peripherals
-//! and perform I/O. The two Teensy 4 boards support many of the same pins; see the
-//! [`common`](common/index.html) module for those similar pins. To construct Teensy 4.0
-//! or 4.1 pins, see the corresponding `into_pins` function in each of the corresponding modules.
+//! # Runtime
 //!
-//! The BSP assumes some facilities of the processor, both which are required for the
-//! USB stack. Each are controllable through feature-flags. Each feature is on by default.
+//! The `teensy4-bsp` use the [`cortex-m-rt`] crate to provide a runtime. Enable runtime support using
+//! the `"rt"` feature. To properly link your program, you **must link with the `t4link.x` linker
+//! script**.
 //!
-//! - it registers the `SysTick` exception handler, and configures
-//!   SYSTICK for a 1ms interrupt. Enabled with the `"systick"` feature,
-//!   which is on by default.
-//! - it registers the `USB_OTG1` interrupt, and uses the USB1
-//!   peripheral for logging. Enabled with the `"usb-logging"` feature,
-//!   which is on by default. Depends on the `"systick"` feature.
+//! [`cortex-m-rt`]: https://crates.io/crates/cortex-m-rt
 //!
-//! If a user also registers a `SysTick` or `USB_OTG1` handler, it may
-//! result in a duplicate definition error.
+//! The `teensy4-bsp` emits a `cortex-m-rt`-compatible linker script. The layout supports the i.MX RT's boot requirements
+//! and advanced memory features. Specifically, the layout includes the image vector table (IVT) and boot data
+//! that's necessary for i.MX RT processors. Additionally, the layout specifies the FlexSPI configuration block's (FCB)
+//! FLASH location. Finally, the linker script places all instructions in ITCM, and all data in DTCM.
 //!
-//! # Re-exports
+//! The `teensy4-bsp` provides its own reset hander. The custom reset handler
 //!
-//! The BSP re-exports the following:
+//! - initalizes TCM regions
+//! - copies instructions into ITCM
+//! - copies the vector table into DTCM, and sets VTOR
+//! - set's the CCM's low-power setting
+//! - prepares memory caches
 //!
-//! - the `teensy4-rt` crate, as `rt`
-//! - the `imxrt-hal` crate, as `hal`
+//! The reset handler then calls the `cortex-m-rt` entrypoint to finish memory initialization and invoke your program's
+//! `main()`.
 //!
-//! See the accompanying documentation of each crate for more
-//! information.
+//! # Features
 //!
-//! For simplicity, there may be other choice APIs from either crate that
-//! are re-exported in the BSP namespace.
+//! The `teensy4-bsp` supports these features:
 //!
-//! Although it's not exported publicly, the BSP crate links in the
-//! `teensy4-fcb` crate, which provides a Firmware Configuration Block (FCB)
-//! specific to the Teensy 4. See the `teensy4-fcb` crate for details
-//! on FCBs.
+//! | Flag            |         Description                                                   | Default? |
+//! | --------------- | --------------------------------------------------------------------- | -------- |
+//! | `"systick"`     | Registers a SYSTICK exception handler that's called every millisecond | ✓        |
+//! | `"usb-logging"` | Adds support for logging over USB with the `log` crate                | ✓        |
+//! | `"rt"`          | Adds runtime support using `cortex-m-rt`                              |          |
+//! | `"rtic"`        | Adds support for using BSP peripherals with RTIC                      |          |
+//!
+//! Notes:
+//!
+//! - `"usb-logging"` depends on `"systick"` due to a requirement in the Teensy 4's USB library
+//! - Enabling `"rtic"` and `"systick"` is not supported. RTIC may try to register a SYSTICK exception handler, which
+//!   conflicts with the BSP's definition. This means that you cannot use USB logging with RTIC
+//!
+//! Proper RTIC support requires that you disable the BSP's default features. You may combine `"rtic"` with `"rt"`.
+//!
+//! ```toml
+//! [dependencies.teensy4-bsp]
+//! default-features = false
+//! features = ["rtic",  "rt"]
+//! version = # ...
+//! ```
+//!
+//! # Pins
+//!
+//! The BSP helps you convert all the i.MX RT processor pads into your Teensy 4's pins.
+//! From these pins, you may construct peripherals and perform I/O. The Teensy 4.0 and 4.1
+//! boards support many of the same pins; see the [`common`](common/index.html) module
+//! for those similar pins. To construct Teensy 4.0 or 4.1 pins, see the
+//! [`t40::into_pins`](t40/fn.into_pins.html) and [`t41::into_pins`](t41/fn.into_pins.html)
+//! for more information.
 //!
 //! # Examples
 //!
 //! Turn on a Teensy 4.0's LED:
 //!
 //! ```no_run
-//! # #![feature(lang_items)]
-//! #![no_std]
-//! #![no_main]
-//!
-//! extern crate panic_halt;
-//!
-//! use bsp::rt::entry;
 //! use cortex_m::asm::wfi;
 //! use teensy4_bsp as bsp;
 //!
 //! use embedded_hal::digital::v2::OutputPin;
 //!
-//! #[entry]
-//! fn main() -> ! {
-//!     let peripherals = bsp::Peripherals::take().unwrap();
-//!     let pins = bsp::t40::into_pins(peripherals.iomuxc);
-//!     let mut led = bsp::configure_led(pins.p13);
+//! let peripherals = bsp::Peripherals::take().unwrap();
+//! let pins = bsp::t40::into_pins(peripherals.iomuxc);
+//! let mut led = bsp::configure_led(pins.p13);
 //!
-//!     loop {
-//!         led.set_high().unwrap();
-//!         wfi();
-//!     }
+//! loop {
+//!     led.set_high().unwrap();
+//!     wfi();
 //! }
-//! # #[lang = "eh_personality"] extern fn eh_personality() {}
 //! ```
 //!
-//! See the `teensy4-examples` crate for build-able, run-able
-//! examples. The examples utilize this BSP crate to blink LEDs,
-//! establish timers, and log data over USB.
-//!
-//! # Using RTIC
-//!
-//! To develop Teensy 4 applications with the RTIC framework,
-//!
-//! 1. disables the `teensy4-bsp`'s default features
-//! 2. enable the BSP's `"rtic"` feature
-//! 3. patch the `cortex-m-rt` crate with the Teensy 4's special runtime, available in
-//!    the `teensy4-bsp`'s repository.
-//!
-//! All three steps can be summarized by this `Cargo.toml` snippet:
-//!
-//! ```toml
-//! [dependencies.teensy4-bsp]
-//! git = "https://github.com/mciantyre/teensy4-rs"
-//! branch = "master"
-//! default-features = false
-//! features = ["rtic"]
-//!
-//! [patch.crates-io.cortex-m-rt]
-//! git = "https://github.com/mciantyre/teensy4-rs"
-//! branch = "master"
-//! ```
-//!
-//! You need to disable the BSP's default features, which disables the `"systick"` feature,
-//! to enable RTIC's SYSTICK handler. This means that you cannot use the USB logger when
-//! developing RTIC applications. Consider using the [`imxrt-uart-log`](https://crates.io/crates/imxrt-uart-log)
-//! crate for an alternate logging implementation.
-//!
-//! You need to replace the typical `cortex-m-rt` runtime with our custom runtime. The patch
-//! above lets us replace RTIC's runtime crate with an API-compatible runtime.
-//!
-//! ## Notice of alpha status
-//!
-//! We've made some assumptions in this MVP BSP.
-//!
-//! - SYSTICK and delay implementation is very naive. Do not run for 49
-//!   continuous days, or risk a millisecond counter wrap-around.
+//! See more examples in the project's repository.
 
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
@@ -126,6 +97,8 @@ pub use teensy4_pins::common;
 pub use teensy4_pins::t40;
 pub use teensy4_pins::t41;
 
+#[cfg(all(target_arch = "arm", feature = "rt"))]
+mod rt;
 #[cfg(feature = "systick")]
 mod systick;
 #[cfg(feature = "usb-logging")]
@@ -141,7 +114,6 @@ pub use hal::ral::interrupt;
 #[cfg(feature = "rtic")]
 pub use hal::ral::{interrupt as Interrupt, NVIC_PRIO_BITS};
 
-pub use cortex_m_rt as rt;
 pub use hal::Peripherals;
 pub use imxrt_hal as hal;
 

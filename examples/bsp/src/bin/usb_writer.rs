@@ -6,8 +6,8 @@
 
 extern crate panic_halt;
 
-use bsp::rt;
 use core::fmt::Write;
+use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
 
 #[rt::entry]

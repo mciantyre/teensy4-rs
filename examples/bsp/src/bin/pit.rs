@@ -12,7 +12,7 @@ extern crate panic_halt;
 
 use bsp::hal::pit;
 use bsp::interrupt;
-use bsp::rt::{entry, interrupt};
+use cortex_m_rt::{entry, interrupt};
 use embedded_hal::timer::CountDown;
 use teensy4_bsp as bsp;
 

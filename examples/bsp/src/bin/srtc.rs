@@ -31,8 +31,8 @@ extern crate panic_halt;
 use core::fmt::Write;
 
 use bsp::hal::srtc::{micros_to_ticks, EnabledState, SRTC};
-use bsp::rt;
 use bsp::usb;
+use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
 
 #[rt::entry]

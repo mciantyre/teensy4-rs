@@ -12,14 +12,18 @@ Part of the teensy4-rs project.
 
 [dependencies]
 cortex-m = "0.6.2"
-cortex-m-rt = "0.6.12" # Note: not the 'real' cortex-m-rt
+
+[target.thumbv7em-none-eabihf.dependencies.cortex-m-rt]
+version = "0.6.12"
+optional = true
+features = ["device"]
 
 [target.thumbv7em-none-eabihf.dependencies]
 teensy4-fcb = { path = "teensy4-fcb" }
 
 [dependencies.imxrt-hal]
 version = "0.4.0"
-features = ["imxrt1062", "rt"]
+features = ["imxrt1062"]
 
 [dependencies.teensy4-pins]
 version = "0.1"
@@ -41,11 +45,9 @@ panic-halt = "0.2.0"
 
 [workspace]
 members = [
-    "cortex-m-rt-patch",
     "examples/bsp",
     "teensy4-fcb",
     "teensy4-pins",
-    "teensy4-rt",
 ]
 
 [features]
@@ -69,16 +71,13 @@ systick = ["embedded-hal"]
 # default features must first be disabled in order to avoid a
 # duplicate definition of `SysTick`.
 rtic = ["imxrt-hal/rtic"]
+# Enables cortex-m-rt runtime support
+rt = ["cortex-m-rt", "imxrt-hal/rt"]
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
 [profile.release.build-override]
 opt-level = 0
-
-# Patch `cortex-m-rt` for reasons described here:
-# https://github.com/mciantyre/teensy4-rs#runtime
-[patch.crates-io.cortex-m-rt]
-path = "cortex-m-rt-patch"
 
 # Temporary patch for testing SRTC feature
 [patch.crates-io.imxrt-hal]

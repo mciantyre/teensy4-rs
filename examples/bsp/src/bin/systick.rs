@@ -9,7 +9,7 @@
 
 extern crate panic_halt;
 
-use bsp::rt;
+use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
 
 const LED_PERIOD_MS: u32 = 1_000;

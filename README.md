@@ -1,32 +1,14 @@
 # teensy4-rs
 
-A collection of crates for Rust development on the Teensy 4.
-
-Status: unreleased prototype
-
-We can
-- blink the LED
-- statically register exceptions
-- statically register interrupts
-- log over USB
-- read serial data over USB
-- measure intervals with periodic interrupt timers
-- talk to I2C slave devices
-- control PWM outputs (single pin)
-- accept serial (UART) data (although the hardware receiver buffer is small)
-- transmit serial (UART) data
-- send and receive data over SPI peripherals
-- use DMA channels
-
-We've measured a few things things, like I2C, UART, SPI, and timer timings. No one has built a fully-fledged application with these crates, yet...
+A collection of crates for Rust development on the Teensy 4. Supports both the Teensy 4.0 and 4.1 boards.
 
 ![Code Checks](https://github.com/mciantyre/teensy4-rs/workflows/Code%20Checks/badge.svg)
 
-#### [API Docs](https://mciantyre.github.io/teensy4-rs/)
+#### [API Docs (`master` branch)](https://mciantyre.github.io/teensy4-rs/)
 
 ## Dependencies
 
-- A Rust installation; recommended installation using `rustup`. We support the latest, stable Rust toolchain.
+- A Rust installation. Install Rust using `rustup`. We support the latest, stable Rust toolchain.
 - The `thumbv7em-none-eabihf` Rust target, which may be installed using `rustup`:
 
     ```bash
@@ -64,39 +46,14 @@ Try the various examples in this project's [`examples` directory](examples/READM
 
 The project has a model similar to other embedded Rust projects. We have a custom runtime crate to support our processor and memory layout. We use a separate iMXRT register access layer (RAL) and hardware abstraction layer (HAL). The RAL and HAL are provided by the [`imxrt-rs` project](https://github.com/imxrt-rs/imxrt-rs).
 
-The main crate is a board support package (BSP) for the Teensy 4, called `teensy4-bsp`. The BSP provides access to the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log messages over USB. If you would like to develop Rust applications for the Teensy 4, start by depending on the `teensy4-bsp`.
+The main crate is a board support package (BSP), `teensy4-bsp`, for the Teensy 4. The BSP lets you use the Teensy 4's pins and peripherals. It also provides an implementation of the [`log` crate](https://crates.io/crates/log), allowing users to log over USB. If you would like to develop Rust applications for the Teensy 4, start by depending on the `teensy4-bsp`.
 
-The BSP relies on the following additional crates, which are part of the BSP's workspace:
+The BSP depends on the these additional crates, which are part of the BSP's workspace:
 
-- `teensy4-rt`: an API-compatible fork of the `cortex-m-rt` crate that describes the system's memory layout, startup sequence, and interrupt table. The runtime crate let's a user write a normal `main()` function. Unlike the `cortex-m-rt`, which tries to be a general runtime crate, the `teensy4-rt` crate is specific to the Teensy 4. See the "Runtime" notes to learn why this is a fork of the `cortex-m-rt` crate.
 - `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates the FCB using the [`imxrt-boot-gen`](https://github.com/imxrt-rs/imxrt-boot-gen) crate.
-- `teensy4-usb-sys`: bindings to the Teensy 4's USB stack, which is written in C.
+- `teensy4-pins`: a helper library to convert the processor's pads into the pins available on a Teensy 4.0 or 4.1 board.
 
-Although we strive for compatibility with existing crates and frameworks, we've introduced some custom modules in order to operate with the Teensy 4.0. We describe these differences below.
-
-### Runtime
-
-An embedded Rust developer might use the [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) to bootstrap a Cortex-M system. However, [#164](https://github.com/rust-embedded/cortex-m-rt/issues/164) notes that the `cortex-m-rt` crate cannot yet support devices with custom memory layouts. The iMXRT106x is one of the systems with a custom memory layout; in particular, we have tightly-coupled memory (TCM) regions for instructions (ITCM) and data (DTCM). We also need to place special arrays (the FCB) in memory in order to properly boot. Given these requirements, we need a custom runtime crate that can initialize the system.
-
-The `teensy4-rt` crate is a fork of the `cortex-m-rt` crate that is customized to support a minimal iMXRT1062 startup and runtime. Like the `cortex-m-rt` crate, the `teensy4-rt` crate
-
-- populates the vector table for correct booting and exception / interrupt dispatch
-- initializes static variables
-- enables the FPU (since we're a `thumbv7em-none-eabihf` device)
-
-The `teensy4-rt` crate goes a step further in its startup functionality:
-
-- provides the required firmware configuration block (FCB) placement and image vector table (IVT) in order to start the iMXRT106x
-- initialize the TCM memory regions
-- configures instruction and data caches based on the TCM regions
-
-Just as the `cortex-m-rt` crate will call a user's `main()` function, the `teensy4-rt` completes by calling a user's `main()`. The `teensy4-rt` crate also exposes the `#[interrupt]`, `#[exception]`, and `#[entry]` macros for decorating interrupt handlers, exception handlers, and the program entrypoint, respectively. Note that, as of this writing, `#[pre_init]` is not supported.
-
-To support compatibility with the `cortex-m-rt` crate, the `teensy4-rt` crate uses the same link sections as the `cortex-m-rt` crate. However, the `teensy4-rt` crate may locate memory in different regions. Specifically, all instructions are placed into ITCM, and all data is placed into DTCM.
-
-It is our hope that the `teensy4-rt` crate can be transparently replaced with the `cortext-m-rt` crate once the necessary features are available. If you think that the `teensy4-rt` crate is be diverging from the `cortex-m-rt` crate and might miss that goal, please file an issue!
-
-In the meantime, a patch for the `cortex-m-rt` crate is provided within the `cortex-m-rt-patch` directory. See [cortex-m-rt-patch/README.md](./cortex-m-rt-patch/README.md) for details on how to use the patch.
+See the API docs for information on runtime support and BSP features.
 
 ## Contributing
 
@@ -105,26 +62,6 @@ We welcome support! A great way to contribute is to start using the crates to de
 If you want to directly contribute to the `teensy4-rs` project, read the development guidance in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Q/A
-
-#### When will this be on crates.io?
-
-After we evaluate whether or not this is a good or bad approach to developing Rust applications for the Teensy 4, we will either release these crates to crates.io, or recommend an alternative solution.
-
-We also need to wait for all of our dependencies to become available on crates.io. As of this writing, we're waiting on an unreleased `cortex-m-rt-macros` crate. Until we release to crates.io, either
-
-- use a git dependency (the default behavior of the [`teensy4-rs-template`](https://github.com/mciantyre/teensy4-rs-template))
-
-    ```toml
-    [dependencies.teensy4-bsp]
-    git = "https://github.com/mciantyre/teensy4-rs.git"
-    ```
-
-- clone this repository, and specify the path to the dependency:
-
-    ```toml
-    [dependencies.teensy4-bsp]
-    path = "path/to/cloned/teensy4-rs/teensy4-bsp"
-    ```
 
 #### There's more C than Rust! How is this a Rust project?
 

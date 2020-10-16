@@ -47,14 +47,15 @@ all:
 		do rust-objcopy -O ihex examples/rtic/target/thumbv7em-none-eabihf/release/$$example target/thumbv7em-none-eabihf/$$example.hex;\
 		done
 
-libt4boot:
-	@make -C teensy4-rt/bin
+libt4start:
+	@make -C bin libt4start.a
 
 libt4usb:
-	@make -C bin
+	@make -C bin libt4usb.a
 
 .PHONY: clean
 clean:
+	@make -C bin clean
 	@cargo clean
 	@cargo clean --manifest-path examples/rtic/Cargo.toml
 

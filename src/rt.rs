@@ -1,25 +1,21 @@
 //! Rust entry point
 
-#![no_std]
+pub use cortex_m_rt::*;
 
 mod cache;
-mod fault;
-mod fpu;
 mod nvic;
-
-pub use cortex_m_rt_macros::{entry, exception, interrupt};
-pub use nvic::exception;
 
 /// System entrypoint
 ///
 /// # Safety
 ///
 /// The function is unsafe since it directly modifies registers, and invokes
-/// other functions that do the same.
+/// other functions that do the same. It does not touch any memory that needs
+/// to first be initialized by cortex-m-rt.
+#[pre_init]
 #[no_mangle]
-pub unsafe extern "C" fn _start() -> ! {
+unsafe fn pre_init() {
     nvic::init();
-    fpu::init();
     cache::init();
 
     // Remain in 'run' when transitioning to low power mode.
@@ -39,15 +35,4 @@ pub unsafe extern "C" fn _start() -> ! {
     // code.
     const CCM_CLPCR: *mut u32 = 0x400F_C054 as *mut _;
     CCM_CLPCR.write_volatile(CCM_CLPCR.read_volatile() & !0b11);
-
-    extern "Rust" {
-        fn main() -> !;
-    }
-
-    #[inline(never)]
-    fn trampoline() -> ! {
-        unsafe { main() };
-    }
-
-    trampoline();
 }

@@ -20,7 +20,7 @@
 
 extern crate panic_halt;
 
-use bsp::rt::entry;
+use cortex_m_rt::entry;
 use teensy4_bsp as bsp;
 
 use embedded_hal::serial::{Read, Write};
