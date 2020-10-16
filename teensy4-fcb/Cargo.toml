@@ -3,10 +3,11 @@ name = "teensy4-fcb"
 version = "0.2.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
+readme = "README.md"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mciantyre/teensy4-rs"
 description = """
-Firmware Configuration Block (FCB) generation for the Teensy 4.
+FlexSPI Configuration Block (FCB) for the Teensy 4.
 Part of the teensy4-rs project.
 """
 categories = [
@@ -24,6 +25,3 @@ keywords = [
 version = "0.1.0"
 features = ["imxrt1062"]
 
-[lib]
-bench = false
-test = false

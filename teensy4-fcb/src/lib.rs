@@ -13,8 +13,7 @@
 //!
 //! Properly place the FCB in your program's memory. See the [`FLEXSPI_CONFIGURATION_BLOCK`](static.FLEXSPI_CONFIGURATION_BLOCK.html)
 //! declaration below, or the [`imxrt-boot-gen`] documentation, for more information on
-//! how you could refer to the FCB. If you're using the `teensy4-rt` runtime crate,
-//! you may skip this step. The `teensy4-rt` runtime is designed to this FCB.
+//! how you could refer to the FCB.
 //!
 //! Make sure that you reference this crate somewhere in your program!
 //! Otherwise, it might get removed from the output. Either use
