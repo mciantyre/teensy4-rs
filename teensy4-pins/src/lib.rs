@@ -1,7 +1,7 @@
 //! Hardware pins for the Teensy 4.0 and 4.1 boards
 //!
 //! `teensy4-pins` is designed to the [`imxrt-iomuxc`] crate. The pins API constrains
-//! the processor pads to those that are available on the Teensy 4.0 and 4.1. It also
+//! the processor pads to the ones that are available on the Teensy 4.0 and 4.1. It also
 //! exposes type aliases that simplify pin identification in the type system.
 //!
 //! [`imxrt-iomuxc`]: https://docs.rs/imxrt-iomuxc/0.1/imxrt_iomuxc/
@@ -12,7 +12,7 @@
 //!
 //! # Teensy 4.0
 //!
-//! To acquire Teensy 4.0 pins, call [`t40::into_pins`](t40/fn.into_pins.html) and provide all
+//! To acquire Teensy 4.0 pins, call `t40::into_pins` and provide all
 //! of the processor pads:
 //!
 //! ```
@@ -26,10 +26,7 @@
 //!
 //! # Teensy 4.1
 //!
-//! The approach is the same as the Teensy 4.0, replacing `t40` with `t41`.
-//!
-//! To acquire Teensy 4.1 pins, call [`t41::into_pins`](t41/fn.into_pins.html) and provide all
-//! of the processor pads:
+//! The approach is the same as the Teensy 4.0, replacing `t40` with `t41`:
 //!
 //! ```
 //! use teensy4_pins::t41;

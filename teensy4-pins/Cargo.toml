@@ -3,6 +3,7 @@ name = "teensy4-pins"
 version = "0.1.0"
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
 edition = "2018"
+readme = "README.md"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mciantyre/teensy4-rs"
 description = """
