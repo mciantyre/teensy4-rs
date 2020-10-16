@@ -2,6 +2,12 @@
 
 <sup>2020-01-03</sup>
 
+**(2020-10-16) This documentation contains outdated information. It is not maintained.**
+
+We keep it for reference. See the project's README for getting started documentation.
+
+---
+
 In this introductory post, we explore how we can write an embedded Rust application for the Teensy 4. The [Teensy 4](https://www.pjrc.com/store/teensy40.html) is an easy-to-use, low-cost development board. Users typically develop applications for the Teensy 4 using Arduino-compatible libraries and tools. However, in this post, we explore how we might write Teensy 4 applications using just Rust. We'll take advantage of the [`teensy4-rs` project][teensy4-rs-repo], a suite of embedded Rust crates that support the Teensy 4, to simplify system bring-up and peripheral access.
 
 By the end of this guide, we will implement the "hello world" of embedded systems: turning on an LED. Specifically, we will prepare a development environment, write a few lines of Rust code that will turn on your Teensy 4's LED, then build and run the application on your Teensy 4. Along the way, we will talk about some of the Rust dependencies that make this possible.

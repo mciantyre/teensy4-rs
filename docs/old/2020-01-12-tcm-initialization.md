@@ -1,5 +1,11 @@
 # Rust initialization code: it better be inlined
 
+**(2020-10-16) This documentation is not maintained.**
+
+The document describes findings which are still valid, and it's kept for reference. However, it may not represent the project's current approach for initialization code. See the project's current documentation and code for more information.
+
+---
+
 "It works in *release* mode, but not in *debug* mode," I repeated and repeated, staring at the disassembly from a small Rust program. The binary boots the Teensy 4 by preparing the tightly-coupled memory (TCM) regions, setting up the interrupt table, and twiddling some floating-point unit registers before jumping to `main()` and enabling the LED. Optimizations make everything work; the output code looks great. But, so does the unoptimized version; there's less inlined code, but that should be ok, right?
 
 It wasn't OK. Code placement matters, and it better be inlined if it needs to configure TCM.
