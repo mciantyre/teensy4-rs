@@ -9,6 +9,16 @@ description = """
 Rust-based BSP for the Teensy 4.
 Part of the teensy4-rs project.
 """
+include = [
+    "bin/**/*.h",
+    "bin/**/*.c",
+    "bin/libt4start.a",
+    "bin/libt4usb.a",
+    "bin/Makefile",
+    "src/*",
+    "build.rs",
+    "t4link.x",
+]
 
 [dependencies]
 cortex-m = "0.6.2"
@@ -18,8 +28,9 @@ version = "0.6.12"
 optional = true
 features = ["device"]
 
-[target.thumbv7em-none-eabihf.dependencies]
-teensy4-fcb = { path = "teensy4-fcb" }
+[target.thumbv7em-none-eabihf.dependencies.teensy4-fcb]
+path = "teensy4-fcb"
+version = "0.2"
 
 [dependencies.imxrt-hal]
 version = "0.4.0"
