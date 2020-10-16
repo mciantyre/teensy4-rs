@@ -116,17 +116,21 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! System tick and delay support</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! If we&#39;re compiling this module, it&#39;s because the `&quot;systick&quot;` feature</span>
 <span class="doccomment">//! is enabled.</span>
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">exception</span>;
 
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
 <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">systick_millis_count</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">exception</span>]</span>
 <span class="kw">fn</span> <span class="ident">SysTick</span>() {
     <span class="kw">unsafe</span> {

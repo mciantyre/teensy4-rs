@@ -141,34 +141,6 @@
 <span id="138">138</span>
 <span id="139">139</span>
 <span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
-<span id="168">168</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and</span>
 <span class="doccomment">//! 4.1 boards.</span>
@@ -177,115 +149,86 @@
 <span class="doccomment">//! hardware abstraction layer. See the HAL&#39;s documentation for more information on creating</span>
 <span class="doccomment">//! and using peripherals.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! The BSP restricts the processor pads that are available, since the physical Teensy</span>
-<span class="doccomment">//! only has a few user-accessible pins. From these pins, you may construct peripherals</span>
-<span class="doccomment">//! and perform I/O. The two Teensy 4 boards support many of the same pins; see the</span>
-<span class="doccomment">//! [`common`](common/index.html) module for those similar pins. To construct Teensy 4.0</span>
-<span class="doccomment">//! or 4.1 pins, see the corresponding `into_pins` function in each of the corresponding modules.</span>
+<span class="doccomment">//! # Runtime</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! The BSP assumes some facilities of the processor, both which are required for the</span>
-<span class="doccomment">//! USB stack. Each are controllable through feature-flags. Each feature is on by default.</span>
+<span class="doccomment">//! The `teensy4-bsp` use the [`cortex-m-rt`] crate to provide a runtime. Enable runtime support using</span>
+<span class="doccomment">//! the `&quot;rt&quot;` feature. To properly link your program, you **must link with the `t4link.x` linker</span>
+<span class="doccomment">//! script**.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! - it registers the `SysTick` exception handler, and configures</span>
-<span class="doccomment">//!   SYSTICK for a 1ms interrupt. Enabled with the `&quot;systick&quot;` feature,</span>
-<span class="doccomment">//!   which is on by default.</span>
-<span class="doccomment">//! - it registers the `USB_OTG1` interrupt, and uses the USB1</span>
-<span class="doccomment">//!   peripheral for logging. Enabled with the `&quot;usb-logging&quot;` feature,</span>
-<span class="doccomment">//!   which is on by default. Depends on the `&quot;systick&quot;` feature.</span>
+<span class="doccomment">//! [`cortex-m-rt`]: https://crates.io/crates/cortex-m-rt</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! If a user also registers a `SysTick` or `USB_OTG1` handler, it may</span>
-<span class="doccomment">//! result in a duplicate definition error.</span>
+<span class="doccomment">//! The `teensy4-bsp` emits a `cortex-m-rt`-compatible linker script. The layout supports the i.MX RT&#39;s boot requirements</span>
+<span class="doccomment">//! and advanced memory features. Specifically, the layout includes the image vector table (IVT) and boot data</span>
+<span class="doccomment">//! that&#39;s necessary for i.MX RT processors. Additionally, the layout specifies the FlexSPI configuration block&#39;s (FCB)</span>
+<span class="doccomment">//! FLASH location. Finally, the linker script places all instructions in ITCM, and all data in DTCM.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! # Re-exports</span>
+<span class="doccomment">//! The `teensy4-bsp` provides its own reset hander. The custom reset handler</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! The BSP re-exports the following:</span>
+<span class="doccomment">//! - initalizes TCM regions</span>
+<span class="doccomment">//! - copies instructions into ITCM</span>
+<span class="doccomment">//! - copies the vector table into DTCM, and sets VTOR</span>
+<span class="doccomment">//! - set&#39;s the CCM&#39;s low-power setting</span>
+<span class="doccomment">//! - prepares memory caches</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! - the `teensy4-rt` crate, as `rt`</span>
-<span class="doccomment">//! - the `imxrt-hal` crate, as `hal`</span>
+<span class="doccomment">//! The reset handler then calls the `cortex-m-rt` entrypoint to finish memory initialization and invoke your program&#39;s</span>
+<span class="doccomment">//! `main()`.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! See the accompanying documentation of each crate for more</span>
-<span class="doccomment">//! information.</span>
+<span class="doccomment">//! # Features</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! For simplicity, there may be other choice APIs from either crate that</span>
-<span class="doccomment">//! are re-exported in the BSP namespace.</span>
+<span class="doccomment">//! The `teensy4-bsp` supports these features:</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Although it&#39;s not exported publicly, the BSP crate links in the</span>
-<span class="doccomment">//! `teensy4-fcb` crate, which provides a Firmware Configuration Block (FCB)</span>
-<span class="doccomment">//! specific to the Teensy 4. See the `teensy4-fcb` crate for details</span>
-<span class="doccomment">//! on FCBs.</span>
+<span class="doccomment">//! | Flag            |         Description                                                   | Default? |</span>
+<span class="doccomment">//! | --------------- | --------------------------------------------------------------------- | -------- |</span>
+<span class="doccomment">//! | `&quot;systick&quot;`     | Registers a SYSTICK exception handler that&#39;s called every millisecond | ✓        |</span>
+<span class="doccomment">//! | `&quot;usb-logging&quot;` | Adds support for logging over USB with the `log` crate                | ✓        |</span>
+<span class="doccomment">//! | `&quot;rt&quot;`          | Adds runtime support using `cortex-m-rt`                              |          |</span>
+<span class="doccomment">//! | `&quot;rtic&quot;`        | Adds support for using BSP peripherals with RTIC                      |          |</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Notes:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! - `&quot;usb-logging&quot;` depends on `&quot;systick&quot;` due to a requirement in the Teensy 4&#39;s USB library</span>
+<span class="doccomment">//! - Enabling `&quot;rtic&quot;` and `&quot;systick&quot;` is not supported. RTIC may try to register a SYSTICK exception handler, which</span>
+<span class="doccomment">//!   conflicts with the BSP&#39;s definition. This means that you cannot use USB logging with RTIC</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Proper RTIC support requires that you disable the BSP&#39;s default features. You may combine `&quot;rtic&quot;` with `&quot;rt&quot;`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```toml</span>
+<span class="doccomment">//! [dependencies.teensy4-bsp]</span>
+<span class="doccomment">//! default-features = false</span>
+<span class="doccomment">//! features = [&quot;rtic&quot;,  &quot;rt&quot;]</span>
+<span class="doccomment">//! version = # ...</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Pins</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The BSP helps you convert all the i.MX RT processor pads into your Teensy 4&#39;s pins.</span>
+<span class="doccomment">//! From these pins, you may construct peripherals and perform I/O. The Teensy 4.0 and 4.1</span>
+<span class="doccomment">//! boards support many of the same pins; see the [`common`](common/index.html) module</span>
+<span class="doccomment">//! for those similar pins. To construct Teensy 4.0 or 4.1 pins, see the</span>
+<span class="doccomment">//! [`t40::into_pins`](t40/fn.into_pins.html) and [`t41::into_pins`](t41/fn.into_pins.html)</span>
+<span class="doccomment">//! for more information.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Examples</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Turn on a Teensy 4.0&#39;s LED:</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```no_run</span>
-<span class="doccomment">//! # #![feature(lang_items)]</span>
-<span class="doccomment">//! #![no_std]</span>
-<span class="doccomment">//! #![no_main]</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! extern crate panic_halt;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! use bsp::rt::entry;</span>
 <span class="doccomment">//! use cortex_m::asm::wfi;</span>
 <span class="doccomment">//! use teensy4_bsp as bsp;</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! use embedded_hal::digital::v2::OutputPin;</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! #[entry]</span>
-<span class="doccomment">//! fn main() -&gt; ! {</span>
-<span class="doccomment">//!     let peripherals = bsp::Peripherals::take().unwrap();</span>
-<span class="doccomment">//!     let pins = bsp::t40::into_pins(peripherals.iomuxc);</span>
-<span class="doccomment">//!     let mut led = bsp::configure_led(pins.p13);</span>
+<span class="doccomment">//! let peripherals = bsp::Peripherals::take().unwrap();</span>
+<span class="doccomment">//! let pins = bsp::t40::into_pins(peripherals.iomuxc);</span>
+<span class="doccomment">//! let mut led = bsp::configure_led(pins.p13);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//!     loop {</span>
-<span class="doccomment">//!         led.set_high().unwrap();</span>
-<span class="doccomment">//!         wfi();</span>
-<span class="doccomment">//!     }</span>
+<span class="doccomment">//! loop {</span>
+<span class="doccomment">//!     led.set_high().unwrap();</span>
+<span class="doccomment">//!     wfi();</span>
 <span class="doccomment">//! }</span>
-<span class="doccomment">//! # #[lang = &quot;eh_personality&quot;] extern fn eh_personality() {}</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! See the `teensy4-examples` crate for build-able, run-able</span>
-<span class="doccomment">//! examples. The examples utilize this BSP crate to blink LEDs,</span>
-<span class="doccomment">//! establish timers, and log data over USB.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Using RTIC</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! To develop Teensy 4 applications with the RTIC framework,</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! 1. disables the `teensy4-bsp`&#39;s default features</span>
-<span class="doccomment">//! 2. enable the BSP&#39;s `&quot;rtic&quot;` feature</span>
-<span class="doccomment">//! 3. patch the `cortex-m-rt` crate with the Teensy 4&#39;s special runtime, available in</span>
-<span class="doccomment">//!    the `teensy4-bsp`&#39;s repository.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! All three steps can be summarized by this `Cargo.toml` snippet:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [dependencies.teensy4-bsp]</span>
-<span class="doccomment">//! git = &quot;https://github.com/mciantyre/teensy4-rs&quot;</span>
-<span class="doccomment">//! branch = &quot;master&quot;</span>
-<span class="doccomment">//! default-features = false</span>
-<span class="doccomment">//! features = [&quot;rtic&quot;]</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [patch.crates-io.cortex-m-rt]</span>
-<span class="doccomment">//! git = &quot;https://github.com/mciantyre/teensy4-rs&quot;</span>
-<span class="doccomment">//! branch = &quot;master&quot;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! You need to disable the BSP&#39;s default features, which disables the `&quot;systick&quot;` feature,</span>
-<span class="doccomment">//! to enable RTIC&#39;s SYSTICK handler. This means that you cannot use the USB logger when</span>
-<span class="doccomment">//! developing RTIC applications. Consider using the [`imxrt-uart-log`](https://crates.io/crates/imxrt-uart-log)</span>
-<span class="doccomment">//! crate for an alternate logging implementation.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! You need to replace the typical `cortex-m-rt` runtime with our custom runtime. The patch</span>
-<span class="doccomment">//! above lets us replace RTIC&#39;s runtime crate with an API-compatible runtime.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## Notice of alpha status</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! We&#39;ve made some assumptions in this MVP BSP.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! - SYSTICK and delay implementation is very naive. Do not run for 49</span>
-<span class="doccomment">//!   continuous days, or risk a millisecond counter wrap-around.</span>
+<span class="doccomment">//! See more examples in the project&#39;s repository.</span>
 
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
@@ -298,6 +241,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">teensy4_pins</span>::<span class="ident">t40</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">teensy4_pins</span>::<span class="ident">t41</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span>
+<span class="kw">mod</span> <span class="ident">rt</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;systick&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">systick</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;usb-logging&quot;</span>)]</span>
@@ -313,7 +258,6 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rtic&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">hal</span>::<span class="ident">ral</span>::{<span class="ident">interrupt</span> <span class="kw">as</span> <span class="ident">Interrupt</span>, <span class="ident">NVIC_PRIO_BITS</span>};
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cortex_m_rt</span> <span class="kw">as</span> <span class="ident">rt</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">hal</span>::<span class="ident">Peripherals</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">imxrt_hal</span> <span class="kw">as</span> <span class="ident">hal</span>;
 

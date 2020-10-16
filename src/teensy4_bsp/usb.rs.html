@@ -273,6 +273,8 @@
 <span id="270">270</span>
 <span id="271">271</span>
 <span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Teensy 4 USB, taken from the original Teensy 4 C libraries.</span>
 <span class="doccomment">//!</span>
@@ -315,6 +317,7 @@
 <span class="doccomment">//! write!(writer, &quot;Hello world! 3 + 2 = {}&quot;, 5);</span>
 <span class="doccomment">//! ```</span>
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">interrupt</span>; <span class="comment">// bring in interrupt variants for #[interrupt] macro</span>
 <span class="kw">use</span> <span class="ident">core</span>::{
     <span class="ident">fmt</span>,
@@ -423,6 +426,7 @@
     <span class="ident">cortex_m</span>::<span class="ident">peripheral</span>::<span class="ident">NVIC</span>::<span class="ident">unmask</span>(<span class="kw">crate</span>::<span class="ident">interrupt</span>::<span class="ident">USB_OTG1</span>);
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span>
 <span class="attribute">#[<span class="kw">crate</span>::<span class="ident">rt</span>::<span class="ident">interrupt</span>]</span>
 <span class="kw">fn</span> <span class="ident">USB_OTG1</span>() {
     <span class="kw">unsafe</span> {

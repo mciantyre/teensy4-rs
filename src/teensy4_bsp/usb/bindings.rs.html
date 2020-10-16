@@ -72,6 +72,7 @@
 <span id="69">69</span>
 <span id="70">70</span>
 <span id="71">71</span>
+<span id="72">72</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! The Teensy USB modules, compiled for Rust.</span>
 <span class="doccomment">//!</span>
@@ -119,6 +120,7 @@
     <span class="doccomment">/// Initialize the USB module. Configures clocks, endpoints, and descriptors.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">usb_init</span>();
     <span class="doccomment">/// Runs the interrupt service routine.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span> <span class="comment">// Only used with the &quot;rt&quot; feature</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">isr</span>();
     <span class="doccomment">/// Flush the serial buffer</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">usb_serial_flush_output</span>();
