@@ -36,12 +36,16 @@ endif # INSTALL_DEPS != 0
 BSP_EXAMPLES := $(shell ls -1 examples/bsp/src/bin | xargs basename | cut -f 1 -d .)
 RTIC_EXAMPLES := $(shell ls -1 examples/rtic/src/bin | xargs basename | cut -f 1 -d .)
 
-.PHONY: all
-all:
+.PHONY: all bsp rtic
+all: bsp rtic
+
+bsp:
 	@cargo build --release --workspace
 	@for example in $(BSP_EXAMPLES);\
 		do rust-objcopy -O ihex target/thumbv7em-none-eabihf/release/$$example target/thumbv7em-none-eabihf/$$example.hex;\
 		done
+	
+rtic:
 	@cargo build --release --manifest-path examples/rtic/Cargo.toml
 	@for example in $(RTIC_EXAMPLES);\
 		do rust-objcopy -O ihex examples/rtic/target/thumbv7em-none-eabihf/release/$$example target/thumbv7em-none-eabihf/$$example.hex;\
