@@ -100,6 +100,9 @@ rt = ["cortex-m-rt", "imxrt-hal/rt"]
 [profile.release.build-override]
 opt-level = 0
 
+[patch.crates-io.imxrt-boot-gen]
+path = "../../imxrt-rs/boot-gen"
+
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
