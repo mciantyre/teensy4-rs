@@ -2,9 +2,11 @@
 
 A collection of crates for Rust development on the Teensy 4. Supports both the Teensy 4.0 and 4.1 boards.
 
-![Code Checks](https://github.com/mciantyre/teensy4-rs/workflows/Code%20Checks/badge.svg)
+[![Code Checks](https://github.com/mciantyre/teensy4-rs/workflows/Code%20Checks/badge.svg)](https://github.com/mciantyre/teensy4-rs/actions?query=workflow%3A%22Code+Checks%22)
+[![crates.io](https://img.shields.io/crates/v/teensy4-bsp)](https://crates.io/crates/teensy4-bsp)
+[![docs.rs](https://docs.rs/teensy4-bsp/badge.svg)](https://docs.rs/teensy4-bsp/)
 
-#### [API Docs (`master` branch)](https://mciantyre.github.io/teensy4-rs/)
+#### [API Docs (`master`)](https://mciantyre.github.io/teensy4-rs/)
 
 ## Dependencies
 
