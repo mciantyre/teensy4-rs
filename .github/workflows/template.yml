@@ -35,7 +35,7 @@ jobs:
           version: latest
           use-tool-cache: true
       - name: Generate the template
-        run: cargo generate --git https://github.com/mciantyre/teensy4-rs-template --name krate
+        run: cargo generate --git https://github.com/mciantyre/teensy4-rs-template --name krate --branch ci
       # https://stackoverflow.com/questions/58033366/how-to-get-current-branch-within-github-actions
       - name: Extract branch name
         shell: bash
