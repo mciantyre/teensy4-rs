@@ -33,7 +33,7 @@ path = "teensy4-fcb"
 version = "0.2"
 
 [dependencies.imxrt-hal]
-version = "0.4.0"
+version = "0.4.2"
 features = ["imxrt1062"]
 
 [dependencies.teensy4-pins]
@@ -89,15 +89,6 @@ rt = ["cortex-m-rt", "imxrt-hal/rt"]
 # Helps with build times.
 [profile.release.build-override]
 opt-level = 0
-
-# Temporary patch for testing SRTC feature
-[patch.crates-io.imxrt-hal]
-git = "https://github.com/imxrt-rs/imxrt-rs"
-rev = "a85b279"
-
-[patch.crates-io.imxrt-iomuxc]
-git = "https://github.com/imxrt-rs/imxrt-rs"
-rev = "a85b279"
 
 [package.metadata.docs.rs]
 all-features = true
