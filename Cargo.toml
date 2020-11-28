@@ -22,6 +22,16 @@ include = [
     "README.md",
     "LICENSE-*"
 ]
+categories = [
+    "embedded",
+    "hardware-support",
+    "no-std",
+]
+keywords = [
+    "arm",
+    "cortex-m",
+    "teensy4",
+]
 
 [dependencies]
 cortex-m = "0.6.2"
