@@ -29,6 +29,7 @@ PROVIDE(PendSV = DefaultHandler);
 PROVIDE(SysTick = DefaultHandler);
 PROVIDE(HardFault = HardFault_);
 PROVIDE(DefaultHandler = DefaultHandler_);
+PROVIDE(__pre_init = DefaultPreInit);
 
 SECTIONS
 {
@@ -48,11 +49,11 @@ SECTIONS
          * ------------------
          */
         LONG(0x402000D1);           /* Header, magic number */
-        LONG(__svectors);  /* Address of the vectors table */
+        LONG(__svectors);           /* Address of the vectors table */
         LONG(0x00000000);           /* RESERVED */
         LONG(0x00000000);           /* Device Configuration Data (unused) */
-        LONG(__boot_data);           /* Address to boot data */
-        LONG(__ivt);                 /* Self reference, required by boot ROM */
+        LONG(__boot_data);          /* Address to boot data */
+        LONG(__ivt);                /* Self reference, required by boot ROM */
         LONG(0x00000000);           /* Command Sequence File (unused) */
         LONG(0x00000000);           /* RESERVED */
         /* ---------
@@ -207,5 +208,3 @@ ERROR(cortex-m-rt): .bss is not 4-byte aligned");
 
 ASSERT(__stext % 4 == 0 && __etext % 4 == 0, "
 ERROR(cortex-m-rt): .text is not 4-byte aligned");
-
-ENTRY(_ivt);

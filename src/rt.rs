@@ -5,16 +5,15 @@ pub use cortex_m_rt::*;
 mod cache;
 mod nvic;
 
-/// System entrypoint
+/// System entrypoint, invoked by reset handler
 ///
 /// # Safety
 ///
 /// The function is unsafe since it directly modifies registers, and invokes
 /// other functions that do the same. It does not touch any memory that needs
 /// to first be initialized by cortex-m-rt.
-#[pre_init]
 #[no_mangle]
-unsafe fn pre_init() {
+unsafe extern "C" fn t4_init() {
     nvic::init();
     cache::init();
 
@@ -35,4 +34,9 @@ unsafe fn pre_init() {
     // code.
     const CCM_CLPCR: *mut u32 = 0x400F_C054 as *mut _;
     CCM_CLPCR.write_volatile(CCM_CLPCR.read_volatile() & !0b11);
+
+    extern "C" {
+        fn Reset();
+    }
+    Reset(); // cortex-m-rt entrypoint
 }
