@@ -1,9 +1,17 @@
-//! Rust entry point
+//! Runtime support
+//!
+//! The useful bits are written in assembly. See `start.s` for the
+//! reset handler implementation. The reset handler eventually calls
+//! `t4_init()`, which finishes setup, and calls the `cortex-m-rt`
+//! `Reset()` handler.
+//!
+//! Code that's in this module is running before `.data` is initialized,
+//! and before `.bss` is zeroed. This code should only touch ARM and
+//! peripheral memory.
 
 pub use cortex_m_rt::*;
 
 mod cache;
-mod nvic;
 
 /// System entrypoint, invoked by reset handler
 ///
@@ -14,7 +22,6 @@ mod nvic;
 /// to first be initialized by cortex-m-rt.
 #[no_mangle]
 unsafe extern "C" fn t4_init() {
-    nvic::init();
     cache::init();
 
     // Remain in 'run' when transitioning to low power mode.
