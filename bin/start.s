@@ -62,7 +62,7 @@ __start:
     bl t4_init
 
 .equ NUM_VECTORS, 16 + 158
-.section .vector_table.ram, "adw"
+.section .vector_table.ram, "aw"
 .align 10
 __svectors:
 .skip 4 * NUM_VECTORS
