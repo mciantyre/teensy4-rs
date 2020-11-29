@@ -43,13 +43,28 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="doccomment">//! Rust entry point</span>
+<span class="doccomment">//! Runtime support</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The useful bits are written in assembly. See `start.s` for the</span>
+<span class="doccomment">//! reset handler implementation. The reset handler eventually calls</span>
+<span class="doccomment">//! `t4_init()`, which finishes setup, and calls the `cortex-m-rt`</span>
+<span class="doccomment">//! `Reset()` handler.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Code that&#39;s in this module is running before `.data` is initialized,</span>
+<span class="doccomment">//! and before `.bss` is zeroed. This code should only touch ARM and</span>
+<span class="doccomment">//! peripheral memory.</span>
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cortex_m_rt</span>::<span class="kw-2">*</span>;
 
 <span class="kw">mod</span> <span class="ident">cache</span>;
-<span class="kw">mod</span> <span class="ident">nvic</span>;
 
 <span class="doccomment">/// System entrypoint, invoked by reset handler</span>
 <span class="doccomment">///</span>
@@ -60,7 +75,6 @@
 <span class="doccomment">/// to first be initialized by cortex-m-rt.</span>
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">t4_init</span>() {
-    <span class="ident">nvic</span>::<span class="ident">init</span>();
     <span class="ident">cache</span>::<span class="ident">init</span>();
 
     <span class="comment">// Remain in &#39;run&#39; when transitioning to low power mode.</span>
