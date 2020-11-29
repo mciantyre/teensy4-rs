@@ -49,7 +49,7 @@ SECTIONS
          * ------------------
          */
         LONG(0x402000D1);           /* Header, magic number */
-        LONG(__svectors);           /* Address of the vectors table */
+        LONG(__sivectors);           /* Address of the vectors table */
         LONG(0x00000000);           /* RESERVED */
         LONG(0x00000000);           /* Device Configuration Data (unused) */
         LONG(__boot_data);          /* Address to boot data */
@@ -80,7 +80,7 @@ SECTIONS
     /* ### Vector table */
     .vector_table : ALIGN(1024)
     {
-        __svectors = .;
+        __sivectors = .;
         /* Initial Stack Pointer (SP) value */
         LONG(__stack_start);
 

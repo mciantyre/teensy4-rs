@@ -41,7 +41,29 @@ __start:
     b 0b
 1:
     # At this point, all text is in ITCM.
-    # This branch, and all calls, will find
-    # executable code. t4_init is implemented
-    # in Rust.
+
+    # Copy vector table into RAM
+    # --------------------------
+
+    ldr r0, =__svectors
+    ldr r1, =__evectors
+    ldr r2, =__sivectors
+    ldr r3, =0xE000ED08             @ SCB_VTOR address
+    str r0, [r3]                    @ *SCB_VTOR = (uint32_t)&__svectors
+2:
+    cmp r1, r0
+    beq 3f
+    ldm r2!, {r3-r5}                @ NUM_VECTORS % 3 == 0
+    stm r0!, {r3-r5}
+    b 2b
+3:
+    # Call into Rust, and finish the rest of the
+    # Teensy 4 initialization.
     bl t4_init
+
+.equ NUM_VECTORS, 16 + 158
+.section .vector_table.ram, "adw"
+.align 10
+__svectors:
+.skip 4 * NUM_VECTORS
+__evectors:
