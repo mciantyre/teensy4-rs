@@ -71,6 +71,7 @@ panic-halt = "0.2.0"
 members = [
     "examples/bsp",
     "teensy4-fcb",
+    "teensy4-panic",
     "teensy4-pins",
 ]
 

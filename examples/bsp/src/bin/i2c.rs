@@ -17,7 +17,7 @@
 #![no_std]
 #![no_main]
 
-extern crate panic_halt;
+use teensy4_panic as _;
 
 use bsp::hal::i2c::ClockSpeed;
 use embedded_hal::blocking::i2c;
