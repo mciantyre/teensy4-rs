@@ -3,7 +3,8 @@
 //! The USB stack provides a [`log`] implementation for logging over USB
 //!
 //! This is `Serial.println()` in Rust. Use the macros of the
-//! [`log`] crate to write data over USB.
+//! [`log`] crate to write data over USB. Or, acquire a raw [`Reader`]
+//! and [`Writer`] to perform your own USB I/O.
 //!
 //! [`log`]: https://crates.io/crates/log
 //!
@@ -131,6 +132,7 @@ pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> 
     Ok(Reader(core::marker::PhantomData))
 }
 
+/// Splits the USB stack into reading and writing halves, and returns both halves
 pub fn split(_: &crate::SysTick) -> Result<(Reader, Writer), Error> {
     let taken = TAKEN.swap(true, Ordering::SeqCst);
     if taken {
