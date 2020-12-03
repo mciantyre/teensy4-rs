@@ -13,6 +13,20 @@ extern crate panic_halt;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
 
+/// Specify (optional) logging filters
+///
+/// The "usb" filter matches the name of this example.
+/// If you copy and paste this example somewhere else,
+/// consider updating the filter, or removing the filter
+/// entirely.
+///
+/// See the `LoggingConfig` documentation for more information.
+const LOG_FILTERS: &[bsp::usb::Filter] = &[
+    // +------------- Module name to include in log messages
+    // v     v------- Maximum log level (subject to the statically-defined max level)
+    ("usb", None),
+];
+
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
@@ -22,7 +36,7 @@ fn main() -> ! {
     let mut usb_reader = bsp::usb::init(
         &systick,
         bsp::usb::LoggingConfig {
-            filters: &[("usb", None)],
+            filters: LOG_FILTERS,
             ..Default::default()
         },
     )
