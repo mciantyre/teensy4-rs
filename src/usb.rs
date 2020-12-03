@@ -46,6 +46,10 @@ use core::{
     sync::atomic::{AtomicBool, Ordering},
 };
 mod bindings;
+mod filters;
+
+pub use filters::Filter;
+use filters::Filters;
 
 /// Logging configuration
 ///
@@ -69,7 +73,7 @@ pub struct LoggingConfig {
     /// If set to an empty slice (default), the logger performs no
     /// filtering. Otherwise, we filter the specified targets by
     /// the accompanying log level. If there is no level, we default
-    pub filters: &'static [(&'static str, Option<::log::LevelFilter>)],
+    pub filters: &'static [Filter],
 }
 
 impl Default for LoggingConfig {
@@ -119,7 +123,7 @@ pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> 
     }
     unsafe {
         LOGGER.enabled = true;
-        LOGGER.filters = config.filters;
+        LOGGER.filters = Filters::new(config.filters);
 
         ::log::set_logger(&LOGGER).map(|_| ::log::set_max_level(config.max_level))?;
         start();
@@ -161,39 +165,19 @@ struct Logger {
     enabled: bool,
     /// A collection of targets that we are expected
     /// to filter. If this is empty, we allow everything
-    filters: &'static [(&'static str, Option<::log::LevelFilter>)],
-}
-
-impl Logger {
-    /// Returns true if the target is in the filter, else false if the target is
-    /// not in the list of kept targets. If the filter collection is empty, return
-    /// true.
-    fn filtered(&self, metadata: &::log::Metadata) -> bool {
-        if self.filters.is_empty() {
-            true
-        } else if let Some(idx) = self
-            .filters
-            .iter()
-            .position(|&(target, _)| target == metadata.target())
-        {
-            let (_, lvl) = self.filters[idx];
-            lvl.is_none() || lvl.filter(|lvl| metadata.level() <= *lvl).is_some()
-        } else {
-            false
-        }
-    }
+    filters: Filters,
 }
 
 static mut LOGGER: Logger = Logger {
     enabled: false,
-    filters: &[],
+    filters: Filters::empty(),
 };
 
 impl ::log::Log for Logger {
     fn enabled(&self, metadata: &::log::Metadata) -> bool {
         self.enabled // We're enabled
             && metadata.level() <= ::log::max_level() // The log level is appropriate
-            && self.filtered(metadata) // The target is in the filter list
+            && self.filters.is_enabled(metadata) // The target is in the filter list
     }
 
     fn log(&self, record: &::log::Record) {
