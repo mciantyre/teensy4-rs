@@ -7,7 +7,7 @@ readme = "README.md"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mciantyre/teensy4-rs"
 description = """
-Panic handler for Teensy 4 systems.
+Panic handler for the Teensy 4.
 Part of the teensy4-rs project.
 """
 categories = [
