@@ -35,7 +35,7 @@
 //! We define the attributes in the build script, specifing the
 //! macro values in the command-line compiler invocation.
 
-#[link(name = "t4usb")]
+#[cfg_attr(target_arch = "arm", link(name = "t4usb"))]
 extern "C" {
     /// Initialize the USB PLL and clocks.
     ///
