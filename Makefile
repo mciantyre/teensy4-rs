@@ -70,7 +70,7 @@ clean:
 # still work.
 .PHONY: test
 test:
-	@cargo +nightly test --lib --tests --target $(HOST) --no-default-features --features systick
+	@cargo +nightly test --lib --tests --target $(HOST)
 	@cargo +nightly test --doc --target $(HOST) --all-features
 
 	@cargo +nightly test --manifest-path teensy4-pins/Cargo.toml --lib --tests --target $(HOST) --all-features
