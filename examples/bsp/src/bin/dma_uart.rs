@@ -127,9 +127,7 @@ fn main() -> ! {
         let mut rx_buffer = match free(|cs| RX_BUFFER.borrow(cs).borrow_mut().take()) {
             None => {
                 log::error!("No receive buffer!");
-                loop {
-                    core::sync::atomic::spin_loop_hint();
-                }
+                panic!();
             }
             Some(rx_buffer) => rx_buffer,
         };
@@ -139,9 +137,7 @@ fn main() -> ! {
         let res = dma_uart.start_receive(rx_buffer);
         if let Err(err) = res {
             log::error!("Error scheduling DMA receive: {:?}", err);
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
 
         loop {
@@ -162,9 +158,7 @@ fn main() -> ! {
                 let mut tx_buffer = match free(|cs| TX_BUFFER.borrow(cs).borrow_mut().take()) {
                     None => {
                         log::error!("No transfer buffer!");
-                        loop {
-                            core::sync::atomic::spin_loop_hint();
-                        }
+                        panic!();
                     }
                     Some(tx_buffer) => tx_buffer,
                 };
@@ -174,9 +168,7 @@ fn main() -> ! {
                 let res = dma_uart.start_transfer(tx_buffer);
                 if let Err(err) = res {
                     log::warn!("Error scheduling DMA transfer: {:?}", err);
-                    loop {
-                        core::sync::atomic::spin_loop_hint();
-                    }
+                    panic!();
                 }
             } else if TX_READY.load(Ordering::Acquire) {
                 continue 'start;

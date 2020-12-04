@@ -106,9 +106,7 @@ fn prepare_transfer(spi: &mut SpiDma) {
         if let dma::Error::Setup(es) = err {
             log::error!("{}", es);
         }
-        loop {
-            core::sync::atomic::spin_loop_hint();
-        }
+        panic!();
     }
 
     if let Err((_, err)) = spi.start_transfer(tx_buffer) {
@@ -117,9 +115,7 @@ fn prepare_transfer(spi: &mut SpiDma) {
             log::error!("{}", es);
         }
         spi.receive_cancel();
-        loop {
-            core::sync::atomic::spin_loop_hint();
-        }
+        panic!();
     }
 }
 
@@ -135,9 +131,7 @@ fn take_buffers() -> (TxBuffer, RxBuffer) {
             tx_buffer.is_none(),
             rx_buffer.is_none()
         );
-        loop {
-            core::sync::atomic::spin_loop_hint();
-        }
+        panic!();
     }
 
     (tx_buffer.unwrap(), rx_buffer.unwrap())
@@ -206,9 +200,7 @@ fn main() -> ! {
                 SPI_BAUD_RATE_HZ,
                 err
             );
-            loop {
-                core::sync::atomic::spin_loop_hint()
-            }
+            panic!();
         }
     };
 
@@ -249,17 +241,13 @@ fn main() -> ! {
         };
         if tx_buffer_mut(prep_tx).is_none() {
             log::error!("Cannot prepare transfer buffer");
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
 
         let prep_rx = |rx: &mut dma::Linear<u16>| rx.set_transfer_len(1);
         if rx_buffer_mut(prep_rx).is_none() {
             log::error!("Cannot prepare receive buffer");
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
         systick.delay(500);
 
@@ -278,9 +266,7 @@ fn main() -> ! {
                     }
                 } else {
                     log::error!("RX buffer was inaccessible!");
-                    loop {
-                        core::sync::atomic::spin_loop_hint();
-                    }
+                    panic!();
                 }
             }
         }
@@ -298,9 +284,7 @@ fn main() -> ! {
         };
         if tx_buffer_mut(set_tx_buf).is_none() {
             log::error!("Unable to modify transfer buffer!");
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
 
         let set_rx_buf = |rx: &mut dma::Linear<u16>| {
@@ -308,9 +292,7 @@ fn main() -> ! {
         };
         if rx_buffer_mut(set_rx_buf).is_none() {
             log::error!("Unable to modify receive buffer!");
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
 
         systick.delay(500);
