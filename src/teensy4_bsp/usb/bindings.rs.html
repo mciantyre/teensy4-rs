@@ -111,7 +111,7 @@
 <span class="doccomment">//! We define the attributes in the build script, specifing the</span>
 <span class="doccomment">//! macro values in the command-line compiler invocation.</span>
 
-<span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;t4usb&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;t4usb&quot;</span>))]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="doccomment">/// Initialize the USB PLL and clocks.</span>
     <span class="doccomment">///</span>
