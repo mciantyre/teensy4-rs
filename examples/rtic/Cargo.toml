@@ -58,4 +58,5 @@ opt-level = 0
 # BSP feature separation.
 
 [patch.crates-io.imxrt-boot-gen]
-path = "../../../../imxrt-rs/boot-gen"
+git = "https://github.com/imxrt-rs/imxrt-boot-gen"
+branch = "const-gen"

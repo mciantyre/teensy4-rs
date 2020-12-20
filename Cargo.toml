@@ -101,7 +101,8 @@ rt = ["cortex-m-rt", "imxrt-hal/rt"]
 opt-level = 0
 
 [patch.crates-io.imxrt-boot-gen]
-path = "../../imxrt-rs/boot-gen"
+git = "https://github.com/imxrt-rs/imxrt-boot-gen"
+branch = "const-gen"
 
 [package.metadata.docs.rs]
 all-features = true
