@@ -1,7 +1,7 @@
 //! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and
 //! 4.1 boards.
 //!
-//! Peripherals are re-exported from the [`imxrt-rs`](imxrt_hal)
+//! Peripherals are re-exported from the [`imxrt-hal`](imxrt_hal)
 //! hardware abstraction layer. See the HAL's documentation for more information on creating
 //! and using peripherals.
 //!
