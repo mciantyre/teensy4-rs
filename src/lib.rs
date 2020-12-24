@@ -1,7 +1,7 @@
 //! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and
 //! 4.1 boards.
 //!
-//! Peripherals are re-exported from the [`imxrt-rs`](https://docs.rs/imxrt-hal/latest/imxrt_hal/)
+//! Peripherals are re-exported from the [`imxrt-rs`](imxrt_hal)
 //! hardware abstraction layer. See the HAL's documentation for more information on creating
 //! and using peripherals.
 //!
@@ -59,9 +59,9 @@
 //!
 //! The BSP helps you convert all the i.MX RT processor pads into your Teensy 4's pins.
 //! From these pins, you may construct peripherals and perform I/O. The Teensy 4.0 and 4.1
-//! boards support many of the same pins; see the [`common`](common/index.html) module
+//! boards support many of the same pins; see the [`common`] module
 //! for those similar pins. To construct Teensy 4.0 or 4.1 pins, see the
-//! [`t40::into_pins`](t40/fn.into_pins.html) and [`t41::into_pins`](t41/fn.into_pins.html)
+//! [`t40::into_pins`](t40::into_pins()) and [`t41::into_pins`](t41::into_pins())
 //! for more information.
 //!
 //! # Examples
@@ -119,7 +119,7 @@ pub use imxrt_hal as hal;
 
 /// The LED
 ///
-/// See [`configure_led`](fn.configure_led.html) to prepare the LED.
+/// See [`configure_led`](configure_led()) to prepare the LED.
 pub type LED = hal::gpio::GPIO<common::P13, hal::gpio::Output>;
 
 /// Configure the board's LED

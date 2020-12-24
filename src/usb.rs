@@ -56,12 +56,12 @@ use filters::Filters;
 ///
 /// Allows a user to specify certain configurations of the logging
 /// system. By default, the max log level is the log level set at
-/// compile time. See the [compile time filters](https://docs.rs/log/0.4.8/log/#compile-time-filters)
+/// compile time. See the [compile time filters](log#compile-time-filters)
 /// section for more information. We also enable logging for all targets.
 /// Set the `filters` collection to specify log targets of interest.
 ///
 /// If the default configuration is good for you, use `Default::default()`
-/// as the argument to [`init`](fn.init.html).
+/// as the argument to [`init`](init()).
 pub struct LoggingConfig {
     /// The max log level
     ///
@@ -110,12 +110,12 @@ static TAKEN: AtomicBool = AtomicBool::new(false);
 /// To select the default logger behavior, specify `Default::default()` as the
 /// argument for `config`.
 ///
-/// Before configuring the USB logger, you'll need to configure [`SysTick`](struct.SysTick.html).
+/// Before configuring the USB logger, you'll need to configure [`SysTick`].
 /// Once you've configured `SysTick`, supply its reference here.
 ///
 /// This may only be called once. If this is not called, we do not initialize the logger,
 /// and log messages will not be written to the USB host. Returns a
-/// [`SetLoggerError`](struct.SetLoggerError.html) if the logging subsystem already has a
+/// [`SetLoggerError`] if the logging subsystem already has a
 /// logger.
 pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> {
     let taken = TAKEN.swap(true, Ordering::SeqCst);
@@ -203,7 +203,7 @@ impl ::log::Log for Logger {
 
 /// A type that can send data to a USB serial host
 ///
-/// Use [`Writer::write`](struct.Writer.html#method.write) to write byte
+/// Use [`Writer::write`](Writer::write()) to write byte
 /// buffers. Or, use the standard `write!()` macro to serialize data to
 /// the writer.
 pub struct Writer(core::marker::PhantomData<*const ()>);
