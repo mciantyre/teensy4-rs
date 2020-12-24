@@ -11,7 +11,7 @@
 //! teensy4-fcb = "0.2"
 //! ```
 //!
-//! Properly place the FCB in your program's memory. See the [`FLEXSPI_CONFIGURATION_BLOCK`]
+//! Properly place the FCB in your program's memory. See the `FLEXSPI_CONFIGURATION_BLOCK`
 //! declaration below, or the [`imxrt-boot-gen`] documentation, for more information on
 //! how you could refer to the FCB.
 //!
@@ -28,7 +28,7 @@
 //!
 //! to reference the FCB in either your library or binary.
 //!
-//! [`imxrt-boot-gen`]: imxrt_boot_gen
+//! [`imxrt-boot-gen`]: https://docs.rs/imxrt-boot-gen/latest/imxrt_boot_gen/
 
 #![no_std]
 

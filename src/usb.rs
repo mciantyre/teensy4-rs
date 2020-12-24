@@ -110,12 +110,12 @@ static TAKEN: AtomicBool = AtomicBool::new(false);
 /// To select the default logger behavior, specify `Default::default()` as the
 /// argument for `config`.
 ///
-/// Before configuring the USB logger, you'll need to configure [`SysTick`].
+/// Before configuring the USB logger, you'll need to configure [`SysTick`](crate::SysTick).
 /// Once you've configured `SysTick`, supply its reference here.
 ///
 /// This may only be called once. If this is not called, we do not initialize the logger,
 /// and log messages will not be written to the USB host. Returns a
-/// [`SetLoggerError`] if the logging subsystem already has a
+/// [`Error::SetLogger`](Error::SetLogger) if the logging subsystem already has a
 /// logger.
 pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> {
     let taken = TAKEN.swap(true, Ordering::SeqCst);
