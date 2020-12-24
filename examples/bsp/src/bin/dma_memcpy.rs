@@ -6,7 +6,7 @@
 #![no_std]
 #![no_main]
 
-extern crate panic_halt;
+use teensy4_panic as _;
 
 use bsp::hal::dma;
 use core::iter::ExactSizeIterator;
@@ -47,9 +47,7 @@ fn main() -> ! {
         Ok(buffer) => buffer,
         Err(error) => {
             log::error!("Unable to create the transfer buffer: {:?}", error);
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
     };
 
@@ -57,9 +55,7 @@ fn main() -> ! {
         Ok(buffer) => buffer,
         Err(error) => {
             log::error!("Unable to create the receive buffer: {:?}", error);
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         }
     };
 
@@ -76,9 +72,7 @@ fn main() -> ! {
 
         if let Err(error) = memcpy.transfer(tx_buffer, rx_buffer) {
             log::error!("Unable to start memcpy: {:?}", error);
-            loop {
-                core::sync::atomic::spin_loop_hint();
-            }
+            panic!();
         } else {
             log::info!("Transfer started...");
         }
@@ -97,9 +91,7 @@ fn main() -> ! {
             }
             None => {
                 log::error!("Memcpy didn't give us back the buffers!");
-                loop {
-                    core::sync::atomic::spin_loop_hint();
-                }
+                panic!();
             }
         };
 

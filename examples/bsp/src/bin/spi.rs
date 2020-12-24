@@ -21,7 +21,7 @@
 #![no_std]
 #![no_main]
 
-extern crate panic_halt;
+use teensy4_panic as _;
 
 use cortex_m_rt::entry;
 use teensy4_bsp as bsp;
