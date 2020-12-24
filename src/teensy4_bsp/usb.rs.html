@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/usb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>usb.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../teensy4_bsp/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../teensy4_bsp/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -320,12 +320,12 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Allows a user to specify certain configurations of the logging</span>
 <span class="doccomment">/// system. By default, the max log level is the log level set at</span>
-<span class="doccomment">/// compile time. See the [compile time filters](https://docs.rs/log/0.4.8/log/#compile-time-filters)</span>
+<span class="doccomment">/// compile time. See the [compile time filters](log#compile-time-filters)</span>
 <span class="doccomment">/// section for more information. We also enable logging for all targets.</span>
 <span class="doccomment">/// Set the `filters` collection to specify log targets of interest.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If the default configuration is good for you, use `Default::default()`</span>
-<span class="doccomment">/// as the argument to [`init`](fn.init.html).</span>
+<span class="doccomment">/// as the argument to [`init`](init()).</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LoggingConfig</span> {
     <span class="doccomment">/// The max log level</span>
     <span class="doccomment">///</span>
@@ -374,12 +374,12 @@
 <span class="doccomment">/// To select the default logger behavior, specify `Default::default()` as the</span>
 <span class="doccomment">/// argument for `config`.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Before configuring the USB logger, you&#39;ll need to configure [`SysTick`](struct.SysTick.html).</span>
+<span class="doccomment">/// Before configuring the USB logger, you&#39;ll need to configure [`SysTick`](crate::SysTick).</span>
 <span class="doccomment">/// Once you&#39;ve configured `SysTick`, supply its reference here.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This may only be called once. If this is not called, we do not initialize the logger,</span>
 <span class="doccomment">/// and log messages will not be written to the USB host. Returns a</span>
-<span class="doccomment">/// [`SetLoggerError`](struct.SetLoggerError.html) if the logging subsystem already has a</span>
+<span class="doccomment">/// [`Error::SetLogger`](Error::SetLogger) if the logging subsystem already has a</span>
 <span class="doccomment">/// logger.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">SysTick</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Reader</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">taken</span> <span class="op">=</span> <span class="ident">TAKEN</span>.<span class="ident">swap</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>);
@@ -467,7 +467,7 @@
 
 <span class="doccomment">/// A type that can send data to a USB serial host</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Use [`Writer::write`](struct.Writer.html#method.write) to write byte</span>
+<span class="doccomment">/// Use [`Writer::write`](Writer::write()) to write byte</span>
 <span class="doccomment">/// buffers. Or, use the standard `write!()` macro to serialize data to</span>
 <span class="doccomment">/// the writer.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Writer</span>(<span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> ()<span class="op">&gt;</span>);
