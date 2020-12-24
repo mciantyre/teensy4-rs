@@ -2,8 +2,8 @@
 //!
 //! The Teensy 4.0 and 4.1 share many pins. This module provides
 //! the pins that are common across both boards. For pins that are unique to
-//! each board, and to acquire all of a board's pins, see the [`t40`](../t40/index.html)
-//! and [`t41`](../t41/index.html) modules.
+//! each board, and to acquire all of a board's pins, see the [`t40`](super::t40)
+//! and [`t41`](super::t41) modules.
 //!
 //! ## Common pin table
 //!
@@ -14,7 +14,7 @@
 //! there are two other ways to identify which pads support which peripheral:
 //!
 //! - study the i.MX RT 1060 Reference Manual. This is the authority on pad configuration.
-//! - study the trait implementations for the pad. Select a pin type alias, like [`P0`](type.P0.html),
+//! - study the trait implementations for the pad. Select a pin type alias, like [`P0`],
 //!   and click-through to its pad documentation (`AD_B0_03`). Notice the listing of `imxrt-iomuxc`
 //!   trait implementations. This describes what kinds of functions the pin supports. The constraints
 //!   may be enforced by the HAL's APIs.

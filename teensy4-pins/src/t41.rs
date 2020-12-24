@@ -1,7 +1,7 @@
 //! Teensy 4.1 specific APIs
 //!
-//! Use [`into_pins`](fn.into_pins.html) to constrain the processor pads into the pins available on the Teensy 4.1.
-//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](struct.Pins.html#method.new)
+//! Use [`into_pins`](into_pins()) to constrain the processor pads into the pins available on the Teensy 4.1.
+//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
 //! method to generate pins.
 //!
 //! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
@@ -40,13 +40,13 @@ pub type P41 = AD_B1_05;
 /// To get pin 13, the LED, index into the 13th element of this array:
 /// `erased_pins[13]`.
 ///
-/// Use [`Pins::erase`](struct.Pins.html#method.erase) to erase pin types.
+/// Use [`Pins::erase`](Pins::erase()) to erase pin types.
 pub type ErasedPins = [ErasedPad; 42];
 
 /// Teensy 4.1 pins
 ///
-/// See [`into_pins`](fn.into_pins.html) to safely constrain the processor's pads, and acquire
-/// Teensy 4.1 pins. Or, use [`new`](#method.new) to unsafely create pins.
+/// See [`into_pins`](into_pins()) to safely constrain the processor's pads, and acquire
+/// Teensy 4.1 pins. Or, use [`new`](Pins::new()) to unsafely create pins.
 pub struct Pins {
     /// Pin 0
     pub p0: P0,
@@ -195,7 +195,7 @@ impl Pins {
     ///
     /// - an existing handle to the `imxrt-iomuxc` pads,
     /// - another instance of `Pins` that was safely acquired
-    ///   using [`into_pins`](fn.into_pins.html).
+    ///   using [`into_pins`](into_pins()).
     pub const unsafe fn new() -> Self {
         into_pins(crate::iomuxc::Pads::new())
     }

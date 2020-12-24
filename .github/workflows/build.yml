@@ -105,3 +105,31 @@ jobs:
         with:
             command: check
             args: --verbose --no-default-features --features=${{ matrix.features }}
+
+  # Ensures that documentation links are valid
+  doclinks:
+    runs-on: ubuntu-latest
+    env:
+      RUSTDOCFLAGS: -D warnings
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: thumbv7em-none-eabihf
+        override: true
+    - name: Check teensy4-fcb doclinks
+      uses: actions-rs/cargo@v1
+      with:
+        command: rustdoc
+        args: --package teensy4-fcb
+    - name: Check teensy4-pins doclinks
+      uses: actions-rs/cargo@v1
+      with:
+        command: rustdoc
+        args: --package teensy4-pins
+    - name: Check teensy4-bsp doclinks
+      uses: actions-rs/cargo@v1
+      with:
+        command: rustdoc
+        args: --package teensy4-bsp

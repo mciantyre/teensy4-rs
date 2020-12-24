@@ -1,6 +1,7 @@
 status = [
     "clippy",
     "doc",
+    "doclinks",
     "features",
     "features (systick)",
     "features (systick,rt)",

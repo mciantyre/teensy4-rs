@@ -40,8 +40,8 @@
 //! # Safety
 //!
 //! The safe APIs expect to work on the only instance of the processor pads. If you don't have that
-//! available, or you need more flexibility, use the unsafe [`t40::Pin::new`](t40/struct.Pins.html#method.new)
-//! or [`t41::Pins::new`](t41/struct.Pins.html#method.new) constructor methods to create an instance
+//! available, or you need more flexibility, use the unsafe [`t40::Pin::new`](t40::Pins::new())
+//! or [`t41::Pins::new`](t41::Pins::new()) constructor methods to create an instance
 //! that may be aliasing another handle to the pads or pins.
 
 #![no_std]
