@@ -131,10 +131,3 @@ pub fn configure_led(pad: common::P13) -> LED {
     led.set_fast(true);
     led.output()
 }
-
-/// TODO(mciantyre) define a better yield
-#[no_mangle]
-fn r#yield() {
-    // 'yield' is a Rust keyword. But, it needs to be called 'yield' for the C USB stack
-    cortex_m::asm::delay(1024);
-}

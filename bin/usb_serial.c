@@ -42,7 +42,6 @@ void yield(void);
 //#if F_CPU >= 20000000
 
 uint32_t usb_cdc_line_coding[2];
-volatile uint32_t usb_cdc_line_rtsdtr_millis;
 volatile uint8_t usb_cdc_line_rtsdtr=0;
 volatile uint8_t usb_cdc_transmit_flush_timer=0;
 
@@ -279,8 +278,6 @@ int usb_serial_putchar(uint8_t c)
 {
 	return usb_serial_write(&c, 1);
 }
-
-extern volatile uint32_t systick_millis_count;
 
 static void timer_config(void (*callback)(void), uint32_t microseconds);
 static void timer_start_oneshot();

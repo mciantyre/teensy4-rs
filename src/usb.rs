@@ -232,7 +232,9 @@ impl fmt::Write for Writer {
         let mut at_linefeed = false;
         for line in string.split('\n') {
             if at_linefeed {
-                unsafe { bindings::serial_write("\r\n"); }
+                unsafe {
+                    bindings::serial_write("\r\n");
+                }
             }
             let bytes = line.as_bytes();
             if !bytes.is_empty() {

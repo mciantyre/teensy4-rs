@@ -5,8 +5,6 @@
 #include <string.h>
 #include "debug/printf.h"
 
-void delay(uint32_t);
-
 //#define LOG_SIZE  20
 //uint32_t transfer_log_head=0;
 //uint32_t transfer_log_count=0;
@@ -143,14 +141,12 @@ FLASHMEM void usb_init(void)
 		USBPHY1_CTRL_CLR = USBPHY_CTRL_SFTRST; // reset PHY
 		//USB1_USBSTS = USB1_USBSTS; // TODO: is this needed?
 		printf("USB reset took %d loops\n", count);
-		//delay(10);
 		//printf("\n");
 		//printf("USBPHY1_PWD=%08lX\n", USBPHY1_PWD);
 		//printf("USBPHY1_TX=%08lX\n", USBPHY1_TX);
 		//printf("USBPHY1_RX=%08lX\n", USBPHY1_RX);
 		//printf("USBPHY1_CTRL=%08lX\n", USBPHY1_CTRL);
 		//printf("USB1_USBMODE=%08lX\n", USB1_USBMODE);
-		delay(25);
 	}
 #endif
 	// Device Controller Initialization, page 3161
@@ -450,7 +446,6 @@ static void endpoint0_setup(uint64_t setupdata)
 		break;
 #if defined(CDC_STATUS_INTERFACE)
 	  case 0x2221: // CDC_SET_CONTROL_LINE_STATE
-		usb_cdc_line_rtsdtr_millis = systick_millis_count;
 		usb_cdc_line_rtsdtr = setup.wValue;
 		__attribute__((fallthrough));
 	  case 0x2321: // CDC_SEND_BREAK

@@ -6,34 +6,32 @@
 //! the initialization and I/O routines. The crate is
 //! intended for use in the `teensy4-bsp` Teensy 4 BSP.
 //!
-//! ## Notes on compilation
-//!
-//! The crate should compile, but it may not link without
-//! a few additional symbols. The symbols may include
-//!
-//! - `uint32_t systick_millis_count`, a counter representing
-//!   the SYSTICK
-//! - `void delay(uint32_t)`, a delay function based on the
-//!   SYSTICK counter
-//! - `void yield(void)`, which yields control
-//!
-//! Dependent crates are expected to implement these C functions and
-//! expose the memory.
-//!
 //! ## Notes on source-level changes
 //!
 //! We made minor changes to the C sources in order to compile without
 //! warnings. Changes included fixes for things like implicit switch/case
 //! fallthroughs, and unsigned / signed integer comparisons.
 //!
+//! We changed the usb_serial_write re-try behavior. Previously, the
+//! function would wait for space in the transfer buffer, then complete the
+//! write, or time out. In this implementation, we will allow a partial write.
+//! The caller is responsible for implementing any re-try behaviors to complete
+//! the write. This change let us remove the dependencies on symbols like
+//!
+//! - `systick_millis_count`
+//! - `delay(uint32_t)`
+//! - `yield()`
+//!
+//! which were used to track timeouts, and yield to the Teensyduino scheduler to
+//! do other things.
+//!
 //! We also made changes to include paths, in order to reduce the number
-//! of source files we introduced. Specifically, we removed
-//! instances of `#include "core_pins.h"`, which declared the `delay()`
-//! and `yield()` functions. We opted to declare these functions at the
-//! top of dependent source files. We also did not bring in the header
+//! of source files we introduced. We did not bring in the header
 //! that defined the `PROGMEM`, `FLASHMEM`, and `DMAMEM` attributes.
 //! We define the attributes in the build script, specifing the
 //! macro values in the command-line compiler invocation.
+//!
+//! Finally, we removed some C++ declarations and definitions.
 
 #[cfg_attr(target_arch = "arm", link(name = "t4usb"))]
 extern "C" {
