@@ -24,7 +24,7 @@ fn main() -> ! {
     let mut led: bsp::LED = bsp::configure_led(pins.p13);
     let mut buffer = [0; 256];
     loop {
-        let bytes_read = reader.read(&mut buffer);
+        let bytes_read = reader.read(&mut buffer).unwrap();
         if bytes_read > 0 {
             let bytes = &buffer[..bytes_read];
             match core::str::from_utf8(bytes) {
@@ -39,6 +39,7 @@ fn main() -> ! {
         }
 
         writeln!(writer, "Hello world! 3 + 2 = {}", 3 + 2).unwrap();
+        writer.flush().unwrap();
         led.toggle();
         systick.delay(5000);
     }

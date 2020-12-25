@@ -67,7 +67,7 @@ fn set_time_from_usb(reader: &mut usb::Reader, writer: &mut usb::Writer, rtc: &m
     writeln!(writer, "Send a message containing the current Unix time.").unwrap();
     let mut buffer = [0; 24]; // 20 char message + CR LF + an extra 2
     let (seconds, ns) = loop {
-        let count = reader.read(&mut buffer);
+        let count = reader.read(&mut buffer).unwrap();
         if count == 0 {
             continue;
         }

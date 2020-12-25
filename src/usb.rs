@@ -86,7 +86,7 @@ impl Default for LoggingConfig {
     }
 }
 
-/// Indicate an error when preparing the USB stack
+/// Indicate an error when preparing or using the USB stack
 #[derive(Debug)]
 pub enum Error {
     /// The error indicates that you've already set the logger, either from this
@@ -94,6 +94,8 @@ pub enum Error {
     SetLogger,
     /// The USB stack is already in use
     AlreadySet,
+    /// Arbitrary IO error
+    IO,
 }
 
 impl From<::log::SetLoggerError> for Error {
@@ -192,7 +194,7 @@ impl ::log::Log for Logger {
                 record.target(),
                 record.args()
             )
-            .expect("infallible");
+            .unwrap();
         }
     }
 
@@ -219,9 +221,28 @@ impl Writer {
     }
 
     /// Writes raw bytes to the USB serial host
-    pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> usize {
-        // TODO return a Result type
-        unsafe { bindings::serial_write(buffer).max(0_i32) as usize }
+    ///
+    /// `write` may return a size smaller than `buffer`. This indicates that
+    /// the driver could only write that many elements from the buffer. If it's
+    /// important that you write a complete message, you'll need to retry the
+    /// call with the rest of the data.
+    ///
+    /// If there was an error, the error is [`Error::IO`].
+    pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> Result<usize, Error> {
+        let res = unsafe { bindings::serial_write(buffer) };
+        if res < 0 {
+            Err(Error::IO)
+        } else {
+            Ok(res as usize)
+        }
+    }
+
+    /// Flush the written USB data
+    ///
+    /// If there was an error, the error variant is [`Error::IO`].
+    pub fn flush(&mut self) -> Result<(), Error> {
+        unsafe { bindings::usb_serial_flush_output() };
+        Ok(())
     }
 }
 
@@ -232,13 +253,19 @@ impl fmt::Write for Writer {
         let mut at_linefeed = false;
         for line in string.split('\n') {
             if at_linefeed {
-                unsafe {
-                    bindings::serial_write("\r\n");
-                }
+                self.write("\r\n")
+                    .map_err(|_| fmt::Error)
+                    .and_then(|size| if size < 2 { Err(fmt::Error) } else { Ok(size) })?;
             }
             let bytes = line.as_bytes();
             if !bytes.is_empty() {
-                self.write(bytes);
+                self.write(bytes).map_err(|_| fmt::Error).and_then(|size| {
+                    if size < bytes.len() {
+                        Err(fmt::Error)
+                    } else {
+                        Ok(size)
+                    }
+                })?;
             }
             at_linefeed = true;
         }
@@ -257,8 +284,14 @@ unsafe impl Send for Reader {}
 impl Reader {
     /// Read from the USB serial endpoint into buffer. Returns the number
     /// of bytes read, or zero if there is no data.
-    pub fn read(&mut self, buffer: &mut [u8]) -> usize {
-        // TODO return a Result type
-        unsafe { bindings::serial_read(buffer).max(0_i32) as usize }
+    ///
+    /// If there is an error, the error type is [`Error::IO`].
+    pub fn read(&mut self, buffer: &mut [u8]) -> Result<usize, Error> {
+        let res = unsafe { bindings::serial_read(buffer) };
+        if res < 0 {
+            Err(Error::IO)
+        } else {
+            Ok(res as usize)
+        }
     }
 }
