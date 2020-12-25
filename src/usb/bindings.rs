@@ -49,24 +49,27 @@ extern "C" {
     /// Flush the serial buffer
     pub fn usb_serial_flush_output();
     /// Write to the USB host. Returns the number of bytes
-    /// written.
+    /// written, or a negative number if there was an error.
     ///
-    /// The implementation never appears to return a negative value,
-    /// despite returning an integer.
+    /// If there's not enough space to hold the buffer contents,
+    /// the function may return fewer bytes. If callers need to
+    /// write the complete message, they must try to write the
+    /// rest of the data themselves.
     fn usb_serial_write(buffer: *const u8, size: u32) -> i32;
-    /// Read from the USB serila endpoint
+    /// Read from the USB serial endpoint. Returns the number of
+    /// bytes read, or a negative number for an error.
     fn usb_serial_read(buffer: *mut u8, size: u32) -> i32;
 }
 
 /// Writes the buffer of data to the USB host, returning the number
 /// of bytes written
-pub fn serial_write<B: AsRef<[u8]>>(buffer: B) -> u32 {
+pub unsafe fn serial_write<B: AsRef<[u8]>>(buffer: B) -> i32 {
     let buffer = buffer.as_ref();
-    unsafe { usb_serial_write(buffer.as_ptr(), buffer.len() as u32) as u32 }
+    usb_serial_write(buffer.as_ptr(), buffer.len() as u32)
 }
 
 /// Reads a buffer of data from the USB serial endpoint
-pub fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> usize {
+pub unsafe fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> i32 {
     let buffer = buffer.as_mut();
-    unsafe { usb_serial_read(buffer.as_mut_ptr(), buffer.len() as u32) as usize }
+    usb_serial_read(buffer.as_mut_ptr(), buffer.len() as u32)
 }

@@ -305,7 +305,6 @@ static void timer_stop(void)
 	USB1_GPTIMER0CTRL = 0;
 }
 
-
 int usb_serial_write(const void *buffer, uint32_t size)
 {
 	uint32_t sent=0;
@@ -314,40 +313,22 @@ int usb_serial_write(const void *buffer, uint32_t size)
 	if (!usb_configuration) return 0;
 	while (size > 0) {
 		transfer_t *xfer = tx_transfer + tx_head;
-		int waiting=0;
-		uint32_t wait_begin_at=0;
-		while (!tx_available) {
-			//digitalWriteFast(3, HIGH);
-			uint32_t status = usb_transfer_status(xfer);
+		if (!tx_available) {
+			const uint32_t status = usb_transfer_status(xfer);
 			if (!(status & 0x80)) {
-				if (status & 0x68) {
-					// TODO: what if status has errors???
-					printf("ERROR status = %x, i=%d, ms=%u\n",
-						status, tx_head, systick_millis_count);
-				}
+				// No active transfer
 				tx_available = TX_SIZE;
 				transmit_previous_timeout = 0;
+				// Try again
+				continue;
+			} else {
+				// There's no room available, and there's an active
+				// transfer. We can't overwrite the data, so we
+				// bail.
 				break;
 			}
-			if (!waiting) {
-				wait_begin_at = systick_millis_count;
-				waiting = 1;
-			}
-			if (transmit_previous_timeout) return sent;
-			if (systick_millis_count - wait_begin_at > TX_TIMEOUT_MSEC) {
-				// waited too long, assume the USB host isn't listening
-				transmit_previous_timeout = 1;
-				return sent;
-				//printf("\nstop, waited too long\n");
-				//printf("status = %x\n", status);
-				//printf("tx head=%d\n", tx_head);
-				//printf("TXFILLTUNING=%08lX\n", USB1_TXFILLTUNING);
-				//usb_print_transfer_log();
-				//while (1) ;
-			}
-			if (!usb_configuration) return sent;
-			yield();
 		}
+
 		//digitalWriteFast(3, LOW);
 		uint8_t *txdata = txbuffer + (tx_head * TX_SIZE) + (TX_SIZE - tx_available);
 		if (size >= tx_available) {

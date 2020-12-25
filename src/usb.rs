@@ -220,7 +220,8 @@ impl Writer {
 
     /// Writes raw bytes to the USB serial host
     pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> usize {
-        bindings::serial_write(buffer) as usize
+        // TODO return a Result type
+        unsafe { bindings::serial_write(buffer).max(0_i32) as usize }
     }
 }
 
@@ -231,7 +232,7 @@ impl fmt::Write for Writer {
         let mut at_linefeed = false;
         for line in string.split('\n') {
             if at_linefeed {
-                bindings::serial_write("\r\n");
+                unsafe { bindings::serial_write("\r\n"); }
             }
             let bytes = line.as_bytes();
             if !bytes.is_empty() {
@@ -255,6 +256,7 @@ impl Reader {
     /// Read from the USB serial endpoint into buffer. Returns the number
     /// of bytes read, or zero if there is no data.
     pub fn read(&mut self, buffer: &mut [u8]) -> usize {
-        bindings::serial_read(buffer)
+        // TODO return a Result type
+        unsafe { bindings::serial_read(buffer).max(0_i32) as usize }
     }
 }
