@@ -9,8 +9,8 @@
 #![no_main]
 
 use bsp::hal::ral::usb::USB1;
-use panic_halt as _;
 use teensy4_bsp as bsp;
+use teensy4_panic as _;
 
 #[rtic::app(device = teensy4_bsp, peripherals = true)]
 const APP: () = {
@@ -72,7 +72,10 @@ const APP: () = {
 };
 
 /// Copy data from the reader to the writer
-fn copy(reader: &mut bsp::usb::Reader, writer: &mut bsp::usb::Writer) -> Result<(), bsp::usb::Error> {
+fn copy(
+    reader: &mut bsp::usb::Reader,
+    writer: &mut bsp::usb::Writer,
+) -> Result<(), bsp::usb::Error> {
     let mut buffer: [u8; 256] = [0; 256];
     loop {
         let available = reader.read(&mut buffer)?;
