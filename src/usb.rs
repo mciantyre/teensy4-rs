@@ -387,7 +387,7 @@ impl Reader {
     /// of bytes read, or zero if there is no data.
     ///
     /// If there is an error, the error type is [`Error::IO`].
-    pub fn read(&mut self, buffer: &mut [u8]) -> Result<usize, Error> {
+    pub fn read<B: AsMut<[u8]>>(&mut self, buffer: B) -> Result<usize, Error> {
         let res = unsafe { bindings::serial_read(buffer) };
         if res < 0 {
             Err(Error::IO)
