@@ -36,7 +36,7 @@ use teensy4_bsp as bsp;
 use teensy4_panic as _;
 
 #[cortex_m_rt::interrupt]
-fn USB_OTG1() {
+unsafe fn USB_OTG1() {
     bsp::usb::poll();
 }
 

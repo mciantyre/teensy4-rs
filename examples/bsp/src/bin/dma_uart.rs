@@ -78,7 +78,7 @@ unsafe fn DMA7_DMA23() {
 }
 
 #[cortex_m_rt::interrupt]
-fn USB_OTG1() {
+unsafe fn USB_OTG1() {
     bsp::usb::poll();
 }
 

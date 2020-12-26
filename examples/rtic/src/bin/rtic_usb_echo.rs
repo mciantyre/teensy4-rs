@@ -50,7 +50,7 @@ const APP: () = {
     /// received USB data, it schedules a task to echo back that data
     #[task(binds = USB_OTG1, spawn = [echo])]
     fn usb_otg1(cx: usb_otg1::Context) {
-        let status = bsp::usb::poll();
+        let status = unsafe { bsp::usb::poll() };
         if status.cdc_rx_complete() {
             cx.spawn.echo().unwrap();
         }

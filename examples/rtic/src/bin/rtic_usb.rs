@@ -67,7 +67,7 @@ const APP: () = {
         // Check the PollStatus to see if there's
         // an interesting event, like data from a
         // USB CDC host.
-        let _status = bsp::usb::poll();
+        let _status = unsafe { bsp::usb::poll() };
     }
 
     // RTIC requires that unused interrupts are declared in an extern block when

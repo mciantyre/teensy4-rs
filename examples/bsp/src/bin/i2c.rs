@@ -26,7 +26,7 @@ use embedded_hal::blocking::i2c;
 use teensy4_bsp as bsp;
 
 #[cortex_m_rt::interrupt]
-fn USB_OTG1() {
+unsafe fn USB_OTG1() {
     bsp::usb::poll();
 }
 

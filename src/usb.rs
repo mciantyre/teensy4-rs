@@ -34,7 +34,7 @@
 //!
 //! // Enable this macro for your real system!
 //! // #[cortex_m_rt::interrupt]
-//! fn USB_OTG1() { bsp::usb::poll(); }
+//! unsafe fn USB_OTG1() { bsp::usb::poll(); }
 //!
 //! let core_peripherals = cortex_m::Peripherals::take().unwrap();
 //! bsp::usb::init(
@@ -65,7 +65,9 @@
 //!
 //! 'idle: loop {
 //!     // Other work...
-//!     bsp::usb::poll();
+//!
+//!     // Safety: OK, since this is the only place that we call poll
+//!     unsafe { bsp::usb::poll(); }
 //! }
 //! ```
 
@@ -212,7 +214,7 @@ unsafe fn start() {
 /// ```no_run
 /// use teensy4_bsp as bsp;
 ///
-/// let status = bsp::usb::poll();
+/// let status = unsafe { bsp::usb::poll() };
 /// if status.cdc_rx_complete() {
 ///     // Received USB serial data from host
 /// }
@@ -253,6 +255,11 @@ impl PollStatus {
 /// Consider calling `poll` in the `USB_OTG1` ISR, or in your idle loop.
 /// If calling `poll` in a USB ISR, make sure you unmask the interrupt.
 ///
+/// # Safety
+///
+/// `poll` modifies USB driver state, and this may happen without synchronization.
+/// Users are responsible for serializing calls to `poll`.
+///
 /// # Example
 ///
 /// How to set up the USB ISR:
@@ -262,14 +269,14 @@ impl PollStatus {
 /// use bsp::interrupt;
 ///
 /// // #[cortex_m_rt::interrupt]
-/// fn USB_OTG1() { bsp::usb::poll(); }
+/// unsafe fn USB_OTG1() { bsp::usb::poll(); }
 ///
 /// // Unmask you interrupt once the USB system is enabled,
 /// // and your ISR state is ready.
 /// unsafe { cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };
 /// ```
-pub fn poll() -> PollStatus {
-    let flags = unsafe { bindings::poll() };
+pub unsafe fn poll() -> PollStatus {
+    let flags = bindings::poll();
     PollStatus { flags }
 }
 

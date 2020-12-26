@@ -43,7 +43,7 @@ use cortex_m::interrupt::{free, Mutex};
 const SPI_BAUD_RATE_HZ: u32 = 1_000_000;
 
 #[interrupt]
-fn USB_OTG1() {
+unsafe fn USB_OTG1() {
     bsp::usb::poll();
 }
 
