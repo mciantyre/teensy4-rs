@@ -8,15 +8,26 @@
 //!
 //! [`log`]: https://crates.io/crates/log
 //!
+//! Most initialization functions require the `imxrt_ral`'s `USB1` instance.
+//! You can acquire the instance through the HAL, which is exported by the
+//! BSP:
+//!
+//! ```no_run
+//! use teensy4_bsp as bsp;
+//! use bsp::hal::ral::usb::USB1;
+//!
+//! let instance = USB1::take().unwrap();
+//! ```
+//!
 //! # Logging Example
 //!
 //! ```no_run
 //! use teensy4_bsp as bsp;
+//! use bsp::hal::ral::usb::USB1;
 //!
 //! let core_peripherals = cortex_m::Peripherals::take().unwrap();
-//! let mut systick = bsp::SysTick::new(core_peripherals.SYST);
 //! bsp::usb::init(
-//!     &systick,
+//!     USB1::take().unwrap(),
 //!     bsp::usb::LoggingConfig {
 //!         filters: &[("motor", None)],
 //!         ..Default::default()
@@ -31,26 +42,33 @@
 //!
 //! ```no_run
 //! use teensy4_bsp as bsp;
+//! use bsp::hal::ral::usb::USB1;
 //! use core::fmt::Write;
 //!
-//! let core_peripherals = cortex_m::Peripherals::take().unwrap();
-//! let mut systick = bsp::SysTick::new(core_peripherals.SYST);
-//! let (mut reader, mut writer) = bsp::usb::split(&systick).unwrap();
+//! let (mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
 //!
 //! write!(writer, "Hello world! 3 + 2 = {}", 5);
 //! ```
 
+//
+// Developer notes:
+//
+// - We intentionally drop the RAL instance while we own it. This
+//   should mean that the end user can't use the USB stack for anything
+//   else, unless they mix-and-match RALs, or use another register access
+//   layer.
+//
+
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
-use core::{
-    fmt,
-    sync::atomic::{AtomicBool, Ordering},
-};
+use core::fmt;
 mod bindings;
 mod filters;
 
 pub use filters::Filter;
 use filters::Filters;
+
+use crate::hal::ral::usb::{Instance, USB1};
 
 /// Logging configuration
 ///
@@ -92,10 +110,10 @@ pub enum Error {
     /// The error indicates that you've already set the logger, either from this
     /// interface or through another logging interface.
     SetLogger,
-    /// The USB stack is already in use
-    AlreadySet,
     /// Arbitrary IO error
     IO,
+    /// Incorrect USB instance; use the `imrt_ral`'s `USB1` instance
+    WrongInstance,
 }
 
 impl From<::log::SetLoggerError> for Error {
@@ -104,25 +122,24 @@ impl From<::log::SetLoggerError> for Error {
     }
 }
 
-static TAKEN: AtomicBool = AtomicBool::new(false);
-
 /// Initializes the USB stack. This prepares the logging back-end. Returns a `Reader`
 /// that can read USB serial messages.
 ///
 /// To select the default logger behavior, specify `Default::default()` as the
 /// argument for `config`.
 ///
-/// Before configuring the USB logger, you'll need to configure [`SysTick`](crate::SysTick).
-/// Once you've configured `SysTick`, supply its reference here.
+/// The `inst` argument must be the `imxrt_ral`'s `USB1` instance. An incorrect instance
+/// results in a [`Error::WrongInstance`] error.
 ///
 /// This may only be called once. If this is not called, we do not initialize the logger,
 /// and log messages will not be written to the USB host. Returns a
 /// [`Error::SetLogger`](Error::SetLogger) if the logging subsystem already has a
 /// logger.
-pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> {
-    let taken = TAKEN.swap(true, Ordering::SeqCst);
-    if taken {
-        return Err(Error::AlreadySet);
+///
+/// See the [module-level documentation](mod@crate::usb) for an example.
+pub fn init(inst: Instance, config: LoggingConfig) -> Result<Reader, Error> {
+    if &*inst as *const _ != USB1 {
+        return Err(Error::WrongInstance);
     }
     unsafe {
         LOGGER.enabled = true;
@@ -135,10 +152,14 @@ pub fn init(_: &crate::SysTick, config: LoggingConfig) -> Result<Reader, Error> 
 }
 
 /// Splits the USB stack into reading and writing halves, and returns both halves
-pub fn split(_: &crate::SysTick) -> Result<(Reader, Writer), Error> {
-    let taken = TAKEN.swap(true, Ordering::SeqCst);
-    if taken {
-        return Err(Error::AlreadySet);
+///
+/// The `inst` argument must be the `imxrt_ral`'s `USB1` instance. An incorrect instance
+/// results in a [`Error::WrongInstance`] error.
+///
+/// See the [module-level documentation](mod@crate::usb) for an example.
+pub fn split(inst: Instance) -> Result<(Reader, Writer), Error> {
+    if &*inst as *const _ != USB1 {
+        return Err(Error::WrongInstance);
     }
     unsafe { start() };
     Ok((Reader(core::marker::PhantomData), unsafe { Writer::new() }))
@@ -187,14 +208,14 @@ impl ::log::Log for Logger {
     fn log(&self, record: &::log::Record) {
         if self.enabled(record.metadata()) {
             use core::fmt::Write;
-            writeln!(
+            assert!(writeln!(
                 unsafe { Writer::new() },
                 "[{} {}]: {}",
                 record.level(),
                 record.target(),
                 record.args()
             )
-            .unwrap();
+            .is_ok());
         }
     }
 

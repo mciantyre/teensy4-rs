@@ -10,6 +10,7 @@
 
 use teensy4_panic as _;
 
+use bsp::hal::ral::usb::USB1;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
 
@@ -34,7 +35,7 @@ fn main() -> ! {
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Initialize the USB stack with the default logging settings
     let mut usb_reader = bsp::usb::init(
-        &systick,
+        USB1::take().unwrap(),
         bsp::usb::LoggingConfig {
             filters: LOG_FILTERS,
             ..Default::default()

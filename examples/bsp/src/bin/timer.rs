@@ -14,6 +14,7 @@
 use teensy4_panic as _;
 
 use bsp::hal::pit;
+use bsp::hal::ral::usb::USB1;
 use cortex_m_rt::entry;
 use embedded_hal::digital::v2::OutputPin;
 use embedded_hal::timer::CountDown;
@@ -24,7 +25,7 @@ fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::into_pins(periphs.iomuxc);
-    bsp::usb::init(&systick, Default::default()).unwrap();
+    bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,

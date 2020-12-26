@@ -20,6 +20,7 @@
 use teensy4_panic as _;
 
 use bsp::hal::i2c::ClockSpeed;
+use bsp::hal::ral::usb::USB1;
 use embedded_hal::blocking::i2c;
 use teensy4_bsp as bsp;
 
@@ -45,7 +46,7 @@ fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::into_pins(peripherals.iomuxc);
-    bsp::usb::init(&systick, Default::default()).unwrap();
+    bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
     systick.delay(5000);
 
     log::info!("Enabling I2C clocks...");

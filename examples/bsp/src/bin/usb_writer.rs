@@ -6,6 +6,7 @@
 
 use teensy4_panic as _;
 
+use bsp::hal::ral::usb::USB1;
 use core::fmt::Write;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
@@ -16,7 +17,7 @@ fn main() -> ! {
     let pins = bsp::t40::into_pins(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
-    let (mut reader, mut writer) = bsp::usb::split(&systick).unwrap();
+    let (mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
     systick.delay(2000);
     p.ccm
         .pll1

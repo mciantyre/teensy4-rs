@@ -16,6 +16,7 @@
 use teensy4_panic as _;
 
 use bsp::hal::pwm::Channel;
+use bsp::hal::ral::usb::USB1;
 use cortex_m_rt as rt;
 use embedded_hal::Pwm;
 use teensy4_bsp as bsp;
@@ -32,7 +33,7 @@ fn main() -> ! {
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::into_pins(p.iomuxc);
     // Initialize the logging, so we can use it in the PWM loop below
-    bsp::usb::init(&systick, Default::default()).unwrap();
+    bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
     // Delay is only to let a user set-up their USB serial connection...
     systick.delay(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules
