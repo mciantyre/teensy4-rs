@@ -239,6 +239,12 @@ impl Writer {
 
     /// Flush the written USB data
     ///
+    /// `flush` may schedule an additional USB transfer to write USB
+    /// data. However, it will not make your USB data appear to the host
+    /// faster. You should not call `flush` in a tight USB writing loop,
+    /// since the driver will attempt to pack multiple writes into a
+    /// single USB transfer.
+    ///
     /// If there was an error, the error variant is [`Error::IO`].
     pub fn flush(&mut self) -> Result<(), Error> {
         unsafe { bindings::usb_serial_flush_output() };
