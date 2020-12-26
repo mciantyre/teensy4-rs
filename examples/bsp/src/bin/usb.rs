@@ -47,6 +47,7 @@ fn main() -> ! {
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
     let mut led: bsp::LED = bsp::configure_led(pins.p13);
     let mut buffer = [0; 256];
+    let mut counter = 0;
     loop {
         let bytes_read = usb_reader.read(&mut buffer).unwrap();
         if bytes_read > 0 {
@@ -62,12 +63,13 @@ fn main() -> ! {
             }
         }
 
-        log::error!("Something terrible happened!");
+        log::error!("Something terrible happened! Count {}", counter);
         log::warn!("Something happened, but we fixed it");
         log::info!("It's 31'C outside");
         log::debug!("Sleeping for 1 second...");
         log::trace!("{} + {} = {}", 3, 2, 3 + 2);
+        counter += 1;
         led.toggle();
-        systick.delay(5000);
+        systick.delay(500);
     }
 }

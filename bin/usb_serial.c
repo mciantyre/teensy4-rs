@@ -98,7 +98,7 @@ void usb_serial_configure(void)
 	}
 	memset(tx_transfer, 0, sizeof(tx_transfer));
 	tx_head = 0;
-	tx_available = 0;
+	tx_available = TX_SIZE;
 	memset(rx_transfer, 0, sizeof(rx_transfer));
 	memset(rx_count, 0, sizeof(rx_count));
 	memset(rx_index, 0, sizeof(rx_index));
@@ -266,13 +266,6 @@ int usb_serial_getchar(void)
 #define TX_TIMEOUT_MSEC 120
 
 
-// When we've suffered the transmit timeout, don't wait again until the computer
-// begins accepting data.  If no software is running to receive, we'll just discard
-// data as rapidly as Serial.print() can generate it, until there's something to
-// actually receive it.
-static uint8_t transmit_previous_timeout=0;
-
-
 // transmit a character.  0 returned on success, -1 on error
 int usb_serial_putchar(uint8_t c)
 {
@@ -310,25 +303,9 @@ int usb_serial_write(const void *buffer, uint32_t size)
 	if (!usb_configuration) return 0;
 	while (size > 0) {
 		transfer_t *xfer = tx_transfer + tx_head;
-		if (!tx_available) {
-			const uint32_t status = usb_transfer_status(xfer);
-			if (!(status & 0x80)) {
-				// No active transfer
-				tx_available = TX_SIZE;
-				transmit_previous_timeout = 0;
-				// Try again
-				continue;
-			} else {
-				// There's no room available, and there's an active
-				// transfer. We can't overwrite the data, so we
-				// bail.
-				break;
-			}
-		}
-
-		//digitalWriteFast(3, LOW);
 		uint8_t *txdata = txbuffer + (tx_head * TX_SIZE) + (TX_SIZE - tx_available);
 		if (size >= tx_available) {
+			for(;;);
 			memcpy(txdata, data, tx_available);
 			//*(txbuffer + (tx_head * TX_SIZE)) = 'A' + tx_head; // to see which buffer
 			//*(txbuffer + (tx_head * TX_SIZE) + 1) = ' '; // really see it
@@ -340,7 +317,7 @@ int usb_serial_write(const void *buffer, uint32_t size)
 			size -= tx_available;
 			sent += tx_available;
 			data += tx_available;
-			tx_available = 0;
+			tx_available = TX_SIZE;
 			timer_stop();
 		} else {
 			memcpy(txdata, data, size);
@@ -369,7 +346,6 @@ void usb_serial_flush_output(void)
 {
 
 	if (!usb_configuration) return;
-	if (tx_available == 0) return;
 	tx_noautoflush = 1;
 	transfer_t *xfer = tx_transfer + tx_head;
 	uint8_t *txbuf = txbuffer + (tx_head * TX_SIZE);
@@ -378,7 +354,7 @@ void usb_serial_flush_output(void)
 	arm_dcache_flush_delete(txbuf, txnum);
 	usb_transmit(CDC_TX_ENDPOINT, xfer);
 	if (++tx_head >= TX_NUM) tx_head = 0;
-	tx_available = 0;
+	tx_available = TX_SIZE;
 	tx_noautoflush = 0;
 }
 
@@ -386,7 +362,6 @@ static void usb_serial_flush_callback(void)
 {
 	if (tx_noautoflush) return;
 	if (!usb_configuration) return;
-	if (tx_available == 0) return;
 	//printf("flush callback, %d bytes\n", TX_SIZE - tx_available);
 	transfer_t *xfer = tx_transfer + tx_head;
 	uint8_t *txbuf = txbuffer + (tx_head * TX_SIZE);
@@ -395,7 +370,7 @@ static void usb_serial_flush_callback(void)
 	arm_dcache_flush_delete(txbuf, txnum);
 	usb_transmit(CDC_TX_ENDPOINT, xfer);
 	if (++tx_head >= TX_NUM) tx_head = 0;
-	tx_available = 0;
+	tx_available = TX_SIZE;
 }
 
 
