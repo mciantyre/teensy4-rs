@@ -11,9 +11,9 @@
 #![no_main]
 
 use embedded_hal::digital::v2::OutputPin;
-use panic_halt as _;
 use rtic::cyccnt::U32Ext;
 use teensy4_bsp as bsp;
+use teensy4_panic as _;
 
 // The CYCCNT counts in clock cycles. Using the clock hz should give us a ~1 second period.
 const PERIOD: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
