@@ -38,6 +38,10 @@ name = "rtic_dma_uart_log"
 required-features = ["teensy4-bsp/rtic"]
 
 [[bin]]
+name = "rtic_usb_echo"
+required-features = ["teensy4-bsp/rtic", "teensy4-bsp/usb-logging"]
+
+[[bin]]
 name = "rtic_usb"
 required-features = ["teensy4-bsp/rtic", "teensy4-bsp/usb-logging"]
 
