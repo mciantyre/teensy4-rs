@@ -25,9 +25,9 @@
 use embedded_hal::digital::v2::OutputPin;
 use embedded_hal::serial::Read;
 use heapless::consts::U256;
-use panic_halt as _;
 use rtic::cyccnt::U32Ext;
 use teensy4_bsp as bsp;
+use teensy4_panic as _;
 
 const PERIOD: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
 const BAUD: u32 = 115_200;

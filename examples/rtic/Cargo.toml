@@ -19,7 +19,10 @@ embedded-hal = "0.2.4"
 heapless = "0.5.5"
 imxrt-uart-log = "0.2.0"
 log = "0.4.8"
-panic-halt = "0.2.0"
+
+[dependencies.teensy4-panic]
+version = "0.1"
+path = "../../teensy4-panic"
 
 [[bin]]
 name = "rtic_led"
