@@ -5,8 +5,11 @@ use std::path::PathBuf;
 
 fn main() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
-    fs::copy("./bin/libt4usb.a", out_dir.join("libt4usb.a")).unwrap();
     println!("cargo:rustc-link-search={}", out_dir.display());
+
+    if env::var("CARGO_FEATURE_USB_LOGGING").is_ok() {
+        fs::copy("./bin/libt4usb.a", out_dir.join("libt4usb.a")).unwrap();
+    }
 
     if env::var("CARGO_FEATURE_RT").is_ok() {
         fs::copy("./bin/libt4start.a", out_dir.join("libt4start.a")).unwrap();
