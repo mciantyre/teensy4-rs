@@ -107,3 +107,4 @@ opt-level = 0
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
+default-target = "thumbv7em-none-eabihf"

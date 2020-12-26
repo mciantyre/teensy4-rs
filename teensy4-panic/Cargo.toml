@@ -20,3 +20,6 @@ keywords = [
     "cortex-m",
     "teensy4",
 ]
+
+[package.metadata.docs.rs]
+default-target = "thumbv7em-none-eabihf"

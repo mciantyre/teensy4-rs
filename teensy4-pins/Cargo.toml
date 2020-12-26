@@ -24,3 +24,6 @@ keywords = [
 [dependencies.imxrt-iomuxc]
 version = "0.1.1"
 features = ["imxrt106x"]
+
+[package.metadata.docs.rs]
+default-target = "thumbv7em-none-eabihf"

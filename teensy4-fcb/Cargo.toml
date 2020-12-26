@@ -25,3 +25,5 @@ keywords = [
 version = "0.1.0"
 features = ["imxrt1062"]
 
+[package.metadata.docs.rs]
+default-target = "thumbv7em-none-eabihf"
