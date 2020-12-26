@@ -9,7 +9,7 @@ edition = "2018"
 version = "0.1"
 path = "../.."
 default-features = false
-features = ["rtic", "rt"]
+features = ["rtic", "rt", "usb-logging"]
 
 [dependencies]
 cortex-m = "0.6"
@@ -36,6 +36,10 @@ required-features = ["teensy4-bsp/rtic"]
 [[bin]]
 name = "rtic_dma_uart_log"
 required-features = ["teensy4-bsp/rtic"]
+
+[[bin]]
+name = "rtic_usb"
+required-features = ["teensy4-bsp/rtic", "teensy4-bsp/usb-logging"]
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
