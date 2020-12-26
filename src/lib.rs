@@ -38,15 +38,15 @@
 //! | `"systick"`     | Registers a SYSTICK exception handler that's called every millisecond | ✓        |
 //! | `"usb-logging"` | Adds support for logging over USB with the `log` crate                | ✓        |
 //! | `"rt"`          | Adds runtime support using `cortex-m-rt`                              |          |
-//! | `"rtic"`        | Adds support for using BSP peripherals with RTIC                      |          |
+//! | `"rtic"`        | Adds support for using the BSP peripherals with RTIC                  |          |
 //!
 //! Notes:
 //!
-//! - `"usb-logging"` depends on `"systick"` due to a requirement in the Teensy 4's USB library
-//! - Enabling `"rtic"` and `"systick"` is not supported. RTIC may try to register a SYSTICK exception handler, which
-//!   conflicts with the BSP's definition. This means that you cannot use USB logging with RTIC
+//! - Combining `"rtic"` with `"systick"` is not supported. RTIC may try to register a SYSTICK exception handler, which
+//!   conflicts with the BSP's definition.
 //!
-//! Proper RTIC support requires that you disable the BSP's default features. You may combine `"rtic"` with `"rt"`.
+//! Proper RTIC support requires that you disable the BSP's default features. You may combine `"rtic"` with
+//! either `"rt"` and `"usb-logging"`.
 //!
 //! ```toml
 //! [dependencies.teensy4-bsp]
