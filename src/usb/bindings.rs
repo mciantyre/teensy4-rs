@@ -85,3 +85,10 @@ pub unsafe fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> i32 {
     let buffer = buffer.as_mut();
     usb_serial_read(buffer.as_mut_ptr(), buffer.len() as u32)
 }
+
+//
+// Keep these constants in sync with the error
+// enum in usb_serial.c
+//
+
+pub const SERIAL_NOT_CONFIGURED: i32 = -1;

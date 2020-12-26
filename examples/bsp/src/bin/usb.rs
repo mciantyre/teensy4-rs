@@ -50,6 +50,8 @@ fn main() -> ! {
     .unwrap();
 
     unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
+
+    log::error!("You might not see this message if the USB device isn't configured by the host");
     systick.delay(2000);
     p.ccm
         .pll1

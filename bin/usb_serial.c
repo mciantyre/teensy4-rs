@@ -295,12 +295,18 @@ static void timer_stop(void)
 	USB1_GPTIMER0CTRL = 0;
 }
 
+// Keep this in sync with the error constants
+// in bindings.rs.
+typedef enum {
+	SERIAL_NOT_CONFIGURED = -1,
+} serial_err_t;
+
 int usb_serial_write(const void *buffer, uint32_t size)
 {
 	uint32_t sent=0;
 	const uint8_t *data = (const uint8_t *)buffer;
 
-	if (!usb_configuration) return 0;
+	if (!usb_configuration) return SERIAL_NOT_CONFIGURED;
 	while (size > 0) {
 		transfer_t *xfer = tx_transfer + tx_head;
 		uint8_t *txdata = txbuffer + (tx_head * TX_SIZE) + (TX_SIZE - tx_available);

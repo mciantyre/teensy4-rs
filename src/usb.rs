@@ -131,6 +131,11 @@ pub enum Error {
     IO,
     /// Incorrect USB instance; use the `imrt_ral`'s `USB1` instance
     WrongInstance,
+    /// The USB device hasn't been configured by the host
+    ///
+    /// Try again after the host has had a chance to configure
+    /// the device.
+    NotConfigured,
 }
 
 impl From<::log::SetLoggerError> for Error {
@@ -325,10 +330,10 @@ impl Writer {
     /// If there was an error, the error is [`Error::IO`].
     pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> Result<usize, Error> {
         let res = unsafe { bindings::serial_write(buffer) };
-        if res < 0 {
-            Err(Error::IO)
-        } else {
-            Ok(res as usize)
+        match res {
+            bindings::SERIAL_NOT_CONFIGURED => Err(Error::NotConfigured),
+            res if res >= 0 => Ok(res as usize),
+            _ => Err(Error::IO),
         }
     }
 
@@ -354,19 +359,21 @@ impl fmt::Write for Writer {
         let mut at_linefeed = false;
         for line in string.split('\n') {
             if at_linefeed {
-                self.write("\r\n")
-                    .map_err(|_| fmt::Error)
-                    .and_then(|size| if size < 2 { Err(fmt::Error) } else { Ok(size) })?;
+                match self.write("\r\n") {
+                    Err(Error::NotConfigured) => return Ok(()),
+                    Err(_) => return Err(fmt::Error),
+                    Ok(size) if size < 2 => return Err(fmt::Error),
+                    Ok(_) => (),
+                };
             }
             let bytes = line.as_bytes();
             if !bytes.is_empty() {
-                self.write(bytes).map_err(|_| fmt::Error).and_then(|size| {
-                    if size < bytes.len() {
-                        Err(fmt::Error)
-                    } else {
-                        Ok(size)
-                    }
-                })?;
+                match self.write(bytes) {
+                    Err(Error::NotConfigured) => return Ok(()),
+                    Err(_) => return Err(fmt::Error),
+                    Ok(size) if size < bytes.len() => return Err(fmt::Error),
+                    Ok(_) => (),
+                };
             }
             at_linefeed = true;
         }
