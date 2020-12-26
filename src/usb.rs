@@ -180,9 +180,56 @@ unsafe fn start() {
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 #[crate::rt::interrupt]
 fn USB_OTG1() {
-    unsafe {
-        bindings::isr();
+    poll();
+}
+
+/// The status of a [`poll`] call
+///
+/// ```no_run
+/// use teensy4_bsp as bsp;
+///
+/// let status = bsp::usb::poll();
+/// if status.cdc_rx_complete() {
+///     // Received USB serial data from host
+/// }
+/// ```
+#[derive(Debug)]
+pub struct PollStatus {
+    flags: u32,
+}
+
+impl PollStatus {
+    /// Indicates if a CDC RX transfer was completed (true)
+    /// or not completed (false) in this poll
+    ///
+    /// In this context, "rx" means "USB host to USB device."
+    /// Check this flag to understand if your [`Reader`]
+    /// might have data.
+    #[inline(always)]
+    pub fn cdc_rx_complete(&self) -> bool {
+        self.flags & bindings::POLL_CDC_RX_COMPLETE != 0
     }
+
+    /// Indicates if a CDC TX transfer was completed (true)
+    /// or not completed (false) in this poll
+    ///
+    /// In this context, "tx" means "USB device to USB host."
+    /// Check this flag to understand if your [`Writer`] or
+    /// USB logger has scheduled a transfer.
+    #[inline(always)]
+    pub fn cdc_tx_complete(&self) -> bool {
+        self.flags & bindings::POLL_CDC_TX_COMPLETE != 0
+    }
+}
+
+/// Drive the USB device event loop
+///
+/// `poll` must be called fast enough to handled the speed of your
+/// USB host. It will typically run as a USB high speed device.
+/// Consider calling `poll` in the `USB_OTG1` ISR, or in your idle loop.
+pub fn poll() -> PollStatus {
+    let flags = unsafe { bindings::poll() };
+    PollStatus { flags }
 }
 
 struct Logger {

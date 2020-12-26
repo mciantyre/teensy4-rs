@@ -193,8 +193,20 @@ FLASHMEM void usb_init(void)
 	//transfer_log_count = 0;
 }
 
+#define POLL_RX_ENDPOINT_MASK(ep) (1 << ep)
+#define POLL_TX_ENDPOINT_MASK(ep) (1 << (ep + 16))
 
-void isr(void)
+//
+// Keep these in sync with the constants
+// in bindings.rs.
+//
+
+typedef enum {
+	POLL_CDC_RX_COMPLETE = 1,
+	POLL_CDC_TX_COMPLETE = 2,
+} poll_flag_t;
+
+uint32_t poll(void)
 {
 	//printf("*");
 
@@ -202,6 +214,7 @@ void isr(void)
 	//  status port reset, suspend, and current connect status.
 	uint32_t status = USB1_USBSTS;
 	USB1_USBSTS = status;
+	uint32_t poll_flags = 0;
 
 	// USB_USBSTS_SLI - set to 1 when enters a suspend state from an active state
 	// USB_USBSTS_SRI - set at start of frame
@@ -228,6 +241,10 @@ void isr(void)
 			setupstatus = USB1_ENDPTSETUPSTAT; // page 3175
 		}
 		uint32_t completestatus = USB1_ENDPTCOMPLETE;
+
+		poll_flags |= (POLL_RX_ENDPOINT_MASK(CDC_RX_ENDPOINT) & completestatus) ? POLL_CDC_RX_COMPLETE : 0;
+		poll_flags |= (POLL_TX_ENDPOINT_MASK(CDC_TX_ENDPOINT) & completestatus) ? POLL_CDC_TX_COMPLETE : 0;
+
 		if (completestatus) {
 			USB1_ENDPTCOMPLETE = completestatus;
 			//printf("USB1_ENDPTCOMPLETE=%lX\n", completestatus);
@@ -304,6 +321,8 @@ void isr(void)
 			USB1_USBINTR &= ~USB_USBINTR_SRE;
 		}
 	}
+
+	return poll_flags;
 }
 
 

@@ -42,8 +42,8 @@ extern "C" {
     /// Initialize the USB module. Configures clocks, endpoints, and descriptors.
     pub fn usb_init();
     /// Runs the interrupt service routine.
-    #[cfg(all(target_arch = "arm", feature = "rt"))] // Only used with the "rt" feature
-    pub fn isr();
+    #[cfg(target_arch = "arm")]
+    pub fn poll() -> u32;
     /// Flush the serial buffer
     pub fn usb_serial_flush_output();
     /// Write to the USB host. Returns the number of bytes
@@ -58,6 +58,20 @@ extern "C" {
     /// bytes read, or a negative number for an error.
     fn usb_serial_read(buffer: *mut u8, size: u32) -> i32;
 }
+
+// Stub for unit and documentation testing
+#[cfg(not(target_arch = "arm"))]
+pub unsafe fn poll() -> u32 {
+    0
+}
+
+//
+// Keep these constants in sync with the poll_flag_t
+// enum in poll.c
+//
+
+pub const POLL_CDC_RX_COMPLETE: u32 = 1;
+pub const POLL_CDC_TX_COMPLETE: u32 = 2;
 
 /// Writes the buffer of data to the USB host, returning the number
 /// of bytes written
