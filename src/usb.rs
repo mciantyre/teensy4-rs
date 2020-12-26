@@ -1,12 +1,16 @@
-//! Teensy 4 USB, taken from the original Teensy 4 C libraries.
+//! Teensy 4 USB, taken from the original Teensy 4 C libraries
 //!
-//! The USB stack provides a [`log`] implementation for logging over USB
-//!
-//! This is `Serial.println()` in Rust. Use the macros of the
+//! The USB stack provides a [`log`] implementation for logging over USB.
+//! It also provides a simpler [`Reader`] and [`Writer`] for performing
+//! I/O over the CDC interface. Use the macros of the
 //! [`log`] crate to write data over USB. Or, acquire a raw [`Reader`]
 //! and [`Writer`] to perform your own USB I/O.
 //!
 //! [`log`]: https://crates.io/crates/log
+//!
+//! You're responsible for driving the USB driver with repeated calls to
+//! [`poll`]. See the `poll` documentation for considerations on where to
+//! call `poll`.
 //!
 //! Most initialization functions require the `imxrt_ral`'s `USB1` instance.
 //! You can acquire the instance through the HAL, which is exported by the
@@ -21,9 +25,16 @@
 //!
 //! # Logging Example
 //!
+//! This example drives the USB logging system through the USB ISR.
+//!
 //! ```no_run
 //! use teensy4_bsp as bsp;
 //! use bsp::hal::ral::usb::USB1;
+//! use bsp::interrupt;
+//!
+//! // Enable this macro for your real system!
+//! // #[cortex_m_rt::interrupt]
+//! fn USB_OTG1() { bsp::usb::poll(); }
 //!
 //! let core_peripherals = cortex_m::Peripherals::take().unwrap();
 //! bsp::usb::init(
@@ -35,10 +46,13 @@
 //! )
 //! .unwrap();
 //!
+//! unsafe { cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };
 //! log::info!("Hello world! 3 + 2 = {}", 5);
 //! ```
 //!
 //! # Reader / Writer Example
+//!
+//! This example will manually call `poll` in an idle loop to drive USB I/O.
 //!
 //! ```no_run
 //! use teensy4_bsp as bsp;
@@ -47,7 +61,12 @@
 //!
 //! let (mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
 //!
-//! write!(writer, "Hello world! 3 + 2 = {}", 5);
+//! write!(writer, "Hello world! 3 + 2 = {}", 5).unwrap();
+//!
+//! 'idle: loop {
+//!     // Other work...
+//!     bsp::usb::poll();
+//! }
 //! ```
 
 //
@@ -59,8 +78,6 @@
 //   layer.
 //
 
-#[cfg(all(target_arch = "arm", feature = "rt"))]
-use crate::interrupt; // bring in interrupt variants for #[interrupt] macro
 use core::fmt;
 mod bindings;
 mod filters;
@@ -174,13 +191,6 @@ pub fn split(inst: Instance) -> Result<(Reader, Writer), Error> {
 unsafe fn start() {
     bindings::usb_pll_start();
     bindings::usb_init();
-    cortex_m::peripheral::NVIC::unmask(crate::interrupt::USB_OTG1);
-}
-
-#[cfg(all(target_arch = "arm", feature = "rt"))]
-#[crate::rt::interrupt]
-fn USB_OTG1() {
-    poll();
 }
 
 /// The status of a [`poll`] call
@@ -227,6 +237,23 @@ impl PollStatus {
 /// `poll` must be called fast enough to handled the speed of your
 /// USB host. It will typically run as a USB high speed device.
 /// Consider calling `poll` in the `USB_OTG1` ISR, or in your idle loop.
+/// If calling `poll` in a USB ISR, make sure you unmask the interrupt.
+///
+/// # Example
+///
+/// How to set up the USB ISR:
+///
+/// ```no_run
+/// use teensy4_bsp as bsp;
+/// use bsp::interrupt;
+///
+/// // #[cortex_m_rt::interrupt]
+/// fn USB_OTG1() { bsp::usb::poll(); }
+///
+/// // Unmask you interrupt once the USB system is enabled,
+/// // and your ISR state is ready.
+/// unsafe { cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };
+/// ```
 pub fn poll() -> PollStatus {
     let flags = unsafe { bindings::poll() };
     PollStatus { flags }

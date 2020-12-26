@@ -7,9 +7,15 @@
 use teensy4_panic as _;
 
 use bsp::hal::ral::usb::USB1;
+use bsp::interrupt;
 use core::fmt::Write;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
+
+#[cortex_m_rt::interrupt]
+fn USB_OTG1() {
+    bsp::usb::poll();
+}
 
 #[rt::entry]
 fn main() -> ! {
@@ -18,6 +24,8 @@ fn main() -> ! {
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
     let (mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
+    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
+
     systick.delay(2000);
     p.ccm
         .pll1

@@ -42,6 +42,11 @@ use cortex_m::interrupt::{free, Mutex};
 
 const SPI_BAUD_RATE_HZ: u32 = 1_000_000;
 
+#[interrupt]
+fn USB_OTG1() {
+    bsp::usb::poll();
+}
+
 /// DMA interrupt matches the two selected DMA channels
 ///
 /// It clears the interrupt, and completes the transfer.
@@ -161,6 +166,7 @@ fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
+    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
     let pins = bsp::t40::into_pins(peripherals.iomuxc);
 
     peripherals.ccm.pll1.set_arm_clock(

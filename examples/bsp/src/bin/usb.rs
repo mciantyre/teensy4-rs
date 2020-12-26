@@ -11,8 +11,14 @@
 use teensy4_panic as _;
 
 use bsp::hal::ral::usb::USB1;
+use bsp::interrupt;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
+
+#[cortex_m_rt::interrupt]
+fn USB_OTG1() {
+    bsp::usb::poll();
+}
 
 /// Specify (optional) logging filters
 ///
@@ -42,6 +48,8 @@ fn main() -> ! {
         },
     )
     .unwrap();
+
+    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
     systick.delay(2000);
     p.ccm
         .pll1

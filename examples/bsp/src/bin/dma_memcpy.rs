@@ -10,9 +10,15 @@ use teensy4_panic as _;
 
 use bsp::hal::dma;
 use bsp::hal::ral::usb::USB1;
+use bsp::interrupt;
 use core::iter::ExactSizeIterator;
 use cortex_m_rt::entry;
 use teensy4_bsp as bsp;
+
+#[cortex_m_rt::interrupt]
+fn USB_OTG1() {
+    bsp::usb::poll();
+}
 
 /// Update me to play with different element types!
 /// Valid types include any of the unsigned integers.
@@ -38,6 +44,7 @@ fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
+    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
     systick.delay(5_000);
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);

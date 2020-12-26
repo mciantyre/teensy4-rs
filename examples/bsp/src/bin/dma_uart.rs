@@ -77,11 +77,17 @@ unsafe fn DMA7_DMA23() {
     }
 }
 
+#[cortex_m_rt::interrupt]
+fn USB_OTG1() {
+    bsp::usb::poll();
+}
+
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
+    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
     let pins = bsp::t40::into_pins(peripherals.iomuxc);
 
     systick.delay(5_000);
