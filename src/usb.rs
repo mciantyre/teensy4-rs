@@ -126,16 +126,25 @@ impl Default for LoggingConfig {
 pub enum Error {
     /// The error indicates that you've already set the logger, either from this
     /// interface or through another logging interface.
+    ///
+    /// The [`init`] function may return this error.
     SetLogger,
-    /// Arbitrary IO error
-    IO,
     /// Incorrect USB instance; use the `imrt_ral`'s `USB1` instance
+    ///
+    /// The [`init`] or [`split`] functions may return this error.
     WrongInstance,
     /// The USB device hasn't been configured by the host
     ///
-    /// Try again after the host has had a chance to configure
-    /// the device.
+    /// Try again after the host has a chance to configure
+    /// the device. If you receive this repeatedly, you might
+    /// not be connected to a USB host.
+    ///
+    /// Any USB CDC I/O method may return this error.
     NotConfigured,
+    /// Arbitrary IO error
+    ///
+    /// Any USB CDC I/O method may return this error.
+    IO,
 }
 
 impl From<::log::SetLoggerError> for Error {
@@ -280,6 +289,7 @@ static mut LOGGER: Logger = Logger {
 impl ::log::Log for Logger {
     fn enabled(&self, metadata: &::log::Metadata) -> bool {
         self.enabled // We're enabled
+            && bindings::is_configured() // The host has configured the USB device
             && metadata.level() <= ::log::max_level() // The log level is appropriate
             && self.filters.is_enabled(metadata) // The target is in the filter list
     }
@@ -326,8 +336,6 @@ impl Writer {
     /// the driver could only write that many elements from the buffer. If it's
     /// important that you write a complete message, you'll need to retry the
     /// call with the rest of the data.
-    ///
-    /// If there was an error, the error is [`Error::IO`].
     pub fn write<B: AsRef<[u8]>>(&mut self, buffer: B) -> Result<usize, Error> {
         let res = unsafe { bindings::serial_write(buffer) };
         match res {
@@ -344,9 +352,11 @@ impl Writer {
     /// faster. You should not call `flush` in a tight USB writing loop,
     /// since the driver will attempt to pack multiple writes into a
     /// single USB transfer.
-    ///
-    /// If there was an error, the error variant is [`Error::IO`].
     pub fn flush(&mut self) -> Result<(), Error> {
+        if !bindings::is_configured() {
+            return Err(Error::NotConfigured);
+        }
+
         unsafe { bindings::usb_serial_flush_output() };
         Ok(())
     }
@@ -356,6 +366,10 @@ unsafe impl Send for Writer {}
 
 impl fmt::Write for Writer {
     fn write_str(&mut self, string: &str) -> fmt::Result {
+        if !bindings::is_configured() {
+            return Ok(());
+        }
+
         let mut at_linefeed = false;
         for line in string.split('\n') {
             if at_linefeed {
@@ -395,6 +409,10 @@ impl Reader {
     ///
     /// If there is an error, the error type is [`Error::IO`].
     pub fn read<B: AsMut<[u8]>>(&mut self, buffer: B) -> Result<usize, Error> {
+        if !bindings::is_configured() {
+            return Err(Error::NotConfigured);
+        }
+
         let res = unsafe { bindings::serial_read(buffer) };
         if res < 0 {
             Err(Error::IO)

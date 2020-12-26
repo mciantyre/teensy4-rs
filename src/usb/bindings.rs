@@ -57,6 +57,9 @@ extern "C" {
     /// Read from the USB serial endpoint. Returns the number of
     /// bytes read, or a negative number for an error.
     fn usb_serial_read(buffer: *mut u8, size: u32) -> i32;
+    /// Returns a non-zero value if the USB device has been configured
+    /// by the host, or zero if the device is unconfigured
+    fn usb_device_is_configured() -> i32;
 }
 
 // Stub for unit and documentation testing
@@ -92,3 +95,8 @@ pub unsafe fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> i32 {
 //
 
 pub const SERIAL_NOT_CONFIGURED: i32 = -1;
+
+/// Indicates if the USB device has been configured by the host
+pub fn is_configured() -> bool {
+    unsafe { usb_device_is_configured() != 0 }
+}

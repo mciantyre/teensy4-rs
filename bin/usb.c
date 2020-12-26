@@ -95,6 +95,9 @@ static void endpoint0_complete(void);
 
 static void run_callbacks(endpoint_t *ep);
 
+int32_t usb_device_is_configured(void) {
+	return !!usb_configuration;
+}
 
 FLASHMEM void usb_init(void)
 {
