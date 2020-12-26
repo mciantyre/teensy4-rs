@@ -62,7 +62,7 @@ extern "C" {
 // Stub for unit and documentation testing
 #[cfg(not(target_arch = "arm"))]
 pub unsafe fn poll() -> u32 {
-    0
+    panic!("This `poll()` call should never happen")
 }
 
 //
