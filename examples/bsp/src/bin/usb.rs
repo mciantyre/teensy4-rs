@@ -8,48 +8,19 @@
 #![no_std]
 #![no_main]
 
+mod usb_io;
+
 use teensy4_panic as _;
 
-use bsp::hal::ral::usb::USB1;
-use bsp::interrupt;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
-
-#[cortex_m_rt::interrupt]
-unsafe fn USB_OTG1() {
-    bsp::usb::poll();
-}
-
-/// Specify (optional) logging filters
-///
-/// The "usb" filter matches the name of this example.
-/// If you copy and paste this example somewhere else,
-/// consider updating the filter, or removing the filter
-/// entirely.
-///
-/// See the `LoggingConfig` documentation for more information.
-const LOG_FILTERS: &[bsp::usb::Filter] = &[
-    // +------------- Module name to include in log messages
-    // v     v------- Maximum log level (subject to the statically-defined max level)
-    ("usb", None),
-];
 
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
     let pins = bsp::t40::into_pins(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    // Initialize the USB stack with the default logging settings
-    let mut usb_reader = bsp::usb::init(
-        USB1::take().unwrap(),
-        bsp::usb::LoggingConfig {
-            filters: LOG_FILTERS,
-            ..Default::default()
-        },
-    )
-    .unwrap();
-
-    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
+    let mut usb_reader = usb_io::init().unwrap();
 
     log::error!("You might not see this message if the USB device isn't configured by the host");
     systick.delay(2000);

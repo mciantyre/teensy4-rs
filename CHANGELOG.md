@@ -63,8 +63,9 @@ Consider calling `poll()` in your own `USB_OTG1` interrupt handler to maintain
 compatibility. If using an interrupt handler, make sure to unmask the `USB_OTG1`
 interrupt.
 
-The snippet below should be sufficient to maintain compatibility in your
-system:
+The unsafe snippet below should be sufficient to maintain compatibility in your
+system. See the documentation and examples for other implementations that control
+`unsafe` usage.
 
 ```rust
 use teensy4_bsp as bsp;

@@ -13,19 +13,14 @@
 #![no_std]
 #![no_main]
 
+mod usb_io;
+
 use teensy4_panic as _;
 
 use bsp::hal::pwm::Channel;
-use bsp::hal::ral::usb::USB1;
-use bsp::interrupt;
 use cortex_m_rt as rt;
 use embedded_hal::Pwm;
 use teensy4_bsp as bsp;
-
-#[cortex_m_rt::interrupt]
-unsafe fn USB_OTG1() {
-    bsp::usb::poll();
-}
 
 /// Helper function to represent a duty cycle as a percent
 fn percent(duty: u16) -> f32 {
@@ -38,9 +33,7 @@ fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::into_pins(p.iomuxc);
-    // Initialize the logging, so we can use it in the PWM loop below
-    bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
-    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
+    usb_io::init().unwrap();
     // Delay is only to let a user set-up their USB serial connection...
     systick.delay(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules

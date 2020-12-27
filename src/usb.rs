@@ -32,12 +32,24 @@
 //! use bsp::hal::ral::usb::USB1;
 //! use bsp::interrupt;
 //!
+//! use cortex_m::interrupt::Mutex;
+//! use core::cell::RefCell;
+//!
+//! static POLLER: Mutex<RefCell<Option<bsp::usb::Poller>>> = Mutex::new(RefCell::new(None));
+//!
 //! // Enable this macro for your real system!
 //! // #[cortex_m_rt::interrupt]
-//! unsafe fn USB_OTG1() { bsp::usb::poll(); }
+//! fn USB_OTG1() {
+//!     cortex_m::interrupt::free(|cs| {
+//!         POLLER
+//!             .borrow(cs)
+//!             .borrow_mut()
+//!             .as_mut()
+//!             .map(|poller| poller.poll());
+//!     });
+//! }
 //!
-//! let core_peripherals = cortex_m::Peripherals::take().unwrap();
-//! bsp::usb::init(
+//! let (poller, _) = bsp::usb::init(
 //!     USB1::take().unwrap(),
 //!     bsp::usb::LoggingConfig {
 //!         filters: &[("motor", None)],
@@ -46,7 +58,14 @@
 //! )
 //! .unwrap();
 //!
-//! unsafe { cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };
+//! cortex_m::interrupt::free(|cs| {
+//!     *POLLER.borrow(cs).borrow_mut() = Some(poller);
+//!     // Safety: invoked in a critical section that also prepares the ISR
+//!     // shared memory. ISR memory is ready by the time the ISR runs.
+//!     unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
+//! });
+//!
+//! // You can now begin logging.
 //! log::info!("Hello world! 3 + 2 = {}", 5);
 //! ```
 //!
@@ -59,15 +78,19 @@
 //! use bsp::hal::ral::usb::USB1;
 //! use core::fmt::Write;
 //!
-//! let (mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
+//! let (mut poller, mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
 //!
 //! write!(writer, "Hello world! 3 + 2 = {}", 5).unwrap();
 //!
 //! 'idle: loop {
 //!     // Other work...
 //!
-//!     // Safety: OK, since this is the only place that we call poll
-//!     unsafe { bsp::usb::poll(); }
+//!     let status = poller.poll();
+//!     if status.cdc_rx_complete() {
+//!         // Read the data
+//!         let mut buffer: [u8; 256] = [0; 256];
+//!         reader.read(&mut buffer).unwrap();
+//!     }
 //! }
 //! ```
 
@@ -170,7 +193,7 @@ impl From<::log::SetLoggerError> for Error {
 /// logger.
 ///
 /// See the [module-level documentation](mod@crate::usb) for an example.
-pub fn init(inst: Instance, config: LoggingConfig) -> Result<Reader, Error> {
+pub fn init(inst: Instance, config: LoggingConfig) -> Result<(Poller, Reader), Error> {
     if &*inst as *const _ != USB1 {
         return Err(Error::WrongInstance);
     }
@@ -181,7 +204,10 @@ pub fn init(inst: Instance, config: LoggingConfig) -> Result<Reader, Error> {
         ::log::set_logger(&LOGGER).map(|_| ::log::set_max_level(config.max_level))?;
         start();
     }
-    Ok(Reader(core::marker::PhantomData))
+    Ok((
+        Poller(core::marker::PhantomData),
+        Reader(core::marker::PhantomData),
+    ))
 }
 
 /// Splits the USB stack into reading and writing halves, and returns both halves
@@ -190,12 +216,16 @@ pub fn init(inst: Instance, config: LoggingConfig) -> Result<Reader, Error> {
 /// results in a [`Error::WrongInstance`] error.
 ///
 /// See the [module-level documentation](mod@crate::usb) for an example.
-pub fn split(inst: Instance) -> Result<(Reader, Writer), Error> {
+pub fn split(inst: Instance) -> Result<(Poller, Reader, Writer), Error> {
     if &*inst as *const _ != USB1 {
         return Err(Error::WrongInstance);
     }
     unsafe { start() };
-    Ok((Reader(core::marker::PhantomData), unsafe { Writer::new() }))
+    Ok((
+        Poller(core::marker::PhantomData),
+        Reader(core::marker::PhantomData),
+        unsafe { Writer::new() },
+    ))
 }
 
 /// Initialize the USB stack
@@ -208,6 +238,32 @@ unsafe fn start() {
     bindings::usb_pll_start();
     bindings::usb_init();
 }
+
+/// An object that can poll the USB device and driver
+/// USB device I/O
+///
+/// Acquire `Poller` from [`init`] or [`split`].
+pub struct Poller(core::marker::PhantomData<*const ()>);
+
+impl Poller {
+    /// Drive the USB device event loop
+    ///
+    /// `poll` must be called fast enough to handled the speed of your
+    /// USB host. It will typically run as a USB high speed device.
+    /// Consider calling `poll` in the `USB_OTG1` ISR, or in your idle loop.
+    /// If calling `poll` in a USB ISR, make sure you unmask the interrupt.
+    ///
+    /// For an unsafe interface, see the [`poll`](mod@crate::usb::poll()) function.
+    pub fn poll(&mut self) -> PollStatus {
+        // Safety: users can only safely create one poller. That poller
+        // "owns" the state modified by the poll function.
+        unsafe { poll() }
+    }
+}
+
+// Safety: OK to move across execution contexts; never
+// safe to share across those contexts.
+unsafe impl Send for Poller {}
 
 /// The status of a [`poll`] call
 ///
@@ -255,6 +311,8 @@ impl PollStatus {
 /// Consider calling `poll` in the `USB_OTG1` ISR, or in your idle loop.
 /// If calling `poll` in a USB ISR, make sure you unmask the interrupt.
 ///
+/// For a safer polling interface, see [`Poller`].
+///
 /// # Safety
 ///
 /// `poll` modifies USB driver state, and this may happen without synchronization.
@@ -262,7 +320,7 @@ impl PollStatus {
 ///
 /// # Example
 ///
-/// How to set up the USB ISR:
+/// How to set up the USB ISR using the unsafe `poll` function.
 ///
 /// ```no_run
 /// use teensy4_bsp as bsp;

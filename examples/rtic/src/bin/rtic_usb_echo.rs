@@ -18,6 +18,7 @@ const APP: () = {
         led: bsp::LED,
         reader: bsp::usb::Reader,
         writer: bsp::usb::Writer,
+        poller: bsp::usb::Poller,
     }
 
     /// Initialize the system
@@ -37,20 +38,21 @@ const APP: () = {
         let mut led = bsp::configure_led(pins.p13);
         led.set();
 
-        let (reader, writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
+        let (poller, reader, writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
 
         init::LateResources {
             led,
             reader,
             writer,
+            poller,
         }
     }
 
     /// This task drives the USB stack. If it detects that the host has
     /// received USB data, it schedules a task to echo back that data
-    #[task(binds = USB_OTG1, spawn = [echo])]
+    #[task(binds = USB_OTG1, spawn = [echo], resources = [poller])]
     fn usb_otg1(cx: usb_otg1::Context) {
-        let status = unsafe { bsp::usb::poll() };
+        let status = cx.resources.poller.poll();
         if status.cdc_rx_complete() {
             cx.spawn.echo().unwrap();
         }

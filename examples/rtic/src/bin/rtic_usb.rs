@@ -25,6 +25,7 @@ const PERIOD: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
 const APP: () = {
     struct Resources {
         led: bsp::LED,
+        poller: bsp::usb::Poller,
     }
 
     #[init(schedule = [blink])]
@@ -47,9 +48,9 @@ const APP: () = {
         led.set_high().unwrap();
 
         // Initialize the USB system
-        bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
+        let (poller, _) = bsp::usb::init(USB1::take().unwrap(), Default::default()).unwrap();
 
-        init::LateResources { led }
+        init::LateResources { led, poller }
     }
 
     #[task(resources = [led], schedule = [blink])]
@@ -62,12 +63,9 @@ const APP: () = {
         *COUNTER += 1;
     }
 
-    #[task(binds = USB_OTG1)]
-    fn usb_otg1(_: usb_otg1::Context) {
-        // Check the PollStatus to see if there's
-        // an interesting event, like data from a
-        // USB CDC host.
-        let _status = unsafe { bsp::usb::poll() };
+    #[task(binds = USB_OTG1, resources = [poller])]
+    fn usb_otg1(cx: usb_otg1::Context) {
+        cx.resources.poller.poll();
     }
 
     // RTIC requires that unused interrupts are declared in an extern block when

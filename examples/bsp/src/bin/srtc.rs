@@ -26,26 +26,21 @@
 #![no_std]
 #![no_main]
 
-use bsp::hal::ral::usb::USB1;
+mod usb_io;
+
 use bsp::hal::srtc::{micros_to_ticks, EnabledState, SRTC};
-use bsp::interrupt;
 use bsp::usb;
 use core::fmt::Write;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
 use teensy4_panic as _;
 
-#[cortex_m_rt::interrupt]
-unsafe fn USB_OTG1() {
-    bsp::usb::poll();
-}
-
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let (mut reader, mut writer) = bsp::usb::split(USB1::take().unwrap()).unwrap();
-    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::USB_OTG1) };
+    let (mut reader, mut writer) = usb_io::split().unwrap();
+
     systick.delay(2000);
     p.ccm
         .pll1
