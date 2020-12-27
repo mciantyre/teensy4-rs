@@ -43,7 +43,7 @@ features = ["device"]
 
 [target.thumbv7em-none-eabihf.dependencies.teensy4-fcb]
 path = "teensy4-fcb"
-version = "0.2"
+version = "0.3"
 
 [dependencies.imxrt-hal]
 version = "0.4.2"
@@ -99,10 +99,6 @@ rt = ["cortex-m-rt", "imxrt-hal/rt"]
 # Helps with build times.
 [profile.release.build-override]
 opt-level = 0
-
-[patch.crates-io.imxrt-boot-gen]
-git = "https://github.com/imxrt-rs/imxrt-boot-gen"
-branch = "const-gen"
 
 [package.metadata.docs.rs]
 all-features = true

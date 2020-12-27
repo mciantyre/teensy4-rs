@@ -8,7 +8,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! teensy4-fcb = "0.2"
+//! teensy4-fcb = "0.3"
 //! ```
 //!
 //! Properly place the FCB in your program's memory. See the `FLEXSPI_CONFIGURATION_BLOCK`

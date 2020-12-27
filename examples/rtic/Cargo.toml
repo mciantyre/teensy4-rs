@@ -56,7 +56,3 @@ opt-level = 0
 [workspace]
 # Not part of the main workspace to maintain
 # BSP feature separation.
-
-[patch.crates-io.imxrt-boot-gen]
-git = "https://github.com/imxrt-rs/imxrt-boot-gen"
-branch = "const-gen"
