@@ -4,6 +4,8 @@
 #![no_std]
 #![no_main]
 
+mod usb_io;
+
 use teensy4_panic as _;
 
 use core::fmt::Write;
@@ -16,7 +18,8 @@ fn main() -> ! {
     let pins = bsp::t40::into_pins(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
-    let (mut reader, mut writer) = bsp::usb::split(&systick).unwrap();
+    let (mut reader, mut writer) = usb_io::split().unwrap();
+
     systick.delay(2000);
     p.ccm
         .pll1
@@ -24,7 +27,7 @@ fn main() -> ! {
     let mut led: bsp::LED = bsp::configure_led(pins.p13);
     let mut buffer = [0; 256];
     loop {
-        let bytes_read = reader.read(&mut buffer);
+        let bytes_read = reader.read(&mut buffer).unwrap();
         if bytes_read > 0 {
             let bytes = &buffer[..bytes_read];
             match core::str::from_utf8(bytes) {
@@ -39,6 +42,7 @@ fn main() -> ! {
         }
 
         writeln!(writer, "Hello world! 3 + 2 = {}", 3 + 2).unwrap();
+        writer.flush().unwrap();
         led.toggle();
         systick.delay(5000);
     }

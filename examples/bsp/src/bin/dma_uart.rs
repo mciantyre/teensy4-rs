@@ -12,6 +12,8 @@
 #![no_std]
 #![no_main]
 
+mod usb_io;
+
 use teensy4_panic as _;
 
 use bsp::interrupt;
@@ -80,7 +82,7 @@ unsafe fn DMA7_DMA23() {
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    bsp::usb::init(&systick, Default::default()).unwrap();
+    usb_io::init().unwrap();
     let pins = bsp::t40::into_pins(peripherals.iomuxc);
 
     systick.delay(5_000);

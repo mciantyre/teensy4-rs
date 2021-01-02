@@ -79,11 +79,7 @@ members = [
 # Default features established for prototype development
 default = ["usb-logging", "systick"]
 # Enables the USB logging stack
-#
-# This will introduce the teensy4-usb-sys bindings into the build
-# graph. It also requires systick, since the USB stack depends on
-# the systick counter for timekeeping.
-usb-logging = ["systick", "log"]
+usb-logging = ["log"]
 # Include a definition of the SysTick exception handler. This enables
 # a simple delay() spinloop that waits for the timer to elapse.
 #

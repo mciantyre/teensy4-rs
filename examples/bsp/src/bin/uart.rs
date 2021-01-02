@@ -18,12 +18,13 @@
 #![no_std]
 #![no_main]
 
+mod usb_io;
+
 use teensy4_panic as _;
 
 use cortex_m_rt::entry;
-use teensy4_bsp as bsp;
-
 use embedded_hal::serial::{Read, Write};
+use teensy4_bsp as bsp;
 
 const BAUD: u32 = 115_200;
 /// Change the TX FIFO sizes to see how the FIFO affects the number
@@ -81,7 +82,8 @@ fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::into_pins(peripherals.iomuxc);
-    bsp::usb::init(&systick, Default::default()).unwrap();
+    usb_io::init().unwrap();
+
     systick.delay(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,

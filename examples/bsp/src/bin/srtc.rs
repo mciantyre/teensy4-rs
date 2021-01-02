@@ -26,20 +26,21 @@
 #![no_std]
 #![no_main]
 
-use teensy4_panic as _;
-
-use core::fmt::Write;
+mod usb_io;
 
 use bsp::hal::srtc::{micros_to_ticks, EnabledState, SRTC};
 use bsp::usb;
+use core::fmt::Write;
 use cortex_m_rt as rt;
 use teensy4_bsp as bsp;
+use teensy4_panic as _;
 
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let (mut reader, mut writer) = bsp::usb::split(&systick).unwrap();
+    let (mut reader, mut writer) = usb_io::split().unwrap();
+
     systick.delay(2000);
     p.ccm
         .pll1
@@ -67,7 +68,7 @@ fn set_time_from_usb(reader: &mut usb::Reader, writer: &mut usb::Writer, rtc: &m
     writeln!(writer, "Send a message containing the current Unix time.").unwrap();
     let mut buffer = [0; 24]; // 20 char message + CR LF + an extra 2
     let (seconds, ns) = loop {
-        let count = reader.read(&mut buffer);
+        let count = reader.read(&mut buffer).unwrap();
         if count == 0 {
             continue;
         }

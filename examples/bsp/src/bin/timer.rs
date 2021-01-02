@@ -11,6 +11,8 @@
 #![no_std]
 #![no_main]
 
+mod usb_io;
+
 use teensy4_panic as _;
 
 use bsp::hal::pit;
@@ -24,7 +26,7 @@ fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::t40::into_pins(periphs.iomuxc);
-    bsp::usb::init(&systick, Default::default()).unwrap();
+    usb_io::init().unwrap();
 
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,

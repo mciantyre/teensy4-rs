@@ -6,34 +6,32 @@
 //! the initialization and I/O routines. The crate is
 //! intended for use in the `teensy4-bsp` Teensy 4 BSP.
 //!
-//! ## Notes on compilation
-//!
-//! The crate should compile, but it may not link without
-//! a few additional symbols. The symbols may include
-//!
-//! - `uint32_t systick_millis_count`, a counter representing
-//!   the SYSTICK
-//! - `void delay(uint32_t)`, a delay function based on the
-//!   SYSTICK counter
-//! - `void yield(void)`, which yields control
-//!
-//! Dependent crates are expected to implement these C functions and
-//! expose the memory.
-//!
 //! ## Notes on source-level changes
 //!
 //! We made minor changes to the C sources in order to compile without
 //! warnings. Changes included fixes for things like implicit switch/case
 //! fallthroughs, and unsigned / signed integer comparisons.
 //!
+//! We changed the usb_serial_write re-try behavior. Previously, the
+//! function would wait for space in the transfer buffer, then complete the
+//! write, or time out. In this implementation, we will allow a partial write.
+//! The caller is responsible for implementing any re-try behaviors to complete
+//! the write. This change let us remove the dependencies on symbols like
+//!
+//! - `systick_millis_count`
+//! - `delay(uint32_t)`
+//! - `yield()`
+//!
+//! which were used to track timeouts, and yield to the Teensyduino scheduler to
+//! do other things.
+//!
 //! We also made changes to include paths, in order to reduce the number
-//! of source files we introduced. Specifically, we removed
-//! instances of `#include "core_pins.h"`, which declared the `delay()`
-//! and `yield()` functions. We opted to declare these functions at the
-//! top of dependent source files. We also did not bring in the header
+//! of source files we introduced. We did not bring in the header
 //! that defined the `PROGMEM`, `FLASHMEM`, and `DMAMEM` attributes.
 //! We define the attributes in the build script, specifing the
 //! macro values in the command-line compiler invocation.
+//!
+//! Finally, we removed some C++ declarations and definitions.
 
 #[cfg_attr(target_arch = "arm", link(name = "t4usb"))]
 extern "C" {
@@ -44,29 +42,61 @@ extern "C" {
     /// Initialize the USB module. Configures clocks, endpoints, and descriptors.
     pub fn usb_init();
     /// Runs the interrupt service routine.
-    #[cfg(all(target_arch = "arm", feature = "rt"))] // Only used with the "rt" feature
-    pub fn isr();
+    #[cfg(target_arch = "arm")]
+    pub fn poll() -> u32;
     /// Flush the serial buffer
     pub fn usb_serial_flush_output();
     /// Write to the USB host. Returns the number of bytes
-    /// written.
+    /// written, or a negative number if there was an error.
     ///
-    /// The implementation never appears to return a negative value,
-    /// despite returning an integer.
+    /// If there's not enough space to hold the buffer contents,
+    /// the function may return fewer bytes. If callers need to
+    /// write the complete message, they must try to write the
+    /// rest of the data themselves.
     fn usb_serial_write(buffer: *const u8, size: u32) -> i32;
-    /// Read from the USB serila endpoint
+    /// Read from the USB serial endpoint. Returns the number of
+    /// bytes read, or a negative number for an error.
     fn usb_serial_read(buffer: *mut u8, size: u32) -> i32;
+    /// Returns a non-zero value if the USB device has been configured
+    /// by the host, or zero if the device is unconfigured
+    fn usb_device_is_configured() -> i32;
 }
+
+// Stub for unit and documentation testing
+#[cfg(not(target_arch = "arm"))]
+pub unsafe fn poll() -> u32 {
+    panic!("This `poll()` call should never happen")
+}
+
+//
+// Keep these constants in sync with the poll_flag_t
+// enum in poll.c
+//
+
+pub const POLL_CDC_RX_COMPLETE: u32 = 1;
+pub const POLL_CDC_TX_COMPLETE: u32 = 2;
 
 /// Writes the buffer of data to the USB host, returning the number
 /// of bytes written
-pub fn serial_write<B: AsRef<[u8]>>(buffer: B) -> u32 {
+pub unsafe fn serial_write<B: AsRef<[u8]>>(buffer: B) -> i32 {
     let buffer = buffer.as_ref();
-    unsafe { usb_serial_write(buffer.as_ptr(), buffer.len() as u32) as u32 }
+    usb_serial_write(buffer.as_ptr(), buffer.len() as u32)
 }
 
 /// Reads a buffer of data from the USB serial endpoint
-pub fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> usize {
+pub unsafe fn serial_read<B: AsMut<[u8]>>(mut buffer: B) -> i32 {
     let buffer = buffer.as_mut();
-    unsafe { usb_serial_read(buffer.as_mut_ptr(), buffer.len() as u32) as usize }
+    usb_serial_read(buffer.as_mut_ptr(), buffer.len() as u32)
+}
+
+//
+// Keep these constants in sync with the error
+// enum in usb_serial.c
+//
+
+pub const SERIAL_NOT_CONFIGURED: i32 = -1;
+
+/// Indicates if the USB device has been configured by the host
+pub fn is_configured() -> bool {
+    unsafe { usb_device_is_configured() != 0 }
 }

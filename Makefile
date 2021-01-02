@@ -33,8 +33,8 @@ else
 endif
 endif # INSTALL_DEPS != 0
 
-BSP_EXAMPLES := $(shell ls -1 examples/bsp/src/bin | cut -f 1 -d .)
-RTIC_EXAMPLES := $(shell ls -1 examples/rtic/src/bin | cut -f 1 -d .)
+BSP_EXAMPLES := $(shell find examples/bsp/src/bin -maxdepth 1 -not -type d | xargs basename | cut -f 1 -d .)
+RTIC_EXAMPLES := $(shell find examples/rtic/src/bin -maxdepth 1 -not -type d | xargs basename | cut -f 1 -d .)
 
 .PHONY: all bsp rtic
 all: bsp rtic

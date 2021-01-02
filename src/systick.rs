@@ -6,16 +6,15 @@
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 use crate::rt::exception;
 
-#[no_mangle]
-static mut systick_millis_count: u32 = 0;
+static mut SYSTICK_MILLIS_COUNT: u32 = 0;
 
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 #[exception]
 fn SysTick() {
     unsafe {
-        let ms = core::ptr::read_volatile(&systick_millis_count);
+        let ms = core::ptr::read_volatile(&SYSTICK_MILLIS_COUNT);
         let ms = ms.wrapping_add(1);
-        core::ptr::write_volatile(&mut systick_millis_count, ms);
+        core::ptr::write_volatile(&mut SYSTICK_MILLIS_COUNT, ms);
     }
 }
 
@@ -23,7 +22,7 @@ fn SysTick() {
 /// the number of milliseconds since the SYSTICK handler was enabled.
 /// This may be used to implement coarse timing.
 fn read() -> u32 {
-    unsafe { core::ptr::read_volatile(&systick_millis_count) }
+    unsafe { core::ptr::read_volatile(&SYSTICK_MILLIS_COUNT) }
 }
 
 /// Blocks for at least `millis` milliseconds
@@ -31,8 +30,7 @@ fn read() -> u32 {
 /// `delay` will spin-loop on updates from SYSTICK, until
 /// `millis` milliseconds have elapsed. SYSTICK has a 1ms
 /// interrupt interval, so the minimal delay is around 1ms.
-#[no_mangle]
-extern "C" fn delay(millis: u32) {
+fn delay(millis: u32) {
     if 0 == millis {
         return;
     }
