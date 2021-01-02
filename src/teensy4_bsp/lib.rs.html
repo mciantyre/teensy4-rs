@@ -134,13 +134,6 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and</span>
 <span class="doccomment">//! 4.1 boards.</span>
@@ -182,15 +175,15 @@
 <span class="doccomment">//! | `&quot;systick&quot;`     | Registers a SYSTICK exception handler that&#39;s called every millisecond | ✓        |</span>
 <span class="doccomment">//! | `&quot;usb-logging&quot;` | Adds support for logging over USB with the `log` crate                | ✓        |</span>
 <span class="doccomment">//! | `&quot;rt&quot;`          | Adds runtime support using `cortex-m-rt`                              |          |</span>
-<span class="doccomment">//! | `&quot;rtic&quot;`        | Adds support for using BSP peripherals with RTIC                      |          |</span>
+<span class="doccomment">//! | `&quot;rtic&quot;`        | Adds support for using the BSP peripherals with RTIC                  |          |</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Notes:</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! - `&quot;usb-logging&quot;` depends on `&quot;systick&quot;` due to a requirement in the Teensy 4&#39;s USB library</span>
-<span class="doccomment">//! - Enabling `&quot;rtic&quot;` and `&quot;systick&quot;` is not supported. RTIC may try to register a SYSTICK exception handler, which</span>
-<span class="doccomment">//!   conflicts with the BSP&#39;s definition. This means that you cannot use USB logging with RTIC</span>
+<span class="doccomment">//! - Combining `&quot;rtic&quot;` with `&quot;systick&quot;` is not supported. RTIC may try to register a SYSTICK exception handler, which</span>
+<span class="doccomment">//!   conflicts with the BSP&#39;s definition.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Proper RTIC support requires that you disable the BSP&#39;s default features. You may combine `&quot;rtic&quot;` with `&quot;rt&quot;`.</span>
+<span class="doccomment">//! Proper RTIC support requires that you disable the BSP&#39;s default features. You may combine `&quot;rtic&quot;` with</span>
+<span class="doccomment">//! either `&quot;rt&quot;` and `&quot;usb-logging&quot;`.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```toml</span>
 <span class="doccomment">//! [dependencies.teensy4-bsp]</span>
@@ -274,13 +267,6 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="ident">hal</span>::<span class="ident">gpio</span>::<span class="ident">GPIO</span>::<span class="ident">new</span>(<span class="ident">pad</span>);
     <span class="ident">led</span>.<span class="ident">set_fast</span>(<span class="bool-val">true</span>);
     <span class="ident">led</span>.<span class="ident">output</span>()
-}
-
-<span class="doccomment">/// TODO(mciantyre) define a better yield</span>
-<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">fn</span> <span class="ident">r#yield</span>() {
-    <span class="comment">// &#39;yield&#39; is a Rust keyword. But, it needs to be called &#39;yield&#39; for the C USB stack</span>
-    <span class="ident">cortex_m</span>::<span class="ident">asm</span>::<span class="ident">delay</span>(<span class="number">1024</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "teensy4_bsp";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
