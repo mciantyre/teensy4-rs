@@ -90,15 +90,6 @@ rt = ["cortex-m-rt", "imxrt-hal/rt"]
 [profile.release.build-override]
 opt-level = 0
 
-# Temporary patch for testing SRTC feature
-[patch.crates-io.imxrt-hal]
-git = "https://github.com/imxrt-rs/imxrt-rs"
-rev = "a85b279"
-
-[patch.crates-io.imxrt-iomuxc]
-git = "https://github.com/imxrt-rs/imxrt-rs"
-rev = "a85b279"
-
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
