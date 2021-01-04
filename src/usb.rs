@@ -362,19 +362,21 @@ impl ::log::Log for Logger {
     fn log(&self, record: &::log::Record) {
         if self.enabled(record.metadata()) {
             use core::fmt::Write;
-            assert!(writeln!(
-                unsafe { Writer::new() },
-                "[{} {}]: {}",
-                record.level(),
-                record.target(),
-                record.args()
-            )
-            .is_ok());
+            let result = cortex_m::interrupt::free(|_| {
+                writeln!(
+                    unsafe { Writer::new() },
+                    "[{} {}]: {}",
+                    record.level(),
+                    record.target(),
+                    record.args()
+                )
+            });
+            assert!(result.is_ok());
         }
     }
 
     fn flush(&self) {
-        unsafe { bindings::usb_serial_flush_output() }
+        cortex_m::interrupt::free(|_| unsafe { bindings::usb_serial_flush_output() });
     }
 }
 
