@@ -85,8 +85,16 @@ Add a `flush` method to the `usb::Writer` type.
 
 Add `teensy4_bsp::usb::Filter` type alias to simplify USB filter definitions.
 
+## [0.1.1] - 2021-01-04
+
+Fix the USB logger so that logging and flushing occur in a critical section.
+Before this fix, logging from an interrupt could preempt a logging call that
+was modifying transfer descriptors and buffers in the USB stack. This change
+should correct logger thread safety.
+
 ## [0.1.0] - 2020-10-16
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.1.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.1.0...teensy4-bsp-0.1.1
 [0.1.0]: https://github.com/mciantyre/teensy4-rs/releases/tag/teensy4-bsp-0.1.0
