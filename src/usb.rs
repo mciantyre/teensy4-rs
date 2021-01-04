@@ -473,8 +473,6 @@ unsafe impl Send for Reader {}
 impl Reader {
     /// Read from the USB serial endpoint into buffer. Returns the number
     /// of bytes read, or zero if there is no data.
-    ///
-    /// If there is an error, the error type is [`Error::IO`].
     pub fn read<B: AsMut<[u8]>>(&mut self, buffer: B) -> Result<usize, Error> {
         if !bindings::is_configured() {
             return Err(Error::NotConfigured);
