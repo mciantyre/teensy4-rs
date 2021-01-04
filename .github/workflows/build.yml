@@ -2,7 +2,7 @@ name: Code Checks
 
 on:
   push:
-    branches: [ master, staging, trying ]
+    branches: [ teensy4-bsp-0.1 ]
 
 jobs:
 
