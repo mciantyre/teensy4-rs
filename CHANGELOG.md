@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.2.0] - 2021-01-09
+
 This release lets users combine the USB logging system with RTIC. The new
 feature required a few breaking changes. The rest of this section notes
 the breaking changes, migration tips, and other minor features in this
@@ -96,5 +98,6 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.2.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.1.1...teensy4-bsp-0.2.0
 [0.1.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.1.0...teensy4-bsp-0.1.1
 [0.1.0]: https://github.com/mciantyre/teensy4-rs/releases/tag/teensy4-bsp-0.1.0
