@@ -23,3 +23,7 @@ keywords = [
 
 [package.metadata.docs.rs]
 default-target = "thumbv7em-none-eabihf"
+
+[features]
+default = ["panic-handler"]
+panic-handler = []

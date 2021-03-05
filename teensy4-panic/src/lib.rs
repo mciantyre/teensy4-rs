@@ -95,8 +95,18 @@ fn o(led: &mut Led) {
     triple(led, 3);
 }
 
+#[cfg(feature = "panic-handler")]
 #[panic_handler]
 fn panic(_: &core::panic::PanicInfo) -> ! {
+    sos()
+}
+
+/// Blink S.O.S. on the LED, forever
+///
+/// This is the implementation of the `teensy4-panic` handler.
+/// See the crate-level docs for how you could use this in your
+/// own panic handler.
+pub fn sos() -> ! {
     let mut led = unsafe { Led::new() };
     loop {
         s(&mut led);
