@@ -71,11 +71,8 @@ executes all instructions from ITCM.
 The second stage is written in Rust. It's defined in the BSP's `rt` runtime
 module. The second stage
 
-1. initialize MMU regions, instruction cache, and data cache\*
-2. overrides CCM low power behaviors for safer execution
-3. jumps to the `cortex-m-rt` reset handler to finish initialization
-
-_\* step subject to removal_
+1. overrides CCM low power behaviors for safer execution
+2. jumps to the `cortex-m-rt` reset handler to finish initialization
 
 The second stage must never read anything in a data section, since the memory
 is uninitialized.
