@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+This release removes the MPU protection regions from the BSP. Users who depend
+on MPU protection may specify their own MPU regions using either the `cortex-m`
+APIs, or their own implementation.
+
+This release also removes the I-Cache and D-Cache configuration from the BSP.
+To re-enable the caches, consider using the `cortex-m` APIs:
+
+```rust
+// [dependencies]
+// cortex-m = "0.7"
+
+let mut core = cortex_m::Peripherals::take().unwrap();
+core.SCB.enable_dcache(&mut core.CPUID);
+core.SCB.enable_icache();
+```
+
 ## [0.2.0] - 2021-01-09
 
 This release lets users combine the USB logging system with RTIC. The new
