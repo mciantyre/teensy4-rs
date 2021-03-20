@@ -11,8 +11,6 @@
 
 pub use cortex_m_rt::*;
 
-mod cache;
-
 /// System entrypoint, invoked by reset handler
 ///
 /// # Safety
@@ -22,8 +20,6 @@ mod cache;
 /// to first be initialized by cortex-m-rt.
 #[no_mangle]
 unsafe extern "C" fn t4_init() {
-    cache::init();
-
     // Remain in 'run' when transitioning to low power mode.
     // Do not transition to wait mode.
     //
