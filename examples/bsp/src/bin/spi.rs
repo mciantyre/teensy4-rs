@@ -67,7 +67,7 @@ fn main() -> ! {
                 err
             );
             loop {
-                core::sync::atomic::spin_loop_hint()
+                core::hint::spin_loop()
             }
         }
     };
@@ -76,8 +76,8 @@ fn main() -> ! {
     // dummy `OutputPin` that does nothing! If you'd rather use any
     // GPIO, replace this line to construct a GPIO from another pin.
     spi4.enable_chip_select_0(pins.p10);
-    struct DummyCS;
-    impl embedded_hal::digital::v2::OutputPin for DummyCS {
+    struct DummyChipSelect;
+    impl embedded_hal::digital::v2::OutputPin for DummyChipSelect {
         type Error = core::convert::Infallible;
         fn set_high(&mut self) -> Result<(), Self::Error> {
             Ok(())
@@ -86,7 +86,7 @@ fn main() -> ! {
             Ok(())
         }
     }
-    let mut cs4 = DummyCS;
+    let mut cs4 = DummyChipSelect;
     log::info!("Waiting 5 seconds before querying MPU9250...");
     systick.delay(4000);
 
@@ -95,7 +95,7 @@ fn main() -> ! {
         Err(err) => {
             log::warn!("Unable to initialize AK8963: {:?}", err);
             loop {
-                core::sync::atomic::spin_loop_hint()
+                core::hint::spin_loop()
             }
         }
     };

@@ -21,7 +21,7 @@ const PERIOD: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
 #[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
 const APP: () = {
     struct Resources {
-        led: bsp::LED,
+        led: bsp::Led,
     }
 
     #[init(schedule = [blink])]

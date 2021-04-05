@@ -113,7 +113,7 @@ fn main() -> ! {
         Ok(circular) => circular,
         Err(error) => {
             log::error!("Unable to create circular RX buffer: {:?}", error);
-            loop {}
+            panic!();
         }
     };
 

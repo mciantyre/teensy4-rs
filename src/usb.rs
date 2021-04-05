@@ -166,10 +166,10 @@ pub enum Error {
     ///
     /// Any USB CDC I/O method may return this error.
     NotConfigured,
-    /// Arbitrary IO error
+    /// Arbitrary I/O error
     ///
     /// Any USB CDC I/O method may return this error.
-    IO,
+    Io,
 }
 
 impl From<::log::SetLoggerError> for Error {
@@ -408,7 +408,7 @@ impl Writer {
         match res {
             bindings::SERIAL_NOT_CONFIGURED => Err(Error::NotConfigured),
             res if res >= 0 => Ok(res as usize),
-            _ => Err(Error::IO),
+            _ => Err(Error::Io),
         }
     }
 
@@ -480,7 +480,7 @@ impl Reader {
 
         let res = unsafe { bindings::serial_read(buffer) };
         if res < 0 {
-            Err(Error::IO)
+            Err(Error::Io)
         } else {
             Ok(res as usize)
         }
