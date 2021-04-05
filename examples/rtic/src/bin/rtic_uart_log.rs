@@ -40,7 +40,7 @@ type UartRx = bsp::hal::uart::Rx<bsp::hal::iomuxc::consts::U2>;
 #[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
 const APP: () = {
     struct Resources {
-        led: bsp::LED,
+        led: bsp::Led,
         u_rx: UartRx,
         q_tx: Producer,
         q_rx: Consumer,

@@ -15,7 +15,7 @@ use teensy4_panic as _;
 #[rtic::app(device = teensy4_bsp, peripherals = true)]
 const APP: () = {
     struct Resources {
-        led: bsp::LED,
+        led: bsp::Led,
         reader: bsp::usb::Reader,
         writer: bsp::usb::Writer,
         poller: bsp::usb::Poller,
