@@ -24,11 +24,11 @@
 #![no_std]
 
 /// The LED
-struct LED();
+struct Led();
 
 const GPIO2_BASE: u32 = 0x401BC000;
 
-impl LED {
+impl Led {
     /// Construct the LED
     ///
     /// When `new` returns, the LED will be ready to set, clear, and toggle.
@@ -56,7 +56,7 @@ impl LED {
         IOMUXC_GPR_GPR27.write_volatile(IOMUXC_GPR_GPR27.read_volatile() & !(1 << 3));
         GPIO2_GDIR.write_volatile(GPIO2_GDIR.read_volatile() | (1 << 3));
 
-        LED()
+        Led()
     }
 
     /// Drive the LED high
@@ -74,11 +74,11 @@ impl LED {
 
 fn delay(factor: u32) {
     for _ in 0..(factor * 50_000_000) {
-        core::sync::atomic::spin_loop_hint();
+        core::hint::spin_loop();
     }
 }
 
-fn triple(led: &mut LED, factor: u32) {
+fn triple(led: &mut Led, factor: u32) {
     for _ in 0..3 {
         led.set();
         delay(factor);
@@ -87,17 +87,17 @@ fn triple(led: &mut LED, factor: u32) {
     }
 }
 
-fn s(led: &mut LED) {
+fn s(led: &mut Led) {
     triple(led, 1);
 }
 
-fn o(led: &mut LED) {
+fn o(led: &mut Led) {
     triple(led, 3);
 }
 
 #[panic_handler]
 fn panic(_: &core::panic::PanicInfo) -> ! {
-    let mut led = unsafe { LED::new() };
+    let mut led = unsafe { Led::new() };
     loop {
         s(&mut led);
         o(&mut led);

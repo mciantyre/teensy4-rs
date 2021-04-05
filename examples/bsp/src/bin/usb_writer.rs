@@ -24,7 +24,7 @@ fn main() -> ! {
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    let mut led: bsp::LED = bsp::configure_led(pins.p13);
+    let mut led = bsp::configure_led(pins.p13);
     let mut buffer = [0; 256];
     loop {
         let bytes_read = reader.read(&mut buffer).unwrap();
