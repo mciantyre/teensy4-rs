@@ -2,7 +2,7 @@
 =====================
 
 This document describes how the `teensy4-bsp` runtime works. Before reading
-this document, it may help to first know about
+this document, it helps to know about
 
 - the [`cortex-m-rt` package][cortex-m-rt], which is widely used for embedded
   Rust development on Cortex-M systems
@@ -12,12 +12,12 @@ this document, it may help to first know about
 
 [cortex-m-rt]: https://github.com/rust-embedded/cortex-m-rt
 
-Memory Map
-----------
+Linker script
+-------------
 
-`t4link.x` describes the BSP's memory map. The memory map is compatible with
-the `cortex-m-rt` requirements. Specifically, it includes symbols expected by
-the crate, such as
+`t4link.x` describes the memory layout of programs built with the BSP. The
+layout is compatible with the `cortex-m-rt` requirements. Specifically, it
+includes symbols expected by the crate, such as
 
 - `__sbss` and `__ebss`
 - `__sdata`, `__edata`, and `__sidata`
@@ -34,7 +34,7 @@ The linker script computes the ITCM and DTCM partition, ensuring that there's
 just enough space for instructions, with the rest of the space for data and
 stack.
 
-The boot data structures are placed at the start of flash.
+The boot data structures are placed at the start of flash:
 
 - The FlexSPI configuration block is defined in Rust. It's available in the
   `teensy4-fcb` crate.
@@ -44,9 +44,9 @@ The vector table, including the reset handler, is placed in flash. However,
 the vector table is copied into DTCM before program initialization. See the
 execution flow for more information.
 
-As of this writing, the RAM region is allocated for the Teensy 4's USB stack,
+As of this writing, the OCRAM region is allocated for the Teensy 4's USB stack,
 written in C. This may change in future versions of the BSP. Sections placed in
-RAM are considered an implementation detail.
+OCRAM are considered an implementation detail.
 
 Since the linker script is intended to fully replace the `cortex-m-rt` linker
 script, we include other directives necessary for a valid runtime. This support
@@ -84,3 +84,11 @@ runtime initialization.
 This execution lets us prepare TCM for the i.MX RT microcontrollers and meet
 the requirements of our memory layout, while still using the `cortex-m-rt` for
 complete system initialization.
+
+Discussion
+----------
+
+The second stage could have been written in terms of the `cortex-m-rt`'s
+`#[pre_init]` feature. However, this approach would mean that a BSP end user
+could not implement a `pre_init` function. We therefore implement our behaviors
+in Rust, before jumping into the `cortex-m-rt` reset handler.
