@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+**BREAKING** Correct Rust symbol names, following the Rust API guidelines.
+These changes affect symbols in the BSP:
+
+- `LED => Led`
+- `usb::Error::IO => usb::Error::Io`
+
 ## [0.2.0] - 2021-01-09
 
 This release lets users combine the USB logging system with RTIC. The new
