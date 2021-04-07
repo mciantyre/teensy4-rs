@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-This release removes the MPU protection regions from the BSP. Users who depend
+**BREAKING** This release removes the MPU protection regions from the BSP. Users who depend
 on MPU protection may specify their own MPU regions using either the `cortex-m`
 APIs, or their own implementation.
 
@@ -17,6 +17,12 @@ let mut core = cortex_m::Peripherals::take().unwrap();
 core.SCB.enable_dcache(&mut core.CPUID);
 core.SCB.enable_icache();
 ```
+
+**BREAKING** Correct Rust symbol names, following the Rust API guidelines.
+These changes affect symbols in the BSP:
+
+- `LED => Led`
+- `usb::Error::IO => usb::Error::Io`
 
 ## [0.2.0] - 2021-01-09
 
