@@ -24,7 +24,6 @@
 //! - copies instructions into ITCM
 //! - copies the vector table into DTCM, and sets VTOR
 //! - set's the CCM's low-power setting
-//! - prepares memory caches
 //!
 //! The reset handler then calls the `cortex-m-rt` entrypoint to finish memory initialization and invoke your program's
 //! `main()`.
