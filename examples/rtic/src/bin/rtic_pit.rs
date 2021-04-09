@@ -13,7 +13,7 @@ use teensy4_panic as _;
 use embedded_hal::timer::CountDown;
 type Timer = bsp::hal::pit::PIT<bsp::hal::pit::channel::_3>;
 
-#[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
+#[rtic::app(device = teensy4_bsp, peripherals = true)]
 const APP: () = {
     struct Resources {
         led: bsp::Led,
