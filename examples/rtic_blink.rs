@@ -1,6 +1,6 @@
 //! An adaptation of the `rtic_led.rs` example that demonstrates:
 //!
-//! 1. how to share late resources and
+//! 1. how to define resources and
 //! 2. how to use the systick interrupt to cause the LED to blink.
 //!
 //! Please refer to the [RTIC book](https://rtic.rs) for more information on RTIC.
@@ -10,53 +10,53 @@
 #![no_std]
 #![no_main]
 
-use embedded_hal::digital::v2::OutputPin;
-use rtic::cyccnt::U32Ext;
-use teensy4_bsp as bsp;
 use teensy4_panic as _;
 
-// The CYCCNT counts in clock cycles. Using the clock hz should give us a ~1 second period.
-const PERIOD: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
+#[rtic::app(device = teensy4_bsp, peripherals = true, dispatchers = [LPUART8])]
+mod app {
+    use dwt_systick_monotonic::{fugit::ExtU32, DwtSystick};
+    use teensy4_bsp as bsp;
 
-#[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
-const APP: () = {
-    struct Resources {
+    const MONO_HZ: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
+    #[monotonic(binds = SysTick, default = true)]
+    type MyMono = DwtSystick<MONO_HZ>;
+
+    #[local]
+    struct Local {
         led: bsp::Led,
     }
 
-    #[init(schedule = [blink])]
-    fn init(mut cx: init::Context) -> init::LateResources {
-        // Initialise the monotonic CYCCNT timer.
-        cx.core.DWT.enable_cycle_counter();
+    #[shared]
+    struct Shared {}
+
+    #[init]
+    fn init(mut cx: init::Context) -> (Shared, Local, init::Monotonics) {
+        let mut dcb = cx.core.DCB;
+        let dwt = cx.core.DWT;
+        let systick = cx.core.SYST;
+
+        let mono = DwtSystick::new(&mut dcb, dwt, systick, MONO_HZ);
 
         // Ensure the ARM clock is configured for the default speed seeing as we use this speed to
         // determine a 1 second `PERIOD`.
-        cx.device.ccm.pll1.set_arm_clock(
-            bsp::hal::ccm::PLL1::ARM_HZ,
-            &mut cx.device.ccm.handle,
-            &mut cx.device.dcdc,
-        );
+        cx.device
+            .ccm
+            .pll1
+            .set_arm_clock(MONO_HZ, &mut cx.device.ccm.handle, &mut cx.device.dcdc);
 
         // Schedule the first blink.
-        cx.schedule.blink(cx.start + PERIOD.cycles()).unwrap();
+        blink::spawn_after(1_u32.secs()).unwrap();
         let pins = bsp::t40::into_pins(cx.device.iomuxc);
         let mut led = bsp::configure_led(pins.p13);
-        led.set_high().unwrap();
+        led.set();
 
-        init::LateResources { led }
+        (Shared {}, Local { led }, init::Monotonics(mono))
     }
 
-    #[task(resources = [led], schedule = [blink])]
+    #[task(local = [led])]
     fn blink(cx: blink::Context) {
-        cx.resources.led.toggle();
+        cx.local.led.toggle();
         // Schedule the following blink.
-        cx.schedule.blink(cx.scheduled + PERIOD.cycles()).unwrap();
+        blink::spawn_after(1_u32.secs()).unwrap();
     }
-
-    // RTIC requires that unused interrupts are declared in an extern block when
-    // using software tasks; these free interrupts will be used to dispatch the
-    // software tasks.
-    extern "C" {
-        fn LPUART8();
-    }
-};
+}

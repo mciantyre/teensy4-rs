@@ -24,6 +24,8 @@ These changes affect symbols in the BSP:
 - `LED => Led`
 - `usb::Error::IO => usb::Error::Io`
 
+**BREAKING** Update cortex-m to 0.7.
+
 ## [0.2.2] - 2021-12-21
 
 Users can place the heap in DTCM using `dtcm_heap_start()`. This mimics the

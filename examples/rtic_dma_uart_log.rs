@@ -22,16 +22,9 @@
 #![no_std]
 #![no_main]
 
-use embedded_hal::digital::v2::OutputPin;
-use embedded_hal::serial::Read;
 use heapless::consts::U256;
-use rtic::cyccnt::U32Ext;
 use teensy4_bsp as bsp;
 use teensy4_panic as _;
-
-const PERIOD: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
-const BAUD: u32 = 115_200;
-const TX_FIFO_SIZE: u8 = 4;
 
 // Type aliases for the Queue we want to use.
 type Ty = u8;
@@ -43,24 +36,49 @@ type Consumer = heapless::spsc::Consumer<'static, Ty, Cap>;
 // The UART receiver.
 type UartRx = bsp::hal::uart::Rx<bsp::hal::iomuxc::consts::U2>;
 
-#[rtic::app(device = teensy4_bsp, monotonic = rtic::cyccnt::CYCCNT, peripherals = true)]
-const APP: () = {
-    struct Resources {
+#[rtic::app(device = teensy4_bsp, peripherals = true, dispatchers = [LPUART8])]
+mod app {
+    use crate::{Consumer, Producer, Queue, UartRx};
+    use embedded_hal::digital::v2::OutputPin;
+    use embedded_hal::serial::Read;
+    use teensy4_bsp as bsp;
+
+    use dwt_systick_monotonic::{fugit::ExtU32, DwtSystick};
+
+    const BAUD: u32 = 115_200;
+    const TX_FIFO_SIZE: u8 = 4;
+    const MONO_HZ: u32 = bsp::hal::ccm::PLL1::ARM_HZ;
+    #[monotonic(binds = SysTick, default = true)]
+    type MyMono = DwtSystick<MONO_HZ>;
+
+    #[local]
+    struct Local {
         led: bsp::Led,
         u_rx: UartRx,
         q_tx: Producer,
         q_rx: Consumer,
+        blink_count: u32,
+    }
+
+    #[shared]
+    struct Shared {
         dma_interrupt_count: u32,
     }
 
-    #[init(schedule = [blink])]
-    fn init(mut cx: init::Context) -> init::LateResources {
-        cx.core.DWT.enable_cycle_counter();
-        cx.device.ccm.pll1.set_arm_clock(
-            bsp::hal::ccm::PLL1::ARM_HZ,
-            &mut cx.device.ccm.handle,
-            &mut cx.device.dcdc,
-        );
+    #[init(local = [
+        queue: Queue = heapless::spsc::Queue(heapless::i::Queue::new())
+    ])]
+    fn init(mut cx: init::Context) -> (Shared, Local, init::Monotonics) {
+        let mut dcb = cx.core.DCB;
+        let dwt = cx.core.DWT;
+        let systick = cx.core.SYST;
+
+        let mono = DwtSystick::new(&mut dcb, dwt, systick, MONO_HZ);
+
+        cx.device
+            .ccm
+            .pll1
+            .set_arm_clock(MONO_HZ, &mut cx.device.ccm.handle, &mut cx.device.dcdc);
 
         let pins = bsp::t40::into_pins(cx.device.iomuxc);
 
@@ -84,40 +102,43 @@ const APP: () = {
         imxrt_uart_log::dma::init(u_tx, channel, Default::default()).unwrap();
 
         // The queue used for buffering bytes.
-        static mut Q: Queue = heapless::spsc::Queue(heapless::i::Queue::new());
-        let (q_tx, q_rx) = unsafe { Q.split() };
+        let (q_tx, q_rx) = cx.local.queue.split();
 
         // LED setup.
         let mut led = bsp::configure_led(pins.p13);
         led.set_high().unwrap();
 
         // Schedule the first blink.
-        cx.schedule.blink(cx.start + PERIOD.cycles()).unwrap();
+        blink::spawn_after(1_u32.secs()).unwrap();
 
-        init::LateResources {
-            led,
-            u_rx,
-            q_tx,
-            q_rx,
-            dma_interrupt_count: 0,
-        }
+        (
+            Shared {
+                dma_interrupt_count: 0,
+            },
+            Local {
+                led,
+                u_rx,
+                q_tx,
+                q_rx,
+                blink_count: 0,
+            },
+            init::Monotonics(mono),
+        )
     }
 
-    #[task(resources = [led, q_rx, dma_interrupt_count], schedule = [blink])]
-    fn blink(cx: blink::Context) {
-        static mut TIMES: u32 = 0;
-        *TIMES += 1;
-        let plural = if *TIMES > 1 { "s" } else { "" };
-        log::info!("`blink` called {} time{}", *TIMES, plural);
-        log::info!(
-            "DMA7_DMA23 interrupted {} times",
-            cx.resources.dma_interrupt_count
-        );
+    #[task(local = [blink_count, led, q_rx], shared = [dma_interrupt_count])]
+    fn blink(mut cx: blink::Context) {
+        let plural = if *cx.local.blink_count > 1 { "s" } else { "" };
 
-        if cx.resources.q_rx.ready() {
+        log::info!("`blink` called {} time{}", cx.local.blink_count, plural);
+        cx.shared.dma_interrupt_count.lock(|count| {
+            log::info!("DMA7_DMA23 interrupted {} times", count);
+        });
+
+        if cx.local.q_rx.ready() {
             let mut buffer = [0u8; 256];
             for elem in buffer.iter_mut() {
-                *elem = match cx.resources.q_rx.dequeue() {
+                *elem = match cx.local.q_rx.dequeue() {
                     None => break,
                     Some(b) => b,
                 };
@@ -127,30 +148,26 @@ const APP: () = {
         }
 
         // Toggle the LED.
-        cx.resources.led.toggle();
+        cx.local.led.toggle();
 
         // Schedule the following blink.
-        cx.schedule.blink(cx.scheduled + PERIOD.cycles()).unwrap();
+        blink::spawn_after(1_u32.secs()).unwrap();
     }
 
-    #[task(binds = LPUART2, resources = [u_rx, q_tx])]
+    #[task(binds = LPUART2, local = [u_rx, q_tx])]
     fn lpuart2(cx: lpuart2::Context) {
         log::info!("LPUART2 interrupt task called!");
-        while let Ok(b) = cx.resources.u_rx.read() {
-            cx.resources.q_tx.enqueue(b).ok();
+        let u_rx = cx.local.u_rx;
+        let q_tx = cx.local.q_tx;
+
+        while let Ok(b) = u_rx.read() {
+            q_tx.enqueue(b).ok();
         }
     }
 
-    #[task(binds = DMA7_DMA23, resources = [dma_interrupt_count])]
-    fn dma7_dma23(cx: dma7_dma23::Context) {
-        *cx.resources.dma_interrupt_count += 1;
+    #[task(binds = DMA7_DMA23, shared = [dma_interrupt_count])]
+    fn dma7_dma23(mut cx: dma7_dma23::Context) {
+        cx.shared.dma_interrupt_count.lock(|count| *count += 1);
         imxrt_uart_log::dma::poll();
     }
-
-    // RTIC requires that unused interrupts are declared in an extern block when
-    // using software tasks; these free interrupts will be used to dispatch the
-    // software tasks.
-    extern "C" {
-        fn LPUART8();
-    }
-};
+}
