@@ -21,7 +21,7 @@ imxrt-uart-log = "0.2.0"
 log = "0.4.8"
 
 [dependencies.teensy4-panic]
-version = "0.1"
+version = "0.2"
 path = "../../teensy4-panic"
 
 [[bin]]
