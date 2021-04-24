@@ -10,7 +10,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! teensy4-panic = # ...
+//! teensy4-panic = "0.2"
 //! ```
 //!
 //! Then, include the crate in your final program:
@@ -20,6 +20,32 @@
 //! ```
 //!
 //! Finally, use `panic!()` to stop the program, and blink the LED.
+//!
+//! # Custom panic handlers
+//!
+//! By default, `teensy4-panic` enables the `panic-handler` feature. If you want
+//! to use the S.O.S. routine in your own, custom panic handler, disable the default
+//! features, and call `sos()`:
+//!
+//! ```toml
+//! [dependencies]
+//! teensy4-panic = "0.2"
+//! default-features = false
+//! ```
+//!
+//! ```no_run
+//! # #![feature(lang_items)]
+//! # #![no_std]
+//! use teensy4_panic::sos;
+//!
+//! #[panic_handler]
+//! fn panic(_: &core::panic::PanicInfo) -> ! {
+//!     // ...
+//!     sos()
+//! }
+//! # fn main() {}
+//! # #[lang = "eh_personality"] extern fn rust_eh_personality() {}
+//! ```
 
 #![no_std]
 
@@ -95,8 +121,18 @@ fn o(led: &mut Led) {
     triple(led, 3);
 }
 
+#[cfg(feature = "panic-handler")]
 #[panic_handler]
 fn panic(_: &core::panic::PanicInfo) -> ! {
+    sos()
+}
+
+/// Blink S.O.S. on the LED, forever
+///
+/// This is the implementation of the `teensy4-panic` handler.
+/// See the crate-level docs for how you could use this in your
+/// own panic handler.
+pub fn sos() -> ! {
     let mut led = unsafe { Led::new() };
     loop {
         s(&mut led);
