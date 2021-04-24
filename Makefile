@@ -75,3 +75,5 @@ test:
 
 	@cargo +nightly test --manifest-path teensy4-pins/Cargo.toml --lib --tests --target $(HOST) --all-features
 	@cargo +nightly test --manifest-path teensy4-pins/Cargo.toml --doc --target $(HOST) --all-features
+
+	@cargo +nightly test --manifest-path teensy4-panic/Cargo.toml --doc --target $(HOST) --no-default-features
