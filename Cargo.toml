@@ -64,12 +64,8 @@ optional = true
 version = "0.4.8"
 optional = true
 
-[dev-dependencies]
-panic-halt = "0.2.0"
-
 [workspace]
 members = [
-    "examples/bsp",
     "teensy4-fcb",
     "teensy4-panic",
     "teensy4-pins",
@@ -104,3 +100,130 @@ opt-level = 0
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 default-target = "thumbv7em-none-eabihf"
+
+##########
+# EXAMPLES
+##########
+
+# Examples that just need a runtime
+
+[[example]]
+name = "gpt"
+required-features = ["rt"]
+
+[[example]]
+name = "led"
+required-features = ["rt"]
+
+[[example]]
+name = "pit"
+required-features = ["rt"]
+
+[[example]]
+name = "panic"
+required-features = ["rt"]
+
+# Examples that use SYSTICK as a timer
+
+[[example]]
+name = "systick"
+required-features = ["rt", "systick"]
+
+# Examples that require USB logging.
+
+[[example]]
+name = "dma_memcpy"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "dma_spi"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "dma_uart"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "i2c"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "pwm"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "spi"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "srtc"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "timer"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "uart"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "usb"
+required-features = ["rt", "systick", "usb-logging"]
+
+[[example]]
+name = "usb_writer"
+required-features = ["rt", "systick", "usb-logging"]
+
+# ----
+# RTIC
+# ----
+
+[[example]]
+name = "rtic_led"
+required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_blink"
+required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_pit"
+required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_uart_log"
+required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_dma_uart_log"
+required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_usb_echo"
+required-features = ["rt", "rtic", "usb-logging"]
+
+[[example]]
+name = "rtic_usb"
+required-features = ["rt", "rtic", "usb-logging"]
+
+# -------------------------
+# Dependencies for examples
+# -------------------------
+
+# RTIC links with cortex-m-rt, which can't build for
+# every host (notably fails on macOS). Only include it
+# when targeting the T4 MCU.
+[target.thumbv7em-none-eabihf.dev-dependencies]
+cortex-m-rtic = "0.5"
+
+[dev-dependencies]
+embedded-hal = "0.2"
+heapless = "0.5"
+imxrt-uart-log = "0.2"
+log = "0.4"
+nb = "0.1"
+
+[dev-dependencies.teensy4-panic]
+version = "0.2"
+path = "teensy4-panic"

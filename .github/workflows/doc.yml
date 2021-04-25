@@ -21,7 +21,7 @@ jobs:
         override: true
 
     - name: Generate docs
-      run: cargo rustdoc --all-features -- --cfg docsrs
+      run: cargo rustdoc --target thumbv7em-none-eabihf --all-features -- --cfg docsrs
 
     - name: Write redirect
       run: echo "<meta http-equiv=\"refresh\" content=\"0;url=teensy4_bsp\">" > target/thumbv7em-none-eabihf/doc/index.html

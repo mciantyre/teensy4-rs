@@ -92,9 +92,9 @@ you'll help other users who use the i.MX RT processors in other
 projects. See the `imxrt-hal`'s [contributing guidelines] to learn about
 `imxrt-hal` development.
 
-If you'd like to
+If you'd like to change
 
--   change Teensy 4 starts up
+-   how the Teensy 4 starts up
 -   the Teensy 4's memory layout
 -   Teensy 4 pin definitions
 -   USB logging behaviors
@@ -110,8 +110,8 @@ USB stack, which is written in C.
 
 To compile the two supporting libraries, you'll need the [GNU ARM
 Embedded Toolchain]. Once you have `arm-none-eabi-gcc` on your `PATH`,
-you may build both libraries using `make` at the top of the repo.
-Consult the `Makefile` for the relevant targets.
+you may build both libraries using `make`. Consult `bin/Makefile` for
+the relevant targets.
 
 ### Workflow
 

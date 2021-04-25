@@ -27,3 +27,7 @@ features = ["imxrt1060"]
 
 [package.metadata.docs.rs]
 default-target = "thumbv7em-none-eabihf"
+
+[lib]
+test = false
+doctest = false

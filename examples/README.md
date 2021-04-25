@@ -3,42 +3,31 @@
 This directory contains examples that run on your Teensy 4.0 or Teensy 4.1.
 We separate examples based on their dependencies:
 
-- The `bsp` directory contains examples that simply use the `teensy4-bsp`
-  crate.
-- The `rtic` directory contains examples that combine the BSP with the [RTIC]
-  embedded Rust framework.
+- The examples prefixed with `rtic_*` demonstrate the [RTIC] framework
+- Otherwise, the examples demonstrate how to directly use the BSP
 
 [RTIC]: https://rtic.rs/0.5/book/en/
 
-## Build and run BSP examples
+## Build and run examples
 
 Make sure you have all of the build dependencies described in the [top-level
 README](../README.md#dependencies).
 
-To build a BSP example, enter the `bsp` directory, and use `cargo objcopy` to
-create a hex program.
+First, build all of the examples for the MCU. Enable all BSP features to build
+all examples.
 
 ```
-cd examples/bsp
-cargo objcopy --release --bin led -- -O ihex led.hex
+cargo build --release --examples --all-features --target thumbv7em-none-eabihf
 ```
 
-You should find an `led.hex` output. Download the file to your Teensy, and
-watch the LED turn on!
-
-To select a different example, change the argument to `--bin`.
-
-## Build and run RTIC examples
-
-Follow the same process for building a BSP example, but use the examples in the
-`rtic` directory:
+Convert your example of interest to a HEX file. For instance, to convert the
+`led` example, run
 
 ```
-cd examples/rtic
-cargo objcopy --release --bin rtic_blink -- -O ihex rtic_blink.hex
+rust-objcopy -O ihex target/thumbv7em-none-eabihf/release/examples/led led.hex
 ```
 
-## Runtime support
+Finally, load the HEX file onto your board. 
 
-The `Cargo.toml` files in each example directory shows how you might depend on
-the `teensy4-rt` in your applications. See those files for more information.
+To understand what each example should do, see the example's documentation at
+the top of the file.
