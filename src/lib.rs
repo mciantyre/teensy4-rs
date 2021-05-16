@@ -96,6 +96,7 @@ pub use teensy4_pins::common;
 pub use teensy4_pins::t40;
 pub use teensy4_pins::t41;
 
+mod eeprom;
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 mod rt;
 #[cfg(feature = "systick")]
@@ -104,6 +105,7 @@ mod systick;
 #[cfg_attr(docsrs, doc(cfg(feature = "usb-logging")))]
 pub mod usb;
 
+pub use eeprom::Eeprom;
 #[cfg(feature = "systick")]
 pub use systick::SysTick;
 

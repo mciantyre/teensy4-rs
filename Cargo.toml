@@ -126,6 +126,10 @@ required-features = ["rt"]
 # Examples that use SYSTICK as a timer
 
 [[example]]
+name = "eeprom"
+required-features = ["rt", "systick"]
+
+[[example]]
 name = "systick"
 required-features = ["rt", "systick"]
 
