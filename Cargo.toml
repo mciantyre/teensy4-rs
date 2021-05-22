@@ -16,6 +16,7 @@ include = [
     "bin/libt4start.a",
     "bin/libt4usb.a",
     "bin/Makefile",
+    "examples/*",
     "src/*",
     "build.rs",
     "t4link.x",
