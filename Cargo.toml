@@ -91,6 +91,17 @@ rtic = ["imxrt-hal/rtic"]
 # Enables cortex-m-rt runtime support
 rt = ["cortex-m-rt", "imxrt-hal/rt"]
 
+# Most teensy4-rs documentation tells the user to favor release builds.
+# However, it might be nice to disable optimizations when evaluating
+# programs. These settings let us remove '--release' from documented
+# commands and still have a successful build.
+[profile.dev]
+# Thin LTO allows us to strip unused SysTick symbols when linking some RTIC
+# examples. This is particularly important when building all examples, and
+# enabling all features to make the build easier. The proper approach is
+# documented as "don't enable the BSP's default features" for end users.
+lto = "thin"
+
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
 [profile.release.build-override]
