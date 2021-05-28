@@ -83,9 +83,9 @@ const APP: () = {
 
         init::LateResources {
             led,
-            u_rx,
-            q_tx,
             q_rx,
+            q_tx,
+            u_rx,
         }
     }
 

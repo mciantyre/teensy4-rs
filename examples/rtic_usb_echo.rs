@@ -42,9 +42,9 @@ const APP: () = {
 
         init::LateResources {
             led,
+            poller,
             reader,
             writer,
-            poller,
         }
     }
 
