@@ -35,6 +35,11 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         args: --verbose --workspace --examples --target thumbv7em-none-eabihf --all-features -- -D warnings
         name: Lint all packages and examples
+    - uses: actions-rs/clippy-check@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        args: --verbose --package tools --all-features -- -D warnings
+        name: Lint host-side tools
 
   precompiled:
     runs-on: ubuntu-latest

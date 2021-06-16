@@ -70,6 +70,7 @@ members = [
     "teensy4-fcb",
     "teensy4-panic",
     "teensy4-pins",
+    "tools",
 ]
 
 [features]

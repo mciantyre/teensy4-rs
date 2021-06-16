@@ -2,3 +2,5 @@
 rustflags = [
     "-C", "link-arg=-Tt4link.x",
 ]
+
+runner = ["cargo", "run", "--package",  "tools", "--bin", "runner", "--"]

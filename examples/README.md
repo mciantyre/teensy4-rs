@@ -31,3 +31,11 @@ Finally, load the HEX file onto your board.
 
 To understand what each example should do, see the example's documentation at
 the top of the file.
+
+If you have the `teensy_loader_cli` command-line loader installed, you may use
+`cargo run` to automatically build an example, convert the program, then call
+the loader to run it on hardware:
+
+```
+cargo run --release --example led --features rt --target thumbv7em-none-eabihf
+```
