@@ -53,7 +53,7 @@ fn main() -> ! {
     log::info!("Enabling I2C clocks...");
     let (_, _, i2c3_builder, _) = peripherals.i2c.clock(
         &mut peripherals.ccm.handle,
-        bsp::hal::ccm::i2c::ClockSelect::OSC, // 2MHz clock...
+        bsp::hal::ccm::i2c::ClockSelect::OSC, // 24MHz clock...
         bsp::hal::ccm::i2c::PrescalarSelect::DIVIDE_3, // Divide by 3
     );
 
