@@ -54,12 +54,6 @@ features = ["imxrt1062"]
 version = "0.2"
 path = "teensy4-pins"
 
-# Tied to "systick" feature, since
-# SysTick implements a blocking delay trait
-[dependencies.embedded-hal]
-version = "0.2.4"
-optional = true
-
 # Only need logging when "usb-logging" is enabled
 [dependencies.log]
 version = "0.4.8"
@@ -75,20 +69,10 @@ members = [
 
 [features]
 # Default features established for prototype development
-default = ["usb-logging", "systick"]
+default = ["usb-logging"]
 # Enables the USB logging stack
 usb-logging = ["log"]
-# Include a definition of the SysTick exception handler. This enables
-# a simple delay() spinloop that waits for the timer to elapse.
-#
-# NOTE: This feature is incompatible with the `rtic` crate as `rtic`
-# provides its own `SysTick` definition.
-systick = ["embedded-hal"]
 # Provides the `Peripherals::steal` constructor required by `rtic`.
-#
-# NOTE: When using this feature along with the `rtic` crate the
-# default features must first be disabled in order to avoid a
-# duplicate definition of `SysTick`.
 rtic = ["imxrt-hal/rtic"]
 # Enables cortex-m-rt runtime support
 rt = ["cortex-m-rt", "imxrt-hal/rt"]
@@ -98,10 +82,6 @@ rt = ["cortex-m-rt", "imxrt-hal/rt"]
 # programs. These settings let us remove '--release' from documented
 # commands and still have a successful build.
 [profile.dev]
-# Thin LTO allows us to strip unused SysTick symbols when linking some RTIC
-# examples. This is particularly important when building all examples, and
-# enabling all features to make the build easier. The proper approach is
-# documented as "don't enable the BSP's default features" for end users.
 lto = "thin"
 
 # Don't optimize build dependencies, like proc macros.
@@ -144,61 +124,55 @@ required-features = ["rt"]
 name = "pull_down_pin"
 required-features = ["rt"]
 
-# Examples that use SYSTICK as a timer
-
-[[example]]
-name = "systick"
-required-features = ["rt", "systick"]
-
 # Examples that require USB logging.
 
 [[example]]
 name = "dma_memcpy"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "dma_spi"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "dma_uart"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "i2c"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "panic_log"
-required-features = ["rt", "systick", "usb-logging", "teensy4-panic/log"]
+required-features = ["rt", "usb-logging", "teensy4-panic/log"]
 
 [[example]]
 name = "pwm"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "spi"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "srtc"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "timer"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "uart"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "usb"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "usb_writer"
-required-features = ["rt", "systick", "usb-logging"]
+required-features = ["rt", "usb-logging"]
 
 # ----
 # RTIC
@@ -253,3 +227,7 @@ nb = "0.1"
 version = "0.2"
 path = "teensy4-panic"
 features = ["log"]
+
+[patch.crates-io.cortex-m]
+git = "https://github.com/mciantyre/cortex-m"
+branch = "master"

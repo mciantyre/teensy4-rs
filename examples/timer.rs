@@ -11,6 +11,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -24,7 +25,7 @@ use teensy4_bsp as bsp;
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::pins::t40::from_pads(periphs.iomuxc);
     usb_io::init().unwrap();
 
@@ -50,7 +51,7 @@ fn main() -> ! {
     loop {
         let (_, period) = timer.time(|| {
             led.set_high().unwrap();
-            systick.delay(500);
+            systick.delay_ms(500);
             led.set_low().unwrap();
         });
         match period {
@@ -58,7 +59,7 @@ fn main() -> ! {
             None => log::warn!("Lifetime timer expired!"),
         };
 
-        systick.delay(100);
+        systick.delay_ms(100);
 
         timer3.start(core::time::Duration::from_micros(200));
         let (_, period) = gpt2.time(|| {
@@ -68,6 +69,6 @@ fn main() -> ! {
         });
         log::info!("GPT2 timed a {:?} long event", period);
 
-        systick.delay(100);
+        systick.delay_ms(100);
     }
 }

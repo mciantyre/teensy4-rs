@@ -13,6 +13,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -31,17 +32,17 @@ fn percent(duty: u16) -> f32 {
 fn main() -> ! {
     // Prepare all the BSP peripherals
     let mut p = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::pins::t40::from_pads(p.iomuxc);
     usb_io::init().unwrap();
     // Delay is only to let a user set-up their USB serial connection...
-    systick.delay(5000);
+    systick.delay_ms(5000);
     // Set the core and IPG clock. The IPG clock frequency drives the PWM (sub)modules
     let (_, ipg_hz) =
         p.ccm
             .pll1
             .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
-    systick.delay(100);
+    systick.delay_ms(100);
     // Enable the clocks for the PWM2 module
     let mut pwm2 = p.pwm2.clock(&mut p.ccm.handle);
     // Get the outputs from the PWM2 module, submodule 2.
@@ -74,15 +75,15 @@ fn main() -> ! {
         ctrl.enable(Channel::B);
         ctrl.set_duty(Channel::A, duty1);
         ctrl.set_duty(Channel::B, duty2);
-        systick.delay(200);
+        systick.delay_ms(200);
 
         log::info!("Disabling 'B' PWM...");
         ctrl.disable(Channel::B);
-        systick.delay(200);
+        systick.delay_ms(200);
 
         log::info!("Disabling 'A' PWM...");
         ctrl.disable(Channel::A);
-        systick.delay(400);
+        systick.delay_ms(400);
 
         core::mem::swap(&mut duty1, &mut duty2);
     }

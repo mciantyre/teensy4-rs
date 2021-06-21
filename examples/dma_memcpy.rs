@@ -6,6 +6,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -37,9 +38,9 @@ const NUMBER_OF_ELEMENTS: Element = (BUFFER_SIZE - 7) as Element;
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     usb_io::init().unwrap();
-    systick.delay(5_000);
+    systick.delay_ms(5_000);
 
     let mut dma_channels = peripherals.dma.clock(&mut peripherals.ccm.handle);
     let channel = dma_channels[13].take().unwrap();
@@ -133,6 +134,6 @@ fn main() -> ! {
         tx_buffer.clear();
 
         start += 1;
-        systick.delay(5_000);
+        systick.delay_ms(5_000);
     }
 }

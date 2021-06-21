@@ -8,6 +8,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -19,11 +20,11 @@ use teensy4_bsp as bsp;
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
     let pins = bsp::pins::t40::from_pads(p.iomuxc);
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let mut usb_reader = usb_io::init().unwrap();
 
     log::error!("You might not see this message if the USB device isn't configured by the host");
-    systick.delay(2000);
+    systick.delay_ms(2000);
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
@@ -52,6 +53,6 @@ fn main() -> ! {
         log::trace!("{} + {} = {}", 3, 2, 3 + 2);
         counter += 1;
         led.toggle();
-        systick.delay(500);
+        systick.delay_ms(500);
     }
 }

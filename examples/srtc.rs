@@ -26,6 +26,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use bsp::hal::srtc::{micros_to_ticks, EnabledState, SRTC};
@@ -38,10 +39,10 @@ use teensy4_panic as _;
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let (mut reader, mut writer) = usb_io::split().unwrap();
 
-    systick.delay(2000);
+    systick.delay_ms(2000);
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);

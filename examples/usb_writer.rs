@@ -4,6 +4,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -16,11 +17,11 @@ use teensy4_bsp as bsp;
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
     let pins = bsp::pins::t40::from_pads(p.iomuxc);
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
     let (mut reader, mut writer) = usb_io::split().unwrap();
 
-    systick.delay(2000);
+    systick.delay_ms(2000);
     p.ccm
         .pll1
         .set_arm_clock(bsp::hal::ccm::PLL1::ARM_HZ, &mut p.ccm.handle, &mut p.dcdc);
@@ -44,6 +45,6 @@ fn main() -> ! {
         writeln!(writer, "Hello world! 3 + 2 = {}", 3 + 2).unwrap();
         writer.flush().unwrap();
         led.toggle();
-        systick.delay(5000);
+        systick.delay_ms(5000);
     }
 }

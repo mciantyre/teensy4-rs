@@ -34,15 +34,9 @@
 //!
 //! | Flag            |         Description                                                   | Default? |
 //! | --------------- | --------------------------------------------------------------------- | -------- |
-//! | `"systick"`     | Registers a SYSTICK exception handler that's called every millisecond | ✓        |
 //! | `"usb-logging"` | Adds support for logging over USB with the `log` crate                | ✓        |
 //! | `"rt"`          | Adds runtime support using `cortex-m-rt`                              |          |
 //! | `"rtic"`        | Adds support for using the BSP peripherals with RTIC                  |          |
-//!
-//! Notes:
-//!
-//! - Combining `"rtic"` with `"systick"` is not supported. RTIC may try to register a SYSTICK exception handler, which
-//!   conflicts with the BSP's definition.
 //!
 //! Proper RTIC support requires that you disable the BSP's default features. You may combine `"rtic"` with
 //! either `"rt"` and `"usb-logging"`.
@@ -115,16 +109,12 @@ pub mod t41 {
 
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 mod rt;
-#[cfg(feature = "systick")]
-mod systick;
 #[cfg(feature = "usb-logging")]
 #[cfg_attr(docsrs, doc(cfg(feature = "usb-logging")))]
 pub mod usb;
 
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 pub use rt::{dtcm_heap_start, heap_len, heap_start};
-#[cfg(feature = "systick")]
-pub use systick::SysTick;
 
 pub use hal::ral::interrupt;
 // `rtic` expects these in the root.
@@ -149,3 +139,12 @@ pub fn configure_led(pad: common::P13) -> Led {
     led.set_fast(true);
     led.output()
 }
+
+/// SYSTICK external clock frequency.
+///
+/// This represents the frequency (Hz) of the external clock
+/// that can supply SYSTICK.
+// See Section 12.3.2.1 of the reference manual. The note
+// explains that the 24MHz clock is divided down to 100KHz
+// before reaching SYSTICK.
+pub const EXT_SYSTICK_HZ: u32 = 100_000;

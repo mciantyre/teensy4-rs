@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+**BREAKING** This release removes the `systick` module, and all SYSTICK APIs.
+Users who want to use the system timer should prefer the APIs available from
+the `cortex_m` crate. See this project's examples for one way to configure
+SYSTICK for your system.
+
 **BREAKING** This release removes the MPU protection regions from the BSP. Users who depend
 on MPU protection may specify their own MPU regions using either the `cortex-m`
 APIs, or their own implementation.

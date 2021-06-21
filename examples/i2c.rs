@@ -17,6 +17,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -45,10 +46,10 @@ where
 #[cortex_m_rt::entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
     usb_io::init().unwrap();
-    systick.delay(5000);
+    systick.delay_ms(5000);
 
     log::info!("Enabling I2C clocks...");
     let (_, _, i2c3_builder, _) = peripherals.i2c.clock(
@@ -77,7 +78,7 @@ fn main() -> ! {
     log::info!("Starting I/O loop...");
     let mut counter = 0;
     loop {
-        systick.delay(1000);
+        systick.delay_ms(1000);
         log::info!("Querying WHO_AM_I...");
         counter += 1;
         match who_am_i(&mut i2c3) {

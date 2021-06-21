@@ -18,6 +18,7 @@
 #![no_std]
 #![no_main]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -80,11 +81,11 @@ fn read<R: Read<u8>>(uart: &mut R, bytes: &mut [u8]) -> Result<(), R::Error> {
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
     usb_io::init().unwrap();
 
-    systick.delay(5_000);
+    systick.delay_ms(5_000);
     let uarts = peripherals.uart.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::uart::ClockSelect::OSC,
@@ -101,11 +102,11 @@ fn main() -> ! {
     let mut led = bsp::configure_led(pins.p13);
     let (mut tx, mut rx) = uart.split();
     loop {
-        systick.delay(1_000);
+        systick.delay_ms(1_000);
         led.toggle();
         let mut buffer = DATA;
         write(&mut tx, &buffer).unwrap();
-        systick.delay(1);
+        systick.delay_ms(1);
         match read(&mut rx, &mut buffer) {
             Ok(_) => continue,
             Err(err) => log::warn!("Receiver error: {:?}", err.flags),

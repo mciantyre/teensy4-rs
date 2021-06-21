@@ -26,6 +26,7 @@
 #![no_main]
 #![no_std]
 
+mod systick;
 mod usb_io;
 
 use teensy4_panic as _;
@@ -159,7 +160,7 @@ static mut HARDWARE_FLAG: Option<HardwareFlag> = None;
 #[entry]
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
-    let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     usb_io::init().unwrap();
     let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
 
@@ -178,7 +179,7 @@ fn main() -> ! {
     // SPI setup
     //
 
-    systick.delay(5000);
+    systick.delay_ms(5000);
     log::info!("Initializing SPI4 clocks...");
 
     let (_, _, _, spi4_builder) = peripherals.spi.clock(
@@ -246,7 +247,7 @@ fn main() -> ! {
         if rx_buffer_mut(prep_rx).is_none() {
             panic!("Cannot prepare receive buffer");
         }
-        systick.delay(500);
+        systick.delay_ms(500);
 
         log::info!("Started DMA transfers for WHO_AM_I");
         FLAG.store(false, Ordering::Release);
@@ -289,7 +290,7 @@ fn main() -> ! {
             panic!("Unable to modify receive buffer!");
         }
 
-        systick.delay(500);
+        systick.delay_ms(500);
         FLAG.store(false, Ordering::Release);
         prepare_transfer(spi);
         loop {

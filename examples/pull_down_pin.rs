@@ -4,6 +4,8 @@
 #![no_std]
 #![no_main]
 
+mod systick;
+
 use teensy4_panic as _;
 
 use cortex_m_rt::entry;
@@ -11,7 +13,7 @@ use imxrt_hal::{
     gpio::GPIO,
     iomuxc::{self, Config, Hysteresis, PullKeeper},
 };
-use teensy4_bsp::{configure_led, pins::t40, Peripherals, SysTick};
+use teensy4_bsp::{configure_led, pins::t40, Peripherals};
 
 // The pin configuration can be defined at compile time,
 // and at run time. This example uses a constant, so the
@@ -25,7 +27,7 @@ const LED_PERIOD_MS: u32 = 500;
 #[entry]
 fn main() -> ! {
     let p = Peripherals::take().unwrap();
-    let mut systick = SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
+    let mut systick = systick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let pins = t40::from_pads(p.iomuxc);
     let mut led = configure_led(pins.p13);
 
@@ -39,6 +41,6 @@ fn main() -> ! {
         if switch_gpio.is_set() {
             led.toggle()
         }
-        systick.delay(LED_PERIOD_MS);
+        systick.delay_ms(LED_PERIOD_MS);
     }
 }
