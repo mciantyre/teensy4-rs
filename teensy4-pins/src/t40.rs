@@ -4,14 +4,14 @@
 //! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
 //! method to generate pins.
 //!
-//! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
-//! | ---- | -------- | -------- | ------------ | ------------ | --------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
-//! |  34  |`SD_B0_03`|          |`FlexPWM1_1_B`|              |           |  `SPI1_SDI`  |                  |              |         |         |         |
-//! |  35  |`SD_B0_02`|          |`FlexPWM1_1_A`|              |           |  `SPI1_SDO`  |                  |              |         |         |         |
-//! |  36  |`SD_B0_01`|          |`FlexPWM1_0_B`|  `I2C3_SDA`  |           |  `SPI1_PCS0` |                  |              |         |         |         |
-//! |  37  |`SD_B0_00`|          |`FlexPWM1_0_A`|  `I2C3_SCL`  |           |  `SPI1_SCK`  |                  |              |         |         |         |
-//! |  38  |`SD_B0_05`|          |`FlexPWM1_2_B`|  `UART8_RX`  |           |              |                  |              |         |         |         |
-//! |  39  |`SD_B0_04`|          |`FlexPWM1_2_A`|  `UART8_TX`  |           |              |                  |              |         |         |         |
+//! | Pin  | Pad ID   |    Alt0      |    Alt1         |   Alt2        |    Alt3       |     Alt4       |  Alt5      |    Alt6        |  Alt7   |     Alt8      |       Alt9     |
+//! | ---- | -------- | ------------ | --------------- | ------------- | ------------- | -------------- | ---------- | -------------- | ------- | ------------- | -------------- |
+//! |  34  | SD_B0_03 | USDHC1_DATA1 | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07 | LPSPI1_SDI     | GPIO3_IO15 | ---            | ---     | ENET2_RDATA00 | SEMC_CLK6      |
+//! |  35  | SD_B0_02 | USDHC1_DATA0 | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06 | LPSPI1_SDO     | GPIO3_IO14 | ---            | ---     | ENET2_RX_ER   | SEMC_CLK5      |
+//! |  36  | SD_B0_01 | USDHC1_CLK   | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05 | LPSPI1_PCS0    | GPIO3_IO13 | FLEXSPIB_SS1_B | ---     | ENET2_TX_CLK  | ENET2_REF_CLK2 |
+//! |  37  | SD_B0_00 | USDHC1_CMD   | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04 | LPSPI1_SCK     | GPIO3_IO12 | FLEXSPIA_SS1_B | ---     | ENET2_TX_EN   | SEMC_DQS4      |
+//! |  38  | SD_B0_05 | USDHC1_DATA3 | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09 | FLEXSPIB_DQS   | GPIO3_IO17 | CCM_CLKO2      | ---     | ENET2_RX_EN   | ---            |
+//! |  39  | SD_B0_04 | USDHC1_DATA2 | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08 | FLEXSPIB_SS0_B | GPIO3_IO16 | CCM_CLKO1      | ---     | ENET2_RDATA01 | ---            |
 
 pub use crate::common::*;
 use crate::iomuxc::{sd_b0::*, ErasedPad};

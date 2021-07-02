@@ -4,16 +4,16 @@
 //! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
 //! method to generate pins.
 //!
-//! | Pin  | Pad ID   |  Alt0    |  Alt1        |  Alt2        |  Alt3     |  Alt4        |  Alt5            |  Alt6        |  Alt7   |  Alt8   |  Alt9   |
-//! | ---- | -------- | -------- | ------------ | ------------ | --------- | ------------ | ---------------- | ------------ | ------- | ------- | ------- |
-//! |  34  |`B1_13`   |          |              |              |           |              |                  |              |         |         |         |
-//! |  35  |`B1_12`   |          |              |              |           |              |                  |              |         |         |         |
-//! |  36  |`B1_02`   |          |              |              |           |              |                  |              |         |         |         |
-//! |  37  |`B1_03`   |          |              |              |           |              |                  |              |         |         |         |
-//! |  38  |`AD_B1_12`|          |              |              |           |              |                  |              |         |         |         |
-//! |  39  |`AD_B1_13`|          |              |              |           |              |                  |              |         |         |         |
-//! |  40  |`AD_B1_04`|          |              |              |           |              |                  |              |         |         |         |
-//! |  41  |`AD_B1_05`|          |              |              |           |              |                  |              |         |         |         |
+//! | Pin  | Pad ID   |      Alt0       |   Alt1        |    Alt2       |        Alt3          |     Alt4         |  Alt5      |     Alt6        |    Alt7   |     Alt8              |      Alt9        |
+//! | ---- | -------- | --------------- | ------------- | ------------- | -------------------- | ---------------- | ---------- | --------------- | --------- | --------------------- | ---------------- |
+//! |  34  | B1_13    | WDOG1_B         | LPUART5_RX    | CSI_VSYNC     | ENET_1588_EVENT0_OUT | FLEXIO2_FLEXIO29 | GPIO2_IO29 | USDHC1_WP       | ---       | SEMC_DQS4             | FLEXIO3_FLEXIO29 |
+//! |  35  | B1_12    | ---             | LPUART5_TX    | CSI_PIXCLK    | ENET_1588_EVENT0_IN  | FLEXIO2_FLEXIO28 | GPIO2_IO28 | USDHC1_CD_B     | ---       | ---                   | FLEXIO3_FLEXIO28 |
+//! |  36  | B1_02    | LCD_DATA14      | XBAR1_INOUT16 | LPSPI4_PCS2   | SAI1_TX_BCLK         | FLEXIO2_FLEXIO18 | GPIO2_IO18 | FLEXPWM2_PWMA03 | ---       | ENET2_RDATA01         | FLEXIO3_FLEXIO18 |
+//! |  37  | B1_03    | LCD_DATA15      | XBAR1_INOUT17 | LPSPI4_PCS1   | SAI1_TX_SYNC         | FLEXIO2_FLEXIO19 | GPIO2_IO19 | FLEXPWM2_PWMB03 | ---       | ENET2_RX_EN           | FLEXIO3_FLEXIO19 |
+//! |  38  | AD_B1_12 | FLEXSPIA_DATA01 | ACMP_OUT00    | LPSPI3_PCS0   | SAI1_RX_DATA00       | CSI_DATA05       | GPIO1_IO28 | USDHC2_DATA4    | KPP_ROW01 | ENET2_1588_EVENT2_OUT | FLEXIO3_FLEXIO12 |
+//! |  39  | AD_B1_13 | FLEXSPIA_DATA00 | ACMP_OUT01    | LPSPI3_SDI    | SAI1_TX_DATA00       | CSI_DATA04       | GPIO1_IO29 | USDHC2_DATA5    | KPP_COL01 | ENET2_1588_EVENT2_IN  | FLEXIO3_FLEXIO13 |
+//! |  40  | AD_B1_04 | FLEXSPIB_DATA03 | ENET_MDC      | LPUART3_CTS_B | SPDIF_SR_CLK         | CSI_PIXCLK       | GPIO1_IO20 | USDHC2_DATA0    | KPP_ROW05 | GPT2_CAPTURE2         | FLEXIO3_FLEXIO04 |
+//! |  41  | AD_B1_05 | FLEXSPIB_DATA02 | ENET_MDIO     | LPUART3_RTS_B | SPDIF_OUT            | CSI_MCLK         | GPIO1_IO21 | USDHC2_DATA1    | KPP_COL05 | GPT2_COMPARE1         | FLEXIO3_FLEXIO05 |
 
 pub use crate::common::*;
 use crate::iomuxc::{ad_b1::*, b1::*, ErasedPad};
