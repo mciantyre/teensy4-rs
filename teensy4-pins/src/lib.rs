@@ -52,5 +52,7 @@ pub mod t41;
 
 mod iomuxc {
     pub use imxrt_iomuxc::imxrt106x::*;
-    pub use imxrt_iomuxc::prelude::*;
+    pub use imxrt_iomuxc::ErasedPad;
 }
+
+pub use imxrt_iomuxc;
