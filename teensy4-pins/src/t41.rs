@@ -4,19 +4,25 @@
 //! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
 //! method to generate pins.
 //!
-//! | Pin  | Pad ID   |      Alt0       |   Alt1        |    Alt2       |        Alt3          |     Alt4         |  Alt5      |     Alt6        |    Alt7   |     Alt8              |      Alt9        |
-//! | ---- | -------- | --------------- | ------------- | ------------- | -------------------- | ---------------- | ---------- | --------------- | --------- | --------------------- | ---------------- |
-//! |  34  | B1_13    | WDOG1_B         | LPUART5_RX    | CSI_VSYNC     | ENET_1588_EVENT0_OUT | FLEXIO2_FLEXIO29 | GPIO2_IO29 | USDHC1_WP       | ---       | SEMC_DQS4             | FLEXIO3_FLEXIO29 |
-//! |  35  | B1_12    | ---             | LPUART5_TX    | CSI_PIXCLK    | ENET_1588_EVENT0_IN  | FLEXIO2_FLEXIO28 | GPIO2_IO28 | USDHC1_CD_B     | ---       | ---                   | FLEXIO3_FLEXIO28 |
-//! |  36  | B1_02    | LCD_DATA14      | XBAR1_INOUT16 | LPSPI4_PCS2   | SAI1_TX_BCLK         | FLEXIO2_FLEXIO18 | GPIO2_IO18 | FLEXPWM2_PWMA03 | ---       | ENET2_RDATA01         | FLEXIO3_FLEXIO18 |
-//! |  37  | B1_03    | LCD_DATA15      | XBAR1_INOUT17 | LPSPI4_PCS1   | SAI1_TX_SYNC         | FLEXIO2_FLEXIO19 | GPIO2_IO19 | FLEXPWM2_PWMB03 | ---       | ENET2_RX_EN           | FLEXIO3_FLEXIO19 |
-//! |  38  | AD_B1_12 | FLEXSPIA_DATA01 | ACMP_OUT00    | LPSPI3_PCS0   | SAI1_RX_DATA00       | CSI_DATA05       | GPIO1_IO28 | USDHC2_DATA4    | KPP_ROW01 | ENET2_1588_EVENT2_OUT | FLEXIO3_FLEXIO12 |
-//! |  39  | AD_B1_13 | FLEXSPIA_DATA00 | ACMP_OUT01    | LPSPI3_SDI    | SAI1_TX_DATA00       | CSI_DATA04       | GPIO1_IO29 | USDHC2_DATA5    | KPP_COL01 | ENET2_1588_EVENT2_IN  | FLEXIO3_FLEXIO13 |
-//! |  40  | AD_B1_04 | FLEXSPIB_DATA03 | ENET_MDC      | LPUART3_CTS_B | SPDIF_SR_CLK         | CSI_PIXCLK       | GPIO1_IO20 | USDHC2_DATA0    | KPP_ROW05 | GPT2_CAPTURE2         | FLEXIO3_FLEXIO04 |
-//! |  41  | AD_B1_05 | FLEXSPIB_DATA02 | ENET_MDIO     | LPUART3_RTS_B | SPDIF_OUT            | CSI_MCLK         | GPIO1_IO21 | USDHC2_DATA1    | KPP_COL05 | GPT2_COMPARE1         | FLEXIO3_FLEXIO05 |
+//! | Pin  | Pad ID   |      Alt0       |   Alt1          |    Alt2       |        Alt3          |     Alt4         |  Alt5      |     Alt6        |    Alt7   |     Alt8              |      Alt9        |
+//! | ---- | -------- | --------------- | --------------- | ------------- | -------------------- | ---------------- | ---------- | --------------- | --------- | --------------------- | ---------------- |
+//! |  34  | B1_13    | WDOG1_B         | LPUART5_RX      | CSI_VSYNC     | ENET_1588_EVENT0_OUT | FLEXIO2_FLEXIO29 | GPIO2_IO29 | USDHC1_WP       | ---       | SEMC_DQS4             | FLEXIO3_FLEXIO29 |
+//! |  35  | B1_12    | ---             | LPUART5_TX      | CSI_PIXCLK    | ENET_1588_EVENT0_IN  | FLEXIO2_FLEXIO28 | GPIO2_IO28 | USDHC1_CD_B     | ---       | ---                   | FLEXIO3_FLEXIO28 |
+//! |  36  | B1_02    | LCD_DATA14      | XBAR1_INOUT16   | LPSPI4_PCS2   | SAI1_TX_BCLK         | FLEXIO2_FLEXIO18 | GPIO2_IO18 | FLEXPWM2_PWMA03 | ---       | ENET2_RDATA01         | FLEXIO3_FLEXIO18 |
+//! |  37  | B1_03    | LCD_DATA15      | XBAR1_INOUT17   | LPSPI4_PCS1   | SAI1_TX_SYNC         | FLEXIO2_FLEXIO19 | GPIO2_IO19 | FLEXPWM2_PWMB03 | ---       | ENET2_RX_EN           | FLEXIO3_FLEXIO19 |
+//! |  38  | AD_B1_12 | FLEXSPIA_DATA01 | ACMP_OUT00      | LPSPI3_PCS0   | SAI1_RX_DATA00       | CSI_DATA05       | GPIO1_IO28 | USDHC2_DATA4    | KPP_ROW01 | ENET2_1588_EVENT2_OUT | FLEXIO3_FLEXIO12 |
+//! |  39  | AD_B1_13 | FLEXSPIA_DATA00 | ACMP_OUT01      | LPSPI3_SDI    | SAI1_TX_DATA00       | CSI_DATA04       | GPIO1_IO29 | USDHC2_DATA5    | KPP_COL01 | ENET2_1588_EVENT2_IN  | FLEXIO3_FLEXIO13 |
+//! |  40  | AD_B1_04 | FLEXSPIB_DATA03 | ENET_MDC        | LPUART3_CTS_B | SPDIF_SR_CLK         | CSI_PIXCLK       | GPIO1_IO20 | USDHC2_DATA0    | KPP_ROW05 | GPT2_CAPTURE2         | FLEXIO3_FLEXIO04 |
+//! |  41  | AD_B1_05 | FLEXSPIB_DATA02 | ENET_MDIO       | LPUART3_RTS_B | SPDIF_OUT            | CSI_MCLK         | GPIO1_IO21 | USDHC2_DATA1    | KPP_COL05 | GPT2_COMPARE1         | FLEXIO3_FLEXIO05 |
+//! |  42  | SD_B0_03 | USDHC1_DATA1    | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07        | LPSPI1_SDI       | GPIO3_IO15 | ---             | ---       | ENET2_RDATA00         | SEMC_CLK6        |
+//! |  43  | SD_B0_02 | USDHC1_DATA0    | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06        | LPSPI1_SDO       | GPIO3_IO14 | ---             | ---       | ENET2_RX_ER           | SEMC_CLK5        |
+//! |  44  | SD_B0_01 | USDHC1_CLK      | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05        | LPSPI1_PCS0      | GPIO3_IO13 | FLEXSPIB_SS1_B  | ---       | ENET2_TX_CLK          | ENET2_REF_CLK2   |
+//! |  45  | SD_B0_00 | USDHC1_CMD      | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04        | LPSPI1_SCK       | GPIO3_IO12 | FLEXSPIA_SS1_B  | ---       | ENET2_TX_EN           | SEMC_DQS4        |
+//! |  46  | SD_B0_05 | USDHC1_DATA3    | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09        | FLEXSPIB_DQS     | GPIO3_IO17 | CCM_CLKO2       | ---       | ENET2_RX_EN           | ---              |
+//! |  47  | SD_B0_04 | USDHC1_DATA2    | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08        | FLEXSPIB_SS0_B   | GPIO3_IO16 | CCM_CLKO1       | ---       | ENET2_RDATA01         | ---              |
 
 pub use crate::common::*;
-use crate::iomuxc::{ad_b1::*, b1::*, ErasedPad};
+use crate::iomuxc::{ad_b1::*, b1::*, sd_b0::*, ErasedPad};
 
 /// Pin 34 (4.1)
 pub type P34 = B1_13;
@@ -34,6 +40,18 @@ pub type P39 = AD_B1_13;
 pub type P40 = AD_B1_04;
 /// Pin 41 (4.1)
 pub type P41 = AD_B1_05;
+/// Pin 42 (4.1)
+pub type P42 = SD_B0_03;
+/// Pin 43 (4.1)
+pub type P43 = SD_B0_02;
+/// Pin 44 (4.1)
+pub type P44 = SD_B0_01;
+/// Pin 45 (4.1)
+pub type P45 = SD_B0_00;
+/// Pin 46 (4.1)
+pub type P46 = SD_B0_05;
+/// Pin 47 (4.1)
+pub type P47 = SD_B0_04;
 
 /// Type-erased Teensy 4.1 pins
 ///
@@ -41,7 +59,7 @@ pub type P41 = AD_B1_05;
 /// `erased_pins[13]`.
 ///
 /// Use [`Pins::erase`](Pins::erase()) to erase pin types.
-pub type ErasedPins = [ErasedPad; 42];
+pub type ErasedPins = [ErasedPad; 48];
 
 /// Teensy 4.1 pins
 ///
@@ -133,6 +151,18 @@ pub struct Pins {
     pub p40: P40,
     /// Pin 41
     pub p41: P41,
+    /// Pin 42
+    pub p42: P42,
+    /// Pin 43
+    pub p43: P43,
+    /// Pin 44
+    pub p44: P44,
+    /// Pin 45
+    pub p45: P45,
+    /// Pin 46
+    pub p46: P46,
+    /// Pin 47
+    pub p47: P47,
 }
 
 /// Constrain the processor pads to the Teensy 4.1 pins
@@ -181,6 +211,12 @@ pub const fn into_pins(iomuxc: crate::iomuxc::Pads) -> Pins {
         p39: iomuxc.ad_b1.p13,
         p40: iomuxc.ad_b1.p04,
         p41: iomuxc.ad_b1.p05,
+        p42: iomuxc.sd_b0.p03,
+        p43: iomuxc.sd_b0.p02,
+        p44: iomuxc.sd_b0.p01,
+        p45: iomuxc.sd_b0.p00,
+        p46: iomuxc.sd_b0.p05,
+        p47: iomuxc.sd_b0.p04,
     }
 }
 
@@ -246,6 +282,12 @@ impl Pins {
             self.p39.erase(),
             self.p40.erase(),
             self.p41.erase(),
+            self.p42.erase(),
+            self.p43.erase(),
+            self.p44.erase(),
+            self.p45.erase(),
+            self.p46.erase(),
+            self.p47.erase(),
         ]
     }
 }
