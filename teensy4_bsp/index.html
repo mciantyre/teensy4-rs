@@ -35,12 +35,10 @@ conflicts with the BSP’s definition.</li>
 </ul>
 <p>Proper RTIC support requires that you disable the BSP’s default features. You may combine <code>&quot;rtic&quot;</code> with
 either <code>&quot;rt&quot;</code> and <code>&quot;usb-logging&quot;</code>.</p>
-<pre><code class="language-toml">[dependencies.teensy4-bsp]
+<div class="example-wrap"><pre class="language-toml">[dependencies.teensy4-bsp]
 default-features = false
 features = [&quot;rtic&quot;,  &quot;rt&quot;]
-version = # ...
-</code></pre>
-<h1 id="pins" class="section-header"><a href="#pins">Pins</a></h1>
+version = # ...</pre></div><h1 id="pins" class="section-header"><a href="#pins">Pins</a></h1>
 <p>The BSP helps you convert all the i.MX RT processor pads into your Teensy 4’s pins.
 From these pins, you may construct peripherals and perform I/O. The Teensy 4.0 and 4.1
 boards support many of the same pins; see the <a href="common/index.html" title="common"><code>common</code></a> module
