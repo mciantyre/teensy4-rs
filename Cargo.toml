@@ -38,7 +38,7 @@ keywords = [
 cortex-m = "0.7"
 
 [target.thumbv7em-none-eabihf.dependencies.cortex-m-rt]
-version = "0.6.12"
+version = "0.7"
 optional = true
 features = ["device"]
 

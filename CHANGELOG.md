@@ -24,7 +24,10 @@ These changes affect symbols in the BSP:
 - `LED => Led`
 - `usb::Error::IO => usb::Error::Io`
 
-**BREAKING** Update cortex-m to 0.7.
+**BREAKING** Updated dependencies:
+
+- `cortex-m` to 0.7
+- `cortex-m-rt` to 0.7
 
 **BREAKING** Re-export the 0.2 `teensy4-pins` API. See [the
 CHANGELOG](teensy4-pins/CHANGELOG.md) for a description of the small breaking
