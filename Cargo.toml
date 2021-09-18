@@ -225,6 +225,10 @@ name = "rtic_dma_uart_log"
 required-features = ["rt", "rtic"]
 
 [[example]]
+name = "rtic_gpio_interrupt"
+required-features = ["rt", "rtic"]
+
+[[example]]
 name = "rtic_usb_echo"
 required-features = ["rt", "rtic", "usb-logging"]
 
