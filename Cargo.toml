@@ -220,6 +220,10 @@ required-features = ["rt", "rtic", "usb-logging"]
 name = "rtic_usb"
 required-features = ["rt", "rtic", "usb-logging"]
 
+[[example]]
+name = "pull_down_pin"
+required-features = ["rt", "rtic", "usb-logging"]
+
 # -------------------------
 # Dependencies for examples
 # -------------------------
