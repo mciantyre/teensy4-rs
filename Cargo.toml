@@ -136,6 +136,10 @@ required-features = ["rt"]
 name = "panic"
 required-features = ["rt"]
 
+[[example]]
+name = "pull_down_pin"
+required-features = ["rt"]
+
 # Examples that use SYSTICK as a timer
 
 [[example]]
@@ -218,10 +222,6 @@ required-features = ["rt", "rtic", "usb-logging"]
 
 [[example]]
 name = "rtic_usb"
-required-features = ["rt", "rtic", "usb-logging"]
-
-[[example]]
-name = "pull_down_pin"
 required-features = ["rt", "rtic", "usb-logging"]
 
 # -------------------------

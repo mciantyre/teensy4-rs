@@ -7,10 +7,18 @@
 use teensy4_panic as _;
 
 use cortex_m_rt::entry;
-use imxrt_hal::gpio::GPIO;
-use imxrt_hal::iomuxc;
-use imxrt_hal::iomuxc::{Config, Hysteresis, PullKeep, PullKeepSelect, PullUpDown};
+use imxrt_hal::{
+    gpio::GPIO,
+    iomuxc::{self, Config, Hysteresis, PullKeeper},
+};
 use teensy4_bsp::{configure_led, t40, Peripherals, SysTick};
+
+// The pin configuration can be defined at compile time,
+// and at run time. This example uses a constant, so the
+// configuration is defined at compile time.
+const SWITCH_CONFIG: Config = Config::zero()
+    .set_hysteresis(Hysteresis::Enabled)
+    .set_pull_keeper(Some(PullKeeper::Pulldown100k));
 
 const LED_PERIOD_MS: u32 = 500;
 
@@ -23,12 +31,7 @@ fn main() -> ! {
 
     let mut switch_pin = pins.p6;
 
-    let cfg = Config::zero()
-        .set_hysteresis(Hysteresis::Enabled)
-        .set_pull_keep(PullKeep::Enabled)
-        .set_pull_keep_select(PullKeepSelect::Pull)
-        .set_pullupdown(PullUpDown::Pulldown100k);
-    iomuxc::configure(&mut switch_pin, cfg);
+    iomuxc::configure(&mut switch_pin, SWITCH_CONFIG);
 
     let switch_gpio = GPIO::new(switch_pin);
 
