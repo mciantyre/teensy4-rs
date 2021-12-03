@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;usb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>usb.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../teensy4_bsp/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input"name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;usb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>usb.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css"disabled><link rel="stylesheet" type="text/css" href="../../dark.css"disabled><link rel="stylesheet" type="text/css" href="../../light.css"id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../teensy4_bsp/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -486,8 +487,7 @@
 <span id="486">486</span>
 <span id="487">487</span>
 <span id="488">488</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Teensy 4 USB, taken from the original Teensy 4 C libraries</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Teensy 4 USB, taken from the original Teensy 4 C libraries</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The USB stack provides a [`log`] implementation for logging over USB.</span>
 <span class="doccomment">//! It also provides a simpler [`Reader`] and [`Writer`] for performing</span>
@@ -599,7 +599,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">filters::Filter</span>;
 <span class="kw">use</span> <span class="ident">filters::Filters</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::hal::ral::usb</span>::{<span class="ident">Instance</span>, <span class="ident">USB1</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::hal::ral::usb</span>::{<span class="ident">Instance</span>, <span class="ident">USB1</span>};
 
 <span class="doccomment">/// Logging configuration</span>
 <span class="doccomment">///</span>
@@ -627,7 +627,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">LoggingConfig</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LoggingConfig</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">LoggingConfig</span> {
         <span class="ident">LoggingConfig</span> {
             <span class="ident">max_level</span>: <span class="ident">::log::STATIC_MAX_LEVEL</span>,
             <span class="ident">filters</span>: <span class="kw-2">&amp;</span>[],
@@ -662,7 +662,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">::log::SetLoggerError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="kw">_</span>: <span class="ident">::log::SetLoggerError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="kw">_</span>: <span class="ident">::log::SetLoggerError</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">Error::SetLogger</span>
     }
 }
@@ -682,8 +682,8 @@
 <span class="doccomment">/// logger.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See the [module-level documentation](mod@crate::usb) for an example.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">inst</span>: <span class="ident">Instance</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Poller</span>, <span class="ident">Reader</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">inst</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="op">!</span><span class="op">=</span> <span class="ident">USB1</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">inst</span>: <span class="ident">Instance</span>, <span class="ident">config</span>: <span class="ident">LoggingConfig</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Poller</span>, <span class="ident">Reader</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">inst</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="op">!</span><span class="op">=</span> <span class="ident">USB1</span> {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::WrongInstance</span>);
     }
     <span class="kw">unsafe</span> {
@@ -705,8 +705,8 @@
 <span class="doccomment">/// results in a [`Error::WrongInstance`] error.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See the [module-level documentation](mod@crate::usb) for an example.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split</span>(<span class="ident">inst</span>: <span class="ident">Instance</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Poller</span>, <span class="ident">Reader</span>, <span class="ident">Writer</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">inst</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="op">!</span><span class="op">=</span> <span class="ident">USB1</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split</span>(<span class="ident">inst</span>: <span class="ident">Instance</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Poller</span>, <span class="ident">Reader</span>, <span class="ident">Writer</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">inst</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="op">!</span><span class="op">=</span> <span class="ident">USB1</span> {
         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::WrongInstance</span>);
     }
     <span class="kw">unsafe</span> { <span class="ident">start</span>() };
@@ -732,7 +732,7 @@
 <span class="doccomment">/// USB device I/O</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Acquire `Poller` from [`init`] or [`split`].</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Poller</span>(<span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> ()<span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Poller</span>(<span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="kw-2">*const</span> ()<span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">Poller</span> {
     <span class="doccomment">/// Drive the USB device event loop</span>
@@ -743,7 +743,7 @@
     <span class="doccomment">/// If calling `poll` in a USB ISR, make sure you unmask the interrupt.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For an unsafe interface, see the [`poll`](mod@crate::usb::poll()) function.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PollStatus</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">PollStatus</span> {
         <span class="comment">// Safety: users can only safely create one poller. That poller</span>
         <span class="comment">// &quot;owns&quot; the state modified by the poll function.</span>
         <span class="kw">unsafe</span> { <span class="ident">poll</span>() }
@@ -777,7 +777,7 @@
     <span class="doccomment">/// Check this flag to understand if your [`Reader`]</span>
     <span class="doccomment">/// might have data.</span>
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cdc_rx_complete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cdc_rx_complete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">bindings::POLL_CDC_RX_COMPLETE</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
     }
 
@@ -788,7 +788,7 @@
     <span class="doccomment">/// Check this flag to understand if your [`Writer`] or</span>
     <span class="doccomment">/// USB logger has scheduled a transfer.</span>
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cdc_tx_complete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cdc_tx_complete</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">bindings::POLL_CDC_TX_COMPLETE</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
     }
 }
@@ -822,7 +822,7 @@
 <span class="doccomment">/// // and your ISR state is ready.</span>
 <span class="doccomment">/// unsafe { cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };</span>
 <span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">poll</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PollStatus</span> {
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">poll</span>() -&gt; <span class="ident">PollStatus</span> {
     <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">bindings::poll</span>();
     <span class="ident">PollStatus</span> { <span class="ident">flags</span> }
 }
@@ -841,7 +841,7 @@
 };
 
 <span class="kw">impl</span> <span class="ident">::log::Log</span> <span class="kw">for</span> <span class="ident">Logger</span> {
-    <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span><span class="ident">::log::Metadata</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span><span class="ident">::log::Metadata</span>) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">enabled</span> <span class="comment">// We&#39;re enabled</span>
             <span class="op">&amp;&amp;</span> <span class="ident">bindings::is_configured</span>() <span class="comment">// The host has configured the USB device</span>
             <span class="op">&amp;&amp;</span> <span class="ident">metadata</span>.<span class="ident">level</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">::log::max_level</span>() <span class="comment">// The log level is appropriate</span>
@@ -874,7 +874,7 @@
 <span class="doccomment">/// Use [`Writer::write`](Writer::write()) to write byte</span>
 <span class="doccomment">/// buffers. Or, use the standard `write!()` macro to serialize data to</span>
 <span class="doccomment">/// the writer.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Writer</span>(<span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> ()<span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Writer</span>(<span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="kw-2">*const</span> ()<span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">Writer</span> {
     <span class="doccomment">/// # Safety</span>
@@ -882,7 +882,7 @@
     <span class="doccomment">/// There should only be one `Writer` instance in the program. It&#39;s</span>
     <span class="doccomment">/// either given to the user, or it&#39;s used in the logger. The implementor</span>
     <span class="doccomment">/// must ensure that `Writer` isn&#39;t used in both places!</span>
-    <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident">Writer</span>(<span class="ident">core::marker::PhantomData</span>)
     }
 
@@ -892,12 +892,12 @@
     <span class="doccomment">/// the driver could only write that many elements from the buffer. If it&#39;s</span>
     <span class="doccomment">/// important that you write a complete message, you&#39;ll need to retry the</span>
     <span class="doccomment">/// call with the rest of the data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">bindings::serial_write</span>(<span class="ident">buffer</span>) };
         <span class="kw">match</span> <span class="ident">res</span> {
-            <span class="ident">bindings::SERIAL_NOT_CONFIGURED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>),
-            <span class="ident">res</span> <span class="kw">if</span> <span class="ident">res</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">res</span> <span class="kw">as</span> <span class="ident">usize</span>),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">Error::Io</span>),
+            <span class="ident">bindings::SERIAL_NOT_CONFIGURED</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>),
+            <span class="ident">res</span> <span class="kw">if</span> <span class="ident">res</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">res</span> <span class="kw">as</span> <span class="ident">usize</span>),
+            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::Io</span>),
         }
     }
 
@@ -908,7 +908,7 @@
     <span class="doccomment">/// faster. You should not call `flush` in a tight USB writing loop,</span>
     <span class="doccomment">/// since the driver will attempt to pack multiple writes into a</span>
     <span class="doccomment">/// single USB transfer.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">bindings::is_configured</span>() {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>);
         }
@@ -921,7 +921,7 @@
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">Writer</span> {}
 
 <span class="kw">impl</span> <span class="ident">fmt::Write</span> <span class="kw">for</span> <span class="ident">Writer</span> {
-    <span class="kw">fn</span> <span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">write_str</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">bindings::is_configured</span>() {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
         }
@@ -930,19 +930,19 @@
         <span class="kw">for</span> <span class="ident">line</span> <span class="kw">in</span> <span class="ident">string</span>.<span class="ident">split</span>(<span class="string">&#39;\n&#39;</span>) {
             <span class="kw">if</span> <span class="ident">at_linefeed</span> {
                 <span class="kw">match</span> <span class="self">self</span>.<span class="ident">write</span>(<span class="string">&quot;\r\n&quot;</span>) {
-                    <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Ok</span>(()),
-                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
-                    <span class="prelude-val">Ok</span>(<span class="ident">size</span>) <span class="kw">if</span> <span class="ident">size</span> <span class="op">&lt;</span> <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
-                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> (),
+                    <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(()),
+                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
+                    <span class="prelude-val">Ok</span>(<span class="ident">size</span>) <span class="kw">if</span> <span class="ident">size</span> <span class="op">&lt;</span> <span class="number">2</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
+                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; (),
                 };
             }
             <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">line</span>.<span class="ident">as_bytes</span>();
             <span class="kw">if</span> <span class="op">!</span><span class="ident">bytes</span>.<span class="ident">is_empty</span>() {
                 <span class="kw">match</span> <span class="self">self</span>.<span class="ident">write</span>(<span class="ident">bytes</span>) {
-                    <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Ok</span>(()),
-                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
-                    <span class="prelude-val">Ok</span>(<span class="ident">size</span>) <span class="kw">if</span> <span class="ident">size</span> <span class="op">&lt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
-                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> (),
+                    <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(()),
+                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
+                    <span class="prelude-val">Ok</span>(<span class="ident">size</span>) <span class="kw">if</span> <span class="ident">size</span> <span class="op">&lt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">fmt::Error</span>),
+                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; (),
                 };
             }
             <span class="ident">at_linefeed</span> <span class="op">=</span> <span class="bool-val">true</span>;
@@ -953,7 +953,7 @@
 
 <span class="doccomment">/// A type that can read USB serial messages from a host</span>
 <span class="comment">// Uses a raw `*const ()` to ensure that Reader is not Send or Sync</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Reader</span>(<span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> ()<span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Reader</span>(<span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="kw-2">*const</span> ()<span class="op">&gt;</span>);
 
 <span class="doccomment">/// OK to transfer across &#39;thread&#39; boundaries, but not safe for</span>
 <span class="doccomment">/// multi-threaded access (Sync).</span>
@@ -962,7 +962,7 @@
 <span class="kw">impl</span> <span class="ident">Reader</span> {
     <span class="doccomment">/// Read from the USB serial endpoint into buffer. Returns the number</span>
     <span class="doccomment">/// of bytes read, or zero if there is no data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsMut</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">AsMut</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buffer</span>: <span class="ident">B</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">bindings::is_configured</span>() {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::NotConfigured</span>);
         }
@@ -975,7 +975,6 @@
         }
     }
 }
-</pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_bsp" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_bsp" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (acbe4443c 2021-12-02)" ></div>
 </body></html>
