@@ -24,6 +24,13 @@ These changes affect symbols in the BSP:
 - `LED => Led`
 - `usb::Error::IO => usb::Error::Io`
 
+Move the starting address for the heap into OCRAM2. Previously, the heap
+starting address was in DTCM, and it's expected to advance towards the stack.
+The relocation into OCRAM2 is consistent with the official Teensy 4 runtime, and
+allows you to have a larger heap (and stack, if heap allocation is used). The
+heap may occupy all address of OCRAM2 that are not allocated for DMA buffers.
+Heap-allocated state no longer benefits from the performance of DTCM.
+
 ## [0.2.0] - 2021-01-09
 
 This release lets users combine the USB logging system with RTIC. The new
