@@ -165,6 +165,10 @@ name = "i2c"
 required-features = ["rt", "systick", "usb-logging"]
 
 [[example]]
+name = "panic_log"
+required-features = ["rt", "systick", "usb-logging", "teensy4-panic/log"]
+
+[[example]]
 name = "pwm"
 required-features = ["rt", "systick", "usb-logging"]
 
@@ -244,3 +248,4 @@ nb = "0.1"
 [dev-dependencies.teensy4-panic]
 version = "0.2"
 path = "teensy4-panic"
+features = ["log"]
