@@ -104,6 +104,8 @@ mod systick;
 #[cfg_attr(docsrs, doc(cfg(feature = "usb-logging")))]
 pub mod usb;
 
+#[cfg(all(target_arch = "arm", feature = "rt"))]
+pub use rt::{heap_len, heap_start};
 #[cfg(feature = "systick")]
 pub use systick::SysTick;
 

@@ -43,3 +43,22 @@ unsafe extern "C" fn t4_init() {
     }
     Reset(); // cortex-m-rt entrypoint
 }
+
+/// Returns the size of the heap, in bytes.
+///
+/// Use [`heap_start()`](crate::rt::heap_start) to access the start of the heap.
+pub fn heap_len() -> usize {
+    fn heap_end() -> *mut u32 {
+        extern "C" {
+            static mut __eheap: u32;
+        }
+        unsafe { &mut __eheap }
+    }
+
+    // Cannot use offset_from, since heap_end
+    // and heap_start are not derived from the
+    // same allocated object.
+    let end = heap_end() as usize;
+    let start = cortex_m_rt::heap_start() as usize;
+    end - start
+}

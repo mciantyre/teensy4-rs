@@ -160,6 +160,14 @@ SECTIONS
         . = ALIGN(16);
     } > RAM
 
+    .heap (NOLOAD) : ALIGN(4)
+    {
+        . = ALIGN(4);
+        __sheap = .;
+        . = ORIGIN(RAM) + LENGTH(RAM);
+        __eheap = .;
+    } > RAM
+
     /* ### .uninit */
     .uninit (NOLOAD) : ALIGN(4)
     {
@@ -167,10 +175,6 @@ SECTIONS
         *(.uninit .uninit.*);
         . = ALIGN(4);
     } > DTCM
-
-    /* Place the heap right after `.uninit` */
-    . = ALIGN(4);
-    __sheap = .;
 
     /* ## .got */
     /* Dynamic relocations are unsupported. This section is only used to detect relocatable code in
@@ -208,3 +212,6 @@ ERROR(cortex-m-rt): .bss is not 4-byte aligned");
 
 ASSERT(__stext % 4 == 0 && __etext % 4 == 0, "
 ERROR(cortex-m-rt): .text is not 4-byte aligned");
+
+ASSERT(__sheap % 4 == 0, "
+ERROR(cortex-m-rt): start of heap is not 4-byte aligned");
