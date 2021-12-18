@@ -48,16 +48,14 @@ fn main() -> ! {
     let mut tx_buffer = match dma::Circular::new(&TX_MEMORY.0) {
         Ok(buffer) => buffer,
         Err(error) => {
-            log::error!("Unable to create the transfer buffer: {:?}", error);
-            panic!();
+            panic!("Unable to create the transfer buffer: {:?}", error);
         }
     };
 
     let mut rx_buffer = match dma::Circular::new(&RX_MEMORY.0) {
         Ok(buffer) => buffer,
         Err(error) => {
-            log::error!("Unable to create the receive buffer: {:?}", error);
-            panic!();
+            panic!("Unable to create the receive buffer: {:?}", error);
         }
     };
 
@@ -73,8 +71,7 @@ fn main() -> ! {
         rx_buffer.reserve(pattern.len());
 
         if let Err(error) = memcpy.transfer(tx_buffer, rx_buffer) {
-            log::error!("Unable to start memcpy: {:?}", error);
-            panic!();
+            panic!("Unable to start memcpy: {:?}", error);
         } else {
             log::info!("Transfer started...");
         }
@@ -92,8 +89,7 @@ fn main() -> ! {
                 buffers
             }
             None => {
-                log::error!("Memcpy didn't give us back the buffers!");
-                panic!();
+                panic!("Memcpy didn't give us back the buffers!");
             }
         };
 

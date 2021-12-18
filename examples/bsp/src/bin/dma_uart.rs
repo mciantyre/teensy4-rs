@@ -156,8 +156,7 @@ fn main() -> ! {
                 log::info!("Received: {}", value);
                 let mut tx_buffer = match free(|cs| TX_BUFFER.borrow(cs).borrow_mut().take()) {
                     None => {
-                        log::error!("No transfer buffer!");
-                        panic!();
+                        panic!("No transfer buffer!");
                     }
                     Some(tx_buffer) => tx_buffer,
                 };
@@ -166,8 +165,7 @@ fn main() -> ! {
                 tx_buffer.set_transfer_len(1);
                 let res = dma_uart.start_transfer(tx_buffer);
                 if let Err(err) = res {
-                    log::warn!("Error scheduling DMA transfer: {:?}", err);
-                    panic!();
+                    panic!("Error scheduling DMA transfer: {:?}", err);
                 }
             } else if TX_READY.load(Ordering::Acquire) {
                 continue 'start;
