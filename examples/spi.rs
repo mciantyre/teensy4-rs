@@ -61,14 +61,10 @@ fn main() -> ! {
             log::info!("Set clock speed to {}Hz", SPI_BAUD_RATE_HZ);
         }
         Err(err) => {
-            log::error!(
+            panic!(
                 "Unable to set clock speed to {}Hz: {:?}",
-                SPI_BAUD_RATE_HZ,
-                err
+                SPI_BAUD_RATE_HZ, err
             );
-            loop {
-                core::hint::spin_loop()
-            }
         }
     };
 
