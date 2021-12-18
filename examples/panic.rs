@@ -1,4 +1,8 @@
-//! Demonstrates the panic handler
+//! Demonstrates a simple panic handler.
+//!
+//! This example does not write a panic message, nor does it set up
+//! logging. You should only observe a blinking LED. For a more advanced
+//! panic example, see panic_log.rs.
 
 #![no_std]
 #![no_main]

@@ -30,3 +30,7 @@ panic-handler = []
 
 [lib]
 test = false
+
+[dependencies.log]
+optional = true
+version = "0.4"

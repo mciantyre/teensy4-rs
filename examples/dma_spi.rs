@@ -128,12 +128,11 @@ fn take_buffers() -> (TxBuffer, RxBuffer) {
         (tx_buffer, rx_buffer)
     });
     if tx_buffer.is_none() || rx_buffer.is_none() {
-        log::error!(
+        panic!(
             "Buffers are none! tx.is_none() == {}, rx.is_none() == {}",
             tx_buffer.is_none(),
             rx_buffer.is_none()
         );
-        panic!();
     }
 
     (tx_buffer.unwrap(), rx_buffer.unwrap())
@@ -197,12 +196,10 @@ fn main() -> ! {
             log::info!("Set clock speed to {}Hz", SPI_BAUD_RATE_HZ);
         }
         Err(err) => {
-            log::error!(
+            panic!(
                 "Unable to set clock speed to {}Hz: {:?}",
-                SPI_BAUD_RATE_HZ,
-                err
+                SPI_BAUD_RATE_HZ, err
             );
-            panic!();
         }
     };
 
@@ -242,14 +239,12 @@ fn main() -> ! {
             tx.set_transfer_len(1);
         };
         if tx_buffer_mut(prep_tx).is_none() {
-            log::error!("Cannot prepare transfer buffer");
-            panic!();
+            panic!("Cannot prepare transfer buffer");
         }
 
         let prep_rx = |rx: &mut dma::Linear<u16>| rx.set_transfer_len(1);
         if rx_buffer_mut(prep_rx).is_none() {
-            log::error!("Cannot prepare receive buffer");
-            panic!();
+            panic!("Cannot prepare receive buffer");
         }
         systick.delay(500);
 
@@ -267,8 +262,7 @@ fn main() -> ! {
                         log::warn!("Incorrect WHO_AM_I {:#X} received!", who_am_i);
                     }
                 } else {
-                    log::error!("RX buffer was inaccessible!");
-                    panic!();
+                    panic!("RX buffer was inaccessible!");
                 }
             }
         }
@@ -285,16 +279,14 @@ fn main() -> ! {
             tx.set_transfer_len(cmds.len());
         };
         if tx_buffer_mut(set_tx_buf).is_none() {
-            log::error!("Unable to modify transfer buffer!");
-            panic!();
+            panic!("Unable to modify transfer buffer!");
         }
 
         let set_rx_buf = |rx: &mut dma::Linear<u16>| {
             rx.set_transfer_len(cmds.len());
         };
         if rx_buffer_mut(set_rx_buf).is_none() {
-            log::error!("Unable to modify receive buffer!");
-            panic!();
+            panic!("Unable to modify receive buffer!");
         }
 
         systick.delay(500);
