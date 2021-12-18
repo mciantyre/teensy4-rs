@@ -112,8 +112,7 @@ fn main() -> ! {
     let rx_buffer = match bsp::hal::dma::Circular::new(&RX_MEM.0) {
         Ok(circular) => circular,
         Err(error) => {
-            log::error!("Unable to create circular RX buffer: {:?}", error);
-            loop {}
+            panic!("Unable to create circular RX buffer: {:?}", error);
         }
     };
 
@@ -128,8 +127,7 @@ fn main() -> ! {
 
         let mut rx_buffer = match free(|cs| RX_BUFFER.borrow(cs).borrow_mut().take()) {
             None => {
-                log::error!("No receive buffer!");
-                panic!();
+                panic!("No receive buffer!");
             }
             Some(rx_buffer) => rx_buffer,
         };
@@ -138,8 +136,7 @@ fn main() -> ! {
         // Schedule an initial receive
         let res = dma_uart.start_receive(rx_buffer);
         if let Err(err) = res {
-            log::error!("Error scheduling DMA receive: {:?}", err);
-            panic!();
+            panic!("Error scheduling DMA receive: {:?}", err);
         }
 
         loop {

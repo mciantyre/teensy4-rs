@@ -61,14 +61,10 @@ fn main() -> ! {
             log::info!("Set clock speed to {}Hz", SPI_BAUD_RATE_HZ);
         }
         Err(err) => {
-            log::error!(
+            panic!(
                 "Unable to set clock speed to {}Hz: {:?}",
-                SPI_BAUD_RATE_HZ,
-                err
+                SPI_BAUD_RATE_HZ, err
             );
-            loop {
-                core::sync::atomic::spin_loop_hint()
-            }
         }
     };
 
@@ -76,8 +72,8 @@ fn main() -> ! {
     // dummy `OutputPin` that does nothing! If you'd rather use any
     // GPIO, replace this line to construct a GPIO from another pin.
     spi4.enable_chip_select_0(pins.p10);
-    struct DummyCS;
-    impl embedded_hal::digital::v2::OutputPin for DummyCS {
+    struct DummyChipSelect;
+    impl embedded_hal::digital::v2::OutputPin for DummyChipSelect {
         type Error = core::convert::Infallible;
         fn set_high(&mut self) -> Result<(), Self::Error> {
             Ok(())
@@ -86,17 +82,14 @@ fn main() -> ! {
             Ok(())
         }
     }
-    let mut cs4 = DummyCS;
+    let mut cs4 = DummyChipSelect;
     log::info!("Waiting 5 seconds before querying MPU9250...");
     systick.delay(4000);
 
     match ak8963_init(&mut systick, &mut spi4, &mut cs4) {
         Ok(()) => (),
         Err(err) => {
-            log::warn!("Unable to initialize AK8963: {:?}", err);
-            loop {
-                core::sync::atomic::spin_loop_hint()
-            }
+            panic!("Unable to initialize AK8963: {:?}", err);
         }
     };
     loop {

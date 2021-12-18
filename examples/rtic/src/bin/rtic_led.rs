@@ -31,7 +31,7 @@ const APP: () = {
     #[idle]
     fn idle(_: idle::Context) -> ! {
         loop {
-            core::sync::atomic::spin_loop_hint();
+            core::hint::spin_loop();
         }
     }
 };
