@@ -18,8 +18,17 @@ jobs:
         target: thumbv7em-none-eabihf
         override: true
 
-    - name: Generate docs
+    - name: Generate BSP docs
       run: cargo rustdoc --target thumbv7em-none-eabihf --all-features -- --cfg docsrs
+
+    - name: Generate FCB docs
+      run: cargo rustdoc --target thumbv7em-none-eabihf --package teensy4-fcb
+
+    - name: Generate panic docs
+      run: cargo rustdoc --target thumbv7em-none-eabihf --package teensy4-panic
+
+    - name: Generate pins docs
+      run: cargo rustdoc --target thumbv7em-none-eabihf --package teensy4-fcb
 
     - name: Write redirect
       run: echo "<meta http-equiv=\"refresh\" content=\"0;url=teensy4_bsp\">" > target/thumbv7em-none-eabihf/doc/index.html
