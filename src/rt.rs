@@ -62,3 +62,20 @@ pub fn heap_len() -> usize {
     let start = cortex_m_rt::heap_start() as usize;
     end - start
 }
+
+/// Returns the starting location for a DTCM "heap."
+///
+/// The recommended heap is in OCRAM2, and available
+/// using [`heap_start()`](crate::rt::heap_start). But,
+/// you may choose to place the heap in DTCM. This function
+/// returns the starting address for that heap.
+///
+/// The DTCM heap is expected to grow up towards the stack,
+/// and has no statically-known maximum size. The pointer
+/// is guaranteed to be 4 byte aligned.
+pub fn dtcm_heap_start() -> *mut u32 {
+    extern "C" {
+        static mut __sheap_dtcm: u32;
+    }
+    unsafe { &mut __sheap_dtcm }
+}

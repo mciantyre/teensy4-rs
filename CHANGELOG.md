@@ -24,6 +24,19 @@ These changes affect symbols in the BSP:
 - `LED => Led`
 - `usb::Error::IO => usb::Error::Io`
 
+Users can place the heap in DTCM using `dtcm_heap_start()`. This mimics the
+behaviors of the 0.2.0 heap placement. See the 0.2.1 changelog note for more
+information.
+
+The table below summarizes the change in heap start APIs between 0.2.0 and
+0.2.2.
+
+| Heap location | Release 0.2.0  |    Release 0.2.2    |
+| ------------- | -------------- | ------------------- |
+|     DTCM      | `heap_start()` | `dtcm_heap_start()` |
+|    OCRAM2     |     None       |    `heap_start()`   |
+
+
 ## [0.2.1] - 2021-12-19
 
 Move the starting address for the heap into OCRAM2. Previously, the heap

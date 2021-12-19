@@ -105,7 +105,7 @@ mod systick;
 pub mod usb;
 
 #[cfg(all(target_arch = "arm", feature = "rt"))]
-pub use rt::{heap_len, heap_start};
+pub use rt::{dtcm_heap_start, heap_len, heap_start};
 #[cfg(feature = "systick")]
 pub use systick::SysTick;
 
