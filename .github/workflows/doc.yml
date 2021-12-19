@@ -28,7 +28,7 @@ jobs:
       run: cargo rustdoc --target thumbv7em-none-eabihf --package teensy4-panic
 
     - name: Generate pins docs
-      run: cargo rustdoc --target thumbv7em-none-eabihf --package teensy4-fcb
+      run: cargo rustdoc --target thumbv7em-none-eabihf --package teensy4-pins
 
     - name: Write redirect
       run: echo "<meta http-equiv=\"refresh\" content=\"0;url=teensy4_bsp\">" > target/thumbv7em-none-eabihf/doc/index.html
