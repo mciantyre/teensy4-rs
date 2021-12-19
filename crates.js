@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["teensy4_bsp","teensy4_fcb","teensy4_panic"];
+window.ALL_CRATES = ["teensy4_bsp","teensy4_fcb","teensy4_panic","teensy4_pins"];

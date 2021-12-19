@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins&#x2F;src&#x2F;common.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>common.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href="../../teensy4_pins/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<span id="2">  2</span>
+<span id="3">  3</span>
+<span id="4">  4</span>
+<span id="5">  5</span>
+<span id="6">  6</span>
+<span id="7">  7</span>
+<span id="8">  8</span>
+<span id="9">  9</span>
+<span id="10"> 10</span>
+<span id="11"> 11</span>
+<span id="12"> 12</span>
+<span id="13"> 13</span>
+<span id="14"> 14</span>
+<span id="15"> 15</span>
+<span id="16"> 16</span>
+<span id="17"> 17</span>
+<span id="18"> 18</span>
+<span id="19"> 19</span>
+<span id="20"> 20</span>
+<span id="21"> 21</span>
+<span id="22"> 22</span>
+<span id="23"> 23</span>
+<span id="24"> 24</span>
+<span id="25"> 25</span>
+<span id="26"> 26</span>
+<span id="27"> 27</span>
+<span id="28"> 28</span>
+<span id="29"> 29</span>
+<span id="30"> 30</span>
+<span id="31"> 31</span>
+<span id="32"> 32</span>
+<span id="33"> 33</span>
+<span id="34"> 34</span>
+<span id="35"> 35</span>
+<span id="36"> 36</span>
+<span id="37"> 37</span>
+<span id="38"> 38</span>
+<span id="39"> 39</span>
+<span id="40"> 40</span>
+<span id="41"> 41</span>
+<span id="42"> 42</span>
+<span id="43"> 43</span>
+<span id="44"> 44</span>
+<span id="45"> 45</span>
+<span id="46"> 46</span>
+<span id="47"> 47</span>
+<span id="48"> 48</span>
+<span id="49"> 49</span>
+<span id="50"> 50</span>
+<span id="51"> 51</span>
+<span id="52"> 52</span>
+<span id="53"> 53</span>
+<span id="54"> 54</span>
+<span id="55"> 55</span>
+<span id="56"> 56</span>
+<span id="57"> 57</span>
+<span id="58"> 58</span>
+<span id="59"> 59</span>
+<span id="60"> 60</span>
+<span id="61"> 61</span>
+<span id="62"> 62</span>
+<span id="63"> 63</span>
+<span id="64"> 64</span>
+<span id="65"> 65</span>
+<span id="66"> 66</span>
+<span id="67"> 67</span>
+<span id="68"> 68</span>
+<span id="69"> 69</span>
+<span id="70"> 70</span>
+<span id="71"> 71</span>
+<span id="72"> 72</span>
+<span id="73"> 73</span>
+<span id="74"> 74</span>
+<span id="75"> 75</span>
+<span id="76"> 76</span>
+<span id="77"> 77</span>
+<span id="78"> 78</span>
+<span id="79"> 79</span>
+<span id="80"> 80</span>
+<span id="81"> 81</span>
+<span id="82"> 82</span>
+<span id="83"> 83</span>
+<span id="84"> 84</span>
+<span id="85"> 85</span>
+<span id="86"> 86</span>
+<span id="87"> 87</span>
+<span id="88"> 88</span>
+<span id="89"> 89</span>
+<span id="90"> 90</span>
+<span id="91"> 91</span>
+<span id="92"> 92</span>
+<span id="93"> 93</span>
+<span id="94"> 94</span>
+<span id="95"> 95</span>
+<span id="96"> 96</span>
+<span id="97"> 97</span>
+<span id="98"> 98</span>
+<span id="99"> 99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Common pinout</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The Teensy 4.0 and 4.1 share many pins. This module provides</span>
+<span class="doccomment">//! the pins that are common across both boards. For pins that are unique to</span>
+<span class="doccomment">//! each board, and to acquire all of a board&#39;s pins, see the [`t40`](super::t40)</span>
+<span class="doccomment">//! and [`t41`](super::t41) modules.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Common pin table</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! This table describes all common pins and their possible functions. Besides this table,</span>
+<span class="doccomment">//! there are two other ways to identify which pads support which peripheral:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! - study the i.MX RT 1060 Reference Manual. This is the authority on pad configuration.</span>
+<span class="doccomment">//! - study the trait implementations for the pad. Select a pin type alias, like [`P0`],</span>
+<span class="doccomment">//!   and click-through to its pad documentation (`AD_B0_03`). Notice the listing of `imxrt-iomuxc`</span>
+<span class="doccomment">//!   trait implementations. This describes what kinds of functions the pin supports. The constraints</span>
+<span class="doccomment">//!   may be enforced by the HAL&#39;s APIs.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! | Pin | Pad ID   |       Alt0      |       Alt1      |     Alt2        |          Alt3        |         Alt4         |       Alt5         |          Alt6        |       Alt7           |          Alt8         |      Alt9        |</span>
+<span class="doccomment">//! | --- | -------- | --------------- | --------------- | --------------- | -------------------- | -------------------- | ------------------ | -------------------- | -------------------- | --------------------- | ---------------- |</span>
+<span class="doccomment">//! |  0  | AD_B0_03 | FLEXCAN2_RX     | XBAR1_INOUT17   | LPUART6_RX      | USB_OTG1_OC          | FLEXPWM1_PWMX01      | GPIO1_IO03         | REF_CLK_24M          | LPSPI3_PCS0          | ---                   | ---              |</span>
+<span class="doccomment">//! |  1  | AD_B0_02 | FLEXCAN2_TX     | XBAR1_INOUT16   | LPUART6_TX      | USB_OTG1_PWR         | FLEXPWM1_PWMX00      | GPIO1_IO02         | LPI2C1_HREQ          | LPSPI3_SDI           | ---                   | ---              |</span>
+<span class="doccomment">//! |  2  | EMC_04   | SEMC_DATA04     | FLEXPWM4_PWMA02 | SAI2_TX_DATA    | XBAR1_INOUT06        | FLEXIO1_FLEXIO04     | GPIO4_IO04         | ---                  | ---                  | ---                   | ---              |</span>
+<span class="doccomment">//! |  3  | EMC_05   | SEMC_DATA05     | FLEXPWM4_PWMB02 | SAI2_TX_SYNC    | XBAR1_INOUT07        | FLEXIO1_FLEXIO05     | GPIO4_IO05         | ---                  | ---                  | ---                   | ---              |</span>
+<span class="doccomment">//! |  4  | EMC_06   | SEMC_DATA06     | FLEXPWM2_PWMA00 | SAI2_TX_BCLK    | XBAR1_INOUT08        | FLEXIO1_FLEXIO06     | GPIO4_IO06         | ---                  | ---                  | ---                   | ---              |</span>
+<span class="doccomment">//! |  5  | EMC_08   | SEMC_DM00       | FLEXPWM2_PWMA01 | SAI2_RX_DATA    | XBAR1_INOUT17        | FLEXIO1_FLEXIO08     | GPIO4_IO08         | ---                  | ---                  | ---                   | ---              |</span>
+<span class="doccomment">//! |  6  | B0_10    | LCD_DATA06      | QTIMER4_TIMER1  | FLEXPWM2_PWMA02 | SAI1_TX_DATA03       | FLEXIO2_FLEXIO10     | GPIO2_IO10         | SRC_BOOT_CFG06       | ---                  | ENET2_CRS             | ---              |</span>
+<span class="doccomment">//! |  7  | B1_01    | LCD_DATA13      | XBAR1_INOUT15   | LPUART4_RX      | SAI1_TX_DATA00       | FLEXIO2_FLEXIO17     | GPIO2_IO17         | FLEXPWM1_PWMB03      | ---                  | ENET2_RDATA00         | FLEXIO3_FLEXIO17 |</span>
+<span class="doccomment">//! |  8  | B1_00    | LCD_DATA12      | XBAR1_INOUT14   | LPUART4_TX      | SAI1_RX_DATA00       | FLEXIO2_FLEXIO16     | GPIO2_IO16         | FLEXPWM1_PWMA03      | ---                  | ENET2_RX_ER           | FLEXIO3_FLEXIO16 |</span>
+<span class="doccomment">//! |  9  | B0_11    | LCD_DATA07      | QTIMER4_TIMER2  | FLEXPWM2_PWMB02 | SAI1_TX_DATA02       | FLEXIO2_FLEXIO11     | GPIO2_IO11         | SRC_BOOT_CFG07       | ---                  | ENET2_COL             | ---              |</span>
+<span class="doccomment">//! |  10 | B0_00    | LCD_CLK         | QTIMER1_TIMER0  | MQS_RIGHT       | LPSPI4_PCS0          | FLEXIO2_FLEXIO00     | GPIO2_IO00         | SEMC_CSX01           | ---                  | ENET2_MDC             | ---              |</span>
+<span class="doccomment">//! |  11 | B0_02    | LCD_HSYNC       | QTIMER1_TIMER2  | FLEXCAN1_TX     | LPSPI4_SDO           | FLEXIO2_FLEXIO02     | GPIO2_IO02         | SEMC_CSX03           | ---                  | ENET2_1588_EVENT0_OUT | ---              |</span>
+<span class="doccomment">//! |  12 | B0_01    | LCD_ENABLE      | QTIMER1_TIMER1  | MQS_LEFT        | LPSPI4_SDI           | FLEXIO2_FLEXIO01     | GPIO2_IO01         | SEMC_CSX02           | ---                  | ENET2_MDIO            | ---              |</span>
+<span class="doccomment">//! |  13 | B0_03    | LCD_VSYNC       | QTIMER2_TIMER0  | FLEXCAN1_RX     | LPSPI4_SCK           | FLEXIO2_FLEXIO03     | GPIO2_IO03 (LED)   | WDOG2_RESET_B_DEB    | ---                  | ENET2_1588_EVENT0_IN  | ---              |</span>
+<span class="doccomment">//! |  14 | AD_B1_02 | USB_OTG1_ID     | QTIMER3_TIMER2  | LPUART2_TX      | SPDIF_OUT            | ENET_1588_EVENT2_OUT | GPIO1_IO18         | USDHC1_CD_B          | KPP_ROW06            | GPT2_CLK              | FLEXIO3_FLEXIO02 |</span>
+<span class="doccomment">//! |  15 | AD_B1_03 | USB_OTG1_OC     | QTIMER3_TIMER3  | LPUART2_RX      | SPDIF_IN             | ENET_1588_EVENT2_IN  | GPIO1_IO19         | USDHC2_CD_B          | KPP_COL06            | GPT2_CAPTURE1         | FLEXIO3_FLEXIO03 |</span>
+<span class="doccomment">//! |  16 | AD_B1_07 | FLEXSPIB_DATA00 | LPI2C3_SCL      | LPUART3_RX      | SPDIF_EXT_CLK        | CSI_HSYNC            | GPIO1_IO23         | USDHC2_DATA3         | KPP_COL04            | GPT2_COMPARE3         | FLEXIO3_FLEXIO07 |</span>
+<span class="doccomment">//! |  17 | AD_B1_06 | FLEXSPIB_DATA01 | LPI2C3_SDA      | LPUART3_TX      | SPDIF_LOCK           | CSI_VSYNC            | GPIO1_IO22         | USDHC2_DATA2         | KPP_ROW04            | GPT2_COMPARE2         | FLEXIO3_FLEXIO06 |</span>
+<span class="doccomment">//! |  18 | AD_B1_01 | USB_OTG1_PWR    | QTIMER3_TIMER1  | LPUART2_RTS_B   | LPI2C1_SDA           | CCM_PMIC_READY       | GPIO1_IO17         | USDHC1_VSELECT       | KPP_COL07            | ENET2_1588_EVENT0_IN  | FLEXIO3_FLEXIO01 |</span>
+<span class="doccomment">//! |  19 | AD_B1_00 | USB_OTG2_ID     | QTIMER3_TIMER0  | LPUART2_CTS     | LPI2C1_SCL           | WDOG1_B              | GPIO1_IO16         | USDHC1_WP            | KPP_ROW07            | ENET2_1588_EVENT0_OUT | FLEXIO3_FLEXIO00 |</span>
+<span class="doccomment">//! |  20 | AD_B1_10 | FLEXSPIA_DATA03 | WDOG1_B         | LPUART8_TX      | SAI1_RX_SYNC         | CSI_DATA07           | GPIO1_IO26         | USDHC2_WP            | KPP_ROW02            | ENET2_1588_EVENT1_OUT | FLEXIO3_FLEXIO10 |</span>
+<span class="doccomment">//! |  21 | AD_B1_11 | FLEXSPIA_DATA02 | EWM_OUT_B       | LPUART8_RX      | SAI1_RX_BCLK         | CSI_DATA06           | GPIO1_IO27         | USDHC2_RESET_B       | KPP_COL02            | ENET2_1588_EVENT1_IN  | FLEXIO3_FLEXIO11 |</span>
+<span class="doccomment">//! |  22 | AD_B1_08 | FLEXSPIA_SS1_B  | FLEXPWM4_PWMA00 | FLEXCAN1_TX     | CCM_PMIC_READY       | CSI_DATA09           | GPIO1_IO24         | USDHC2_CMD           | KPP_ROW03            | ---                   | FLEXIO3_FLEXIO08 |</span>
+<span class="doccomment">//! |  23 | AD_B1_09 | FLEXSPIA_DQS    | FLEXPWM4_PWMA01 | FLEXCAN1_RX     | SAI1_MCLK            | CSI_DATA08           | GPIO1_IO25         | USDHC2_CLK           | KPP_COL03            | ---                   | FLEXIO3_FLEXIO09 |</span>
+<span class="doccomment">//! |  24 | AD_B0_12 | LPI2C4_SCL      | CCM_PMIC_READY  | LPUART1_TX      | WDOG2_WDOG_B         | FLEXPWM1_PWMX02      | GPIO1_IO12         | ENET_1588_EVENT1_OUT | NMI_GLUE_NMI         | ---                   | ---              |</span>
+<span class="doccomment">//! |  25 | AD_B0_13 | LPI2C4_SDA      | GPT1_CLK        | LPUART1_RX      | EWM_OUT_B            | FLEXPWM1_PWMX03      | GPIO1_IO13         | ENET_1588_EVENT1_IN  | REF_CLK_24M          | ---                   | ---              |</span>
+<span class="doccomment">//! |  26 | AD_B1_14 | USB_OTG2_OC     | XBAR1_IN24      | LPUART1_CTS_B   | ENET_1588_EVENT0_OUT | CSI_VSYNC            | GPIO1_IO14         | FLEXCAN2_TX          | ---                  | FLEXCAN3_TX           | ---              |</span>
+<span class="doccomment">//! |  27 | AD_B1_15 | USB_OTG2_PWR    | XBAR1_IN25      | LPUART1_RTS_B   | ENET_1588_EVENT0_IN  | CSI_HSYNC            | GPIO1_IO15         | FLEXCAN2_RX          | WDOG1_WDOG_RST_B_DEB | FLEXCAN3_RX           | ---              |</span>
+<span class="doccomment">//! |  28 | EMC_32   | SEMC_DATA10     | FLEXPWM3_PWMB01 | LPUART7_RX      | CCM_PMIC_RDY         | CSI_DATA21           | GPIO3_IO18         | ---                  | ---                  | ENET2_TX_EN           | ---              |</span>
+<span class="doccomment">//! |  29 | EMC_31   | SEMC_DATA09     | FLEXPWM3_PWMA01 | LPUART7_TX      | LPSPI1_PCS1          | CSI_DATA22           | GPIO4_IO31         | ---                  | ---                  | ENET2_TDATA01         | ---              |</span>
+<span class="doccomment">//! |  30 | EMC_37   | SEMC_DATA15     | XBAR1_IN23      | GPT1_COMPARE3   | SAI3_MCLK            | CSI_DATA16           | GPIO3_IO23         | USDHC2_WP            | ---                  | ENET2_RX_EN           | FLEXCAN3_RX      |</span>
+<span class="doccomment">//! |  31 | EMC_36   | SEMC_DATA14     | XBAR1_IN22      | GPT1_COMPARE2   | SAI3_TX_DATA         | CSI_DATA17           | GPIO3_IO22         | USDHC1_WP            | ---                  | ENET2_RDATA01         | FLEXCAN3_TX      |</span>
+<span class="doccomment">//! |  32 | B0_12    | LCD_DATA08      | XBAR1_INOUT10   | ARM_TRACE_CLK   | SAI1_TX_DATA01       | FLEXIO2_FLEXIO12     | GPIO2_IO12         | SRC_BOOT_CFG08       | ---                  | ENET2_TDATA00         | ---              |</span>
+<span class="doccomment">//! |  33 | EMC_07   | SEMC_DATA07     | FLEXPWM2_PWMB00 | SAI2_MCLK       | XBAR1_INOUT09        | FLEXIO1_FLEXIO07     | GPIO4_IO07         | ---                  | ---                  | ---                   | ---              |</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! References:</span>
+<span class="doccomment">//! - [Teensy Schematics](https://www.pjrc.com/teensy/schematic.html)</span>
+<span class="doccomment">//! - i.MX RT 1060 Processor Reference Manual, Rev. 2, 12/2019</span>
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::iomuxc</span>::{<span class="ident">ad_b0</span>::<span class="kw-2">*</span>, <span class="ident">ad_b1</span>::<span class="kw-2">*</span>, <span class="ident">b0</span>::<span class="kw-2">*</span>, <span class="ident">b1</span>::<span class="kw-2">*</span>, <span class="ident">emc</span>::<span class="kw-2">*</span>};
+
+<span class="doccomment">/// Pin 0 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P0</span> <span class="op">=</span> <span class="ident">AD_B0_03</span>;
+<span class="doccomment">/// Pin 1 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P1</span> <span class="op">=</span> <span class="ident">AD_B0_02</span>;
+<span class="doccomment">/// Pin 2 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P2</span> <span class="op">=</span> <span class="ident">EMC_04</span>;
+<span class="doccomment">/// Pin 3 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P3</span> <span class="op">=</span> <span class="ident">EMC_05</span>;
+<span class="doccomment">/// Pin 4 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P4</span> <span class="op">=</span> <span class="ident">EMC_06</span>;
+<span class="doccomment">/// Pin 5 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P5</span> <span class="op">=</span> <span class="ident">EMC_08</span>;
+<span class="doccomment">/// Pin 6 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P6</span> <span class="op">=</span> <span class="ident">B0_10</span>;
+<span class="doccomment">/// Pin 7 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P7</span> <span class="op">=</span> <span class="ident">B1_01</span>;
+<span class="doccomment">/// Pin 8 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P8</span> <span class="op">=</span> <span class="ident">B1_00</span>;
+<span class="doccomment">/// Pin 9 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P9</span> <span class="op">=</span> <span class="ident">B0_11</span>;
+<span class="doccomment">/// Pin 10 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P10</span> <span class="op">=</span> <span class="ident">B0_00</span>;
+<span class="doccomment">/// Pin 11 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P11</span> <span class="op">=</span> <span class="ident">B0_02</span>;
+<span class="doccomment">/// Pin 12 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P12</span> <span class="op">=</span> <span class="ident">B0_01</span>;
+<span class="doccomment">/// Pin 13 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P13</span> <span class="op">=</span> <span class="ident">B0_03</span>;
+<span class="doccomment">/// Pin 14 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P14</span> <span class="op">=</span> <span class="ident">AD_B1_02</span>;
+<span class="doccomment">/// Pin 15 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P15</span> <span class="op">=</span> <span class="ident">AD_B1_03</span>;
+<span class="doccomment">/// Pin 16 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P16</span> <span class="op">=</span> <span class="ident">AD_B1_07</span>;
+<span class="doccomment">/// Pin 17 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P17</span> <span class="op">=</span> <span class="ident">AD_B1_06</span>;
+<span class="doccomment">/// Pin 18 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P18</span> <span class="op">=</span> <span class="ident">AD_B1_01</span>;
+<span class="doccomment">/// Pin 19 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P19</span> <span class="op">=</span> <span class="ident">AD_B1_00</span>;
+<span class="doccomment">/// Pin 20 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P20</span> <span class="op">=</span> <span class="ident">AD_B1_10</span>;
+<span class="doccomment">/// Pin 21 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P21</span> <span class="op">=</span> <span class="ident">AD_B1_11</span>;
+<span class="doccomment">/// Pin 22 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P22</span> <span class="op">=</span> <span class="ident">AD_B1_08</span>;
+<span class="doccomment">/// Pin 23 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P23</span> <span class="op">=</span> <span class="ident">AD_B1_09</span>;
+<span class="doccomment">/// Pin 24 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P24</span> <span class="op">=</span> <span class="ident">AD_B0_12</span>;
+<span class="doccomment">/// Pin 25 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P25</span> <span class="op">=</span> <span class="ident">AD_B0_13</span>;
+<span class="doccomment">/// Pin 26 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P26</span> <span class="op">=</span> <span class="ident">AD_B1_14</span>;
+<span class="doccomment">/// Pin 27 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P27</span> <span class="op">=</span> <span class="ident">AD_B1_15</span>;
+<span class="doccomment">/// Pin 28 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P28</span> <span class="op">=</span> <span class="ident">EMC_32</span>;
+<span class="doccomment">/// Pin 29 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P29</span> <span class="op">=</span> <span class="ident">EMC_31</span>;
+<span class="doccomment">/// Pin 30 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P30</span> <span class="op">=</span> <span class="ident">EMC_37</span>;
+<span class="doccomment">/// Pin 31 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P31</span> <span class="op">=</span> <span class="ident">EMC_36</span>;
+<span class="doccomment">/// Pin 32 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P32</span> <span class="op">=</span> <span class="ident">B0_12</span>;
+<span class="doccomment">/// Pin 33 (common)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P33</span> <span class="op">=</span> <span class="ident">EMC_07</span>;
+</code></pre></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (91a0600a5 2021-12-18)" ></div>
+</body></html>
