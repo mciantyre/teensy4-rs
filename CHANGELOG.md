@@ -24,6 +24,8 @@ These changes affect symbols in the BSP:
 - `LED => Led`
 - `usb::Error::IO => usb::Error::Io`
 
+## [0.2.2] - 2021-12-21
+
 Users can place the heap in DTCM using `dtcm_heap_start()`. This mimics the
 behaviors of the 0.2.0 heap placement. See the 0.2.1 changelog note for more
 information.
@@ -142,6 +144,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.2.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.1...teensy4-bsp-0.2.2
 [0.2.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.0...teensy4-bsp-0.2.1
 [0.2.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.1.1...teensy4-bsp-0.2.0
 [0.1.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.1.0...teensy4-bsp-0.1.1
