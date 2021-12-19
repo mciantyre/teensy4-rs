@@ -7,8 +7,6 @@ on:
 jobs:
   doc:
     runs-on: ubuntu-latest
-    container:
-      image: rustops/crates-build-env:latest
     
     steps:
     - uses: actions/checkout@v2
