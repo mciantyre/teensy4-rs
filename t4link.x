@@ -154,6 +154,16 @@ SECTIONS
     . = ALIGN(4); /* Ensure __ebss is aligned if something unaligned is inserted after .bss */
     __ebss = .;
 
+    /* ### .uninit */
+    .uninit (NOLOAD) : ALIGN(4)
+    {
+        . = ALIGN(4);
+        *(.uninit .uninit.*);
+        . = ALIGN(4);
+    } > DTCM
+    . = ALIGN(4); /* Ensure alignment in case of INSERT AFTER */
+    __sheap_dtcm = .;
+
     .dma (NOLOAD) :
     {
         *(.dmabuffers); /* Compat with USB */
@@ -167,14 +177,6 @@ SECTIONS
         . = ORIGIN(RAM) + LENGTH(RAM);
         __eheap = .;
     } > RAM
-
-    /* ### .uninit */
-    .uninit (NOLOAD) : ALIGN(4)
-    {
-        . = ALIGN(4);
-        *(.uninit .uninit.*);
-        . = ALIGN(4);
-    } > DTCM
 
     /* ## .got */
     /* Dynamic relocations are unsupported. This section is only used to detect relocatable code in
