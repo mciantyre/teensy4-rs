@@ -51,6 +51,7 @@ unsafe extern "C" fn t4_init() {
 /// Returns the size of the heap, in bytes.
 ///
 /// Use [`heap_start()`](crate::rt::heap_start) to access the start of the heap.
+#[inline]
 pub fn heap_len() -> usize {
     fn heap_end() -> *mut u32 {
         extern "C" {
@@ -77,6 +78,7 @@ pub fn heap_len() -> usize {
 /// The DTCM heap is expected to grow up towards the stack,
 /// and has no statically-known maximum size. The pointer
 /// is guaranteed to be 4 byte aligned.
+#[inline]
 pub fn dtcm_heap_start() -> *mut u32 {
     extern "C" {
         static mut __sheap_dtcm: u32;
