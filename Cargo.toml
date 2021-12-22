@@ -121,6 +121,10 @@ default-target = "thumbv7em-none-eabihf"
 # Examples that just need a runtime
 
 [[example]]
+name = "configure_pin_function"
+required-features = ["rt"]
+
+[[example]]
 name = "gpt"
 required-features = ["rt"]
 
