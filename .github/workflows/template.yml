@@ -29,11 +29,6 @@ jobs:
           curl -LJ https://github.com/ashleygwilliams/cargo-generate/releases/download/${VERSION}/${PACKAGE}.tar.gz | tar xz && \
           cp ${PACKAGE}/cargo-generate $(dirname $(which cargo)) && \
           cargo generate --help
-      - uses: actions-rs/install@v0.1
-        with:
-          crate: cargo-binutils
-          version: latest
-          use-tool-cache: true
       - name: Generate the template
         run: cargo generate --git https://github.com/mciantyre/teensy4-rs-template --name krate --branch ci
       # https://stackoverflow.com/questions/58033366/how-to-get-current-branch-within-github-actions
@@ -44,4 +39,4 @@ jobs:
       - name: Update template to target integration branch
         run: sed -i "s/branch = \"master\"/branch = \"${{ steps.extract_branch.outputs.branch }}\"/g" krate/Cargo.toml
       - name: Check the template
-        run: cd krate && cargo build && cargo objcopy -- -O ihex krate.hex
+        run: cd krate && cargo build
