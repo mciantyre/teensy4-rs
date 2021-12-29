@@ -237,9 +237,19 @@
 <span id="235">235</span>
 <span id="236">236</span>
 <span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Teensy 4.0 specific APIs</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Use [`into_pins`](into_pins()) to constrain the processor pads into the pins available on the Teensy 4.0.</span>
+<span class="doccomment">//! Use [`from_pads`](from_pads()) to constrain the processor pads into the pins available on the Teensy 4.0.</span>
 <span class="doccomment">//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())</span>
 <span class="doccomment">//! method to generate pins.</span>
 <span class="doccomment">//!</span>
@@ -278,7 +288,7 @@
 
 <span class="doccomment">/// Teensy 4.0 pins</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See [`into_pins`](into_pins()) to safely constrain the processor&#39;s pads, and acquire</span>
+<span class="doccomment">/// See [`from_pads`](from_pads()) to safely constrain the processor&#39;s pads, and acquire</span>
 <span class="doccomment">/// Teensy 4.0 pins. Or, use [`new`](Pins::new()) to unsafely create pins.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pins</span> {
     <span class="doccomment">/// Pin 0</span>
@@ -364,8 +374,16 @@
     <span class="kw">pub</span> <span class="ident">p39</span>: <span class="ident">P39</span>,
 }
 
-<span class="doccomment">/// Constrain the processor pads to the Teensy 4.0 pins</span>
+<span class="doccomment">/// Use [`from_pads`].</span>
+<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.2.0&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Use from_pads&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">into_pins</span>(<span class="ident">iomuxc</span>: <span class="ident"><span class="kw">crate</span>::iomuxc::Pads</span>) -&gt; <span class="ident">Pins</span> {
+    <span class="ident">from_pads</span>(<span class="ident">iomuxc</span>)
+}
+
+<span class="doccomment">/// Constrain the processor pads to the Teensy 4.0 pins</span>
+<span class="attribute">#[<span class="ident">inline</span>]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_pads</span>(<span class="ident">iomuxc</span>: <span class="ident"><span class="kw">crate</span>::iomuxc::Pads</span>) -&gt; <span class="ident">Pins</span> {
     <span class="ident">Pins</span> {
         <span class="ident">p0</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p03</span>,
         <span class="ident">p1</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p02</span>,
@@ -422,12 +440,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// - an existing handle to the `imxrt-iomuxc` pads,</span>
     <span class="doccomment">/// - another instance of `Pins` that was safely acquired</span>
-    <span class="doccomment">///   using [`into_pins`](into_pins()).</span>
+    <span class="doccomment">///   using [`from_pads`](from_pads()).</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">into_pins</span>(<span class="ident"><span class="kw">crate</span>::iomuxc::Pads::new</span>())
+        <span class="ident">from_pads</span>(<span class="ident"><span class="kw">crate</span>::iomuxc::Pads::new</span>())
     }
 
     <span class="doccomment">/// Erase the types of all pins</span>
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">erase</span>(<span class="self">self</span>) -&gt; <span class="ident">ErasedPins</span> {
         [
             <span class="self">self</span>.<span class="ident">p0</span>.<span class="ident">erase</span>(),
@@ -475,5 +495,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (f8abed9ed 2021-12-26)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
 </body></html>
