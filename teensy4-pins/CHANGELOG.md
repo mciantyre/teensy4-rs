@@ -4,6 +4,7 @@
 
 ## [0.2.0] - 2021-12-29
 
+- Mark functions `#[inline]`.
 - Add `from_pads()`, a replacement for `into_pins()`.
 - *Deprecate* `into_pins()`. Users should prefer `from_pads()` to convert
   from IOMUXC pads to Teensy 4 pins.

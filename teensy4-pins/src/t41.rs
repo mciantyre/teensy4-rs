@@ -167,11 +167,13 @@ pub struct Pins {
 
 /// Use [`from_pads`].
 #[deprecated(since = "0.2.0", note = "Use from_pads")]
+#[inline]
 pub const fn into_pins(iomuxc: crate::iomuxc::Pads) -> Pins {
     from_pads(iomuxc)
 }
 
 /// Constrain the processor pads to the Teensy 4.1 pins
+#[inline]
 pub const fn from_pads(iomuxc: crate::iomuxc::Pads) -> Pins {
     Pins {
         p0: iomuxc.ad_b0.p03,
@@ -238,11 +240,13 @@ impl Pins {
     /// - an existing handle to the `imxrt-iomuxc` pads,
     /// - another instance of `Pins` that was safely acquired
     ///   using [`from_pads`](from_pads()).
+    #[inline]
     pub const unsafe fn new() -> Self {
         from_pads(crate::iomuxc::Pads::new())
     }
 
     /// Erase the types of all pins
+    #[inline]
     pub fn erase(self) -> ErasedPins {
         [
             self.p0.erase(),
