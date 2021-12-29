@@ -30,7 +30,7 @@ unsafe fn PIT() {
 #[entry]
 fn main() -> ! {
     let mut periphs = bsp::Peripherals::take().unwrap();
-    let pins = bsp::t40::from_pads(periphs.iomuxc);
+    let pins = bsp::pins::t40::from_pads(periphs.iomuxc);
     let (_, ipg_hz) = periphs.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,
         &mut periphs.ccm.handle,

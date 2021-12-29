@@ -11,7 +11,7 @@ use imxrt_hal::{
     gpio::GPIO,
     iomuxc::{self, Config, Hysteresis, PullKeeper},
 };
-use teensy4_bsp::{configure_led, t40, Peripherals, SysTick};
+use teensy4_bsp::{configure_led, pins::t40, Peripherals, SysTick};
 
 // The pin configuration can be defined at compile time,
 // and at run time. This example uses a constant, so the

@@ -83,7 +83,7 @@ fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     usb_io::init().unwrap();
-    let pins = bsp::t40::from_pads(peripherals.iomuxc);
+    let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
 
     systick.delay(5_000);
     let uarts = peripherals.uart.clock(

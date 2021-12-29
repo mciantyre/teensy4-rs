@@ -80,7 +80,7 @@ mod app {
             .pll1
             .set_arm_clock(MONO_HZ, &mut cx.device.ccm.handle, &mut cx.device.dcdc);
 
-        let pins = bsp::t40::from_pads(cx.device.iomuxc);
+        let pins = bsp::pins::t40::from_pads(cx.device.iomuxc);
 
         // DMA setup.
         let mut dma_channels = cx.device.dma.clock(&mut cx.device.ccm.handle);

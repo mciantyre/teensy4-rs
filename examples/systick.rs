@@ -18,7 +18,7 @@ const LED_PERIOD_MS: u32 = 1_000;
 fn main() -> ! {
     let p = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let pins = bsp::t40::from_pads(p.iomuxc);
+    let pins = bsp::pins::t40::from_pads(p.iomuxc);
     let mut led = bsp::configure_led(pins.p13);
 
     loop {

@@ -12,7 +12,7 @@ use imxrt_hal::{
     gpio::{Input, GPIO},
     iomuxc::{configure, gpio::Pin, Config, Hysteresis, PullKeeper},
 };
-use teensy4_bsp::{configure_led, t40, Peripherals};
+use teensy4_bsp::{configure_led, pins::t40, Peripherals};
 
 fn configure_switch<P: Pin>(mut switch_pin: P) -> GPIO<P, Input> {
     const LOW_SWITCH_CONFIG: Config = Config::zero()

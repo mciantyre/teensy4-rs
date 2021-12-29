@@ -57,10 +57,7 @@
 //! # Pins
 //!
 //! The BSP helps you convert all the i.MX RT processor pads into your Teensy 4's pins.
-//! From these pins, you may construct peripherals and perform I/O. The Teensy 4.0 and 4.1
-//! boards support many of the same pins; see the [`common`] module
-//! for those similar pins. To construct Teensy 4.0 or 4.1 pins, see the
-//! [`t40::from_pads`](t40::from_pads()) and [`t41::from_pads`](t41::from_pads())
+//! From these pins, you may construct peripherals and perform I/O. See the [`pins`] module
 //! for more information.
 //!
 //! # Examples
@@ -74,7 +71,7 @@
 //! use embedded_hal::digital::v2::OutputPin;
 //!
 //! let peripherals = bsp::Peripherals::take().unwrap();
-//! let pins = bsp::t40::from_pads(peripherals.iomuxc);
+//! let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
 //! let mut led = bsp::configure_led(pins.p13);
 //!
 //! loop {
@@ -92,9 +89,29 @@
 #[cfg(target_arch = "arm")]
 extern crate teensy4_fcb;
 
-pub use teensy4_pins::common;
-pub use teensy4_pins::t40;
-pub use teensy4_pins::t41;
+pub use teensy4_pins as pins;
+
+/// Use [`teensy4_bsp::pins::common`](crate::pins::common).
+///
+/// This module will be removed in the next breaking release.
+#[deprecated(since = "0.3.0", note = "Use teensy4_bsp::pins::common")]
+pub mod common {
+    pub use crate::pins::common::*;
+}
+/// Use [`teensy4_bsp::pins::t40`](crate::pins::t40).
+///
+/// This module will be removed in the next breaking release.
+#[deprecated(since = "0.3.0", note = "Use teensy4_bsp::pins::t40")]
+pub mod t40 {
+    pub use crate::pins::t40::*;
+}
+/// Use [`teensy4_bsp::pins::t41`](crate::pins::t41).
+///
+/// This module will be removed in the next breaking release.
+#[deprecated(since = "0.3.0", note = "Use teensy4_bsp::pins::t41")]
+pub mod t41 {
+    pub use crate::pins::t41::*;
+}
 
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 mod rt;

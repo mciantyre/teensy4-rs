@@ -26,6 +26,14 @@ These changes affect symbols in the BSP:
 
 **BREAKING** Update cortex-m to 0.7.
 
+**BREAKING** Re-export the 0.2 `teensy4-pins` API. See [the
+CHANGELOG](teensy4-pins/CHANGELOG.md) for a description of the small breaking
+change. `teensy4-bsp` forwards the `teensy4-pins` package as the `pins` module.
+
+*Deprecate* the `common`, `t40`, and `t41` modules. Users should access these
+modules through the `teensy4_bsp::pins` module. See the deprecation warnings
+for more information.
+
 ## [0.2.2] - 2021-12-21
 
 Users can place the heap in DTCM using `dtcm_heap_start()`. This mimics the

@@ -73,7 +73,7 @@ mod app {
             &mut cx.device.dcdc,
         );
 
-        let pins = bsp::t40::from_pads(cx.device.iomuxc);
+        let pins = bsp::pins::t40::from_pads(cx.device.iomuxc);
 
         // UART setup.
         let uarts = cx.device.uart.clock(

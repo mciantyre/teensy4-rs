@@ -41,7 +41,7 @@ mod app {
             &mut cx.device.dcdc,
         );
 
-        let pins = bsp::t40::from_pads(cx.device.iomuxc);
+        let pins = bsp::pins::t40::from_pads(cx.device.iomuxc);
         let mut led = bsp::configure_led(pins.p13);
         led.set();
 

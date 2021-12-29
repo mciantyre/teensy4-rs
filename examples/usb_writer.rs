@@ -15,7 +15,7 @@ use teensy4_bsp as bsp;
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
-    let pins = bsp::t40::from_pads(p.iomuxc);
+    let pins = bsp::pins::t40::from_pads(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     // Split the USB stack into read / write halves
     let (mut reader, mut writer) = usb_io::split().unwrap();

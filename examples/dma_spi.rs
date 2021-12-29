@@ -161,7 +161,7 @@ fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     usb_io::init().unwrap();
-    let pins = bsp::t40::from_pads(peripherals.iomuxc);
+    let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
 
     peripherals.ccm.pll1.set_arm_clock(
         bsp::hal::ccm::PLL1::ARM_HZ,

@@ -46,7 +46,7 @@ where
 fn main() -> ! {
     let mut peripherals = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let pins = bsp::t40::from_pads(peripherals.iomuxc);
+    let pins = bsp::pins::t40::from_pads(peripherals.iomuxc);
     usb_io::init().unwrap();
     systick.delay(5000);
 

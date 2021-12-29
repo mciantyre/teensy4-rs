@@ -28,8 +28,8 @@
 use teensy4_bsp as bsp;
 use teensy4_panic as _;
 
-use bsp::common as pins;
 use bsp::hal::gpio::{self, GPIO};
+use bsp::pins::common as pins;
 
 /// CHANGE ME to affect the behaviors of the pins.
 const INTERRUPT_CONFIGURATION: gpio::InterruptConfiguration =
@@ -130,7 +130,7 @@ mod app {
 
         // Schedule the first blink.
         blink::spawn_after(1_u32.secs()).unwrap();
-        let pins = bsp::t40::from_pads(cx.device.iomuxc);
+        let pins = bsp::pins::t40::from_pads(cx.device.iomuxc);
         let led = bsp::configure_led(pins.p13);
 
         let p12_p14 = GpioConnection::new(pins.p12, pins.p14);

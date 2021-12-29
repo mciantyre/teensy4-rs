@@ -32,7 +32,7 @@ fn main() -> ! {
     // Prepare all the BSP peripherals
     let mut p = bsp::Peripherals::take().unwrap();
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let pins = bsp::t40::from_pads(p.iomuxc);
+    let pins = bsp::pins::t40::from_pads(p.iomuxc);
     usb_io::init().unwrap();
     // Delay is only to let a user set-up their USB serial connection...
     systick.delay(5000);
