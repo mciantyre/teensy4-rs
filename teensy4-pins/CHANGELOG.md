@@ -4,6 +4,9 @@
 
 ## [0.2.0] - 2021-12-29
 
+- Add `from_pads()`, a replacement for `into_pins()`.
+- *Deprecate* `into_pins()`. Users should prefer `from_pads()` to convert
+  from IOMUXC pads to Teensy 4 pins.
 - Re-export `imxrt-iomuxc` from the crate. Use these symbols to access pad
   configuration APIs.
 - Document all alternate values for all Teensy 4 pins.

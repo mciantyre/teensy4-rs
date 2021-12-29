@@ -60,7 +60,7 @@
 //! From these pins, you may construct peripherals and perform I/O. The Teensy 4.0 and 4.1
 //! boards support many of the same pins; see the [`common`] module
 //! for those similar pins. To construct Teensy 4.0 or 4.1 pins, see the
-//! [`t40::into_pins`](t40::into_pins()) and [`t41::into_pins`](t41::into_pins())
+//! [`t40::from_pads`](t40::from_pads()) and [`t41::from_pads`](t41::from_pads())
 //! for more information.
 //!
 //! # Examples
@@ -74,7 +74,7 @@
 //! use embedded_hal::digital::v2::OutputPin;
 //!
 //! let peripherals = bsp::Peripherals::take().unwrap();
-//! let pins = bsp::t40::into_pins(peripherals.iomuxc);
+//! let pins = bsp::t40::from_pads(peripherals.iomuxc);
 //! let mut led = bsp::configure_led(pins.p13);
 //!
 //! loop {

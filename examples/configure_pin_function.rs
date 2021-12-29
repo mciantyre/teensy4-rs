@@ -25,7 +25,7 @@ fn configure_switch<P: Pin>(mut switch_pin: P) -> GPIO<P, Input> {
 #[entry]
 fn main() -> ! {
     let p = Peripherals::take().unwrap();
-    let pins = t40::into_pins(p.iomuxc);
+    let pins = t40::from_pads(p.iomuxc);
     let mut led = configure_led(pins.p13);
     // Unlike configure_led, configure_switch will accept any pin (except for
     //  pins.p13, which has already been used)

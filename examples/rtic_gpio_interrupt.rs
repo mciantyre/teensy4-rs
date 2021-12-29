@@ -130,7 +130,7 @@ mod app {
 
         // Schedule the first blink.
         blink::spawn_after(1_u32.secs()).unwrap();
-        let pins = bsp::t40::into_pins(cx.device.iomuxc);
+        let pins = bsp::t40::from_pads(cx.device.iomuxc);
         let led = bsp::configure_led(pins.p13);
 
         let p12_p14 = GpioConnection::new(pins.p12, pins.p14);

@@ -26,7 +26,7 @@ const LED_PERIOD_MS: u32 = 500;
 fn main() -> ! {
     let p = Peripherals::take().unwrap();
     let mut systick = SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
-    let pins = t40::into_pins(p.iomuxc);
+    let pins = t40::from_pads(p.iomuxc);
     let mut led = configure_led(pins.p13);
 
     let mut switch_pin = pins.p6;

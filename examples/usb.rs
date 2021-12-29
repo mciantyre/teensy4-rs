@@ -18,7 +18,7 @@ use teensy4_bsp as bsp;
 #[rt::entry]
 fn main() -> ! {
     let mut p = bsp::Peripherals::take().unwrap();
-    let pins = bsp::t40::into_pins(p.iomuxc);
+    let pins = bsp::t40::from_pads(p.iomuxc);
     let mut systick = bsp::SysTick::new(cortex_m::Peripherals::take().unwrap().SYST);
     let mut usb_reader = usb_io::init().unwrap();
 

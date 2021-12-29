@@ -12,7 +12,7 @@
 //!
 //! # Teensy 4.0
 //!
-//! To acquire Teensy 4.0 pins, call `t40::into_pins` and provide all
+//! To acquire Teensy 4.0 pins, call `t40::from_pads` and provide all
 //! of the processor pads:
 //!
 //! ```
@@ -21,7 +21,7 @@
 //!
 //! let pads = // Handle to all processor pads
 //!     # unsafe { Pads::new() };
-//! let pins = t40::into_pins(pads);
+//! let pins = t40::from_pads(pads);
 //! ```
 //!
 //! # Teensy 4.1
@@ -34,7 +34,7 @@
 //!
 //! let pads = // Handle to all processor pads
 //!     # unsafe { Pads::new() };
-//! let pins = t41::into_pins(pads);
+//! let pins = t41::from_pads(pads);
 //! ```
 //!
 //! # Safety

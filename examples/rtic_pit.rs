@@ -44,7 +44,7 @@ mod app {
         timer.set_interrupt_enable(true);
         timer.start(core::time::Duration::from_millis(250));
 
-        let pins = bsp::t40::into_pins(cx.device.iomuxc);
+        let pins = bsp::t40::from_pads(cx.device.iomuxc);
         let mut led = bsp::configure_led(pins.p13);
         led.set();
 

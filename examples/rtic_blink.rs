@@ -46,7 +46,7 @@ mod app {
 
         // Schedule the first blink.
         blink::spawn_after(1_u32.secs()).unwrap();
-        let pins = bsp::t40::into_pins(cx.device.iomuxc);
+        let pins = bsp::t40::from_pads(cx.device.iomuxc);
         let mut led = bsp::configure_led(pins.p13);
         led.set();
 
