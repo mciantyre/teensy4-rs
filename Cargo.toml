@@ -51,7 +51,7 @@ version = "0.4.2"
 features = ["imxrt1062"]
 
 [dependencies.teensy4-pins]
-version = "0.1"
+version = "0.2"
 path = "teensy4-pins"
 
 # Tied to "systick" feature, since
