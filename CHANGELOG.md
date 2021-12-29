@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.3.0] - 2021-12-29
+
 **BREAKING** This release removes the `systick` module, and all SYSTICK APIs.
 Users who want to use the system timer should prefer the APIs available from
 the `cortex_m` crate. See this project's examples for one way to configure
@@ -162,6 +164,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.3.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.2...teensy4-bsp-0.3.0
 [0.2.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.1...teensy4-bsp-0.2.2
 [0.2.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.0...teensy4-bsp-0.2.1
 [0.2.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.1.1...teensy4-bsp-0.2.0
