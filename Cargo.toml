@@ -37,7 +37,7 @@ keywords = [
 [dependencies]
 cortex-m = "0.7"
 
-[target.thumbv7em-none-eabihf.dependencies.cortex-m-rt]
+[dependencies.cortex-m-rt]
 version = "0.7"
 optional = true
 features = ["device"]
@@ -240,14 +240,9 @@ required-features = ["rt", "rtic", "usb-logging"]
 # Dependencies for examples
 # -------------------------
 
-# RTIC links with cortex-m-rt, which can't build for
-# every host (notably fails on macOS). Only include it
-# when targeting the T4 MCU.
-[target.thumbv7em-none-eabihf.dev-dependencies]
+[dev-dependencies]
 cortex-m-rtic = "1.0"
 dwt-systick-monotonic = "1.0"
-
-[dev-dependencies]
 embedded-hal = "0.2"
 heapless = "0.5"
 imxrt-uart-log = "0.2"
