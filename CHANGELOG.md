@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+**BREAKING** Remove the `common`, `t40`, and `t41` modules. Users can access
+these modules through the re-export of `teensy4-pin`, simplified as `pins`.
+
 ## [0.3.0] - 2021-12-29
 
 **BREAKING** This release removes the `systick` module, and all SYSTICK APIs.

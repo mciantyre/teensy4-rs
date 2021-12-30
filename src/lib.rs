@@ -85,28 +85,6 @@ extern crate teensy4_fcb;
 
 pub use teensy4_pins as pins;
 
-/// Use [`teensy4_bsp::pins::common`](crate::pins::common).
-///
-/// This module will be removed in the next breaking release.
-#[deprecated(since = "0.3.0", note = "Use teensy4_bsp::pins::common")]
-pub mod common {
-    pub use crate::pins::common::*;
-}
-/// Use [`teensy4_bsp::pins::t40`](crate::pins::t40).
-///
-/// This module will be removed in the next breaking release.
-#[deprecated(since = "0.3.0", note = "Use teensy4_bsp::pins::t40")]
-pub mod t40 {
-    pub use crate::pins::t40::*;
-}
-/// Use [`teensy4_bsp::pins::t41`](crate::pins::t41).
-///
-/// This module will be removed in the next breaking release.
-#[deprecated(since = "0.3.0", note = "Use teensy4_bsp::pins::t41")]
-pub mod t41 {
-    pub use crate::pins::t41::*;
-}
-
 #[cfg(all(target_arch = "arm", feature = "rt"))]
 mod rt;
 #[cfg(feature = "usb-logging")]
@@ -128,13 +106,13 @@ pub use imxrt_hal as hal;
 /// The LED
 ///
 /// See [`configure_led`](configure_led()) to prepare the LED.
-pub type Led = hal::gpio::GPIO<common::P13, hal::gpio::Output>;
+pub type Led = hal::gpio::GPIO<pins::common::P13, hal::gpio::Output>;
 
 /// Configure the board's LED
 ///
 /// Returns a GPIO that's physically tied to the LED. Use the returned handle
 /// to drive the LED.
-pub fn configure_led(pad: common::P13) -> Led {
+pub fn configure_led(pad: pins::common::P13) -> Led {
     let mut led = hal::gpio::GPIO::new(pad);
     led.set_fast(true);
     led.output()
