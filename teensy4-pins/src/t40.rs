@@ -125,13 +125,6 @@ pub struct Pins {
     pub p39: P39,
 }
 
-/// Use [`from_pads`].
-#[deprecated(since = "0.2.0", note = "Use from_pads")]
-#[inline]
-pub const fn into_pins(iomuxc: crate::iomuxc::Pads) -> Pins {
-    from_pads(iomuxc)
-}
-
 /// Constrain the processor pads to the Teensy 4.0 pins
 #[inline]
 pub const fn from_pads(iomuxc: crate::iomuxc::Pads) -> Pins {
