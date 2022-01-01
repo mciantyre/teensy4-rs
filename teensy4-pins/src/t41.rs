@@ -20,9 +20,16 @@
 //! |  45  | SD_B0_00 | USDHC1_CMD      | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04        | LPSPI1_SCK       | GPIO3_IO12 | FLEXSPIA_SS1_B  | ---       | ENET2_TX_EN           | SEMC_DQS4        |
 //! |  46  | SD_B0_05 | USDHC1_DATA3    | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09        | FLEXSPIB_DQS     | GPIO3_IO17 | CCM_CLKO2       | ---       | ENET2_RX_EN           | ---              |
 //! |  47  | SD_B0_04 | USDHC1_DATA2    | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08        | FLEXSPIB_SS0_B   | GPIO3_IO16 | CCM_CLKO1       | ---       | ENET2_RDATA01         | ---              |
+//! |  48  | EMC_24   | SEMC_CAS        | FLEXPWM1_PWM0_B | LPUART5_RXD   | ENET_TX_EN           | GPT1_CAPTURE1    | GPIO4_IO24 | ---             | ---       | FLEXSPI2_A_SS0_B      | ---              |
+//! |  49  | EMC_27   | SEMC_CKE        | FLEXPWM1_PWM2_A | LPUART5_RTS_B | LPSPI1_SCK           | FLEXIO1_D13      | GPIO4_IO27 | ---             | ---       | FLEXSPI2_A_DATA1      | ---              |
+//! |  50  | EMC_28   | SEMC_WE         | FLEXPWM1_PWM2_B | LPUART5_CTS_B | LPSPI1_SOUT          | FLEXIO1_D14      | GPIO4_IO28 | ---             | ---       | FLEXSPI2_A_DATA2      | ---              |
+//! |  51  | EMC_22   | SEMC_BA1        | FLEXPWM3_PWM3_B | LPI2C3_SCL    | ENET_TX_DATA0        | TMR2_TIMER3      | GPIO4_IO22 | ---             | ---       | FLEXSPI2_A_SS1_B      | ---              |
+//! |  52  | EMC_26   | SEMC_CLK        | FLEXPWM1_PWM1_B | LPUART6_RXD   | ENET_RX_ER           | FLEXIO1_D12      | GPIO4_IO26 | ---             | ---       | FLEXSPI2_A_DATA0      | ---              |
+//! |  53  | EMC_25   | SEMC_RAS        | FLEXPWM1_PWM1_A | LPUART6_TXD   | ENET_TX_CLK          | ENET_REF_CLK     | GPIO4_IO25 | ---             | ---       | FLEXSPI2_A_SCLK       | ---              |
+//! |  54  | EMC_29   | SEMC_CS0        | FLEXPWM3_PWM0_A | LPUART6_RTS_B | LPSPI1_SIN           | FLEXIO1_D15      | GPIO4_IO29 | ---             | ---       | FLEXSPI2_A_DATA3      | ---              |
 
 pub use crate::common::*;
-use crate::iomuxc::{ad_b1::*, b1::*, sd_b0::*, ErasedPad};
+use crate::iomuxc::{ad_b1::*, b1::*, emc::*, sd_b0::*, ErasedPad};
 
 /// Pin 34 (4.1)
 pub type P34 = B1_13;
@@ -52,6 +59,20 @@ pub type P45 = SD_B0_00;
 pub type P46 = SD_B0_05;
 /// Pin 47 (4.1)
 pub type P47 = SD_B0_04;
+/// Pin 48 (4.1)
+pub type P48 = EMC_24;
+/// Pin 49 (4.1)
+pub type P49 = EMC_27;
+/// Pin 50 (4.1)
+pub type P50 = EMC_28;
+/// Pin 51 (4.1)
+pub type P51 = EMC_22;
+/// Pin 52 (4.1)
+pub type P52 = EMC_26;
+/// Pin 53 (4.1)
+pub type P53 = EMC_25;
+/// Pin 54 (4.1)
+pub type P54 = EMC_29;
 
 /// Type-erased Teensy 4.1 pins
 ///
@@ -59,7 +80,7 @@ pub type P47 = SD_B0_04;
 /// `erased_pins[13]`.
 ///
 /// Use [`Pins::erase`](Pins::erase()) to erase pin types.
-pub type ErasedPins = [ErasedPad; 48];
+pub type ErasedPins = [ErasedPad; 55];
 
 /// Teensy 4.1 pins
 ///
@@ -163,6 +184,20 @@ pub struct Pins {
     pub p46: P46,
     /// Pin 47
     pub p47: P47,
+    /// Pin 48
+    pub p48: P48,
+    /// Pin 49
+    pub p49: P49,
+    /// Pin 50
+    pub p50: P50,
+    /// Pin 51
+    pub p51: P51,
+    /// Pin 52
+    pub p52: P52,
+    /// Pin 53
+    pub p53: P53,
+    /// Pin 54
+    pub p54: P54,
 }
 
 /// Use [`from_pads`].
@@ -225,6 +260,13 @@ pub const fn from_pads(iomuxc: crate::iomuxc::Pads) -> Pins {
         p45: iomuxc.sd_b0.p00,
         p46: iomuxc.sd_b0.p05,
         p47: iomuxc.sd_b0.p04,
+        p48: iomuxc.emc.p24,
+        p49: iomuxc.emc.p27,
+        p50: iomuxc.emc.p28,
+        p51: iomuxc.emc.p22,
+        p52: iomuxc.emc.p26,
+        p53: iomuxc.emc.p25,
+        p54: iomuxc.emc.p29,
     }
 }
 
@@ -298,6 +340,13 @@ impl Pins {
             self.p45.erase(),
             self.p46.erase(),
             self.p47.erase(),
+            self.p48.erase(),
+            self.p49.erase(),
+            self.p50.erase(),
+            self.p51.erase(),
+            self.p52.erase(),
+            self.p53.erase(),
+            self.p54.erase(),
         ]
     }
 }
