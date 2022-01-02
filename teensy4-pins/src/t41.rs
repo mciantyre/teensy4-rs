@@ -20,13 +20,13 @@
 //! |  45  | SD_B0_00 | USDHC1_CMD      | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04        | LPSPI1_SCK       | GPIO3_IO12 | FLEXSPIA_SS1_B  | ---       | ENET2_TX_EN           | SEMC_DQS4        |
 //! |  46  | SD_B0_05 | USDHC1_DATA3    | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09        | FLEXSPIB_DQS     | GPIO3_IO17 | CCM_CLKO2       | ---       | ENET2_RX_EN           | ---              |
 //! |  47  | SD_B0_04 | USDHC1_DATA2    | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08        | FLEXSPIB_SS0_B   | GPIO3_IO16 | CCM_CLKO1       | ---       | ENET2_RDATA01         | ---              |
-//! |  48  | EMC_24   | SEMC_CAS        | FLEXPWM1_PWM0_B | LPUART5_RXD   | ENET_TX_EN           | GPT1_CAPTURE1    | GPIO4_IO24 | ---             | ---       | FLEXSPI2_A_SS0_B      | ---              |
-//! |  49  | EMC_27   | SEMC_CKE        | FLEXPWM1_PWM2_A | LPUART5_RTS_B | LPSPI1_SCK           | FLEXIO1_D13      | GPIO4_IO27 | ---             | ---       | FLEXSPI2_A_DATA1      | ---              |
-//! |  50  | EMC_28   | SEMC_WE         | FLEXPWM1_PWM2_B | LPUART5_CTS_B | LPSPI1_SOUT          | FLEXIO1_D14      | GPIO4_IO28 | ---             | ---       | FLEXSPI2_A_DATA2      | ---              |
-//! |  51  | EMC_22   | SEMC_BA1        | FLEXPWM3_PWM3_B | LPI2C3_SCL    | ENET_TX_DATA0        | TMR2_TIMER3      | GPIO4_IO22 | ---             | ---       | FLEXSPI2_A_SS1_B      | ---              |
-//! |  52  | EMC_26   | SEMC_CLK        | FLEXPWM1_PWM1_B | LPUART6_RXD   | ENET_RX_ER           | FLEXIO1_D12      | GPIO4_IO26 | ---             | ---       | FLEXSPI2_A_DATA0      | ---              |
-//! |  53  | EMC_25   | SEMC_RAS        | FLEXPWM1_PWM1_A | LPUART6_TXD   | ENET_TX_CLK          | ENET_REF_CLK     | GPIO4_IO25 | ---             | ---       | FLEXSPI2_A_SCLK       | ---              |
-//! |  54  | EMC_29   | SEMC_CS0        | FLEXPWM3_PWM0_A | LPUART6_RTS_B | LPSPI1_SIN           | FLEXIO1_D15      | GPIO4_IO29 | ---             | ---       | FLEXSPI2_A_DATA3      | ---              |
+//! |  48  | EMC_24   | SEMC_CAS        | FLEXPWM1_PWMB00 | LPUART5_RX    | ENET_TX_EN           | GPT1_CAPTURE1    | GPIO4_IO24 | ---             | ---       | FLEXSPI2_A_SS0_B      | ---              |
+//! |  49  | EMC_27   | SEMC_CKE        | FLEXPWM1_PWMA02 | LPUART5_RTS_B | LPSPI1_SCK           | FLEXIO1_FLEXIO13 | GPIO4_IO27 | ---             | ---       | FLEXSPI2_A_DATA01     | ---              |
+//! |  50  | EMC_28   | SEMC_WE         | FLEXPWM1_PWMB02 | LPUART5_CTS_B | LPSPI1_SDO           | FLEXIO1_FLEXIO14 | GPIO4_IO28 | ---             | ---       | FLEXSPI2_A_DATA02     | ---              |
+//! |  51  | EMC_22   | SEMC_BA1        | FLEXPWM3_PWMB03 | LPI2C3_SCL    | ENET_TDATA00         | QTIMER2_TIMER3   | GPIO4_IO22 | ---             | ---       | FLEXSPI2_A_SS1_B      | ---              |
+//! |  52  | EMC_26   | SEMC_CLK        | FLEXPWM1_PWMB01 | LPUART6_RX    | ENET_RX_ER           | FLEXIO1_FLEXIO12 | GPIO4_IO26 | ---             | ---       | FLEXSPI2_A_DATA00     | ---              |
+//! |  53  | EMC_25   | SEMC_RAS        | FLEXPWM1_PWMA01 | LPUART6_TX    | ENET_TX_CLK          | ENET_REF_CLK     | GPIO4_IO25 | ---             | ---       | FLEXSPI2_A_SCLK       | ---              |
+//! |  54  | EMC_29   | SEMC_CS0        | FLEXPWM3_PWMA00 | LPUART6_RTS_B | LPSPI1_SDI           | FLEXIO1_FLEXIO15 | GPIO4_IO29 | ---             | ---       | FLEXSPI2_A_DATA03     | ---              |
 
 pub use crate::common::*;
 use crate::iomuxc::{ad_b1::*, b1::*, emc::*, sd_b0::*, ErasedPad};
