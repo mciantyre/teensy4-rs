@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+Add Teensy 4.1 pins 48 though 54. This increases the size of the `ErasedPads`
+array and represents a **breaking** API change. Users who design to the
+`ErasedPads` type alias should not be affected by this breakage.
+
 ## [0.2.0] - 2021-12-29
 
 - Mark functions `#[inline]`.
