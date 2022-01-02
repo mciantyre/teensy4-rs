@@ -303,6 +303,55 @@
 <span id="301">301</span>
 <span id="302">302</span>
 <span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Teensy 4.1 specific APIs</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Use [`from_pads`](from_pads()) to constrain the processor pads into the pins available on the Teensy 4.1.</span>
@@ -325,9 +374,16 @@
 <span class="doccomment">//! |  45  | SD_B0_00 | USDHC1_CMD      | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04        | LPSPI1_SCK       | GPIO3_IO12 | FLEXSPIA_SS1_B  | ---       | ENET2_TX_EN           | SEMC_DQS4        |</span>
 <span class="doccomment">//! |  46  | SD_B0_05 | USDHC1_DATA3    | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09        | FLEXSPIB_DQS     | GPIO3_IO17 | CCM_CLKO2       | ---       | ENET2_RX_EN           | ---              |</span>
 <span class="doccomment">//! |  47  | SD_B0_04 | USDHC1_DATA2    | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08        | FLEXSPIB_SS0_B   | GPIO3_IO16 | CCM_CLKO1       | ---       | ENET2_RDATA01         | ---              |</span>
+<span class="doccomment">//! |  48  | EMC_24   | SEMC_CAS        | FLEXPWM1_PWMB00 | LPUART5_RX    | ENET_TX_EN           | GPT1_CAPTURE1    | GPIO4_IO24 | ---             | ---       | FLEXSPI2_A_SS0_B      | ---              |</span>
+<span class="doccomment">//! |  49  | EMC_27   | SEMC_CKE        | FLEXPWM1_PWMA02 | LPUART5_RTS_B | LPSPI1_SCK           | FLEXIO1_FLEXIO13 | GPIO4_IO27 | ---             | ---       | FLEXSPI2_A_DATA01     | ---              |</span>
+<span class="doccomment">//! |  50  | EMC_28   | SEMC_WE         | FLEXPWM1_PWMB02 | LPUART5_CTS_B | LPSPI1_SDO           | FLEXIO1_FLEXIO14 | GPIO4_IO28 | ---             | ---       | FLEXSPI2_A_DATA02     | ---              |</span>
+<span class="doccomment">//! |  51  | EMC_22   | SEMC_BA1        | FLEXPWM3_PWMB03 | LPI2C3_SCL    | ENET_TDATA00         | QTIMER2_TIMER3   | GPIO4_IO22 | ---             | ---       | FLEXSPI2_A_SS1_B      | ---              |</span>
+<span class="doccomment">//! |  52  | EMC_26   | SEMC_CLK        | FLEXPWM1_PWMB01 | LPUART6_RX    | ENET_RX_ER           | FLEXIO1_FLEXIO12 | GPIO4_IO26 | ---             | ---       | FLEXSPI2_A_DATA00     | ---              |</span>
+<span class="doccomment">//! |  53  | EMC_25   | SEMC_RAS        | FLEXPWM1_PWMA01 | LPUART6_TX    | ENET_TX_CLK          | ENET_REF_CLK     | GPIO4_IO25 | ---             | ---       | FLEXSPI2_A_SCLK       | ---              |</span>
+<span class="doccomment">//! |  54  | EMC_29   | SEMC_CS0        | FLEXPWM3_PWMA00 | LPUART6_RTS_B | LPSPI1_SDI           | FLEXIO1_FLEXIO15 | GPIO4_IO29 | ---             | ---       | FLEXSPI2_A_DATA03     | ---              |</span>
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::iomuxc</span>::{<span class="ident">ad_b1</span>::<span class="kw-2">*</span>, <span class="ident">b1</span>::<span class="kw-2">*</span>, <span class="ident">sd_b0</span>::<span class="kw-2">*</span>, <span class="ident">ErasedPad</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::iomuxc</span>::{<span class="ident">ad_b1</span>::<span class="kw-2">*</span>, <span class="ident">b1</span>::<span class="kw-2">*</span>, <span class="ident">emc</span>::<span class="kw-2">*</span>, <span class="ident">sd_b0</span>::<span class="kw-2">*</span>, <span class="ident">ErasedPad</span>};
 
 <span class="doccomment">/// Pin 34 (4.1)</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P34</span> <span class="op">=</span> <span class="ident">B1_13</span>;
@@ -357,6 +413,20 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P46</span> <span class="op">=</span> <span class="ident">SD_B0_05</span>;
 <span class="doccomment">/// Pin 47 (4.1)</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P47</span> <span class="op">=</span> <span class="ident">SD_B0_04</span>;
+<span class="doccomment">/// Pin 48 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P48</span> <span class="op">=</span> <span class="ident">EMC_24</span>;
+<span class="doccomment">/// Pin 49 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P49</span> <span class="op">=</span> <span class="ident">EMC_27</span>;
+<span class="doccomment">/// Pin 50 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P50</span> <span class="op">=</span> <span class="ident">EMC_28</span>;
+<span class="doccomment">/// Pin 51 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P51</span> <span class="op">=</span> <span class="ident">EMC_22</span>;
+<span class="doccomment">/// Pin 52 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P52</span> <span class="op">=</span> <span class="ident">EMC_26</span>;
+<span class="doccomment">/// Pin 53 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P53</span> <span class="op">=</span> <span class="ident">EMC_25</span>;
+<span class="doccomment">/// Pin 54 (4.1)</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P54</span> <span class="op">=</span> <span class="ident">EMC_29</span>;
 
 <span class="doccomment">/// Type-erased Teensy 4.1 pins</span>
 <span class="doccomment">///</span>
@@ -364,7 +434,7 @@
 <span class="doccomment">/// `erased_pins[13]`.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Use [`Pins::erase`](Pins::erase()) to erase pin types.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ErasedPins</span> <span class="op">=</span> [<span class="ident">ErasedPad</span>; <span class="number">48</span>];
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ErasedPins</span> <span class="op">=</span> [<span class="ident">ErasedPad</span>; <span class="number">55</span>];
 
 <span class="doccomment">/// Teensy 4.1 pins</span>
 <span class="doccomment">///</span>
@@ -468,6 +538,20 @@
     <span class="kw">pub</span> <span class="ident">p46</span>: <span class="ident">P46</span>,
     <span class="doccomment">/// Pin 47</span>
     <span class="kw">pub</span> <span class="ident">p47</span>: <span class="ident">P47</span>,
+    <span class="doccomment">/// Pin 48</span>
+    <span class="kw">pub</span> <span class="ident">p48</span>: <span class="ident">P48</span>,
+    <span class="doccomment">/// Pin 49</span>
+    <span class="kw">pub</span> <span class="ident">p49</span>: <span class="ident">P49</span>,
+    <span class="doccomment">/// Pin 50</span>
+    <span class="kw">pub</span> <span class="ident">p50</span>: <span class="ident">P50</span>,
+    <span class="doccomment">/// Pin 51</span>
+    <span class="kw">pub</span> <span class="ident">p51</span>: <span class="ident">P51</span>,
+    <span class="doccomment">/// Pin 52</span>
+    <span class="kw">pub</span> <span class="ident">p52</span>: <span class="ident">P52</span>,
+    <span class="doccomment">/// Pin 53</span>
+    <span class="kw">pub</span> <span class="ident">p53</span>: <span class="ident">P53</span>,
+    <span class="doccomment">/// Pin 54</span>
+    <span class="kw">pub</span> <span class="ident">p54</span>: <span class="ident">P54</span>,
 }
 
 <span class="doccomment">/// Use [`from_pads`].</span>
@@ -530,6 +614,13 @@
         <span class="ident">p45</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p00</span>,
         <span class="ident">p46</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p05</span>,
         <span class="ident">p47</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p04</span>,
+        <span class="ident">p48</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p24</span>,
+        <span class="ident">p49</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p27</span>,
+        <span class="ident">p50</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p28</span>,
+        <span class="ident">p51</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p22</span>,
+        <span class="ident">p52</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p26</span>,
+        <span class="ident">p53</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p25</span>,
+        <span class="ident">p54</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p29</span>,
     }
 }
 
@@ -603,9 +694,16 @@
             <span class="self">self</span>.<span class="ident">p45</span>.<span class="ident">erase</span>(),
             <span class="self">self</span>.<span class="ident">p46</span>.<span class="ident">erase</span>(),
             <span class="self">self</span>.<span class="ident">p47</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p48</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p49</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p50</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p51</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p52</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p53</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.<span class="ident">p54</span>.<span class="ident">erase</span>(),
         ]
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (83b15bfe1 2021-12-28)" ></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0-nightly (c14569225 2022-01-01)" ></div>
 </body></html>
