@@ -240,13 +240,6 @@
 <span id="238">238</span>
 <span id="239">239</span>
 <span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Teensy 4.0 specific APIs</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Use [`from_pads`](from_pads()) to constrain the processor pads into the pins available on the Teensy 4.0.</span>
@@ -372,13 +365,6 @@
     <span class="kw">pub</span> <span class="ident">p38</span>: <span class="ident">P38</span>,
     <span class="doccomment">/// Pin 39</span>
     <span class="kw">pub</span> <span class="ident">p39</span>: <span class="ident">P39</span>,
-}
-
-<span class="doccomment">/// Use [`from_pads`].</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.2.0&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Use from_pads&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">into_pins</span>(<span class="ident">iomuxc</span>: <span class="ident"><span class="kw">crate</span>::iomuxc::Pads</span>) -&gt; <span class="ident">Pins</span> {
-    <span class="ident">from_pads</span>(<span class="ident">iomuxc</span>)
 }
 
 <span class="doccomment">/// Constrain the processor pads to the Teensy 4.0 pins</span>

@@ -128,28 +128,6 @@
 <span id="126">126</span>
 <span id="127">127</span>
 <span id="128">128</span>
-<span id="129">129</span>
-<span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and</span>
 <span class="doccomment">//! 4.1 boards.</span>
 <span class="doccomment">//!</span>
@@ -237,28 +215,6 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">teensy4_pins</span> <span class="kw">as</span> <span class="ident">pins</span>;
 
-<span class="doccomment">/// Use [`teensy4_bsp::pins::common`](crate::pins::common).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This module will be removed in the next breaking release.</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.3.0&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Use teensy4_bsp::pins::common&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">common</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pins::common</span>::<span class="kw-2">*</span>;
-}
-<span class="doccomment">/// Use [`teensy4_bsp::pins::t40`](crate::pins::t40).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This module will be removed in the next breaking release.</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.3.0&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Use teensy4_bsp::pins::t40&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">t40</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pins::t40</span>::<span class="kw-2">*</span>;
-}
-<span class="doccomment">/// Use [`teensy4_bsp::pins::t41`](crate::pins::t41).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This module will be removed in the next breaking release.</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.3.0&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Use teensy4_bsp::pins::t41&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">t41</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pins::t41</span>::<span class="kw-2">*</span>;
-}
-
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rt&quot;</span>))]</span>
 <span class="kw">mod</span> <span class="ident">rt</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;usb-logging&quot;</span>)]</span>
@@ -280,13 +236,13 @@
 <span class="doccomment">/// The LED</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See [`configure_led`](configure_led()) to prepare the LED.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Led</span> <span class="op">=</span> <span class="ident">hal::gpio::GPIO</span><span class="op">&lt;</span><span class="ident">common::P13</span>, <span class="ident">hal::gpio::Output</span><span class="op">&gt;</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Led</span> <span class="op">=</span> <span class="ident">hal::gpio::GPIO</span><span class="op">&lt;</span><span class="ident">pins::common::P13</span>, <span class="ident">hal::gpio::Output</span><span class="op">&gt;</span>;
 
 <span class="doccomment">/// Configure the board&#39;s LED</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Returns a GPIO that&#39;s physically tied to the LED. Use the returned handle</span>
 <span class="doccomment">/// to drive the LED.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configure_led</span>(<span class="ident">pad</span>: <span class="ident">common::P13</span>) -&gt; <span class="ident">Led</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">configure_led</span>(<span class="ident">pad</span>: <span class="ident">pins::common::P13</span>) -&gt; <span class="ident">Led</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="ident">hal::gpio::GPIO::new</span>(<span class="ident">pad</span>);
     <span class="ident">led</span>.<span class="ident">set_fast</span>(<span class="bool-val">true</span>);
     <span class="ident">led</span>.<span class="ident">output</span>()
