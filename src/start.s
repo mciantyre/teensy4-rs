@@ -36,8 +36,8 @@ __start:
 0:
     cmp r1, r0
     beq 1f
-    ldm r2!, {r3}
-    stm r0!, {r3}
+    ldm r2!, {{r3}}
+    stm r0!, {{r3}}
     b 0b
 1:
     # At this point, all text is in ITCM.
@@ -53,8 +53,8 @@ __start:
 2:
     cmp r1, r0
     beq 3f
-    ldm r2!, {r3-r5}                @ NUM_VECTORS % 3 == 0
-    stm r0!, {r3-r5}
+    ldm r2!, {{r3-r5}}              @ NUM_VECTORS % 3 == 0
+    stm r0!, {{r3-r5}}
     b 2b
 3:
     # Call into Rust, and finish the rest of the

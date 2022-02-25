@@ -9,7 +9,10 @@
 //! and before `.bss` is zeroed. This code should only touch ARM and
 //! peripheral memory.
 
+use core::arch::global_asm;
 pub use cortex_m_rt::*;
+
+global_asm!(include_str!("start.s"));
 
 /// System entrypoint, invoked by reset handler
 ///

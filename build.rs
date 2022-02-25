@@ -11,11 +11,6 @@ fn main() {
         fs::copy("./bin/libt4usb.a", out_dir.join("libt4usb.a")).unwrap();
     }
 
-    if env::var("CARGO_FEATURE_RT").is_ok() {
-        fs::copy("./bin/libt4start.a", out_dir.join("libt4start.a")).unwrap();
-        println!("cargo:rustc-link-lib=static=t4start");
-    }
-
     let link_x = include_bytes!("t4link.x");
     let mut script = File::create(out_dir.join("t4link.x")).unwrap();
     script.write_all(link_x).unwrap();

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+The BSP uses `global_asm` to define the reset vector. Requires Rust 1.59.
+
 **BREAKING** Remove the `common`, `t40`, and `t41` modules. Users can access
 these modules through the re-export of `teensy4-pin`, simplified as `pins`.
 

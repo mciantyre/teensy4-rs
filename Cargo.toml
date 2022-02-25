@@ -12,8 +12,6 @@ Part of the teensy4-rs project.
 include = [
     "bin/**/*.h",
     "bin/**/*.c",
-    "bin/**/*.s",
-    "bin/libt4start.a",
     "bin/libt4usb.a",
     "bin/Makefile",
     "examples/*",
