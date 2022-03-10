@@ -28,20 +28,20 @@ both the Teensy 4.0 and 4.1 boards.
 
 -   A capable `objcopy` for transforming Rust binaries into hex files.
     The documentation and tooling in the project uses the LLVM `objcopy`
-    provided by [`cargo binutils`]. Install [`cargo binutils`] if you
+    provided by [`cargo-binutils`]. Install [`cargo-binutils`] if you
     want to precisely follow this documentation.
 
 -   To download programs to your Teensy 4, you'll need either a build of
     [`teensy_loader_cli`], or the [Teensy Loader Application]. The
     latter is available with the Teensyduino add-ons.
 
-  [`cargo binutils`]: https://github.com/rust-embedded/cargo-binutils
+  [`cargo-binutils`]: https://github.com/rust-embedded/cargo-binutils
   [`teensy_loader_cli`]: https://github.com/PaulStoffregen/teensy_loader_cli
   [Teensy Loader Application]: https://www.pjrc.com/teensy/loader.html
 
 ## Getting started
 
-Use our `cargo generate` template, [`teensy4-rs-template`], to bootstrap
+Use our `cargo-generate` template, [`teensy4-rs-template`], to bootstrap
 your own `teensy4-rs` project based on these libraries:
 
     cargo install cargo-generate
