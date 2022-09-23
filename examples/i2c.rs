@@ -52,22 +52,22 @@ fn main() -> ! {
     systick.delay_ms(5000);
 
     log::info!("Enabling I2C clocks...");
-    let (_, _, i2c3_builder, _) = peripherals.i2c.clock(
+    let (i2c1_builder, _, _, _) = peripherals.i2c.clock(
         &mut peripherals.ccm.handle,
         bsp::hal::ccm::i2c::ClockSelect::OSC, // 24MHz clock...
         bsp::hal::ccm::i2c::PrescalarSelect::DIVIDE_3, // Divide by 3
     );
 
-    log::info!("Constructing I2C3 instance on pins 16 and 17...");
-    let mut i2c3 = i2c3_builder.build(pins.p16, pins.p17);
+    log::info!("Constructing I2C3 instance on pins 18 and 19...");
+    let mut i2c1 = i2c1_builder.build(pins.p19, pins.p18);
 
-    if let Err(err) = i2c3.set_bus_idle_timeout(core::time::Duration::from_micros(200)) {
+    if let Err(err) = i2c1.set_bus_idle_timeout(core::time::Duration::from_micros(200)) {
         log::warn!("Error when setting bus idle timeout: {:?}", err);
     }
-    if let Err(err) = i2c3.set_pin_low_timeout(core::time::Duration::from_millis(1)) {
+    if let Err(err) = i2c1.set_pin_low_timeout(core::time::Duration::from_millis(1)) {
         log::warn!("Error when setting pin low timeout: {:?}", err);
     }
-    if let Err(err) = i2c3.set_clock_speed(I2C_CLOCK_SPEED) {
+    if let Err(err) = i2c1.set_clock_speed(I2C_CLOCK_SPEED) {
         log::warn!(
             "Error when setting I2C clock speed to {:?}: {:?}",
             I2C_CLOCK_SPEED,
@@ -81,7 +81,7 @@ fn main() -> ! {
         systick.delay_ms(1000);
         log::info!("Querying WHO_AM_I...");
         counter += 1;
-        match who_am_i(&mut i2c3) {
+        match who_am_i(&mut i2c1) {
             Ok(who) => log::info!("Received 0x{:X} for WHO_AM_I (iter = {})", who, counter),
             Err(err) => {
                 log::warn!("Error reading WHO_AM_I: {:?}", err);
