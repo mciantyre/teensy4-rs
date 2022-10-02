@@ -5,15 +5,18 @@ lists the best places to report bugs and request features. It also
 describes how we develop the `teensy4-rs` project, and how you can help
 us build Rust support for the Teensy 4.
 
+## Questions
+
+Need help, or have a question about the project? Post your questions in
+[discussions].
+
 ## Summary
 
 Much [`teensy4-rs`] project development happens outside of this
 repository. `teensy4-rs` contributors also support the [`imxrt-rs`]
-project. The `imxrt-rs` project provides
-
--   the [`imxrt-hal`] crate, which defines the hardware abstraction
-    layer (HAL) for the Teensy 4
--   the [`imxrt-boot-gen`] crate, which supports the Teensy 4 runtime
+project. Notably, the `imxrt-rs` project provides the [`imxrt-hal`]
+crate, which defines the hardware abstraction layer (HAL) for the Teensy
+4.
 
 When requesting a feature or reporting a bug, consider if the issue
 should be created here, or in one of the other issue trackers described
@@ -143,12 +146,13 @@ with
 -   the i.MX RT processor family. See the [resources] in the
     `imxrt-hal`'s contributing guidelines.
 
+  [discussions]: https://github.com/mciantyre/teensy4-rs/discussions
   [`teensy4-rs`]: https://github.com/mciantyre/teensy4-rs
   [`imxrt-rs`]: https://github.com/imxrt-rs
   [`imxrt-hal`]: https://github.com/imxrt-rs/imxrt-hal
-  [`imxrt-boot-gen`]: https://github.com/imxrt-rs/imxrt-boot-gen
   [Issues]: #issues
   [Development]: #development
+  [`imxrt-boot-gen`]: https://github.com/imxrt-rs/imxrt-boot-gen
   [README]: README.md
   [`teensy_loader_cli`]: https://github.com/PaulStoffregen/teensy_loader_cli
   [Teensy Loader Application]: https://www.pjrc.com/teensy/loader.html

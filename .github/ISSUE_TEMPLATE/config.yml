@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question
+    url: https://github.com/mciantyre/teensy4-rs/discussions/new
+    about: Need help, or have a question about the project? Ask here.
