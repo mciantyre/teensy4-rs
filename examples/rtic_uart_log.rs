@@ -16,16 +16,15 @@
 #![no_std]
 #![no_main]
 
-use heapless::consts::U256;
 use teensy4_bsp as bsp;
 use teensy4_panic as _;
 
 // Type aliases for the Queue we want to use.
 type Ty = u8;
-type Cap = U256;
-type Queue = heapless::spsc::Queue<Ty, Cap>;
-type Producer = heapless::spsc::Producer<'static, Ty, Cap>;
-type Consumer = heapless::spsc::Consumer<'static, Ty, Cap>;
+const CAP: usize = 256;
+type Queue = heapless::spsc::Queue<Ty, { CAP }>;
+type Producer = heapless::spsc::Producer<'static, Ty, { CAP }>;
+type Consumer = heapless::spsc::Consumer<'static, Ty, { CAP }>;
 
 // The UART receiver.
 type UartRx = bsp::hal::uart::Rx<bsp::hal::iomuxc::consts::U2>;
@@ -58,7 +57,7 @@ mod app {
     struct Shared {}
 
     #[init(local = [
-        queue: Queue = heapless::spsc::Queue(heapless::i::Queue::new()),
+        queue: Queue = heapless::spsc::Queue::new(),
     ])]
     fn init(mut cx: init::Context) -> (Shared, Local, init::Monotonics) {
         let mut dcb = cx.core.DCB;
