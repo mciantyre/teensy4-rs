@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-panic/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_panic/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_panic/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_panic/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-panic/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_panic/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_panic/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_panic/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -186,189 +181,188 @@
 <span id="181">181</span>
 <span id="182">182</span>
 <span id="183">183</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Panic handler for the Teensy 4.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! When you link `teensy4-panic` into your program, any `panic!()` will cause</span>
-<span class="doccomment">//! your Teensy&#39;s LED to blink S.O.S. in Morse code. Supports both Teensy 4.0 and</span>
-<span class="doccomment">//! 4.1 boards.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Usage</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Depend on `teensy4-panic`:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [dependencies]</span>
-<span class="doccomment">//! teensy4-panic = &quot;0.2&quot;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Then, include the crate in your final program:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use teensy4_panic as _;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Finally, use `panic!()` to stop the program and blink the LED.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Features</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The table below summarizes this crate&#39;s features. Each subsection details the feature.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! | Feature         |         Description                                | Default feature? |</span>
-<span class="doccomment">//! | --------------- | -------------------------------------------------- | ---------------- |</span>
-<span class="doccomment">//! | `panic-handler` | Define the Teensy 4&#39;s panic handler in this crate  |        ✓         |</span>
-<span class="doccomment">//! | `log`           | Log the panic message using `log::error!`          |                  |</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! It does not make sense to _disable_ `panic-handler` and _enable_ `log`, since logging can</span>
-<span class="doccomment">//! only happen when `panic-handler` is enabled.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## Custom panic handlers</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! By default, `teensy4-panic` enables the `panic-handler` feature. If you want</span>
-<span class="doccomment">//! to use the S.O.S. routine in your own panic handler, disable the default</span>
-<span class="doccomment">//! features, and call `sos()`:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [dependencies]</span>
-<span class="doccomment">//! teensy4-panic = &quot;0.2&quot;</span>
-<span class="doccomment">//! default-features = false</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```no_run</span>
-<span class="doccomment">//! # #![feature(lang_items)]</span>
-<span class="doccomment">//! # #![no_std]</span>
-<span class="doccomment">//! use teensy4_panic::sos;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! #[panic_handler]</span>
-<span class="doccomment">//! fn panic(_: &amp;core::panic::PanicInfo) -&gt; ! {</span>
-<span class="doccomment">//!     // Your panic handler here...</span>
-<span class="doccomment">//!     sos()</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! # fn main() {}</span>
-<span class="doccomment">//! # #[lang = &quot;eh_personality&quot;] extern fn rust_eh_personality() {}</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## Log the panic message</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! If the `log` feature is enabled, the crate links with [the `log` crate](https://crates.io/crates/log).</span>
-<span class="doccomment">//! Before blinking, the panic handler logs the panic message and source location at the error priority,</span>
-<span class="doccomment">//! using `log::error!`. The logging target is `teensy4_panic`.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The example below shows a `panic!` and an example of its corresponding log message:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```no_run</span>
-<span class="doccomment">//! const DELAY_MS: u32 = 5_000;</span>
-<span class="doccomment">//! panic!(&quot;This is a panic message written after {}ms&quot;, DELAY_MS);</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! ```text</span>
-<span class="doccomment">//! [ERROR teensy4_panic]: panicked at &#39;This is a panic message written after 5000ms&#39;, examples/panic_log.rs:22:5</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The panic handler only emits the log message once. You&#39;re responsible for making sure that the</span>
-<span class="doccomment">//! log message can reach its destination while a `panic!` is active.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Panic handler for the Teensy 4.
+//!
+//! When you link `teensy4-panic` into your program, any `panic!()` will cause
+//! your Teensy&#39;s LED to blink S.O.S. in Morse code. Supports both Teensy 4.0 and
+//! 4.1 boards.
+//!
+//! # Usage
+//!
+//! Depend on `teensy4-panic`:
+//!
+//! ```toml
+//! [dependencies]
+//! teensy4-panic = &quot;0.2&quot;
+//! ```
+//!
+//! Then, include the crate in your final program:
+//!
+//! ```rust
+//! use teensy4_panic as _;
+//! ```
+//!
+//! Finally, use `panic!()` to stop the program and blink the LED.
+//!
+//! # Features
+//!
+//! The table below summarizes this crate&#39;s features. Each subsection details the feature.
+//!
+//! | Feature         |         Description                                | Default feature? |
+//! | --------------- | -------------------------------------------------- | ---------------- |
+//! | `panic-handler` | Define the Teensy 4&#39;s panic handler in this crate  |        ✓         |
+//! | `log`           | Log the panic message using `log::error!`          |                  |
+//!
+//! It does not make sense to _disable_ `panic-handler` and _enable_ `log`, since logging can
+//! only happen when `panic-handler` is enabled.
+//!
+//! ## Custom panic handlers
+//!
+//! By default, `teensy4-panic` enables the `panic-handler` feature. If you want
+//! to use the S.O.S. routine in your own panic handler, disable the default
+//! features, and call `sos()`:
+//!
+//! ```toml
+//! [dependencies]
+//! teensy4-panic = &quot;0.2&quot;
+//! default-features = false
+//! ```
+//!
+//! ```no_run
+//! # #![feature(lang_items)]
+//! # #![no_std]
+//! use teensy4_panic::sos;
+//!
+//! #[panic_handler]
+//! fn panic(_: &amp;core::panic::PanicInfo) -&gt; ! {
+//!     // Your panic handler here...
+//!     sos()
+//! }
+//! # fn main() {}
+//! # #[lang = &quot;eh_personality&quot;] extern fn rust_eh_personality() {}
+//! ```
+//!
+//! ## Log the panic message
+//!
+//! If the `log` feature is enabled, the crate links with [the `log` crate](https://crates.io/crates/log).
+//! Before blinking, the panic handler logs the panic message and source location at the error priority,
+//! using `log::error!`. The logging target is `teensy4_panic`.
+//!
+//! The example below shows a `panic!` and an example of its corresponding log message:
+//!
+//! ```no_run
+//! const DELAY_MS: u32 = 5_000;
+//! panic!(&quot;This is a panic message written after {}ms&quot;, DELAY_MS);
+//! ```
+//! ```text
+//! [ERROR teensy4_panic]: panicked at &#39;This is a panic message written after 5000ms&#39;, examples/panic_log.rs:22:5
+//! ```
+//!
+//! The panic handler only emits the log message once. You&#39;re responsible for making sure that the
+//! log message can reach its destination while a `panic!` is active.
 
-<span class="attribute">#![<span class="ident">no_std</span>]</span>
+</span><span class="attribute">#![no_std]
 
-<span class="doccomment">/// The LED</span>
-<span class="kw">struct</span> <span class="ident">Led</span>();
+</span><span class="doccomment">/// The LED
+</span><span class="kw">struct </span>Led();
 
-<span class="kw">const</span> <span class="ident">GPIO2_BASE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x401BC000</span>;
+<span class="kw">const </span>GPIO2_BASE: u32 = <span class="number">0x401BC000</span>;
 
-<span class="kw">impl</span> <span class="ident">Led</span> {
-    <span class="doccomment">/// Construct the LED</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When `new` returns, the LED will be ready to set, clear, and toggle.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// There should only be one LED in the program. This will modify peripheral memory</span>
-    <span class="doccomment">/// to enable the LED.</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">const</span> <span class="ident">IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x401F_8148</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>;
-        <span class="kw">const</span> <span class="ident">IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x401F_8338</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>;
-        <span class="kw">const</span> <span class="ident">IOMUXC_GPR_GPR27</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x400A_C06C</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>;
+<span class="kw">impl </span>Led {
+    <span class="doccomment">/// Construct the LED
+    ///
+    /// When `new` returns, the LED will be ready to set, clear, and toggle.
+    ///
+    /// # Safety
+    ///
+    /// There should only be one LED in the program. This will modify peripheral memory
+    /// to enable the LED.
+    </span><span class="kw">unsafe fn </span>new() -&gt; <span class="self">Self </span>{
+        <span class="kw">const </span>IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03: <span class="kw-2">*mut </span>u32 = <span class="number">0x401F_8148 </span><span class="kw">as </span><span class="kw-2">*mut </span>u32;
+        <span class="kw">const </span>IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03: <span class="kw-2">*mut </span>u32 = <span class="number">0x401F_8338 </span><span class="kw">as </span><span class="kw-2">*mut </span>u32;
+        <span class="kw">const </span>IOMUXC_GPR_GPR27: <span class="kw-2">*mut </span>u32 = <span class="number">0x400A_C06C </span><span class="kw">as </span><span class="kw-2">*mut </span>u32;
 
-        <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">drive_strength_enable</span>(<span class="ident">dse</span>: <span class="ident">u32</span>) -&gt; <span class="ident">u32</span> {
-            (<span class="ident">dse</span> <span class="op">&amp;</span> <span class="number">0x07</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>
+        <span class="kw">const fn </span>drive_strength_enable(dse: u32) -&gt; u32 {
+            (dse &amp; <span class="number">0x07</span>) &lt;&lt; <span class="number">3
+        </span>}
+
+        <span class="kw">const </span>GPIO2_GDIR: <span class="kw-2">*mut </span>u32 = (GPIO2_BASE + <span class="number">0x04</span>) <span class="kw">as </span><span class="kw-2">*mut </span>u32;
+
+        <span class="comment">// Set the LED pad into Alt5
+        </span>IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03.write_volatile(<span class="number">5</span>);
+        <span class="comment">// Increase drive strength, clearing all other fields
+        </span>IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03.write_volatile(drive_strength_enable(<span class="number">7</span>));
+        <span class="comment">// Disable fast mode so that GPIO2 registers drive the pad
+        </span>IOMUXC_GPR_GPR27.write_volatile(IOMUXC_GPR_GPR27.read_volatile() &amp; !(<span class="number">1 </span>&lt;&lt; <span class="number">3</span>));
+        GPIO2_GDIR.write_volatile(GPIO2_GDIR.read_volatile() | (<span class="number">1 </span>&lt;&lt; <span class="number">3</span>));
+
+        Led()
+    }
+
+    <span class="doccomment">/// Drive the LED high
+    </span><span class="kw">fn </span>set(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">const </span>GPIO2_DR_SET: <span class="kw-2">*mut </span>u32 = (GPIO2_BASE + <span class="number">0x84</span>) <span class="kw">as </span><span class="kw-2">*mut </span>u32;
+        <span class="kw">unsafe </span>{ GPIO2_DR_SET.write_volatile(<span class="number">1 </span>&lt;&lt; <span class="number">3</span>) };
+    }
+
+    <span class="doccomment">/// Drive the LED low
+    </span><span class="kw">fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">const </span>GPIO2_DR_CLEAR: <span class="kw-2">*mut </span>u32 = (GPIO2_BASE + <span class="number">0x88</span>) <span class="kw">as </span><span class="kw-2">*mut </span>u32;
+        <span class="kw">unsafe </span>{ GPIO2_DR_CLEAR.write_volatile(<span class="number">1 </span>&lt;&lt; <span class="number">3</span>) };
+    }
+}
+
+<span class="kw">fn </span>delay(factor: u32) {
+    <span class="kw">for _ in </span><span class="number">0</span>..(factor * <span class="number">50_000_000</span>) {
+        core::hint::spin_loop();
+    }
+}
+
+<span class="kw">fn </span>triple(led: <span class="kw-2">&amp;mut </span>Led, factor: u32) {
+    <span class="kw">for _ in </span><span class="number">0</span>..<span class="number">3 </span>{
+        led.set();
+        delay(factor);
+        led.clear();
+        delay(factor);
+    }
+}
+
+<span class="kw">fn </span>s(led: <span class="kw-2">&amp;mut </span>Led) {
+    triple(led, <span class="number">1</span>);
+}
+
+<span class="kw">fn </span>o(led: <span class="kw-2">&amp;mut </span>Led) {
+    triple(led, <span class="number">3</span>);
+}
+
+<span class="attribute">#[cfg(feature = <span class="string">&quot;panic-handler&quot;</span>)]
+#[panic_handler]
+</span><span class="kw">fn </span>panic(_info: <span class="kw-2">&amp;</span>core::panic::PanicInfo) -&gt; ! {
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
+    </span>{
+        <span class="kw">use </span>core::sync::atomic::{AtomicBool, Ordering};
+        <span class="comment">// If logging results in another panic, we shouldn&#39;t try again.
+        </span><span class="kw">static </span>TRY_TO_LOG: AtomicBool = AtomicBool::new(<span class="bool-val">true</span>);
+        <span class="kw">if </span>TRY_TO_LOG.fetch_and(<span class="bool-val">false</span>, Ordering::Relaxed) {
+            <span class="macro">log::error!</span>(<span class="string">&quot;{}&quot;</span>, _info);
         }
-
-        <span class="kw">const</span> <span class="ident">GPIO2_GDIR</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> (<span class="ident">GPIO2_BASE</span> <span class="op">+</span> <span class="number">0x04</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>;
-
-        <span class="comment">// Set the LED pad into Alt5</span>
-        <span class="ident">IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03</span>.<span class="ident">write_volatile</span>(<span class="number">5</span>);
-        <span class="comment">// Increase drive strength, clearing all other fields</span>
-        <span class="ident">IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03</span>.<span class="ident">write_volatile</span>(<span class="ident">drive_strength_enable</span>(<span class="number">7</span>));
-        <span class="comment">// Disable fast mode so that GPIO2 registers drive the pad</span>
-        <span class="ident">IOMUXC_GPR_GPR27</span>.<span class="ident">write_volatile</span>(<span class="ident">IOMUXC_GPR_GPR27</span>.<span class="ident">read_volatile</span>() <span class="op">&amp;</span> <span class="op">!</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>));
-        <span class="ident">GPIO2_GDIR</span>.<span class="ident">write_volatile</span>(<span class="ident">GPIO2_GDIR</span>.<span class="ident">read_volatile</span>() <span class="op">|</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>));
-
-        <span class="ident">Led</span>()
     }
-
-    <span class="doccomment">/// Drive the LED high</span>
-    <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">const</span> <span class="ident">GPIO2_DR_SET</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> (<span class="ident">GPIO2_BASE</span> <span class="op">+</span> <span class="number">0x84</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>;
-        <span class="kw">unsafe</span> { <span class="ident">GPIO2_DR_SET</span>.<span class="ident">write_volatile</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>) };
-    }
-
-    <span class="doccomment">/// Drive the LED low</span>
-    <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">const</span> <span class="ident">GPIO2_DR_CLEAR</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> (<span class="ident">GPIO2_BASE</span> <span class="op">+</span> <span class="number">0x88</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>;
-        <span class="kw">unsafe</span> { <span class="ident">GPIO2_DR_CLEAR</span>.<span class="ident">write_volatile</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>) };
-    }
+    sos()
 }
 
-<span class="kw">fn</span> <span class="ident">delay</span>(<span class="ident">factor</span>: <span class="ident">u32</span>) {
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="ident">factor</span> <span class="op">*</span> <span class="number">50_000_000</span>) {
-        <span class="ident">core::hint::spin_loop</span>();
-    }
-}
-
-<span class="kw">fn</span> <span class="ident">triple</span>(<span class="ident">led</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Led</span>, <span class="ident">factor</span>: <span class="ident">u32</span>) {
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
-        <span class="ident">led</span>.<span class="ident">set</span>();
-        <span class="ident">delay</span>(<span class="ident">factor</span>);
-        <span class="ident">led</span>.<span class="ident">clear</span>();
-        <span class="ident">delay</span>(<span class="ident">factor</span>);
-    }
-}
-
-<span class="kw">fn</span> <span class="ident">s</span>(<span class="ident">led</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Led</span>) {
-    <span class="ident">triple</span>(<span class="ident">led</span>, <span class="number">1</span>);
-}
-
-<span class="kw">fn</span> <span class="ident">o</span>(<span class="ident">led</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Led</span>) {
-    <span class="ident">triple</span>(<span class="ident">led</span>, <span class="number">3</span>);
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;panic-handler&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">panic_handler</span>]</span>
-<span class="kw">fn</span> <span class="ident">panic</span>(<span class="ident">_info</span>: <span class="kw-2">&amp;</span><span class="ident">core::panic::PanicInfo</span>) -&gt; <span class="op">!</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;log&quot;</span>)]</span>
-    {
-        <span class="kw">use</span> <span class="ident">core::sync::atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>};
-        <span class="comment">// If logging results in another panic, we shouldn&#39;t try again.</span>
-        <span class="kw">static</span> <span class="ident">TRY_TO_LOG</span>: <span class="ident">AtomicBool</span> <span class="op">=</span> <span class="ident">AtomicBool::new</span>(<span class="bool-val">true</span>);
-        <span class="kw">if</span> <span class="ident">TRY_TO_LOG</span>.<span class="ident">fetch_and</span>(<span class="bool-val">false</span>, <span class="ident">Ordering::Relaxed</span>) {
-            <span class="macro">log::error!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">_info</span>);
-        }
-    }
-    <span class="ident">sos</span>()
-}
-
-<span class="doccomment">/// Blink S.O.S. on the LED, forever</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is the implementation of the `teensy4-panic` handler.</span>
-<span class="doccomment">/// See the crate-level docs for how you could use this in your</span>
-<span class="doccomment">/// own panic handler.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sos</span>() -&gt; <span class="op">!</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">led</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">Led::new</span>() };
-    <span class="kw">loop</span> {
-        <span class="ident">s</span>(<span class="kw-2">&amp;mut</span> <span class="ident">led</span>);
-        <span class="ident">o</span>(<span class="kw-2">&amp;mut</span> <span class="ident">led</span>);
-        <span class="ident">s</span>(<span class="kw-2">&amp;mut</span> <span class="ident">led</span>);
-        <span class="ident">delay</span>(<span class="number">6</span>);
+<span class="doccomment">/// Blink S.O.S. on the LED, forever
+///
+/// This is the implementation of the `teensy4-panic` handler.
+/// See the crate-level docs for how you could use this in your
+/// own panic handler.
+</span><span class="kw">pub fn </span>sos() -&gt; ! {
+    <span class="kw">let </span><span class="kw-2">mut </span>led = <span class="kw">unsafe </span>{ Led::new() };
+    <span class="kw">loop </span>{
+        s(<span class="kw-2">&amp;mut </span>led);
+        o(<span class="kw-2">&amp;mut </span>led);
+        s(<span class="kw-2">&amp;mut </span>led);
+        delay(<span class="number">6</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_panic" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_panic" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (57f097ea2 2022-10-01)" ></div></body></html>

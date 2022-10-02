@@ -1,1 +1,1 @@
-initSidebarItems({"static":[["FLEXSPI_CONFIGURATION_BLOCK",""]]});
+window.SIDEBAR_ITEMS = {"static":[["FLEXSPI_CONFIGURATION_BLOCK",""]]};

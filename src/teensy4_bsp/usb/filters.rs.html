@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/usb/filters.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>filters.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../teensy4_bsp/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/usb/filters.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>filters.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../teensy4_bsp/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -134,137 +129,136 @@
 <span id="129">129</span>
 <span id="130">130</span>
 <span id="131">131</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Logging filters</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Logging filters
 
-<span class="doccomment">/// Filter log messages by module name (`&amp;&#39;static str`) to a log level</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// - if the level is `None`, log at all levels from the module (subject to the max log level)</span>
-<span class="doccomment">/// - if the level is not `None`, that will be the base log level for the module</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use teensy4_bsp as bsp;</span>
-<span class="doccomment">/// use bsp::usb::Filter;</span>
-<span class="doccomment">/// use log::LevelFilter;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// static LEVELS: &amp;&#39;static [Filter] = &amp;[</span>
-<span class="doccomment">///     // Writes messages from the &#39;i2c&#39; module subject to the max log level</span>
-<span class="doccomment">///     (&quot;i2c&quot;, None),</span>
-<span class="doccomment">///     // Writes only Error- and Warn-level messages from the &#39;spi&#39; module</span>
-<span class="doccomment">///     (&quot;spi&quot;, Some(LevelFilter::Warn)),</span>
-<span class="doccomment">/// ];</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Filter</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::log::LevelFilter</span><span class="op">&gt;</span>);
+/// Filter log messages by module name (`&amp;&#39;static str`) to a log level
+///
+/// - if the level is `None`, log at all levels from the module (subject to the max log level)
+/// - if the level is not `None`, that will be the base log level for the module
+///
+/// # Example
+///
+/// ```
+/// use teensy4_bsp as bsp;
+/// use bsp::usb::Filter;
+/// use log::LevelFilter;
+///
+/// static LEVELS: &amp;&#39;static [Filter] = &amp;[
+///     // Writes messages from the &#39;i2c&#39; module subject to the max log level
+///     (&quot;i2c&quot;, None),
+///     // Writes only Error- and Warn-level messages from the &#39;spi&#39; module
+///     (&quot;spi&quot;, Some(LevelFilter::Warn)),
+/// ];
+/// ```
+</span><span class="kw">pub type </span>Filter = (<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str, <span class="prelude-ty">Option</span>&lt;::log::LevelFilter&gt;);
 
-<span class="doccomment">/// Filters for log channels</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Filters</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">Filter</span>]);
+<span class="doccomment">/// Filters for log channels
+</span><span class="kw">pub struct </span>Filters(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[Filter]);
 
-<span class="kw">impl</span> <span class="ident">Filters</span> {
-    <span class="doccomment">/// Returns an empty filters collection</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This `Filters` lets all log messages pass through.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">empty</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">Filters::new</span>(<span class="kw-2">&amp;</span>[])
+<span class="kw">impl </span>Filters {
+    <span class="doccomment">/// Returns an empty filters collection
+    ///
+    /// This `Filters` lets all log messages pass through.
+    </span><span class="kw">pub const fn </span>empty() -&gt; <span class="self">Self </span>{
+        Filters::new(<span class="kw-2">&amp;</span>[])
     }
 
-    <span class="doccomment">/// Create a `Filters` collection</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">filters</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">Filter</span>]) -&gt; <span class="self">Self</span> {
-        <span class="ident">Filters</span>(<span class="ident">filters</span>)
+    <span class="doccomment">/// Create a `Filters` collection
+    </span><span class="kw">pub const fn </span>new(filters: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[Filter]) -&gt; <span class="self">Self </span>{
+        Filters(filters)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Filters</span> {
-    <span class="doccomment">/// Returns `true` if, based on this metadata, logging should be enabled</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `is_enabled()` considers the permitted modules and log levels for those modules.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">metadata</span>: <span class="kw-2">&amp;</span><span class="ident">::log::Metadata</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">is_empty</span>() {
-            <span class="bool-val">true</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">idx</span>) <span class="op">=</span> <span class="self">self</span>
-            .<span class="number">0</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">position</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="ident">target</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">target</span> <span class="op">==</span> <span class="ident">metadata</span>.<span class="ident">target</span>())
+<span class="kw">impl </span>Filters {
+    <span class="doccomment">/// Returns `true` if, based on this metadata, logging should be enabled
+    ///
+    /// `is_enabled()` considers the permitted modules and log levels for those modules.
+    </span><span class="kw">pub fn </span>is_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, metadata: <span class="kw-2">&amp;</span>::log::Metadata) -&gt; bool {
+        <span class="kw">if </span><span class="self">self</span>.<span class="number">0</span>.is_empty() {
+            <span class="bool-val">true
+        </span>} <span class="kw">else if let </span><span class="prelude-val">Some</span>(idx) = <span class="self">self
+            </span>.<span class="number">0
+            </span>.iter()
+            .position(|<span class="kw-2">&amp;</span>(target, <span class="kw">_</span>)| target == metadata.target())
         {
-            <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">lvl</span>) <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>[<span class="ident">idx</span>];
-            <span class="ident">lvl</span>.<span class="ident">is_none</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">lvl</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">lvl</span><span class="op">|</span> <span class="ident">metadata</span>.<span class="ident">level</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">lvl</span>).<span class="ident">is_some</span>()
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
-        }
+            <span class="kw">let </span>(<span class="kw">_</span>, lvl) = <span class="self">self</span>.<span class="number">0</span>[idx];
+            lvl.is_none() || lvl.filter(|lvl| metadata.level() &lt;= <span class="kw-2">*</span>lvl).is_some()
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Filters</span>;
-    <span class="kw">use</span> <span class="ident">log</span>::{<span class="ident">Level</span>, <span class="ident">LevelFilter</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use </span><span class="kw">super</span>::Filters;
+    <span class="kw">use </span>log::{Level, LevelFilter};
 
-    <span class="kw">fn</span> <span class="ident">metadata</span>(<span class="ident">level</span>: <span class="ident">Level</span>, <span class="ident">target</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>) -&gt; <span class="ident">::log::Metadata</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
-        <span class="ident">::log::Metadata::builder</span>()
-            .<span class="ident">level</span>(<span class="ident">level</span>)
-            .<span class="ident">target</span>(<span class="ident">target</span>)
-            .<span class="ident">build</span>()
+    <span class="kw">fn </span>metadata(level: Level, target: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) -&gt; ::log::Metadata&lt;<span class="lifetime">&#39;static</span>&gt; {
+        ::log::Metadata::builder()
+            .level(level)
+            .target(target)
+            .build()
     }
 
-    <span class="kw">const</span> <span class="ident">ALL_LEVELS</span>: [<span class="ident">Level</span>; <span class="number">5</span>] <span class="op">=</span> [
-        <span class="ident">Level::Error</span>,
-        <span class="ident">Level::Warn</span>,
-        <span class="ident">Level::Info</span>,
-        <span class="ident">Level::Debug</span>,
-        <span class="ident">Level::Trace</span>,
+    <span class="kw">const </span>ALL_LEVELS: [Level; <span class="number">5</span>] = [
+        Level::Error,
+        Level::Warn,
+        Level::Info,
+        Level::Debug,
+        Level::Trace,
     ];
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">empty_always_enabled</span>() {
-        <span class="kw">let</span> <span class="ident">filters</span> <span class="op">=</span> <span class="ident">Filters</span>(<span class="kw-2">&amp;</span>[]);
-        <span class="ident">ALL_LEVELS</span>.<span class="ident">iter</span>().<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> {
-            <span class="macro">assert!</span>(<span class="ident">filters</span>.<span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="ident">metadata</span>(<span class="kw-2">*</span><span class="ident">level</span>, <span class="string">&quot;foobar&quot;</span>)));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>empty_always_enabled() {
+        <span class="kw">let </span>filters = Filters(<span class="kw-2">&amp;</span>[]);
+        ALL_LEVELS.iter().for_each(|level| {
+            <span class="macro">assert!</span>(filters.is_enabled(<span class="kw-2">&amp;</span>metadata(<span class="kw-2">*</span>level, <span class="string">&quot;foobar&quot;</span>)));
         });
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">no_level_always_true</span>() {
-        <span class="kw">let</span> <span class="ident">filters</span> <span class="op">=</span> <span class="ident">Filters</span>(<span class="kw-2">&amp;</span>[(<span class="string">&quot;barbaz&quot;</span>, <span class="prelude-val">None</span>), (<span class="string">&quot;foobar&quot;</span>, <span class="prelude-val">None</span>)]);
-        <span class="ident">ALL_LEVELS</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> <span class="macro">assert!</span>(<span class="ident">filters</span>.<span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="ident">metadata</span>(<span class="kw-2">*</span><span class="ident">level</span>, <span class="string">&quot;foobar&quot;</span>))));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>no_level_always_true() {
+        <span class="kw">let </span>filters = Filters(<span class="kw-2">&amp;</span>[(<span class="string">&quot;barbaz&quot;</span>, <span class="prelude-val">None</span>), (<span class="string">&quot;foobar&quot;</span>, <span class="prelude-val">None</span>)]);
+        ALL_LEVELS
+            .iter()
+            .for_each(|level| <span class="macro">assert!</span>(filters.is_enabled(<span class="kw-2">&amp;</span>metadata(<span class="kw-2">*</span>level, <span class="string">&quot;foobar&quot;</span>))));
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">module_level</span>() {
-        <span class="kw">let</span> <span class="ident">filters</span> <span class="op">=</span> <span class="ident">Filters</span>(<span class="kw-2">&amp;</span>[
-            (<span class="string">&quot;barbaz&quot;</span>, <span class="prelude-val">Some</span>(<span class="ident">LevelFilter::Error</span>)),
-            (<span class="string">&quot;foobar&quot;</span>, <span class="prelude-val">Some</span>(<span class="ident">LevelFilter::Info</span>)),
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>module_level() {
+        <span class="kw">let </span>filters = Filters(<span class="kw-2">&amp;</span>[
+            (<span class="string">&quot;barbaz&quot;</span>, <span class="prelude-val">Some</span>(LevelFilter::Error)),
+            (<span class="string">&quot;foobar&quot;</span>, <span class="prelude-val">Some</span>(LevelFilter::Info)),
         ]);
-        <span class="ident">ALL_LEVELS</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">level</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">LevelFilter::Info</span>)
-            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> {
-                <span class="macro">assert!</span>(<span class="ident">filters</span>.<span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="ident">metadata</span>(<span class="kw-2">*</span><span class="ident">level</span>, <span class="string">&quot;foobar&quot;</span>)), <span class="string">&quot;{}&quot;</span>, <span class="ident">level</span>)
+        ALL_LEVELS
+            .iter()
+            .filter(|level| <span class="kw-2">**</span>level &lt;= LevelFilter::Info)
+            .for_each(|level| {
+                <span class="macro">assert!</span>(filters.is_enabled(<span class="kw-2">&amp;</span>metadata(<span class="kw-2">*</span>level, <span class="string">&quot;foobar&quot;</span>)), <span class="string">&quot;{}&quot;</span>, level)
             });
-        <span class="ident">ALL_LEVELS</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">level</span> <span class="op">&gt;</span> <span class="ident">LevelFilter::Info</span>)
-            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> {
+        ALL_LEVELS
+            .iter()
+            .filter(|level| <span class="kw-2">**</span>level &gt; LevelFilter::Info)
+            .for_each(|level| {
                 <span class="macro">assert!</span>(
-                    <span class="op">!</span><span class="ident">filters</span>.<span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="ident">metadata</span>(<span class="kw-2">*</span><span class="ident">level</span>, <span class="string">&quot;foobar&quot;</span>)),
+                    !filters.is_enabled(<span class="kw-2">&amp;</span>metadata(<span class="kw-2">*</span>level, <span class="string">&quot;foobar&quot;</span>)),
                     <span class="string">&quot;{}&quot;</span>,
-                    <span class="ident">level</span>
+                    level
                 )
             });
-        <span class="ident">ALL_LEVELS</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">level</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Level::Error</span>)
-            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">level</span><span class="op">|</span> {
+        ALL_LEVELS
+            .iter()
+            .filter(|level| <span class="kw-2">**</span>level != Level::Error)
+            .for_each(|level| {
                 <span class="macro">assert!</span>(
-                    <span class="op">!</span><span class="ident">filters</span>.<span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="ident">metadata</span>(<span class="kw-2">*</span><span class="ident">level</span>, <span class="string">&quot;barbaz&quot;</span>)),
+                    !filters.is_enabled(<span class="kw-2">&amp;</span>metadata(<span class="kw-2">*</span>level, <span class="string">&quot;barbaz&quot;</span>)),
                     <span class="string">&quot;{}&quot;</span>,
-                    <span class="ident">level</span>
+                    level
                 )
             });
-        <span class="macro">assert!</span>(<span class="ident">filters</span>.<span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="ident">metadata</span>(<span class="ident">Level::Error</span>, <span class="string">&quot;barbaz&quot;</span>)));
+        <span class="macro">assert!</span>(filters.is_enabled(<span class="kw-2">&amp;</span>metadata(Level::Error, <span class="string">&quot;barbaz&quot;</span>)));
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="teensy4_bsp" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="teensy4_bsp" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (57f097ea2 2022-10-01)" ></div></body></html>

@@ -1,3 +1,3 @@
-(function() {var implementors = {};
-implementors["teensy4_bsp"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;<a class=\"struct\" href=\"https://docs.rs/log/0.4.17/log/struct.SetLoggerError.html\" title=\"struct log::SetLoggerError\">SetLoggerError</a>&gt; for <a class=\"enum\" href=\"teensy4_bsp/usb/enum.Error.html\" title=\"enum teensy4_bsp::usb::Error\">Error</a>","synthetic":false,"types":["teensy4_bsp::usb::Error"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
+(function() {var implementors = {
+"teensy4_bsp":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;<a class=\"struct\" href=\"https://docs.rs/log/0.4.17/log/struct.SetLoggerError.html\" title=\"struct log::SetLoggerError\">SetLoggerError</a>&gt; for <a class=\"enum\" href=\"teensy4_bsp/usb/enum.Error.html\" title=\"enum teensy4_bsp::usb::Error\">Error</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

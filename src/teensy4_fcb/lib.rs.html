@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-fcb/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_fcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_fcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_fcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-fcb/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_fcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_fcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_fcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -127,130 +122,129 @@
 <span id="122">122</span>
 <span id="123">123</span>
 <span id="124">124</span>
-</pre><pre class="rust"><code><span class="doccomment">//! FlexSPI Configuration Block (FCB) for the Teensy 4</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! See the [`imxrt-boot-gen`] crate to learn how this was generated.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Usage</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Add `teensy4-fcb` to your dependencies:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [dependencies]</span>
-<span class="doccomment">//! teensy4-fcb = &quot;0.3&quot;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Properly place the FCB in your program&#39;s memory. See the `FLEXSPI_CONFIGURATION_BLOCK`</span>
-<span class="doccomment">//! declaration below, or the [`imxrt-boot-gen`] documentation, for more information on</span>
-<span class="doccomment">//! how you could refer to the FCB.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Make sure that you reference this crate somewhere in your program!</span>
-<span class="doccomment">//! Otherwise, it might get removed from the output. Either use</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! use teensy4_fcb as _;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! or</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! extern crate teensy4_fcb;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! to reference the FCB in either your library or binary.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [`imxrt-boot-gen`]: https://docs.rs/imxrt-boot-gen/latest/imxrt_boot_gen/</span>
+</pre><pre class="rust"><code><span class="doccomment">//! FlexSPI Configuration Block (FCB) for the Teensy 4
+//!
+//! See the [`imxrt-boot-gen`] crate to learn how this was generated.
+//!
+//! # Usage
+//!
+//! Add `teensy4-fcb` to your dependencies:
+//!
+//! ```toml
+//! [dependencies]
+//! teensy4-fcb = &quot;0.3&quot;
+//! ```
+//!
+//! Properly place the FCB in your program&#39;s memory. See the `FLEXSPI_CONFIGURATION_BLOCK`
+//! declaration below, or the [`imxrt-boot-gen`] documentation, for more information on
+//! how you could refer to the FCB.
+//!
+//! Make sure that you reference this crate somewhere in your program!
+//! Otherwise, it might get removed from the output. Either use
+//!
+//! ```
+//! use teensy4_fcb as _;
+//! ```
+//! or
+//! ```
+//! extern crate teensy4_fcb;
+//! ```
+//!
+//! to reference the FCB in either your library or binary.
+//!
+//! [`imxrt-boot-gen`]: https://docs.rs/imxrt-boot-gen/latest/imxrt_boot_gen/
 
-<span class="attribute">#![<span class="ident">no_std</span>]</span>
+</span><span class="attribute">#![no_std]
 
-<span class="kw">use</span> <span class="ident">imxrt_boot_gen::flexspi</span>::{<span class="self">self</span>, <span class="ident">opcodes::sdr</span>::<span class="kw-2">*</span>, <span class="kw-2">*</span>};
-<span class="kw">use</span> <span class="ident">imxrt_boot_gen::serial_flash</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use </span>imxrt_boot_gen::flexspi::{<span class="self">self</span>, opcodes::sdr::<span class="kw-2">*</span>, <span class="kw-2">*</span>};
+<span class="kw">use </span>imxrt_boot_gen::serial_flash::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Instructions for the Winbond W25Q16JV</span>
-<span class="doccomment">/// SPI flash memory controller</span>
-<span class="kw">mod</span> <span class="ident">winbond</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FAST_READ_QUAD_IO</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xEB</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">READ_STATUS_REGISTER_1</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x05</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WRITE_ENABLE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x06</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SECTOR_ERASE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x20</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PAGE_PROGRAM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x02</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CHIP_ERASE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x60</span>;
+<span class="doccomment">/// Instructions for the Winbond W25Q16JV
+/// SPI flash memory controller
+</span><span class="kw">mod </span>winbond {
+    <span class="kw">pub const </span>FAST_READ_QUAD_IO: u8 = <span class="number">0xEB</span>;
+    <span class="kw">pub const </span>READ_STATUS_REGISTER_1: u8 = <span class="number">0x05</span>;
+    <span class="kw">pub const </span>WRITE_ENABLE: u8 = <span class="number">0x06</span>;
+    <span class="kw">pub const </span>SECTOR_ERASE: u8 = <span class="number">0x20</span>;
+    <span class="kw">pub const </span>PAGE_PROGRAM: u8 = <span class="number">0x02</span>;
+    <span class="kw">pub const </span>CHIP_ERASE: u8 = <span class="number">0x60</span>;
 }
 
-<span class="kw">use</span> <span class="ident">winbond</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>winbond::<span class="kw-2">*</span>;
 
-<span class="comment">//</span>
-<span class="comment">// Sequences for lookup table</span>
-<span class="comment">//</span>
+<span class="comment">//
+// Sequences for lookup table
+//
 
-<span class="kw">const</span> <span class="ident">SEQ_READ</span>: <span class="ident">Sequence</span> <span class="op">=</span> <span class="ident">SequenceBuilder::new</span>()
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">CMD</span>, <span class="ident">Pads::One</span>, <span class="ident">FAST_READ_QUAD_IO</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">RADDR</span>, <span class="ident">Pads::Four</span>, <span class="number">0x18</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">DUMMY</span>, <span class="ident">Pads::Four</span>, <span class="number">0x06</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">READ</span>, <span class="ident">Pads::Four</span>, <span class="number">0x04</span>))
-    .<span class="ident">build</span>();
+</span><span class="kw">const </span>SEQ_READ: Sequence = SequenceBuilder::new()
+    .instr(Instr::new(CMD, Pads::One, FAST_READ_QUAD_IO))
+    .instr(Instr::new(RADDR, Pads::Four, <span class="number">0x18</span>))
+    .instr(Instr::new(DUMMY, Pads::Four, <span class="number">0x06</span>))
+    .instr(Instr::new(READ, Pads::Four, <span class="number">0x04</span>))
+    .build();
 
-<span class="kw">const</span> <span class="ident">SEQ_READ_STATUS</span>: <span class="ident">Sequence</span> <span class="op">=</span> <span class="ident">SequenceBuilder::new</span>()
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">CMD</span>, <span class="ident">Pads::One</span>, <span class="ident">READ_STATUS_REGISTER_1</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">READ</span>, <span class="ident">Pads::One</span>, <span class="number">0x04</span>))
-    .<span class="ident">build</span>();
+<span class="kw">const </span>SEQ_READ_STATUS: Sequence = SequenceBuilder::new()
+    .instr(Instr::new(CMD, Pads::One, READ_STATUS_REGISTER_1))
+    .instr(Instr::new(READ, Pads::One, <span class="number">0x04</span>))
+    .build();
 
-<span class="kw">const</span> <span class="ident">SEQ_WRITE_ENABLE</span>: <span class="ident">Sequence</span> <span class="op">=</span> <span class="ident">SequenceBuilder::new</span>()
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">CMD</span>, <span class="ident">Pads::One</span>, <span class="ident">WRITE_ENABLE</span>))
-    .<span class="ident">build</span>();
+<span class="kw">const </span>SEQ_WRITE_ENABLE: Sequence = SequenceBuilder::new()
+    .instr(Instr::new(CMD, Pads::One, WRITE_ENABLE))
+    .build();
 
-<span class="kw">const</span> <span class="ident">SEQ_ERASE_SECTOR</span>: <span class="ident">Sequence</span> <span class="op">=</span> <span class="ident">SequenceBuilder::new</span>()
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">CMD</span>, <span class="ident">Pads::One</span>, <span class="ident">SECTOR_ERASE</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">RADDR</span>, <span class="ident">Pads::One</span>, <span class="number">0x18</span>))
-    .<span class="ident">build</span>();
+<span class="kw">const </span>SEQ_ERASE_SECTOR: Sequence = SequenceBuilder::new()
+    .instr(Instr::new(CMD, Pads::One, SECTOR_ERASE))
+    .instr(Instr::new(RADDR, Pads::One, <span class="number">0x18</span>))
+    .build();
 
-<span class="kw">const</span> <span class="ident">SEQ_PAGE_PROGRAM</span>: <span class="ident">Sequence</span> <span class="op">=</span> <span class="ident">SequenceBuilder::new</span>()
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">CMD</span>, <span class="ident">Pads::One</span>, <span class="ident">PAGE_PROGRAM</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">RADDR</span>, <span class="ident">Pads::One</span>, <span class="number">0x18</span>))
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">WRITE</span>, <span class="ident">Pads::One</span>, <span class="number">0x04</span>))
-    .<span class="ident">build</span>();
+<span class="kw">const </span>SEQ_PAGE_PROGRAM: Sequence = SequenceBuilder::new()
+    .instr(Instr::new(CMD, Pads::One, PAGE_PROGRAM))
+    .instr(Instr::new(RADDR, Pads::One, <span class="number">0x18</span>))
+    .instr(Instr::new(WRITE, Pads::One, <span class="number">0x04</span>))
+    .build();
 
-<span class="kw">const</span> <span class="ident">SEQ_CHIP_ERASE</span>: <span class="ident">Sequence</span> <span class="op">=</span> <span class="ident">SequenceBuilder::new</span>()
-    .<span class="ident">instr</span>(<span class="ident">Instr::new</span>(<span class="ident">CMD</span>, <span class="ident">Pads::One</span>, <span class="ident">CHIP_ERASE</span>))
-    .<span class="ident">build</span>();
+<span class="kw">const </span>SEQ_CHIP_ERASE: Sequence = SequenceBuilder::new()
+    .instr(Instr::new(CMD, Pads::One, CHIP_ERASE))
+    .build();
 
-<span class="comment">//</span>
-<span class="comment">// Lookup table</span>
-<span class="comment">//</span>
+<span class="comment">//
+// Lookup table
+//
 
-<span class="kw">const</span> <span class="ident">LUT</span>: <span class="ident">LookupTable</span> <span class="op">=</span> <span class="ident">LookupTable::new</span>()
-    .<span class="ident">command</span>(<span class="ident">Command::Read</span>, <span class="ident">SEQ_READ</span>)
-    .<span class="ident">command</span>(<span class="ident">Command::ReadStatus</span>, <span class="ident">SEQ_READ_STATUS</span>)
-    .<span class="ident">command</span>(<span class="ident">Command::WriteEnable</span>, <span class="ident">SEQ_WRITE_ENABLE</span>)
-    .<span class="ident">command</span>(<span class="ident">Command::EraseSector</span>, <span class="ident">SEQ_ERASE_SECTOR</span>)
-    .<span class="ident">command</span>(<span class="ident">Command::PageProgram</span>, <span class="ident">SEQ_PAGE_PROGRAM</span>)
-    .<span class="ident">command</span>(<span class="ident">Command::ChipErase</span>, <span class="ident">SEQ_CHIP_ERASE</span>);
+</span><span class="kw">const </span>LUT: LookupTable = LookupTable::new()
+    .command(Command::Read, SEQ_READ)
+    .command(Command::ReadStatus, SEQ_READ_STATUS)
+    .command(Command::WriteEnable, SEQ_WRITE_ENABLE)
+    .command(Command::EraseSector, SEQ_ERASE_SECTOR)
+    .command(Command::PageProgram, SEQ_PAGE_PROGRAM)
+    .command(Command::ChipErase, SEQ_CHIP_ERASE);
 
-<span class="comment">//</span>
-<span class="comment">// Common FlexSPI configuration block</span>
-<span class="comment">//</span>
+<span class="comment">//
+// Common FlexSPI configuration block
+//
 
-<span class="kw">const</span> <span class="ident">COMMON_CONFIGURATION_BLOCK</span>: <span class="ident">flexspi::ConfigurationBlock</span> <span class="op">=</span>
-    <span class="ident">flexspi::ConfigurationBlock::new</span>(<span class="ident">LUT</span>)
-        .<span class="ident">read_sample_clk_src</span>(<span class="ident">ReadSampleClockSource::LoopbackFromDQSPad</span>)
-        .<span class="ident">cs_hold_time</span>(<span class="number">0x01</span>)
-        .<span class="ident">cs_setup_time</span>(<span class="number">0x02</span>)
-        .<span class="ident">column_address_width</span>(<span class="ident">ColumnAddressWidth::OtherDevices</span>)
-        .<span class="ident">device_mode_configuration</span>(<span class="ident">DeviceModeConfiguration::Disabled</span>)
-        .<span class="ident">wait_time_cfg_commands</span>(<span class="ident">WaitTimeConfigurationCommands::disable</span>())
-        .<span class="ident">flash_size</span>(<span class="ident">SerialFlashRegion::A1</span>, <span class="number">0x0020_0000</span>)
-        .<span class="ident">serial_clk_freq</span>(<span class="ident">SerialClockFrequency::MHz60</span>)
-        .<span class="ident">serial_flash_pad_type</span>(<span class="ident">FlashPadType::Quad</span>);
+</span><span class="kw">const </span>COMMON_CONFIGURATION_BLOCK: flexspi::ConfigurationBlock =
+    flexspi::ConfigurationBlock::new(LUT)
+        .read_sample_clk_src(ReadSampleClockSource::LoopbackFromDQSPad)
+        .cs_hold_time(<span class="number">0x01</span>)
+        .cs_setup_time(<span class="number">0x02</span>)
+        .column_address_width(ColumnAddressWidth::OtherDevices)
+        .device_mode_configuration(DeviceModeConfiguration::Disabled)
+        .wait_time_cfg_commands(WaitTimeConfigurationCommands::disable())
+        .flash_size(SerialFlashRegion::A1, <span class="number">0x0020_0000</span>)
+        .serial_clk_freq(SerialClockFrequency::MHz60)
+        .serial_flash_pad_type(FlashPadType::Quad);
 
-<span class="comment">//</span>
-<span class="comment">// Final serial NOR configuration block</span>
-<span class="comment">//</span>
+<span class="comment">//
+// Final serial NOR configuration block
+//
 
-<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="attribute">#[<span class="ident">link_section</span> <span class="op">=</span> <span class="string">&quot;.fcb&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">static</span> <span class="ident">FLEXSPI_CONFIGURATION_BLOCK</span>: <span class="ident">nor::ConfigurationBlock</span> <span class="op">=</span>
-    <span class="ident">nor::ConfigurationBlock::new</span>(<span class="ident">COMMON_CONFIGURATION_BLOCK</span>)
-        .<span class="ident">page_size</span>(<span class="number">256</span>)
-        .<span class="ident">sector_size</span>(<span class="number">4096</span>)
-        .<span class="ident">ip_cmd_serial_clk_freq</span>(<span class="ident">nor::SerialClockFrequency::MHz30</span>);
+</span><span class="attribute">#[no_mangle]
+#[link_section = <span class="string">&quot;.fcb&quot;</span>]
+</span><span class="kw">pub static </span>FLEXSPI_CONFIGURATION_BLOCK: nor::ConfigurationBlock =
+    nor::ConfigurationBlock::new(COMMON_CONFIGURATION_BLOCK)
+        .page_size(<span class="number">256</span>)
+        .sector_size(<span class="number">4096</span>)
+        .ip_cmd_serial_clk_freq(nor::SerialClockFrequency::MHz30);
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_fcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_fcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (57f097ea2 2022-10-01)" ></div></body></html>

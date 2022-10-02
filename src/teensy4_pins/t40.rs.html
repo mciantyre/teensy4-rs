@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins/src/t40.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>t40.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_pins/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_pins/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins/src/t40.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>t40.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_pins/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_pins/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -243,246 +238,245 @@
 <span id="238">238</span>
 <span id="239">239</span>
 <span id="240">240</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Teensy 4.0 specific APIs</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Use [`from_pads`](from_pads()) to constrain the processor pads into the pins available on the Teensy 4.0.</span>
-<span class="doccomment">//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())</span>
-<span class="doccomment">//! method to generate pins.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! | Pin  | Pad ID   |    Alt0      |    Alt1         |   Alt2        |    Alt3       |     Alt4       |  Alt5      |    Alt6        |  Alt7   |     Alt8      |       Alt9     |</span>
-<span class="doccomment">//! | ---- | -------- | ------------ | --------------- | ------------- | ------------- | -------------- | ---------- | -------------- | ------- | ------------- | -------------- |</span>
-<span class="doccomment">//! |  34  | SD_B0_03 | USDHC1_DATA1 | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07 | LPSPI1_SDI     | GPIO3_IO15 | ---            | ---     | ENET2_RDATA00 | SEMC_CLK6      |</span>
-<span class="doccomment">//! |  35  | SD_B0_02 | USDHC1_DATA0 | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06 | LPSPI1_SDO     | GPIO3_IO14 | ---            | ---     | ENET2_RX_ER   | SEMC_CLK5      |</span>
-<span class="doccomment">//! |  36  | SD_B0_01 | USDHC1_CLK   | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05 | LPSPI1_PCS0    | GPIO3_IO13 | FLEXSPIB_SS1_B | ---     | ENET2_TX_CLK  | ENET2_REF_CLK2 |</span>
-<span class="doccomment">//! |  37  | SD_B0_00 | USDHC1_CMD   | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04 | LPSPI1_SCK     | GPIO3_IO12 | FLEXSPIA_SS1_B | ---     | ENET2_TX_EN   | SEMC_DQS4      |</span>
-<span class="doccomment">//! |  38  | SD_B0_05 | USDHC1_DATA3 | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09 | FLEXSPIB_DQS   | GPIO3_IO17 | CCM_CLKO2      | ---     | ENET2_RX_EN   | ---            |</span>
-<span class="doccomment">//! |  39  | SD_B0_04 | USDHC1_DATA2 | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08 | FLEXSPIB_SS0_B | GPIO3_IO16 | CCM_CLKO1      | ---     | ENET2_RDATA01 | ---            |</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Teensy 4.0 specific APIs
+//!
+//! Use [`from_pads`](from_pads()) to constrain the processor pads into the pins available on the Teensy 4.0.
+//! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
+//! method to generate pins.
+//!
+//! | Pin  | Pad ID   |    Alt0      |    Alt1         |   Alt2        |    Alt3       |     Alt4       |  Alt5      |    Alt6        |  Alt7   |     Alt8      |       Alt9     |
+//! | ---- | -------- | ------------ | --------------- | ------------- | ------------- | -------------- | ---------- | -------------- | ------- | ------------- | -------------- |
+//! |  34  | SD_B0_03 | USDHC1_DATA1 | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07 | LPSPI1_SDI     | GPIO3_IO15 | ---            | ---     | ENET2_RDATA00 | SEMC_CLK6      |
+//! |  35  | SD_B0_02 | USDHC1_DATA0 | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06 | LPSPI1_SDO     | GPIO3_IO14 | ---            | ---     | ENET2_RX_ER   | SEMC_CLK5      |
+//! |  36  | SD_B0_01 | USDHC1_CLK   | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05 | LPSPI1_PCS0    | GPIO3_IO13 | FLEXSPIB_SS1_B | ---     | ENET2_TX_CLK  | ENET2_REF_CLK2 |
+//! |  37  | SD_B0_00 | USDHC1_CMD   | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04 | LPSPI1_SCK     | GPIO3_IO12 | FLEXSPIA_SS1_B | ---     | ENET2_TX_EN   | SEMC_DQS4      |
+//! |  38  | SD_B0_05 | USDHC1_DATA3 | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09 | FLEXSPIB_DQS   | GPIO3_IO17 | CCM_CLKO2      | ---     | ENET2_RX_EN   | ---            |
+//! |  39  | SD_B0_04 | USDHC1_DATA2 | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08 | FLEXSPIB_SS0_B | GPIO3_IO16 | CCM_CLKO1      | ---     | ENET2_RDATA01 | ---            |
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::iomuxc</span>::{<span class="ident">sd_b0</span>::<span class="kw-2">*</span>, <span class="ident">ErasedPad</span>};
+</span><span class="kw">pub use </span><span class="kw">crate</span>::common::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">crate</span>::iomuxc::{sd_b0::<span class="kw-2">*</span>, ErasedPad};
 
-<span class="doccomment">/// Pin 34 (4.0)</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P34</span> <span class="op">=</span> <span class="ident">SD_B0_03</span>;
-<span class="doccomment">/// Pin 35 (4.0)</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P35</span> <span class="op">=</span> <span class="ident">SD_B0_02</span>;
-<span class="doccomment">/// Pin 36 (4.0)</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P36</span> <span class="op">=</span> <span class="ident">SD_B0_01</span>;
-<span class="doccomment">/// Pin 37 (4.0)</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P37</span> <span class="op">=</span> <span class="ident">SD_B0_00</span>;
-<span class="doccomment">/// Pin 38 (4.0)</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P38</span> <span class="op">=</span> <span class="ident">SD_B0_05</span>;
-<span class="doccomment">/// Pin 39 (4.0)</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">P39</span> <span class="op">=</span> <span class="ident">SD_B0_04</span>;
+<span class="doccomment">/// Pin 34 (4.0)
+</span><span class="kw">pub type </span>P34 = SD_B0_03;
+<span class="doccomment">/// Pin 35 (4.0)
+</span><span class="kw">pub type </span>P35 = SD_B0_02;
+<span class="doccomment">/// Pin 36 (4.0)
+</span><span class="kw">pub type </span>P36 = SD_B0_01;
+<span class="doccomment">/// Pin 37 (4.0)
+</span><span class="kw">pub type </span>P37 = SD_B0_00;
+<span class="doccomment">/// Pin 38 (4.0)
+</span><span class="kw">pub type </span>P38 = SD_B0_05;
+<span class="doccomment">/// Pin 39 (4.0)
+</span><span class="kw">pub type </span>P39 = SD_B0_04;
 
-<span class="doccomment">/// Type-erased Teensy 4.0 pins</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// To get pin 13, the LED, index into the 13th element of this array:</span>
-<span class="doccomment">/// `erased_pins[13]`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Use [`Pins::erase`](Pins::erase()) to erase pin types.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ErasedPins</span> <span class="op">=</span> [<span class="ident">ErasedPad</span>; <span class="number">40</span>];
+<span class="doccomment">/// Type-erased Teensy 4.0 pins
+///
+/// To get pin 13, the LED, index into the 13th element of this array:
+/// `erased_pins[13]`.
+///
+/// Use [`Pins::erase`](Pins::erase()) to erase pin types.
+</span><span class="kw">pub type </span>ErasedPins = [ErasedPad; <span class="number">40</span>];
 
-<span class="doccomment">/// Teensy 4.0 pins</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See [`from_pads`](from_pads()) to safely constrain the processor&#39;s pads, and acquire</span>
-<span class="doccomment">/// Teensy 4.0 pins. Or, use [`new`](Pins::new()) to unsafely create pins.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pins</span> {
-    <span class="doccomment">/// Pin 0</span>
-    <span class="kw">pub</span> <span class="ident">p0</span>: <span class="ident">P0</span>,
-    <span class="doccomment">/// Pin 1</span>
-    <span class="kw">pub</span> <span class="ident">p1</span>: <span class="ident">P1</span>,
-    <span class="doccomment">/// Pin 2</span>
-    <span class="kw">pub</span> <span class="ident">p2</span>: <span class="ident">P2</span>,
-    <span class="doccomment">/// Pin 3</span>
-    <span class="kw">pub</span> <span class="ident">p3</span>: <span class="ident">P3</span>,
-    <span class="doccomment">/// Pin 4</span>
-    <span class="kw">pub</span> <span class="ident">p4</span>: <span class="ident">P4</span>,
-    <span class="doccomment">/// Pin 5</span>
-    <span class="kw">pub</span> <span class="ident">p5</span>: <span class="ident">P5</span>,
-    <span class="doccomment">/// Pin 6</span>
-    <span class="kw">pub</span> <span class="ident">p6</span>: <span class="ident">P6</span>,
-    <span class="doccomment">/// Pin 7</span>
-    <span class="kw">pub</span> <span class="ident">p7</span>: <span class="ident">P7</span>,
-    <span class="doccomment">/// Pin 8</span>
-    <span class="kw">pub</span> <span class="ident">p8</span>: <span class="ident">P8</span>,
-    <span class="doccomment">/// Pin 9</span>
-    <span class="kw">pub</span> <span class="ident">p9</span>: <span class="ident">P9</span>,
-    <span class="doccomment">/// Pin 10</span>
-    <span class="kw">pub</span> <span class="ident">p10</span>: <span class="ident">P10</span>,
-    <span class="doccomment">/// Pin 11</span>
-    <span class="kw">pub</span> <span class="ident">p11</span>: <span class="ident">P11</span>,
-    <span class="doccomment">/// Pin 12</span>
-    <span class="kw">pub</span> <span class="ident">p12</span>: <span class="ident">P12</span>,
-    <span class="doccomment">/// Pin 13</span>
-    <span class="kw">pub</span> <span class="ident">p13</span>: <span class="ident">P13</span>,
-    <span class="doccomment">/// Pin 14</span>
-    <span class="kw">pub</span> <span class="ident">p14</span>: <span class="ident">P14</span>,
-    <span class="doccomment">/// Pin 15</span>
-    <span class="kw">pub</span> <span class="ident">p15</span>: <span class="ident">P15</span>,
-    <span class="doccomment">/// Pin 16</span>
-    <span class="kw">pub</span> <span class="ident">p16</span>: <span class="ident">P16</span>,
-    <span class="doccomment">/// Pin 17</span>
-    <span class="kw">pub</span> <span class="ident">p17</span>: <span class="ident">P17</span>,
-    <span class="doccomment">/// Pin 18</span>
-    <span class="kw">pub</span> <span class="ident">p18</span>: <span class="ident">P18</span>,
-    <span class="doccomment">/// Pin 19</span>
-    <span class="kw">pub</span> <span class="ident">p19</span>: <span class="ident">P19</span>,
-    <span class="doccomment">/// Pin 20</span>
-    <span class="kw">pub</span> <span class="ident">p20</span>: <span class="ident">P20</span>,
-    <span class="doccomment">/// Pin 21</span>
-    <span class="kw">pub</span> <span class="ident">p21</span>: <span class="ident">P21</span>,
-    <span class="doccomment">/// Pin 22</span>
-    <span class="kw">pub</span> <span class="ident">p22</span>: <span class="ident">P22</span>,
-    <span class="doccomment">/// Pin 23</span>
-    <span class="kw">pub</span> <span class="ident">p23</span>: <span class="ident">P23</span>,
-    <span class="doccomment">/// Pin 24</span>
-    <span class="kw">pub</span> <span class="ident">p24</span>: <span class="ident">P24</span>,
-    <span class="doccomment">/// Pin 25</span>
-    <span class="kw">pub</span> <span class="ident">p25</span>: <span class="ident">P25</span>,
-    <span class="doccomment">/// Pin 26</span>
-    <span class="kw">pub</span> <span class="ident">p26</span>: <span class="ident">P26</span>,
-    <span class="doccomment">/// Pin 27</span>
-    <span class="kw">pub</span> <span class="ident">p27</span>: <span class="ident">P27</span>,
-    <span class="doccomment">/// Pin 28</span>
-    <span class="kw">pub</span> <span class="ident">p28</span>: <span class="ident">P28</span>,
-    <span class="doccomment">/// Pin 29</span>
-    <span class="kw">pub</span> <span class="ident">p29</span>: <span class="ident">P29</span>,
-    <span class="doccomment">/// Pin 30</span>
-    <span class="kw">pub</span> <span class="ident">p30</span>: <span class="ident">P30</span>,
-    <span class="doccomment">/// Pin 31</span>
-    <span class="kw">pub</span> <span class="ident">p31</span>: <span class="ident">P31</span>,
-    <span class="doccomment">/// Pin 32</span>
-    <span class="kw">pub</span> <span class="ident">p32</span>: <span class="ident">P32</span>,
-    <span class="doccomment">/// Pin 33</span>
-    <span class="kw">pub</span> <span class="ident">p33</span>: <span class="ident">P33</span>,
-    <span class="comment">// END OF COMMON PINS</span>
-    <span class="doccomment">/// Pin 34</span>
-    <span class="kw">pub</span> <span class="ident">p34</span>: <span class="ident">P34</span>,
-    <span class="doccomment">/// Pin 35</span>
-    <span class="kw">pub</span> <span class="ident">p35</span>: <span class="ident">P35</span>,
-    <span class="doccomment">/// Pin 36</span>
-    <span class="kw">pub</span> <span class="ident">p36</span>: <span class="ident">P36</span>,
-    <span class="doccomment">/// Pin 37</span>
-    <span class="kw">pub</span> <span class="ident">p37</span>: <span class="ident">P37</span>,
-    <span class="doccomment">/// Pin 38</span>
-    <span class="kw">pub</span> <span class="ident">p38</span>: <span class="ident">P38</span>,
-    <span class="doccomment">/// Pin 39</span>
-    <span class="kw">pub</span> <span class="ident">p39</span>: <span class="ident">P39</span>,
+<span class="doccomment">/// Teensy 4.0 pins
+///
+/// See [`from_pads`](from_pads()) to safely constrain the processor&#39;s pads, and acquire
+/// Teensy 4.0 pins. Or, use [`new`](Pins::new()) to unsafely create pins.
+</span><span class="kw">pub struct </span>Pins {
+    <span class="doccomment">/// Pin 0
+    </span><span class="kw">pub </span>p0: P0,
+    <span class="doccomment">/// Pin 1
+    </span><span class="kw">pub </span>p1: P1,
+    <span class="doccomment">/// Pin 2
+    </span><span class="kw">pub </span>p2: P2,
+    <span class="doccomment">/// Pin 3
+    </span><span class="kw">pub </span>p3: P3,
+    <span class="doccomment">/// Pin 4
+    </span><span class="kw">pub </span>p4: P4,
+    <span class="doccomment">/// Pin 5
+    </span><span class="kw">pub </span>p5: P5,
+    <span class="doccomment">/// Pin 6
+    </span><span class="kw">pub </span>p6: P6,
+    <span class="doccomment">/// Pin 7
+    </span><span class="kw">pub </span>p7: P7,
+    <span class="doccomment">/// Pin 8
+    </span><span class="kw">pub </span>p8: P8,
+    <span class="doccomment">/// Pin 9
+    </span><span class="kw">pub </span>p9: P9,
+    <span class="doccomment">/// Pin 10
+    </span><span class="kw">pub </span>p10: P10,
+    <span class="doccomment">/// Pin 11
+    </span><span class="kw">pub </span>p11: P11,
+    <span class="doccomment">/// Pin 12
+    </span><span class="kw">pub </span>p12: P12,
+    <span class="doccomment">/// Pin 13
+    </span><span class="kw">pub </span>p13: P13,
+    <span class="doccomment">/// Pin 14
+    </span><span class="kw">pub </span>p14: P14,
+    <span class="doccomment">/// Pin 15
+    </span><span class="kw">pub </span>p15: P15,
+    <span class="doccomment">/// Pin 16
+    </span><span class="kw">pub </span>p16: P16,
+    <span class="doccomment">/// Pin 17
+    </span><span class="kw">pub </span>p17: P17,
+    <span class="doccomment">/// Pin 18
+    </span><span class="kw">pub </span>p18: P18,
+    <span class="doccomment">/// Pin 19
+    </span><span class="kw">pub </span>p19: P19,
+    <span class="doccomment">/// Pin 20
+    </span><span class="kw">pub </span>p20: P20,
+    <span class="doccomment">/// Pin 21
+    </span><span class="kw">pub </span>p21: P21,
+    <span class="doccomment">/// Pin 22
+    </span><span class="kw">pub </span>p22: P22,
+    <span class="doccomment">/// Pin 23
+    </span><span class="kw">pub </span>p23: P23,
+    <span class="doccomment">/// Pin 24
+    </span><span class="kw">pub </span>p24: P24,
+    <span class="doccomment">/// Pin 25
+    </span><span class="kw">pub </span>p25: P25,
+    <span class="doccomment">/// Pin 26
+    </span><span class="kw">pub </span>p26: P26,
+    <span class="doccomment">/// Pin 27
+    </span><span class="kw">pub </span>p27: P27,
+    <span class="doccomment">/// Pin 28
+    </span><span class="kw">pub </span>p28: P28,
+    <span class="doccomment">/// Pin 29
+    </span><span class="kw">pub </span>p29: P29,
+    <span class="doccomment">/// Pin 30
+    </span><span class="kw">pub </span>p30: P30,
+    <span class="doccomment">/// Pin 31
+    </span><span class="kw">pub </span>p31: P31,
+    <span class="doccomment">/// Pin 32
+    </span><span class="kw">pub </span>p32: P32,
+    <span class="doccomment">/// Pin 33
+    </span><span class="kw">pub </span>p33: P33,
+    <span class="comment">// END OF COMMON PINS
+    </span><span class="doccomment">/// Pin 34
+    </span><span class="kw">pub </span>p34: P34,
+    <span class="doccomment">/// Pin 35
+    </span><span class="kw">pub </span>p35: P35,
+    <span class="doccomment">/// Pin 36
+    </span><span class="kw">pub </span>p36: P36,
+    <span class="doccomment">/// Pin 37
+    </span><span class="kw">pub </span>p37: P37,
+    <span class="doccomment">/// Pin 38
+    </span><span class="kw">pub </span>p38: P38,
+    <span class="doccomment">/// Pin 39
+    </span><span class="kw">pub </span>p39: P39,
 }
 
-<span class="doccomment">/// Constrain the processor pads to the Teensy 4.0 pins</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_pads</span>(<span class="ident">iomuxc</span>: <span class="ident"><span class="kw">crate</span>::iomuxc::Pads</span>) -&gt; <span class="ident">Pins</span> {
-    <span class="ident">Pins</span> {
-        <span class="ident">p0</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p03</span>,
-        <span class="ident">p1</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p02</span>,
-        <span class="ident">p2</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p04</span>,
-        <span class="ident">p3</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p05</span>,
-        <span class="ident">p4</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p06</span>,
-        <span class="ident">p5</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p08</span>,
-        <span class="ident">p6</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p10</span>,
-        <span class="ident">p7</span>: <span class="ident">iomuxc</span>.<span class="ident">b1</span>.<span class="ident">p01</span>,
-        <span class="ident">p8</span>: <span class="ident">iomuxc</span>.<span class="ident">b1</span>.<span class="ident">p00</span>,
-        <span class="ident">p9</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p11</span>,
-        <span class="ident">p10</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p00</span>,
-        <span class="ident">p11</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p02</span>,
-        <span class="ident">p12</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p01</span>,
-        <span class="ident">p13</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p03</span>,
-        <span class="ident">p14</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p02</span>,
-        <span class="ident">p15</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p03</span>,
-        <span class="ident">p16</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p07</span>,
-        <span class="ident">p17</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p06</span>,
-        <span class="ident">p18</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p01</span>,
-        <span class="ident">p19</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p00</span>,
-        <span class="ident">p20</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p10</span>,
-        <span class="ident">p21</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p11</span>,
-        <span class="ident">p22</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p08</span>,
-        <span class="ident">p23</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p09</span>,
-        <span class="ident">p24</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p12</span>,
-        <span class="ident">p25</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b0</span>.<span class="ident">p13</span>,
-        <span class="ident">p26</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p14</span>,
-        <span class="ident">p27</span>: <span class="ident">iomuxc</span>.<span class="ident">ad_b1</span>.<span class="ident">p15</span>,
-        <span class="ident">p28</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p32</span>,
-        <span class="ident">p29</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p31</span>,
-        <span class="ident">p30</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p37</span>,
-        <span class="ident">p31</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p36</span>,
-        <span class="ident">p32</span>: <span class="ident">iomuxc</span>.<span class="ident">b0</span>.<span class="ident">p12</span>,
-        <span class="ident">p33</span>: <span class="ident">iomuxc</span>.<span class="ident">emc</span>.<span class="ident">p07</span>,
-        <span class="comment">// END OF COMMON PINS</span>
-        <span class="ident">p34</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p03</span>,
-        <span class="ident">p35</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p02</span>,
-        <span class="ident">p36</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p01</span>,
-        <span class="ident">p37</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p00</span>,
-        <span class="ident">p38</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p05</span>,
-        <span class="ident">p39</span>: <span class="ident">iomuxc</span>.<span class="ident">sd_b0</span>.<span class="ident">p04</span>,
+<span class="doccomment">/// Constrain the processor pads to the Teensy 4.0 pins
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub const fn </span>from_pads(iomuxc: <span class="kw">crate</span>::iomuxc::Pads) -&gt; Pins {
+    Pins {
+        p0: iomuxc.ad_b0.p03,
+        p1: iomuxc.ad_b0.p02,
+        p2: iomuxc.emc.p04,
+        p3: iomuxc.emc.p05,
+        p4: iomuxc.emc.p06,
+        p5: iomuxc.emc.p08,
+        p6: iomuxc.b0.p10,
+        p7: iomuxc.b1.p01,
+        p8: iomuxc.b1.p00,
+        p9: iomuxc.b0.p11,
+        p10: iomuxc.b0.p00,
+        p11: iomuxc.b0.p02,
+        p12: iomuxc.b0.p01,
+        p13: iomuxc.b0.p03,
+        p14: iomuxc.ad_b1.p02,
+        p15: iomuxc.ad_b1.p03,
+        p16: iomuxc.ad_b1.p07,
+        p17: iomuxc.ad_b1.p06,
+        p18: iomuxc.ad_b1.p01,
+        p19: iomuxc.ad_b1.p00,
+        p20: iomuxc.ad_b1.p10,
+        p21: iomuxc.ad_b1.p11,
+        p22: iomuxc.ad_b1.p08,
+        p23: iomuxc.ad_b1.p09,
+        p24: iomuxc.ad_b0.p12,
+        p25: iomuxc.ad_b0.p13,
+        p26: iomuxc.ad_b1.p14,
+        p27: iomuxc.ad_b1.p15,
+        p28: iomuxc.emc.p32,
+        p29: iomuxc.emc.p31,
+        p30: iomuxc.emc.p37,
+        p31: iomuxc.emc.p36,
+        p32: iomuxc.b0.p12,
+        p33: iomuxc.emc.p07,
+        <span class="comment">// END OF COMMON PINS
+        </span>p34: iomuxc.sd_b0.p03,
+        p35: iomuxc.sd_b0.p02,
+        p36: iomuxc.sd_b0.p01,
+        p37: iomuxc.sd_b0.p00,
+        p38: iomuxc.sd_b0.p05,
+        p39: iomuxc.sd_b0.p04,
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Pins</span> {
-    <span class="doccomment">/// Create an instance of `Pins` when you do not have a handle</span>
-    <span class="doccomment">/// to the processor pads</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Caller must ensure that the pins are not aliased elsewhere in</span>
-    <span class="doccomment">/// the program. This could include</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// - an existing handle to the `imxrt-iomuxc` pads,</span>
-    <span class="doccomment">/// - another instance of `Pins` that was safely acquired</span>
-    <span class="doccomment">///   using [`from_pads`](from_pads()).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">from_pads</span>(<span class="ident"><span class="kw">crate</span>::iomuxc::Pads::new</span>())
+<span class="kw">impl </span>Pins {
+    <span class="doccomment">/// Create an instance of `Pins` when you do not have a handle
+    /// to the processor pads
+    ///
+    /// # Safety
+    ///
+    /// Caller must ensure that the pins are not aliased elsewhere in
+    /// the program. This could include
+    ///
+    /// - an existing handle to the `imxrt-iomuxc` pads,
+    /// - another instance of `Pins` that was safely acquired
+    ///   using [`from_pads`](from_pads()).
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const unsafe fn </span>new() -&gt; <span class="self">Self </span>{
+        from_pads(<span class="kw">crate</span>::iomuxc::Pads::new())
     }
 
-    <span class="doccomment">/// Erase the types of all pins</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">erase</span>(<span class="self">self</span>) -&gt; <span class="ident">ErasedPins</span> {
+    <span class="doccomment">/// Erase the types of all pins
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>erase(<span class="self">self</span>) -&gt; ErasedPins {
         [
-            <span class="self">self</span>.<span class="ident">p0</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p1</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p2</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p3</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p4</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p5</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p6</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p7</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p8</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p9</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p10</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p11</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p12</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p13</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p14</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p15</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p16</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p17</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p18</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p19</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p20</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p21</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p22</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p23</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p24</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p25</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p26</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p27</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p28</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p29</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p30</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p31</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p32</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p33</span>.<span class="ident">erase</span>(),
-            <span class="comment">// END OF COMMON PINS</span>
-            <span class="self">self</span>.<span class="ident">p34</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p35</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p36</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p37</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p38</span>.<span class="ident">erase</span>(),
-            <span class="self">self</span>.<span class="ident">p39</span>.<span class="ident">erase</span>(),
+            <span class="self">self</span>.p0.erase(),
+            <span class="self">self</span>.p1.erase(),
+            <span class="self">self</span>.p2.erase(),
+            <span class="self">self</span>.p3.erase(),
+            <span class="self">self</span>.p4.erase(),
+            <span class="self">self</span>.p5.erase(),
+            <span class="self">self</span>.p6.erase(),
+            <span class="self">self</span>.p7.erase(),
+            <span class="self">self</span>.p8.erase(),
+            <span class="self">self</span>.p9.erase(),
+            <span class="self">self</span>.p10.erase(),
+            <span class="self">self</span>.p11.erase(),
+            <span class="self">self</span>.p12.erase(),
+            <span class="self">self</span>.p13.erase(),
+            <span class="self">self</span>.p14.erase(),
+            <span class="self">self</span>.p15.erase(),
+            <span class="self">self</span>.p16.erase(),
+            <span class="self">self</span>.p17.erase(),
+            <span class="self">self</span>.p18.erase(),
+            <span class="self">self</span>.p19.erase(),
+            <span class="self">self</span>.p20.erase(),
+            <span class="self">self</span>.p21.erase(),
+            <span class="self">self</span>.p22.erase(),
+            <span class="self">self</span>.p23.erase(),
+            <span class="self">self</span>.p24.erase(),
+            <span class="self">self</span>.p25.erase(),
+            <span class="self">self</span>.p26.erase(),
+            <span class="self">self</span>.p27.erase(),
+            <span class="self">self</span>.p28.erase(),
+            <span class="self">self</span>.p29.erase(),
+            <span class="self">self</span>.p30.erase(),
+            <span class="self">self</span>.p31.erase(),
+            <span class="self">self</span>.p32.erase(),
+            <span class="self">self</span>.p33.erase(),
+            <span class="comment">// END OF COMMON PINS
+            </span><span class="self">self</span>.p34.erase(),
+            <span class="self">self</span>.p35.erase(),
+            <span class="self">self</span>.p36.erase(),
+            <span class="self">self</span>.p37.erase(),
+            <span class="self">self</span>.p38.erase(),
+            <span class="self">self</span>.p39.erase(),
         ]
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_pins" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (57f097ea2 2022-10-01)" ></div></body></html>

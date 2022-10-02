@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["sos","Blink S.O.S. on the LED, forever"]]});
+window.SIDEBAR_ITEMS = {"fn":[["sos","Blink S.O.S. on the LED, forever"]]};

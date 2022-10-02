@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/rt.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rt.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_bsp/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/rt.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rt.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../teensy4_bsp/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../teensy4_bsp/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -89,92 +84,91 @@
 <span id="84">84</span>
 <span id="85">85</span>
 <span id="86">86</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Runtime support</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The useful bits are written in assembly. See `start.s` for the</span>
-<span class="doccomment">//! reset handler implementation. The reset handler eventually calls</span>
-<span class="doccomment">//! `t4_init()`, which finishes setup, and calls the `cortex-m-rt`</span>
-<span class="doccomment">//! `Reset()` handler.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Code that&#39;s in this module is running before `.data` is initialized,</span>
-<span class="doccomment">//! and before `.bss` is zeroed. This code should only touch ARM and</span>
-<span class="doccomment">//! peripheral memory.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Runtime support
+//!
+//! The useful bits are written in assembly. See `start.s` for the
+//! reset handler implementation. The reset handler eventually calls
+//! `t4_init()`, which finishes setup, and calls the `cortex-m-rt`
+//! `Reset()` handler.
+//!
+//! Code that&#39;s in this module is running before `.data` is initialized,
+//! and before `.bss` is zeroed. This code should only touch ARM and
+//! peripheral memory.
 
-<span class="kw">use</span> <span class="ident">core::arch::global_asm</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cortex_m_rt</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use </span>core::arch::global_asm;
+<span class="kw">pub use </span>cortex_m_rt::<span class="kw-2">*</span>;
 
 <span class="macro">global_asm!</span>(<span class="macro">include_str!</span>(<span class="string">&quot;start.s&quot;</span>));
 
-<span class="doccomment">/// System entrypoint, invoked by reset handler</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Safety</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The function is unsafe since it directly modifies registers, and invokes</span>
-<span class="doccomment">/// other functions that do the same. It does not touch any memory that needs</span>
-<span class="doccomment">/// to first be initialized by cortex-m-rt.</span>
-<span class="attribute">#[<span class="ident">no_mangle</span>]</span>
-<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">t4_init</span>() {
-    <span class="comment">// Remain in &#39;run&#39; when transitioning to low power mode.</span>
-    <span class="comment">// Do not transition to wait mode.</span>
-    <span class="comment">//</span>
-    <span class="comment">// This addresses an edge case identified when reprogramming</span>
-    <span class="comment">// the Teensy, and then immediately executing WFI.</span>
-    <span class="comment">// See https://github.com/mciantyre/teensy4-rs/issues/76 for</span>
-    <span class="comment">// more details.</span>
-    <span class="comment">//</span>
-    <span class="comment">// It&#39;s also useful for users who expect SYSTICK exceptions</span>
-    <span class="comment">// to unblock WFI, which isn&#39;t the default behavior.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Ideally, we could figure out an approach that keeps the processor</span>
-    <span class="comment">// as close to the reset state as possible, while avoiding #76.</span>
-    <span class="comment">// For now, we&#39;ll go with this, which simplifies some downstream</span>
-    <span class="comment">// code.</span>
-    <span class="kw">const</span> <span class="ident">CCM_CLPCR</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x400F_C054</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-    <span class="ident">CCM_CLPCR</span>.<span class="ident">write_volatile</span>(<span class="ident">CCM_CLPCR</span>.<span class="ident">read_volatile</span>() <span class="op">&amp;</span> <span class="op">!</span><span class="number">0b11</span>);
+<span class="doccomment">/// System entrypoint, invoked by reset handler
+///
+/// # Safety
+///
+/// The function is unsafe since it directly modifies registers, and invokes
+/// other functions that do the same. It does not touch any memory that needs
+/// to first be initialized by cortex-m-rt.
+</span><span class="attribute">#[no_mangle]
+</span><span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>t4_init() {
+    <span class="comment">// Remain in &#39;run&#39; when transitioning to low power mode.
+    // Do not transition to wait mode.
+    //
+    // This addresses an edge case identified when reprogramming
+    // the Teensy, and then immediately executing WFI.
+    // See https://github.com/mciantyre/teensy4-rs/issues/76 for
+    // more details.
+    //
+    // It&#39;s also useful for users who expect SYSTICK exceptions
+    // to unblock WFI, which isn&#39;t the default behavior.
+    //
+    // Ideally, we could figure out an approach that keeps the processor
+    // as close to the reset state as possible, while avoiding #76.
+    // For now, we&#39;ll go with this, which simplifies some downstream
+    // code.
+    </span><span class="kw">const </span>CCM_CLPCR: <span class="kw-2">*mut </span>u32 = <span class="number">0x400F_C054 </span><span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+    CCM_CLPCR.write_volatile(CCM_CLPCR.read_volatile() &amp; !<span class="number">0b11</span>);
 
-    <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-        <span class="kw">fn</span> <span class="ident">Reset</span>();
+    <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+        <span class="kw">fn </span>Reset();
     }
-    <span class="ident">Reset</span>(); <span class="comment">// cortex-m-rt entrypoint</span>
-}
+    Reset(); <span class="comment">// cortex-m-rt entrypoint
+</span>}
 
-<span class="doccomment">/// Returns the size of the heap, in bytes.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Use [`heap_start()`](crate::rt::heap_start) to access the start of the heap.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">heap_len</span>() -&gt; <span class="ident">usize</span> {
-    <span class="kw">fn</span> <span class="ident">heap_end</span>() -&gt; <span class="kw-2">*mut</span> <span class="ident">u32</span> {
-        <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-            <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">__eheap</span>: <span class="ident">u32</span>;
+<span class="doccomment">/// Returns the size of the heap, in bytes.
+///
+/// Use [`heap_start()`](crate::rt::heap_start) to access the start of the heap.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>heap_len() -&gt; usize {
+    <span class="kw">fn </span>heap_end() -&gt; <span class="kw-2">*mut </span>u32 {
+        <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+            <span class="kw">static </span><span class="kw-2">mut </span>__eheap: u32;
         }
-        <span class="kw">unsafe</span> { <span class="kw-2">&amp;mut</span> <span class="ident">__eheap</span> }
+        <span class="kw">unsafe </span>{ <span class="kw-2">&amp;mut </span>__eheap }
     }
 
-    <span class="comment">// Cannot use offset_from, since heap_end</span>
-    <span class="comment">// and heap_start are not derived from the</span>
-    <span class="comment">// same allocated object.</span>
-    <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">heap_end</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">cortex_m_rt::heap_start</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>
+    <span class="comment">// Cannot use offset_from, since heap_end
+    // and heap_start are not derived from the
+    // same allocated object.
+    </span><span class="kw">let </span>end = heap_end() <span class="kw">as </span>usize;
+    <span class="kw">let </span>start = cortex_m_rt::heap_start() <span class="kw">as </span>usize;
+    end - start
 }
 
-<span class="doccomment">/// Returns the starting location for a DTCM &quot;heap.&quot;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The recommended heap is in OCRAM2, and available</span>
-<span class="doccomment">/// using [`heap_start()`](crate::rt::heap_start). But,</span>
-<span class="doccomment">/// you may choose to place the heap in DTCM. This function</span>
-<span class="doccomment">/// returns the starting address for that heap.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The DTCM heap is expected to grow up towards the stack,</span>
-<span class="doccomment">/// and has no statically-known maximum size. The pointer</span>
-<span class="doccomment">/// is guaranteed to be 4 byte aligned.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dtcm_heap_start</span>() -&gt; <span class="kw-2">*mut</span> <span class="ident">u32</span> {
-    <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-        <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">__sheap_dtcm</span>: <span class="ident">u32</span>;
+<span class="doccomment">/// Returns the starting location for a DTCM &quot;heap.&quot;
+///
+/// The recommended heap is in OCRAM2, and available
+/// using [`heap_start()`](crate::rt::heap_start). But,
+/// you may choose to place the heap in DTCM. This function
+/// returns the starting address for that heap.
+///
+/// The DTCM heap is expected to grow up towards the stack,
+/// and has no statically-known maximum size. The pointer
+/// is guaranteed to be 4 byte aligned.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>dtcm_heap_start() -&gt; <span class="kw-2">*mut </span>u32 {
+    <span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+        <span class="kw">static </span><span class="kw-2">mut </span>__sheap_dtcm: u32;
     }
-    <span class="kw">unsafe</span> { <span class="kw-2">&amp;mut</span> <span class="ident">__sheap_dtcm</span> }
+    <span class="kw">unsafe </span>{ <span class="kw-2">&amp;mut </span>__sheap_dtcm }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_bsp" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0-nightly (30f386087 2022-05-05)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="teensy4_bsp" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0-nightly (57f097ea2 2022-10-01)" ></div></body></html>
