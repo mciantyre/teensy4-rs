@@ -10,7 +10,7 @@ Add `teensy4-fcb` to your dependencies:
 
 ```toml
 [dependencies]
-teensy4-fcb = "0.2"
+teensy4-fcb = "0.4"
 ```
 
 Properly place the FCB in your program's memory. See the [`FLEXSPI_CONFIGURATION_BLOCK`](static.FLEXSPI_CONFIGURATION_BLOCK.html)

@@ -8,7 +8,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! teensy4-fcb = "0.3"
+//! teensy4-fcb = "0.4"
 //! ```
 //!
 //! Properly place the FCB in your program's memory. See the `FLEXSPI_CONFIGURATION_BLOCK`
@@ -34,6 +34,8 @@
 
 use imxrt_boot_gen::flexspi::{self, opcodes::sdr::*, *};
 use imxrt_boot_gen::serial_flash::*;
+
+pub use nor::ConfigurationBlock;
 
 /// Instructions for the Winbond W25Q16JV
 /// SPI flash memory controller
@@ -115,10 +117,20 @@ const COMMON_CONFIGURATION_BLOCK: flexspi::ConfigurationBlock =
 // Final serial NOR configuration block
 //
 
-#[no_mangle]
-#[link_section = ".fcb"]
-pub static FLEXSPI_CONFIGURATION_BLOCK: nor::ConfigurationBlock =
+/// Value for the serial NOR FlexSPI configuration block.
+///
+/// Use this constant if you need to create a new static variable with a different name
+/// or link section.
+pub const SERIAL_NOR_CONFIGURATION_BLOCK: nor::ConfigurationBlock =
     nor::ConfigurationBlock::new(COMMON_CONFIGURATION_BLOCK)
         .page_size(256)
         .sector_size(4096)
         .ip_cmd_serial_clk_freq(nor::SerialClockFrequency::MHz30);
+
+/// The FlexSPI configuration block.
+///
+/// The name is intentionally unmangled. You may precisely place this structure to boot
+/// your Teensy 4.
+#[no_mangle]
+#[cfg_attr(all(target_arch = "arm", target_os = "none"), link_section = ".fcb")]
+pub static FLEXSPI_CONFIGURATION_BLOCK: nor::ConfigurationBlock = SERIAL_NOR_CONFIGURATION_BLOCK;

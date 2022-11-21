@@ -50,7 +50,7 @@ features = ["device"]
 
 [target.thumbv7em-none-eabihf.dependencies.teensy4-fcb]
 path = "teensy4-fcb"
-version = "0.3"
+version = "0.4"
 
 [dependencies.imxrt-hal]
 version = "0.4.2"
