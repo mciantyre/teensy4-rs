@@ -39,13 +39,13 @@ fn main() -> Result<(), Box<dyn error::Error>> {
     let cfg = Configuration::new();
 
     Command::new(cfg.objcopy)
-        .args(&["-O", "ihex"])
+        .args(["-O", "ihex"])
         .arg(&elf_path)
         .arg(&hex_path)
         .output()?;
 
     Command::new(cfg.loader)
-        .args(&["-w", "-v", "--mcu=imxrt1062"])
+        .args(["-w", "-v", "--mcu=imxrt1062"])
         .arg(&hex_path)
         .spawn()?
         .wait()?;
