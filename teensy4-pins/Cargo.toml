@@ -1,25 +1,17 @@
 [package]
 name = "teensy4-pins"
 version = "0.2.0"
-authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
-edition = "2018"
+authors.workspace = true
+edition.workspace = true
 readme = "README.md"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/mciantyre/teensy4-rs"
+license.workspace = true
+repository.workspace = true
 description = """
 Helpers for configuring and using a Teensy 4's pins.
 Part of the teensy4-rs project.
 """
-categories = [
-    "embedded",
-    "hardware-support",
-    "no-std",
-]
-keywords = [
-    "arm",
-    "cortex-m",
-    "teensy4",
-]
+categories.workspace = true
+keywords.workspace = true
 
 [dependencies.imxrt-iomuxc]
 version = "0.1.1"

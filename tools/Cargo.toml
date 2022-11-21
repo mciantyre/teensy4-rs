@@ -1,14 +1,14 @@
 [package]
 name = "tools"
 version = "0.1.0"
-authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
-edition = "2018"
+authors.workspace = true
+edition.workspace = true
 publish = false  # Project-specific development tool.
 description = """
 Project-specific tooling.
 """
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/mciantyre/teensy4-rs"
+license.workspace = true
+repository.workspace = true
 
 [[bin]]
 name = "runner"
