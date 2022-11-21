@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+**BREAKING** Update to Rust 2021 edition.
+
 The BSP uses `global_asm` to define the reset vector. Requires Rust 1.59.
 
 **BREAKING** Remove the `common`, `t40`, and `t41` modules. Users can access

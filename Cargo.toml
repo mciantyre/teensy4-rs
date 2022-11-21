@@ -26,7 +26,7 @@ keywords.workspace = true
 
 [workspace.package]
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
-edition = "2018"
+edition = "2021"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mciantyre/teensy4-rs"
 categories = [
