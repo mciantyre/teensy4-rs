@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"static":[["FLEXSPI_CONFIGURATION_BLOCK",""]]};
+window.SIDEBAR_ITEMS = {"constant":[["SERIAL_NOR_CONFIGURATION_BLOCK","Value for the serial NOR FlexSPI configuration block."]],"static":[["FLEXSPI_CONFIGURATION_BLOCK","The FlexSPI configuration block."]],"struct":[["ConfigurationBlock","A serial NOR configuration block"]]};
