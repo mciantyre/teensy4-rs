@@ -1,6 +1,6 @@
 [package]
 name = "teensy4-pins"
-version = "0.2.0"
+version = "0.3.0"
 authors.workspace = true
 edition.workspace = true
 readme = "README.md"
@@ -14,8 +14,8 @@ categories.workspace = true
 keywords.workspace = true
 
 [dependencies.imxrt-iomuxc]
-version = "0.1.1"
-features = ["imxrt106x"]
+version = "0.2.0"
+features = ["imxrt1060"]
 
 [package.metadata.docs.rs]
 default-target = "thumbv7em-none-eabihf"

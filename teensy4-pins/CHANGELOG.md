@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [0.3.0] - 2023-01-05
+
+**BREAKING** Update to imxrt-iomuxc 0.2. Pin aliases remain the same, but pad
+types are different.
+
 **BREAKING** Update to Rust 2021 edition.
 
 Add Teensy 4.1 pins 48 though 54. This increases the size of the `ErasedPads`
@@ -28,5 +33,6 @@ release. Users should use `from_pads()`.
 
 First release.
 
+[0.3.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-pins-0.2.0...teensy4-pins-0.3.0
 [0.2.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-pins-0.1.0...teensy4-pins-0.2.0
 [0.1.0]: https://github.com/mciantyre/teensy4-rs/releases/tag/teensy4-pins-0.1.0

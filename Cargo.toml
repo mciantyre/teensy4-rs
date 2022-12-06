@@ -57,7 +57,7 @@ version = "0.4.2"
 features = ["imxrt1062"]
 
 [dependencies.teensy4-pins]
-version = "0.2"
+version = "0.3"
 path = "teensy4-pins"
 
 # Only need logging when "usb-logging" is enabled

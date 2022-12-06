@@ -4,30 +4,30 @@
 //! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
 //! method to generate pins.
 //!
-//! | Pin  | Pad ID   |    Alt0      |    Alt1         |   Alt2        |    Alt3       |     Alt4       |  Alt5      |    Alt6        |  Alt7   |     Alt8      |       Alt9     |
-//! | ---- | -------- | ------------ | --------------- | ------------- | ------------- | -------------- | ---------- | -------------- | ------- | ------------- | -------------- |
-//! |  34  | SD_B0_03 | USDHC1_DATA1 | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07 | LPSPI1_SDI     | GPIO3_IO15 | ---            | ---     | ENET2_RDATA00 | SEMC_CLK6      |
-//! |  35  | SD_B0_02 | USDHC1_DATA0 | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06 | LPSPI1_SDO     | GPIO3_IO14 | ---            | ---     | ENET2_RX_ER   | SEMC_CLK5      |
-//! |  36  | SD_B0_01 | USDHC1_CLK   | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05 | LPSPI1_PCS0    | GPIO3_IO13 | FLEXSPIB_SS1_B | ---     | ENET2_TX_CLK  | ENET2_REF_CLK2 |
-//! |  37  | SD_B0_00 | USDHC1_CMD   | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04 | LPSPI1_SCK     | GPIO3_IO12 | FLEXSPIA_SS1_B | ---     | ENET2_TX_EN   | SEMC_DQS4      |
-//! |  38  | SD_B0_05 | USDHC1_DATA3 | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09 | FLEXSPIB_DQS   | GPIO3_IO17 | CCM_CLKO2      | ---     | ENET2_RX_EN   | ---            |
-//! |  39  | SD_B0_04 | USDHC1_DATA2 | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08 | FLEXSPIB_SS0_B | GPIO3_IO16 | CCM_CLKO1      | ---     | ENET2_RDATA01 | ---            |
+//! | Pin  | Pad ID        |    Alt0      |    Alt1         |   Alt2        |    Alt3       |     Alt4       |  Alt5      |    Alt6        |  Alt7   |     Alt8      |       Alt9     |
+//! | ---- | ------------- | ------------ | --------------- | ------------- | ------------- | -------------- | ---------- | -------------- | ------- | ------------- | -------------- |
+//! |  34  | GPIO_SD_B0_03 | USDHC1_DATA1 | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07 | LPSPI1_SDI     | GPIO3_IO15 | ---            | ---     | ENET2_RDATA00 | SEMC_CLK6      |
+//! |  35  | GPIO_SD_B0_02 | USDHC1_DATA0 | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06 | LPSPI1_SDO     | GPIO3_IO14 | ---            | ---     | ENET2_RX_ER   | SEMC_CLK5      |
+//! |  36  | GPIO_SD_B0_01 | USDHC1_CLK   | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05 | LPSPI1_PCS0    | GPIO3_IO13 | FLEXSPIB_SS1_B | ---     | ENET2_TX_CLK  | ENET2_REF_CLK2 |
+//! |  37  | GPIO_SD_B0_00 | USDHC1_CMD   | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04 | LPSPI1_SCK     | GPIO3_IO12 | FLEXSPIA_SS1_B | ---     | ENET2_TX_EN   | SEMC_DQS4      |
+//! |  38  | GPIO_SD_B0_05 | USDHC1_DATA3 | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09 | FLEXSPIB_DQS   | GPIO3_IO17 | CCM_CLKO2      | ---     | ENET2_RX_EN   | ---            |
+//! |  39  | GPIO_SD_B0_04 | USDHC1_DATA2 | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08 | FLEXSPIB_SS0_B | GPIO3_IO16 | CCM_CLKO1      | ---     | ENET2_RDATA01 | ---            |
 
 pub use crate::common::*;
-use crate::iomuxc::{sd_b0::*, ErasedPad};
+use crate::iomuxc::{gpio_sd_b0::*, ErasedPad};
 
 /// Pin 34 (4.0)
-pub type P34 = SD_B0_03;
+pub type P34 = GPIO_SD_B0_03;
 /// Pin 35 (4.0)
-pub type P35 = SD_B0_02;
+pub type P35 = GPIO_SD_B0_02;
 /// Pin 36 (4.0)
-pub type P36 = SD_B0_01;
+pub type P36 = GPIO_SD_B0_01;
 /// Pin 37 (4.0)
-pub type P37 = SD_B0_00;
+pub type P37 = GPIO_SD_B0_00;
 /// Pin 38 (4.0)
-pub type P38 = SD_B0_05;
+pub type P38 = GPIO_SD_B0_05;
 /// Pin 39 (4.0)
-pub type P39 = SD_B0_04;
+pub type P39 = GPIO_SD_B0_04;
 
 /// Type-erased Teensy 4.0 pins
 ///
@@ -129,47 +129,47 @@ pub struct Pins {
 #[inline]
 pub const fn from_pads(iomuxc: crate::iomuxc::Pads) -> Pins {
     Pins {
-        p0: iomuxc.ad_b0.p03,
-        p1: iomuxc.ad_b0.p02,
-        p2: iomuxc.emc.p04,
-        p3: iomuxc.emc.p05,
-        p4: iomuxc.emc.p06,
-        p5: iomuxc.emc.p08,
-        p6: iomuxc.b0.p10,
-        p7: iomuxc.b1.p01,
-        p8: iomuxc.b1.p00,
-        p9: iomuxc.b0.p11,
-        p10: iomuxc.b0.p00,
-        p11: iomuxc.b0.p02,
-        p12: iomuxc.b0.p01,
-        p13: iomuxc.b0.p03,
-        p14: iomuxc.ad_b1.p02,
-        p15: iomuxc.ad_b1.p03,
-        p16: iomuxc.ad_b1.p07,
-        p17: iomuxc.ad_b1.p06,
-        p18: iomuxc.ad_b1.p01,
-        p19: iomuxc.ad_b1.p00,
-        p20: iomuxc.ad_b1.p10,
-        p21: iomuxc.ad_b1.p11,
-        p22: iomuxc.ad_b1.p08,
-        p23: iomuxc.ad_b1.p09,
-        p24: iomuxc.ad_b0.p12,
-        p25: iomuxc.ad_b0.p13,
-        p26: iomuxc.ad_b1.p14,
-        p27: iomuxc.ad_b1.p15,
-        p28: iomuxc.emc.p32,
-        p29: iomuxc.emc.p31,
-        p30: iomuxc.emc.p37,
-        p31: iomuxc.emc.p36,
-        p32: iomuxc.b0.p12,
-        p33: iomuxc.emc.p07,
+        p0: iomuxc.gpio_ad_b0.p03,
+        p1: iomuxc.gpio_ad_b0.p02,
+        p2: iomuxc.gpio_emc.p04,
+        p3: iomuxc.gpio_emc.p05,
+        p4: iomuxc.gpio_emc.p06,
+        p5: iomuxc.gpio_emc.p08,
+        p6: iomuxc.gpio_b0.p10,
+        p7: iomuxc.gpio_b1.p01,
+        p8: iomuxc.gpio_b1.p00,
+        p9: iomuxc.gpio_b0.p11,
+        p10: iomuxc.gpio_b0.p00,
+        p11: iomuxc.gpio_b0.p02,
+        p12: iomuxc.gpio_b0.p01,
+        p13: iomuxc.gpio_b0.p03,
+        p14: iomuxc.gpio_ad_b1.p02,
+        p15: iomuxc.gpio_ad_b1.p03,
+        p16: iomuxc.gpio_ad_b1.p07,
+        p17: iomuxc.gpio_ad_b1.p06,
+        p18: iomuxc.gpio_ad_b1.p01,
+        p19: iomuxc.gpio_ad_b1.p00,
+        p20: iomuxc.gpio_ad_b1.p10,
+        p21: iomuxc.gpio_ad_b1.p11,
+        p22: iomuxc.gpio_ad_b1.p08,
+        p23: iomuxc.gpio_ad_b1.p09,
+        p24: iomuxc.gpio_ad_b0.p12,
+        p25: iomuxc.gpio_ad_b0.p13,
+        p26: iomuxc.gpio_ad_b1.p14,
+        p27: iomuxc.gpio_ad_b1.p15,
+        p28: iomuxc.gpio_emc.p32,
+        p29: iomuxc.gpio_emc.p31,
+        p30: iomuxc.gpio_emc.p37,
+        p31: iomuxc.gpio_emc.p36,
+        p32: iomuxc.gpio_b0.p12,
+        p33: iomuxc.gpio_emc.p07,
         // END OF COMMON PINS
-        p34: iomuxc.sd_b0.p03,
-        p35: iomuxc.sd_b0.p02,
-        p36: iomuxc.sd_b0.p01,
-        p37: iomuxc.sd_b0.p00,
-        p38: iomuxc.sd_b0.p05,
-        p39: iomuxc.sd_b0.p04,
+        p34: iomuxc.gpio_sd_b0.p03,
+        p35: iomuxc.gpio_sd_b0.p02,
+        p36: iomuxc.gpio_sd_b0.p01,
+        p37: iomuxc.gpio_sd_b0.p00,
+        p38: iomuxc.gpio_sd_b0.p05,
+        p39: iomuxc.gpio_sd_b0.p04,
     }
 }
 

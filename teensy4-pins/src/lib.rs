@@ -17,7 +17,7 @@
 //!
 //! ```
 //! use teensy4_pins::t40;
-//! # use imxrt_iomuxc::imxrt106x::Pads;
+//! # use imxrt_iomuxc::imxrt1060::Pads;
 //!
 //! let pads = // Handle to all processor pads
 //!     # unsafe { Pads::new() };
@@ -30,7 +30,7 @@
 //!
 //! ```
 //! use teensy4_pins::t41;
-//! # use imxrt_iomuxc::imxrt106x::Pads;
+//! # use imxrt_iomuxc::imxrt1060::Pads;
 //!
 //! let pads = // Handle to all processor pads
 //!     # unsafe { Pads::new() };
@@ -51,7 +51,7 @@ pub mod t40;
 pub mod t41;
 
 mod iomuxc {
-    pub use imxrt_iomuxc::imxrt106x::*;
+    pub use imxrt_iomuxc::imxrt1060::*;
     pub use imxrt_iomuxc::ErasedPad;
 }
 
