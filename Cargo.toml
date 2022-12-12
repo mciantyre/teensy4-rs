@@ -42,8 +42,10 @@ version = "0.5"
 features = ["imxrt1062"]
 
 [dependencies.imxrt-hal]
-path = "../imxrt-hal"
-features = ["imxrt1060"]
+git = "https://github.com/dstric-aqueduct/imxrt-hal"
+branch = "dev/can"
+#path = "../imxrt-hal"
+#features = ["imxrt1060"]
 
 [dependencies.imxrt-rt]
 version = "0.1.4"
@@ -119,6 +121,14 @@ required-features = ["rt"]
 [[example]]
 name = "blocking_uart"
 required-features = ["rt"]
+
+[[example]]
+name = "can"
+required-features = ["rt", "usb-logging"]
+
+[[example]]
+name = "rtic_can_log"
+required-features = ["rt", "rtic", "usb-logging"]
 
 [[example]]
 name = "rtic_configure_pin"
