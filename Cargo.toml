@@ -53,8 +53,8 @@ path = "teensy4-fcb"
 version = "0.4"
 
 [dependencies.imxrt-hal]
-version = "0.4.2"
-features = ["imxrt1062"]
+git = "https://github.com/dstric-aqueduct/imxrt-hal" 
+branch = "dev/can"
 
 [dependencies.teensy4-pins]
 version = "0.2"
@@ -133,6 +133,10 @@ required-features = ["rt"]
 # Examples that require USB logging.
 
 [[example]]
+name = "can"
+required-features = ["rt", "usb-logging"]
+
+[[example]]
 name = "dma_memcpy"
 required-features = ["rt", "usb-logging"]
 
@@ -195,6 +199,10 @@ required-features = ["rt", "rtic"]
 [[example]]
 name = "rtic_pit"
 required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_can_log"
+required-features = ["rt", "rtic", "usb-logging"]
 
 [[example]]
 name = "rtic_uart_log"
