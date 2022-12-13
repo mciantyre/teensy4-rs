@@ -41,15 +41,6 @@ jobs:
         args: --verbose --package tools --all-features -- -D warnings
         name: Lint host-side tools
 
-  precompiled:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install build dependencies
-      run: sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
-    - uses: actions/checkout@v2
-    - name: Build USB stack
-      run: make -C bin libt4usb.a
-
   test:
     runs-on: ubuntu-latest
     steps:
@@ -58,11 +49,11 @@ jobs:
       with:
         toolchain: nightly
         override: true
-    - name: Run teensy4-pins unit and documentation tests
+    - name: Run teensy4-bsp unit and documentation tests
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --package teensy4-bsp
+        args: --package teensy4-bsp --features=usb-logging
     - name: Run teensy4-pins unit and documentation tests
       uses: actions-rs/cargo@v1
       with:
@@ -120,4 +111,4 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: rustdoc
-        args: --package teensy4-bsp
+        args: --package teensy4-bsp --all-features

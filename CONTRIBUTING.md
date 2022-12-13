@@ -55,16 +55,6 @@ These types of questions typically require better documentation in the
 [`imxrt-hal`] crate. Ask peripheral-related questions in the
 [`imxrt-hal`] issue tracker.
 
-#### "I need to do \[XYZ\] when *booting* the Teensy 4."
-
-Open an issue with either
-
--   the [`imxrt-boot-gen`] crate, if your question is specific to the
-    i.MX RT boot data structure(s)
--   the [`teensy4-rs`] project, if your question is specific to the
-    Teensy 4's memory layout and configuration, or the Teensy 4 reset
-    handler's behavior
-
 #### "There's a problem when I boot my Teensy 4."
 
 Sorry about that! Open an issue in the [`teensy4-rs`] project.
@@ -97,24 +87,11 @@ projects. See the `imxrt-hal`'s [contributing guidelines] to learn about
 
 If you'd like to change
 
--   how the Teensy 4 starts up
 -   the Teensy 4's memory layout
 -   Teensy 4 pin definitions
 -   USB logging behaviors
 
 make those changes here, in the [`teensy4-rs`] project.
-
-### Additional Developer Dependencies
-
-We provide precompiled libraries to support the Teensy 4's startup and
-USB logging feature. The former represents select startup routines that
-are written in assembly. The latter is the majority of the Teensy 4's
-USB stack, which is written in C.
-
-To compile the two supporting libraries, you'll need the [GNU ARM
-Embedded Toolchain]. Once you have `arm-none-eabi-gcc` on your `PATH`,
-you may build both libraries using `make`. Consult `bin/Makefile` for
-the relevant targets.
 
 ### Workflow
 
@@ -136,15 +113,8 @@ release branch, if applicable.
 
 ### References
 
-To contribute towards the `teensy4-rs` project, it helps to be familiar
-with
-
--   embedded system development with Rust. Read [*The Embedded Rust
-    Book*] to learn about embedded Rust development.
--   developing C/C++ applications for the [Teensy 4], and the existing
-    Teensy software ecosystem.
--   the i.MX RT processor family. See the [resources] in the
-    `imxrt-hal`'s contributing guidelines.
+See the [`imxrt-rs` project documentation] for recommended hardware
+references, and for more information on `teensy4-rs` dependencies.
 
   [discussions]: https://github.com/mciantyre/teensy4-rs/discussions
   [`teensy4-rs`]: https://github.com/mciantyre/teensy4-rs
@@ -152,12 +122,7 @@ with
   [`imxrt-hal`]: https://github.com/imxrt-rs/imxrt-hal
   [Issues]: #issues
   [Development]: #development
-  [`imxrt-boot-gen`]: https://github.com/imxrt-rs/imxrt-boot-gen
   [README]: README.md
   [`teensy_loader_cli`]: https://github.com/PaulStoffregen/teensy_loader_cli
-  [Teensy Loader Application]: https://www.pjrc.com/teensy/loader.html
   [contributing guidelines]: https://github.com/imxrt-rs/imxrt-rs/blob/master/CONTRIBUTING.md
-  [GNU ARM Embedded Toolchain]: https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm
-  [*The Embedded Rust Book*]: https://rust-embedded.github.io/book/intro/index.html
-  [Teensy 4]: https://www.pjrc.com/store/teensy40.html
-  [resources]: https://github.com/imxrt-rs/imxrt-rs/blob/master/CONTRIBUTING.md#resources
+  [`imxrt-rs` project documentation]: https://imxrt-rs.github.io

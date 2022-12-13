@@ -63,34 +63,6 @@ you'd like to test your system.
   [`imxrt-hal` APIs]: https://docs.rs/imxrt-hal/latest/imxrt_hal/
   [`examples` directory]: examples/README.md
 
-## Project Structure
-
-The project has a model similar to other embedded Rust projects. We have
-a custom runtime crate to support our processor and memory layout. We
-use a separate iMXRT register access layer (RAL) and hardware
-abstraction layer (HAL). The RAL and HAL are provided by the [`imxrt-rs`
-project].
-
-The main crate is a board support package (BSP), `teensy4-bsp`, for the
-Teensy 4. The BSP lets you use the Teensy 4's pins and peripherals. It
-also provides an implementation of the [`log` crate], allowing users to
-log over USB. If you would like to develop Rust applications for the
-Teensy 4, start by depending on the `teensy4-bsp`.
-
-The BSP depends on the these additional crates, which are part of the
-BSP's workspace:
-
--   `teensy4-fcb`: an FCB specific to the Teensy 4. It auto-generates
-    the FCB using the [`imxrt-boot-gen`] crate.
--   `teensy4-pins`: a helper library to convert the processor's pads
-    into the pins available on a Teensy 4.0 or 4.1 board.
-
-See the API docs for information on runtime support and BSP features.
-
-  [`imxrt-rs` project]: https://github.com/imxrt-rs
-  [`log` crate]: https://crates.io/crates/log
-  [`imxrt-boot-gen`]: https://github.com/imxrt-rs/imxrt-boot-gen
-
 ## Contributing
 
 We welcome support! A great way to contribute is to start using the
@@ -103,24 +75,6 @@ If you want to directly contribute to the `teensy4-rs` project, read the
 development guidance in [CONTRIBUTING.md].
 
   [CONTRIBUTING.md]: CONTRIBUTING.md
-
-## Q/A
-
-#### There's more C than Rust! How is this a Rust project?
-
-There used to be more Rust code here. But today, most Rust development
-happens in the [`imxrt-rs` project].
-
-We have C sources in this project because
-
--   we can't easily express the equivalent Rust code on a stable
-    compiler (runtime support)
--   we haven't written a Rust implementation to replace it (USB support)
-
-We precompile these C sources so that our users do not need an ARM
-toolchain to compile the crates.
-
-  [`imxrt-rs` project]: https://github.com/imxrt-rs
 
 ## Acknowledgements and References
 

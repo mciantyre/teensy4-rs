@@ -1,6 +1,6 @@
 [package]
 name = "teensy4-bsp"
-version = "0.3.0"
+version = "0.4.0"
 authors.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -9,20 +9,9 @@ description = """
 Rust-based BSP for the Teensy 4.
 Part of the teensy4-rs project.
 """
-include = [
-    "bin/**/*.h",
-    "bin/**/*.c",
-    "bin/libt4usb.a",
-    "bin/Makefile",
-    "examples/*",
-    "src/*",
-    "build.rs",
-    "t4link.x",
-    "README.md",
-    "LICENSE-*"
-]
 categories.workspace = true
 keywords.workspace = true
+autoexamples = false
 
 [workspace.package]
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
@@ -40,30 +29,40 @@ keywords = [
     "teensy4",
 ]
 
-[dependencies]
-cortex-m = "0.7"
-
-[dependencies.cortex-m-rt]
+[dependencies.cortex-m]
 version = "0.7"
-optional = true
-features = ["device"]
+features = ["critical-section-single-core"]
 
-[target.thumbv7em-none-eabihf.dependencies.teensy4-fcb]
+[dependencies.teensy4-fcb]
 path = "teensy4-fcb"
 version = "0.4"
 
-[dependencies.imxrt-hal]
-version = "0.4.2"
+[dependencies.imxrt-ral]
+version = "0.5"
 features = ["imxrt1062"]
+
+[dependencies.imxrt-hal]
+version = "0.5"
+features = ["imxrt1060"]
+
+[dependencies.imxrt-log]
+version = "0.1"
+default-features = false
+features = ["usbd", "log", "defmt"]
+
+[dependencies.imxrt-rt]
+version = "0.1"
+optional = true
+features = ["device"]
+
+[build-dependencies.imxrt-rt]
+version = "0.1"
+optional = true
+features = ["device"]
 
 [dependencies.teensy4-pins]
 version = "0.3"
 path = "teensy4-pins"
-
-# Only need logging when "usb-logging" is enabled
-[dependencies.log]
-version = "0.4.8"
-optional = true
 
 [workspace]
 members = [
@@ -74,19 +73,15 @@ members = [
 ]
 
 [features]
-# Default features established for prototype development
-default = ["usb-logging"]
-# Enables the USB logging stack
-usb-logging = ["log"]
-# Provides the `Peripherals::steal` constructor required by `rtic`.
-rtic = ["imxrt-hal/rtic"]
-# Enables cortex-m-rt runtime support
-rt = ["cortex-m-rt", "imxrt-hal/rt"]
+rt = ["dep:imxrt-rt", "imxrt-ral/rt"]
+usb-logging = []
 
-# Most teensy4-rs documentation tells the user to favor release builds.
-# However, it might be nice to disable optimizations when evaluating
-# programs. These settings let us remove '--release' from documented
-# commands and still have a successful build.
+# This is a convenience for building examples.
+# When a user builds _all_ of the examples with
+# all features, there's likely to be a duplicate
+# definition linker error, since both RTIC and the
+# BSP define USB_OTG1. The linker can figure out
+# which one is actually used when LTO is on.
 [profile.dev]
 lto = "thin"
 
@@ -100,136 +95,66 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 default-target = "thumbv7em-none-eabihf"
 
-##########
-# EXAMPLES
-##########
-
-# Examples that just need a runtime
-
-[[example]]
-name = "configure_pin_function"
-required-features = ["rt"]
-
-[[example]]
-name = "gpt"
-required-features = ["rt"]
-
-[[example]]
-name = "led"
-required-features = ["rt"]
-
-[[example]]
-name = "pit"
-required-features = ["rt"]
-
-[[example]]
-name = "panic"
-required-features = ["rt"]
-
-[[example]]
-name = "pull_down_pin"
-required-features = ["rt"]
-
-# Examples that require USB logging.
-
-[[example]]
-name = "dma_memcpy"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "dma_spi"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "dma_uart"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "i2c"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "panic_log"
-required-features = ["rt", "usb-logging", "teensy4-panic/log"]
-
-[[example]]
-name = "pwm"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "spi"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "srtc"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "timer"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "uart"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "usb"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
-name = "usb_writer"
-required-features = ["rt", "usb-logging"]
-
-# ----
-# RTIC
-# ----
-
-[[example]]
-name = "rtic_led"
-required-features = ["rt", "rtic"]
-
-[[example]]
-name = "rtic_blink"
-required-features = ["rt", "rtic"]
-
-[[example]]
-name = "rtic_pit"
-required-features = ["rt", "rtic"]
-
-[[example]]
-name = "rtic_uart_log"
-required-features = ["rt", "rtic"]
-
-[[example]]
-name = "rtic_dma_uart_log"
-required-features = ["rt", "rtic"]
-
-[[example]]
-name = "rtic_gpio_interrupt"
-required-features = ["rt", "rtic"]
-
-[[example]]
-name = "rtic_usb_echo"
-required-features = ["rt", "rtic", "usb-logging"]
-
-[[example]]
-name = "rtic_usb"
-required-features = ["rt", "rtic", "usb-logging"]
-
-# -------------------------
-# Dependencies for examples
-# -------------------------
-
-[dev-dependencies]
-cortex-m-rtic = "1.0"
-dwt-systick-monotonic = "1.0"
-embedded-hal = "0.2"
-heapless = "0.7"
-imxrt-uart-log = "0.2"
-log = "0.4"
-nb = "0.1"
-
 [dev-dependencies.teensy4-panic]
 version = "0.2"
 path = "teensy4-panic"
 features = ["log"]
+
+[dev-dependencies]
+defmt = "0.3"
+embedded-hal = "0.2"
+log = "0.4"
+nb = "1"
+cortex-m-rtic = "1"
+
+[[example]]
+name = "blocking_gpt"
+required-features = ["rt"]
+
+[[example]]
+name = "blocking_i2c_mpu9250"
+required-features = ["rt", "usb-logging"]
+
+[[example]]
+name = "blocking_led"
+required-features = ["rt"]
+
+[[example]]
+name = "blocking_panic_log"
+required-features = ["rt", "teensy4-panic/log"]
+
+[[example]]
+name = "blocking_panic"
+required-features = ["rt"]
+
+[[example]]
+name = "blocking_pit"
+required-features = ["rt"]
+
+[[example]]
+name = "blocking_spi_loopback"
+required-features = ["rt", "usb-logging"]
+
+[[example]]
+name = "blocking_uart"
+required-features = ["rt"]
+
+[[example]]
+name = "blocking_usb_log"
+required-features = ["rt", "usb-logging"]
+
+[[example]]
+name = "rtic_gpt"
+required-features = ["rt"]
+
+[[example]]
+name = "rtic_pit"
+required-features = ["rt"]
+
+[[example]]
+name = "rtic_uart"
+required-features = ["rt"]
+
+[[example]]
+name = "rtic_usb_log"
+required-features = ["rt"]

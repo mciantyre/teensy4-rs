@@ -2,12 +2,30 @@
 
 ## Unreleased
 
-**BREAKING** Update to Rust 2021 edition.
+## [0.4.0] - 2023-01-05
 
-The BSP uses `global_asm` to define the reset vector. Requires Rust 1.59.
+**BREAKING** Update to imxrt-hal 0.5. This changes the driver APIs exposed by
+`teensy4-bsp`. Study the imxrt-hal documentation for more information.
+
+**BREAKING** Replace the custom runtime with imxrt-rt. The BSP still provides
+the runtime hooks that let you write `main()`. However, the default memory map
+has changed. See the package documentation to understand the new layout, and to
+learn how you can override it.
 
 **BREAKING** Remove the `common`, `t40`, and `t41` modules. Users can access
 these modules through the re-export of `teensy4-pin`, simplified as `pins`.
+
+**BREAKING** The BSP still provides a high-speed USB serial logger. The
+implementation is now fully in Rust, and it's usable across various i.MX RT
+processors. The BSP has a new way to initialize the logger; see the
+`LoggingFrontend` documentation and hardware examples for more information.
+
+The BSP includes the `board` module, which provides pre-defined clock and power
+configurations for your application. It also performs some driver set-up on
+your behalf. See the `board` documentation for more information. All hardware
+examples demonstrate this module.
+
+**BREAKING** Update to Rust 2021 edition.
 
 ## [0.3.0] - 2021-12-29
 
@@ -171,6 +189,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.3.0...teensy4-bsp-0.4.0
 [0.3.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.2...teensy4-bsp-0.3.0
 [0.2.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.1...teensy4-bsp-0.2.2
 [0.2.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.0...teensy4-bsp-0.2.1
