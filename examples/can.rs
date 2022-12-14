@@ -41,11 +41,11 @@ fn main() -> ! {
 
     let (can1_builder, _) = peripherals.can.clock(
         &mut peripherals.ccm.handle,
-        bsp::hal::ccm::can::ClockSelect::Pll2,
+        bsp::hal::ccm::can::ClockSelect::OSC,
         bsp::hal::ccm::can::PrescalarSelect::DIVIDE_1,
     );
 
-    let mut can1 = can1_builder.build();
+    let mut can1 = can1_builder.build(pins.p22, pins.p23);
     
     can1.set_baud_rate(1_000_000);
     can1.set_max_mailbox(16);

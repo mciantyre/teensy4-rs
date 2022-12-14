@@ -68,13 +68,13 @@ mod app {
 
         let pins = bsp::pins::t40::from_pads(cx.device.iomuxc);
 
-        let (can1_builder, _) = cx.device.can.clock(
-            &mut cx.device.ccm.handle,
-            bsp::hal::ccm::can::ClockSelect::Pll2,
+        let (can1_builder, _) = peripherals.can.clock(
+            &mut peripherals.ccm.handle,
+            bsp::hal::ccm::can::ClockSelect::OSC,
             bsp::hal::ccm::can::PrescalarSelect::DIVIDE_1,
         );
-
-        let can1: bsp::hal::can::CAN<U1> = can1_builder.build();
+    
+        let mut can1 = can1_builder.build(pins.p22, pins.p23);
 
         // The queue used for buffering bytes.
         let (_q_tx, q_rx) = cx.local.queue.split();
