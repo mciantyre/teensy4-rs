@@ -41,11 +41,24 @@ version = "0.4"
 version = "0.5"
 features = ["imxrt1062"]
 
-[dependencies.imxrt-hal]
-git = "https://github.com/dstric-aqueduct/imxrt-hal"
-branch = "dev/can"
+
+#[dependencies.imxrt-hal]
+#git = "https://github.com/dstric-aqueduct/imxrt-hal"
+#branch = "dev/can"
 #path = "../imxrt-hal"
 #features = ["imxrt1060"]
+
+[dependencies.imxrt-hal]
+version = "0.4.2"
+features = ["imxrt1062"]
+
+[patch.crates-io.imxrt-hal]
+git = "https://github.com/dstric-aqueduct/imxrt-hal"
+branch = "dev/can"
+
+[patch.crates-io.imxrt-iomuxc]
+git = "https://github.com/dstric-aqueduct/imxrt-iomuxc.git"
+tag = "v0.1.5-can"
 
 [dependencies.imxrt-rt]
 version = "0.1.4"

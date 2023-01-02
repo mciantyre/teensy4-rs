@@ -2,8 +2,8 @@
 //!
 //! Pinout:
 //!
-//! - Teensy 4 Pin 22 (CAN1 TX) to TX pin of CAN Transceiver 
-//! - Teensy 4 Pin 23 (CAN2 RX) to RX pin of CAN Transceiver 
+//! - Teensy 4 Pin 22 (CAN1 TX) to TX pin of CAN Transceiver
+//! - Teensy 4 Pin 23 (CAN2 RX) to RX pin of CAN Transceiver
 //!
 //! A Can transceiver (such as the Texas Instruments SN65HVD230) is required for this demo.
 //!
@@ -46,11 +46,11 @@ fn main() -> ! {
     );
 
     let mut can1 = can1_builder.build(pins.p22, pins.p23);
-    
+
     can1.set_baud_rate(1_000_000);
     can1.set_max_mailbox(16);
     can1.enable_fifo();
-    can1.set_fifo_interrupt(true);
+    can1.set_fifo_interrupt(false);
     can1.set_fifo_accept_all();
     can1.print_registers();
 
@@ -58,10 +58,17 @@ fn main() -> ! {
     let data: [u8; 8] = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07];
     let frame = bsp::hal::can::Frame::new_data(id, data);
 
+    unsafe { cortex_m::peripheral::NVIC::unmask(bsp::interrupt::CAN1) };
     loop {
         systick.delay_ms(1000);
         led.toggle();
         can1.read_mailboxes();
         can1.transmit(&frame).ok();
     }
+}
+
+use bsp::interrupt;
+#[cortex_m_rt::interrupt]
+fn CAN1() {
+    log::warn!("CAN1 interrupt fired");
 }
