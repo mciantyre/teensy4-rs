@@ -43,6 +43,15 @@
 //! If the runtime is disabled, then `teensy4-bsp` does no define the memory map, and it does not
 //! depend on `imxrt-rt`. Consider disabling the BSP's runtime feature if you want to implement your
 //! own runtime, or if you want to use `imxrt-rt` to define your own memory map.
+//!
+//! # Notes
+//!
+//! ## SRTC reset by loader
+//!
+//! When the SRTC is enabled, setting the board into program mode then using the Teensy Loader
+//! application (GUI) to reboot it will set the current time (Unix epoch, but time in local
+//! timezone). This will overwrite whatever time you may have previously set and is ambiguous
+//! around the backwards daylight savings transition point.
 
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
