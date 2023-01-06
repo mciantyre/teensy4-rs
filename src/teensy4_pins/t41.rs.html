@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins/src/t41.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>t41.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ee9f86babca44bc2.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-3bcdcab5f4113412.css"><link rel="stylesheet" disabled href="../../static.files/dark-091ecdca18d5df85.css"><link rel="stylesheet" disabled href="../../static.files/ayu-45445754dcd01ab2.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins/src/t41.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>t41.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-73bd0883af174920.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-ea63cb6500f71309.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-bc1b32400f872ddb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -349,75 +349,75 @@
 //! If you cannot safely acquire all processor pads, use the unsafe [`Pins::new`](Pins::new())
 //! method to generate pins.
 //!
-//! | Pin  | Pad ID   |      Alt0       |   Alt1          |    Alt2       |        Alt3          |     Alt4         |  Alt5      |     Alt6        |    Alt7   |     Alt8              |      Alt9        |
-//! | ---- | -------- | --------------- | --------------- | ------------- | -------------------- | ---------------- | ---------- | --------------- | --------- | --------------------- | ---------------- |
-//! |  34  | B1_13    | WDOG1_B         | LPUART5_RX      | CSI_VSYNC     | ENET_1588_EVENT0_OUT | FLEXIO2_FLEXIO29 | GPIO2_IO29 | USDHC1_WP       | ---       | SEMC_DQS4             | FLEXIO3_FLEXIO29 |
-//! |  35  | B1_12    | ---             | LPUART5_TX      | CSI_PIXCLK    | ENET_1588_EVENT0_IN  | FLEXIO2_FLEXIO28 | GPIO2_IO28 | USDHC1_CD_B     | ---       | ---                   | FLEXIO3_FLEXIO28 |
-//! |  36  | B1_02    | LCD_DATA14      | XBAR1_INOUT16   | LPSPI4_PCS2   | SAI1_TX_BCLK         | FLEXIO2_FLEXIO18 | GPIO2_IO18 | FLEXPWM2_PWMA03 | ---       | ENET2_RDATA01         | FLEXIO3_FLEXIO18 |
-//! |  37  | B1_03    | LCD_DATA15      | XBAR1_INOUT17   | LPSPI4_PCS1   | SAI1_TX_SYNC         | FLEXIO2_FLEXIO19 | GPIO2_IO19 | FLEXPWM2_PWMB03 | ---       | ENET2_RX_EN           | FLEXIO3_FLEXIO19 |
-//! |  38  | AD_B1_12 | FLEXSPIA_DATA01 | ACMP_OUT00      | LPSPI3_PCS0   | SAI1_RX_DATA00       | CSI_DATA05       | GPIO1_IO28 | USDHC2_DATA4    | KPP_ROW01 | ENET2_1588_EVENT2_OUT | FLEXIO3_FLEXIO12 |
-//! |  39  | AD_B1_13 | FLEXSPIA_DATA00 | ACMP_OUT01      | LPSPI3_SDI    | SAI1_TX_DATA00       | CSI_DATA04       | GPIO1_IO29 | USDHC2_DATA5    | KPP_COL01 | ENET2_1588_EVENT2_IN  | FLEXIO3_FLEXIO13 |
-//! |  40  | AD_B1_04 | FLEXSPIB_DATA03 | ENET_MDC        | LPUART3_CTS_B | SPDIF_SR_CLK         | CSI_PIXCLK       | GPIO1_IO20 | USDHC2_DATA0    | KPP_ROW05 | GPT2_CAPTURE2         | FLEXIO3_FLEXIO04 |
-//! |  41  | AD_B1_05 | FLEXSPIB_DATA02 | ENET_MDIO       | LPUART3_RTS_B | SPDIF_OUT            | CSI_MCLK         | GPIO1_IO21 | USDHC2_DATA1    | KPP_COL05 | GPT2_COMPARE1         | FLEXIO3_FLEXIO05 |
-//! |  42  | SD_B0_03 | USDHC1_DATA1    | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07        | LPSPI1_SDI       | GPIO3_IO15 | ---             | ---       | ENET2_RDATA00         | SEMC_CLK6        |
-//! |  43  | SD_B0_02 | USDHC1_DATA0    | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06        | LPSPI1_SDO       | GPIO3_IO14 | ---             | ---       | ENET2_RX_ER           | SEMC_CLK5        |
-//! |  44  | SD_B0_01 | USDHC1_CLK      | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05        | LPSPI1_PCS0      | GPIO3_IO13 | FLEXSPIB_SS1_B  | ---       | ENET2_TX_CLK          | ENET2_REF_CLK2   |
-//! |  45  | SD_B0_00 | USDHC1_CMD      | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04        | LPSPI1_SCK       | GPIO3_IO12 | FLEXSPIA_SS1_B  | ---       | ENET2_TX_EN           | SEMC_DQS4        |
-//! |  46  | SD_B0_05 | USDHC1_DATA3    | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09        | FLEXSPIB_DQS     | GPIO3_IO17 | CCM_CLKO2       | ---       | ENET2_RX_EN           | ---              |
-//! |  47  | SD_B0_04 | USDHC1_DATA2    | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08        | FLEXSPIB_SS0_B   | GPIO3_IO16 | CCM_CLKO1       | ---       | ENET2_RDATA01         | ---              |
-//! |  48  | EMC_24   | SEMC_CAS        | FLEXPWM1_PWMB00 | LPUART5_RX    | ENET_TX_EN           | GPT1_CAPTURE1    | GPIO4_IO24 | ---             | ---       | FLEXSPI2_A_SS0_B      | ---              |
-//! |  49  | EMC_27   | SEMC_CKE        | FLEXPWM1_PWMA02 | LPUART5_RTS_B | LPSPI1_SCK           | FLEXIO1_FLEXIO13 | GPIO4_IO27 | ---             | ---       | FLEXSPI2_A_DATA01     | ---              |
-//! |  50  | EMC_28   | SEMC_WE         | FLEXPWM1_PWMB02 | LPUART5_CTS_B | LPSPI1_SDO           | FLEXIO1_FLEXIO14 | GPIO4_IO28 | ---             | ---       | FLEXSPI2_A_DATA02     | ---              |
-//! |  51  | EMC_22   | SEMC_BA1        | FLEXPWM3_PWMB03 | LPI2C3_SCL    | ENET_TDATA00         | QTIMER2_TIMER3   | GPIO4_IO22 | ---             | ---       | FLEXSPI2_A_SS1_B      | ---              |
-//! |  52  | EMC_26   | SEMC_CLK        | FLEXPWM1_PWMB01 | LPUART6_RX    | ENET_RX_ER           | FLEXIO1_FLEXIO12 | GPIO4_IO26 | ---             | ---       | FLEXSPI2_A_DATA00     | ---              |
-//! |  53  | EMC_25   | SEMC_RAS        | FLEXPWM1_PWMA01 | LPUART6_TX    | ENET_TX_CLK          | ENET_REF_CLK     | GPIO4_IO25 | ---             | ---       | FLEXSPI2_A_SCLK       | ---              |
-//! |  54  | EMC_29   | SEMC_CS0        | FLEXPWM3_PWMA00 | LPUART6_RTS_B | LPSPI1_SDI           | FLEXIO1_FLEXIO15 | GPIO4_IO29 | ---             | ---       | FLEXSPI2_A_DATA03     | ---              |
+//! | Pin  | Pad ID        |      Alt0       |   Alt1          |    Alt2       |        Alt3          |     Alt4         |  Alt5      |     Alt6        |    Alt7   |     Alt8              |      Alt9        |
+//! | ---- | ------------- | --------------- | --------------- | ------------- | -------------------- | ---------------- | ---------- | --------------- | --------- | --------------------- | ---------------- |
+//! |  34  | GPIO_B1_13    | WDOG1_B         | LPUART5_RX      | CSI_VSYNC     | ENET_1588_EVENT0_OUT | FLEXIO2_FLEXIO29 | GPIO2_IO29 | USDHC1_WP       | ---       | SEMC_DQS4             | FLEXIO3_FLEXIO29 |
+//! |  35  | GPIO_B1_12    | ---             | LPUART5_TX      | CSI_PIXCLK    | ENET_1588_EVENT0_IN  | FLEXIO2_FLEXIO28 | GPIO2_IO28 | USDHC1_CD_B     | ---       | ---                   | FLEXIO3_FLEXIO28 |
+//! |  36  | GPIO_B1_02    | LCD_DATA14      | XBAR1_INOUT16   | LPSPI4_PCS2   | SAI1_TX_BCLK         | FLEXIO2_FLEXIO18 | GPIO2_IO18 | FLEXPWM2_PWMA03 | ---       | ENET2_RDATA01         | FLEXIO3_FLEXIO18 |
+//! |  37  | GPIO_B1_03    | LCD_DATA15      | XBAR1_INOUT17   | LPSPI4_PCS1   | SAI1_TX_SYNC         | FLEXIO2_FLEXIO19 | GPIO2_IO19 | FLEXPWM2_PWMB03 | ---       | ENET2_RX_EN           | FLEXIO3_FLEXIO19 |
+//! |  38  | GPIO_AD_B1_12 | FLEXSPIA_DATA01 | ACMP_OUT00      | LPSPI3_PCS0   | SAI1_RX_DATA00       | CSI_DATA05       | GPIO1_IO28 | USDHC2_DATA4    | KPP_ROW01 | ENET2_1588_EVENT2_OUT | FLEXIO3_FLEXIO12 |
+//! |  39  | GPIO_AD_B1_13 | FLEXSPIA_DATA00 | ACMP_OUT01      | LPSPI3_SDI    | SAI1_TX_DATA00       | CSI_DATA04       | GPIO1_IO29 | USDHC2_DATA5    | KPP_COL01 | ENET2_1588_EVENT2_IN  | FLEXIO3_FLEXIO13 |
+//! |  40  | GPIO_AD_B1_04 | FLEXSPIB_DATA03 | ENET_MDC        | LPUART3_CTS_B | SPDIF_SR_CLK         | CSI_PIXCLK       | GPIO1_IO20 | USDHC2_DATA0    | KPP_ROW05 | GPT2_CAPTURE2         | FLEXIO3_FLEXIO04 |
+//! |  41  | GPIO_AD_B1_05 | FLEXSPIB_DATA02 | ENET_MDIO       | LPUART3_RTS_B | SPDIF_OUT            | CSI_MCLK         | GPIO1_IO21 | USDHC2_DATA1    | KPP_COL05 | GPT2_COMPARE1         | FLEXIO3_FLEXIO05 |
+//! |  42  | GPIO_SD_B0_03 | USDHC1_DATA1    | FLEXPWM1_PWMB01 | LPUART8_RTS_B | XBAR1_INOUT07        | LPSPI1_SDI       | GPIO3_IO15 | ---             | ---       | ENET2_RDATA00         | SEMC_CLK6        |
+//! |  43  | GPIO_SD_B0_02 | USDHC1_DATA0    | FLEXPWM1_PWMA01 | LPUART8_CTS_B | XBAR1_INOUT06        | LPSPI1_SDO       | GPIO3_IO14 | ---             | ---       | ENET2_RX_ER           | SEMC_CLK5        |
+//! |  44  | GPIO_SD_B0_01 | USDHC1_CLK      | FLEXPWM1_PWMB00 | LPI2C3_SDA    | XBAR1_INOUT05        | LPSPI1_PCS0      | GPIO3_IO13 | FLEXSPIB_SS1_B  | ---       | ENET2_TX_CLK          | ENET2_REF_CLK2   |
+//! |  45  | GPIO_SD_B0_00 | USDHC1_CMD      | FLEXPWM1_PWMA00 | LPI2C3_SCL    | XBAR1_INOUT04        | LPSPI1_SCK       | GPIO3_IO12 | FLEXSPIA_SS1_B  | ---       | ENET2_TX_EN           | SEMC_DQS4        |
+//! |  46  | GPIO_SD_B0_05 | USDHC1_DATA3    | FLEXPWM1_PWMB02 | LPUART8_RX    | XBAR1_INOUT09        | FLEXSPIB_DQS     | GPIO3_IO17 | CCM_CLKO2       | ---       | ENET2_RX_EN           | ---              |
+//! |  47  | GPIO_SD_B0_04 | USDHC1_DATA2    | FLEXPWM1_PWMA02 | LPUART8_TX    | XBAR1_INOUT08        | FLEXSPIB_SS0_B   | GPIO3_IO16 | CCM_CLKO1       | ---       | ENET2_RDATA01         | ---              |
+//! |  48  | GPIO_EMC_24   | SEMC_CAS        | FLEXPWM1_PWMB00 | LPUART5_RX    | ENET_TX_EN           | GPT1_CAPTURE1    | GPIO4_IO24 | ---             | ---       | FLEXSPI2_A_SS0_B      | ---              |
+//! |  49  | GPIO_EMC_27   | SEMC_CKE        | FLEXPWM1_PWMA02 | LPUART5_RTS_B | LPSPI1_SCK           | FLEXIO1_FLEXIO13 | GPIO4_IO27 | ---             | ---       | FLEXSPI2_A_DATA01     | ---              |
+//! |  50  | GPIO_EMC_28   | SEMC_WE         | FLEXPWM1_PWMB02 | LPUART5_CTS_B | LPSPI1_SDO           | FLEXIO1_FLEXIO14 | GPIO4_IO28 | ---             | ---       | FLEXSPI2_A_DATA02     | ---              |
+//! |  51  | GPIO_EMC_22   | SEMC_BA1        | FLEXPWM3_PWMB03 | LPI2C3_SCL    | ENET_TDATA00         | QTIMER2_TIMER3   | GPIO4_IO22 | ---             | ---       | FLEXSPI2_A_SS1_B      | ---              |
+//! |  52  | GPIO_EMC_26   | SEMC_CLK        | FLEXPWM1_PWMB01 | LPUART6_RX    | ENET_RX_ER           | FLEXIO1_FLEXIO12 | GPIO4_IO26 | ---             | ---       | FLEXSPI2_A_DATA00     | ---              |
+//! |  53  | GPIO_EMC_25   | SEMC_RAS        | FLEXPWM1_PWMA01 | LPUART6_TX    | ENET_TX_CLK          | ENET_REF_CLK     | GPIO4_IO25 | ---             | ---       | FLEXSPI2_A_SCLK       | ---              |
+//! |  54  | GPIO_EMC_29   | SEMC_CS0        | FLEXPWM3_PWMA00 | LPUART6_RTS_B | LPSPI1_SDI           | FLEXIO1_FLEXIO15 | GPIO4_IO29 | ---             | ---       | FLEXSPI2_A_DATA03     | ---              |
 
 </span><span class="kw">pub use </span><span class="kw">crate</span>::common::<span class="kw-2">*</span>;
-<span class="kw">use </span><span class="kw">crate</span>::iomuxc::{ad_b1::<span class="kw-2">*</span>, b1::<span class="kw-2">*</span>, emc::<span class="kw-2">*</span>, sd_b0::<span class="kw-2">*</span>, ErasedPad};
+<span class="kw">use </span><span class="kw">crate</span>::iomuxc::{gpio_ad_b1::<span class="kw-2">*</span>, gpio_b1::<span class="kw-2">*</span>, gpio_emc::<span class="kw-2">*</span>, gpio_sd_b0::<span class="kw-2">*</span>, ErasedPad};
 
 <span class="doccomment">/// Pin 34 (4.1)
-</span><span class="kw">pub type </span>P34 = B1_13;
+</span><span class="kw">pub type </span>P34 = GPIO_B1_13;
 <span class="doccomment">/// Pin 35 (4.1)
-</span><span class="kw">pub type </span>P35 = B1_12;
+</span><span class="kw">pub type </span>P35 = GPIO_B1_12;
 <span class="doccomment">/// Pin 36 (4.1)
-</span><span class="kw">pub type </span>P36 = B1_02;
+</span><span class="kw">pub type </span>P36 = GPIO_B1_02;
 <span class="doccomment">/// Pin 37 (4.1)
-</span><span class="kw">pub type </span>P37 = B1_03;
+</span><span class="kw">pub type </span>P37 = GPIO_B1_03;
 <span class="doccomment">/// Pin 38 (4.1)
-</span><span class="kw">pub type </span>P38 = AD_B1_12;
+</span><span class="kw">pub type </span>P38 = GPIO_AD_B1_12;
 <span class="doccomment">/// Pin 39 (4.1)
-</span><span class="kw">pub type </span>P39 = AD_B1_13;
+</span><span class="kw">pub type </span>P39 = GPIO_AD_B1_13;
 <span class="doccomment">/// Pin 40 (4.1)
-</span><span class="kw">pub type </span>P40 = AD_B1_04;
+</span><span class="kw">pub type </span>P40 = GPIO_AD_B1_04;
 <span class="doccomment">/// Pin 41 (4.1)
-</span><span class="kw">pub type </span>P41 = AD_B1_05;
+</span><span class="kw">pub type </span>P41 = GPIO_AD_B1_05;
 <span class="doccomment">/// Pin 42 (4.1)
-</span><span class="kw">pub type </span>P42 = SD_B0_03;
+</span><span class="kw">pub type </span>P42 = GPIO_SD_B0_03;
 <span class="doccomment">/// Pin 43 (4.1)
-</span><span class="kw">pub type </span>P43 = SD_B0_02;
+</span><span class="kw">pub type </span>P43 = GPIO_SD_B0_02;
 <span class="doccomment">/// Pin 44 (4.1)
-</span><span class="kw">pub type </span>P44 = SD_B0_01;
+</span><span class="kw">pub type </span>P44 = GPIO_SD_B0_01;
 <span class="doccomment">/// Pin 45 (4.1)
-</span><span class="kw">pub type </span>P45 = SD_B0_00;
+</span><span class="kw">pub type </span>P45 = GPIO_SD_B0_00;
 <span class="doccomment">/// Pin 46 (4.1)
-</span><span class="kw">pub type </span>P46 = SD_B0_05;
+</span><span class="kw">pub type </span>P46 = GPIO_SD_B0_05;
 <span class="doccomment">/// Pin 47 (4.1)
-</span><span class="kw">pub type </span>P47 = SD_B0_04;
+</span><span class="kw">pub type </span>P47 = GPIO_SD_B0_04;
 <span class="doccomment">/// Pin 48 (4.1)
-</span><span class="kw">pub type </span>P48 = EMC_24;
+</span><span class="kw">pub type </span>P48 = GPIO_EMC_24;
 <span class="doccomment">/// Pin 49 (4.1)
-</span><span class="kw">pub type </span>P49 = EMC_27;
+</span><span class="kw">pub type </span>P49 = GPIO_EMC_27;
 <span class="doccomment">/// Pin 50 (4.1)
-</span><span class="kw">pub type </span>P50 = EMC_28;
+</span><span class="kw">pub type </span>P50 = GPIO_EMC_28;
 <span class="doccomment">/// Pin 51 (4.1)
-</span><span class="kw">pub type </span>P51 = EMC_22;
+</span><span class="kw">pub type </span>P51 = GPIO_EMC_22;
 <span class="doccomment">/// Pin 52 (4.1)
-</span><span class="kw">pub type </span>P52 = EMC_26;
+</span><span class="kw">pub type </span>P52 = GPIO_EMC_26;
 <span class="doccomment">/// Pin 53 (4.1)
-</span><span class="kw">pub type </span>P53 = EMC_25;
+</span><span class="kw">pub type </span>P53 = GPIO_EMC_25;
 <span class="doccomment">/// Pin 54 (4.1)
-</span><span class="kw">pub type </span>P54 = EMC_29;
+</span><span class="kw">pub type </span>P54 = GPIO_EMC_29;
 
 <span class="doccomment">/// Type-erased Teensy 4.1 pins
 ///
@@ -549,62 +549,62 @@
 </span><span class="attr">#[inline]
 </span><span class="kw">pub const fn </span>from_pads(iomuxc: <span class="kw">crate</span>::iomuxc::Pads) -&gt; Pins {
     Pins {
-        p0: iomuxc.ad_b0.p03,
-        p1: iomuxc.ad_b0.p02,
-        p2: iomuxc.emc.p04,
-        p3: iomuxc.emc.p05,
-        p4: iomuxc.emc.p06,
-        p5: iomuxc.emc.p08,
-        p6: iomuxc.b0.p10,
-        p7: iomuxc.b1.p01,
-        p8: iomuxc.b1.p00,
-        p9: iomuxc.b0.p11,
-        p10: iomuxc.b0.p00,
-        p11: iomuxc.b0.p02,
-        p12: iomuxc.b0.p01,
-        p13: iomuxc.b0.p03,
-        p14: iomuxc.ad_b1.p02,
-        p15: iomuxc.ad_b1.p03,
-        p16: iomuxc.ad_b1.p07,
-        p17: iomuxc.ad_b1.p06,
-        p18: iomuxc.ad_b1.p01,
-        p19: iomuxc.ad_b1.p00,
-        p20: iomuxc.ad_b1.p10,
-        p21: iomuxc.ad_b1.p11,
-        p22: iomuxc.ad_b1.p08,
-        p23: iomuxc.ad_b1.p09,
-        p24: iomuxc.ad_b0.p12,
-        p25: iomuxc.ad_b0.p13,
-        p26: iomuxc.ad_b1.p14,
-        p27: iomuxc.ad_b1.p15,
-        p28: iomuxc.emc.p32,
-        p29: iomuxc.emc.p31,
-        p30: iomuxc.emc.p37,
-        p31: iomuxc.emc.p36,
-        p32: iomuxc.b0.p12,
-        p33: iomuxc.emc.p07,
+        p0: iomuxc.gpio_ad_b0.p03,
+        p1: iomuxc.gpio_ad_b0.p02,
+        p2: iomuxc.gpio_emc.p04,
+        p3: iomuxc.gpio_emc.p05,
+        p4: iomuxc.gpio_emc.p06,
+        p5: iomuxc.gpio_emc.p08,
+        p6: iomuxc.gpio_b0.p10,
+        p7: iomuxc.gpio_b1.p01,
+        p8: iomuxc.gpio_b1.p00,
+        p9: iomuxc.gpio_b0.p11,
+        p10: iomuxc.gpio_b0.p00,
+        p11: iomuxc.gpio_b0.p02,
+        p12: iomuxc.gpio_b0.p01,
+        p13: iomuxc.gpio_b0.p03,
+        p14: iomuxc.gpio_ad_b1.p02,
+        p15: iomuxc.gpio_ad_b1.p03,
+        p16: iomuxc.gpio_ad_b1.p07,
+        p17: iomuxc.gpio_ad_b1.p06,
+        p18: iomuxc.gpio_ad_b1.p01,
+        p19: iomuxc.gpio_ad_b1.p00,
+        p20: iomuxc.gpio_ad_b1.p10,
+        p21: iomuxc.gpio_ad_b1.p11,
+        p22: iomuxc.gpio_ad_b1.p08,
+        p23: iomuxc.gpio_ad_b1.p09,
+        p24: iomuxc.gpio_ad_b0.p12,
+        p25: iomuxc.gpio_ad_b0.p13,
+        p26: iomuxc.gpio_ad_b1.p14,
+        p27: iomuxc.gpio_ad_b1.p15,
+        p28: iomuxc.gpio_emc.p32,
+        p29: iomuxc.gpio_emc.p31,
+        p30: iomuxc.gpio_emc.p37,
+        p31: iomuxc.gpio_emc.p36,
+        p32: iomuxc.gpio_b0.p12,
+        p33: iomuxc.gpio_emc.p07,
         <span class="comment">// END OF COMMON PINS
-        </span>p34: iomuxc.b1.p13,
-        p35: iomuxc.b1.p12,
-        p36: iomuxc.b1.p02,
-        p37: iomuxc.b1.p03,
-        p38: iomuxc.ad_b1.p12,
-        p39: iomuxc.ad_b1.p13,
-        p40: iomuxc.ad_b1.p04,
-        p41: iomuxc.ad_b1.p05,
-        p42: iomuxc.sd_b0.p03,
-        p43: iomuxc.sd_b0.p02,
-        p44: iomuxc.sd_b0.p01,
-        p45: iomuxc.sd_b0.p00,
-        p46: iomuxc.sd_b0.p05,
-        p47: iomuxc.sd_b0.p04,
-        p48: iomuxc.emc.p24,
-        p49: iomuxc.emc.p27,
-        p50: iomuxc.emc.p28,
-        p51: iomuxc.emc.p22,
-        p52: iomuxc.emc.p26,
-        p53: iomuxc.emc.p25,
-        p54: iomuxc.emc.p29,
+        </span>p34: iomuxc.gpio_b1.p13,
+        p35: iomuxc.gpio_b1.p12,
+        p36: iomuxc.gpio_b1.p02,
+        p37: iomuxc.gpio_b1.p03,
+        p38: iomuxc.gpio_ad_b1.p12,
+        p39: iomuxc.gpio_ad_b1.p13,
+        p40: iomuxc.gpio_ad_b1.p04,
+        p41: iomuxc.gpio_ad_b1.p05,
+        p42: iomuxc.gpio_sd_b0.p03,
+        p43: iomuxc.gpio_sd_b0.p02,
+        p44: iomuxc.gpio_sd_b0.p01,
+        p45: iomuxc.gpio_sd_b0.p00,
+        p46: iomuxc.gpio_sd_b0.p05,
+        p47: iomuxc.gpio_sd_b0.p04,
+        p48: iomuxc.gpio_emc.p24,
+        p49: iomuxc.gpio_emc.p27,
+        p50: iomuxc.gpio_emc.p28,
+        p51: iomuxc.gpio_emc.p22,
+        p52: iomuxc.gpio_emc.p26,
+        p53: iomuxc.gpio_emc.p25,
+        p54: iomuxc.gpio_emc.p29,
     }
 }
 
@@ -689,4 +689,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_pins" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e0098a5cc 2022-11-29)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_pins" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (388538fc9 2023-01-05)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

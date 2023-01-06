@@ -1,3 +1,0 @@
-(function() {var implementors = {
-"teensy4_bsp":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"teensy4_bsp/usb/enum.Error.html\" title=\"enum teensy4_bsp::usb::Error\">Error</a>"],["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"teensy4_bsp/usb/struct.PollStatus.html\" title=\"struct teensy4_bsp::usb::PollStatus\">PollStatus</a>"]]
-};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,3 +1,0 @@
-(function() {var implementors = {
-"teensy4_bsp":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Write.html\" title=\"trait core::fmt::Write\">Write</a> for <a class=\"struct\" href=\"teensy4_bsp/usb/struct.Writer.html\" title=\"struct teensy4_bsp::usb::Writer\">Writer</a>"]]
-};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

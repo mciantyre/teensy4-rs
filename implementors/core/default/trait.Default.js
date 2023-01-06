@@ -1,3 +1,0 @@
-(function() {var implementors = {
-"teensy4_bsp":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/default/trait.Default.html\" title=\"trait core::default::Default\">Default</a> for <a class=\"struct\" href=\"teensy4_bsp/usb/struct.LoggingConfig.html\" title=\"struct teensy4_bsp::usb::LoggingConfig\">LoggingConfig</a>"]]
-};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

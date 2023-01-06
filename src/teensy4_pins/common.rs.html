@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins/src/common.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>common.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ee9f86babca44bc2.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-3bcdcab5f4113412.css"><link rel="stylesheet" disabled href="../../static.files/dark-091ecdca18d5df85.css"><link rel="stylesheet" disabled href="../../static.files/ayu-45445754dcd01ab2.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `teensy4-pins/src/common.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>common.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-73bd0883af174920.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-ea63cb6500f71309.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-bc1b32400f872ddb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../teensy4_pins/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -145,116 +145,116 @@
 //!   trait implementations. This describes what kinds of functions the pin supports. The constraints
 //!   may be enforced by the HAL&#39;s APIs.
 //!
-//! | Pin | Pad ID   |       Alt0      |       Alt1      |     Alt2        |          Alt3        |         Alt4         |       Alt5         |          Alt6        |       Alt7           |          Alt8         |      Alt9        |
-//! | --- | -------- | --------------- | --------------- | --------------- | -------------------- | -------------------- | ------------------ | -------------------- | -------------------- | --------------------- | ---------------- |
-//! |  0  | AD_B0_03 | FLEXCAN2_RX     | XBAR1_INOUT17   | LPUART6_RX      | USB_OTG1_OC          | FLEXPWM1_PWMX01      | GPIO1_IO03         | REF_CLK_24M          | LPSPI3_PCS0          | ---                   | ---              |
-//! |  1  | AD_B0_02 | FLEXCAN2_TX     | XBAR1_INOUT16   | LPUART6_TX      | USB_OTG1_PWR         | FLEXPWM1_PWMX00      | GPIO1_IO02         | LPI2C1_HREQ          | LPSPI3_SDI           | ---                   | ---              |
-//! |  2  | EMC_04   | SEMC_DATA04     | FLEXPWM4_PWMA02 | SAI2_TX_DATA    | XBAR1_INOUT06        | FLEXIO1_FLEXIO04     | GPIO4_IO04         | ---                  | ---                  | ---                   | ---              |
-//! |  3  | EMC_05   | SEMC_DATA05     | FLEXPWM4_PWMB02 | SAI2_TX_SYNC    | XBAR1_INOUT07        | FLEXIO1_FLEXIO05     | GPIO4_IO05         | ---                  | ---                  | ---                   | ---              |
-//! |  4  | EMC_06   | SEMC_DATA06     | FLEXPWM2_PWMA00 | SAI2_TX_BCLK    | XBAR1_INOUT08        | FLEXIO1_FLEXIO06     | GPIO4_IO06         | ---                  | ---                  | ---                   | ---              |
-//! |  5  | EMC_08   | SEMC_DM00       | FLEXPWM2_PWMA01 | SAI2_RX_DATA    | XBAR1_INOUT17        | FLEXIO1_FLEXIO08     | GPIO4_IO08         | ---                  | ---                  | ---                   | ---              |
-//! |  6  | B0_10    | LCD_DATA06      | QTIMER4_TIMER1  | FLEXPWM2_PWMA02 | SAI1_TX_DATA03       | FLEXIO2_FLEXIO10     | GPIO2_IO10         | SRC_BOOT_CFG06       | ---                  | ENET2_CRS             | ---              |
-//! |  7  | B1_01    | LCD_DATA13      | XBAR1_INOUT15   | LPUART4_RX      | SAI1_TX_DATA00       | FLEXIO2_FLEXIO17     | GPIO2_IO17         | FLEXPWM1_PWMB03      | ---                  | ENET2_RDATA00         | FLEXIO3_FLEXIO17 |
-//! |  8  | B1_00    | LCD_DATA12      | XBAR1_INOUT14   | LPUART4_TX      | SAI1_RX_DATA00       | FLEXIO2_FLEXIO16     | GPIO2_IO16         | FLEXPWM1_PWMA03      | ---                  | ENET2_RX_ER           | FLEXIO3_FLEXIO16 |
-//! |  9  | B0_11    | LCD_DATA07      | QTIMER4_TIMER2  | FLEXPWM2_PWMB02 | SAI1_TX_DATA02       | FLEXIO2_FLEXIO11     | GPIO2_IO11         | SRC_BOOT_CFG07       | ---                  | ENET2_COL             | ---              |
-//! |  10 | B0_00    | LCD_CLK         | QTIMER1_TIMER0  | MQS_RIGHT       | LPSPI4_PCS0          | FLEXIO2_FLEXIO00     | GPIO2_IO00         | SEMC_CSX01           | ---                  | ENET2_MDC             | ---              |
-//! |  11 | B0_02    | LCD_HSYNC       | QTIMER1_TIMER2  | FLEXCAN1_TX     | LPSPI4_SDO           | FLEXIO2_FLEXIO02     | GPIO2_IO02         | SEMC_CSX03           | ---                  | ENET2_1588_EVENT0_OUT | ---              |
-//! |  12 | B0_01    | LCD_ENABLE      | QTIMER1_TIMER1  | MQS_LEFT        | LPSPI4_SDI           | FLEXIO2_FLEXIO01     | GPIO2_IO01         | SEMC_CSX02           | ---                  | ENET2_MDIO            | ---              |
-//! |  13 | B0_03    | LCD_VSYNC       | QTIMER2_TIMER0  | FLEXCAN1_RX     | LPSPI4_SCK           | FLEXIO2_FLEXIO03     | GPIO2_IO03 (LED)   | WDOG2_RESET_B_DEB    | ---                  | ENET2_1588_EVENT0_IN  | ---              |
-//! |  14 | AD_B1_02 | USB_OTG1_ID     | QTIMER3_TIMER2  | LPUART2_TX      | SPDIF_OUT            | ENET_1588_EVENT2_OUT | GPIO1_IO18         | USDHC1_CD_B          | KPP_ROW06            | GPT2_CLK              | FLEXIO3_FLEXIO02 |
-//! |  15 | AD_B1_03 | USB_OTG1_OC     | QTIMER3_TIMER3  | LPUART2_RX      | SPDIF_IN             | ENET_1588_EVENT2_IN  | GPIO1_IO19         | USDHC2_CD_B          | KPP_COL06            | GPT2_CAPTURE1         | FLEXIO3_FLEXIO03 |
-//! |  16 | AD_B1_07 | FLEXSPIB_DATA00 | LPI2C3_SCL      | LPUART3_RX      | SPDIF_EXT_CLK        | CSI_HSYNC            | GPIO1_IO23         | USDHC2_DATA3         | KPP_COL04            | GPT2_COMPARE3         | FLEXIO3_FLEXIO07 |
-//! |  17 | AD_B1_06 | FLEXSPIB_DATA01 | LPI2C3_SDA      | LPUART3_TX      | SPDIF_LOCK           | CSI_VSYNC            | GPIO1_IO22         | USDHC2_DATA2         | KPP_ROW04            | GPT2_COMPARE2         | FLEXIO3_FLEXIO06 |
-//! |  18 | AD_B1_01 | USB_OTG1_PWR    | QTIMER3_TIMER1  | LPUART2_RTS_B   | LPI2C1_SDA           | CCM_PMIC_READY       | GPIO1_IO17         | USDHC1_VSELECT       | KPP_COL07            | ENET2_1588_EVENT0_IN  | FLEXIO3_FLEXIO01 |
-//! |  19 | AD_B1_00 | USB_OTG2_ID     | QTIMER3_TIMER0  | LPUART2_CTS     | LPI2C1_SCL           | WDOG1_B              | GPIO1_IO16         | USDHC1_WP            | KPP_ROW07            | ENET2_1588_EVENT0_OUT | FLEXIO3_FLEXIO00 |
-//! |  20 | AD_B1_10 | FLEXSPIA_DATA03 | WDOG1_B         | LPUART8_TX      | SAI1_RX_SYNC         | CSI_DATA07           | GPIO1_IO26         | USDHC2_WP            | KPP_ROW02            | ENET2_1588_EVENT1_OUT | FLEXIO3_FLEXIO10 |
-//! |  21 | AD_B1_11 | FLEXSPIA_DATA02 | EWM_OUT_B       | LPUART8_RX      | SAI1_RX_BCLK         | CSI_DATA06           | GPIO1_IO27         | USDHC2_RESET_B       | KPP_COL02            | ENET2_1588_EVENT1_IN  | FLEXIO3_FLEXIO11 |
-//! |  22 | AD_B1_08 | FLEXSPIA_SS1_B  | FLEXPWM4_PWMA00 | FLEXCAN1_TX     | CCM_PMIC_READY       | CSI_DATA09           | GPIO1_IO24         | USDHC2_CMD           | KPP_ROW03            | ---                   | FLEXIO3_FLEXIO08 |
-//! |  23 | AD_B1_09 | FLEXSPIA_DQS    | FLEXPWM4_PWMA01 | FLEXCAN1_RX     | SAI1_MCLK            | CSI_DATA08           | GPIO1_IO25         | USDHC2_CLK           | KPP_COL03            | ---                   | FLEXIO3_FLEXIO09 |
-//! |  24 | AD_B0_12 | LPI2C4_SCL      | CCM_PMIC_READY  | LPUART1_TX      | WDOG2_WDOG_B         | FLEXPWM1_PWMX02      | GPIO1_IO12         | ENET_1588_EVENT1_OUT | NMI_GLUE_NMI         | ---                   | ---              |
-//! |  25 | AD_B0_13 | LPI2C4_SDA      | GPT1_CLK        | LPUART1_RX      | EWM_OUT_B            | FLEXPWM1_PWMX03      | GPIO1_IO13         | ENET_1588_EVENT1_IN  | REF_CLK_24M          | ---                   | ---              |
-//! |  26 | AD_B1_14 | USB_OTG2_OC     | XBAR1_IN24      | LPUART1_CTS_B   | ENET_1588_EVENT0_OUT | CSI_VSYNC            | GPIO1_IO14         | FLEXCAN2_TX          | ---                  | FLEXCAN3_TX           | ---              |
-//! |  27 | AD_B1_15 | USB_OTG2_PWR    | XBAR1_IN25      | LPUART1_RTS_B   | ENET_1588_EVENT0_IN  | CSI_HSYNC            | GPIO1_IO15         | FLEXCAN2_RX          | WDOG1_WDOG_RST_B_DEB | FLEXCAN3_RX           | ---              |
-//! |  28 | EMC_32   | SEMC_DATA10     | FLEXPWM3_PWMB01 | LPUART7_RX      | CCM_PMIC_RDY         | CSI_DATA21           | GPIO3_IO18         | ---                  | ---                  | ENET2_TX_EN           | ---              |
-//! |  29 | EMC_31   | SEMC_DATA09     | FLEXPWM3_PWMA01 | LPUART7_TX      | LPSPI1_PCS1          | CSI_DATA22           | GPIO4_IO31         | ---                  | ---                  | ENET2_TDATA01         | ---              |
-//! |  30 | EMC_37   | SEMC_DATA15     | XBAR1_IN23      | GPT1_COMPARE3   | SAI3_MCLK            | CSI_DATA16           | GPIO3_IO23         | USDHC2_WP            | ---                  | ENET2_RX_EN           | FLEXCAN3_RX      |
-//! |  31 | EMC_36   | SEMC_DATA14     | XBAR1_IN22      | GPT1_COMPARE2   | SAI3_TX_DATA         | CSI_DATA17           | GPIO3_IO22         | USDHC1_WP            | ---                  | ENET2_RDATA01         | FLEXCAN3_TX      |
-//! |  32 | B0_12    | LCD_DATA08      | XBAR1_INOUT10   | ARM_TRACE_CLK   | SAI1_TX_DATA01       | FLEXIO2_FLEXIO12     | GPIO2_IO12         | SRC_BOOT_CFG08       | ---                  | ENET2_TDATA00         | ---              |
-//! |  33 | EMC_07   | SEMC_DATA07     | FLEXPWM2_PWMB00 | SAI2_MCLK       | XBAR1_INOUT09        | FLEXIO1_FLEXIO07     | GPIO4_IO07         | ---                  | ---                  | ---                   | ---              |
+//! | Pin | Pad ID        |       Alt0      |       Alt1      |     Alt2        |          Alt3        |         Alt4         |       Alt5         |          Alt6        |       Alt7           |          Alt8         |      Alt9        |
+//! | --- | ------------- | --------------- | --------------- | --------------- | -------------------- | -------------------- | ------------------ | -------------------- | -------------------- | --------------------- | ---------------- |
+//! |  0  | GPIO_AD_B0_03 | FLEXCAN2_RX     | XBAR1_INOUT17   | LPUART6_RX      | USB_OTG1_OC          | FLEXPWM1_PWMX01      | GPIO1_IO03         | REF_CLK_24M          | LPSPI3_PCS0          | ---                   | ---              |
+//! |  1  | GPIO_AD_B0_02 | FLEXCAN2_TX     | XBAR1_INOUT16   | LPUART6_TX      | USB_OTG1_PWR         | FLEXPWM1_PWMX00      | GPIO1_IO02         | LPI2C1_HREQ          | LPSPI3_SDI           | ---                   | ---              |
+//! |  2  | GPIO_EMC_04   | SEMC_DATA04     | FLEXPWM4_PWMA02 | SAI2_TX_DATA    | XBAR1_INOUT06        | FLEXIO1_FLEXIO04     | GPIO4_IO04         | ---                  | ---                  | ---                   | ---              |
+//! |  3  | GPIO_EMC_05   | SEMC_DATA05     | FLEXPWM4_PWMB02 | SAI2_TX_SYNC    | XBAR1_INOUT07        | FLEXIO1_FLEXIO05     | GPIO4_IO05         | ---                  | ---                  | ---                   | ---              |
+//! |  4  | GPIO_EMC_06   | SEMC_DATA06     | FLEXPWM2_PWMA00 | SAI2_TX_BCLK    | XBAR1_INOUT08        | FLEXIO1_FLEXIO06     | GPIO4_IO06         | ---                  | ---                  | ---                   | ---              |
+//! |  5  | GPIO_EMC_08   | SEMC_DM00       | FLEXPWM2_PWMA01 | SAI2_RX_DATA    | XBAR1_INOUT17        | FLEXIO1_FLEXIO08     | GPIO4_IO08         | ---                  | ---                  | ---                   | ---              |
+//! |  6  | GPIO_B0_10    | LCD_DATA06      | QTIMER4_TIMER1  | FLEXPWM2_PWMA02 | SAI1_TX_DATA03       | FLEXIO2_FLEXIO10     | GPIO2_IO10         | SRC_BOOT_CFG06       | ---                  | ENET2_CRS             | ---              |
+//! |  7  | GPIO_B1_01    | LCD_DATA13      | XBAR1_INOUT15   | LPUART4_RX      | SAI1_TX_DATA00       | FLEXIO2_FLEXIO17     | GPIO2_IO17         | FLEXPWM1_PWMB03      | ---                  | ENET2_RDATA00         | FLEXIO3_FLEXIO17 |
+//! |  8  | GPIO_B1_00    | LCD_DATA12      | XBAR1_INOUT14   | LPUART4_TX      | SAI1_RX_DATA00       | FLEXIO2_FLEXIO16     | GPIO2_IO16         | FLEXPWM1_PWMA03      | ---                  | ENET2_RX_ER           | FLEXIO3_FLEXIO16 |
+//! |  9  | GPIO_B0_11    | LCD_DATA07      | QTIMER4_TIMER2  | FLEXPWM2_PWMB02 | SAI1_TX_DATA02       | FLEXIO2_FLEXIO11     | GPIO2_IO11         | SRC_BOOT_CFG07       | ---                  | ENET2_COL             | ---              |
+//! |  10 | GPIO_B0_00    | LCD_CLK         | QTIMER1_TIMER0  | MQS_RIGHT       | LPSPI4_PCS0          | FLEXIO2_FLEXIO00     | GPIO2_IO00         | SEMC_CSX01           | ---                  | ENET2_MDC             | ---              |
+//! |  11 | GPIO_B0_02    | LCD_HSYNC       | QTIMER1_TIMER2  | FLEXCAN1_TX     | LPSPI4_SDO           | FLEXIO2_FLEXIO02     | GPIO2_IO02         | SEMC_CSX03           | ---                  | ENET2_1588_EVENT0_OUT | ---              |
+//! |  12 | GPIO_B0_01    | LCD_ENABLE      | QTIMER1_TIMER1  | MQS_LEFT        | LPSPI4_SDI           | FLEXIO2_FLEXIO01     | GPIO2_IO01         | SEMC_CSX02           | ---                  | ENET2_MDIO            | ---              |
+//! |  13 | GPIO_B0_03    | LCD_VSYNC       | QTIMER2_TIMER0  | FLEXCAN1_RX     | LPSPI4_SCK           | FLEXIO2_FLEXIO03     | GPIO2_IO03 (LED)   | WDOG2_RESET_B_DEB    | ---                  | ENET2_1588_EVENT0_IN  | ---              |
+//! |  14 | GPIO_AD_B1_02 | USB_OTG1_ID     | QTIMER3_TIMER2  | LPUART2_TX      | SPDIF_OUT            | ENET_1588_EVENT2_OUT | GPIO1_IO18         | USDHC1_CD_B          | KPP_ROW06            | GPT2_CLK              | FLEXIO3_FLEXIO02 |
+//! |  15 | GPIO_AD_B1_03 | USB_OTG1_OC     | QTIMER3_TIMER3  | LPUART2_RX      | SPDIF_IN             | ENET_1588_EVENT2_IN  | GPIO1_IO19         | USDHC2_CD_B          | KPP_COL06            | GPT2_CAPTURE1         | FLEXIO3_FLEXIO03 |
+//! |  16 | GPIO_AD_B1_07 | FLEXSPIB_DATA00 | LPI2C3_SCL      | LPUART3_RX      | SPDIF_EXT_CLK        | CSI_HSYNC            | GPIO1_IO23         | USDHC2_DATA3         | KPP_COL04            | GPT2_COMPARE3         | FLEXIO3_FLEXIO07 |
+//! |  17 | GPIO_AD_B1_06 | FLEXSPIB_DATA01 | LPI2C3_SDA      | LPUART3_TX      | SPDIF_LOCK           | CSI_VSYNC            | GPIO1_IO22         | USDHC2_DATA2         | KPP_ROW04            | GPT2_COMPARE2         | FLEXIO3_FLEXIO06 |
+//! |  18 | GPIO_AD_B1_01 | USB_OTG1_PWR    | QTIMER3_TIMER1  | LPUART2_RTS_B   | LPI2C1_SDA           | CCM_PMIC_READY       | GPIO1_IO17         | USDHC1_VSELECT       | KPP_COL07            | ENET2_1588_EVENT0_IN  | FLEXIO3_FLEXIO01 |
+//! |  19 | GPIO_AD_B1_00 | USB_OTG2_ID     | QTIMER3_TIMER0  | LPUART2_CTS     | LPI2C1_SCL           | WDOG1_B              | GPIO1_IO16         | USDHC1_WP            | KPP_ROW07            | ENET2_1588_EVENT0_OUT | FLEXIO3_FLEXIO00 |
+//! |  20 | GPIO_AD_B1_10 | FLEXSPIA_DATA03 | WDOG1_B         | LPUART8_TX      | SAI1_RX_SYNC         | CSI_DATA07           | GPIO1_IO26         | USDHC2_WP            | KPP_ROW02            | ENET2_1588_EVENT1_OUT | FLEXIO3_FLEXIO10 |
+//! |  21 | GPIO_AD_B1_11 | FLEXSPIA_DATA02 | EWM_OUT_B       | LPUART8_RX      | SAI1_RX_BCLK         | CSI_DATA06           | GPIO1_IO27         | USDHC2_RESET_B       | KPP_COL02            | ENET2_1588_EVENT1_IN  | FLEXIO3_FLEXIO11 |
+//! |  22 | GPIO_AD_B1_08 | FLEXSPIA_SS1_B  | FLEXPWM4_PWMA00 | FLEXCAN1_TX     | CCM_PMIC_READY       | CSI_DATA09           | GPIO1_IO24         | USDHC2_CMD           | KPP_ROW03            | ---                   | FLEXIO3_FLEXIO08 |
+//! |  23 | GPIO_AD_B1_09 | FLEXSPIA_DQS    | FLEXPWM4_PWMA01 | FLEXCAN1_RX     | SAI1_MCLK            | CSI_DATA08           | GPIO1_IO25         | USDHC2_CLK           | KPP_COL03            | ---                   | FLEXIO3_FLEXIO09 |
+//! |  24 | GPIO_AD_B0_12 | LPI2C4_SCL      | CCM_PMIC_READY  | LPUART1_TX      | WDOG2_WDOG_B         | FLEXPWM1_PWMX02      | GPIO1_IO12         | ENET_1588_EVENT1_OUT | NMI_GLUE_NMI         | ---                   | ---              |
+//! |  25 | GPIO_AD_B0_13 | LPI2C4_SDA      | GPT1_CLK        | LPUART1_RX      | EWM_OUT_B            | FLEXPWM1_PWMX03      | GPIO1_IO13         | ENET_1588_EVENT1_IN  | REF_CLK_24M          | ---                   | ---              |
+//! |  26 | GPIO_AD_B1_14 | USB_OTG2_OC     | XBAR1_IN24      | LPUART1_CTS_B   | ENET_1588_EVENT0_OUT | CSI_VSYNC            | GPIO1_IO14         | FLEXCAN2_TX          | ---                  | FLEXCAN3_TX           | ---              |
+//! |  27 | GPIO_AD_B1_15 | USB_OTG2_PWR    | XBAR1_IN25      | LPUART1_RTS_B   | ENET_1588_EVENT0_IN  | CSI_HSYNC            | GPIO1_IO15         | FLEXCAN2_RX          | WDOG1_WDOG_RST_B_DEB | FLEXCAN3_RX           | ---              |
+//! |  28 | GPIO_EMC_32   | SEMC_DATA10     | FLEXPWM3_PWMB01 | LPUART7_RX      | CCM_PMIC_RDY         | CSI_DATA21           | GPIO3_IO18         | ---                  | ---                  | ENET2_TX_EN           | ---              |
+//! |  29 | GPIO_EMC_31   | SEMC_DATA09     | FLEXPWM3_PWMA01 | LPUART7_TX      | LPSPI1_PCS1          | CSI_DATA22           | GPIO4_IO31         | ---                  | ---                  | ENET2_TDATA01         | ---              |
+//! |  30 | GPIO_EMC_37   | SEMC_DATA15     | XBAR1_IN23      | GPT1_COMPARE3   | SAI3_MCLK            | CSI_DATA16           | GPIO3_IO23         | USDHC2_WP            | ---                  | ENET2_RX_EN           | FLEXCAN3_RX      |
+//! |  31 | GPIO_EMC_36   | SEMC_DATA14     | XBAR1_IN22      | GPT1_COMPARE2   | SAI3_TX_DATA         | CSI_DATA17           | GPIO3_IO22         | USDHC1_WP            | ---                  | ENET2_RDATA01         | FLEXCAN3_TX      |
+//! |  32 | GPIO_B0_12    | LCD_DATA08      | XBAR1_INOUT10   | ARM_TRACE_CLK   | SAI1_TX_DATA01       | FLEXIO2_FLEXIO12     | GPIO2_IO12         | SRC_BOOT_CFG08       | ---                  | ENET2_TDATA00         | ---              |
+//! |  33 | GPIO_EMC_07   | SEMC_DATA07     | FLEXPWM2_PWMB00 | SAI2_MCLK       | XBAR1_INOUT09        | FLEXIO1_FLEXIO07     | GPIO4_IO07         | ---                  | ---                  | ---                   | ---              |
 //!
 //! References:
 //! - [Teensy Schematics](https://www.pjrc.com/teensy/schematic.html)
 //! - i.MX RT 1060 Processor Reference Manual, Rev. 2, 12/2019
 
-</span><span class="kw">use </span><span class="kw">crate</span>::iomuxc::{ad_b0::<span class="kw-2">*</span>, ad_b1::<span class="kw-2">*</span>, b0::<span class="kw-2">*</span>, b1::<span class="kw-2">*</span>, emc::<span class="kw-2">*</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::iomuxc::{gpio_ad_b0::<span class="kw-2">*</span>, gpio_ad_b1::<span class="kw-2">*</span>, gpio_b0::<span class="kw-2">*</span>, gpio_b1::<span class="kw-2">*</span>, gpio_emc::<span class="kw-2">*</span>};
 
 <span class="doccomment">/// Pin 0 (common)
-</span><span class="kw">pub type </span>P0 = AD_B0_03;
+</span><span class="kw">pub type </span>P0 = GPIO_AD_B0_03;
 <span class="doccomment">/// Pin 1 (common)
-</span><span class="kw">pub type </span>P1 = AD_B0_02;
+</span><span class="kw">pub type </span>P1 = GPIO_AD_B0_02;
 <span class="doccomment">/// Pin 2 (common)
-</span><span class="kw">pub type </span>P2 = EMC_04;
+</span><span class="kw">pub type </span>P2 = GPIO_EMC_04;
 <span class="doccomment">/// Pin 3 (common)
-</span><span class="kw">pub type </span>P3 = EMC_05;
+</span><span class="kw">pub type </span>P3 = GPIO_EMC_05;
 <span class="doccomment">/// Pin 4 (common)
-</span><span class="kw">pub type </span>P4 = EMC_06;
+</span><span class="kw">pub type </span>P4 = GPIO_EMC_06;
 <span class="doccomment">/// Pin 5 (common)
-</span><span class="kw">pub type </span>P5 = EMC_08;
+</span><span class="kw">pub type </span>P5 = GPIO_EMC_08;
 <span class="doccomment">/// Pin 6 (common)
-</span><span class="kw">pub type </span>P6 = B0_10;
+</span><span class="kw">pub type </span>P6 = GPIO_B0_10;
 <span class="doccomment">/// Pin 7 (common)
-</span><span class="kw">pub type </span>P7 = B1_01;
+</span><span class="kw">pub type </span>P7 = GPIO_B1_01;
 <span class="doccomment">/// Pin 8 (common)
-</span><span class="kw">pub type </span>P8 = B1_00;
+</span><span class="kw">pub type </span>P8 = GPIO_B1_00;
 <span class="doccomment">/// Pin 9 (common)
-</span><span class="kw">pub type </span>P9 = B0_11;
+</span><span class="kw">pub type </span>P9 = GPIO_B0_11;
 <span class="doccomment">/// Pin 10 (common)
-</span><span class="kw">pub type </span>P10 = B0_00;
+</span><span class="kw">pub type </span>P10 = GPIO_B0_00;
 <span class="doccomment">/// Pin 11 (common)
-</span><span class="kw">pub type </span>P11 = B0_02;
+</span><span class="kw">pub type </span>P11 = GPIO_B0_02;
 <span class="doccomment">/// Pin 12 (common)
-</span><span class="kw">pub type </span>P12 = B0_01;
+</span><span class="kw">pub type </span>P12 = GPIO_B0_01;
 <span class="doccomment">/// Pin 13 (common)
-</span><span class="kw">pub type </span>P13 = B0_03;
+</span><span class="kw">pub type </span>P13 = GPIO_B0_03;
 <span class="doccomment">/// Pin 14 (common)
-</span><span class="kw">pub type </span>P14 = AD_B1_02;
+</span><span class="kw">pub type </span>P14 = GPIO_AD_B1_02;
 <span class="doccomment">/// Pin 15 (common)
-</span><span class="kw">pub type </span>P15 = AD_B1_03;
+</span><span class="kw">pub type </span>P15 = GPIO_AD_B1_03;
 <span class="doccomment">/// Pin 16 (common)
-</span><span class="kw">pub type </span>P16 = AD_B1_07;
+</span><span class="kw">pub type </span>P16 = GPIO_AD_B1_07;
 <span class="doccomment">/// Pin 17 (common)
-</span><span class="kw">pub type </span>P17 = AD_B1_06;
+</span><span class="kw">pub type </span>P17 = GPIO_AD_B1_06;
 <span class="doccomment">/// Pin 18 (common)
-</span><span class="kw">pub type </span>P18 = AD_B1_01;
+</span><span class="kw">pub type </span>P18 = GPIO_AD_B1_01;
 <span class="doccomment">/// Pin 19 (common)
-</span><span class="kw">pub type </span>P19 = AD_B1_00;
+</span><span class="kw">pub type </span>P19 = GPIO_AD_B1_00;
 <span class="doccomment">/// Pin 20 (common)
-</span><span class="kw">pub type </span>P20 = AD_B1_10;
+</span><span class="kw">pub type </span>P20 = GPIO_AD_B1_10;
 <span class="doccomment">/// Pin 21 (common)
-</span><span class="kw">pub type </span>P21 = AD_B1_11;
+</span><span class="kw">pub type </span>P21 = GPIO_AD_B1_11;
 <span class="doccomment">/// Pin 22 (common)
-</span><span class="kw">pub type </span>P22 = AD_B1_08;
+</span><span class="kw">pub type </span>P22 = GPIO_AD_B1_08;
 <span class="doccomment">/// Pin 23 (common)
-</span><span class="kw">pub type </span>P23 = AD_B1_09;
+</span><span class="kw">pub type </span>P23 = GPIO_AD_B1_09;
 <span class="doccomment">/// Pin 24 (common)
-</span><span class="kw">pub type </span>P24 = AD_B0_12;
+</span><span class="kw">pub type </span>P24 = GPIO_AD_B0_12;
 <span class="doccomment">/// Pin 25 (common)
-</span><span class="kw">pub type </span>P25 = AD_B0_13;
+</span><span class="kw">pub type </span>P25 = GPIO_AD_B0_13;
 <span class="doccomment">/// Pin 26 (common)
-</span><span class="kw">pub type </span>P26 = AD_B1_14;
+</span><span class="kw">pub type </span>P26 = GPIO_AD_B1_14;
 <span class="doccomment">/// Pin 27 (common)
-</span><span class="kw">pub type </span>P27 = AD_B1_15;
+</span><span class="kw">pub type </span>P27 = GPIO_AD_B1_15;
 <span class="doccomment">/// Pin 28 (common)
-</span><span class="kw">pub type </span>P28 = EMC_32;
+</span><span class="kw">pub type </span>P28 = GPIO_EMC_32;
 <span class="doccomment">/// Pin 29 (common)
-</span><span class="kw">pub type </span>P29 = EMC_31;
+</span><span class="kw">pub type </span>P29 = GPIO_EMC_31;
 <span class="doccomment">/// Pin 30 (common)
-</span><span class="kw">pub type </span>P30 = EMC_37;
+</span><span class="kw">pub type </span>P30 = GPIO_EMC_37;
 <span class="doccomment">/// Pin 31 (common)
-</span><span class="kw">pub type </span>P31 = EMC_36;
+</span><span class="kw">pub type </span>P31 = GPIO_EMC_36;
 <span class="doccomment">/// Pin 32 (common)
-</span><span class="kw">pub type </span>P32 = B0_12;
+</span><span class="kw">pub type </span>P32 = GPIO_B0_12;
 <span class="doccomment">/// Pin 33 (common)
-</span><span class="kw">pub type </span>P33 = EMC_07;
+</span><span class="kw">pub type </span>P33 = GPIO_EMC_07;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_pins" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e0098a5cc 2022-11-29)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_pins" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (388538fc9 2023-01-05)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>
