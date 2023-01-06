@@ -1,6 +1,6 @@
 [package]
 name = "teensy4-panic"
-version = "0.2.1"
+version = "0.2.2"
 authors.workspace = true
 edition.workspace = true
 readme = "README.md"

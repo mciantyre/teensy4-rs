@@ -129,27 +129,48 @@ impl Led {
     }
 }
 
-fn delay(factor: u32) {
-    for _ in 0..(factor * 50_000_000) {
-        core::hint::spin_loop();
+/// Assign all DelayTicks to a `const`. If the factor overflows, it's
+/// caught at compile time. Use this to explore different delays in
+/// debug builds.
+#[derive(Clone, Copy)]
+struct DelayTicks(u32);
+impl DelayTicks {
+    const fn new(factor: u32) -> Self {
+        Self(50_000_000 * factor)
     }
 }
 
-fn triple(led: &mut Led, factor: u32) {
+fn delay(_ticks: DelayTicks) {
+    #[cfg(all(target_arch = "arm", target_os = "none"))]
+    unsafe {
+        core::arch::asm! {
+            r#"
+                5:
+                subs {ticks}, #1 @ ticks--; Z = (0 == ticks);
+                bne 5b           @ if (0 == Z) goto 5;
+            "#,
+            ticks = inout(reg) _ticks.0 => _,
+        };
+    }
+}
+
+fn triple(led: &mut Led, ticks: DelayTicks) {
     for _ in 0..3 {
         led.set();
-        delay(factor);
+        delay(ticks);
         led.clear();
-        delay(factor);
+        delay(ticks);
     }
 }
 
 fn s(led: &mut Led) {
-    triple(led, 1);
+    const DELAY: DelayTicks = DelayTicks::new(1);
+    triple(led, DELAY);
 }
 
 fn o(led: &mut Led) {
-    triple(led, 3);
+    const DELAY: DelayTicks = DelayTicks::new(3);
+    triple(led, DELAY);
 }
 
 #[cfg(feature = "panic-handler")]
@@ -178,6 +199,8 @@ pub fn sos() -> ! {
         s(&mut led);
         o(&mut led);
         s(&mut led);
-        delay(6);
+
+        const DELAY: DelayTicks = DelayTicks::new(6);
+        delay(DELAY);
     }
 }
