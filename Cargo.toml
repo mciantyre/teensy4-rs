@@ -56,6 +56,14 @@ version = "0.4"
 version = "0.4.2"
 features = ["imxrt1062"]
 
+[patch.crates-io.imxrt-hal]
+git = "https://github.com/dstric-aqueduct/imxrt-hal" 
+branch = "dev/can"
+
+[patch.crates-io.imxrt-iomuxc]
+git = "https://github.com/dstric-aqueduct/imxrt-iomuxc.git"
+tag = "v0.1.5-can"
+
 [dependencies.teensy4-pins]
 version = "0.2"
 path = "teensy4-pins"
@@ -133,6 +141,10 @@ required-features = ["rt"]
 # Examples that require USB logging.
 
 [[example]]
+name = "can"
+required-features = ["rt", "usb-logging"]
+
+[[example]]
 name = "dma_memcpy"
 required-features = ["rt", "usb-logging"]
 
@@ -195,6 +207,10 @@ required-features = ["rt", "rtic"]
 [[example]]
 name = "rtic_pit"
 required-features = ["rt", "rtic"]
+
+[[example]]
+name = "rtic_can_log"
+required-features = ["rt", "rtic", "usb-logging"]
 
 [[example]]
 name = "rtic_uart_log"
