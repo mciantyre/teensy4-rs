@@ -91,7 +91,7 @@
 //!
 //! ## Clock details
 //!
-//! `board` makes the a few guarantees about the clock policy. This section describes those guarantees.
+//! `board` makes a few guarantees about the clock policy. This section describes those guarantees.
 //!
 //! It's considered an API-breaking change to vary the frequencies and derivations of these clocks:
 //!
@@ -100,7 +100,8 @@
 //! - The crystal oscillator is documented in [`XTAL_OSCILLATOR_FREQUENCY`].
 //!
 //! Other clock frequencies are exempt from this policy; they may change value or derivation without
-//! notice.
+//! notice. Nevertheless, if these clock frequencies / derivations change, `board` still guarantees that
+//! the functions to set peripheral baud and clock rates will work as expected.
 //!
 //! By the time your code has access to [`Resources`], the clock gates for _all_ peripherals provided by
 //! `Resources` is set to "on." If you're not using specific resources, you may configure their clock
