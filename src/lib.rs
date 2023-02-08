@@ -1,5 +1,10 @@
-//! A Rust board support package (BSP) for the Teensy 4. Supports the Teensy 4.0 and
-//! 4.1 boards.
+//! A Rust board support package (BSP) for the Teensy 4.
+//!
+//! `teensy4-bsp` supports the following boards:
+//!
+//! - Teensy 4.0
+//! - Teensy 4.1
+//! - Teensy MicroMod
 //!
 //! If you're just getting started with embedded Rust development on the Teensy 4, take
 //! a look at [the `board` module](crate::board). This module provides pre-configured drivers

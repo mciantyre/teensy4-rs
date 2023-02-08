@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Add Teensy MicroMod pins in the `tmm` module.
+
 ## [0.3.0] - 2023-01-05
 
 **BREAKING** Update to imxrt-iomuxc 0.2. Pin aliases remain the same, but pad

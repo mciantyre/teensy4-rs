@@ -1,9 +1,12 @@
 //! Common pinout
 //!
-//! The Teensy 4.0 and 4.1 share many pins. This module provides
+//! The Teensy boards share many pins. This module provides
 //! the pins that are common across both boards. For pins that are unique to
-//! each board, and to acquire all of a board's pins, see the [`t40`](super::t40)
-//! and [`t41`](super::t41) modules.
+//! each board, and to acquire all of a board's pins, see
+//!
+//! - [`t40`](super::t40)
+//! - [`t41`](super::t41)
+//! - [`tmm`](super::tmm)
 //!
 //! ## Common pin table
 //!

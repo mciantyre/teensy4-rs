@@ -1,7 +1,11 @@
 # teensy4-rs
 
 A collection of crates for Rust development on the Teensy 4. Supports
-both the Teensy 4.0 and 4.1 boards.
+the following boards:
+
+-   Teensy 4.0
+-   Teensy 4.1
+-   Teensy MicroMod
 
 [![Code Checks][]][1] [![crates.io][]][2] [![docs.rs]][3]
 

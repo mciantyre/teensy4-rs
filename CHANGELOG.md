@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+Add support for the Teensy MicroMod. See the updated `board` APIs and
+documentation for more information.
+
 ## [0.4.0] - 2023-01-05
 
 **BREAKING** Update to imxrt-hal 0.5. This changes the driver APIs exposed by

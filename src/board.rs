@@ -10,6 +10,7 @@
 //!
 //! - Teensy 4.0 boards should use [`t40`].
 //! - Teensy 4.1 boards should use [`t41`].
+//! - Teensy MicroMod boards should use [`tmm`].
 //!
 //! The produced resources are nearly the same, except for the pins.
 //!
@@ -133,8 +134,8 @@ pub use ral::Instances;
 
 /// Acquire peripheral instances.
 ///
-/// These are the resources supplied to [`t40`] or [`t41`]. They can
-/// also be used to initialize your own drivers.
+/// These are the resources supplied to [a resource constructor](crate::board#getting-started).
+/// They can also be used to initialize your own drivers.
 ///
 /// ```
 /// use teensy4_bsp as bsp;
@@ -179,11 +180,15 @@ pub type T40Resources = Resources<pins::t40::Pins>;
 ///
 /// Use [`t41`] to construct this. The pins are specific to the Teensy 4.1.
 pub type T41Resources = Resources<pins::t41::Pins>;
+/// Resources for a Teensy MicroMod.
+///
+/// Use [`tmm`] to construct this. The pins are specific to the Teensy MicroMod.
+pub type TMMResources = Resources<pins::tmm::Pins>;
 
 /// Resources constructed by the board.
 ///
 /// The concrete `Pins` type depends on how this is constructed.
-/// See [`T40Resources`] or [`T41Resources`] for more information.
+/// See the various `*Resources` aliases for more information.
 #[non_exhaustive]
 pub struct Resources<Pins> {
     /// Periodic interrupt timer channels.
@@ -595,4 +600,12 @@ pub fn t40(instances: impl Into<Instances>) -> T40Resources {
 /// `init::Context` object -- can be used as the argument to this function.
 pub fn t41(instances: impl Into<Instances>) -> T41Resources {
     prepare_resources(instances.into(), pins::t41::from_pads)
+}
+
+/// Create resources for the Teensy MicroMod board.
+///
+/// Note that the peripheral instances acquired by RTIC -- named `device` in the
+/// `init::Context` object -- can be used as the argument to this function.
+pub fn tmm(instances: impl Into<Instances>) -> TMMResources {
+    prepare_resources(instances.into(), pins::tmm::from_pads)
 }
