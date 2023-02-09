@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.4.1] - 2023-02-09
+
 Add support for the Teensy MicroMod. See the updated `board` APIs and
 documentation for more information.
 
@@ -192,6 +194,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.0...teensy4-bsp-0.4.1
 [0.4.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.3.0...teensy4-bsp-0.4.0
 [0.3.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.2...teensy4-bsp-0.3.0
 [0.2.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.1...teensy4-bsp-0.2.2
