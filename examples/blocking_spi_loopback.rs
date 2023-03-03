@@ -51,25 +51,45 @@ fn write_error<T>(result: Result<T, LpspiError>) {
 fn main() -> ! {
     let board::Resources {
         lpspi4,
-        pins,
+        mut pins,
         pit: (pit, _, _, _),
         usb,
+        mut gpio2,
         ..
     } = board::t40(board::instances());
 
     bsp::LoggingFrontend::default_log().register_usb(usb);
     let mut timer = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit_channel(pit);
 
-    let mut spi: board::Lpspi4 = board::lpspi(
-        lpspi4,
-        board::LpspiPins {
-            pcs0: pins.p10,
-            sck: pins.p13,
-            sdo: pins.p11,
-            sdi: pins.p12,
-        },
-        1_000_000,
-    );
+    // Configure LPSPI4 clock, serial data out, and serial data in pins.
+    {
+        use bsp::hal::iomuxc; // <-- Pad configuration APIs are here.
+        iomuxc::lpspi::prepare(&mut pins.p13); // <-- LPSPI4 SCK
+        iomuxc::lpspi::prepare(&mut pins.p11); // <-- LPSPI4 SDO
+        iomuxc::lpspi::prepare(&mut pins.p12); // <-- LPSPI4 SDI
+
+        // Drop / forget pins so that they're no longer accessible.
+        // We don't want to accidentally change them later.
+        //
+        // (There's no impl Drop on iomuxc pads, so this is basically
+        // a forget.)
+        drop(pins.p13);
+        drop(pins.p12);
+        drop(pins.p11);
+    }
+
+    // Use the chip select line as a software-controlled GPIO.
+    let cs = gpio2.output(pins.p10);
+    // TODO add extra data / command pin here.
+
+    // Construct the driver:
+    let mut spi = bsp::hal::lpspi::Lpspi::without_pins(lpspi4);
+    // Set the baud rate.
+    spi.disabled(|spi| {
+        spi.set_clock_hz(bsp::board::LPSPI_FREQUENCY, 1_000_000);
+    });
+
+    // Have fun! You're responsible for calling set and clear on the chip select object.
 
     let data: [Elem; 5] = [0xDE, 0xAD, 0xBE, 0xEF, 0xA5];
     loop {
