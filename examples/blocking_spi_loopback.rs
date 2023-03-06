@@ -82,12 +82,23 @@ fn main() -> ! {
     let cs = gpio2.output(pins.p10);
     // TODO add extra data / command pin here.
 
+    // When supplied with the LPSPI4 peripheral instance, without_pins
+    // returns the following type:
+    type MyLpspi = bsp::hal::lpspi::Lpspi<(), 4>;
+    // The "()" indicates "there's no pins."
+    // The "4" keeps track of the peripheral instance.
+
     // Construct the driver:
-    let mut spi = bsp::hal::lpspi::Lpspi::without_pins(lpspi4);
-    // Set the baud rate.
-    spi.disabled(|spi| {
-        spi.set_clock_hz(bsp::board::LPSPI_FREQUENCY, 1_000_000);
-    });
+    let mut spi: MyLpspi = bsp::hal::lpspi::Lpspi::without_pins(lpspi4);
+
+    // We can use this MyLpspi type in our functions.
+    fn set_baud(spi: &mut MyLpspi, baud: u32) {
+        spi.disabled(|spi| {
+            spi.set_clock_hz(bsp::board::LPSPI_FREQUENCY, baud);
+        });
+    }
+
+    set_baud(&mut spi, 1_000_000);
 
     // Have fun! You're responsible for calling set and clear on the chip select object.
 
