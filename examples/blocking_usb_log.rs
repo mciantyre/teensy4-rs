@@ -22,7 +22,7 @@ fn main() -> ! {
     let led = board::led(&mut gpio2, pins.p13);
     bsp::LoggingFrontend::default_log().register_usb(usb);
 
-    let mut delay = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit_channel(pit.0);
+    let mut delay = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit(pit.0);
     let mut counter = 0;
     loop {
         delay.block_ms(500);

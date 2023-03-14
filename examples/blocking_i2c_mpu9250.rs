@@ -102,7 +102,7 @@ fn main() -> ! {
     } = board::t40(board::instances());
     let led = board::led(&mut gpio2, pins.p13);
     bsp::LoggingFrontend::default_log().register_usb(usb);
-    let mut timer = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit_channel(pit);
+    let mut timer = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit(pit);
     let mut lpi2c3: board::Lpi2c3 =
         board::lpi2c(lpi2c3, pins.p16, pins.p17, board::Lpi2cClockSpeed::KHz400);
 

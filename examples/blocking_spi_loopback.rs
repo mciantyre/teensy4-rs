@@ -58,7 +58,7 @@ fn main() -> ! {
     } = board::t40(board::instances());
 
     bsp::LoggingFrontend::default_log().register_usb(usb);
-    let mut timer = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit_channel(pit);
+    let mut timer = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit(pit);
 
     let mut spi: board::Lpspi4 = board::lpspi(
         lpspi4,

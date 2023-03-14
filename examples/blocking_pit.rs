@@ -21,7 +21,7 @@ fn main() -> ! {
         ..
     } = board::t40(board::instances());
     let led = board::led(&mut gpio2, pins.p13);
-    let mut delay = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit_channel(pit.0);
+    let mut delay = Blocking::<_, { board::PERCLK_FREQUENCY }>::from_pit(pit.0);
     loop {
         delay.block_ms(500);
         led.toggle();
