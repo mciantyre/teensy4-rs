@@ -23,7 +23,7 @@ the loader to run it on hardware. The example below will build and flash the LED
 example:
 
 ```
-cargo run --release --example blocking_led --target thumbv7em-none-eabihf
+cargo run --release --all-features --example blocking_led --target thumbv7em-none-eabihf
 ```
 
 If you don't have the command-line loader installed, follow these steps to build
@@ -33,7 +33,7 @@ Build all of the BSP examples for the MCU. When building all examples, enable
 all features:
 
 ```
-cargo build --release --examples --target thumbv7em-none-eabihf
+cargo build --release --all-features --examples --target thumbv7em-none-eabihf
 ```
 
 Convert your example of interest to a HEX file. For instance, to convert the
