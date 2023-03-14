@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["from_pads","Constrain the processor pads to the Teensy 4.0 pins"]],"struct":[["Pins","Teensy 4.0 pins"]],"type":[["ErasedPins","Type-erased Teensy 4.0 pins"],["P34","Pin 34 (4.0)"],["P35","Pin 35 (4.0)"],["P36","Pin 36 (4.0)"],["P37","Pin 37 (4.0)"],["P38","Pin 38 (4.0)"],["P39","Pin 39 (4.0)"]]};
+window.SIDEBAR_ITEMS = {"fn":["from_pads"],"struct":["Pins"],"type":["ErasedPins","P34","P35","P36","P37","P38","P39"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":[["EXT_SYSTICK_HZ","SYSTICK external clock frequency."]],"enum":[["LoggingFrontend","The logging frontend."]],"mod":[["board","Pre-configured board resources."]]};
+window.SIDEBAR_ITEMS = {"constant":["EXT_SYSTICK_HZ"],"enum":["LoggingFrontend"],"mod":["board"]};

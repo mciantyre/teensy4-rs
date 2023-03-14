@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["common","Common pinout"],["t40","Teensy 4.0 specific APIs"],["t41","Teensy 4.1 specific APIs"],["tmm","Teensy MicroMod specific APIs"]]};
+window.SIDEBAR_ITEMS = {"mod":["common","t40","t41","tmm"]};
