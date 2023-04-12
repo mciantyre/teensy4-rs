@@ -106,9 +106,14 @@ embedded-hal = "0.2"
 log = "0.4"
 nb = "1"
 cortex-m-rtic = "1"
+lcd = "0.4"
 
 [[example]]
 name = "blocking_gpt"
+required-features = ["rt"]
+
+[[example]]
+name = "blocking_hd44780"
 required-features = ["rt"]
 
 [[example]]
