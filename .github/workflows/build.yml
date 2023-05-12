@@ -3,6 +3,8 @@ name: Code Checks
 on:
   push:
     branches: [ master, staging, trying ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
 
