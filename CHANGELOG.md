@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+Fix the board clock configuration routines to enable the TRNG clock gate. This
+fixes a TRNG initialization defect that prevents random number generation. See
+issue 138 for details.
+
 ## [0.4.1] - 2023-02-09
 
 Add support for the Teensy MicroMod. See the updated `board` APIs and

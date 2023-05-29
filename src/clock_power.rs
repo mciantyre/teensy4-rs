@@ -200,6 +200,7 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::flexpwm::<4>(),
     clock_gate::adc::<1>(),
     clock_gate::adc::<2>(),
+    clock_gate::trng(),
 ];
 
 /// Prepare clock and power for the MCU.
