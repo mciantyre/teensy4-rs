@@ -222,6 +222,7 @@
 <a href="#222" id="222">222</a>
 <a href="#223" id="223">223</a>
 <a href="#224" id="224">224</a>
+<a href="#225" id="225">225</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Implements the board&#39;s clock and power policy.
 
 </span><span class="attr">#![allow(clippy::assertions_on_constants)]
@@ -424,6 +425,7 @@
     clock_gate::flexpwm::&lt;<span class="number">4</span>&gt;(),
     clock_gate::adc::&lt;<span class="number">1</span>&gt;(),
     clock_gate::adc::&lt;<span class="number">2</span>&gt;(),
+    clock_gate::trng(),
 ];
 
 <span class="doccomment">/// Prepare clock and power for the MCU.
