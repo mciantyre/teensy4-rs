@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.4.2] - 2023-05-30
+
 Fix the board clock configuration routines to enable the TRNG clock gate. This
 fixes a TRNG initialization defect that prevents random number generation. See
 issue 138 for details.
@@ -198,6 +200,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.1...teensy4-bsp-0.4.2
 [0.4.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.0...teensy4-bsp-0.4.1
 [0.4.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.3.0...teensy4-bsp-0.4.0
 [0.3.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.2.2...teensy4-bsp-0.3.0
