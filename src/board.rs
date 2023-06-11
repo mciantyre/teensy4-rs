@@ -252,6 +252,8 @@ pub struct Resources<Pins> {
     pub flexpwm3: (hal::flexpwm::Pwm<3>, hal::flexpwm::Submodules<3>),
     /// FlexPWM4 components.
     pub flexpwm4: (hal::flexpwm::Pwm<4>, hal::flexpwm::Submodules<4>),
+    /// The FlexSPI2 register block.
+    pub flexspi2: ral::flexspi::FLEXSPI2,
     /// The register block for ADC1.
     ///
     /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
@@ -580,6 +582,7 @@ fn prepare_resources<Pins>(
         flexpwm2: hal::flexpwm::new(instances.PWM2),
         flexpwm3: hal::flexpwm::new(instances.PWM3),
         flexpwm4: hal::flexpwm::new(instances.PWM4),
+        flexspi2: instances.FLEXSPI2,
         adc1,
         adc2,
         trng,
