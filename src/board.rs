@@ -99,6 +99,10 @@
 //! - PERCLK, the root clock for GPT and PIT timers, is documented in [`PERCLK_FREQUENCY`].
 //! - The crystal oscillator is documented in [`XTAL_OSCILLATOR_FREQUENCY`].
 //!
+//! `board` does not touch the following root clock components. You should configure these components yourself.
+//!
+//! - FlexIO1 and FlexIO2 dividers and multiplexers.
+//!
 //! Other clock frequencies are exempt from this policy; they may change value or derivation without
 //! notice. Nevertheless, if these clock frequencies / derivations change, `board` still guarantees that
 //! the functions to set peripheral baud and clock rates will work as expected.
@@ -252,6 +256,12 @@ pub struct Resources<Pins> {
     pub flexpwm3: (hal::flexpwm::Pwm<3>, hal::flexpwm::Submodules<3>),
     /// FlexPWM4 components.
     pub flexpwm4: (hal::flexpwm::Pwm<4>, hal::flexpwm::Submodules<4>),
+    /// The FlexIO1 register block.
+    pub flexio1: ral::flexio::FLEXIO1,
+    /// The FlexIO2 register block.
+    pub flexio2: ral::flexio::FLEXIO2,
+    /// The FlexIO3 register block.
+    pub flexio3: ral::flexio::FLEXIO3,
     /// The register block for ADC1.
     ///
     /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
@@ -576,6 +586,9 @@ fn prepare_resources<Pins>(
         lpuart2: instances.LPUART2,
         lpuart3: instances.LPUART3,
         lpuart8: instances.LPUART8,
+        flexio1: instances.FLEXIO1,
+        flexio2: instances.FLEXIO2,
+        flexio3: instances.FLEXIO3,
         flexpwm1: hal::flexpwm::new(instances.PWM1),
         flexpwm2: hal::flexpwm::new(instances.PWM2),
         flexpwm3: hal::flexpwm::new(instances.PWM3),

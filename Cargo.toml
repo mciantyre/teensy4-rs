@@ -42,7 +42,7 @@ version = "0.5"
 features = ["imxrt1062"]
 
 [dependencies.imxrt-hal]
-version = "0.5"
+version = "0.5.3"
 features = ["imxrt1060"]
 
 [dependencies.imxrt-log]

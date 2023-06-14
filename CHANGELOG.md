@@ -5,6 +5,8 @@
 Update BSP documentation, noting that the `"usb-logging"` feature causes the BSP
 to define a `USB_OTG1` interrupt handler.
 
+Add FlexIO instances to board resources.
+
 ## [0.4.2] - 2023-05-30
 
 Fix the board clock configuration routines to enable the TRNG clock gate. This
