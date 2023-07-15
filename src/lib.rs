@@ -29,6 +29,11 @@
 //! | `"rt"`          | Adds runtime support using `imxrt-rt`.                               |
 //! | `"usb-logging"` | Enables the [`LoggingFrontend`](crate::LoggingFrontend) convenience. |
 //!
+//! When `"usb-logging"` is enabled, the BSP defines the `USB_OTG1` interrupt handler.
+//! This may conflict with your own `USB_OTG1` handler, resulting in a duplicate definition.
+//! If you want to define your own `USB_OTG1` handler to perform USB logging, do not enable
+//! `"usb-logging"`.
+//!
 //! # Runtime
 //!
 //! When the runtime is enabled, `teensy4-bsp` defines the memory map. In order to use the memory map,

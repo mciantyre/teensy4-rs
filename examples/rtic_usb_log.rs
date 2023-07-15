@@ -2,7 +2,9 @@
 //!
 //! The BSP's `LoggingFrontend` helper will conveniently implement a USB ISR
 //! that drives USB logging. But, when you're using a framework like RTIC, you
-//! may want to expose the USB poller directly to the framework.
+//! may want to expose the USB poller directly to the framework. Since we're
+//! registering `USB_OTG1` ourself, we do not enable the BSP's `"usb-logging"`
+//! feature. For more information, see the BSP's feature documentation.
 
 #![no_std]
 #![no_main]
