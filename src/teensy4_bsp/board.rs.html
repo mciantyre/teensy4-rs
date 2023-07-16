@@ -610,6 +610,19 @@
 <a href="#610" id="610">610</a>
 <a href="#611" id="611">611</a>
 <a href="#612" id="612">612</a>
+<a href="#613" id="613">613</a>
+<a href="#614" id="614">614</a>
+<a href="#615" id="615">615</a>
+<a href="#616" id="616">616</a>
+<a href="#617" id="617">617</a>
+<a href="#618" id="618">618</a>
+<a href="#619" id="619">619</a>
+<a href="#620" id="620">620</a>
+<a href="#621" id="621">621</a>
+<a href="#622" id="622">622</a>
+<a href="#623" id="623">623</a>
+<a href="#624" id="624">624</a>
+<a href="#625" id="625">625</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Pre-configured board resources.
 //!
 //! The `board` module conveniently exposes drivers and hardware resources.
@@ -710,6 +723,10 @@
 //! - The ARM core frequency is documented in [`ARM_FREQUENCY`].
 //! - PERCLK, the root clock for GPT and PIT timers, is documented in [`PERCLK_FREQUENCY`].
 //! - The crystal oscillator is documented in [`XTAL_OSCILLATOR_FREQUENCY`].
+//!
+//! `board` does not touch the following root clock components. You should configure these components yourself.
+//!
+//! - FlexIO1 and FlexIO2 dividers and multiplexers.
 //!
 //! Other clock frequencies are exempt from this policy; they may change value or derivation without
 //! notice. Nevertheless, if these clock frequencies / derivations change, `board` still guarantees that
@@ -864,6 +881,12 @@
     </span><span class="kw">pub </span>flexpwm3: (hal::flexpwm::Pwm&lt;<span class="number">3</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">3</span>&gt;),
     <span class="doccomment">/// FlexPWM4 components.
     </span><span class="kw">pub </span>flexpwm4: (hal::flexpwm::Pwm&lt;<span class="number">4</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">4</span>&gt;),
+    <span class="doccomment">/// The FlexIO1 register block.
+    </span><span class="kw">pub </span>flexio1: ral::flexio::FLEXIO1,
+    <span class="doccomment">/// The FlexIO2 register block.
+    </span><span class="kw">pub </span>flexio2: ral::flexio::FLEXIO2,
+    <span class="doccomment">/// The FlexIO3 register block.
+    </span><span class="kw">pub </span>flexio3: ral::flexio::FLEXIO3,
     <span class="doccomment">/// The register block for ADC1.
     ///
     /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
@@ -1188,6 +1211,9 @@
         lpuart2: instances.LPUART2,
         lpuart3: instances.LPUART3,
         lpuart8: instances.LPUART8,
+        flexio1: instances.FLEXIO1,
+        flexio2: instances.FLEXIO2,
+        flexio3: instances.FLEXIO3,
         flexpwm1: hal::flexpwm::new(instances.PWM1),
         flexpwm2: hal::flexpwm::new(instances.PWM2),
         flexpwm3: hal::flexpwm::new(instances.PWM3),
