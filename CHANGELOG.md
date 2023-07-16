@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.4.3] 2023-07-18
+
 Update BSP documentation, noting that the `"usb-logging"` feature causes the BSP
 to define a `USB_OTG1` interrupt handler.
 
@@ -205,6 +207,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.3]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.2...teensy4-bsp-0.4.3
 [0.4.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.1...teensy4-bsp-0.4.2
 [0.4.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.0...teensy4-bsp-0.4.1
 [0.4.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.3.0...teensy4-bsp-0.4.0
