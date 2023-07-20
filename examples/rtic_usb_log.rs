@@ -42,8 +42,8 @@ mod app {
         pit.set_load_timer_value(PIT_DELAY_MS);
         pit.enable();
 
-        let poller = bsp::logging::log::usbd(usb, bsp::logging::Interrupts::Enabled).unwrap();
-        // let poller = bsp::logging::defmt::usbd(usb, bsp::logging::Interrupts::Enabled).unwrap();
+        // let poller = bsp::logging::log::usbd(usb, bsp::logging::Interrupts::Enabled).unwrap();
+        let poller = bsp::logging::defmt::usbd(usb, bsp::logging::Interrupts::Enabled).unwrap();
         (Shared {}, Local { led, pit, poller }, init::Monotonics())
     }
 
@@ -64,8 +64,25 @@ mod app {
             pit.clear_elapsed();
         }
 
-        log::info!("Hello world!");
-        defmt::info!("Hello world!");
+        #[derive(defmt::Format)]
+        struct ImuData {
+            acc: [i32; 3],
+            gyro: [i32; 3],
+            mag: [i32; 3],
+        }
+
+        impl ImuData {
+            const fn fake() -> Self {
+                ImuData {
+                    acc: [1, 2, 3],
+                    gyro: [4, 5, 6],
+                    mag: [7, 8, 9],
+                }
+            }
+        }
+
+        let fake_data = ImuData::fake();
+        defmt::println!("{}", fake_data);
     }
 
     #[task(binds = USB_OTG1, local = [poller])]
