@@ -64,8 +64,7 @@ mod app {
             pit.clear_elapsed();
         }
 
-        log::info!("Hello world!");
-        defmt::info!("Hello world!");
+        bsp::logging::log::write_raw(b"Hello world!\r\n");
     }
 
     #[task(binds = USB_OTG1, local = [poller])]
