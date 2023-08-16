@@ -136,7 +136,7 @@ impl Led {
 struct DelayTicks(u32);
 impl DelayTicks {
     const fn new(factor: u32) -> Self {
-        Self(50_000_000 * factor)
+        Self(80_000_000 * factor)
     }
 }
 
@@ -154,23 +154,39 @@ fn delay(_ticks: DelayTicks) {
     }
 }
 
-fn triple(led: &mut Led, ticks: DelayTicks) {
-    for _ in 0..3 {
-        led.set();
-        delay(ticks);
-        led.clear();
-        delay(ticks);
-    }
+// Morse timing
+const SOS_DIT: DelayTicks = DelayTicks::new(1);
+const SOS_DAH: DelayTicks = DelayTicks::new(3);
+const SOS_INTRA_CHAR: DelayTicks = DelayTicks::new(1);
+const SOS_INTER_CHAR: DelayTicks = DelayTicks::new(3);
+const SOS_WORD_SPACE: DelayTicks = DelayTicks::new(7);
+
+fn dit(led: &mut Led) {
+    led.set();
+    delay(SOS_DIT);
+    led.clear();
+}
+
+fn dah(led: &mut Led) {
+    led.set();
+    delay(SOS_DAH);
+    led.clear();
 }
 
 fn s(led: &mut Led) {
-    const DELAY: DelayTicks = DelayTicks::new(1);
-    triple(led, DELAY);
+    dit(led);
+    delay(SOS_INTRA_CHAR);
+    dit(led);
+    delay(SOS_INTRA_CHAR);
+    dit(led);
 }
 
 fn o(led: &mut Led) {
-    const DELAY: DelayTicks = DelayTicks::new(3);
-    triple(led, DELAY);
+    dah(led);
+    delay(SOS_INTRA_CHAR);
+    dah(led);
+    delay(SOS_INTRA_CHAR);
+    dah(led);
 }
 
 #[cfg(feature = "panic-handler")]
@@ -197,10 +213,11 @@ pub fn sos() -> ! {
     let mut led = unsafe { Led::new() };
     loop {
         s(&mut led);
+        delay(SOS_INTER_CHAR);
         o(&mut led);
+        delay(SOS_INTER_CHAR);
         s(&mut led);
 
-        const DELAY: DelayTicks = DelayTicks::new(6);
-        delay(DELAY);
+        delay(SOS_WORD_SPACE);
     }
 }
