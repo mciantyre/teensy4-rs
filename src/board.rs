@@ -112,6 +112,9 @@
 //! gates to "off." `board` code that borrows or converts peripherals may assume that clock gates are
 //! set to "on."
 //!
+//! If you're not using the BSP to prepare board `Resources`, consider using [`prepare_clocks_and_power`]
+//! to realize the BSP's clock policy.
+//!
 //! # Naming conventions
 //!
 //! This module identifies peripherals by their hardware names. It does not use identifiers
@@ -516,7 +519,7 @@ fn prepare_resources<Pins>(
     mut instances: Instances,
     from_pads: impl FnOnce(hal::iomuxc::pads::Pads) -> Pins,
 ) -> Resources<Pins> {
-    super::clock_power::setup(
+    prepare_clocks_and_power(
         &mut instances.CCM,
         &mut instances.CCM_ANALOG,
         &mut instances.DCDC,

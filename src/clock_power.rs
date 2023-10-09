@@ -206,8 +206,11 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::trng(),
 ];
 
-/// Prepare clock and power for the MCU.
-pub(crate) fn setup(
+/// Prepare clocks and power for the MCU.
+///
+/// This implements the [`board`](crate::board#clock-policy)'s clock policy. This
+/// function is automatically called when acquiring board resources.
+pub fn prepare_clocks_and_power(
     ccm: &mut ral::ccm::CCM,
     ccm_analog: &mut ral::ccm_analog::CCM_ANALOG,
     dcdc: &mut ral::dcdc::DCDC,

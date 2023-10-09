@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+Expose `board::prepare_clocks_and_power` for users who want to configure their own
+resources with the BSP's clock policy.
+
 ## [0.4.3] 2023-07-18
 
 Update BSP documentation, noting that the `"usb-logging"` feature causes the BSP
