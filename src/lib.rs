@@ -17,17 +17,17 @@
 //! control of your hardware.
 //!
 //! Finally, the BSP provides a runtime to simplify application development. It exposes board pins through
-//! the [`pins`](crate::pins) module. And, it provides the [`imxrt-log`](crate::logging) API for advanced
+//! the [`pins`] module. And, it provides the [`imxrt-log`](crate::logging) API for advanced
 //! logging features.
 //!
 //! # Features
 //!
 //! `teensy4-bsp` supports these features.
 //!
-//! | Flag            |         Description                                                  |
-//! | --------------- | -------------------------------------------------------------------- |
-//! | `"rt"`          | Adds runtime support using `imxrt-rt`.                               |
-//! | `"usb-logging"` | Enables the [`LoggingFrontend`](crate::LoggingFrontend) convenience. |
+//! | Flag            |         Description                          |
+//! | --------------- | -------------------------------------------- |
+//! | `"rt"`          | Adds runtime support using `imxrt-rt`.       |
+//! | `"usb-logging"` | Enables the [`LoggingFrontend`] convenience. |
 //!
 //! When `"usb-logging"` is enabled, the BSP defines the `USB_OTG1` interrupt handler.
 //! This may conflict with your own `USB_OTG1` handler, resulting in a duplicate definition.
@@ -122,9 +122,9 @@ pub const EXT_SYSTICK_HZ: u32 = 100_000;
 /// When used for USB logging, the implementation registers the USB1 interrupt handler (`USB_OTG1`).
 /// This requires the BSP's `"rt"` feature. Registering an interrupt handler may not be appropriate
 /// for environments where interrupts are defined and registered elsewhere. If that's the case,
-/// you should directly use [`logging`](crate::logging) APIs.
+/// you should directly use [`logging`] APIs.
 ///
-/// For advanced logging configurations, see [`logging`](crate::logging).
+/// For advanced logging configurations, see [`logging`].
 ///
 /// # Example
 ///
