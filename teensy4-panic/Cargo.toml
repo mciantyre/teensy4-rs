@@ -1,6 +1,6 @@
 [package]
 name = "teensy4-panic"
-version = "0.2.3"
+version = "0.2.4"
 authors.workspace = true
 edition.workspace = true
 readme = "README.md"
@@ -19,6 +19,7 @@ default-target = "thumbv7em-none-eabihf"
 [features]
 default = ["panic-handler"]
 panic-handler = []
+log = []
 
 [lib]
 test = false
