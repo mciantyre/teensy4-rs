@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [0.4.5] 2023-11-11
+
+Enable the LPSPI3 clock gate in the BSP, resolving issues when trying to use
+LPSPI3.
+
 ## [0.4.4] 2023-10-09
 
 Expose `board::prepare_clocks_and_power` for users who want to configure their own
@@ -212,6 +217,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.5]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.4...teensy4-bsp-0.4.5
 [0.4.4]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.3...teensy4-bsp-0.4.4
 [0.4.3]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.2...teensy4-bsp-0.4.3
 [0.4.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.1...teensy4-bsp-0.4.2
