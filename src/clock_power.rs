@@ -195,6 +195,7 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::lpuart::<2>(),
     clock_gate::lpuart::<3>(),
     clock_gate::lpuart::<8>(),
+    clock_gate::lpuart::<1>(),
     clock_gate::flexpwm::<1>(),
     clock_gate::flexpwm::<2>(),
     clock_gate::flexpwm::<3>(),

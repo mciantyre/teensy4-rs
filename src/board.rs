@@ -251,6 +251,8 @@ pub struct Resources<Pins> {
     pub lpuart3: ral::lpuart::LPUART3,
     /// The register block for [`Lpuart8`].
     pub lpuart8: ral::lpuart::LPUART8,
+    /// The register block for [`Lpuart1`].
+    pub lpuart1: ral::lpuart::LPUART1,
     /// FlexPWM1 components.
     pub flexpwm1: (hal::flexpwm::Pwm<1>, hal::flexpwm::Submodules<1>),
     /// FlexPWM2 components.
@@ -515,6 +517,14 @@ pub type Lpuart3 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P17, pins
 /// Use [`lpuart`] to create this driver.
 pub type Lpuart8 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P20, pins::common::P21>, 8>;
 
+/// LPUART1 peripheral.
+///
+/// - Pin 24 is TX.
+/// - Pin 25 is RX.
+///
+/// Use [`lpuart`] to create this driver.
+pub type Lpuart1 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P24, pins::common::P25>, 1>;
+
 fn prepare_resources<Pins>(
     mut instances: Instances,
     from_pads: impl FnOnce(hal::iomuxc::pads::Pads) -> Pins,
@@ -589,6 +599,7 @@ fn prepare_resources<Pins>(
         lpuart2: instances.LPUART2,
         lpuart3: instances.LPUART3,
         lpuart8: instances.LPUART8,
+        lpuart1: instances.LPUART1,
         flexio1: instances.FLEXIO1,
         flexio2: instances.FLEXIO2,
         flexio3: instances.FLEXIO3,
