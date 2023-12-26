@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/board.rs`."><title>board.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (edf0b1db0 2023-11-10)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/board.rs`."><title>board.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-804b98a1284a310a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (bf8716f1c 2023-12-24)" data-channel="nightly" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -626,11 +627,22 @@
 <a href="#626" id="626">626</a>
 <a href="#627" id="627">627</a>
 <a href="#628" id="628">628</a>
+<a href="#629" id="629">629</a>
+<a href="#630" id="630">630</a>
+<a href="#631" id="631">631</a>
+<a href="#632" id="632">632</a>
+<a href="#633" id="633">633</a>
+<a href="#634" id="634">634</a>
+<a href="#635" id="635">635</a>
+<a href="#636" id="636">636</a>
+<a href="#637" id="637">637</a>
+<a href="#638" id="638">638</a>
+<a href="#639" id="639">639</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Pre-configured board resources.
 //!
 //! The `board` module conveniently exposes drivers and hardware resources.
 //! It configures peripheral clocks and power so that you can simply use the
-//! board&#39;s peripherals.
+//! board's peripherals.
 //!
 //! # Getting started
 //!
@@ -652,7 +664,7 @@
 //! Resources take ownership of all peripheral instances `Instances`. Use [`instances()`] to
 //! acquire these once.
 //!
-//! &gt; Note that if you&#39;re using RTIC, you can let the RTIC framework allocate
+//! &gt; Note that if you're using RTIC, you can let the RTIC framework allocate
 //! &gt; the instances. The examples included in this package demonstrate this pattern.
 //!
 //! # Resource categories
@@ -664,7 +676,7 @@
 //! 2. lower-level resources, like `pins` and `lpuart3`, which you can compose to create drivers
 //!    specific for your hardware setup.
 //!
-//! Given the Teensy 4&#39;s I/O flexibility, it would be difficult to expose all features as ready-to-go
+//! Given the Teensy 4's I/O flexibility, it would be difficult to expose all features as ready-to-go
 //! drivers. Instead, `board` tries to help you initialize drivers for your hardware
 //! setup. For example,
 //!
@@ -677,7 +689,7 @@
 //! examples. And for the complete driver documentation, see [the `hal` module](crate::hal) and
 //! its submodules.
 //!
-//! These helper functions assume that you&#39;re following the `board`&#39;s clock (and power) policy.
+//! These helper functions assume that you're following the `board`'s clock (and power) policy.
 //!
 //! # Clock policy
 //!
@@ -714,14 +726,14 @@
 //!
 //! Clock frequency constants, and all APIs depending on those constants, assume that you do not change the clock policy.
 //! But for those who want extra control, `Resources` exposes the clock management peripherals. If you take this
-//! route, you&#39;re responsible for ensuring your peripheral&#39;s clock configurations, and you should ignore the constants
+//! route, you're responsible for ensuring your peripheral's clock configurations, and you should ignore the constants
 //! exposed by this module.
 //!
 //! ## Clock details
 //!
 //! `board` makes a few guarantees about the clock policy. This section describes those guarantees.
 //!
-//! It&#39;s considered an API-breaking change to vary the frequencies and derivations of these clocks:
+//! It's considered an API-breaking change to vary the frequencies and derivations of these clocks:
 //!
 //! - The ARM core frequency is documented in [`ARM_FREQUENCY`].
 //! - PERCLK, the root clock for GPT and PIT timers, is documented in [`PERCLK_FREQUENCY`].
@@ -736,12 +748,12 @@
 //! the functions to set peripheral baud and clock rates will work as expected.
 //!
 //! By the time your code has access to [`Resources`], the clock gates for _all_ peripherals provided by
-//! `Resources` is set to &quot;on.&quot; If you&#39;re not using specific resources, you may configure their clock
-//! gates to &quot;off.&quot; `board` code that borrows or converts peripherals may assume that clock gates are
-//! set to &quot;on.&quot;
+//! `Resources` is set to "on." If you're not using specific resources, you may configure their clock
+//! gates to "off." `board` code that borrows or converts peripherals may assume that clock gates are
+//! set to "on."
 //!
-//! If you&#39;re not using the BSP to prepare board `Resources`, consider using [`prepare_clocks_and_power`]
-//! to realize the BSP&#39;s clock policy.
+//! If you're not using the BSP to prepare board `Resources`, consider using [`prepare_clocks_and_power`]
+//! to realize the BSP's clock policy.
 //!
 //! # Naming conventions
 //!
@@ -749,16 +761,16 @@
 //! from the Teensy 4 SDK and documentation. For instance, to name the serial peripheral
 //! that uses pins 14 and 15,
 //!
-//! - this module uses the name &quot;LPUART**2**&quot;.
-//! - the Teensy 4 SDK / documentation uses the name &quot;UART**3**&quot;.
+//! - this module uses the name "LPUART**2**".
+//! - the Teensy 4 SDK / documentation uses the name "UART**3**".
 //!
-//! There&#39;s a few reasons for these differences:
+//! There's a few reasons for these differences:
 //!
 //! - It would be unintuitive to register a LPUART**2** *interrupt* for the peripheral named
 //!   UART**3**. Since the BSP typically does not manage interrupt registration, this naming
 //!   decision makes it easier for you to register and implement interrupts.
 //! - It makes clear the peripheral implementation. You know that the serial peripheral
-//!   supports low-power (LP) operation, and that it&#39;s not a FlexIO peripheral emulating a UART
+//!   supports low-power (LP) operation, and that it's not a FlexIO peripheral emulating a UART
 //!   device.
 
 </span><span class="kw">use crate</span>::{hal, pins, ral};
@@ -783,7 +795,7 @@
 /// # Panics
 ///
 /// Panics if the instances have already been taken from this function.
-/// If you&#39;re using RTIC, know that RTIC may take these instances before
+/// If you're using RTIC, know that RTIC may take these instances before
 /// calling your `init` function.
 ///
 /// ```should_panic
@@ -797,9 +809,9 @@
 /// # Safety
 ///
 /// This function provides a safe, convenient way to acquire one [`Instances`] object.
-/// It&#39;s considered safe for the use-cases that `teensy4-bsp` intends to support;
-/// specifically, you&#39;re building one binary that represents the entire firmware
-/// image, and that there&#39;s no other software which is acquiring these resources.
+/// It's considered safe for the use-cases that `teensy4-bsp` intends to support;
+/// specifically, you're building one binary that represents the entire firmware
+/// image, and that there's no other software which is acquiring these resources.
 </span><span class="kw">pub fn </span>instances() -&gt; Instances {
     <span class="kw">static </span>TAKEN: AtomicBool = AtomicBool::new(<span class="bool-val">false</span>);
     <span class="macro">assert!</span>(!TAKEN.swap(<span class="bool-val">true</span>, Ordering::SeqCst));
@@ -849,7 +861,7 @@
     </span><span class="kw">pub </span>dma: [<span class="prelude-ty">Option</span>&lt;hal::dma::channel::Channel&gt;; hal::dma::CHANNEL_COUNT],
     <span class="doccomment">/// The secure real-time counter.
     ///
-    /// It&#39;s initially disabled, and you may enable it in your firmware.
+    /// It's initially disabled, and you may enable it in your firmware.
     </span><span class="kw">pub </span>srtc: hal::snvs::srtc::Disabled,
     <span class="doccomment">/// Core registers for the SNVS low-power domain.
     ///
@@ -879,6 +891,8 @@
     </span><span class="kw">pub </span>lpuart3: ral::lpuart::LPUART3,
     <span class="doccomment">/// The register block for [`Lpuart8`].
     </span><span class="kw">pub </span>lpuart8: ral::lpuart::LPUART8,
+    <span class="doccomment">/// The register block for [`Lpuart1`].
+    </span><span class="kw">pub </span>lpuart1: ral::lpuart::LPUART1,
     <span class="doccomment">/// FlexPWM1 components.
     </span><span class="kw">pub </span>flexpwm1: (hal::flexpwm::Pwm&lt;<span class="number">1</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">1</span>&gt;),
     <span class="doccomment">/// FlexPWM2 components.
@@ -907,10 +921,10 @@
     </span><span class="kw">pub </span>tempmon: hal::tempmon::TempMon,
 }
 
-<span class="doccomment">/// The board&#39;s dedicated LED.
+<span class="doccomment">/// The board's dedicated LED.
 </span><span class="kw">pub type </span>Led = hal::gpio::Output&lt;pins::common::P13&gt;;
 
-<span class="doccomment">/// Create the board&#39;s LED.
+<span class="doccomment">/// Create the board's LED.
 ///
 /// ```no_run
 /// use teensy4_bsp as bsp;
@@ -1053,7 +1067,7 @@
 
 <span class="doccomment">/// Create a LPUART peripheral.
 ///
-/// The specific peripheral you&#39;re creating depends on
+/// The specific peripheral you're creating depends on
 ///
 /// - the type of `instance`.
 /// - the TX and RX pins.
@@ -1143,6 +1157,14 @@
 /// Use [`lpuart`] to create this driver.
 </span><span class="kw">pub type </span>Lpuart8 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P20, pins::common::P21&gt;, <span class="number">8</span>&gt;;
 
+<span class="doccomment">/// LPUART1 peripheral.
+///
+/// - Pin 24 is TX.
+/// - Pin 25 is RX.
+///
+/// Use [`lpuart`] to create this driver.
+</span><span class="kw">pub type </span>Lpuart1 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P24, pins::common::P25&gt;, <span class="number">1</span>&gt;;
+
 <span class="kw">fn </span>prepare_resources&lt;Pins&gt;(
     <span class="kw-2">mut </span>instances: Instances,
     from_pads: <span class="kw">impl </span>FnOnce(hal::iomuxc::pads::Pads) -&gt; Pins,
@@ -1217,6 +1239,7 @@
         lpuart2: instances.LPUART2,
         lpuart3: instances.LPUART3,
         lpuart8: instances.LPUART8,
+        lpuart1: instances.LPUART1,
         flexio1: instances.FLEXIO1,
         flexio2: instances.FLEXIO2,
         flexio3: instances.FLEXIO3,

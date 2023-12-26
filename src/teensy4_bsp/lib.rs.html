@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (edf0b1db0 2023-11-10)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-804b98a1284a310a.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (bf8716f1c 2023-12-24)" data-channel="nightly" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -242,7 +243,7 @@
 //! - Teensy 4.1
 //! - Teensy MicroMod
 //!
-//! If you&#39;re just getting started with embedded Rust development on the Teensy 4, take
+//! If you're just getting started with embedded Rust development on the Teensy 4, take
 //! a look at [the `board` module](crate::board). This module provides pre-configured drivers
 //! and helper functions to define hardware drivers.
 //!
@@ -262,13 +263,13 @@
 //!
 //! | Flag            |         Description                          |
 //! | --------------- | -------------------------------------------- |
-//! | `&quot;rt&quot;`          | Adds runtime support using `imxrt-rt`.       |
-//! | `&quot;usb-logging&quot;` | Enables the [`LoggingFrontend`] convenience. |
+//! | `"rt"`          | Adds runtime support using `imxrt-rt`.       |
+//! | `"usb-logging"` | Enables the [`LoggingFrontend`] convenience. |
 //!
-//! When `&quot;usb-logging&quot;` is enabled, the BSP defines the `USB_OTG1` interrupt handler.
+//! When `"usb-logging"` is enabled, the BSP defines the `USB_OTG1` interrupt handler.
 //! This may conflict with your own `USB_OTG1` handler, resulting in a duplicate definition.
 //! If you want to define your own `USB_OTG1` handler to perform USB logging, do not enable
-//! `&quot;usb-logging&quot;`.
+//! `"usb-logging"`.
 //!
 //! # Runtime
 //!
@@ -287,7 +288,7 @@
 //!   - a 16 KiB heap.
 //!
 //! If the runtime is disabled, then `teensy4-bsp` does no define the memory map, and it does not
-//! depend on `imxrt-rt`. Consider disabling the BSP&#39;s runtime feature if you want to implement your
+//! depend on `imxrt-rt`. Consider disabling the BSP's runtime feature if you want to implement your
 //! own runtime, or if you want to use `imxrt-rt` to define your own memory map.
 //!
 //! # Notes
@@ -305,13 +306,13 @@
 </span><span class="kw">pub use </span>imxrt_hal <span class="kw">as </span>hal;
 <span class="kw">pub use </span>imxrt_log <span class="kw">as </span>logging;
 <span class="kw">pub use </span>imxrt_ral <span class="kw">as </span>ral;
-<span class="attr">#[cfg(all(feature = <span class="string">&quot;rt&quot;</span>, target_arch = <span class="string">&quot;arm&quot;</span>, target_os = <span class="string">&quot;none&quot;</span>))]
-#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">&quot;rt&quot;</span>)))]
+<span class="attr">#[cfg(all(feature = <span class="string">"rt"</span>, target_arch = <span class="string">"arm"</span>, target_os = <span class="string">"none"</span>))]
+#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"rt"</span>)))]
 </span><span class="kw">pub use </span>imxrt_rt <span class="kw">as </span>rt;
 
 <span class="kw">pub use </span>teensy4_pins <span class="kw">as </span>pins;
 
-<span class="comment">// Need to reference this so that it doesn&#39;t get stripped out
+<span class="comment">// Need to reference this so that it doesn't get stripped out
 </span><span class="kw">use </span>teensy4_fcb <span class="kw">as _</span>;
 
 <span class="doccomment">/// Exported for RTIC. Do not use.
@@ -356,8 +357,8 @@
 /// It works with two different logging front-ends, described by the enum values.
 ///
 /// When used for USB logging, the implementation registers the USB1 interrupt handler (`USB_OTG1`).
-/// This requires the BSP&#39;s `&quot;rt&quot;` feature. Registering an interrupt handler may not be appropriate
-/// for environments where interrupts are defined and registered elsewhere. If that&#39;s the case,
+/// This requires the BSP's `"rt"` feature. Registering an interrupt handler may not be appropriate
+/// for environments where interrupts are defined and registered elsewhere. If that's the case,
 /// you should directly use [`logging`] APIs.
 ///
 /// For advanced logging configurations, see [`logging`].
@@ -372,7 +373,7 @@
 ///
 /// let board::Resources { usb, .. } = board::t40(board::instances());
 /// bsp::LoggingFrontend::default_log().register_usb(usb);
-/// log::info!(&quot;Hello world!&quot;);
+/// log::info!("Hello world!");
 /// ```
 ///
 /// Register a USB logger that uses the `defmt` front-end.
@@ -383,10 +384,10 @@
 /// # let board::Resources { usb, .. } = board::t40(board::instances());
 /// // Same as above...
 /// bsp::LoggingFrontend::Defmt.register_usb(usb);
-/// defmt::info!(&quot;Hello world!&quot;);
+/// defmt::info!("Hello world!");
 /// ```
-</span><span class="attr">#[cfg(all(feature = <span class="string">&quot;rt&quot;</span>, feature = <span class="string">&quot;usb-logging&quot;</span>))]
-#[cfg_attr(docsrs, doc(cfg(all(feature = <span class="string">&quot;rt&quot;</span>, feature = <span class="string">&quot;usb-logging&quot;</span>))))]
+</span><span class="attr">#[cfg(all(feature = <span class="string">"rt"</span>, feature = <span class="string">"usb-logging"</span>))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = <span class="string">"rt"</span>, feature = <span class="string">"usb-logging"</span>))))]
 </span><span class="kw">pub enum </span>LoggingFrontend {
     <span class="doccomment">/// Use the [`log` crate](https://docs.rs/log/0.4) to write textual log messages.
     ///
@@ -400,8 +401,8 @@
     </span>Defmt,
 }
 
-<span class="attr">#[cfg(all(feature = <span class="string">&quot;rt&quot;</span>, feature = <span class="string">&quot;usb-logging&quot;</span>))]
-#[cfg_attr(docsrs, doc(cfg(all(feature = <span class="string">&quot;rt&quot;</span>, feature = <span class="string">&quot;usb-logging&quot;</span>))))]
+<span class="attr">#[cfg(all(feature = <span class="string">"rt"</span>, feature = <span class="string">"usb-logging"</span>))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = <span class="string">"rt"</span>, feature = <span class="string">"usb-logging"</span>))))]
 </span><span class="kw">impl </span>LoggingFrontend {
     <span class="doccomment">/// Creates a `log` front-end with a default configuration.
     </span><span class="kw">pub const fn </span>default_log() -&gt; <span class="self">Self </span>{
@@ -413,7 +414,7 @@
     /// When this call returns, the interrupt is unmasked and may periodically
     /// execute.
     </span><span class="kw">pub fn </span>register_usb(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw">crate</span>::hal::usbd::Instances&lt;<span class="number">1</span>&gt;) {
-        <span class="attr">#[cfg(all(target_arch = <span class="string">&quot;arm&quot;</span>, target_os = <span class="string">&quot;none&quot;</span>))]
+        <span class="attr">#[cfg(all(target_arch = <span class="string">"arm"</span>, target_os = <span class="string">"none"</span>))]
         </span>{
             <span class="kw">static </span><span class="kw-2">mut </span>ISR_CONFIG: LoggingFrontend = LoggingFrontend::default_log();
             <span class="attr">#[<span class="kw">crate</span>::rt::interrupt]
@@ -422,7 +423,7 @@
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(poller) = <span class="kw-2">&amp;mut *</span>POLLER {
                     poller.poll();
                 } <span class="kw">else </span>{
-                    <span class="comment">// Safety: we&#39;ve &quot;taken ownership&quot; of the USB instances.
+                    <span class="comment">// Safety: we've "taken ownership" of the USB instances.
                     // We can fabricate those instances here.
                     </span><span class="kw">let </span>instances = <span class="kw">unsafe </span>{
                         <span class="kw">crate</span>::hal::usbd::Instances {
@@ -432,7 +433,7 @@
                         }
                     };
 
-                    <span class="comment">// Safety: memory is always initialized. It&#39;s written while the ISR
+                    <span class="comment">// Safety: memory is always initialized. It's written while the ISR
                     // is masked, then read from the ISR.
                     </span><span class="kw">let </span>poller = <span class="kw">unsafe </span>{
                         <span class="kw">match </span><span class="kw-2">&amp;</span>ISR_CONFIG {
@@ -463,7 +464,7 @@
             }
             core::sync::atomic::fence(core::sync::atomic::Ordering::SeqCst);
 
-            <span class="comment">// Invoke USB_OTG1 as soon as it&#39;s unmasked to initialize the USB driver.
+            <span class="comment">// Invoke USB_OTG1 as soon as it's unmasked to initialize the USB driver.
             </span>cortex_m::peripheral::NVIC::pend(interrupt::USB_OTG1);
             <span class="comment">// Safety: interrupt handler state is ready.
             </span><span class="kw">unsafe </span>{ cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };
