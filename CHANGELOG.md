@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [0.4.6] 2023-12-26
+
+Expose LPUART1 resources and type aliases from `board`.
+
 ## [0.4.5] 2023-11-11
 
 Enable the LPSPI3 clock gate in the BSP, resolving issues when trying to use
@@ -217,6 +221,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.6]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.5...teensy4-bsp-0.4.6
 [0.4.5]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.4...teensy4-bsp-0.4.5
 [0.4.4]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.3...teensy4-bsp-0.4.4
 [0.4.3]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.2...teensy4-bsp-0.4.3
