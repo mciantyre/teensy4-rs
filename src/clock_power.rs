@@ -186,6 +186,7 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::usb(),
     clock_gate::dma(),
     clock_gate::snvs_lp(),
+    clock_gate::snvs_hp(),
     clock_gate::lpi2c::<1>(),
     clock_gate::lpi2c::<3>(),
     clock_gate::lpspi::<3>(),
