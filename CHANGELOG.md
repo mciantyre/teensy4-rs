@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [0.4.7] 2024-01-27
+
+Enable the SVNS high-power clock gate during BSP setup, resolving issues when
+using the SRTC.
+
 ## [0.4.6] 2023-12-26
 
 Expose LPUART1 resources and type aliases from `board`.
@@ -221,6 +226,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.7]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.6...teensy4-bsp-0.4.7
 [0.4.6]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.5...teensy4-bsp-0.4.6
 [0.4.5]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.4...teensy4-bsp-0.4.5
 [0.4.4]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.3...teensy4-bsp-0.4.4
