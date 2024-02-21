@@ -8,8 +8,12 @@ const DEFAULT_STACK_SIZE: usize = 16 * 1024;
 fn main() {
     use imxrt_rt::{Family, FlexRamBanks, Memory, RuntimeBuilder};
 
-    let heap_size = env::var("TEENSY4_HEAP_SIZE").map(|val| val.parse::<usize>().unwrap_or(DEFAULT_HEAP_SIZE)).unwrap_or(DEFAULT_HEAP_SIZE);
-    let stack_size = env::var("TEENSY4_STACK_SIZE").map(|val| val.parse::<usize>().unwrap_or(DEFAULT_STACK_SIZE)).unwrap_or(DEFAULT_STACK_SIZE);
+    let heap_size = env::var("TEENSY4_HEAP_SIZE")
+        .map(|val| val.parse::<usize>().unwrap_or(DEFAULT_HEAP_SIZE))
+        .unwrap_or(DEFAULT_HEAP_SIZE);
+    let stack_size = env::var("TEENSY4_STACK_SIZE")
+        .map(|val| val.parse::<usize>().unwrap_or(DEFAULT_STACK_SIZE))
+        .unwrap_or(DEFAULT_STACK_SIZE);
 
     RuntimeBuilder::from_flexspi(Family::Imxrt1060, 1984 * 1024)
         .flexram_banks(FlexRamBanks {
