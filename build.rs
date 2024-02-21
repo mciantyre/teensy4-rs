@@ -1,7 +1,9 @@
 #[cfg(feature = "rt")]
 use std::env;
 
+#[cfg(feature = "rt")]
 const DEFAULT_HEAP_SIZE: usize = 16 * 1024;
+#[cfg(feature = "rt")]
 const DEFAULT_STACK_SIZE: usize = 16 * 1024;
 
 #[cfg(feature = "rt")]
