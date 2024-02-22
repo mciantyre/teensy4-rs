@@ -5,11 +5,12 @@ use std::env;
 fn parse_size_string(val: Result<String, env::VarError>, default: usize) -> usize {
     val.map(|val| {
         if val.ends_with('k') || val.ends_with('K') {
-            val[.. val.len() - 1].parse::<usize>().unwrap() * 1024
+            val[..val.len() - 1].parse::<usize>().unwrap() * 1024
         } else {
             val.parse::<usize>().unwrap()
         }
-    }).unwrap_or(default)
+    })
+    .unwrap_or(default)
 }
 
 #[cfg(feature = "rt")]
