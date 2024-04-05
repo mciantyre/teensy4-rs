@@ -1,0 +1,1 @@
+searchState.loadedDescShard("teensy4_panic", 0, "Panic handler for the Teensy 4.\nBlink S.O.S. on the LED, forever")
