@@ -54,6 +54,21 @@
 //! depend on `imxrt-rt`. Consider disabling the BSP's runtime feature if you want to implement your
 //! own runtime, or if you want to use `imxrt-rt` to define your own memory map.
 //!
+//! ## Environment variable overrides
+//!
+//! You can override the size of some memory regions by setting environment variables.
+//!
+//! - To change the *stack* size, set `TEENSY4_STACK_SIZE` when building.
+//! - To change the *heap* size, set `TEENSY4_HEAP_SIZE` when building.
+//!
+//! The examples below show how to set a 4096 byte stack using its environment variable.
+//!
+//! ```text
+//! TEENSY4_STACK_SIZE=4096
+//! TEENSY4_STACK_SIZE=4k     # Convenience for multiples of 1024 bytes.
+//! TEENSY4_STACK_SIZE=4K     # Equivalent to the above.
+//! ```
+//!
 //! # Notes
 //!
 //! ## SRTC reset by loader

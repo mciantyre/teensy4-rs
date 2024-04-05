@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+Add `TEENSY4_STACK_SIZE` and `TEENSY4_HEAP_SIZE` environment variables to change
+the stack and heap sizes at build time.
+
 ## [0.4.7] 2024-01-27
 
 Enable the SVNS high-power clock gate during BSP setup, resolving issues when

@@ -51,7 +51,7 @@ default-features = false
 features = ["usbd", "log", "defmt"]
 
 [dependencies.imxrt-rt]
-version = "0.1"
+version = "0.1.4"
 optional = true
 features = ["device"]
 
