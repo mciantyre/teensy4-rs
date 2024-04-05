@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.4.8] 2024-04-05
+
 Add `TEENSY4_STACK_SIZE` and `TEENSY4_HEAP_SIZE` environment variables to change
 the stack and heap sizes at build time.
 
@@ -229,6 +231,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.4.8]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.7...teensy4-bsp-0.4.8
 [0.4.7]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.6...teensy4-bsp-0.4.7
 [0.4.6]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.5...teensy4-bsp-0.4.6
 [0.4.5]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.4...teensy4-bsp-0.4.5
