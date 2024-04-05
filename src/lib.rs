@@ -199,6 +199,9 @@ impl LoggingFrontend {
                     // Safety: memory is always initialized. It's written while the ISR
                     // is masked, then read from the ISR.
                     let poller = unsafe {
+                        // #150 removes logging from the BSP, including this code.
+                        // https://github.com/mciantyre/teensy4-rs/issues/150
+                        #[allow(static_mut_refs)]
                         match &ISR_CONFIG {
                             LoggingFrontend::Log(config) => crate::logging::log::usbd_with_config(
                                 instances,
