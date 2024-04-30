@@ -46,6 +46,7 @@ version = "0.5.3"
 features = ["imxrt1060"]
 
 [dependencies.imxrt-log]
+optional = true
 version = "0.1"
 default-features = false
 features = ["usbd", "log", "defmt"]
@@ -74,7 +75,7 @@ members = [
 
 [features]
 rt = ["dep:imxrt-rt", "imxrt-ral/rt"]
-usb-logging = []
+usb-logging = ["dep:imxrt-log"]
 
 # This is a convenience for building examples.
 # When a user builds _all_ of the examples with
@@ -157,4 +158,4 @@ required-features = ["rt"]
 
 [[example]]
 name = "rtic_usb_log"
-required-features = ["rt"]
+required-features = ["rt", "usb-logging"]

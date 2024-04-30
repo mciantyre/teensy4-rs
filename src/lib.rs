@@ -82,6 +82,7 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 pub use imxrt_hal as hal;
+#[cfg(feature = "usb-logging")]
 pub use imxrt_log as logging;
 pub use imxrt_ral as ral;
 #[cfg(all(feature = "rt", target_arch = "arm", target_os = "none"))]
