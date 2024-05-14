@@ -92,6 +92,7 @@ features = ["log"]
 defmt = "0.3"
 defmt-bbq = "0.1"
 embedded-hal = "0.2"
+imxrt-log = { version = "0.1", default-features = false, features = ["usbd", "log"] }
 log = "0.4"
 nb = "1"
 rtic = { version = "2", features = ["thumbv7-backend"] }
@@ -133,4 +134,8 @@ required-features = ["rt"]
 
 [[example]]
 name = "rtic_uart"
+required-features = ["rt"]
+
+[[example]]
+name = "rtic_usb_log"
 required-features = ["rt"]
