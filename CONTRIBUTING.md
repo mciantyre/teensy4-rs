@@ -89,7 +89,6 @@ If you'd like to change
 
 -   the Teensy 4's memory layout
 -   Teensy 4 pin definitions
--   USB logging behaviors
 
 make those changes here, in the [`teensy4-rs`] project.
 

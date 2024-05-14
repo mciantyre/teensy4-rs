@@ -17,8 +17,7 @@
 //! control of your hardware.
 //!
 //! Finally, the BSP provides a runtime to simplify application development. It exposes board pins through
-//! the [`pins`] module. And, it provides the [`imxrt-log`](crate::logging) API for advanced
-//! logging features.
+//! the [`pins`] module.
 //!
 //! # Features
 //!
@@ -27,12 +26,6 @@
 //! | Flag            |         Description                          |
 //! | --------------- | -------------------------------------------- |
 //! | `"rt"`          | Adds runtime support using `imxrt-rt`.       |
-//! | `"usb-logging"` | Enables the [`LoggingFrontend`] convenience. |
-//!
-//! When `"usb-logging"` is enabled, the BSP defines the `USB_OTG1` interrupt handler.
-//! This may conflict with your own `USB_OTG1` handler, resulting in a duplicate definition.
-//! If you want to define your own `USB_OTG1` handler to perform USB logging, do not enable
-//! `"usb-logging"`.
 //!
 //! # Runtime
 //!
@@ -82,8 +75,6 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 pub use imxrt_hal as hal;
-#[cfg(feature = "usb-logging")]
-pub use imxrt_log as logging;
 pub use imxrt_ral as ral;
 #[cfg(all(feature = "rt", target_arch = "arm", target_os = "none"))]
 #[cfg_attr(docsrs, doc(cfg(feature = "rt")))]
@@ -129,127 +120,3 @@ mod clock_power;
 // explains that the 24MHz clock is divided down to 100KHz
 // before reaching SYSTICK.
 pub const EXT_SYSTICK_HZ: u32 = 100_000;
-
-/// The logging frontend.
-///
-/// `LoggingFrontend` provides a convenient API for instantiating a USB1 logger.
-/// It works with two different logging front-ends, described by the enum values.
-///
-/// When used for USB logging, the implementation registers the USB1 interrupt handler (`USB_OTG1`).
-/// This requires the BSP's `"rt"` feature. Registering an interrupt handler may not be appropriate
-/// for environments where interrupts are defined and registered elsewhere. If that's the case,
-/// you should directly use [`logging`] APIs.
-///
-/// For advanced logging configurations, see [`logging`].
-///
-/// # Example
-///
-/// Register a USB logger that uses the `log` front-end.
-///
-/// ```no_run
-/// use teensy4_bsp as bsp;
-/// use bsp::board;
-///
-/// let board::Resources { usb, .. } = board::t40(board::instances());
-/// bsp::LoggingFrontend::default_log().register_usb(usb);
-/// log::info!("Hello world!");
-/// ```
-///
-/// Register a USB logger that uses the `defmt` front-end.
-///
-/// ```no_run
-/// # use teensy4_bsp as bsp;
-/// # use bsp::board;
-/// # let board::Resources { usb, .. } = board::t40(board::instances());
-/// // Same as above...
-/// bsp::LoggingFrontend::Defmt.register_usb(usb);
-/// defmt::info!("Hello world!");
-/// ```
-#[cfg(all(feature = "rt", feature = "usb-logging"))]
-#[cfg_attr(docsrs, doc(cfg(all(feature = "rt", feature = "usb-logging"))))]
-pub enum LoggingFrontend {
-    /// Use the [`log` crate](https://docs.rs/log/0.4) to write textual log messages.
-    ///
-    /// The logging configuration is optional; use [`default_log()`](LoggingFrontend::default_log)
-    /// to select a reasonable default.
-    Log(logging::log::LoggingConfig),
-    /// Use the [`defmt` crate](https://docs.rs/defmt/0.3) to write compressed messages.
-    ///
-    /// *`defmt` requires additional setup* in order to properly build your application.
-    /// Consult the `defmt` documentation for specifics.
-    Defmt,
-}
-
-#[cfg(all(feature = "rt", feature = "usb-logging"))]
-#[cfg_attr(docsrs, doc(cfg(all(feature = "rt", feature = "usb-logging"))))]
-impl LoggingFrontend {
-    /// Creates a `log` front-end with a default configuration.
-    pub const fn default_log() -> Self {
-        Self::Log(logging::log::LoggingConfig::new())
-    }
-    /// Register the USB logger.
-    ///
-    /// This method internally defines a USB1 interrupt handler named `USB_OTG1`.
-    /// When this call returns, the interrupt is unmasked and may periodically
-    /// execute.
-    pub fn register_usb(self, _: crate::hal::usbd::Instances<1>) {
-        #[cfg(all(target_arch = "arm", target_os = "none"))]
-        {
-            static mut ISR_CONFIG: LoggingFrontend = LoggingFrontend::default_log();
-            #[crate::rt::interrupt]
-            fn USB_OTG1() {
-                static mut POLLER: Option<crate::logging::Poller> = None;
-                if let Some(poller) = &mut *POLLER {
-                    poller.poll();
-                } else {
-                    // Safety: we've "taken ownership" of the USB instances.
-                    // We can fabricate those instances here.
-                    let instances = unsafe {
-                        crate::hal::usbd::Instances {
-                            usb: crate::ral::usb::USB1::instance(),
-                            usbphy: crate::ral::usbphy::USBPHY1::instance(),
-                            usbnc: crate::ral::usbnc::USBNC1::instance(),
-                        }
-                    };
-
-                    // Safety: memory is always initialized. It's written while the ISR
-                    // is masked, then read from the ISR.
-                    let poller = unsafe {
-                        // #150 removes logging from the BSP, including this code.
-                        // https://github.com/mciantyre/teensy4-rs/issues/150
-                        #[allow(static_mut_refs)]
-                        match &ISR_CONFIG {
-                            LoggingFrontend::Log(config) => crate::logging::log::usbd_with_config(
-                                instances,
-                                crate::logging::Interrupts::Enabled,
-                                config,
-                                &crate::logging::UsbdConfigBuilder::new().build(),
-                            )
-                            .unwrap(),
-                            LoggingFrontend::Defmt => crate::logging::defmt::usbd(
-                                instances,
-                                crate::logging::Interrupts::Enabled,
-                            )
-                            .unwrap(),
-                        }
-                    };
-                    *POLLER = Some(poller);
-                }
-            }
-
-            cortex_m::peripheral::NVIC::mask(interrupt::USB_OTG1);
-            core::sync::atomic::fence(core::sync::atomic::Ordering::SeqCst);
-            // Safety: ISR is masked, so we can safely write without a
-            // torn read in the ISR.
-            unsafe {
-                ISR_CONFIG = self;
-            }
-            core::sync::atomic::fence(core::sync::atomic::Ordering::SeqCst);
-
-            // Invoke USB_OTG1 as soon as it's unmasked to initialize the USB driver.
-            cortex_m::peripheral::NVIC::pend(interrupt::USB_OTG1);
-            // Safety: interrupt handler state is ready.
-            unsafe { cortex_m::peripheral::NVIC::unmask(interrupt::USB_OTG1) };
-        }
-    }
-}

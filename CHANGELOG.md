@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+**BREAKING** Remove the BSP's internal USB logger. Users should either use `imxrt-log`
+directly, or construct their own USB logging stack.
+
 ## [0.4.8] 2024-04-05
 
 Add `TEENSY4_STACK_SIZE` and `TEENSY4_HEAP_SIZE` environment variables to change

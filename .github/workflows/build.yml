@@ -41,7 +41,7 @@ jobs:
     - name: Set nightly toolchain as default
       run: rustup default nightly && cargo --version
     - name: Run teensy4-bsp unit and documentation tests
-      run: cargo test --package teensy4-bsp --features=usb-logging
+      run: cargo test --package teensy4-bsp
     - name: Run teensy4-pins unit and documentation tests
       run: cargo test --package teensy4-pins
     - name: Run teensy4-panic documentation tests

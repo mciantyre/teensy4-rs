@@ -45,12 +45,6 @@ features = ["imxrt1062"]
 version = "0.5.3"
 features = ["imxrt1060"]
 
-[dependencies.imxrt-log]
-optional = true
-version = "0.1"
-default-features = false
-features = ["usbd", "log", "defmt"]
-
 [dependencies.imxrt-rt]
 version = "0.1.4"
 optional = true
@@ -75,16 +69,6 @@ members = [
 
 [features]
 rt = ["dep:imxrt-rt", "imxrt-ral/rt"]
-usb-logging = ["dep:imxrt-log"]
-
-# This is a convenience for building examples.
-# When a user builds _all_ of the examples with
-# all features, there's likely to be a duplicate
-# definition linker error, since both RTIC and the
-# BSP define USB_OTG1. The linker can figure out
-# which one is actually used when LTO is on.
-[profile.dev]
-lto = "thin"
 
 # Don't optimize build dependencies, like proc macros.
 # Helps with build times.
@@ -113,16 +97,8 @@ name = "blocking_gpt"
 required-features = ["rt"]
 
 [[example]]
-name = "blocking_i2c_mpu9250"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
 name = "blocking_led"
 required-features = ["rt"]
-
-[[example]]
-name = "blocking_panic_log"
-required-features = ["rt", "teensy4-panic/log"]
 
 [[example]]
 name = "blocking_panic"
@@ -133,16 +109,8 @@ name = "blocking_pit"
 required-features = ["rt"]
 
 [[example]]
-name = "blocking_spi_loopback"
-required-features = ["rt", "usb-logging"]
-
-[[example]]
 name = "blocking_uart"
 required-features = ["rt"]
-
-[[example]]
-name = "blocking_usb_log"
-required-features = ["rt", "usb-logging"]
 
 [[example]]
 name = "rtic_gpt"
@@ -155,7 +123,3 @@ required-features = ["rt"]
 [[example]]
 name = "rtic_uart"
 required-features = ["rt"]
-
-[[example]]
-name = "rtic_usb_log"
-required-features = ["rt", "usb-logging"]

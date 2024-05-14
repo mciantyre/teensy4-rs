@@ -18,7 +18,7 @@ Let's make sure that this is a `teensy4-rs` issue. For more information, see the
 Bugs that are pertinent to the `teensy4-rs` project include
 
 - booting or start-up issues; or, something specific to the runtime crate.
-- issues with the additional BSP layer, including USB logging.
+- issues with the additional BSP layer.
 - a feature that's available in the HAL, but not available in the `teensy4-bsp`.
 
 If you're confident that this is a `teensy4-rs` issue, you may delete this section, and describe your bug in the sections below.
