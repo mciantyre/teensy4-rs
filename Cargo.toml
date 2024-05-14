@@ -75,6 +75,9 @@ rt = ["dep:imxrt-rt", "imxrt-ral/rt"]
 [profile.release.build-override]
 opt-level = 0
 
+[profile.release]
+debug = 2
+
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
@@ -87,10 +90,14 @@ features = ["log"]
 
 [dev-dependencies]
 defmt = "0.3"
+defmt-bbq = "0.1"
 embedded-hal = "0.2"
 log = "0.4"
 nb = "1"
 rtic = { version = "2", features = ["thumbv7-backend"] }
+rtic-monotonics = { version = "1", default-features = false, features = ["cortex-m-systick"] }
+usb-device = "0.2"
+usbd-serial = "0.1"
 
 [[example]]
 name = "blocking_gpt"
@@ -110,6 +117,10 @@ required-features = ["rt"]
 
 [[example]]
 name = "blocking_uart"
+required-features = ["rt"]
+
+[[example]]
+name = "rtic_defmt_usb_log"
 required-features = ["rt"]
 
 [[example]]

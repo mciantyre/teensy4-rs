@@ -5,3 +5,6 @@ rustflags = [
 ]
 
 runner = ["cargo", "run", "--package",  "tools", "--bin", "runner", "--"]
+
+[env]
+DEFMT_LOG = "info"
