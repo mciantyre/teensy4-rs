@@ -1,9 +1,11 @@
 # Changelog
 
-## Unreleased
+## [0.5.0] 2024-05-27
 
 **BREAKING** Remove the BSP's internal USB logger. Users should either use `imxrt-log`
-directly, or construct their own USB logging stack.
+or construct their own USB logging stack.
+
+The BSP still exports imxrt-hal v0.5.
 
 ## [0.4.8] 2024-04-05
 
@@ -234,6 +236,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.5.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.8...teensy4-bsp-0.5.0
 [0.4.8]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.7...teensy4-bsp-0.4.8
 [0.4.7]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.6...teensy4-bsp-0.4.7
 [0.4.6]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.5...teensy4-bsp-0.4.6
