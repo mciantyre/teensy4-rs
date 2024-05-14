@@ -22,7 +22,7 @@ mod app {
     }
 
     #[init]
-    fn init(cx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(cx: init::Context) -> (Shared, Local) {
         let board::Resources {
             pins,
             pit: (_, _, mut pit, _),
@@ -33,7 +33,7 @@ mod app {
         pit.set_interrupt_enable(true);
         pit.set_load_timer_value(PIT_DELAY_MS);
         pit.enable();
-        (Shared {}, Local { led, pit }, init::Monotonics())
+        (Shared {}, Local { led, pit })
     }
 
     #[idle]

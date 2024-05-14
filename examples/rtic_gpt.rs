@@ -41,7 +41,7 @@ mod app {
     }
 
     #[init]
-    fn init(cx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(cx: init::Context) -> (Shared, Local) {
         let board::Resources {
             pins,
             mut gpt1,
@@ -54,7 +54,7 @@ mod app {
         init_gpt(&mut gpt2);
 
         gpt1.enable();
-        (Shared { led, gpt1, gpt2 }, Local {}, init::Monotonics())
+        (Shared { led, gpt1, gpt2 }, Local {})
     }
 
     #[idle]

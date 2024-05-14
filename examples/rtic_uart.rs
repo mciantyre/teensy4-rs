@@ -28,7 +28,7 @@ mod app {
     struct Shared {}
 
     #[init]
-    fn init(cx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(cx: init::Context) -> (Shared, Local) {
         let board::Resources {
             pins,
             lpuart2,
@@ -45,7 +45,7 @@ mod app {
             lpuart2.set_interrupts(lpuart::Interrupts::RECEIVE_FULL);
             lpuart2.set_parity(None);
         });
-        (Shared {}, Local { led, lpuart2 }, init::Monotonics())
+        (Shared {}, Local { led, lpuart2 })
     }
 
     #[idle]
