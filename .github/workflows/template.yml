@@ -5,7 +5,7 @@ name: Check Template
 
 on:
   push:
-    branches: [ master, staging, trying ]
+    branches: [ master, trying ]
   schedule:
     # At 15:28 on a Thursday
     - cron: "28 15 * * 4"
@@ -14,20 +14,16 @@ jobs:
   template:
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          components: llvm-tools-preview
-          target: thumbv7em-none-eabihf
-          override: true
+      - name: Install toolchain
+        run: rustup toolchain install stable --no-self-update --profile minimal --target thumbv7em-none-eabihf
       - name: Install cargo-generate
         env:
-          VERSION: v0.5.1 # Keep this in sync with version in PACKAGE
-          PACKAGE: cargo-generate-v0.5.1-x86_64-unknown-linux-musl
+          VERSION: v0.21.0 # Keep this in sync with version in PACKAGE
+          PACKAGE: cargo-generate-v0.21.0-x86_64-unknown-linux-musl
         run: |
-          curl -LJ https://github.com/ashleygwilliams/cargo-generate/releases/download/${VERSION}/${PACKAGE}.tar.gz | tar xz && \
-          cp ${PACKAGE}/cargo-generate $(dirname $(which cargo)) && \
+          curl -LJ https://github.com/cargo-generate/cargo-generate/releases/download/${VERSION}/${PACKAGE}.tar.gz | tar xz && \
+          ls -al && \
+          cp cargo-generate $(dirname $(which cargo)) && \
           cargo generate --help
       - name: Generate the template
         run: cargo generate --git https://github.com/mciantyre/teensy4-rs-template --name krate --branch ci

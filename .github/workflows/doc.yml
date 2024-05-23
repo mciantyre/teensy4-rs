@@ -2,21 +2,20 @@ name: Publish Documentation
 
 on:
   push:
-    branches: [ master, staging, trying ]
+    branches: [ master, trying ]
 
 jobs:
   doc:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - uses: actions-rs/toolchain@v1
-      name: Install toolchain
-      with:
-        toolchain: nightly
-        target: thumbv7em-none-eabihf
-        override: true
+    - name: Install toolchain
+      run: rustup toolchain install nightly --no-self-update --profile minimal --target thumbv7em-none-eabihf
+
+    - name: Set nightly toolchain as default
+      run: rustup default nightly && cargo --version
 
     - name: Generate BSP docs
       run: cargo rustdoc --target thumbv7em-none-eabihf --all-features -- --cfg docsrs

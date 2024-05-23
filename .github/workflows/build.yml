@@ -2,7 +2,7 @@ name: Code Checks
 
 on:
   push:
-    branches: [ master, staging, trying ]
+    branches: [ master, trying ]
   pull_request:
     branches: [ master ]
 
@@ -11,106 +11,68 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        components: rustfmt
+    - uses: actions/checkout@v4
+    - name: Install stable toolchain with rustfmt
+      run: rustup toolchain install stable --no-self-update --profile minimal --component rustfmt
+    - name: Check versions
+      run: cargo --version
     - name: Check formatting of BSP and BSP examples
-      uses: actions-rs/cargo@v1
-      with:
-        command: fmt
-        args: --verbose --all -- --check
+      run: cargo fmt --verbose --all -- --check
   
   clippy:
+    needs: format
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        components: clippy
-        target: thumbv7em-none-eabihf
-        override: true
-    - uses: actions-rs/clippy-check@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        args: --verbose --workspace --examples --target thumbv7em-none-eabihf --all-features -- -D warnings
-        name: Lint all packages and examples
-    - uses: actions-rs/clippy-check@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        args: --verbose --package tools --all-features -- -D warnings
-        name: Lint host-side tools
+    - uses: actions/checkout@v4
+    - name: Install stable toolchain with clippy, target support
+      run: rustup toolchain install stable --no-self-update --profile minimal --component clippy --target thumbv7em-none-eabihf
+    - name: Lint all packages and examples
+      run: cargo clippy --verbose --workspace --examples --target thumbv7em-none-eabihf --all-features -- -D warnings
+    - name: Lint host-side tools
+      run: cargo clippy --verbose --package=tools --all-features -- -D warnings
 
   test:
+    needs: format
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: nightly
-        override: true
+    - uses: actions/checkout@v4
+    - name: Install nightly toolchain
+      run: rustup toolchain install nightly --no-self-update --profile minimal
+    - name: Set nightly toolchain as default
+      run: rustup default nightly && cargo --version
     - name: Run teensy4-bsp unit and documentation tests
-      uses: actions-rs/cargo@v1
-      with:
-        command: test
-        args: --package teensy4-bsp --features=usb-logging
+      run: cargo test --package teensy4-bsp --features=usb-logging
     - name: Run teensy4-pins unit and documentation tests
-      uses: actions-rs/cargo@v1
-      with:
-        command: test
-        args: --package teensy4-pins
+      run: cargo test --package teensy4-pins
     - name: Run teensy4-panic documentation tests
-      uses: actions-rs/cargo@v1
-      with:
-        command: test
-        # TODO why does the --package flag not work with --no-default-features?
-        args: --manifest-path teensy4-panic/Cargo.toml --no-default-features
+      run: cargo test --package teensy4-panic --no-default-features
 
   xplat:
+    needs: [ clippy, test ]
     strategy:
       matrix:
         host: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.host }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        profile: minimal
-        toolchain: stable
-        target: thumbv7em-none-eabihf
-        override: true
+    - uses: actions/checkout@v4
+    - name: Install stable toolchain
+      run: rustup toolchain install stable --no-self-update --profile minimal --target thumbv7em-none-eabihf
     - name: Build examples for ${{ matrix.host }}
-      uses: actions-rs/cargo@v1
-      with:
-        command: build
-        args: --examples --target thumbv7em-none-eabihf --all-features
+      run: cargo build --examples --target thumbv7em-none-eabihf --all-features
 
   # Ensures that documentation links are valid
   doclinks:
+    needs: format
     runs-on: ubuntu-latest
     env:
       RUSTDOCFLAGS: -D warnings
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        target: thumbv7em-none-eabihf
-        override: true
+    - uses: actions/checkout@v4
+    - name: Install stable toolchain
+      run: rustup toolchain install stable --no-self-update --profile minimal --target thumbv7em-none-eabihf
     - name: Check teensy4-fcb doclinks
-      uses: actions-rs/cargo@v1
-      with:
-        command: rustdoc
-        args: --package teensy4-fcb
+      run: cargo rustdoc --package teensy4-fcb --target thumbv7em-none-eabihf
     - name: Check teensy4-pins doclinks
-      uses: actions-rs/cargo@v1
-      with:
-        command: rustdoc
-        args: --package teensy4-pins
+      run: cargo rustdoc --package teensy4-pins --target thumbv7em-none-eabihf
     - name: Check teensy4-bsp doclinks
-      uses: actions-rs/cargo@v1
-      with:
-        command: rustdoc
-        args: --package teensy4-bsp --all-features
+      run: cargo rustdoc --package teensy4-bsp --all-features --target thumbv7em-none-eabihf
