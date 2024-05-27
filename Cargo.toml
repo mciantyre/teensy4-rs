@@ -121,6 +121,10 @@ name = "blocking_uart"
 required-features = ["rt"]
 
 [[example]]
+name = "rtic_configure_pin"
+required-features = ["rt"]
+
+[[example]]
 name = "rtic_defmt_usb_log"
 required-features = ["rt"]
 
