@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [0.3.2] - 2024-05-27
+
+Re-export and document configuration APIs available from imxrt-iomuxc.
+
 ## [0.3.1] - 2023-02-09
 
 Add Teensy MicroMod pins in the `tmm` module.
@@ -37,6 +41,7 @@ release. Users should use `from_pads()`.
 
 First release.
 
+[0.3.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-pins-0.3.1...teensy4-pins-0.3.2
 [0.3.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-pins-0.3.0...teensy4-pins-0.3.1
 [0.3.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-pins-0.2.0...teensy4-pins-0.3.0
 [0.2.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-pins-0.1.0...teensy4-pins-0.2.0

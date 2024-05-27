@@ -50,6 +50,33 @@
 //! let pins = tmm::from_pads(pads);
 //! ```
 //!
+//! # Pin configuration
+//!
+//! Once you have your pad resources, you can configure pull ups, pull downs, and other pad
+//! characteristics. See the [`Config`] documentation for all supported features. Use
+//! [`configure`] to apply the settings.
+//!
+//! For example, here's a pull down on pin 7 and an pull up, open drain on pin 9:
+//!
+//! ```no_run
+//! use teensy4_pins::{t40, Config, configure, PullKeeper, OpenDrain};
+//! # use imxrt_iomuxc::imxrt1060::Pads;
+//!
+//! const P7_CONFIG: Config = Config::zero()
+//!     .set_pull_keeper(Some(PullKeeper::Pulldown100k));
+//!
+//! const P9_CONFIG: Config = Config::zero()
+//!     .set_pull_keeper(Some(PullKeeper::Pullup22k))
+//!     .set_open_drain(OpenDrain::Enabled);
+//!
+//! let pads = // Handle to all processor pads
+//!     # unsafe { Pads::new() };
+//! let mut pins = t40::from_pads(pads);
+//!
+//! configure(&mut pins.p7, P7_CONFIG);
+//! configure(&mut pins.p9, P9_CONFIG);
+//! ```
+//!
 //! # Safety
 //!
 //! The safe APIs expect to work on the only instance of the processor pads. If you don't have that
@@ -70,3 +97,7 @@ mod iomuxc {
 }
 
 pub use imxrt_iomuxc;
+
+pub use imxrt_iomuxc::{
+    configure, Config, DriveStrength, Hysteresis, OpenDrain, PullKeeper, SlewRate, Speed,
+};
