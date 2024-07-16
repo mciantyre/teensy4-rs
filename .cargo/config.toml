@@ -4,7 +4,7 @@ rustflags = [
     "-C", "link-arg=-Tdefmt.x",
 ]
 
-runner = ["cargo", "run", "--package",  "tools", "--bin", "runner", "--"]
+runner = ["cargo", "run", "--package",  "tools", "--bin", "teensy4-runner", "--"]
 
 [env]
 DEFMT_LOG = "info"

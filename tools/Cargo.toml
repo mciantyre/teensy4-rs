@@ -11,5 +11,5 @@ license.workspace = true
 repository.workspace = true
 
 [[bin]]
-name = "runner"
+name = "teensy4-runner"
 path = "runner.rs"
