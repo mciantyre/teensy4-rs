@@ -3,7 +3,7 @@
 //! Pinout:
 //!
 //! - Teensy 4 Pin 22 (CAN1 TX) to TX pin of CAN Transceiver
-//! - Teensy 4 Pin 23 (CAN2 RX) to RX pin of CAN Transceiver
+//! - Teensy 4 Pin 23 (CAN1 RX) to RX pin of CAN Transceiver
 //!
 //! A Can transceiver (such as the Texas Instruments SN65HVD230) is required for this demo.
 //!
