@@ -2,7 +2,7 @@
 //!
 //! This example requires:
 //!
-//! - The `rtic` feature to be enabled.
+//! - The `rt` feature to be enabled.
 //! - a Can transceiver (such as the Texas Instruments SN65HVD230).
 //!
 //! Pinout:
