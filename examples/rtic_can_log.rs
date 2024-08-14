@@ -32,31 +32,17 @@ mod app {
 
     use rtic_monotonics::systick::{self, *};
 
-    // FIXME: need these?
-
-    // use crate::{usb_io, Consumer, Queue};
-    // use crate::Consumer;
-    // use crate::Queue;
-    // use embedded_hal::digital::v2::OutputPin;
-    // use bsp::hal::iomuxc::consts::U1;
-
-    // use dwt_systick_monotonic::{fugit::ExtU32, DwtSystick};
-
-    // #[monotonic(binds = SysTick, default = true)]
-    // type MyMono = DwtSystick<{ bsp::hal::ccm::PLL1::ARM_HZ }>;
-
     #[local]
     struct Local {
         /// For driving the logging endpoint.
         poller: logging::Poller,
         /// For periodically signaling activity.
         led: board::Led,
-        // q_rx: Consumer,
-        // blink_count: u32,
     }
 
     #[shared]
     struct Shared {
+        // CAN interface on the board
         can: board::Flexcan1,
     }
 
@@ -82,8 +68,6 @@ mod app {
         can.set_baud_rate(125_000);
         can.set_max_mailbox(16);
         can.disable_fifo();
-        // can.set_fifo_interrupt(true);
-        // can.set_fifo_accept_all();
         // Set up a system timer for our software task.
         {
             Systick::start(
@@ -93,25 +77,6 @@ mod app {
             );
         }
 
-        // Schedule that software task to run.
-        // make_logs::spawn().unwrap();
-
-        // The queue used for buffering bytes.
-        // let (_q_tx, q_rx) = cx.local.queue.split();
-
-        //        let mut peripherals = bsp::hal::Peripherals::take().unwrap();
-        //
-        //        let (can1_builder, _) = peripherals.can.clock(
-        //            &mut peripherals.ccm.handle,
-        //            bsp::hal::ccm::can::ClockSelect::OSC,
-        //            bsp::hal::ccm::can::PrescalarSelect::DIVIDE_1,
-        //        );
-        //
-        //        let mut can1 = can1_builder.build(pins.p22, pins.p23);
-        //
-        //        can1_init::spawn_after(1_u32.secs()).unwrap();
-
-        // Schedule the first blink.
         blink::spawn().unwrap();
 
         run_can_rx::spawn().unwrap();
@@ -151,41 +116,6 @@ mod app {
         }
     }
 
-    /// This task periodically logs data.
-    ///
-    /// You won't see all the log levels until you configure your build. See the
-    /// top-level docs for more information.
-    // #[task(local = [led])]
-    // async fn make_logs(cx: make_logs::Context) {
-    //     let make_logs::LocalResources { led, .. } = cx.local;
-
-    //     let mut counter = 0u32;
-    //     loop {
-    //         led.toggle();
-    //         Systick::delay(250.millis()).await;
-
-    //         log::trace!("TRACE: {}", counter);
-
-    //         if counter % 3 == 0 {
-    //             log::debug!("DEBUG: {}", counter);
-    //         }
-
-    //         if counter % 5 == 0 {
-    //             log::info!("INFO: {}", counter);
-    //         }
-
-    //         if counter % 7 == 0 {
-    //             log::warn!("WARN: {}", counter);
-    //         }
-
-    //         if counter % 31 == 0 {
-    //             log::error!("ERROR: {}", counter);
-    //         }
-
-    //         counter = counter.wrapping_add(1);
-    //     }
-    // }
-
     /// This task runs when the USB1 interrupt activates.
     /// Simply poll the logger to control the logging process.
     #[task(binds = USB_OTG1, local = [poller])]
@@ -201,38 +131,4 @@ mod app {
             Systick::delay(1000.millis()).await;
         }
     }
-
-    //    #[task(shared = [can1])]
-    //    async fn can1_init(mut cx: can1_init::Context) {
-    //        cx.shared.can1.lock(|can1| {
-    //            can1.set_baud_rate(1_000_000);
-    //            can1.set_max_mailbox(16);
-    //            can1.enable_fifo();
-    //            can1.set_fifo_interrupt(true);
-    //            can1.set_fifo_accept_all();
-    //            can1.print_registers();
-    //        });
-    //        can1::spawn_after(100_u32.millis()).unwrap();
-    //    }
-    //
-    //    #[task(shared = [can1])]
-    //    async fn can1(mut cx: can1::Context) {
-    //        let data: [u8; 8] = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07];
-    //        let id = bsp::hal::can::Id::from(bsp::hal::can::StandardId::new(0x00).unwrap());
-    //        let frame = bsp::hal::can::Frame::new_data(id, data);
-    //        cx.shared.can1.lock(|can1| {
-    //            can1.transmit(&frame).ok();
-    //        });
-    //        can1::spawn_after(100_u32.millis()).unwrap();
-    //    }
-    //
-    //    #[task(binds = CAN1, shared = [can1],)]
-    //    fn can1_int(mut cx: can1_int::Context) {
-    //        cx.shared.can1.lock(|can1| {
-    //            match can1.handle_interrupt() {
-    //                Some(f) => log::info!("Rx: {:?}", &f),
-    //                None => { },
-    //            };
-    //        });
-    //    }
 }
