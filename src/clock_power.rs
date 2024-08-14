@@ -227,6 +227,7 @@ pub fn prepare_clocks_and_power(
     setup_lpspi_clk(ccm);
     setup_perclk_clk(ccm);
     setup_uart_clk(ccm);
+    setup_flexcan_clk(ccm);
 
     CLOCK_GATES
         .iter()
