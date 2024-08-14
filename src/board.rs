@@ -361,30 +361,26 @@ pub type Lpi2c1 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P19, pins::co
 /// Use [`lpi2c`] to create this driver.
 pub type Lpi2c3 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P16, pins::common::P17>, 3>;
 
-
 /// FlexCAN peripheral
-/// 
+///
 
-
-pub fn flexcan<Tx, Rx, const N: u8>(
-    instance: ral::can::Instance<N>,
-    tx: Tx,
-    rx: Rx,
-) -> hal::can::CAN<N>
-where 
-    Tx: hal::iomuxc::flexcan::Pin<
-        Signal = hal::iomuxc::flexcan::Tx,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
-    Rx: hal::iomuxc::flexcan::Pin<
-        Signal = hal::iomuxc::flexcan::Rx,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
-{
-    let mut can = hal::can::CAN::new()
-}
-
-
+// pub fn flexcan<Tx, Rx, const N: u8>(
+//     instance: ral::can::Instance<N>,
+//     tx: Tx,
+//     rx: Rx,
+// ) -> hal::can::CAN<N>
+// where
+//     Tx: hal::iomuxc::flexcan::Pin<
+//         Signal = hal::iomuxc::flexcan::Tx,
+//         Module = hal::iomuxc::consts::Const<N>,
+//     >,
+//     Rx: hal::iomuxc::flexcan::Pin<
+//         Signal = hal::iomuxc::flexcan::Rx,
+//         Module = hal::iomuxc::consts::Const<N>,
+//     >,
+// {
+//     let mut can = hal::can::CAN::new()
+// }
 
 /// LPSPI4 peripheral.
 ///
