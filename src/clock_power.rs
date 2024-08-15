@@ -173,6 +173,17 @@ fn setup_lpspi_clk(ccm: &mut ral::ccm::CCM) {
     ccm::lpspi_clk::set_divider(ccm, LPSPI_DIVIDER);
 }
 
+// Set up CAN clock root
+const CAN_DIVIDER: u32 = 1;
+pub const CAN_FREQUENCY: u32 = ccm::XTAL_OSCILLATOR_HZ / CAN_DIVIDER;
+fn setup_can_clk(ccm: &mut ral::ccm::CCM) {
+    clock_gate::FLEXCAN_CLOCK_GATES
+        .iter()
+        .for_each(|locator| locator.set(ccm, clock_gate::OFF));
+    ccm::can_clk::set_selection(ccm, ccm::can_clk::Selection::Oscillator);
+    ccm::can_clk::set_divider(ccm, CAN_DIVIDER);
+}
+
 const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::pit(),
     clock_gate::gpt_bus::<1>(),
@@ -201,6 +212,10 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::flexpwm::<2>(),
     clock_gate::flexpwm::<3>(),
     clock_gate::flexpwm::<4>(),
+    clock_gate::can::<1>(),
+    clock_gate::can::<2>(),
+    clock_gate::can_pe::<1>(),
+    clock_gate::can_pe::<2>(),
     clock_gate::flexio::<1>(),
     clock_gate::flexio::<2>(),
     clock_gate::flexio::<3>(),
@@ -227,6 +242,7 @@ pub fn prepare_clocks_and_power(
     setup_lpspi_clk(ccm);
     setup_perclk_clk(ccm);
     setup_uart_clk(ccm);
+    setup_can_clk(ccm);
 
     CLOCK_GATES
         .iter()

@@ -42,8 +42,22 @@ version = "0.5"
 features = ["imxrt1062"]
 
 [dependencies.imxrt-hal]
-version = "0.5.3"
+#git = "https://github.com/dstric-aqueduct/imxrt-hal"
+#branch = "dev/can"
+path = "../imxrt-hal"
 features = ["imxrt1060"]
+
+#[dependencies.imxrt-hal]
+#version = "0.4.2"
+#features = ["imxrt1062"]
+
+#[patch.crates-io.imxrt-hal]
+#git = "https://github.com/dstric-aqueduct/imxrt-hal"
+#branch = "dev/can"
+
+[patch.crates-io.imxrt-iomuxc]
+git = "https://github.com/dstric-aqueduct/imxrt-iomuxc.git"
+tag = "v0.1.5-can"
 
 [dependencies.imxrt-rt]
 version = "0.1.4"
@@ -99,6 +113,7 @@ rtic = { version = "2", features = ["thumbv7-backend"] }
 rtic-monotonics = { version = "1", default-features = false, features = ["cortex-m-systick"] }
 usb-device = "0.2"
 usbd-serial = "0.1"
+heapless = "0.8"
 
 [[example]]
 name = "blocking_gpt"
@@ -118,6 +133,14 @@ required-features = ["rt"]
 
 [[example]]
 name = "blocking_uart"
+required-features = ["rt"]
+
+[[example]]
+name = "can"
+required-features = ["rt"]
+
+[[example]]
+name = "rtic_can_log"
 required-features = ["rt"]
 
 [[example]]

@@ -135,6 +135,7 @@
 
 use crate::{hal, pins, ral};
 use core::sync::atomic::{AtomicBool, Ordering};
+pub use hal::can::Pins as CanPins;
 pub use hal::lpspi::Pins as LpspiPins;
 
 /// Use [`instances()`] to safely acquire.
@@ -267,6 +268,10 @@ pub struct Resources<Pins> {
     pub flexio2: ral::flexio::FLEXIO2,
     /// The FlexIO3 register block.
     pub flexio3: ral::flexio::FLEXIO3,
+    /// The FlexCAN1 register block.
+    pub flexcan1: ral::can::CAN1,
+    /// The FlexCAN1 register block.
+    pub flexcan2: ral::can::CAN2,
     /// The register block for ADC1.
     ///
     /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
@@ -358,6 +363,42 @@ pub type Lpi2c1 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P19, pins::co
 ///
 /// Use [`lpi2c`] to create this driver.
 pub type Lpi2c3 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P16, pins::common::P17>, 3>;
+
+/// FlexCAN peripheral
+pub fn flexcan<Tx, Rx, const N: u8>(
+    instance: ral::can::Instance<N>,
+    tx: Tx,
+    rx: Rx,
+) -> hal::can::CAN<CanPins<Tx, Rx>, N>
+where
+    Tx: hal::iomuxc::flexcan::Pin<
+        Signal = hal::iomuxc::flexcan::Tx,
+        Module = hal::iomuxc::consts::Const<N>,
+    >,
+    Rx: hal::iomuxc::flexcan::Pin<
+        Signal = hal::iomuxc::flexcan::Rx,
+        Module = hal::iomuxc::consts::Const<N>,
+    >,
+{
+    let can = hal::can::CAN::new(instance, tx, rx, CAN_FREQUENCY);
+    can
+}
+
+/// FlexCAN1 peripheral
+///
+/// - Pin 22 is TX
+/// - Pin 23 is RX
+///
+/// use [`flexcan`] to create this driver.
+pub type Flexcan1 = hal::can::CAN<CanPins<pins::common::P22, pins::common::P23>, 1>;
+
+/// FlexCAN2 peripheral
+///
+/// - Pin 1 is TX
+/// - Pin 0 is RX
+///
+/// use [`flexcan`] to create this driver.
+pub type Flexcan2 = hal::can::CAN<CanPins<pins::common::P1, pins::common::P0>, 2>;
 
 /// LPSPI4 peripheral.
 ///
@@ -607,6 +648,8 @@ fn prepare_resources<Pins>(
         flexpwm2: hal::flexpwm::new(instances.PWM2),
         flexpwm3: hal::flexpwm::new(instances.PWM3),
         flexpwm4: hal::flexpwm::new(instances.PWM4),
+        flexcan1: instances.CAN1,
+        flexcan2: instances.CAN2,
         adc1,
         adc2,
         trng,
