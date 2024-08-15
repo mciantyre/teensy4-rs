@@ -133,6 +133,10 @@ name = "rtic_gpt"
 required-features = ["rt"]
 
 [[example]]
+name = "rtic_lpspi"
+required-features = ["rt"]
+
+[[example]]
 name = "rtic_pit"
 required-features = ["rt"]
 
