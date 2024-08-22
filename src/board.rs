@@ -380,8 +380,7 @@ where
         Module = hal::iomuxc::consts::Const<N>,
     >,
 {
-    let can = hal::can::CAN::new(instance, tx, rx, CAN_FREQUENCY);
-    can
+    hal::can::CAN::new(instance, tx, rx, CAN_FREQUENCY)
 }
 
 /// FlexCAN1 peripheral

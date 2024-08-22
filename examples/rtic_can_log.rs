@@ -30,7 +30,7 @@ mod app {
 
     use imxrt_log as logging;
 
-    use rtic_monotonics::systick::{self, *};
+    use rtic_monotonics::systick::*;
 
     #[local]
     struct Local {
@@ -110,8 +110,10 @@ mod app {
         let frame = imxrt_hal::can::Frame::new_data(id, data);
 
         loop {
-            // read all available mailboxes for any available frames
-            can.lock(|can| can.transmit(&frame));
+            // Transmit CAN frame
+            if let Err(e) = can.lock(|can| can.transmit(&frame)) {
+                log::error!("{e:?}");
+            }
             Systick::delay(1000.millis()).await;
         }
     }
