@@ -239,6 +239,8 @@ pub struct Resources<Pins> {
     pub lpi2c1: ral::lpi2c::LPI2C1,
     /// The register block for [`Lpi2c3`].
     pub lpi2c3: ral::lpi2c::LPI2C3,
+    /// The register blocks for [`Lpspi1`].
+    pub lpspi1: ral::lpspi::LPSPI1,
     /// The register blocks for [`Lpspi3`].
     pub lpspi3: ral::lpspi::LPSPI3,
     /// The register block for [`Lpspi4`].
@@ -360,6 +362,16 @@ pub type Lpi2c1 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P19, pins::co
 ///
 /// Use [`lpi2c`] to create this driver.
 pub type Lpi2c3 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P16, pins::common::P17>, 3>;
+
+/// LPSPI1 peripheral.
+///
+/// - SDO:  GPIO_SD_B0_02 (p43) or GPIO_EMC_28 (p50)
+/// - SDI:  GPIO_SD_B0_03 (p42) or GPIO_EMC_29 (p54)
+/// - SCK:  GPIO_SD_B0_00 (p45) or GPIO_EMC_27 (p49)
+/// - PCS0: GPIO_SD_B0_01 (p44) or GPIO_EMC_30
+///
+/// Use [`lpspi`] to create this driver.
+pub type Lpspi1<SDO, SDI, SCK, PCS0> = hal::lpspi::Lpspi<LpspiPins<SDO, SDI, SCK, PCS0>, 1>;
 
 /// LPSPI3 peripheral.
 ///
@@ -608,6 +620,7 @@ fn prepare_resources<Pins>(
         pins,
         lpi2c1: instances.LPI2C1,
         lpi2c3: instances.LPI2C3,
+        lpspi1: instances.LPSPI1,
         lpspi3: instances.LPSPI3,
         lpspi4: instances.LPSPI4,
         lpuart6: instances.LPUART6,
