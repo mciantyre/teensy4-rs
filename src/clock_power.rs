@@ -189,6 +189,8 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::snvs_hp(),
     clock_gate::lpi2c::<1>(),
     clock_gate::lpi2c::<3>(),
+    clock_gate::lpspi::<1>(),
+    clock_gate::lpspi::<2>(),
     clock_gate::lpspi::<3>(),
     clock_gate::lpspi::<4>(),
     clock_gate::lpuart::<6>(),
