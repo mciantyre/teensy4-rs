@@ -38,22 +38,18 @@ path = "teensy4-fcb"
 version = "0.4"
 
 [dependencies.imxrt-ral]
-version = "0.5"
-features = ["imxrt1062"]
+workspace = true
 
 [dependencies.imxrt-hal]
-version = "0.5.3"
-features = ["imxrt1060"]
+workspace = true
 
 [dependencies.imxrt-rt]
-version = "0.1.4"
+workspace = true
 optional = true
-features = ["device"]
 
 [build-dependencies.imxrt-rt]
-version = "0.1"
+workspace = true
 optional = true
-features = ["device"]
 
 [dependencies.teensy4-pins]
 version = "0.3.1"
@@ -66,6 +62,14 @@ members = [
     "teensy4-pins",
     "tools",
 ]
+
+[workspace.dependencies]
+imxrt-boot-gen = { version = "0.3.0", features = ["imxrt1060"] }
+imxrt-hal = { version = "0.5.3", features = ["imxrt1060"] }
+imxrt-iomuxc = { version = "0.2.0", features = ["imxrt1060"] }
+imxrt-log = { version = "0.1" }
+imxrt-ral = { version = "0.5", features = ["imxrt1062"] }
+imxrt-rt = { version = "0.1.4", features = ["device"] }
 
 [features]
 rt = ["dep:imxrt-rt", "imxrt-ral/rt"]
@@ -92,7 +96,7 @@ features = ["log"]
 defmt = "0.3"
 defmt-bbq = "0.1"
 embedded-hal = "0.2"
-imxrt-log = { version = "0.1", default-features = false, features = ["usbd", "log"] }
+imxrt-log = { workspace = true, default-features = false, features = ["usbd", "log"] }
 log = "0.4"
 nb = "1"
 rtic = { version = "2", features = ["thumbv7-backend"] }

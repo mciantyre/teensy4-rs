@@ -14,8 +14,7 @@ categories.workspace = true
 keywords.workspace = true
 
 [dependencies.imxrt-iomuxc]
-version = "0.2.0"
-features = ["imxrt1060"]
+workspace = true
 
 [package.metadata.docs.rs]
 default-target = "thumbv7em-none-eabihf"

@@ -14,8 +14,7 @@ categories.workspace = true
 keywords.workspace = true
 
 [dependencies.imxrt-boot-gen]
-version = "0.3.0"
-features = ["imxrt1060"]
+workspace = true
 
 [package.metadata.docs.rs]
 default-target = "thumbv7em-none-eabihf"
