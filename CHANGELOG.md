@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.1] 2024-11-11
+
+Add additional LPSPI instances and type aliases.
+
 ## [0.5.0] 2024-05-27
 
 **BREAKING** Remove the BSP's internal USB logger. Users should either use `imxrt-log`
@@ -236,6 +240,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.5.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.5.0...teensy4-bsp-0.5.1
 [0.5.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.8...teensy4-bsp-0.5.0
 [0.4.8]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.7...teensy4-bsp-0.4.8
 [0.4.7]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.6...teensy4-bsp-0.4.7
