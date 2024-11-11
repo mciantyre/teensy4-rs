@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/board.rs`."><title>board.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-b25d77b18a16a9a4.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0-nightly (6de928dce 2024-08-18)" data-channel="nightly" data-search-js="search-ef54e092fea9c776.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-cb0df477c2d67d00.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/board.rs`."><title>board.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-590a400c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (143ce0920 2024-11-10)" data-channel="nightly" data-search-js="search-c5a66128.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>board.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -653,7 +654,32 @@
 <a href="#653" id="653">653</a>
 <a href="#654" id="654">654</a>
 <a href="#655" id="655">655</a>
-</pre></div><pre class="rust"><code><span class="doccomment">//! Pre-configured board resources.
+<a href="#656" id="656">656</a>
+<a href="#657" id="657">657</a>
+<a href="#658" id="658">658</a>
+<a href="#659" id="659">659</a>
+<a href="#660" id="660">660</a>
+<a href="#661" id="661">661</a>
+<a href="#662" id="662">662</a>
+<a href="#663" id="663">663</a>
+<a href="#664" id="664">664</a>
+<a href="#665" id="665">665</a>
+<a href="#666" id="666">666</a>
+<a href="#667" id="667">667</a>
+<a href="#668" id="668">668</a>
+<a href="#669" id="669">669</a>
+<a href="#670" id="670">670</a>
+<a href="#671" id="671">671</a>
+<a href="#672" id="672">672</a>
+<a href="#673" id="673">673</a>
+<a href="#674" id="674">674</a>
+<a href="#675" id="675">675</a>
+<a href="#676" id="676">676</a>
+<a href="#677" id="677">677</a>
+<a href="#678" id="678">678</a>
+<a href="#679" id="679">679</a>
+<a href="#680" id="680">680</a>
+<a href="#681" id="681">681</a></pre></div><pre class="rust"><code><span class="doccomment">//! Pre-configured board resources.
 //!
 //! The `board` module conveniently exposes drivers and hardware resources.
 //! It configures peripheral clocks and power so that you can simply use the
@@ -894,6 +920,10 @@
     </span><span class="kw">pub </span>lpi2c1: ral::lpi2c::LPI2C1,
     <span class="doccomment">/// The register block for [`Lpi2c3`].
     </span><span class="kw">pub </span>lpi2c3: ral::lpi2c::LPI2C3,
+    <span class="doccomment">/// The register blocks for [`Lpspi1`].
+    </span><span class="kw">pub </span>lpspi1: ral::lpspi::LPSPI1,
+    <span class="doccomment">/// The register blocks for [`Lpspi2`].
+    </span><span class="kw">pub </span>lpspi2: ral::lpspi::LPSPI2,
     <span class="doccomment">/// The register blocks for [`Lpspi3`].
     </span><span class="kw">pub </span>lpspi3: ral::lpspi::LPSPI3,
     <span class="doccomment">/// The register block for [`Lpspi4`].
@@ -1015,6 +1045,26 @@
 ///
 /// Use [`lpi2c`] to create this driver.
 </span><span class="kw">pub type </span>Lpi2c3 = hal::lpi2c::Lpi2c&lt;hal::lpi2c::Pins&lt;pins::common::P16, pins::common::P17&gt;, <span class="number">3</span>&gt;;
+
+<span class="doccomment">/// LPSPI1 peripheral.
+///
+/// - SDO:  GPIO_SD_B0_02 (p43) or GPIO_EMC_28 (p50)
+/// - SDI:  GPIO_SD_B0_03 (p42) or GPIO_EMC_29 (p54)
+/// - SCK:  GPIO_SD_B0_00 (p45) or GPIO_EMC_27 (p49)
+/// - PCS0: GPIO_SD_B0_01 (p44) or GPIO_EMC_30
+///
+/// Use [`lpspi`] to create this driver.
+</span><span class="kw">pub type </span>Lpspi1&lt;SDO, SDI, SCK, PCS0&gt; = hal::lpspi::Lpspi&lt;LpspiPins&lt;SDO, SDI, SCK, PCS0&gt;, <span class="number">1</span>&gt;;
+
+<span class="doccomment">/// LPSPI2 peripheral.
+///
+/// - SDO:  GPIO_SD_B1_08 or GPIO_EMC_02
+/// - SDI:  GPIO_SD_B1_09 or GPIO_EMC_03
+/// - SCK:  GPIO_SD_B1_07 or GPIO_EMC_00
+/// - PCS0: GPIO_SD_B1_06 or GPIO_EMC_01
+///
+/// Use [`lpspi`] to create this driver.
+</span><span class="kw">pub type </span>Lpspi2&lt;SDO, SDI, SCK, PCS0&gt; = hal::lpspi::Lpspi&lt;LpspiPins&lt;SDO, SDI, SCK, PCS0&gt;, <span class="number">2</span>&gt;;
 
 <span class="doccomment">/// LPSPI3 peripheral.
 ///
@@ -1263,6 +1313,8 @@
         pins,
         lpi2c1: instances.LPI2C1,
         lpi2c3: instances.LPI2C3,
+        lpspi1: instances.LPSPI1,
+        lpspi2: instances.LPSPI2,
         lpspi3: instances.LPSPI3,
         lpspi4: instances.LPSPI4,
         lpuart6: instances.LPUART6,
