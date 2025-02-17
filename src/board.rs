@@ -259,6 +259,10 @@ pub struct Resources<Pins> {
     pub lpuart8: ral::lpuart::LPUART8,
     /// The register block for [`Lpuart1`].
     pub lpuart1: ral::lpuart::LPUART1,
+    /// The register block for [`Lpuart5`].
+    pub lpuart5: ral::lpuart::LPUART5,
+    /// The register block for [`Lpuart7`].
+    pub lpuart7: ral::lpuart::LPUART7,
     /// FlexPWM1 components.
     pub flexpwm1: (hal::flexpwm::Pwm<1>, hal::flexpwm::Submodules<1>),
     /// FlexPWM2 components.
@@ -564,6 +568,22 @@ pub type Lpuart8 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P20, pins
 /// Use [`lpuart`] to create this driver.
 pub type Lpuart1 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P24, pins::common::P25>, 1>;
 
+/// LPUART7 peripheral.
+///
+/// - Pin 29 is TX.
+/// - Pin 28 is RX.
+///
+/// Use [`lpuart`] to create this driver.
+pub type Lpuart7 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P29, pins::common::P28>, 7>;
+
+/// LPUART5 peripheral, available on the Teensy 4.1.
+///
+/// - Pin 35 is TX.
+/// - Pin 34 is RX.
+///
+/// Use [`lpuart`] to create this driver.
+pub type Lpuart5 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::t41::P35, pins::t41::P34>, 5>;
+
 fn prepare_resources<Pins>(
     mut instances: Instances,
     from_pads: impl FnOnce(hal::iomuxc::pads::Pads) -> Pins,
@@ -642,6 +662,8 @@ fn prepare_resources<Pins>(
         lpuart3: instances.LPUART3,
         lpuart8: instances.LPUART8,
         lpuart1: instances.LPUART1,
+        lpuart7: instances.LPUART7,
+        lpuart5: instances.LPUART5,
         flexio1: instances.FLEXIO1,
         flexio2: instances.FLEXIO2,
         flexio3: instances.FLEXIO3,

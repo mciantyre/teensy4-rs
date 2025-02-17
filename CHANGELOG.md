@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+Add LPUART5 and LPUART7 aliases, resources, to teensy4-bsp.
+
 ## [0.5.1] 2024-11-11
 
 Add additional LPSPI instances and type aliases.
