@@ -109,7 +109,7 @@ const COMMON_CONFIGURATION_BLOCK: flexspi::ConfigurationBlock =
         .column_address_width(ColumnAddressWidth::OtherDevices)
         .device_mode_configuration(DeviceModeConfiguration::Disabled)
         .wait_time_cfg_commands(WaitTimeConfigurationCommands::disable())
-        .flash_size(SerialFlashRegion::A1, 0x0020_0000)
+        .flash_size(SerialFlashRegion::A1, 0x0080_0000)
         .serial_clk_freq(SerialClockFrequency::MHz60)
         .serial_flash_pad_type(FlashPadType::Quad);
 
