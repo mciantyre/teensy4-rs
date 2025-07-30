@@ -124,4 +124,4 @@ references, and for more information on `teensy4-rs` dependencies.
   [README]: README.md
   [`teensy_loader_cli`]: https://github.com/PaulStoffregen/teensy_loader_cli
   [contributing guidelines]: https://github.com/imxrt-rs/imxrt-rs/blob/master/CONTRIBUTING.md
-  [`imxrt-rs` project documentation]: https://imxrt-rs.github.io
+  [`imxrt-rs` project documentation]: https://imxrt-rs.github.io/book/
