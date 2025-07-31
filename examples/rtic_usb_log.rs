@@ -88,22 +88,22 @@ mod app {
             led.toggle();
             Systick::delay(250.millis()).await;
 
-            log::trace!("TRACE: {}", counter);
+            log::trace!("TRACE: {counter}");
 
             if counter % 3 == 0 {
-                log::debug!("DEBUG: {}", counter);
+                log::debug!("DEBUG: {counter}");
             }
 
             if counter % 5 == 0 {
-                log::info!("INFO: {}", counter);
+                log::info!("INFO: {counter}");
             }
 
             if counter % 7 == 0 {
-                log::warn!("WARN: {}", counter);
+                log::warn!("WARN: {counter}");
             }
 
             if counter % 31 == 0 {
-                log::error!("ERROR: {}", counter);
+                log::error!("ERROR: {counter}");
             }
 
             counter = counter.wrapping_add(1);

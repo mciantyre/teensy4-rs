@@ -198,7 +198,7 @@ fn panic(_info: &core::panic::PanicInfo) -> ! {
         // If logging results in another panic, we shouldn't try again.
         static TRY_TO_LOG: AtomicBool = AtomicBool::new(true);
         if TRY_TO_LOG.fetch_and(false, Ordering::Relaxed) {
-            log::error!("{}", _info);
+            log::error!("{_info}");
         }
     }
     sos()

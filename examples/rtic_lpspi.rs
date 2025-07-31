@@ -127,7 +127,7 @@ mod app {
     async fn lpspi3_reader(cx: lpspi3_reader::Context) {
         loop {
             if let Some(data) = cx.local.lpspi3.read_data() {
-                log::info!("lpspi3 read data: {:#010x}", data);
+                log::info!("lpspi3 read data: {data:#010x}");
             }
             Systick::delay((10_u32).millis()).await;
         }
