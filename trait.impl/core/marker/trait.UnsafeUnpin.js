@@ -1,0 +1,9 @@
+(function() {
+    var implementors = Object.fromEntries([["teensy4_bsp",[["impl&lt;Pins&gt; UnsafeUnpin for <a class=\"struct\" href=\"teensy4_bsp/board/struct.Resources.html\" title=\"struct teensy4_bsp::board::Resources\">Resources</a>&lt;Pins&gt;<div class=\"where\">where\n    Pins: UnsafeUnpin,</div>",1,["teensy4_bsp::board::Resources"]]]],["teensy4_pins",[["impl UnsafeUnpin for <a class=\"struct\" href=\"teensy4_pins/t40/struct.Pins.html\" title=\"struct teensy4_pins::t40::Pins\">Pins</a>",1,["teensy4_pins::t40::Pins"]],["impl UnsafeUnpin for <a class=\"struct\" href=\"teensy4_pins/t41/struct.Pins.html\" title=\"struct teensy4_pins::t41::Pins\">Pins</a>",1,["teensy4_pins::t41::Pins"]],["impl UnsafeUnpin for <a class=\"struct\" href=\"teensy4_pins/tmm/struct.Pins.html\" title=\"struct teensy4_pins::tmm::Pins\">Pins</a>",1,["teensy4_pins::tmm::Pins"]]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":57,"fragment_lengths":[288,523]}
