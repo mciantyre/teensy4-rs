@@ -90,19 +90,19 @@ mod app {
 
             log::trace!("TRACE: {counter}");
 
-            if counter % 3 == 0 {
+            if counter.is_multiple_of(3) {
                 log::debug!("DEBUG: {counter}");
             }
 
-            if counter % 5 == 0 {
+            if counter.is_multiple_of(5) {
                 log::info!("INFO: {counter}");
             }
 
-            if counter % 7 == 0 {
+            if counter.is_multiple_of(7) {
                 log::warn!("WARN: {counter}");
             }
 
-            if counter % 31 == 0 {
+            if counter.is_multiple_of(31) {
                 log::error!("ERROR: {counter}");
             }
 

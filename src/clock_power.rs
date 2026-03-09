@@ -173,6 +173,59 @@ fn setup_lpspi_clk(ccm: &mut ral::ccm::CCM) {
     ccm::lpspi_clk::set_divider(ccm, LPSPI_DIVIDER);
 }
 
+// --- Audio PLL (PLL4) and SAI clock configuration ---
+//
+// The Audio PLL is configured to produce a MCLK that yields a ~44117.647 Hz sample rate.
+// This mirrors the Teensy Audio Library's C++ `set_audioClock(28, 2348, 10000)`:
+//
+//   PLL4 = 24 MHz × (28 + 2348/10000) / 1 = 677,635,200 Hz
+//   SAI1_CLK = PLL4 / prediv(4) / podf(15) = 11,293,920 Hz (MCLK)
+//   Sample rate = MCLK / 256 ≈ 44,117.656 Hz
+//
+
+/// Audio PLL (PLL4) divider selection.
+const AUDIO_PLL_DIV_SELECT: u32 = 28;
+/// Audio PLL numerator.
+const AUDIO_PLL_NUM: u32 = 2348;
+/// Audio PLL denominator.
+const AUDIO_PLL_DENOM: u32 = 10000;
+
+/// SAI clock predivider (1..=8).
+const SAI_CLK_PREDIVIDER: u32 = 4;
+/// SAI clock post-divider (1..=64).
+const SAI_CLK_DIVIDER: u32 = 15;
+
+/// Frequency (Hz) of the SAI1 MCLK after all dividers.
+///
+/// Approximately 11,293,920 Hz, yielding ~44,117.656 Hz sample rate
+/// when MCLK/BCLK ratio is 256.
+pub const SAI1_FREQUENCY: u32 = {
+    // PLL4 output frequency (with post_div = 1):
+    // 24_000_000 * (28 + 2348/10000) = 24_000_000 * 28 + 24_000_000 * 2348 / 10000
+    let pll4_freq: u32 = XTAL_OSCILLATOR_HZ * AUDIO_PLL_DIV_SELECT
+        + XTAL_OSCILLATOR_HZ / AUDIO_PLL_DENOM * AUDIO_PLL_NUM;
+    pll4_freq / SAI_CLK_PREDIVIDER / SAI_CLK_DIVIDER
+};
+
+/// Configure the Audio PLL (PLL4) for 44.1 kHz–family sample rates.
+fn setup_audio_pll(ccm_analog: &mut ral::ccm_analog::CCM_ANALOG) {
+    ccm::analog::pll4::reconfigure(
+        ccm_analog,
+        AUDIO_PLL_DIV_SELECT,
+        AUDIO_PLL_NUM,
+        AUDIO_PLL_DENOM,
+        ccm::analog::pll4::PostDivider::U1,
+    );
+}
+
+/// Configure SAI1 clock root to derive from Audio PLL.
+fn setup_sai1_clk(ccm: &mut ral::ccm::CCM) {
+    clock_gate::sai::<1>().set(ccm, clock_gate::OFF);
+    ccm::sai_clk::set_selection::<1>(ccm, ccm::sai_clk::Selection::Pll4);
+    ccm::sai_clk::set_predivider::<1>(ccm, SAI_CLK_PREDIVIDER);
+    ccm::sai_clk::set_divider::<1>(ccm, SAI_CLK_DIVIDER);
+}
+
 const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::pit(),
     clock_gate::gpt_bus::<1>(),
@@ -211,6 +264,9 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::adc::<1>(),
     clock_gate::adc::<2>(),
     clock_gate::trng(),
+    clock_gate::sai::<1>(),
+    clock_gate::sai::<2>(),
+    clock_gate::sai::<3>(),
 ];
 
 /// Prepare clocks and power for the MCU.
@@ -231,6 +287,8 @@ pub fn prepare_clocks_and_power(
     setup_lpspi_clk(ccm);
     setup_perclk_clk(ccm);
     setup_uart_clk(ccm);
+    setup_audio_pll(ccm_analog);
+    setup_sai1_clk(ccm);
 
     CLOCK_GATES
         .iter()

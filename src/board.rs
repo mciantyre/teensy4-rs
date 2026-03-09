@@ -289,6 +289,16 @@ pub struct Resources<Pins> {
     pub trng: hal::trng::Trng,
     /// Temperature monitor of the core.
     pub tempmon: hal::tempmon::TempMon,
+    /// The register block for SAI1 (I2S audio).
+    ///
+    /// SAI1 is the primary audio interface used by the Teensy Audio Shield.
+    pub sai1: ral::sai::SAI1,
+    /// The register block for SAI2.
+    pub sai2: ral::sai::SAI2,
+    /// The register block for SAI3.
+    pub sai3: ral::sai::SAI3,
+    /// The IOMUXC general purpose register block.
+    pub iomuxc_gpr: ral::iomuxc_gpr::IOMUXC_GPR,
 }
 
 /// The board's dedicated LED.
@@ -675,6 +685,10 @@ fn prepare_resources<Pins>(
         adc2,
         trng,
         tempmon,
+        sai1: instances.SAI1,
+        sai2: instances.SAI2,
+        sai3: instances.SAI3,
+        iomuxc_gpr: instances.IOMUXC_GPR,
     }
 }
 

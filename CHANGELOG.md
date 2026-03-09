@@ -4,6 +4,12 @@
 
 Add LPUART5 and LPUART7 aliases, resources, to teensy4-bsp.
 
+Add SAI clock gates, Audio PLL config, and SAI resources in BSP.
+The BSP configures the SAI1 root clock, but doesn't affect SAI2
+or SAI3 root clocks.
+
+Expose the IOMUXC_GPR through resources.
+
 ## [0.5.1] 2024-11-11
 
 Add additional LPSPI instances and type aliases.

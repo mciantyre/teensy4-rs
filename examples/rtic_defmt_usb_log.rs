@@ -179,19 +179,19 @@ mod app {
             defmt::println!("Hello from defmt! The count is {=u32}", counter);
             defmt::trace!("TRACE: {=u32}", counter);
 
-            if counter % 3 == 0 {
+            if counter.is_multiple_of(3) {
                 defmt::debug!("DEBUG: {=u32}", counter);
             }
 
-            if counter % 5 == 0 {
+            if counter.is_multiple_of(5) {
                 defmt::info!("INFO: {=u32}", counter);
             }
 
-            if counter % 7 == 0 {
+            if counter.is_multiple_of(7) {
                 defmt::warn!("WARN: {=u32}", counter);
             }
 
-            if counter % 31 == 0 {
+            if counter.is_multiple_of(31) {
                 defmt::error!("ERROR: {=u32}", counter);
             }
 
