@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+### [0.5.2] 2026-03-10
+
 Add LPUART5 and LPUART7 aliases, resources, to teensy4-bsp.
 
 Add SAI clock gates, Audio PLL config, and SAI resources in BSP.
@@ -250,6 +252,7 @@ should correct logger thread safety.
 
 First release of `teensy4-bsp` to crates.io.
 
+[0.5.2]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.5.1...teensy4-bsp-0.5.2
 [0.5.1]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.5.0...teensy4-bsp-0.5.1
 [0.5.0]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.8...teensy4-bsp-0.5.0
 [0.4.8]: https://github.com/mciantyre/teensy4-rs/compare/teensy4-bsp-0.4.7...teensy4-bsp-0.4.8
