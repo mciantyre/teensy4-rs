@@ -18,21 +18,22 @@ mod app {
     #[local]
     struct Local {
         led: board::Led,
-        pit: bsp::hal::pit::Pit<2>,
+        pit: bsp::hal::pit::Pit,
     }
 
     #[init]
     fn init(cx: init::Context) -> (Shared, Local) {
         let board::Resources {
             pins,
-            pit: (_, _, mut pit, _),
+            mut pit,
             mut gpio2,
             ..
         } = board::t40(cx.device);
         let led = board::led(&mut gpio2, pins.p13);
-        pit.set_interrupt_enable(true);
-        pit.set_load_timer_value(PIT_DELAY_MS);
-        pit.enable();
+        use bsp::hal::pit::Channel;
+        pit.set_interrupt_enable(Channel::Chan2, true);
+        pit.set_load_timer_value(Channel::Chan2, PIT_DELAY_MS);
+        pit.enable(Channel::Chan2);
         (Shared {}, Local { led, pit })
     }
 
@@ -48,9 +49,10 @@ mod app {
         let pit = cx.local.pit;
         let led = cx.local.led;
 
+        use bsp::hal::pit::Channel;
         led.toggle();
-        while pit.is_elapsed() {
-            pit.clear_elapsed();
+        while pit.is_elapsed(Channel::Chan2) {
+            pit.clear_elapsed(Channel::Chan2);
         }
     }
 }

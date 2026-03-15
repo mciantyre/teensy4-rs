@@ -105,13 +105,15 @@ impl Led {
 
         const GPIO2_GDIR: *mut u32 = (GPIO2_BASE + 0x04) as *mut u32;
 
-        // Set the LED pad into Alt5
-        IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03.write_volatile(5);
-        // Increase drive strength, clearing all other fields
-        IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03.write_volatile(drive_strength_enable(7));
-        // Disable fast mode so that GPIO2 registers drive the pad
-        IOMUXC_GPR_GPR27.write_volatile(IOMUXC_GPR_GPR27.read_volatile() & !(1 << 3));
-        GPIO2_GDIR.write_volatile(GPIO2_GDIR.read_volatile() | (1 << 3));
+        unsafe {
+            // Set the LED pad into Alt5
+            IOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03.write_volatile(5);
+            // Increase drive strength, clearing all other fields
+            IOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03.write_volatile(drive_strength_enable(7));
+            // Disable fast mode so that GPIO2 registers drive the pad
+            IOMUXC_GPR_GPR27.write_volatile(IOMUXC_GPR_GPR27.read_volatile() & !(1 << 3));
+            GPIO2_GDIR.write_volatile(GPIO2_GDIR.read_volatile() | (1 << 3));
+        }
 
         Led()
     }

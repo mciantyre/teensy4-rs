@@ -1,6 +1,6 @@
 [package]
 name = "teensy4-bsp"
-version = "0.5.2"
+version = "0.6.0"
 authors.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -15,7 +15,7 @@ autoexamples = false
 
 [workspace.package]
 authors = ["Ian McIntyre <ianpmcintyre@gmail.com>"]
-edition = "2021"
+edition = "2024"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mciantyre/teensy4-rs"
 categories = [
@@ -35,7 +35,7 @@ features = ["critical-section-single-core"]
 
 [dependencies.teensy4-fcb]
 path = "teensy4-fcb"
-version = "0.4"
+version = "0.5"
 
 [dependencies.imxrt-ral]
 workspace = true
@@ -47,12 +47,15 @@ workspace = true
 workspace = true
 optional = true
 
+[dependencies.imxrt-usbd]
+workspace = true
+
 [build-dependencies.imxrt-rt]
 workspace = true
 optional = true
 
 [dependencies.teensy4-pins]
-version = "0.3.1"
+version = "0.4"
 path = "teensy4-pins"
 
 [workspace]
@@ -64,12 +67,13 @@ members = [
 ]
 
 [workspace.dependencies]
-imxrt-boot-gen = { version = "0.3.0", features = ["imxrt1060"] }
-imxrt-hal = { version = "0.5.3", features = ["imxrt1060"] }
-imxrt-iomuxc = { version = "0.2.0", features = ["imxrt1060"] }
-imxrt-log = { version = "0.1" }
-imxrt-ral = { version = "0.5", features = ["imxrt1062"] }
+imxrt-boot-gen = { version = "0.4.0" }
+imxrt-hal = { version = "0.6.0", features = ["imxrt1060"] }
+imxrt-iomuxc = { version = "0.3.0", features = ["imxrt1060"] }
+imxrt-log = { version = "0.2.0", default-features = false }
+imxrt-ral = { version = "0.6.0", features = ["imxrt1062"] }
 imxrt-rt = { version = "0.1.4", features = ["device"] }
+imxrt-usbd = { version = "0.4.0" }
 
 [features]
 rt = ["dep:imxrt-rt", "imxrt-ral/rt"]
@@ -88,25 +92,21 @@ rustdoc-args = ["--cfg", "docsrs"]
 default-target = "thumbv7em-none-eabihf"
 
 [dev-dependencies.teensy4-panic]
-version = "0.2"
+version = "0.3"
 path = "teensy4-panic"
 features = ["log"]
 
 [dev-dependencies]
-defmt = "0.3"
+defmt = "1.0"
 defmt-bbq = "0.1"
 embedded-hal = "0.2"
-imxrt-log = { workspace = true, default-features = false, features = ["usbd", "log"] }
+imxrt-log = { workspace = true, features = ["usbd", "log"] }
 log = "0.4"
 nb = "1"
 rtic = { version = "2", features = ["thumbv7-backend"] }
 rtic-monotonics = { version = "1", default-features = false, features = ["cortex-m-systick"] }
-usb-device = "0.2"
-usbd-serial = "0.1"
-
-[[example]]
-name = "blocking_gpt"
-required-features = ["rt"]
+usb-device = "0.3"
+usbd-serial = "0.2"
 
 [[example]]
 name = "blocking_led"
@@ -114,10 +114,6 @@ required-features = ["rt"]
 
 [[example]]
 name = "blocking_panic"
-required-features = ["rt"]
-
-[[example]]
-name = "blocking_pit"
 required-features = ["rt"]
 
 [[example]]
@@ -151,3 +147,9 @@ required-features = ["rt"]
 [[example]]
 name = "rtic_usb_log"
 required-features = ["rt"]
+
+[patch.crates-io.imxrt-hal]
+git = "https://github.com/imxrt-rs/imxrt-hal"
+
+[patch.crates-io.imxrt-log]
+git = "https://github.com/imxrt-rs/imxrt-hal"

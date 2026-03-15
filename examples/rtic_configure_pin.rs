@@ -10,13 +10,10 @@ use teensy4_panic as _;
 #[rtic::app(device = teensy4_bsp, peripherals = true)]
 mod app {
     use bsp::board;
-    use bsp::{
-        hal::{gpio, iomuxc},
-        pins,
-    };
+    use bsp::hal::{gpio, iomuxc};
     use teensy4_bsp as bsp;
 
-    type Input = gpio::Input<pins::t40::P7>;
+    type Input = gpio::Input;
 
     const PIN_CONFIG: iomuxc::Config =
         iomuxc::Config::zero().set_pull_keeper(Some(iomuxc::PullKeeper::Pulldown100k));
@@ -40,7 +37,7 @@ mod app {
         let led = board::led(&mut gpio2, pins.p13);
 
         iomuxc::configure(&mut pins.p7, PIN_CONFIG);
-        let input = gpio2.input(pins.p7);
+        let input = gpio2.input(pins.p7).expect("P7 is a GPIO2 pin");
 
         (Shared {}, Local { led, input })
     }

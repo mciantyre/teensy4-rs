@@ -55,34 +55,7 @@
 //!
 //! Once [`t40`] and [`t41`] return, the clocks of all returned resources are running, and clock gates are
 //! enabled. Essentially, `board` handles CCM configurations so that you can use peripherals with reasonable
-//! settings.
-//!
-//! `board` exposes constants to help you understand those clock frequencies. You should
-//! use these frequencies, along with your own settings, to describe certain types of objects, like
-//! blocking delays.
-//!
-//! The example below shows how a user configures a GPT to meet a given GPT frequency.
-//!
-//! ```no_run
-//! # use teensy4_bsp as bsp;
-//! # use bsp::board;
-//! use bsp::hal::{gpt, timer::Blocking};
-//!
-//! // Given this GPT clock source...
-//! const GPT_CLOCK_SOURCE: gpt::ClockSource = gpt::ClockSource::PeripheralClock;
-//! // ...and this GPT-specific divider...
-//! const GPT_DIVIDER: u32 = 8;
-//! /// ...the GPT frequency is
-//! const GPT_FREQUENCY: u32 = board::PERCLK_FREQUENCY / GPT_DIVIDER;
-//!
-//! let board::Resources{ mut gpt1, .. }  = board::t40(board::instances());
-//!
-//! gpt1.set_clock_source(GPT_CLOCK_SOURCE);
-//! gpt1.set_divider(GPT_DIVIDER);
-//!
-//! let mut delay = Blocking::<_, { GPT_FREQUENCY }>::from_gpt(gpt1);
-//! delay.block_ms(500);
-//! ```
+//! settings. `board` exposes constants describing these clock frequencies.
 //!
 //! Clock frequency constants, and all APIs depending on those constants, assume that you do not change the clock policy.
 //! But for those who want extra control, `Resources` exposes the clock management peripherals. If you take this
@@ -135,7 +108,10 @@
 
 use crate::{hal, pins, ral};
 use core::sync::atomic::{AtomicBool, Ordering};
+pub use hal::lpi2c::Lpi2c;
+pub use hal::lpspi::Lpspi;
 pub use hal::lpspi::Pins as LpspiPins;
+pub use hal::lpuart::Lpuart;
 
 /// Use [`instances()`] to safely acquire.
 pub use ral::Instances;
@@ -199,24 +175,24 @@ pub type TMMResources = Resources<pins::tmm::Pins>;
 /// See the various `*Resources` aliases for more information.
 #[non_exhaustive]
 pub struct Resources<Pins> {
-    /// Periodic interrupt timer channels.
-    pub pit: hal::pit::Channels,
+    /// Periodic interrupt timer.
+    pub pit: hal::pit::Pit,
     /// General purpose timer 1.
-    pub gpt1: hal::gpt::Gpt1,
+    pub gpt1: hal::gpt::Gpt,
     /// General purpose timer 2.
-    pub gpt2: hal::gpt::Gpt2,
+    pub gpt2: hal::gpt::Gpt,
     /// GPIO1 port.
-    pub gpio1: hal::gpio::Port<1>,
+    pub gpio1: hal::gpio::Port,
     /// GPIO2 port.
-    pub gpio2: hal::gpio::Port<2>,
+    pub gpio2: hal::gpio::Port,
     /// GPIO3 port.
-    pub gpio3: hal::gpio::Port<3>,
+    pub gpio3: hal::gpio::Port,
     /// GPIO4 port.
-    pub gpio4: hal::gpio::Port<4>,
+    pub gpio4: hal::gpio::Port,
     /// USB1 instances.
     ///
     /// Use this to construct higher-level USB drivers, or to initialize the USB logger.
-    pub usb: hal::usbd::Instances<1>,
+    pub usb: crate::usbd::Instances<1>,
     /// DMA channels.
     pub dma: [Option<hal::dma::channel::Channel>; hal::dma::CHANNEL_COUNT],
     /// The secure real-time counter.
@@ -235,42 +211,42 @@ pub struct Resources<Pins> {
     pub dcdc: ral::dcdc::DCDC,
     /// All available pins.
     pub pins: Pins,
-    /// The register block for [`Lpi2c1`].
+    /// The register block for LPI2C1.
     pub lpi2c1: ral::lpi2c::LPI2C1,
-    /// The register block for [`Lpi2c3`].
+    /// The register block for LPI2C3.
     pub lpi2c3: ral::lpi2c::LPI2C3,
-    /// The register blocks for [`Lpspi1`].
+    /// The register block for LPSPI1.
     pub lpspi1: ral::lpspi::LPSPI1,
-    /// The register blocks for [`Lpspi2`].
+    /// The register block for LPSPI2.
     pub lpspi2: ral::lpspi::LPSPI2,
-    /// The register blocks for [`Lpspi3`].
+    /// The register block for LPSPI3.
     pub lpspi3: ral::lpspi::LPSPI3,
-    /// The register block for [`Lpspi4`].
+    /// The register block for LPSPI4.
     pub lpspi4: ral::lpspi::LPSPI4,
-    /// The register block for [`Lpuart6`].
+    /// The register block for LPUART6.
     pub lpuart6: ral::lpuart::LPUART6,
-    /// The register block for [`Lpuart4`].
+    /// The register block for LPUART4.
     pub lpuart4: ral::lpuart::LPUART4,
-    /// The register block for [`Lpuart2`].
+    /// The register block for LPUART2.
     pub lpuart2: ral::lpuart::LPUART2,
-    /// The register block for [`Lpuart3`].
+    /// The register block for LPUART3.
     pub lpuart3: ral::lpuart::LPUART3,
-    /// The register block for [`Lpuart8`].
+    /// The register block for LPUART8.
     pub lpuart8: ral::lpuart::LPUART8,
-    /// The register block for [`Lpuart1`].
+    /// The register block for LPUART1.
     pub lpuart1: ral::lpuart::LPUART1,
-    /// The register block for [`Lpuart5`].
+    /// The register block for LPUART5.
     pub lpuart5: ral::lpuart::LPUART5,
-    /// The register block for [`Lpuart7`].
+    /// The register block for LPUART7.
     pub lpuart7: ral::lpuart::LPUART7,
-    /// FlexPWM1 components.
-    pub flexpwm1: (hal::flexpwm::Pwm<1>, hal::flexpwm::Submodules<1>),
-    /// FlexPWM2 components.
-    pub flexpwm2: (hal::flexpwm::Pwm<2>, hal::flexpwm::Submodules<2>),
-    /// FlexPWM3 components.
-    pub flexpwm3: (hal::flexpwm::Pwm<3>, hal::flexpwm::Submodules<3>),
-    /// FlexPWM4 components.
-    pub flexpwm4: (hal::flexpwm::Pwm<4>, hal::flexpwm::Submodules<4>),
+    /// FlexPWM1.
+    pub flexpwm1: hal::flexpwm::Pwm,
+    /// FlexPWM2.
+    pub flexpwm2: hal::flexpwm::Pwm,
+    /// FlexPWM3.
+    pub flexpwm3: hal::flexpwm::Pwm,
+    /// FlexPWM4.
+    pub flexpwm4: hal::flexpwm::Pwm,
     /// The FlexIO1 register block.
     pub flexio1: ral::flexio::FLEXIO1,
     /// The FlexIO2 register block.
@@ -282,9 +258,9 @@ pub struct Resources<Pins> {
     /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
     /// this configuration, call `release()` to acquire the register block, then re-construct
     /// the driver.
-    pub adc1: hal::adc::Adc<1>,
+    pub adc1: hal::adc::Adc,
     /// The register block for ADC2.
-    pub adc2: hal::adc::Adc<2>,
+    pub adc2: hal::adc::Adc,
     /// True random number generator.
     pub trng: hal::trng::Trng,
     /// Temperature monitor of the core.
@@ -306,7 +282,7 @@ pub struct Resources<Pins> {
 }
 
 /// The board's dedicated LED.
-pub type Led = hal::gpio::Output<pins::common::P13>;
+pub type Led = hal::gpio::Output;
 
 /// Create the board's LED.
 ///
@@ -319,8 +295,8 @@ pub type Led = hal::gpio::Output<pins::common::P13>;
 ///
 /// let led = board::led(&mut gpio2, pins.p13);
 /// ```
-pub fn led(gpio2: &mut hal::gpio::Port<2>, p13: pins::common::P13) -> Led {
-    gpio2.output(p13)
+pub fn led(gpio2: &mut hal::gpio::Port, p13: pins::common::P13) -> Led {
+    gpio2.output(p13).expect("P13 is a GPIO2 pin")
 }
 
 /// Create a LPI2C peripheral.
@@ -337,7 +313,7 @@ pub fn led(gpio2: &mut hal::gpio::Port<2>, p13: pins::common::P13) -> Led {
 /// let board::Resources { lpi2c3, pins, ..}
 ///     = board::t40(board::instances());
 ///
-/// let mut lpi2c: board::Lpi2c3 = board::lpi2c(
+/// let mut lpi2c: board::Lpi2c = board::lpi2c(
 ///     lpi2c3,
 ///     pins.p16,
 ///     pins.p17,
@@ -349,85 +325,23 @@ pub fn lpi2c<Scl, Sda, const N: u8>(
     scl: Scl,
     sda: Sda,
     clock_speed: Lpi2cClockSpeed,
-) -> hal::lpi2c::Lpi2c<hal::lpi2c::Pins<Scl, Sda>, N>
+) -> hal::lpi2c::Lpi2c
 where
     Scl: hal::iomuxc::lpi2c::Pin<
-        Signal = hal::iomuxc::lpi2c::Scl,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Signal = hal::iomuxc::lpi2c::Scl,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
     Sda: hal::iomuxc::lpi2c::Pin<
-        Signal = hal::iomuxc::lpi2c::Sda,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Signal = hal::iomuxc::lpi2c::Sda,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
 {
-    hal::lpi2c::Lpi2c::new(
+    hal::lpi2c::Lpi2c::with_pins(
         instance,
         hal::lpi2c::Pins { scl, sda },
         &lpi2c_baud(clock_speed),
     )
 }
-
-/// LPI2C1 peripheral.
-///
-/// - Pin 19 is the clock line.
-/// - Pin 18 is the data line.
-///
-/// Use [`lpi2c`] to create this driver.
-pub type Lpi2c1 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P19, pins::common::P18>, 1>;
-
-/// LPI2C3 peripheral.
-///
-/// - Pin 16 is the clock line.
-/// - Pin 17 is the data line.
-///
-/// Use [`lpi2c`] to create this driver.
-pub type Lpi2c3 = hal::lpi2c::Lpi2c<hal::lpi2c::Pins<pins::common::P16, pins::common::P17>, 3>;
-
-/// LPSPI1 peripheral.
-///
-/// - SDO:  GPIO_SD_B0_02 (p43) or GPIO_EMC_28 (p50)
-/// - SDI:  GPIO_SD_B0_03 (p42) or GPIO_EMC_29 (p54)
-/// - SCK:  GPIO_SD_B0_00 (p45) or GPIO_EMC_27 (p49)
-/// - PCS0: GPIO_SD_B0_01 (p44) or GPIO_EMC_30
-///
-/// Use [`lpspi`] to create this driver.
-pub type Lpspi1<SDO, SDI, SCK, PCS0> = hal::lpspi::Lpspi<LpspiPins<SDO, SDI, SCK, PCS0>, 1>;
-
-/// LPSPI2 peripheral.
-///
-/// - SDO:  GPIO_SD_B1_08 or GPIO_EMC_02
-/// - SDI:  GPIO_SD_B1_09 or GPIO_EMC_03
-/// - SCK:  GPIO_SD_B1_07 or GPIO_EMC_00
-/// - PCS0: GPIO_SD_B1_06 or GPIO_EMC_01
-///
-/// Use [`lpspi`] to create this driver.
-pub type Lpspi2<SDO, SDI, SCK, PCS0> = hal::lpspi::Lpspi<LpspiPins<SDO, SDI, SCK, PCS0>, 2>;
-
-/// LPSPI3 peripheral.
-///
-/// CS and SDI have two options each for which pin to use.
-///
-/// - Pin 26 is data out (SDO).
-/// - Pin 39 or 1 is data in (SDI).
-/// - Pin 27 is clock (SCK).
-/// - Pin 0 or 38 is chip select (CS).
-///
-/// Use [`lpspi`] to create this driver.
-pub type Lpspi3<SDI, CS> =
-    hal::lpspi::Lpspi<LpspiPins<pins::common::P26, SDI, pins::common::P27, CS>, 3>;
-
-/// LPSPI4 peripheral.
-///
-/// - Pin 10 is chip select (CS).
-/// - Pin 11 is data out (SDO).
-/// - Pin 12 is data in (SDI).
-/// - Pin 13 is clock (SCK).
-///
-/// Use [`lpspi`] to create this driver.
-pub type Lpspi4 = hal::lpspi::Lpspi<
-    LpspiPins<pins::common::P11, pins::common::P12, pins::common::P13, pins::common::P10>,
-    4,
->;
 
 /// Create a LPSPI peripheral.
 ///
@@ -443,41 +357,36 @@ pub type Lpspi4 = hal::lpspi::Lpspi<
 /// let board::T40Resources { lpspi4, pins, .. }
 ///     = board::t40(board::instances());
 ///
-/// let mut lpspi4: board::Lpspi4 = board::lpspi(
+/// let mut lpspi4: board::Lpspi = board::lpspi(
 ///     lpspi4,
 ///     board::LpspiPins {
 ///         sdo: pins.p11,
 ///         sdi: pins.p12,
 ///         sck: pins.p13,
-///         pcs0: pins.p10,
 ///     },
 ///     1_000_000,
 /// );
 /// ```
-pub fn lpspi<Sdo, Sdi, Sck, Pcs0, const N: u8>(
+pub fn lpspi<Sdo, Sdi, Sck, const N: u8>(
     instance: ral::lpspi::Instance<N>,
-    pins: LpspiPins<Sdo, Sdi, Sck, Pcs0>,
+    pins: LpspiPins<Sdo, Sdi, Sck>,
     baud: u32,
-) -> hal::lpspi::Lpspi<LpspiPins<Sdo, Sdi, Sck, Pcs0>, N>
+) -> hal::lpspi::Lpspi
 where
     Sdo: hal::iomuxc::lpspi::Pin<
-        Signal = hal::iomuxc::lpspi::Sdo,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Signal = hal::iomuxc::lpspi::Sdo,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
     Sdi: hal::iomuxc::lpspi::Pin<
-        Signal = hal::iomuxc::lpspi::Sdi,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Signal = hal::iomuxc::lpspi::Sdi,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
     Sck: hal::iomuxc::lpspi::Pin<
-        Signal = hal::iomuxc::lpspi::Sck,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
-    Pcs0: hal::iomuxc::lpspi::Pin<
-        Signal = hal::iomuxc::lpspi::Pcs0,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Signal = hal::iomuxc::lpspi::Sck,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
 {
-    let mut spi = hal::lpspi::Lpspi::new(instance, pins);
+    let mut spi = hal::lpspi::Lpspi::with_pins(instance, pins);
     spi.disabled(|spi| spi.set_clock_hz(LPSPI_FREQUENCY, baud));
     spi
 }
@@ -503,7 +412,7 @@ where
 ///     = board::t40(board::instances());
 ///
 /// // Explicit type:
-/// let mut lpuart6: board::Lpuart6 = board::lpuart(
+/// let mut lpuart6: board::Lpuart = board::lpuart(
 ///     lpuart6,
 ///     pins.p1,
 ///     pins.p0,
@@ -518,85 +427,21 @@ pub fn lpuart<Tx, Rx, const N: u8>(
     tx: Tx,
     rx: Rx,
     baud: u32,
-) -> hal::lpuart::Lpuart<hal::lpuart::Pins<Tx, Rx>, N>
+) -> hal::lpuart::Lpuart
 where
     Tx: hal::iomuxc::lpuart::Pin<
-        Direction = hal::iomuxc::lpuart::Tx,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Direction = hal::iomuxc::lpuart::Tx,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
     Rx: hal::iomuxc::lpuart::Pin<
-        Direction = hal::iomuxc::lpuart::Rx,
-        Module = hal::iomuxc::consts::Const<N>,
-    >,
+            Direction = hal::iomuxc::lpuart::Rx,
+            Module = hal::iomuxc::consts::Const<N>,
+        >,
 {
-    let mut uart = hal::lpuart::Lpuart::new(instance, hal::lpuart::Pins { tx, rx });
+    let mut uart = hal::lpuart::Lpuart::with_pins(instance, hal::lpuart::Pins { tx, rx });
     uart.disable(|uart| uart.set_baud(&lpuart_baud(baud)));
     uart
 }
-
-/// LPUART6 peripheral.
-///
-/// - Pin 1 is TX.
-/// - Pin 0 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart6 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P1, pins::common::P0>, 6>;
-
-/// LPUART4 peripheral.
-///
-/// - Pin 8 is TX.
-/// - Pin 7 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart4 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P8, pins::common::P7>, 4>;
-
-/// LPUART2 peripheral.
-///
-/// - Pin 14 is TX.
-/// - Pin 15 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart2 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P14, pins::common::P15>, 2>;
-
-/// LPUART3 peripheral.
-///
-/// - Pin 17 is TX.
-/// - Pin 16 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart3 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P17, pins::common::P16>, 3>;
-
-/// LPUART8 peripheral.
-///
-/// - Pin 20 is TX.
-/// - Pin 21 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart8 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P20, pins::common::P21>, 8>;
-
-/// LPUART1 peripheral.
-///
-/// - Pin 24 is TX.
-/// - Pin 25 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart1 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P24, pins::common::P25>, 1>;
-
-/// LPUART7 peripheral.
-///
-/// - Pin 29 is TX.
-/// - Pin 28 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart7 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::common::P29, pins::common::P28>, 7>;
-
-/// LPUART5 peripheral, available on the Teensy 4.1.
-///
-/// - Pin 35 is TX.
-/// - Pin 34 is RX.
-///
-/// Use [`lpuart`] to create this driver.
-pub type Lpuart5 = hal::lpuart::Lpuart<hal::lpuart::Pins<pins::t41::P35, pins::t41::P34>, 5>;
 
 fn prepare_resources<Pins>(
     mut instances: Instances,
@@ -612,7 +457,7 @@ fn prepare_resources<Pins>(
 
     // Stop timers in debug mode.
     ral::modify_reg!(ral::pit, instances.PIT, MCR, FRZ: FRZ_1);
-    let pit = hal::pit::new(instances.PIT);
+    let pit = hal::pit::Pit::new(instances.PIT);
 
     let mut gpt1 = hal::gpt::Gpt::new(instances.GPT1);
     gpt1.disable();
@@ -652,7 +497,7 @@ fn prepare_resources<Pins>(
         gpio2: hal::gpio::Port::new(instances.GPIO2),
         gpio3: hal::gpio::Port::new(instances.GPIO3),
         gpio4: hal::gpio::Port::new(instances.GPIO4),
-        usb: hal::usbd::Instances {
+        usb: crate::usbd::Instances {
             usb: instances.USB1,
             usbphy: instances.USBPHY1,
             usbnc: instances.USBNC1,
@@ -681,10 +526,10 @@ fn prepare_resources<Pins>(
         flexio1: instances.FLEXIO1,
         flexio2: instances.FLEXIO2,
         flexio3: instances.FLEXIO3,
-        flexpwm1: hal::flexpwm::new(instances.PWM1),
-        flexpwm2: hal::flexpwm::new(instances.PWM2),
-        flexpwm3: hal::flexpwm::new(instances.PWM3),
-        flexpwm4: hal::flexpwm::new(instances.PWM4),
+        flexpwm1: hal::flexpwm::Pwm::new(instances.PWM1),
+        flexpwm2: hal::flexpwm::Pwm::new(instances.PWM2),
+        flexpwm3: hal::flexpwm::Pwm::new(instances.PWM3),
+        flexpwm4: hal::flexpwm::Pwm::new(instances.PWM4),
         adc1,
         adc2,
         trng,

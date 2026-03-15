@@ -20,7 +20,7 @@
 //! |  45  | GPIO_B0_09    | LCD_DATA05   | QTIMER4_TIMER0  | FLEXPWM2_PWMB01 | LPUART3_RX    | FLEXIO2_FLEXIO09 | GPIO2_IO09 | SRC_BOOT_CFG05 | ---     | ENET2_RDATA02 | ---            |
 
 pub use crate::common::*;
-use crate::iomuxc::{gpio_b0::*, gpio_sd_b0::*, ErasedPad};
+use crate::iomuxc::{ErasedPad, gpio_b0::*, gpio_sd_b0::*};
 
 /// Pin 34 (MicroMod)
 pub type P34 = GPIO_SD_B0_03;
@@ -223,7 +223,7 @@ impl Pins {
     ///   using [`from_pads`](from_pads()).
     #[inline]
     pub const unsafe fn new() -> Self {
-        from_pads(crate::iomuxc::Pads::new())
+        from_pads(unsafe { crate::iomuxc::Pads::new() })
     }
 
     /// Erase the types of all pins

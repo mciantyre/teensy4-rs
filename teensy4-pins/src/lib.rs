@@ -92,12 +92,12 @@ pub mod t41;
 pub mod tmm;
 
 mod iomuxc {
-    pub use imxrt_iomuxc::imxrt1060::*;
     pub use imxrt_iomuxc::ErasedPad;
+    pub use imxrt_iomuxc::imxrt1060::*;
 }
 
 pub use imxrt_iomuxc;
 
 pub use imxrt_iomuxc::{
-    configure, Config, DriveStrength, Hysteresis, OpenDrain, PullKeeper, SlewRate, Speed,
+    Config, DriveStrength, Hysteresis, OpenDrain, PullKeeper, SlewRate, Speed, configure,
 };

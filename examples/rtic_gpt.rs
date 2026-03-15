@@ -27,11 +27,11 @@ mod app {
     #[shared]
     struct Shared {
         led: board::Led,
-        gpt1: hal::gpt::Gpt1,
-        gpt2: hal::gpt::Gpt2,
+        gpt1: hal::gpt::Gpt,
+        gpt2: hal::gpt::Gpt,
     }
 
-    fn init_gpt<const N: u8>(gpt: &mut hal::gpt::Gpt<N>) {
+    fn init_gpt(gpt: &mut hal::gpt::Gpt) {
         gpt.set_clock_source(GPT_CLOCK_SOURCE);
         gpt.set_divider(GPT_DIVIDER);
         gpt.set_output_compare_count(OCR, GPT_DELAY_MS);

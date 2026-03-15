@@ -30,7 +30,7 @@ fn main() -> ! {
     } = board::t40(board::instances());
     let led = board::led(&mut gpio2, pins.p13);
 
-    let mut lpuart2: board::Lpuart2 = board::lpuart(lpuart2, pins.p14, pins.p15, 115200);
+    let mut lpuart2: board::Lpuart = board::lpuart(lpuart2, pins.p14, pins.p15, 115200);
     loop {
         led.toggle();
         let byte = nb::block!(lpuart2.read()).unwrap();

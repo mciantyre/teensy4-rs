@@ -10,7 +10,7 @@
 //! a look at [the `board` module](crate::board). This module provides pre-configured drivers
 //! and helper functions to define hardware drivers.
 //!
-//! Peripherals are re-exported from the [`imxrt-hal`](crate::hal)
+//! Most peripherals are re-exported from the [`imxrt-hal`](crate::hal)
 //! hardware abstraction layer. For more information on drivers, consult the `imxrt-hal` documentation.
 //! Note that `imxrt-hal` drivers depend on low-level resources from `imxrt-ral`. For convenience,
 //! the BSP also exposes [`imxrt-ral`](crate::ral). Combine `imxrt-hal` and `imxrt-ral` to have full
@@ -79,6 +79,7 @@ pub use imxrt_ral as ral;
 #[cfg(all(feature = "rt", target_arch = "arm", target_os = "none"))]
 #[cfg_attr(docsrs, doc(cfg(feature = "rt")))]
 pub use imxrt_rt as rt;
+pub use imxrt_usbd as usbd;
 
 pub use teensy4_pins as pins;
 
@@ -107,7 +108,7 @@ impl From<Peripherals> for ral::Instances {
 
 /// Exported for RTIC. Do not use.
 #[doc(hidden)]
-pub use ral::{interrupt, Interrupt, NVIC_PRIO_BITS};
+pub use ral::{Interrupt, NVIC_PRIO_BITS, interrupt};
 
 pub mod board;
 mod clock_power;

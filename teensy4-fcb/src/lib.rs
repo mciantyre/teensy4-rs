@@ -110,27 +110,34 @@ const COMMON_CONFIGURATION_BLOCK: flexspi::ConfigurationBlock =
         .device_mode_configuration(DeviceModeConfiguration::Disabled)
         .wait_time_cfg_commands(WaitTimeConfigurationCommands::disable())
         .flash_size(SerialFlashRegion::A1, 0x0020_0000)
-        .serial_clk_freq(SerialClockFrequency::MHz60)
+        .serial_clk_freq(CHIP.serial_clock_frequency(SerialClockOption::MHz60))
         .serial_flash_pad_type(FlashPadType::Quad);
 
 //
 // Final serial NOR configuration block
 //
 
+const CHIP: imxrt_boot_gen::Imxrt = imxrt_boot_gen::Imxrt::Imxrt1060;
+
 /// Value for the serial NOR FlexSPI configuration block.
 ///
 /// Use this constant if you need to create a new static variable with a different name
 /// or link section.
 pub const SERIAL_NOR_CONFIGURATION_BLOCK: nor::ConfigurationBlock =
-    nor::ConfigurationBlock::new(COMMON_CONFIGURATION_BLOCK)
+    nor::ConfigurationBlock::new(CHIP, COMMON_CONFIGURATION_BLOCK)
         .page_size(256)
         .sector_size(4096)
-        .ip_cmd_serial_clk_freq(nor::SerialClockFrequency::MHz30);
+        .ip_cmd_serial_clk_freq(Some(
+            CHIP.ip_serial_clock_frequency(SerialClockOption::MHz30),
+        ));
 
 /// The FlexSPI configuration block.
 ///
 /// The name is intentionally unmangled. You may precisely place this structure to boot
 /// your Teensy 4.
-#[no_mangle]
-#[cfg_attr(all(target_arch = "arm", target_os = "none"), link_section = ".fcb")]
+#[unsafe(no_mangle)]
+#[cfg_attr(
+    all(target_arch = "arm", target_os = "none"),
+    unsafe(link_section = ".fcb")
+)]
 pub static FLEXSPI_CONFIGURATION_BLOCK: nor::ConfigurationBlock = SERIAL_NOR_CONFIGURATION_BLOCK;

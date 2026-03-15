@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+**BREAKING** Adopt new imxrt-rs dependencies, including
+
+- imxrt-hal 0.6
+- imxrt-iomuxc 0.3
+- imxrt-ral 0.6
+- imxrt-usbd 0.4
+
+Adoption changes the representation of drivers. See the imxrt-hal changelog for
+more information. The BSP exports imxrt-usbd, replacing the -hal's interface.
+
+**BREAKING** Adopt Rust 2024 throghout all packages.
+
 Add USDHC1 clock configuration and expose the USDHC1 peripheral instance in
 board resources. The BSP configures the USDHC1 root clock and publishes the
 frequency as `USDHC1_FREQUENCY`. Pin muxing and driver initialization are left

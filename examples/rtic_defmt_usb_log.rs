@@ -48,16 +48,17 @@ use teensy4_panic as _;
 mod app {
     use bsp::{
         board,
-        hal::usbd::{
-            gpt::{Instance::Gpt0, Mode},
+        usbd::{
             BusAdapter, EndpointMemory, EndpointState, Speed,
+            gpt::{Instance::Gpt0, Mode},
         },
     };
     use teensy4_bsp as bsp;
 
     use usb_device::{
+        LangID,
         bus::UsbBusAllocator,
-        device::{UsbDevice, UsbDeviceBuilder, UsbDeviceState, UsbVidPid},
+        device::{StringDescriptors, UsbDevice, UsbDeviceBuilder, UsbDeviceState, UsbVidPid},
     };
     use usbd_serial::SerialPort;
 
@@ -131,7 +132,8 @@ mod app {
         let usb_bus = cx.local.usb_bus.insert(UsbBusAllocator::new(bus_adapter));
         let usb_class = SerialPort::new(usb_bus);
         let usb_device = UsbDeviceBuilder::new(usb_bus, VID_PID)
-            .product(PRODUCT)
+            .strings(&[StringDescriptors::new(LangID::EN_US).product(PRODUCT)])
+            .expect("Failed to set string descriptors")
             .device_class(usbd_serial::USB_CLASS_CDC)
             .build();
 

@@ -21,7 +21,7 @@ mod app {
     #[local]
     struct Local {
         led: board::Led,
-        lpuart2: board::Lpuart2,
+        lpuart2: board::Lpuart,
     }
 
     #[shared]
@@ -38,7 +38,7 @@ mod app {
         let led = board::led(&mut gpio2, pins.p13);
         led.set();
 
-        let mut lpuart2: board::Lpuart2 = board::lpuart(lpuart2, pins.p14, pins.p15, 115200);
+        let mut lpuart2: board::Lpuart = board::lpuart(lpuart2, pins.p14, pins.p15, 115200);
         lpuart2.disable(|lpuart2| {
             lpuart2.disable_fifo(lpuart::Direction::Tx);
             lpuart2.disable_fifo(lpuart::Direction::Rx);

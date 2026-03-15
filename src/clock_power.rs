@@ -5,7 +5,7 @@
 use crate::{
     hal::{
         self,
-        ccm::{self, clock_gate, XTAL_OSCILLATOR_HZ},
+        ccm::{self, XTAL_OSCILLATOR_HZ, clock_gate},
         dcdc,
     },
     ral,
