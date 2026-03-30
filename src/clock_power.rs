@@ -268,6 +268,7 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::sai::<2>(),
     clock_gate::sai::<3>(),
     clock_gate::usdhc::<1>(),
+    clock_gate::flexspi::<2>(),
 ];
 
 /// Prepare clocks and power for the MCU.
@@ -291,6 +292,7 @@ pub fn prepare_clocks_and_power(
     setup_audio_pll(ccm_analog);
     setup_sai1_clk(ccm);
     setup_usdhc1_clk(ccm);
+    setup_flexspi2_clk(ccm);
 
     CLOCK_GATES
         .iter()
@@ -323,4 +325,21 @@ fn setup_usdhc1_clk(ccm: &mut ral::ccm::CCM) {
     clock_gate::usdhc::<1>().set(ccm, clock_gate::OFF);
     ral::modify_reg!(ral::ccm, ccm, CSCMR1, USDHC1_CLK_SEL: 0); // PLL2_PFD2
     ral::modify_reg!(ral::ccm, ccm, CSCDR1, USDHC1_PODF: USDHC1_CLK_DIVISOR - 1);
+}
+
+const FLEXSPI2_CLK_DIVISOR: u32 = 5;
+
+/// FlexSPI2 serial clock frequency (Hz).
+pub const FLEXSPI2_FREQUENCY: u32 = ccm::analog::pll2::FREQUENCY / FLEXSPI2_CLK_DIVISOR;
+const _: () = assert!(FLEXSPI2_FREQUENCY == 105_600_000);
+
+/// Configure the FlexSPI2 clock root for PSRAM.
+///
+/// Source: PLL2 (528 MHz), divider: /5 → 105.6 MHz serial clock.
+fn setup_flexspi2_clk(ccm: &mut ral::ccm::CCM) {
+    clock_gate::flexspi::<2>().set(ccm, clock_gate::OFF);
+    ral::modify_reg!(ral::ccm, ccm, CBCMR,
+        FLEXSPI2_PODF: FLEXSPI2_CLK_DIVISOR - 1,
+        FLEXSPI2_CLK_SEL: FLEXSPI2_CLK_SEL_3   // PLL2 (528 MHz)
+    );
 }

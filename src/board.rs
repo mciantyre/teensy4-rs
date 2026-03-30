@@ -301,6 +301,8 @@ pub struct Resources<Pins> {
     pub iomuxc_gpr: ral::iomuxc_gpr::IOMUXC_GPR,
     /// The USDHC1 peripheral instance.
     pub usdhc1: ral::usdhc::USDHC1,
+    /// The FlexSPI2 peripheral instance.
+    pub flexspi2: ral::flexspi::FLEXSPI2,
 }
 
 /// The board's dedicated LED.
@@ -692,6 +694,7 @@ fn prepare_resources<Pins>(
         sai3: instances.SAI3,
         iomuxc_gpr: instances.IOMUXC_GPR,
         usdhc1: instances.USDHC1,
+        flexspi2: instances.FLEXSPI2,
     }
 }
 
