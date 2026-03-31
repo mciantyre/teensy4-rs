@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+Add USDHC1 clock configuration and expose the USDHC1 peripheral instance in
+board resources. The BSP configures the USDHC1 root clock and publishes the
+frequency as `USDHC1_FREQUENCY`. Pin muxing and driver initialization are left
+to the caller.
+
 ### [0.5.2] 2026-03-10
 
 Add LPUART5 and LPUART7 aliases, resources, to teensy4-bsp.

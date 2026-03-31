@@ -267,6 +267,7 @@ const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::sai::<1>(),
     clock_gate::sai::<2>(),
     clock_gate::sai::<3>(),
+    clock_gate::usdhc::<1>(),
 ];
 
 /// Prepare clocks and power for the MCU.
@@ -289,8 +290,29 @@ pub fn prepare_clocks_and_power(
     setup_uart_clk(ccm);
     setup_audio_pll(ccm_analog);
     setup_sai1_clk(ccm);
+    setup_usdhc1_clk(ccm);
 
     CLOCK_GATES
         .iter()
         .for_each(|locator| locator.set(ccm, clock_gate::ON));
+}
+
+/// USDHC1 root clock frequency (Hz).
+///
+/// PLL2_PFD2 (396 MHz) / 2 = 198 MHz. The actual SD bus clock is
+/// further divided by the USDHC1 peripheral's internal SDCLKFS and
+/// DVS dividers during card initialization.
+pub const USDHC1_FREQUENCY: u32 = 198_000_000;
+
+/// Configure the USDHC1 clock root for the SD card slot.
+///
+/// Source: PLL2_PFD2 (396 MHz), divider: /2 → 198 MHz root clock.
+///
+/// PLL2 (528 MHz) and its PFD2 output (396 MHz) are initialized by the
+/// Teensy bootloader before transferring control to user code. This
+/// function assumes PLL2_PFD2 is already running and stable.
+fn setup_usdhc1_clk(ccm: &mut ral::ccm::CCM) {
+    clock_gate::usdhc::<1>().set(ccm, clock_gate::OFF);
+    ral::modify_reg!(ral::ccm, ccm, CSCMR1, USDHC1_CLK_SEL: 0); // PLL2_PFD2
+    ral::modify_reg!(ral::ccm, ccm, CSCDR1, USDHC1_PODF: 1); // divide by 2
 }

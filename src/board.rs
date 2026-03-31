@@ -299,6 +299,8 @@ pub struct Resources<Pins> {
     pub sai3: ral::sai::SAI3,
     /// The IOMUXC general purpose register block.
     pub iomuxc_gpr: ral::iomuxc_gpr::IOMUXC_GPR,
+    /// The USDHC1 peripheral instance.
+    pub usdhc1: ral::usdhc::USDHC1,
 }
 
 /// The board's dedicated LED.
@@ -689,6 +691,7 @@ fn prepare_resources<Pins>(
         sai2: instances.SAI2,
         sai3: instances.SAI3,
         iomuxc_gpr: instances.IOMUXC_GPR,
+        usdhc1: instances.USDHC1,
     }
 }
 
