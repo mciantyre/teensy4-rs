@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/clock_power.rs`."><title>clock_power.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-b7b9f40b.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (2d76d9bc7 2026-03-09)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-b897f86f.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>clock_power.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Implements the board's clock and power policy.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/clock_power.rs`."><title>clock_power.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (e0e95a718 2026-04-04)" data-channel="nightly" data-search-js="search-1c5d44ff.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>clock_power.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Implements the board's clock and power policy.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="attr">#![allow(clippy::assertions_on_constants)]
 <a href=#4 id=4 data-nosnippet>4</a>
@@ -267,31 +267,53 @@
 <a href=#267 id=267 data-nosnippet>267</a>    clock_gate::sai::&lt;<span class="number">1</span>&gt;(),
 <a href=#268 id=268 data-nosnippet>268</a>    clock_gate::sai::&lt;<span class="number">2</span>&gt;(),
 <a href=#269 id=269 data-nosnippet>269</a>    clock_gate::sai::&lt;<span class="number">3</span>&gt;(),
-<a href=#270 id=270 data-nosnippet>270</a>];
-<a href=#271 id=271 data-nosnippet>271</a>
-<a href=#272 id=272 data-nosnippet>272</a><span class="doccomment">/// Prepare clocks and power for the MCU.
-<a href=#273 id=273 data-nosnippet>273</a>///
-<a href=#274 id=274 data-nosnippet>274</a>/// This implements the [`board`](crate::board#clock-policy)'s clock policy. This
-<a href=#275 id=275 data-nosnippet>275</a>/// function is automatically called when acquiring board resources.
-<a href=#276 id=276 data-nosnippet>276</a></span><span class="kw">pub fn </span>prepare_clocks_and_power(
-<a href=#277 id=277 data-nosnippet>277</a>    ccm: <span class="kw-2">&amp;mut </span>ral::ccm::CCM,
-<a href=#278 id=278 data-nosnippet>278</a>    ccm_analog: <span class="kw-2">&amp;mut </span>ral::ccm_analog::CCM_ANALOG,
-<a href=#279 id=279 data-nosnippet>279</a>    dcdc: <span class="kw-2">&amp;mut </span>ral::dcdc::DCDC,
-<a href=#280 id=280 data-nosnippet>280</a>) {
-<a href=#281 id=281 data-nosnippet>281</a>    ccm::set_low_power_mode(ccm, ccm::LowPowerMode::RemainInRun);
-<a href=#282 id=282 data-nosnippet>282</a>    dcdc::set_target_vdd_soc(dcdc, <span class="number">1250</span>);
-<a href=#283 id=283 data-nosnippet>283</a>    ccm::analog::pll3::restart(ccm_analog);
-<a href=#284 id=284 data-nosnippet>284</a>
-<a href=#285 id=285 data-nosnippet>285</a>    setup_ahb_ipg_clk(ccm, ccm_analog);
-<a href=#286 id=286 data-nosnippet>286</a>    setup_lpi2c_clk(ccm);
-<a href=#287 id=287 data-nosnippet>287</a>    setup_lpspi_clk(ccm);
-<a href=#288 id=288 data-nosnippet>288</a>    setup_perclk_clk(ccm);
-<a href=#289 id=289 data-nosnippet>289</a>    setup_uart_clk(ccm);
-<a href=#290 id=290 data-nosnippet>290</a>    setup_audio_pll(ccm_analog);
-<a href=#291 id=291 data-nosnippet>291</a>    setup_sai1_clk(ccm);
-<a href=#292 id=292 data-nosnippet>292</a>
-<a href=#293 id=293 data-nosnippet>293</a>    CLOCK_GATES
-<a href=#294 id=294 data-nosnippet>294</a>        .iter()
-<a href=#295 id=295 data-nosnippet>295</a>        .for_each(|locator| locator.set(ccm, clock_gate::ON));
-<a href=#296 id=296 data-nosnippet>296</a>}
+<a href=#270 id=270 data-nosnippet>270</a>    clock_gate::usdhc::&lt;<span class="number">1</span>&gt;(),
+<a href=#271 id=271 data-nosnippet>271</a>];
+<a href=#272 id=272 data-nosnippet>272</a>
+<a href=#273 id=273 data-nosnippet>273</a><span class="doccomment">/// Prepare clocks and power for the MCU.
+<a href=#274 id=274 data-nosnippet>274</a>///
+<a href=#275 id=275 data-nosnippet>275</a>/// This implements the [`board`](crate::board#clock-policy)'s clock policy. This
+<a href=#276 id=276 data-nosnippet>276</a>/// function is automatically called when acquiring board resources.
+<a href=#277 id=277 data-nosnippet>277</a></span><span class="kw">pub fn </span>prepare_clocks_and_power(
+<a href=#278 id=278 data-nosnippet>278</a>    ccm: <span class="kw-2">&amp;mut </span>ral::ccm::CCM,
+<a href=#279 id=279 data-nosnippet>279</a>    ccm_analog: <span class="kw-2">&amp;mut </span>ral::ccm_analog::CCM_ANALOG,
+<a href=#280 id=280 data-nosnippet>280</a>    dcdc: <span class="kw-2">&amp;mut </span>ral::dcdc::DCDC,
+<a href=#281 id=281 data-nosnippet>281</a>) {
+<a href=#282 id=282 data-nosnippet>282</a>    ccm::set_low_power_mode(ccm, ccm::LowPowerMode::RemainInRun);
+<a href=#283 id=283 data-nosnippet>283</a>    dcdc::set_target_vdd_soc(dcdc, <span class="number">1250</span>);
+<a href=#284 id=284 data-nosnippet>284</a>    ccm::analog::pll3::restart(ccm_analog);
+<a href=#285 id=285 data-nosnippet>285</a>
+<a href=#286 id=286 data-nosnippet>286</a>    setup_ahb_ipg_clk(ccm, ccm_analog);
+<a href=#287 id=287 data-nosnippet>287</a>    setup_lpi2c_clk(ccm);
+<a href=#288 id=288 data-nosnippet>288</a>    setup_lpspi_clk(ccm);
+<a href=#289 id=289 data-nosnippet>289</a>    setup_perclk_clk(ccm);
+<a href=#290 id=290 data-nosnippet>290</a>    setup_uart_clk(ccm);
+<a href=#291 id=291 data-nosnippet>291</a>    setup_audio_pll(ccm_analog);
+<a href=#292 id=292 data-nosnippet>292</a>    setup_sai1_clk(ccm);
+<a href=#293 id=293 data-nosnippet>293</a>    setup_usdhc1_clk(ccm);
+<a href=#294 id=294 data-nosnippet>294</a>
+<a href=#295 id=295 data-nosnippet>295</a>    CLOCK_GATES
+<a href=#296 id=296 data-nosnippet>296</a>        .iter()
+<a href=#297 id=297 data-nosnippet>297</a>        .for_each(|locator| locator.set(ccm, clock_gate::ON));
+<a href=#298 id=298 data-nosnippet>298</a>}
+<a href=#299 id=299 data-nosnippet>299</a>
+<a href=#300 id=300 data-nosnippet>300</a><span class="doccomment">/// USDHC1 root clock frequency (Hz).
+<a href=#301 id=301 data-nosnippet>301</a>///
+<a href=#302 id=302 data-nosnippet>302</a>/// PLL2_PFD2 (396 MHz) / 2 = 198 MHz. The actual SD bus clock is
+<a href=#303 id=303 data-nosnippet>303</a>/// further divided by the USDHC1 peripheral's internal SDCLKFS and
+<a href=#304 id=304 data-nosnippet>304</a>/// DVS dividers during card initialization.
+<a href=#305 id=305 data-nosnippet>305</a></span><span class="kw">pub const </span>USDHC1_FREQUENCY: u32 = <span class="number">198_000_000</span>;
+<a href=#306 id=306 data-nosnippet>306</a>
+<a href=#307 id=307 data-nosnippet>307</a><span class="doccomment">/// Configure the USDHC1 clock root for the SD card slot.
+<a href=#308 id=308 data-nosnippet>308</a>///
+<a href=#309 id=309 data-nosnippet>309</a>/// Source: PLL2_PFD2 (396 MHz), divider: /2 → 198 MHz root clock.
+<a href=#310 id=310 data-nosnippet>310</a>///
+<a href=#311 id=311 data-nosnippet>311</a>/// PLL2 (528 MHz) and its PFD2 output (396 MHz) are initialized by the
+<a href=#312 id=312 data-nosnippet>312</a>/// Teensy bootloader before transferring control to user code. This
+<a href=#313 id=313 data-nosnippet>313</a>/// function assumes PLL2_PFD2 is already running and stable.
+<a href=#314 id=314 data-nosnippet>314</a></span><span class="kw">fn </span>setup_usdhc1_clk(ccm: <span class="kw-2">&amp;mut </span>ral::ccm::CCM) {
+<a href=#315 id=315 data-nosnippet>315</a>    clock_gate::usdhc::&lt;<span class="number">1</span>&gt;().set(ccm, clock_gate::OFF);
+<a href=#316 id=316 data-nosnippet>316</a>    <span class="macro">ral::modify_reg!</span>(ral::ccm, ccm, CSCMR1, USDHC1_CLK_SEL: <span class="number">0</span>); <span class="comment">// PLL2_PFD2
+<a href=#317 id=317 data-nosnippet>317</a>    </span><span class="macro">ral::modify_reg!</span>(ral::ccm, ccm, CSCDR1, USDHC1_PODF: <span class="number">1</span>); <span class="comment">// divide by 2
+<a href=#318 id=318 data-nosnippet>318</a></span>}
 </code></pre></div></section></main></body></html>
