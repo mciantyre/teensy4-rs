@@ -226,6 +226,51 @@ fn setup_sai1_clk(ccm: &mut ral::ccm::CCM) {
     ccm::sai_clk::set_divider::<1>(ccm, SAI_CLK_DIVIDER);
 }
 
+/// PLL2_PFD2 fractional divider. This value is set by the Teensy bootloader
+/// and assumed to be stable before user code runs.
+const PLL2_PFD2_FRAC: u32 = 24;
+const PLL2_PFD2_FREQUENCY: u32 = ccm::analog::pll2::FREQUENCY / PLL2_PFD2_FRAC * 18;
+
+const USDHC1_CLK_DIVISOR: u32 = 2;
+
+/// USDHC1 root clock frequency (Hz).
+///
+/// Derived from PLL2_PFD2 (396 MHz) divided by `USDHC1_CLK_DIVISOR`. The actual
+/// SD bus clock is further divided by the USDHC1 peripheral's internal
+/// SDCLKFS and DVS dividers during card initialization.
+pub const USDHC1_FREQUENCY: u32 = PLL2_PFD2_FREQUENCY / USDHC1_CLK_DIVISOR;
+const _: () = assert!(USDHC1_FREQUENCY == 198_000_000);
+
+/// Configure the USDHC1 clock root for the SD card slot.
+///
+/// Source: PLL2_PFD2 (396 MHz), divider: /2 → 198 MHz root clock.
+///
+/// PLL2 (528 MHz) and its PFD2 output (396 MHz) are initialized by the
+/// Teensy bootloader before transferring control to user code. This
+/// function assumes PLL2_PFD2 is already running and stable.
+fn setup_usdhc1_clk(ccm: &mut ral::ccm::CCM) {
+    clock_gate::usdhc::<1>().set(ccm, clock_gate::OFF);
+    ral::modify_reg!(ral::ccm, ccm, CSCMR1, USDHC1_CLK_SEL: 0); // PLL2_PFD2
+    ral::modify_reg!(ral::ccm, ccm, CSCDR1, USDHC1_PODF: USDHC1_CLK_DIVISOR - 1);
+}
+
+const FLEXSPI2_CLK_DIVISOR: u32 = 5;
+
+/// FlexSPI2 serial clock frequency (Hz).
+pub const FLEXSPI2_FREQUENCY: u32 = ccm::analog::pll2::FREQUENCY / FLEXSPI2_CLK_DIVISOR;
+const _: () = assert!(FLEXSPI2_FREQUENCY == 105_600_000);
+
+/// Configure the FlexSPI2 clock root for PSRAM.
+///
+/// Source: PLL2 (528 MHz), divider: /5 → 105.6 MHz serial clock.
+fn setup_flexspi2_clk(ccm: &mut ral::ccm::CCM) {
+    clock_gate::flexspi::<2>().set(ccm, clock_gate::OFF);
+    ral::modify_reg!(ral::ccm, ccm, CBCMR,
+        FLEXSPI2_PODF: FLEXSPI2_CLK_DIVISOR - 1,
+        FLEXSPI2_CLK_SEL: FLEXSPI2_CLK_SEL_3   // PLL2 (528 MHz)
+    );
+}
+
 const CLOCK_GATES: &[clock_gate::Locator] = &[
     clock_gate::pit(),
     clock_gate::gpt_bus::<1>(),
@@ -297,49 +342,4 @@ pub fn prepare_clocks_and_power(
     CLOCK_GATES
         .iter()
         .for_each(|locator| locator.set(ccm, clock_gate::ON));
-}
-
-/// PLL2_PFD2 fractional divider. This value is set by the Teensy bootloader
-/// and assumed to be stable before user code runs.
-const PLL2_PFD2_FRAC: u32 = 24;
-const PLL2_PFD2_FREQUENCY: u32 = ccm::analog::pll2::FREQUENCY / PLL2_PFD2_FRAC * 18;
-
-const USDHC1_CLK_DIVISOR: u32 = 2;
-
-/// USDHC1 root clock frequency (Hz).
-///
-/// Derived from PLL2_PFD2 (396 MHz) divided by `USDHC1_CLK_DIVISOR`. The actual
-/// SD bus clock is further divided by the USDHC1 peripheral's internal
-/// SDCLKFS and DVS dividers during card initialization.
-pub const USDHC1_FREQUENCY: u32 = PLL2_PFD2_FREQUENCY / USDHC1_CLK_DIVISOR;
-const _: () = assert!(USDHC1_FREQUENCY == 198_000_000);
-
-/// Configure the USDHC1 clock root for the SD card slot.
-///
-/// Source: PLL2_PFD2 (396 MHz), divider: /2 → 198 MHz root clock.
-///
-/// PLL2 (528 MHz) and its PFD2 output (396 MHz) are initialized by the
-/// Teensy bootloader before transferring control to user code. This
-/// function assumes PLL2_PFD2 is already running and stable.
-fn setup_usdhc1_clk(ccm: &mut ral::ccm::CCM) {
-    clock_gate::usdhc::<1>().set(ccm, clock_gate::OFF);
-    ral::modify_reg!(ral::ccm, ccm, CSCMR1, USDHC1_CLK_SEL: 0); // PLL2_PFD2
-    ral::modify_reg!(ral::ccm, ccm, CSCDR1, USDHC1_PODF: USDHC1_CLK_DIVISOR - 1);
-}
-
-const FLEXSPI2_CLK_DIVISOR: u32 = 5;
-
-/// FlexSPI2 serial clock frequency (Hz).
-pub const FLEXSPI2_FREQUENCY: u32 = ccm::analog::pll2::FREQUENCY / FLEXSPI2_CLK_DIVISOR;
-const _: () = assert!(FLEXSPI2_FREQUENCY == 105_600_000);
-
-/// Configure the FlexSPI2 clock root for PSRAM.
-///
-/// Source: PLL2 (528 MHz), divider: /5 → 105.6 MHz serial clock.
-fn setup_flexspi2_clk(ccm: &mut ral::ccm::CCM) {
-    clock_gate::flexspi::<2>().set(ccm, clock_gate::OFF);
-    ral::modify_reg!(ral::ccm, ccm, CBCMR,
-        FLEXSPI2_PODF: FLEXSPI2_CLK_DIVISOR - 1,
-        FLEXSPI2_CLK_SEL: FLEXSPI2_CLK_SEL_3   // PLL2 (528 MHz)
-    );
 }
