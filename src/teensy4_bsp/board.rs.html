@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/board.rs`."><title>board.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (02c7f9bec 2026-04-10)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>board.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Pre-configured board resources.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/board.rs`."><title>board.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-74eb0058.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (beae78130 2026-06-09)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>board.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Pre-configured board resources.
 <a href=#2 id=2 data-nosnippet>2</a>//!
 <a href=#3 id=3 data-nosnippet>3</a>//! The `board` module conveniently exposes drivers and hardware resources.
 <a href=#4 id=4 data-nosnippet>4</a>//! It configures peripheral clocks and power so that you can simply use the
@@ -55,670 +55,515 @@
 <a href=#55 id=55 data-nosnippet>55</a>//!
 <a href=#56 id=56 data-nosnippet>56</a>//! Once [`t40`] and [`t41`] return, the clocks of all returned resources are running, and clock gates are
 <a href=#57 id=57 data-nosnippet>57</a>//! enabled. Essentially, `board` handles CCM configurations so that you can use peripherals with reasonable
-<a href=#58 id=58 data-nosnippet>58</a>//! settings.
+<a href=#58 id=58 data-nosnippet>58</a>//! settings. `board` exposes constants describing these clock frequencies.
 <a href=#59 id=59 data-nosnippet>59</a>//!
-<a href=#60 id=60 data-nosnippet>60</a>//! `board` exposes constants to help you understand those clock frequencies. You should
-<a href=#61 id=61 data-nosnippet>61</a>//! use these frequencies, along with your own settings, to describe certain types of objects, like
-<a href=#62 id=62 data-nosnippet>62</a>//! blocking delays.
-<a href=#63 id=63 data-nosnippet>63</a>//!
-<a href=#64 id=64 data-nosnippet>64</a>//! The example below shows how a user configures a GPT to meet a given GPT frequency.
-<a href=#65 id=65 data-nosnippet>65</a>//!
-<a href=#66 id=66 data-nosnippet>66</a>//! ```no_run
-<a href=#67 id=67 data-nosnippet>67</a>//! # use teensy4_bsp as bsp;
-<a href=#68 id=68 data-nosnippet>68</a>//! # use bsp::board;
-<a href=#69 id=69 data-nosnippet>69</a>//! use bsp::hal::{gpt, timer::Blocking};
+<a href=#60 id=60 data-nosnippet>60</a>//! Clock frequency constants, and all APIs depending on those constants, assume that you do not change the clock policy.
+<a href=#61 id=61 data-nosnippet>61</a>//! But for those who want extra control, `Resources` exposes the clock management peripherals. If you take this
+<a href=#62 id=62 data-nosnippet>62</a>//! route, you're responsible for ensuring your peripheral's clock configurations, and you should ignore the constants
+<a href=#63 id=63 data-nosnippet>63</a>//! exposed by this module.
+<a href=#64 id=64 data-nosnippet>64</a>//!
+<a href=#65 id=65 data-nosnippet>65</a>//! ## Clock details
+<a href=#66 id=66 data-nosnippet>66</a>//!
+<a href=#67 id=67 data-nosnippet>67</a>//! `board` makes a few guarantees about the clock policy. This section describes those guarantees.
+<a href=#68 id=68 data-nosnippet>68</a>//!
+<a href=#69 id=69 data-nosnippet>69</a>//! It's considered an API-breaking change to vary the frequencies and derivations of these clocks:
 <a href=#70 id=70 data-nosnippet>70</a>//!
-<a href=#71 id=71 data-nosnippet>71</a>//! // Given this GPT clock source...
-<a href=#72 id=72 data-nosnippet>72</a>//! const GPT_CLOCK_SOURCE: gpt::ClockSource = gpt::ClockSource::PeripheralClock;
-<a href=#73 id=73 data-nosnippet>73</a>//! // ...and this GPT-specific divider...
-<a href=#74 id=74 data-nosnippet>74</a>//! const GPT_DIVIDER: u32 = 8;
-<a href=#75 id=75 data-nosnippet>75</a>//! /// ...the GPT frequency is
-<a href=#76 id=76 data-nosnippet>76</a>//! const GPT_FREQUENCY: u32 = board::PERCLK_FREQUENCY / GPT_DIVIDER;
-<a href=#77 id=77 data-nosnippet>77</a>//!
-<a href=#78 id=78 data-nosnippet>78</a>//! let board::Resources{ mut gpt1, .. }  = board::t40(board::instances());
-<a href=#79 id=79 data-nosnippet>79</a>//!
-<a href=#80 id=80 data-nosnippet>80</a>//! gpt1.set_clock_source(GPT_CLOCK_SOURCE);
-<a href=#81 id=81 data-nosnippet>81</a>//! gpt1.set_divider(GPT_DIVIDER);
+<a href=#71 id=71 data-nosnippet>71</a>//! - The ARM core frequency is documented in [`ARM_FREQUENCY`].
+<a href=#72 id=72 data-nosnippet>72</a>//! - PERCLK, the root clock for GPT and PIT timers, is documented in [`PERCLK_FREQUENCY`].
+<a href=#73 id=73 data-nosnippet>73</a>//! - The crystal oscillator is documented in [`XTAL_OSCILLATOR_FREQUENCY`].
+<a href=#74 id=74 data-nosnippet>74</a>//!
+<a href=#75 id=75 data-nosnippet>75</a>//! `board` does not touch the following root clock components. You should configure these components yourself.
+<a href=#76 id=76 data-nosnippet>76</a>//!
+<a href=#77 id=77 data-nosnippet>77</a>//! - FlexIO1 and FlexIO2 dividers and multiplexers.
+<a href=#78 id=78 data-nosnippet>78</a>//!
+<a href=#79 id=79 data-nosnippet>79</a>//! Other clock frequencies are exempt from this policy; they may change value or derivation without
+<a href=#80 id=80 data-nosnippet>80</a>//! notice. Nevertheless, if these clock frequencies / derivations change, `board` still guarantees that
+<a href=#81 id=81 data-nosnippet>81</a>//! the functions to set peripheral baud and clock rates will work as expected.
 <a href=#82 id=82 data-nosnippet>82</a>//!
-<a href=#83 id=83 data-nosnippet>83</a>//! let mut delay = Blocking::&lt;_, { GPT_FREQUENCY }&gt;::from_gpt(gpt1);
-<a href=#84 id=84 data-nosnippet>84</a>//! delay.block_ms(500);
-<a href=#85 id=85 data-nosnippet>85</a>//! ```
-<a href=#86 id=86 data-nosnippet>86</a>//!
-<a href=#87 id=87 data-nosnippet>87</a>//! Clock frequency constants, and all APIs depending on those constants, assume that you do not change the clock policy.
-<a href=#88 id=88 data-nosnippet>88</a>//! But for those who want extra control, `Resources` exposes the clock management peripherals. If you take this
-<a href=#89 id=89 data-nosnippet>89</a>//! route, you're responsible for ensuring your peripheral's clock configurations, and you should ignore the constants
-<a href=#90 id=90 data-nosnippet>90</a>//! exposed by this module.
-<a href=#91 id=91 data-nosnippet>91</a>//!
-<a href=#92 id=92 data-nosnippet>92</a>//! ## Clock details
-<a href=#93 id=93 data-nosnippet>93</a>//!
-<a href=#94 id=94 data-nosnippet>94</a>//! `board` makes a few guarantees about the clock policy. This section describes those guarantees.
-<a href=#95 id=95 data-nosnippet>95</a>//!
-<a href=#96 id=96 data-nosnippet>96</a>//! It's considered an API-breaking change to vary the frequencies and derivations of these clocks:
-<a href=#97 id=97 data-nosnippet>97</a>//!
-<a href=#98 id=98 data-nosnippet>98</a>//! - The ARM core frequency is documented in [`ARM_FREQUENCY`].
-<a href=#99 id=99 data-nosnippet>99</a>//! - PERCLK, the root clock for GPT and PIT timers, is documented in [`PERCLK_FREQUENCY`].
-<a href=#100 id=100 data-nosnippet>100</a>//! - The crystal oscillator is documented in [`XTAL_OSCILLATOR_FREQUENCY`].
+<a href=#83 id=83 data-nosnippet>83</a>//! By the time your code has access to [`Resources`], the clock gates for _all_ peripherals provided by
+<a href=#84 id=84 data-nosnippet>84</a>//! `Resources` is set to "on." If you're not using specific resources, you may configure their clock
+<a href=#85 id=85 data-nosnippet>85</a>//! gates to "off." `board` code that borrows or converts peripherals may assume that clock gates are
+<a href=#86 id=86 data-nosnippet>86</a>//! set to "on."
+<a href=#87 id=87 data-nosnippet>87</a>//!
+<a href=#88 id=88 data-nosnippet>88</a>//! If you're not using the BSP to prepare board `Resources`, consider using [`prepare_clocks_and_power`]
+<a href=#89 id=89 data-nosnippet>89</a>//! to realize the BSP's clock policy.
+<a href=#90 id=90 data-nosnippet>90</a>//!
+<a href=#91 id=91 data-nosnippet>91</a>//! # Naming conventions
+<a href=#92 id=92 data-nosnippet>92</a>//!
+<a href=#93 id=93 data-nosnippet>93</a>//! This module identifies peripherals by their hardware names. It does not use identifiers
+<a href=#94 id=94 data-nosnippet>94</a>//! from the Teensy 4 SDK and documentation. For instance, to name the serial peripheral
+<a href=#95 id=95 data-nosnippet>95</a>//! that uses pins 14 and 15,
+<a href=#96 id=96 data-nosnippet>96</a>//!
+<a href=#97 id=97 data-nosnippet>97</a>//! - this module uses the name "LPUART**2**".
+<a href=#98 id=98 data-nosnippet>98</a>//! - the Teensy 4 SDK / documentation uses the name "UART**3**".
+<a href=#99 id=99 data-nosnippet>99</a>//!
+<a href=#100 id=100 data-nosnippet>100</a>//! There's a few reasons for these differences:
 <a href=#101 id=101 data-nosnippet>101</a>//!
-<a href=#102 id=102 data-nosnippet>102</a>//! `board` does not touch the following root clock components. You should configure these components yourself.
-<a href=#103 id=103 data-nosnippet>103</a>//!
-<a href=#104 id=104 data-nosnippet>104</a>//! - FlexIO1 and FlexIO2 dividers and multiplexers.
-<a href=#105 id=105 data-nosnippet>105</a>//!
-<a href=#106 id=106 data-nosnippet>106</a>//! Other clock frequencies are exempt from this policy; they may change value or derivation without
-<a href=#107 id=107 data-nosnippet>107</a>//! notice. Nevertheless, if these clock frequencies / derivations change, `board` still guarantees that
-<a href=#108 id=108 data-nosnippet>108</a>//! the functions to set peripheral baud and clock rates will work as expected.
-<a href=#109 id=109 data-nosnippet>109</a>//!
-<a href=#110 id=110 data-nosnippet>110</a>//! By the time your code has access to [`Resources`], the clock gates for _all_ peripherals provided by
-<a href=#111 id=111 data-nosnippet>111</a>//! `Resources` is set to "on." If you're not using specific resources, you may configure their clock
-<a href=#112 id=112 data-nosnippet>112</a>//! gates to "off." `board` code that borrows or converts peripherals may assume that clock gates are
-<a href=#113 id=113 data-nosnippet>113</a>//! set to "on."
-<a href=#114 id=114 data-nosnippet>114</a>//!
-<a href=#115 id=115 data-nosnippet>115</a>//! If you're not using the BSP to prepare board `Resources`, consider using [`prepare_clocks_and_power`]
-<a href=#116 id=116 data-nosnippet>116</a>//! to realize the BSP's clock policy.
-<a href=#117 id=117 data-nosnippet>117</a>//!
-<a href=#118 id=118 data-nosnippet>118</a>//! # Naming conventions
-<a href=#119 id=119 data-nosnippet>119</a>//!
-<a href=#120 id=120 data-nosnippet>120</a>//! This module identifies peripherals by their hardware names. It does not use identifiers
-<a href=#121 id=121 data-nosnippet>121</a>//! from the Teensy 4 SDK and documentation. For instance, to name the serial peripheral
-<a href=#122 id=122 data-nosnippet>122</a>//! that uses pins 14 and 15,
-<a href=#123 id=123 data-nosnippet>123</a>//!
-<a href=#124 id=124 data-nosnippet>124</a>//! - this module uses the name "LPUART**2**".
-<a href=#125 id=125 data-nosnippet>125</a>//! - the Teensy 4 SDK / documentation uses the name "UART**3**".
-<a href=#126 id=126 data-nosnippet>126</a>//!
-<a href=#127 id=127 data-nosnippet>127</a>//! There's a few reasons for these differences:
-<a href=#128 id=128 data-nosnippet>128</a>//!
-<a href=#129 id=129 data-nosnippet>129</a>//! - It would be unintuitive to register a LPUART**2** *interrupt* for the peripheral named
-<a href=#130 id=130 data-nosnippet>130</a>//!   UART**3**. Since the BSP typically does not manage interrupt registration, this naming
-<a href=#131 id=131 data-nosnippet>131</a>//!   decision makes it easier for you to register and implement interrupts.
-<a href=#132 id=132 data-nosnippet>132</a>//! - It makes clear the peripheral implementation. You know that the serial peripheral
-<a href=#133 id=133 data-nosnippet>133</a>//!   supports low-power (LP) operation, and that it's not a FlexIO peripheral emulating a UART
-<a href=#134 id=134 data-nosnippet>134</a>//!   device.
-<a href=#135 id=135 data-nosnippet>135</a>
-<a href=#136 id=136 data-nosnippet>136</a></span><span class="kw">use </span>crate::{hal, pins, ral};
-<a href=#137 id=137 data-nosnippet>137</a><span class="kw">use </span>core::sync::atomic::{AtomicBool, Ordering};
-<a href=#138 id=138 data-nosnippet>138</a><span class="kw">pub use </span>hal::lpspi::Pins <span class="kw">as </span>LpspiPins;
-<a href=#139 id=139 data-nosnippet>139</a>
-<a href=#140 id=140 data-nosnippet>140</a><span class="doccomment">/// Use [`instances()`] to safely acquire.
-<a href=#141 id=141 data-nosnippet>141</a></span><span class="kw">pub use </span>ral::Instances;
-<a href=#142 id=142 data-nosnippet>142</a>
-<a href=#143 id=143 data-nosnippet>143</a><span class="doccomment">/// Acquire peripheral instances.
+<a href=#102 id=102 data-nosnippet>102</a>//! - It would be unintuitive to register a LPUART**2** *interrupt* for the peripheral named
+<a href=#103 id=103 data-nosnippet>103</a>//!   UART**3**. Since the BSP typically does not manage interrupt registration, this naming
+<a href=#104 id=104 data-nosnippet>104</a>//!   decision makes it easier for you to register and implement interrupts.
+<a href=#105 id=105 data-nosnippet>105</a>//! - It makes clear the peripheral implementation. You know that the serial peripheral
+<a href=#106 id=106 data-nosnippet>106</a>//!   supports low-power (LP) operation, and that it's not a FlexIO peripheral emulating a UART
+<a href=#107 id=107 data-nosnippet>107</a>//!   device.
+<a href=#108 id=108 data-nosnippet>108</a>
+<a href=#109 id=109 data-nosnippet>109</a></span><span class="kw">use crate</span>::{hal, pins, ral};
+<a href=#110 id=110 data-nosnippet>110</a><span class="kw">use </span>core::sync::atomic::{AtomicBool, Ordering};
+<a href=#111 id=111 data-nosnippet>111</a><span class="kw">pub use </span>hal::lpi2c::Lpi2c;
+<a href=#112 id=112 data-nosnippet>112</a><span class="kw">pub use </span>hal::lpspi::Lpspi;
+<a href=#113 id=113 data-nosnippet>113</a><span class="kw">pub use </span>hal::lpspi::Pins <span class="kw">as </span>LpspiPins;
+<a href=#114 id=114 data-nosnippet>114</a><span class="kw">pub use </span>hal::lpuart::Lpuart;
+<a href=#115 id=115 data-nosnippet>115</a>
+<a href=#116 id=116 data-nosnippet>116</a><span class="doccomment">/// Use [`instances()`] to safely acquire.
+<a href=#117 id=117 data-nosnippet>117</a></span><span class="kw">pub use </span>ral::Instances;
+<a href=#118 id=118 data-nosnippet>118</a>
+<a href=#119 id=119 data-nosnippet>119</a><span class="doccomment">/// Acquire peripheral instances.
+<a href=#120 id=120 data-nosnippet>120</a>///
+<a href=#121 id=121 data-nosnippet>121</a>/// These are the resources supplied to [a resource constructor](crate::board#getting-started).
+<a href=#122 id=122 data-nosnippet>122</a>/// They can also be used to initialize your own drivers.
+<a href=#123 id=123 data-nosnippet>123</a>///
+<a href=#124 id=124 data-nosnippet>124</a>/// ```
+<a href=#125 id=125 data-nosnippet>125</a>/// use teensy4_bsp as bsp;
+<a href=#126 id=126 data-nosnippet>126</a>/// use bsp::board;
+<a href=#127 id=127 data-nosnippet>127</a>///
+<a href=#128 id=128 data-nosnippet>128</a>/// let instances = board::instances();
+<a href=#129 id=129 data-nosnippet>129</a>/// ```
+<a href=#130 id=130 data-nosnippet>130</a>///
+<a href=#131 id=131 data-nosnippet>131</a>/// # Panics
+<a href=#132 id=132 data-nosnippet>132</a>///
+<a href=#133 id=133 data-nosnippet>133</a>/// Panics if the instances have already been taken from this function.
+<a href=#134 id=134 data-nosnippet>134</a>/// If you're using RTIC, know that RTIC may take these instances before
+<a href=#135 id=135 data-nosnippet>135</a>/// calling your `init` function.
+<a href=#136 id=136 data-nosnippet>136</a>///
+<a href=#137 id=137 data-nosnippet>137</a>/// ```should_panic
+<a href=#138 id=138 data-nosnippet>138</a>/// # use teensy4_bsp as bsp;
+<a href=#139 id=139 data-nosnippet>139</a>/// # use bsp::board;
+<a href=#140 id=140 data-nosnippet>140</a>/// let instances = board::instances();
+<a href=#141 id=141 data-nosnippet>141</a>/// // Sometime later...
+<a href=#142 id=142 data-nosnippet>142</a>/// board::instances(); // Panics! Instances already taken.
+<a href=#143 id=143 data-nosnippet>143</a>/// ```
 <a href=#144 id=144 data-nosnippet>144</a>///
-<a href=#145 id=145 data-nosnippet>145</a>/// These are the resources supplied to [a resource constructor](crate::board#getting-started).
-<a href=#146 id=146 data-nosnippet>146</a>/// They can also be used to initialize your own drivers.
-<a href=#147 id=147 data-nosnippet>147</a>///
-<a href=#148 id=148 data-nosnippet>148</a>/// ```
-<a href=#149 id=149 data-nosnippet>149</a>/// use teensy4_bsp as bsp;
-<a href=#150 id=150 data-nosnippet>150</a>/// use bsp::board;
-<a href=#151 id=151 data-nosnippet>151</a>///
-<a href=#152 id=152 data-nosnippet>152</a>/// let instances = board::instances();
-<a href=#153 id=153 data-nosnippet>153</a>/// ```
-<a href=#154 id=154 data-nosnippet>154</a>///
-<a href=#155 id=155 data-nosnippet>155</a>/// # Panics
-<a href=#156 id=156 data-nosnippet>156</a>///
-<a href=#157 id=157 data-nosnippet>157</a>/// Panics if the instances have already been taken from this function.
-<a href=#158 id=158 data-nosnippet>158</a>/// If you're using RTIC, know that RTIC may take these instances before
-<a href=#159 id=159 data-nosnippet>159</a>/// calling your `init` function.
+<a href=#145 id=145 data-nosnippet>145</a>/// # Safety
+<a href=#146 id=146 data-nosnippet>146</a>///
+<a href=#147 id=147 data-nosnippet>147</a>/// This function provides a safe, convenient way to acquire one [`Instances`] object.
+<a href=#148 id=148 data-nosnippet>148</a>/// It's considered safe for the use-cases that `teensy4-bsp` intends to support;
+<a href=#149 id=149 data-nosnippet>149</a>/// specifically, you're building one binary that represents the entire firmware
+<a href=#150 id=150 data-nosnippet>150</a>/// image, and that there's no other software which is acquiring these resources.
+<a href=#151 id=151 data-nosnippet>151</a></span><span class="kw">pub fn </span>instances() -&gt; Instances {
+<a href=#152 id=152 data-nosnippet>152</a>    <span class="kw">static </span>TAKEN: AtomicBool = AtomicBool::new(<span class="bool-val">false</span>);
+<a href=#153 id=153 data-nosnippet>153</a>    <span class="macro">assert!</span>(!TAKEN.swap(<span class="bool-val">true</span>, Ordering::SeqCst));
+<a href=#154 id=154 data-nosnippet>154</a>    <span class="kw">unsafe </span>{ Instances::instances() }
+<a href=#155 id=155 data-nosnippet>155</a>}
+<a href=#156 id=156 data-nosnippet>156</a>
+<a href=#157 id=157 data-nosnippet>157</a><span class="kw">pub use </span><span class="kw">crate</span>::clock_power::<span class="kw-2">*</span>;
+<a href=#158 id=158 data-nosnippet>158</a>
+<a href=#159 id=159 data-nosnippet>159</a><span class="doccomment">/// Resources for a Teensy 4.0.
 <a href=#160 id=160 data-nosnippet>160</a>///
-<a href=#161 id=161 data-nosnippet>161</a>/// ```should_panic
-<a href=#162 id=162 data-nosnippet>162</a>/// # use teensy4_bsp as bsp;
-<a href=#163 id=163 data-nosnippet>163</a>/// # use bsp::board;
-<a href=#164 id=164 data-nosnippet>164</a>/// let instances = board::instances();
-<a href=#165 id=165 data-nosnippet>165</a>/// // Sometime later...
-<a href=#166 id=166 data-nosnippet>166</a>/// board::instances(); // Panics! Instances already taken.
-<a href=#167 id=167 data-nosnippet>167</a>/// ```
+<a href=#161 id=161 data-nosnippet>161</a>/// Use [`t40`] to construct this. The pins are specific to the Teensy 4.0.
+<a href=#162 id=162 data-nosnippet>162</a></span><span class="kw">pub type </span>T40Resources = Resources&lt;pins::t40::Pins&gt;;
+<a href=#163 id=163 data-nosnippet>163</a><span class="doccomment">/// Resources for a Teensy 4.1.
+<a href=#164 id=164 data-nosnippet>164</a>///
+<a href=#165 id=165 data-nosnippet>165</a>/// Use [`t41`] to construct this. The pins are specific to the Teensy 4.1.
+<a href=#166 id=166 data-nosnippet>166</a></span><span class="kw">pub type </span>T41Resources = Resources&lt;pins::t41::Pins&gt;;
+<a href=#167 id=167 data-nosnippet>167</a><span class="doccomment">/// Resources for a Teensy MicroMod.
 <a href=#168 id=168 data-nosnippet>168</a>///
-<a href=#169 id=169 data-nosnippet>169</a>/// # Safety
-<a href=#170 id=170 data-nosnippet>170</a>///
-<a href=#171 id=171 data-nosnippet>171</a>/// This function provides a safe, convenient way to acquire one [`Instances`] object.
-<a href=#172 id=172 data-nosnippet>172</a>/// It's considered safe for the use-cases that `teensy4-bsp` intends to support;
-<a href=#173 id=173 data-nosnippet>173</a>/// specifically, you're building one binary that represents the entire firmware
-<a href=#174 id=174 data-nosnippet>174</a>/// image, and that there's no other software which is acquiring these resources.
-<a href=#175 id=175 data-nosnippet>175</a></span><span class="kw">pub fn </span>instances() -&gt; Instances {
-<a href=#176 id=176 data-nosnippet>176</a>    <span class="kw">static </span>TAKEN: AtomicBool = AtomicBool::new(<span class="bool-val">false</span>);
-<a href=#177 id=177 data-nosnippet>177</a>    <span class="macro">assert!</span>(!TAKEN.swap(<span class="bool-val">true</span>, Ordering::SeqCst));
-<a href=#178 id=178 data-nosnippet>178</a>    <span class="kw">unsafe </span>{ Instances::instances() }
-<a href=#179 id=179 data-nosnippet>179</a>}
-<a href=#180 id=180 data-nosnippet>180</a>
-<a href=#181 id=181 data-nosnippet>181</a><span class="kw">pub use </span><span class="kw">crate</span>::clock_power::<span class="kw-2">*</span>;
-<a href=#182 id=182 data-nosnippet>182</a>
-<a href=#183 id=183 data-nosnippet>183</a><span class="doccomment">/// Resources for a Teensy 4.0.
-<a href=#184 id=184 data-nosnippet>184</a>///
-<a href=#185 id=185 data-nosnippet>185</a>/// Use [`t40`] to construct this. The pins are specific to the Teensy 4.0.
-<a href=#186 id=186 data-nosnippet>186</a></span><span class="kw">pub type </span>T40Resources = Resources&lt;pins::t40::Pins&gt;;
-<a href=#187 id=187 data-nosnippet>187</a><span class="doccomment">/// Resources for a Teensy 4.1.
-<a href=#188 id=188 data-nosnippet>188</a>///
-<a href=#189 id=189 data-nosnippet>189</a>/// Use [`t41`] to construct this. The pins are specific to the Teensy 4.1.
-<a href=#190 id=190 data-nosnippet>190</a></span><span class="kw">pub type </span>T41Resources = Resources&lt;pins::t41::Pins&gt;;
-<a href=#191 id=191 data-nosnippet>191</a><span class="doccomment">/// Resources for a Teensy MicroMod.
-<a href=#192 id=192 data-nosnippet>192</a>///
-<a href=#193 id=193 data-nosnippet>193</a>/// Use [`tmm`] to construct this. The pins are specific to the Teensy MicroMod.
-<a href=#194 id=194 data-nosnippet>194</a></span><span class="kw">pub type </span>TMMResources = Resources&lt;pins::tmm::Pins&gt;;
-<a href=#195 id=195 data-nosnippet>195</a>
-<a href=#196 id=196 data-nosnippet>196</a><span class="doccomment">/// Resources constructed by the board.
-<a href=#197 id=197 data-nosnippet>197</a>///
-<a href=#198 id=198 data-nosnippet>198</a>/// The concrete `Pins` type depends on how this is constructed.
-<a href=#199 id=199 data-nosnippet>199</a>/// See the various `*Resources` aliases for more information.
-<a href=#200 id=200 data-nosnippet>200</a></span><span class="attr">#[non_exhaustive]
-<a href=#201 id=201 data-nosnippet>201</a></span><span class="kw">pub struct </span>Resources&lt;Pins&gt; {
-<a href=#202 id=202 data-nosnippet>202</a>    <span class="doccomment">/// Periodic interrupt timer channels.
-<a href=#203 id=203 data-nosnippet>203</a>    </span><span class="kw">pub </span>pit: hal::pit::Channels,
-<a href=#204 id=204 data-nosnippet>204</a>    <span class="doccomment">/// General purpose timer 1.
-<a href=#205 id=205 data-nosnippet>205</a>    </span><span class="kw">pub </span>gpt1: hal::gpt::Gpt1,
-<a href=#206 id=206 data-nosnippet>206</a>    <span class="doccomment">/// General purpose timer 2.
-<a href=#207 id=207 data-nosnippet>207</a>    </span><span class="kw">pub </span>gpt2: hal::gpt::Gpt2,
-<a href=#208 id=208 data-nosnippet>208</a>    <span class="doccomment">/// GPIO1 port.
-<a href=#209 id=209 data-nosnippet>209</a>    </span><span class="kw">pub </span>gpio1: hal::gpio::Port&lt;<span class="number">1</span>&gt;,
-<a href=#210 id=210 data-nosnippet>210</a>    <span class="doccomment">/// GPIO2 port.
-<a href=#211 id=211 data-nosnippet>211</a>    </span><span class="kw">pub </span>gpio2: hal::gpio::Port&lt;<span class="number">2</span>&gt;,
-<a href=#212 id=212 data-nosnippet>212</a>    <span class="doccomment">/// GPIO3 port.
-<a href=#213 id=213 data-nosnippet>213</a>    </span><span class="kw">pub </span>gpio3: hal::gpio::Port&lt;<span class="number">3</span>&gt;,
-<a href=#214 id=214 data-nosnippet>214</a>    <span class="doccomment">/// GPIO4 port.
-<a href=#215 id=215 data-nosnippet>215</a>    </span><span class="kw">pub </span>gpio4: hal::gpio::Port&lt;<span class="number">4</span>&gt;,
-<a href=#216 id=216 data-nosnippet>216</a>    <span class="doccomment">/// USB1 instances.
-<a href=#217 id=217 data-nosnippet>217</a>    ///
-<a href=#218 id=218 data-nosnippet>218</a>    /// Use this to construct higher-level USB drivers, or to initialize the USB logger.
-<a href=#219 id=219 data-nosnippet>219</a>    </span><span class="kw">pub </span>usb: hal::usbd::Instances&lt;<span class="number">1</span>&gt;,
-<a href=#220 id=220 data-nosnippet>220</a>    <span class="doccomment">/// DMA channels.
-<a href=#221 id=221 data-nosnippet>221</a>    </span><span class="kw">pub </span>dma: [<span class="prelude-ty">Option</span>&lt;hal::dma::channel::Channel&gt;; hal::dma::CHANNEL_COUNT],
-<a href=#222 id=222 data-nosnippet>222</a>    <span class="doccomment">/// The secure real-time counter.
-<a href=#223 id=223 data-nosnippet>223</a>    ///
-<a href=#224 id=224 data-nosnippet>224</a>    /// It's initially disabled, and you may enable it in your firmware.
-<a href=#225 id=225 data-nosnippet>225</a>    </span><span class="kw">pub </span>srtc: hal::snvs::srtc::Disabled,
-<a href=#226 id=226 data-nosnippet>226</a>    <span class="doccomment">/// Core registers for the SNVS low-power domain.
-<a href=#227 id=227 data-nosnippet>227</a>    ///
-<a href=#228 id=228 data-nosnippet>228</a>    /// Use this with the SRTC and other SNVS LP components.
-<a href=#229 id=229 data-nosnippet>229</a>    </span><span class="kw">pub </span>snvs_lp_core: hal::snvs::LpCore,
-<a href=#230 id=230 data-nosnippet>230</a>    <span class="doccomment">/// Clock control module.
-<a href=#231 id=231 data-nosnippet>231</a>    </span><span class="kw">pub </span>ccm: ral::ccm::CCM,
-<a href=#232 id=232 data-nosnippet>232</a>    <span class="doccomment">/// Analog clock control module.
-<a href=#233 id=233 data-nosnippet>233</a>    </span><span class="kw">pub </span>ccm_analog: ral::ccm_analog::CCM_ANALOG,
-<a href=#234 id=234 data-nosnippet>234</a>    <span class="doccomment">/// DCDC converter
-<a href=#235 id=235 data-nosnippet>235</a>    </span><span class="kw">pub </span>dcdc: ral::dcdc::DCDC,
-<a href=#236 id=236 data-nosnippet>236</a>    <span class="doccomment">/// All available pins.
-<a href=#237 id=237 data-nosnippet>237</a>    </span><span class="kw">pub </span>pins: Pins,
-<a href=#238 id=238 data-nosnippet>238</a>    <span class="doccomment">/// The register block for [`Lpi2c1`].
-<a href=#239 id=239 data-nosnippet>239</a>    </span><span class="kw">pub </span>lpi2c1: ral::lpi2c::LPI2C1,
-<a href=#240 id=240 data-nosnippet>240</a>    <span class="doccomment">/// The register block for [`Lpi2c3`].
-<a href=#241 id=241 data-nosnippet>241</a>    </span><span class="kw">pub </span>lpi2c3: ral::lpi2c::LPI2C3,
-<a href=#242 id=242 data-nosnippet>242</a>    <span class="doccomment">/// The register blocks for [`Lpspi1`].
-<a href=#243 id=243 data-nosnippet>243</a>    </span><span class="kw">pub </span>lpspi1: ral::lpspi::LPSPI1,
-<a href=#244 id=244 data-nosnippet>244</a>    <span class="doccomment">/// The register blocks for [`Lpspi2`].
-<a href=#245 id=245 data-nosnippet>245</a>    </span><span class="kw">pub </span>lpspi2: ral::lpspi::LPSPI2,
-<a href=#246 id=246 data-nosnippet>246</a>    <span class="doccomment">/// The register blocks for [`Lpspi3`].
-<a href=#247 id=247 data-nosnippet>247</a>    </span><span class="kw">pub </span>lpspi3: ral::lpspi::LPSPI3,
-<a href=#248 id=248 data-nosnippet>248</a>    <span class="doccomment">/// The register block for [`Lpspi4`].
-<a href=#249 id=249 data-nosnippet>249</a>    </span><span class="kw">pub </span>lpspi4: ral::lpspi::LPSPI4,
-<a href=#250 id=250 data-nosnippet>250</a>    <span class="doccomment">/// The register block for [`Lpuart6`].
-<a href=#251 id=251 data-nosnippet>251</a>    </span><span class="kw">pub </span>lpuart6: ral::lpuart::LPUART6,
-<a href=#252 id=252 data-nosnippet>252</a>    <span class="doccomment">/// The register block for [`Lpuart4`].
-<a href=#253 id=253 data-nosnippet>253</a>    </span><span class="kw">pub </span>lpuart4: ral::lpuart::LPUART4,
-<a href=#254 id=254 data-nosnippet>254</a>    <span class="doccomment">/// The register block for [`Lpuart2`].
-<a href=#255 id=255 data-nosnippet>255</a>    </span><span class="kw">pub </span>lpuart2: ral::lpuart::LPUART2,
-<a href=#256 id=256 data-nosnippet>256</a>    <span class="doccomment">/// The register block for [`Lpuart3`].
-<a href=#257 id=257 data-nosnippet>257</a>    </span><span class="kw">pub </span>lpuart3: ral::lpuart::LPUART3,
-<a href=#258 id=258 data-nosnippet>258</a>    <span class="doccomment">/// The register block for [`Lpuart8`].
-<a href=#259 id=259 data-nosnippet>259</a>    </span><span class="kw">pub </span>lpuart8: ral::lpuart::LPUART8,
-<a href=#260 id=260 data-nosnippet>260</a>    <span class="doccomment">/// The register block for [`Lpuart1`].
-<a href=#261 id=261 data-nosnippet>261</a>    </span><span class="kw">pub </span>lpuart1: ral::lpuart::LPUART1,
-<a href=#262 id=262 data-nosnippet>262</a>    <span class="doccomment">/// The register block for [`Lpuart5`].
-<a href=#263 id=263 data-nosnippet>263</a>    </span><span class="kw">pub </span>lpuart5: ral::lpuart::LPUART5,
-<a href=#264 id=264 data-nosnippet>264</a>    <span class="doccomment">/// The register block for [`Lpuart7`].
-<a href=#265 id=265 data-nosnippet>265</a>    </span><span class="kw">pub </span>lpuart7: ral::lpuart::LPUART7,
-<a href=#266 id=266 data-nosnippet>266</a>    <span class="doccomment">/// FlexPWM1 components.
-<a href=#267 id=267 data-nosnippet>267</a>    </span><span class="kw">pub </span>flexpwm1: (hal::flexpwm::Pwm&lt;<span class="number">1</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">1</span>&gt;),
-<a href=#268 id=268 data-nosnippet>268</a>    <span class="doccomment">/// FlexPWM2 components.
-<a href=#269 id=269 data-nosnippet>269</a>    </span><span class="kw">pub </span>flexpwm2: (hal::flexpwm::Pwm&lt;<span class="number">2</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">2</span>&gt;),
-<a href=#270 id=270 data-nosnippet>270</a>    <span class="doccomment">/// FlexPWM3 components.
-<a href=#271 id=271 data-nosnippet>271</a>    </span><span class="kw">pub </span>flexpwm3: (hal::flexpwm::Pwm&lt;<span class="number">3</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">3</span>&gt;),
-<a href=#272 id=272 data-nosnippet>272</a>    <span class="doccomment">/// FlexPWM4 components.
-<a href=#273 id=273 data-nosnippet>273</a>    </span><span class="kw">pub </span>flexpwm4: (hal::flexpwm::Pwm&lt;<span class="number">4</span>&gt;, hal::flexpwm::Submodules&lt;<span class="number">4</span>&gt;),
-<a href=#274 id=274 data-nosnippet>274</a>    <span class="doccomment">/// The FlexIO1 register block.
-<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub </span>flexio1: ral::flexio::FLEXIO1,
-<a href=#276 id=276 data-nosnippet>276</a>    <span class="doccomment">/// The FlexIO2 register block.
-<a href=#277 id=277 data-nosnippet>277</a>    </span><span class="kw">pub </span>flexio2: ral::flexio::FLEXIO2,
-<a href=#278 id=278 data-nosnippet>278</a>    <span class="doccomment">/// The FlexIO3 register block.
-<a href=#279 id=279 data-nosnippet>279</a>    </span><span class="kw">pub </span>flexio3: ral::flexio::FLEXIO3,
-<a href=#280 id=280 data-nosnippet>280</a>    <span class="doccomment">/// The register block for ADC1.
-<a href=#281 id=281 data-nosnippet>281</a>    ///
-<a href=#282 id=282 data-nosnippet>282</a>    /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
-<a href=#283 id=283 data-nosnippet>283</a>    /// this configuration, call `release()` to acquire the register block, then re-construct
-<a href=#284 id=284 data-nosnippet>284</a>    /// the driver.
-<a href=#285 id=285 data-nosnippet>285</a>    </span><span class="kw">pub </span>adc1: hal::adc::Adc&lt;<span class="number">1</span>&gt;,
-<a href=#286 id=286 data-nosnippet>286</a>    <span class="doccomment">/// The register block for ADC2.
-<a href=#287 id=287 data-nosnippet>287</a>    </span><span class="kw">pub </span>adc2: hal::adc::Adc&lt;<span class="number">2</span>&gt;,
-<a href=#288 id=288 data-nosnippet>288</a>    <span class="doccomment">/// True random number generator.
-<a href=#289 id=289 data-nosnippet>289</a>    </span><span class="kw">pub </span>trng: hal::trng::Trng,
-<a href=#290 id=290 data-nosnippet>290</a>    <span class="doccomment">/// Temperature monitor of the core.
-<a href=#291 id=291 data-nosnippet>291</a>    </span><span class="kw">pub </span>tempmon: hal::tempmon::TempMon,
-<a href=#292 id=292 data-nosnippet>292</a>    <span class="doccomment">/// The register block for SAI1 (I2S audio).
-<a href=#293 id=293 data-nosnippet>293</a>    ///
-<a href=#294 id=294 data-nosnippet>294</a>    /// SAI1 is the primary audio interface used by the Teensy Audio Shield.
-<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="kw">pub </span>sai1: ral::sai::SAI1,
-<a href=#296 id=296 data-nosnippet>296</a>    <span class="doccomment">/// The register block for SAI2.
-<a href=#297 id=297 data-nosnippet>297</a>    </span><span class="kw">pub </span>sai2: ral::sai::SAI2,
-<a href=#298 id=298 data-nosnippet>298</a>    <span class="doccomment">/// The register block for SAI3.
-<a href=#299 id=299 data-nosnippet>299</a>    </span><span class="kw">pub </span>sai3: ral::sai::SAI3,
-<a href=#300 id=300 data-nosnippet>300</a>    <span class="doccomment">/// The IOMUXC general purpose register block.
-<a href=#301 id=301 data-nosnippet>301</a>    </span><span class="kw">pub </span>iomuxc_gpr: ral::iomuxc_gpr::IOMUXC_GPR,
-<a href=#302 id=302 data-nosnippet>302</a>    <span class="doccomment">/// The USDHC1 peripheral instance.
-<a href=#303 id=303 data-nosnippet>303</a>    </span><span class="kw">pub </span>usdhc1: ral::usdhc::USDHC1,
-<a href=#304 id=304 data-nosnippet>304</a>    <span class="doccomment">/// The FlexSPI2 peripheral instance.
-<a href=#305 id=305 data-nosnippet>305</a>    </span><span class="kw">pub </span>flexspi2: ral::flexspi::FLEXSPI2,
-<a href=#306 id=306 data-nosnippet>306</a>}
-<a href=#307 id=307 data-nosnippet>307</a>
-<a href=#308 id=308 data-nosnippet>308</a><span class="doccomment">/// The board's dedicated LED.
-<a href=#309 id=309 data-nosnippet>309</a></span><span class="kw">pub type </span>Led = hal::gpio::Output&lt;pins::common::P13&gt;;
-<a href=#310 id=310 data-nosnippet>310</a>
-<a href=#311 id=311 data-nosnippet>311</a><span class="doccomment">/// Create the board's LED.
+<a href=#169 id=169 data-nosnippet>169</a>/// Use [`tmm`] to construct this. The pins are specific to the Teensy MicroMod.
+<a href=#170 id=170 data-nosnippet>170</a></span><span class="kw">pub type </span>TMMResources = Resources&lt;pins::tmm::Pins&gt;;
+<a href=#171 id=171 data-nosnippet>171</a>
+<a href=#172 id=172 data-nosnippet>172</a><span class="doccomment">/// Resources constructed by the board.
+<a href=#173 id=173 data-nosnippet>173</a>///
+<a href=#174 id=174 data-nosnippet>174</a>/// The concrete `Pins` type depends on how this is constructed.
+<a href=#175 id=175 data-nosnippet>175</a>/// See the various `*Resources` aliases for more information.
+<a href=#176 id=176 data-nosnippet>176</a></span><span class="attr">#[non_exhaustive]
+<a href=#177 id=177 data-nosnippet>177</a></span><span class="kw">pub struct </span>Resources&lt;Pins&gt; {
+<a href=#178 id=178 data-nosnippet>178</a>    <span class="doccomment">/// Periodic interrupt timer.
+<a href=#179 id=179 data-nosnippet>179</a>    </span><span class="kw">pub </span>pit: hal::pit::Pit,
+<a href=#180 id=180 data-nosnippet>180</a>    <span class="doccomment">/// General purpose timer 1.
+<a href=#181 id=181 data-nosnippet>181</a>    </span><span class="kw">pub </span>gpt1: hal::gpt::Gpt,
+<a href=#182 id=182 data-nosnippet>182</a>    <span class="doccomment">/// General purpose timer 2.
+<a href=#183 id=183 data-nosnippet>183</a>    </span><span class="kw">pub </span>gpt2: hal::gpt::Gpt,
+<a href=#184 id=184 data-nosnippet>184</a>    <span class="doccomment">/// GPIO1 port.
+<a href=#185 id=185 data-nosnippet>185</a>    </span><span class="kw">pub </span>gpio1: hal::gpio::Port,
+<a href=#186 id=186 data-nosnippet>186</a>    <span class="doccomment">/// GPIO2 port.
+<a href=#187 id=187 data-nosnippet>187</a>    </span><span class="kw">pub </span>gpio2: hal::gpio::Port,
+<a href=#188 id=188 data-nosnippet>188</a>    <span class="doccomment">/// GPIO3 port.
+<a href=#189 id=189 data-nosnippet>189</a>    </span><span class="kw">pub </span>gpio3: hal::gpio::Port,
+<a href=#190 id=190 data-nosnippet>190</a>    <span class="doccomment">/// GPIO4 port.
+<a href=#191 id=191 data-nosnippet>191</a>    </span><span class="kw">pub </span>gpio4: hal::gpio::Port,
+<a href=#192 id=192 data-nosnippet>192</a>    <span class="doccomment">/// USB1 instances.
+<a href=#193 id=193 data-nosnippet>193</a>    ///
+<a href=#194 id=194 data-nosnippet>194</a>    /// Use this to construct higher-level USB drivers, or to initialize the USB logger.
+<a href=#195 id=195 data-nosnippet>195</a>    </span><span class="kw">pub </span>usb: <span class="kw">crate</span>::usbd::Instances&lt;<span class="number">1</span>&gt;,
+<a href=#196 id=196 data-nosnippet>196</a>    <span class="doccomment">/// DMA channels.
+<a href=#197 id=197 data-nosnippet>197</a>    </span><span class="kw">pub </span>dma: [<span class="prelude-ty">Option</span>&lt;hal::dma::channel::Channel&gt;; hal::dma::CHANNEL_COUNT],
+<a href=#198 id=198 data-nosnippet>198</a>    <span class="doccomment">/// The secure real-time counter.
+<a href=#199 id=199 data-nosnippet>199</a>    ///
+<a href=#200 id=200 data-nosnippet>200</a>    /// It's initially disabled, and you may enable it in your firmware.
+<a href=#201 id=201 data-nosnippet>201</a>    </span><span class="kw">pub </span>srtc: hal::snvs::srtc::Disabled,
+<a href=#202 id=202 data-nosnippet>202</a>    <span class="doccomment">/// Core registers for the SNVS low-power domain.
+<a href=#203 id=203 data-nosnippet>203</a>    ///
+<a href=#204 id=204 data-nosnippet>204</a>    /// Use this with the SRTC and other SNVS LP components.
+<a href=#205 id=205 data-nosnippet>205</a>    </span><span class="kw">pub </span>snvs_lp_core: hal::snvs::LpCore,
+<a href=#206 id=206 data-nosnippet>206</a>    <span class="doccomment">/// Clock control module.
+<a href=#207 id=207 data-nosnippet>207</a>    </span><span class="kw">pub </span>ccm: ral::ccm::CCM,
+<a href=#208 id=208 data-nosnippet>208</a>    <span class="doccomment">/// Analog clock control module.
+<a href=#209 id=209 data-nosnippet>209</a>    </span><span class="kw">pub </span>ccm_analog: ral::ccm_analog::CCM_ANALOG,
+<a href=#210 id=210 data-nosnippet>210</a>    <span class="doccomment">/// DCDC converter
+<a href=#211 id=211 data-nosnippet>211</a>    </span><span class="kw">pub </span>dcdc: ral::dcdc::DCDC,
+<a href=#212 id=212 data-nosnippet>212</a>    <span class="doccomment">/// All available pins.
+<a href=#213 id=213 data-nosnippet>213</a>    </span><span class="kw">pub </span>pins: Pins,
+<a href=#214 id=214 data-nosnippet>214</a>    <span class="doccomment">/// The register block for LPI2C1.
+<a href=#215 id=215 data-nosnippet>215</a>    </span><span class="kw">pub </span>lpi2c1: ral::lpi2c::LPI2C1,
+<a href=#216 id=216 data-nosnippet>216</a>    <span class="doccomment">/// The register block for LPI2C3.
+<a href=#217 id=217 data-nosnippet>217</a>    </span><span class="kw">pub </span>lpi2c3: ral::lpi2c::LPI2C3,
+<a href=#218 id=218 data-nosnippet>218</a>    <span class="doccomment">/// The register block for LPSPI1.
+<a href=#219 id=219 data-nosnippet>219</a>    </span><span class="kw">pub </span>lpspi1: ral::lpspi::LPSPI1,
+<a href=#220 id=220 data-nosnippet>220</a>    <span class="doccomment">/// The register block for LPSPI2.
+<a href=#221 id=221 data-nosnippet>221</a>    </span><span class="kw">pub </span>lpspi2: ral::lpspi::LPSPI2,
+<a href=#222 id=222 data-nosnippet>222</a>    <span class="doccomment">/// The register block for LPSPI3.
+<a href=#223 id=223 data-nosnippet>223</a>    </span><span class="kw">pub </span>lpspi3: ral::lpspi::LPSPI3,
+<a href=#224 id=224 data-nosnippet>224</a>    <span class="doccomment">/// The register block for LPSPI4.
+<a href=#225 id=225 data-nosnippet>225</a>    </span><span class="kw">pub </span>lpspi4: ral::lpspi::LPSPI4,
+<a href=#226 id=226 data-nosnippet>226</a>    <span class="doccomment">/// The register block for LPUART6.
+<a href=#227 id=227 data-nosnippet>227</a>    </span><span class="kw">pub </span>lpuart6: ral::lpuart::LPUART6,
+<a href=#228 id=228 data-nosnippet>228</a>    <span class="doccomment">/// The register block for LPUART4.
+<a href=#229 id=229 data-nosnippet>229</a>    </span><span class="kw">pub </span>lpuart4: ral::lpuart::LPUART4,
+<a href=#230 id=230 data-nosnippet>230</a>    <span class="doccomment">/// The register block for LPUART2.
+<a href=#231 id=231 data-nosnippet>231</a>    </span><span class="kw">pub </span>lpuart2: ral::lpuart::LPUART2,
+<a href=#232 id=232 data-nosnippet>232</a>    <span class="doccomment">/// The register block for LPUART3.
+<a href=#233 id=233 data-nosnippet>233</a>    </span><span class="kw">pub </span>lpuart3: ral::lpuart::LPUART3,
+<a href=#234 id=234 data-nosnippet>234</a>    <span class="doccomment">/// The register block for LPUART8.
+<a href=#235 id=235 data-nosnippet>235</a>    </span><span class="kw">pub </span>lpuart8: ral::lpuart::LPUART8,
+<a href=#236 id=236 data-nosnippet>236</a>    <span class="doccomment">/// The register block for LPUART1.
+<a href=#237 id=237 data-nosnippet>237</a>    </span><span class="kw">pub </span>lpuart1: ral::lpuart::LPUART1,
+<a href=#238 id=238 data-nosnippet>238</a>    <span class="doccomment">/// The register block for LPUART5.
+<a href=#239 id=239 data-nosnippet>239</a>    </span><span class="kw">pub </span>lpuart5: ral::lpuart::LPUART5,
+<a href=#240 id=240 data-nosnippet>240</a>    <span class="doccomment">/// The register block for LPUART7.
+<a href=#241 id=241 data-nosnippet>241</a>    </span><span class="kw">pub </span>lpuart7: ral::lpuart::LPUART7,
+<a href=#242 id=242 data-nosnippet>242</a>    <span class="doccomment">/// FlexPWM1.
+<a href=#243 id=243 data-nosnippet>243</a>    </span><span class="kw">pub </span>flexpwm1: hal::flexpwm::Pwm,
+<a href=#244 id=244 data-nosnippet>244</a>    <span class="doccomment">/// FlexPWM2.
+<a href=#245 id=245 data-nosnippet>245</a>    </span><span class="kw">pub </span>flexpwm2: hal::flexpwm::Pwm,
+<a href=#246 id=246 data-nosnippet>246</a>    <span class="doccomment">/// FlexPWM3.
+<a href=#247 id=247 data-nosnippet>247</a>    </span><span class="kw">pub </span>flexpwm3: hal::flexpwm::Pwm,
+<a href=#248 id=248 data-nosnippet>248</a>    <span class="doccomment">/// FlexPWM4.
+<a href=#249 id=249 data-nosnippet>249</a>    </span><span class="kw">pub </span>flexpwm4: hal::flexpwm::Pwm,
+<a href=#250 id=250 data-nosnippet>250</a>    <span class="doccomment">/// The FlexIO1 register block.
+<a href=#251 id=251 data-nosnippet>251</a>    </span><span class="kw">pub </span>flexio1: ral::flexio::FLEXIO1,
+<a href=#252 id=252 data-nosnippet>252</a>    <span class="doccomment">/// The FlexIO2 register block.
+<a href=#253 id=253 data-nosnippet>253</a>    </span><span class="kw">pub </span>flexio2: ral::flexio::FLEXIO2,
+<a href=#254 id=254 data-nosnippet>254</a>    <span class="doccomment">/// The FlexIO3 register block.
+<a href=#255 id=255 data-nosnippet>255</a>    </span><span class="kw">pub </span>flexio3: ral::flexio::FLEXIO3,
+<a href=#256 id=256 data-nosnippet>256</a>    <span class="doccomment">/// The register block for ADC1.
+<a href=#257 id=257 data-nosnippet>257</a>    ///
+<a href=#258 id=258 data-nosnippet>258</a>    /// ADC drivers constructed by `board` use a pre-configured clock and divisor. To change
+<a href=#259 id=259 data-nosnippet>259</a>    /// this configuration, call `release()` to acquire the register block, then re-construct
+<a href=#260 id=260 data-nosnippet>260</a>    /// the driver.
+<a href=#261 id=261 data-nosnippet>261</a>    </span><span class="kw">pub </span>adc1: hal::adc::Adc,
+<a href=#262 id=262 data-nosnippet>262</a>    <span class="doccomment">/// The register block for ADC2.
+<a href=#263 id=263 data-nosnippet>263</a>    </span><span class="kw">pub </span>adc2: hal::adc::Adc,
+<a href=#264 id=264 data-nosnippet>264</a>    <span class="doccomment">/// True random number generator.
+<a href=#265 id=265 data-nosnippet>265</a>    </span><span class="kw">pub </span>trng: hal::trng::Trng,
+<a href=#266 id=266 data-nosnippet>266</a>    <span class="doccomment">/// Temperature monitor of the core.
+<a href=#267 id=267 data-nosnippet>267</a>    </span><span class="kw">pub </span>tempmon: hal::tempmon::TempMon,
+<a href=#268 id=268 data-nosnippet>268</a>    <span class="doccomment">/// The register block for SAI1 (I2S audio).
+<a href=#269 id=269 data-nosnippet>269</a>    ///
+<a href=#270 id=270 data-nosnippet>270</a>    /// SAI1 is the primary audio interface used by the Teensy Audio Shield.
+<a href=#271 id=271 data-nosnippet>271</a>    </span><span class="kw">pub </span>sai1: ral::sai::SAI1,
+<a href=#272 id=272 data-nosnippet>272</a>    <span class="doccomment">/// The register block for SAI2.
+<a href=#273 id=273 data-nosnippet>273</a>    </span><span class="kw">pub </span>sai2: ral::sai::SAI2,
+<a href=#274 id=274 data-nosnippet>274</a>    <span class="doccomment">/// The register block for SAI3.
+<a href=#275 id=275 data-nosnippet>275</a>    </span><span class="kw">pub </span>sai3: ral::sai::SAI3,
+<a href=#276 id=276 data-nosnippet>276</a>    <span class="doccomment">/// The IOMUXC general purpose register block.
+<a href=#277 id=277 data-nosnippet>277</a>    </span><span class="kw">pub </span>iomuxc_gpr: ral::iomuxc_gpr::IOMUXC_GPR,
+<a href=#278 id=278 data-nosnippet>278</a>    <span class="doccomment">/// The USDHC1 peripheral instance.
+<a href=#279 id=279 data-nosnippet>279</a>    </span><span class="kw">pub </span>usdhc1: ral::usdhc::USDHC1,
+<a href=#280 id=280 data-nosnippet>280</a>    <span class="doccomment">/// The FlexSPI2 peripheral instance.
+<a href=#281 id=281 data-nosnippet>281</a>    </span><span class="kw">pub </span>flexspi2: ral::flexspi::FLEXSPI2,
+<a href=#282 id=282 data-nosnippet>282</a>}
+<a href=#283 id=283 data-nosnippet>283</a>
+<a href=#284 id=284 data-nosnippet>284</a><span class="doccomment">/// The board's dedicated LED.
+<a href=#285 id=285 data-nosnippet>285</a></span><span class="kw">pub type </span>Led = hal::gpio::Output;
+<a href=#286 id=286 data-nosnippet>286</a>
+<a href=#287 id=287 data-nosnippet>287</a><span class="doccomment">/// Create the board's LED.
+<a href=#288 id=288 data-nosnippet>288</a>///
+<a href=#289 id=289 data-nosnippet>289</a>/// ```no_run
+<a href=#290 id=290 data-nosnippet>290</a>/// use teensy4_bsp as bsp;
+<a href=#291 id=291 data-nosnippet>291</a>/// use bsp::board;
+<a href=#292 id=292 data-nosnippet>292</a>///
+<a href=#293 id=293 data-nosnippet>293</a>/// let board::Resources { mut gpio2, pins, .. }
+<a href=#294 id=294 data-nosnippet>294</a>///     = board::t40(board::instances());
+<a href=#295 id=295 data-nosnippet>295</a>///
+<a href=#296 id=296 data-nosnippet>296</a>/// let led = board::led(&amp;mut gpio2, pins.p13);
+<a href=#297 id=297 data-nosnippet>297</a>/// ```
+<a href=#298 id=298 data-nosnippet>298</a></span><span class="kw">pub fn </span>led(gpio2: <span class="kw-2">&amp;mut </span>hal::gpio::Port, p13: pins::common::P13) -&gt; Led {
+<a href=#299 id=299 data-nosnippet>299</a>    gpio2.output(p13).expect(<span class="string">"P13 is a GPIO2 pin"</span>)
+<a href=#300 id=300 data-nosnippet>300</a>}
+<a href=#301 id=301 data-nosnippet>301</a>
+<a href=#302 id=302 data-nosnippet>302</a><span class="doccomment">/// Create a LPI2C peripheral.
+<a href=#303 id=303 data-nosnippet>303</a>///
+<a href=#304 id=304 data-nosnippet>304</a>/// Consider using explicit type annotations, as demonstrated below,
+<a href=#305 id=305 data-nosnippet>305</a>/// to simplify any errors from the compiler.
+<a href=#306 id=306 data-nosnippet>306</a>///
+<a href=#307 id=307 data-nosnippet>307</a>/// This helper assumes that the actual LPI2C clock frequency equals [`LPI2C_FREQUENCY`].
+<a href=#308 id=308 data-nosnippet>308</a>///
+<a href=#309 id=309 data-nosnippet>309</a>/// ```no_run
+<a href=#310 id=310 data-nosnippet>310</a>/// use teensy4_bsp as bsp;
+<a href=#311 id=311 data-nosnippet>311</a>/// use bsp::board;
 <a href=#312 id=312 data-nosnippet>312</a>///
-<a href=#313 id=313 data-nosnippet>313</a>/// ```no_run
-<a href=#314 id=314 data-nosnippet>314</a>/// use teensy4_bsp as bsp;
-<a href=#315 id=315 data-nosnippet>315</a>/// use bsp::board;
-<a href=#316 id=316 data-nosnippet>316</a>///
-<a href=#317 id=317 data-nosnippet>317</a>/// let board::Resources { mut gpio2, pins, .. }
-<a href=#318 id=318 data-nosnippet>318</a>///     = board::t40(board::instances());
-<a href=#319 id=319 data-nosnippet>319</a>///
-<a href=#320 id=320 data-nosnippet>320</a>/// let led = board::led(&amp;mut gpio2, pins.p13);
-<a href=#321 id=321 data-nosnippet>321</a>/// ```
-<a href=#322 id=322 data-nosnippet>322</a></span><span class="kw">pub fn </span>led(gpio2: <span class="kw-2">&amp;mut </span>hal::gpio::Port&lt;<span class="number">2</span>&gt;, p13: pins::common::P13) -&gt; Led {
-<a href=#323 id=323 data-nosnippet>323</a>    gpio2.output(p13)
-<a href=#324 id=324 data-nosnippet>324</a>}
-<a href=#325 id=325 data-nosnippet>325</a>
-<a href=#326 id=326 data-nosnippet>326</a><span class="doccomment">/// Create a LPI2C peripheral.
-<a href=#327 id=327 data-nosnippet>327</a>///
-<a href=#328 id=328 data-nosnippet>328</a>/// Consider using explicit type annotations, as demonstrated below,
-<a href=#329 id=329 data-nosnippet>329</a>/// to simplify any errors from the compiler.
-<a href=#330 id=330 data-nosnippet>330</a>///
-<a href=#331 id=331 data-nosnippet>331</a>/// This helper assumes that the actual LPI2C clock frequency equals [`LPI2C_FREQUENCY`].
-<a href=#332 id=332 data-nosnippet>332</a>///
-<a href=#333 id=333 data-nosnippet>333</a>/// ```no_run
-<a href=#334 id=334 data-nosnippet>334</a>/// use teensy4_bsp as bsp;
-<a href=#335 id=335 data-nosnippet>335</a>/// use bsp::board;
-<a href=#336 id=336 data-nosnippet>336</a>///
-<a href=#337 id=337 data-nosnippet>337</a>/// let board::Resources { lpi2c3, pins, ..}
-<a href=#338 id=338 data-nosnippet>338</a>///     = board::t40(board::instances());
-<a href=#339 id=339 data-nosnippet>339</a>///
-<a href=#340 id=340 data-nosnippet>340</a>/// let mut lpi2c: board::Lpi2c3 = board::lpi2c(
-<a href=#341 id=341 data-nosnippet>341</a>///     lpi2c3,
-<a href=#342 id=342 data-nosnippet>342</a>///     pins.p16,
-<a href=#343 id=343 data-nosnippet>343</a>///     pins.p17,
-<a href=#344 id=344 data-nosnippet>344</a>///     board::Lpi2cClockSpeed::KHz400,
-<a href=#345 id=345 data-nosnippet>345</a>/// );
-<a href=#346 id=346 data-nosnippet>346</a>/// ```
-<a href=#347 id=347 data-nosnippet>347</a></span><span class="kw">pub fn </span>lpi2c&lt;Scl, Sda, <span class="kw">const </span>N: u8&gt;(
-<a href=#348 id=348 data-nosnippet>348</a>    instance: ral::lpi2c::Instance&lt;N&gt;,
-<a href=#349 id=349 data-nosnippet>349</a>    scl: Scl,
-<a href=#350 id=350 data-nosnippet>350</a>    sda: Sda,
-<a href=#351 id=351 data-nosnippet>351</a>    clock_speed: Lpi2cClockSpeed,
-<a href=#352 id=352 data-nosnippet>352</a>) -&gt; hal::lpi2c::Lpi2c&lt;hal::lpi2c::Pins&lt;Scl, Sda&gt;, N&gt;
-<a href=#353 id=353 data-nosnippet>353</a><span class="kw">where
-<a href=#354 id=354 data-nosnippet>354</a>    </span>Scl: hal::iomuxc::lpi2c::Pin&lt;
-<a href=#355 id=355 data-nosnippet>355</a>        Signal = hal::iomuxc::lpi2c::Scl,
-<a href=#356 id=356 data-nosnippet>356</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#357 id=357 data-nosnippet>357</a>    &gt;,
-<a href=#358 id=358 data-nosnippet>358</a>    Sda: hal::iomuxc::lpi2c::Pin&lt;
-<a href=#359 id=359 data-nosnippet>359</a>        Signal = hal::iomuxc::lpi2c::Sda,
-<a href=#360 id=360 data-nosnippet>360</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#361 id=361 data-nosnippet>361</a>    &gt;,
-<a href=#362 id=362 data-nosnippet>362</a>{
-<a href=#363 id=363 data-nosnippet>363</a>    hal::lpi2c::Lpi2c::new(
-<a href=#364 id=364 data-nosnippet>364</a>        instance,
-<a href=#365 id=365 data-nosnippet>365</a>        hal::lpi2c::Pins { scl, sda },
-<a href=#366 id=366 data-nosnippet>366</a>        <span class="kw-2">&amp;</span>lpi2c_baud(clock_speed),
-<a href=#367 id=367 data-nosnippet>367</a>    )
-<a href=#368 id=368 data-nosnippet>368</a>}
-<a href=#369 id=369 data-nosnippet>369</a>
-<a href=#370 id=370 data-nosnippet>370</a><span class="doccomment">/// LPI2C1 peripheral.
-<a href=#371 id=371 data-nosnippet>371</a>///
-<a href=#372 id=372 data-nosnippet>372</a>/// - Pin 19 is the clock line.
-<a href=#373 id=373 data-nosnippet>373</a>/// - Pin 18 is the data line.
-<a href=#374 id=374 data-nosnippet>374</a>///
-<a href=#375 id=375 data-nosnippet>375</a>/// Use [`lpi2c`] to create this driver.
-<a href=#376 id=376 data-nosnippet>376</a></span><span class="kw">pub type </span>Lpi2c1 = hal::lpi2c::Lpi2c&lt;hal::lpi2c::Pins&lt;pins::common::P19, pins::common::P18&gt;, <span class="number">1</span>&gt;;
-<a href=#377 id=377 data-nosnippet>377</a>
-<a href=#378 id=378 data-nosnippet>378</a><span class="doccomment">/// LPI2C3 peripheral.
-<a href=#379 id=379 data-nosnippet>379</a>///
-<a href=#380 id=380 data-nosnippet>380</a>/// - Pin 16 is the clock line.
-<a href=#381 id=381 data-nosnippet>381</a>/// - Pin 17 is the data line.
-<a href=#382 id=382 data-nosnippet>382</a>///
-<a href=#383 id=383 data-nosnippet>383</a>/// Use [`lpi2c`] to create this driver.
-<a href=#384 id=384 data-nosnippet>384</a></span><span class="kw">pub type </span>Lpi2c3 = hal::lpi2c::Lpi2c&lt;hal::lpi2c::Pins&lt;pins::common::P16, pins::common::P17&gt;, <span class="number">3</span>&gt;;
-<a href=#385 id=385 data-nosnippet>385</a>
-<a href=#386 id=386 data-nosnippet>386</a><span class="doccomment">/// LPSPI1 peripheral.
-<a href=#387 id=387 data-nosnippet>387</a>///
-<a href=#388 id=388 data-nosnippet>388</a>/// - SDO:  GPIO_SD_B0_02 (p43) or GPIO_EMC_28 (p50)
-<a href=#389 id=389 data-nosnippet>389</a>/// - SDI:  GPIO_SD_B0_03 (p42) or GPIO_EMC_29 (p54)
-<a href=#390 id=390 data-nosnippet>390</a>/// - SCK:  GPIO_SD_B0_00 (p45) or GPIO_EMC_27 (p49)
-<a href=#391 id=391 data-nosnippet>391</a>/// - PCS0: GPIO_SD_B0_01 (p44) or GPIO_EMC_30
-<a href=#392 id=392 data-nosnippet>392</a>///
-<a href=#393 id=393 data-nosnippet>393</a>/// Use [`lpspi`] to create this driver.
-<a href=#394 id=394 data-nosnippet>394</a></span><span class="kw">pub type </span>Lpspi1&lt;SDO, SDI, SCK, PCS0&gt; = hal::lpspi::Lpspi&lt;LpspiPins&lt;SDO, SDI, SCK, PCS0&gt;, <span class="number">1</span>&gt;;
-<a href=#395 id=395 data-nosnippet>395</a>
-<a href=#396 id=396 data-nosnippet>396</a><span class="doccomment">/// LPSPI2 peripheral.
+<a href=#313 id=313 data-nosnippet>313</a>/// let board::Resources { lpi2c3, pins, ..}
+<a href=#314 id=314 data-nosnippet>314</a>///     = board::t40(board::instances());
+<a href=#315 id=315 data-nosnippet>315</a>///
+<a href=#316 id=316 data-nosnippet>316</a>/// let mut lpi2c: board::Lpi2c = board::lpi2c(
+<a href=#317 id=317 data-nosnippet>317</a>///     lpi2c3,
+<a href=#318 id=318 data-nosnippet>318</a>///     pins.p16,
+<a href=#319 id=319 data-nosnippet>319</a>///     pins.p17,
+<a href=#320 id=320 data-nosnippet>320</a>///     board::Lpi2cClockSpeed::KHz400,
+<a href=#321 id=321 data-nosnippet>321</a>/// );
+<a href=#322 id=322 data-nosnippet>322</a>/// ```
+<a href=#323 id=323 data-nosnippet>323</a></span><span class="kw">pub fn </span>lpi2c&lt;Scl, Sda, <span class="kw">const </span>N: u8&gt;(
+<a href=#324 id=324 data-nosnippet>324</a>    instance: ral::lpi2c::Instance&lt;N&gt;,
+<a href=#325 id=325 data-nosnippet>325</a>    scl: Scl,
+<a href=#326 id=326 data-nosnippet>326</a>    sda: Sda,
+<a href=#327 id=327 data-nosnippet>327</a>    clock_speed: Lpi2cClockSpeed,
+<a href=#328 id=328 data-nosnippet>328</a>) -&gt; hal::lpi2c::Lpi2c
+<a href=#329 id=329 data-nosnippet>329</a><span class="kw">where
+<a href=#330 id=330 data-nosnippet>330</a>    </span>Scl: hal::iomuxc::lpi2c::Pin&lt;
+<a href=#331 id=331 data-nosnippet>331</a>            Signal = hal::iomuxc::lpi2c::Scl,
+<a href=#332 id=332 data-nosnippet>332</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#333 id=333 data-nosnippet>333</a>        &gt;,
+<a href=#334 id=334 data-nosnippet>334</a>    Sda: hal::iomuxc::lpi2c::Pin&lt;
+<a href=#335 id=335 data-nosnippet>335</a>            Signal = hal::iomuxc::lpi2c::Sda,
+<a href=#336 id=336 data-nosnippet>336</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#337 id=337 data-nosnippet>337</a>        &gt;,
+<a href=#338 id=338 data-nosnippet>338</a>{
+<a href=#339 id=339 data-nosnippet>339</a>    hal::lpi2c::Lpi2c::with_pins(
+<a href=#340 id=340 data-nosnippet>340</a>        instance,
+<a href=#341 id=341 data-nosnippet>341</a>        hal::lpi2c::Pins { scl, sda },
+<a href=#342 id=342 data-nosnippet>342</a>        <span class="kw-2">&amp;</span>lpi2c_baud(clock_speed),
+<a href=#343 id=343 data-nosnippet>343</a>    )
+<a href=#344 id=344 data-nosnippet>344</a>}
+<a href=#345 id=345 data-nosnippet>345</a>
+<a href=#346 id=346 data-nosnippet>346</a><span class="doccomment">/// Create a LPSPI peripheral.
+<a href=#347 id=347 data-nosnippet>347</a>///
+<a href=#348 id=348 data-nosnippet>348</a>/// `baud` is the SCK frequency, in Hz. Consider using explicit type annotations, as demonstrated
+<a href=#349 id=349 data-nosnippet>349</a>/// below, to simplify any errors from the compiler.
+<a href=#350 id=350 data-nosnippet>350</a>///
+<a href=#351 id=351 data-nosnippet>351</a>/// This helper assumes that the LPSPI clock frequency equals [`LPSPI_FREQUENCY`].
+<a href=#352 id=352 data-nosnippet>352</a>///
+<a href=#353 id=353 data-nosnippet>353</a>/// ```no_run
+<a href=#354 id=354 data-nosnippet>354</a>/// use teensy4_bsp as bsp;
+<a href=#355 id=355 data-nosnippet>355</a>/// use bsp::board;
+<a href=#356 id=356 data-nosnippet>356</a>///
+<a href=#357 id=357 data-nosnippet>357</a>/// let board::T40Resources { lpspi4, pins, .. }
+<a href=#358 id=358 data-nosnippet>358</a>///     = board::t40(board::instances());
+<a href=#359 id=359 data-nosnippet>359</a>///
+<a href=#360 id=360 data-nosnippet>360</a>/// let mut lpspi4: board::Lpspi = board::lpspi(
+<a href=#361 id=361 data-nosnippet>361</a>///     lpspi4,
+<a href=#362 id=362 data-nosnippet>362</a>///     board::LpspiPins {
+<a href=#363 id=363 data-nosnippet>363</a>///         sdo: pins.p11,
+<a href=#364 id=364 data-nosnippet>364</a>///         sdi: pins.p12,
+<a href=#365 id=365 data-nosnippet>365</a>///         sck: pins.p13,
+<a href=#366 id=366 data-nosnippet>366</a>///     },
+<a href=#367 id=367 data-nosnippet>367</a>///     1_000_000,
+<a href=#368 id=368 data-nosnippet>368</a>/// );
+<a href=#369 id=369 data-nosnippet>369</a>/// ```
+<a href=#370 id=370 data-nosnippet>370</a></span><span class="kw">pub fn </span>lpspi&lt;Sdo, Sdi, Sck, <span class="kw">const </span>N: u8&gt;(
+<a href=#371 id=371 data-nosnippet>371</a>    instance: ral::lpspi::Instance&lt;N&gt;,
+<a href=#372 id=372 data-nosnippet>372</a>    pins: LpspiPins&lt;Sdo, Sdi, Sck&gt;,
+<a href=#373 id=373 data-nosnippet>373</a>    baud: u32,
+<a href=#374 id=374 data-nosnippet>374</a>) -&gt; hal::lpspi::Lpspi
+<a href=#375 id=375 data-nosnippet>375</a><span class="kw">where
+<a href=#376 id=376 data-nosnippet>376</a>    </span>Sdo: hal::iomuxc::lpspi::Pin&lt;
+<a href=#377 id=377 data-nosnippet>377</a>            Signal = hal::iomuxc::lpspi::Sdo,
+<a href=#378 id=378 data-nosnippet>378</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#379 id=379 data-nosnippet>379</a>        &gt;,
+<a href=#380 id=380 data-nosnippet>380</a>    Sdi: hal::iomuxc::lpspi::Pin&lt;
+<a href=#381 id=381 data-nosnippet>381</a>            Signal = hal::iomuxc::lpspi::Sdi,
+<a href=#382 id=382 data-nosnippet>382</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#383 id=383 data-nosnippet>383</a>        &gt;,
+<a href=#384 id=384 data-nosnippet>384</a>    Sck: hal::iomuxc::lpspi::Pin&lt;
+<a href=#385 id=385 data-nosnippet>385</a>            Signal = hal::iomuxc::lpspi::Sck,
+<a href=#386 id=386 data-nosnippet>386</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#387 id=387 data-nosnippet>387</a>        &gt;,
+<a href=#388 id=388 data-nosnippet>388</a>{
+<a href=#389 id=389 data-nosnippet>389</a>    <span class="kw">let </span><span class="kw-2">mut </span>spi = hal::lpspi::Lpspi::with_pins(instance, pins);
+<a href=#390 id=390 data-nosnippet>390</a>    spi.disabled(|spi| spi.set_clock_hz(LPSPI_FREQUENCY, baud));
+<a href=#391 id=391 data-nosnippet>391</a>    spi
+<a href=#392 id=392 data-nosnippet>392</a>}
+<a href=#393 id=393 data-nosnippet>393</a>
+<a href=#394 id=394 data-nosnippet>394</a><span class="doccomment">/// Create a LPUART peripheral.
+<a href=#395 id=395 data-nosnippet>395</a>///
+<a href=#396 id=396 data-nosnippet>396</a>/// The specific peripheral you're creating depends on
 <a href=#397 id=397 data-nosnippet>397</a>///
-<a href=#398 id=398 data-nosnippet>398</a>/// - SDO:  GPIO_SD_B1_08 or GPIO_EMC_02
-<a href=#399 id=399 data-nosnippet>399</a>/// - SDI:  GPIO_SD_B1_09 or GPIO_EMC_03
-<a href=#400 id=400 data-nosnippet>400</a>/// - SCK:  GPIO_SD_B1_07 or GPIO_EMC_00
-<a href=#401 id=401 data-nosnippet>401</a>/// - PCS0: GPIO_SD_B1_06 or GPIO_EMC_01
-<a href=#402 id=402 data-nosnippet>402</a>///
-<a href=#403 id=403 data-nosnippet>403</a>/// Use [`lpspi`] to create this driver.
-<a href=#404 id=404 data-nosnippet>404</a></span><span class="kw">pub type </span>Lpspi2&lt;SDO, SDI, SCK, PCS0&gt; = hal::lpspi::Lpspi&lt;LpspiPins&lt;SDO, SDI, SCK, PCS0&gt;, <span class="number">2</span>&gt;;
-<a href=#405 id=405 data-nosnippet>405</a>
-<a href=#406 id=406 data-nosnippet>406</a><span class="doccomment">/// LPSPI3 peripheral.
-<a href=#407 id=407 data-nosnippet>407</a>///
-<a href=#408 id=408 data-nosnippet>408</a>/// CS and SDI have two options each for which pin to use.
-<a href=#409 id=409 data-nosnippet>409</a>///
-<a href=#410 id=410 data-nosnippet>410</a>/// - Pin 26 is data out (SDO).
-<a href=#411 id=411 data-nosnippet>411</a>/// - Pin 39 or 1 is data in (SDI).
-<a href=#412 id=412 data-nosnippet>412</a>/// - Pin 27 is clock (SCK).
-<a href=#413 id=413 data-nosnippet>413</a>/// - Pin 0 or 38 is chip select (CS).
-<a href=#414 id=414 data-nosnippet>414</a>///
-<a href=#415 id=415 data-nosnippet>415</a>/// Use [`lpspi`] to create this driver.
-<a href=#416 id=416 data-nosnippet>416</a></span><span class="kw">pub type </span>Lpspi3&lt;SDI, CS&gt; =
-<a href=#417 id=417 data-nosnippet>417</a>    hal::lpspi::Lpspi&lt;LpspiPins&lt;pins::common::P26, SDI, pins::common::P27, CS&gt;, <span class="number">3</span>&gt;;
-<a href=#418 id=418 data-nosnippet>418</a>
-<a href=#419 id=419 data-nosnippet>419</a><span class="doccomment">/// LPSPI4 peripheral.
-<a href=#420 id=420 data-nosnippet>420</a>///
-<a href=#421 id=421 data-nosnippet>421</a>/// - Pin 10 is chip select (CS).
-<a href=#422 id=422 data-nosnippet>422</a>/// - Pin 11 is data out (SDO).
-<a href=#423 id=423 data-nosnippet>423</a>/// - Pin 12 is data in (SDI).
-<a href=#424 id=424 data-nosnippet>424</a>/// - Pin 13 is clock (SCK).
-<a href=#425 id=425 data-nosnippet>425</a>///
-<a href=#426 id=426 data-nosnippet>426</a>/// Use [`lpspi`] to create this driver.
-<a href=#427 id=427 data-nosnippet>427</a></span><span class="kw">pub type </span>Lpspi4 = hal::lpspi::Lpspi&lt;
-<a href=#428 id=428 data-nosnippet>428</a>    LpspiPins&lt;pins::common::P11, pins::common::P12, pins::common::P13, pins::common::P10&gt;,
-<a href=#429 id=429 data-nosnippet>429</a>    <span class="number">4</span>,
-<a href=#430 id=430 data-nosnippet>430</a>&gt;;
-<a href=#431 id=431 data-nosnippet>431</a>
-<a href=#432 id=432 data-nosnippet>432</a><span class="doccomment">/// Create a LPSPI peripheral.
-<a href=#433 id=433 data-nosnippet>433</a>///
-<a href=#434 id=434 data-nosnippet>434</a>/// `baud` is the SCK frequency, in Hz. Consider using explicit type annotations, as demonstrated
-<a href=#435 id=435 data-nosnippet>435</a>/// below, to simplify any errors from the compiler.
-<a href=#436 id=436 data-nosnippet>436</a>///
-<a href=#437 id=437 data-nosnippet>437</a>/// This helper assumes that the LPSPI clock frequency equals [`LPSPI_FREQUENCY`].
-<a href=#438 id=438 data-nosnippet>438</a>///
-<a href=#439 id=439 data-nosnippet>439</a>/// ```no_run
-<a href=#440 id=440 data-nosnippet>440</a>/// use teensy4_bsp as bsp;
-<a href=#441 id=441 data-nosnippet>441</a>/// use bsp::board;
-<a href=#442 id=442 data-nosnippet>442</a>///
-<a href=#443 id=443 data-nosnippet>443</a>/// let board::T40Resources { lpspi4, pins, .. }
-<a href=#444 id=444 data-nosnippet>444</a>///     = board::t40(board::instances());
-<a href=#445 id=445 data-nosnippet>445</a>///
-<a href=#446 id=446 data-nosnippet>446</a>/// let mut lpspi4: board::Lpspi4 = board::lpspi(
-<a href=#447 id=447 data-nosnippet>447</a>///     lpspi4,
-<a href=#448 id=448 data-nosnippet>448</a>///     board::LpspiPins {
-<a href=#449 id=449 data-nosnippet>449</a>///         sdo: pins.p11,
-<a href=#450 id=450 data-nosnippet>450</a>///         sdi: pins.p12,
-<a href=#451 id=451 data-nosnippet>451</a>///         sck: pins.p13,
-<a href=#452 id=452 data-nosnippet>452</a>///         pcs0: pins.p10,
-<a href=#453 id=453 data-nosnippet>453</a>///     },
-<a href=#454 id=454 data-nosnippet>454</a>///     1_000_000,
-<a href=#455 id=455 data-nosnippet>455</a>/// );
-<a href=#456 id=456 data-nosnippet>456</a>/// ```
-<a href=#457 id=457 data-nosnippet>457</a></span><span class="kw">pub fn </span>lpspi&lt;Sdo, Sdi, Sck, Pcs0, <span class="kw">const </span>N: u8&gt;(
-<a href=#458 id=458 data-nosnippet>458</a>    instance: ral::lpspi::Instance&lt;N&gt;,
-<a href=#459 id=459 data-nosnippet>459</a>    pins: LpspiPins&lt;Sdo, Sdi, Sck, Pcs0&gt;,
-<a href=#460 id=460 data-nosnippet>460</a>    baud: u32,
-<a href=#461 id=461 data-nosnippet>461</a>) -&gt; hal::lpspi::Lpspi&lt;LpspiPins&lt;Sdo, Sdi, Sck, Pcs0&gt;, N&gt;
-<a href=#462 id=462 data-nosnippet>462</a><span class="kw">where
-<a href=#463 id=463 data-nosnippet>463</a>    </span>Sdo: hal::iomuxc::lpspi::Pin&lt;
-<a href=#464 id=464 data-nosnippet>464</a>        Signal = hal::iomuxc::lpspi::Sdo,
-<a href=#465 id=465 data-nosnippet>465</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#466 id=466 data-nosnippet>466</a>    &gt;,
-<a href=#467 id=467 data-nosnippet>467</a>    Sdi: hal::iomuxc::lpspi::Pin&lt;
-<a href=#468 id=468 data-nosnippet>468</a>        Signal = hal::iomuxc::lpspi::Sdi,
-<a href=#469 id=469 data-nosnippet>469</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#470 id=470 data-nosnippet>470</a>    &gt;,
-<a href=#471 id=471 data-nosnippet>471</a>    Sck: hal::iomuxc::lpspi::Pin&lt;
-<a href=#472 id=472 data-nosnippet>472</a>        Signal = hal::iomuxc::lpspi::Sck,
-<a href=#473 id=473 data-nosnippet>473</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#474 id=474 data-nosnippet>474</a>    &gt;,
-<a href=#475 id=475 data-nosnippet>475</a>    Pcs0: hal::iomuxc::lpspi::Pin&lt;
-<a href=#476 id=476 data-nosnippet>476</a>        Signal = hal::iomuxc::lpspi::Pcs0,
-<a href=#477 id=477 data-nosnippet>477</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#478 id=478 data-nosnippet>478</a>    &gt;,
-<a href=#479 id=479 data-nosnippet>479</a>{
-<a href=#480 id=480 data-nosnippet>480</a>    <span class="kw">let </span><span class="kw-2">mut </span>spi = hal::lpspi::Lpspi::new(instance, pins);
-<a href=#481 id=481 data-nosnippet>481</a>    spi.disabled(|spi| spi.set_clock_hz(LPSPI_FREQUENCY, baud));
-<a href=#482 id=482 data-nosnippet>482</a>    spi
-<a href=#483 id=483 data-nosnippet>483</a>}
-<a href=#484 id=484 data-nosnippet>484</a>
-<a href=#485 id=485 data-nosnippet>485</a><span class="doccomment">/// Create a LPUART peripheral.
-<a href=#486 id=486 data-nosnippet>486</a>///
-<a href=#487 id=487 data-nosnippet>487</a>/// The specific peripheral you're creating depends on
-<a href=#488 id=488 data-nosnippet>488</a>///
-<a href=#489 id=489 data-nosnippet>489</a>/// - the type of `instance`.
-<a href=#490 id=490 data-nosnippet>490</a>/// - the TX and RX pins.
-<a href=#491 id=491 data-nosnippet>491</a>/// - the return type, which can be explicitly annotated.
-<a href=#492 id=492 data-nosnippet>492</a>///
-<a href=#493 id=493 data-nosnippet>493</a>/// Consider using an explicit type annotation to help catch any
-<a href=#494 id=494 data-nosnippet>494</a>/// programming errors.
-<a href=#495 id=495 data-nosnippet>495</a>///
-<a href=#496 id=496 data-nosnippet>496</a>/// This helper assumes that the UART clock frequency equals [`UART_FREQUENCY`].
-<a href=#497 id=497 data-nosnippet>497</a>///
-<a href=#498 id=498 data-nosnippet>498</a>/// ```no_run
-<a href=#499 id=499 data-nosnippet>499</a>/// use teensy4_bsp as bsp;
-<a href=#500 id=500 data-nosnippet>500</a>/// use bsp::board;
-<a href=#501 id=501 data-nosnippet>501</a>///
-<a href=#502 id=502 data-nosnippet>502</a>/// let board::T40Resources { lpuart6, lpuart2, pins, .. }
-<a href=#503 id=503 data-nosnippet>503</a>///     = board::t40(board::instances());
-<a href=#504 id=504 data-nosnippet>504</a>///
-<a href=#505 id=505 data-nosnippet>505</a>/// // Explicit type:
-<a href=#506 id=506 data-nosnippet>506</a>/// let mut lpuart6: board::Lpuart6 = board::lpuart(
-<a href=#507 id=507 data-nosnippet>507</a>///     lpuart6,
-<a href=#508 id=508 data-nosnippet>508</a>///     pins.p1,
-<a href=#509 id=509 data-nosnippet>509</a>///     pins.p0,
-<a href=#510 id=510 data-nosnippet>510</a>///     115200,
-<a href=#511 id=511 data-nosnippet>511</a>/// );
-<a href=#512 id=512 data-nosnippet>512</a>///
-<a href=#513 id=513 data-nosnippet>513</a>/// // Implicit type:
-<a href=#514 id=514 data-nosnippet>514</a>/// let mut lpuart2 = board::lpuart(lpuart2, pins.p14, pins.p15, 9600);
-<a href=#515 id=515 data-nosnippet>515</a>/// ```
-<a href=#516 id=516 data-nosnippet>516</a></span><span class="kw">pub fn </span>lpuart&lt;Tx, Rx, <span class="kw">const </span>N: u8&gt;(
-<a href=#517 id=517 data-nosnippet>517</a>    instance: ral::lpuart::Instance&lt;N&gt;,
-<a href=#518 id=518 data-nosnippet>518</a>    tx: Tx,
-<a href=#519 id=519 data-nosnippet>519</a>    rx: Rx,
-<a href=#520 id=520 data-nosnippet>520</a>    baud: u32,
-<a href=#521 id=521 data-nosnippet>521</a>) -&gt; hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;Tx, Rx&gt;, N&gt;
-<a href=#522 id=522 data-nosnippet>522</a><span class="kw">where
-<a href=#523 id=523 data-nosnippet>523</a>    </span>Tx: hal::iomuxc::lpuart::Pin&lt;
-<a href=#524 id=524 data-nosnippet>524</a>        Direction = hal::iomuxc::lpuart::Tx,
-<a href=#525 id=525 data-nosnippet>525</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#526 id=526 data-nosnippet>526</a>    &gt;,
-<a href=#527 id=527 data-nosnippet>527</a>    Rx: hal::iomuxc::lpuart::Pin&lt;
-<a href=#528 id=528 data-nosnippet>528</a>        Direction = hal::iomuxc::lpuart::Rx,
-<a href=#529 id=529 data-nosnippet>529</a>        Module = hal::iomuxc::consts::Const&lt;N&gt;,
-<a href=#530 id=530 data-nosnippet>530</a>    &gt;,
-<a href=#531 id=531 data-nosnippet>531</a>{
-<a href=#532 id=532 data-nosnippet>532</a>    <span class="kw">let </span><span class="kw-2">mut </span>uart = hal::lpuart::Lpuart::new(instance, hal::lpuart::Pins { tx, rx });
-<a href=#533 id=533 data-nosnippet>533</a>    uart.disable(|uart| uart.set_baud(<span class="kw-2">&amp;</span>lpuart_baud(baud)));
-<a href=#534 id=534 data-nosnippet>534</a>    uart
-<a href=#535 id=535 data-nosnippet>535</a>}
-<a href=#536 id=536 data-nosnippet>536</a>
-<a href=#537 id=537 data-nosnippet>537</a><span class="doccomment">/// LPUART6 peripheral.
-<a href=#538 id=538 data-nosnippet>538</a>///
-<a href=#539 id=539 data-nosnippet>539</a>/// - Pin 1 is TX.
-<a href=#540 id=540 data-nosnippet>540</a>/// - Pin 0 is RX.
-<a href=#541 id=541 data-nosnippet>541</a>///
-<a href=#542 id=542 data-nosnippet>542</a>/// Use [`lpuart`] to create this driver.
-<a href=#543 id=543 data-nosnippet>543</a></span><span class="kw">pub type </span>Lpuart6 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P1, pins::common::P0&gt;, <span class="number">6</span>&gt;;
-<a href=#544 id=544 data-nosnippet>544</a>
-<a href=#545 id=545 data-nosnippet>545</a><span class="doccomment">/// LPUART4 peripheral.
-<a href=#546 id=546 data-nosnippet>546</a>///
-<a href=#547 id=547 data-nosnippet>547</a>/// - Pin 8 is TX.
-<a href=#548 id=548 data-nosnippet>548</a>/// - Pin 7 is RX.
-<a href=#549 id=549 data-nosnippet>549</a>///
-<a href=#550 id=550 data-nosnippet>550</a>/// Use [`lpuart`] to create this driver.
-<a href=#551 id=551 data-nosnippet>551</a></span><span class="kw">pub type </span>Lpuart4 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P8, pins::common::P7&gt;, <span class="number">4</span>&gt;;
-<a href=#552 id=552 data-nosnippet>552</a>
-<a href=#553 id=553 data-nosnippet>553</a><span class="doccomment">/// LPUART2 peripheral.
-<a href=#554 id=554 data-nosnippet>554</a>///
-<a href=#555 id=555 data-nosnippet>555</a>/// - Pin 14 is TX.
-<a href=#556 id=556 data-nosnippet>556</a>/// - Pin 15 is RX.
-<a href=#557 id=557 data-nosnippet>557</a>///
-<a href=#558 id=558 data-nosnippet>558</a>/// Use [`lpuart`] to create this driver.
-<a href=#559 id=559 data-nosnippet>559</a></span><span class="kw">pub type </span>Lpuart2 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P14, pins::common::P15&gt;, <span class="number">2</span>&gt;;
-<a href=#560 id=560 data-nosnippet>560</a>
-<a href=#561 id=561 data-nosnippet>561</a><span class="doccomment">/// LPUART3 peripheral.
-<a href=#562 id=562 data-nosnippet>562</a>///
-<a href=#563 id=563 data-nosnippet>563</a>/// - Pin 17 is TX.
-<a href=#564 id=564 data-nosnippet>564</a>/// - Pin 16 is RX.
-<a href=#565 id=565 data-nosnippet>565</a>///
-<a href=#566 id=566 data-nosnippet>566</a>/// Use [`lpuart`] to create this driver.
-<a href=#567 id=567 data-nosnippet>567</a></span><span class="kw">pub type </span>Lpuart3 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P17, pins::common::P16&gt;, <span class="number">3</span>&gt;;
-<a href=#568 id=568 data-nosnippet>568</a>
-<a href=#569 id=569 data-nosnippet>569</a><span class="doccomment">/// LPUART8 peripheral.
-<a href=#570 id=570 data-nosnippet>570</a>///
-<a href=#571 id=571 data-nosnippet>571</a>/// - Pin 20 is TX.
-<a href=#572 id=572 data-nosnippet>572</a>/// - Pin 21 is RX.
-<a href=#573 id=573 data-nosnippet>573</a>///
-<a href=#574 id=574 data-nosnippet>574</a>/// Use [`lpuart`] to create this driver.
-<a href=#575 id=575 data-nosnippet>575</a></span><span class="kw">pub type </span>Lpuart8 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P20, pins::common::P21&gt;, <span class="number">8</span>&gt;;
-<a href=#576 id=576 data-nosnippet>576</a>
-<a href=#577 id=577 data-nosnippet>577</a><span class="doccomment">/// LPUART1 peripheral.
-<a href=#578 id=578 data-nosnippet>578</a>///
-<a href=#579 id=579 data-nosnippet>579</a>/// - Pin 24 is TX.
-<a href=#580 id=580 data-nosnippet>580</a>/// - Pin 25 is RX.
-<a href=#581 id=581 data-nosnippet>581</a>///
-<a href=#582 id=582 data-nosnippet>582</a>/// Use [`lpuart`] to create this driver.
-<a href=#583 id=583 data-nosnippet>583</a></span><span class="kw">pub type </span>Lpuart1 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P24, pins::common::P25&gt;, <span class="number">1</span>&gt;;
-<a href=#584 id=584 data-nosnippet>584</a>
-<a href=#585 id=585 data-nosnippet>585</a><span class="doccomment">/// LPUART7 peripheral.
-<a href=#586 id=586 data-nosnippet>586</a>///
-<a href=#587 id=587 data-nosnippet>587</a>/// - Pin 29 is TX.
-<a href=#588 id=588 data-nosnippet>588</a>/// - Pin 28 is RX.
-<a href=#589 id=589 data-nosnippet>589</a>///
-<a href=#590 id=590 data-nosnippet>590</a>/// Use [`lpuart`] to create this driver.
-<a href=#591 id=591 data-nosnippet>591</a></span><span class="kw">pub type </span>Lpuart7 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::common::P29, pins::common::P28&gt;, <span class="number">7</span>&gt;;
-<a href=#592 id=592 data-nosnippet>592</a>
-<a href=#593 id=593 data-nosnippet>593</a><span class="doccomment">/// LPUART5 peripheral, available on the Teensy 4.1.
-<a href=#594 id=594 data-nosnippet>594</a>///
-<a href=#595 id=595 data-nosnippet>595</a>/// - Pin 35 is TX.
-<a href=#596 id=596 data-nosnippet>596</a>/// - Pin 34 is RX.
-<a href=#597 id=597 data-nosnippet>597</a>///
-<a href=#598 id=598 data-nosnippet>598</a>/// Use [`lpuart`] to create this driver.
-<a href=#599 id=599 data-nosnippet>599</a></span><span class="kw">pub type </span>Lpuart5 = hal::lpuart::Lpuart&lt;hal::lpuart::Pins&lt;pins::t41::P35, pins::t41::P34&gt;, <span class="number">5</span>&gt;;
-<a href=#600 id=600 data-nosnippet>600</a>
-<a href=#601 id=601 data-nosnippet>601</a><span class="kw">fn </span>prepare_resources&lt;Pins&gt;(
-<a href=#602 id=602 data-nosnippet>602</a>    <span class="kw-2">mut </span>instances: Instances,
-<a href=#603 id=603 data-nosnippet>603</a>    from_pads: <span class="kw">impl </span>FnOnce(hal::iomuxc::pads::Pads) -&gt; Pins,
-<a href=#604 id=604 data-nosnippet>604</a>) -&gt; Resources&lt;Pins&gt; {
-<a href=#605 id=605 data-nosnippet>605</a>    prepare_clocks_and_power(
-<a href=#606 id=606 data-nosnippet>606</a>        <span class="kw-2">&amp;mut </span>instances.CCM,
-<a href=#607 id=607 data-nosnippet>607</a>        <span class="kw-2">&amp;mut </span>instances.CCM_ANALOG,
-<a href=#608 id=608 data-nosnippet>608</a>        <span class="kw-2">&amp;mut </span>instances.DCDC,
-<a href=#609 id=609 data-nosnippet>609</a>    );
-<a href=#610 id=610 data-nosnippet>610</a>    <span class="kw">let </span>iomuxc = hal::iomuxc::into_pads(instances.IOMUXC);
-<a href=#611 id=611 data-nosnippet>611</a>    <span class="kw">let </span>pins = from_pads(iomuxc);
-<a href=#612 id=612 data-nosnippet>612</a>
-<a href=#613 id=613 data-nosnippet>613</a>    <span class="comment">// Stop timers in debug mode.
-<a href=#614 id=614 data-nosnippet>614</a>    </span><span class="macro">ral::modify_reg!</span>(ral::pit, instances.PIT, MCR, FRZ: FRZ_1);
-<a href=#615 id=615 data-nosnippet>615</a>    <span class="kw">let </span>pit = hal::pit::new(instances.PIT);
-<a href=#616 id=616 data-nosnippet>616</a>
-<a href=#617 id=617 data-nosnippet>617</a>    <span class="kw">let </span><span class="kw-2">mut </span>gpt1 = hal::gpt::Gpt::new(instances.GPT1);
-<a href=#618 id=618 data-nosnippet>618</a>    gpt1.disable();
-<a href=#619 id=619 data-nosnippet>619</a>
-<a href=#620 id=620 data-nosnippet>620</a>    <span class="kw">let </span><span class="kw-2">mut </span>gpt2 = hal::gpt::Gpt::new(instances.GPT2);
-<a href=#621 id=621 data-nosnippet>621</a>    gpt2.disable();
-<a href=#622 id=622 data-nosnippet>622</a>
-<a href=#623 id=623 data-nosnippet>623</a>    <span class="kw">let </span>hal::snvs::Snvs {
-<a href=#624 id=624 data-nosnippet>624</a>        low_power:
-<a href=#625 id=625 data-nosnippet>625</a>            hal::snvs::LowPower {
-<a href=#626 id=626 data-nosnippet>626</a>                core: snvs_lp_core,
-<a href=#627 id=627 data-nosnippet>627</a>                srtc,
-<a href=#628 id=628 data-nosnippet>628</a>                ..
-<a href=#629 id=629 data-nosnippet>629</a>            },
-<a href=#630 id=630 data-nosnippet>630</a>        ..
-<a href=#631 id=631 data-nosnippet>631</a>    } = hal::snvs::new(instances.SNVS);
-<a href=#632 id=632 data-nosnippet>632</a>
-<a href=#633 id=633 data-nosnippet>633</a>    <span class="kw">let </span>adc1 = hal::adc::Adc::new(
-<a href=#634 id=634 data-nosnippet>634</a>        instances.ADC1,
-<a href=#635 id=635 data-nosnippet>635</a>        hal::adc::ClockSelect::ADACK,
-<a href=#636 id=636 data-nosnippet>636</a>        hal::adc::ClockDivision::Div8,
-<a href=#637 id=637 data-nosnippet>637</a>    );
-<a href=#638 id=638 data-nosnippet>638</a>    <span class="kw">let </span>adc2 = hal::adc::Adc::new(
-<a href=#639 id=639 data-nosnippet>639</a>        instances.ADC2,
-<a href=#640 id=640 data-nosnippet>640</a>        hal::adc::ClockSelect::ADACK,
-<a href=#641 id=641 data-nosnippet>641</a>        hal::adc::ClockDivision::Div8,
-<a href=#642 id=642 data-nosnippet>642</a>    );
-<a href=#643 id=643 data-nosnippet>643</a>
-<a href=#644 id=644 data-nosnippet>644</a>    <span class="kw">let </span>trng = hal::trng::Trng::new(instances.TRNG, Default::default(), Default::default());
-<a href=#645 id=645 data-nosnippet>645</a>    <span class="kw">let </span>tempmon = hal::tempmon::TempMon::with_measure_freq(instances.TEMPMON, <span class="number">0x1000</span>);
-<a href=#646 id=646 data-nosnippet>646</a>
-<a href=#647 id=647 data-nosnippet>647</a>    Resources {
-<a href=#648 id=648 data-nosnippet>648</a>        pit,
-<a href=#649 id=649 data-nosnippet>649</a>        gpt1,
-<a href=#650 id=650 data-nosnippet>650</a>        gpt2,
-<a href=#651 id=651 data-nosnippet>651</a>        gpio1: hal::gpio::Port::new(instances.GPIO1),
-<a href=#652 id=652 data-nosnippet>652</a>        gpio2: hal::gpio::Port::new(instances.GPIO2),
-<a href=#653 id=653 data-nosnippet>653</a>        gpio3: hal::gpio::Port::new(instances.GPIO3),
-<a href=#654 id=654 data-nosnippet>654</a>        gpio4: hal::gpio::Port::new(instances.GPIO4),
-<a href=#655 id=655 data-nosnippet>655</a>        usb: hal::usbd::Instances {
-<a href=#656 id=656 data-nosnippet>656</a>            usb: instances.USB1,
-<a href=#657 id=657 data-nosnippet>657</a>            usbphy: instances.USBPHY1,
-<a href=#658 id=658 data-nosnippet>658</a>            usbnc: instances.USBNC1,
-<a href=#659 id=659 data-nosnippet>659</a>        },
-<a href=#660 id=660 data-nosnippet>660</a>        dma: hal::dma::channels(instances.DMA, instances.DMAMUX),
-<a href=#661 id=661 data-nosnippet>661</a>        srtc,
-<a href=#662 id=662 data-nosnippet>662</a>        snvs_lp_core,
-<a href=#663 id=663 data-nosnippet>663</a>        ccm: instances.CCM,
-<a href=#664 id=664 data-nosnippet>664</a>        ccm_analog: instances.CCM_ANALOG,
-<a href=#665 id=665 data-nosnippet>665</a>        dcdc: instances.DCDC,
-<a href=#666 id=666 data-nosnippet>666</a>        pins,
-<a href=#667 id=667 data-nosnippet>667</a>        lpi2c1: instances.LPI2C1,
-<a href=#668 id=668 data-nosnippet>668</a>        lpi2c3: instances.LPI2C3,
-<a href=#669 id=669 data-nosnippet>669</a>        lpspi1: instances.LPSPI1,
-<a href=#670 id=670 data-nosnippet>670</a>        lpspi2: instances.LPSPI2,
-<a href=#671 id=671 data-nosnippet>671</a>        lpspi3: instances.LPSPI3,
-<a href=#672 id=672 data-nosnippet>672</a>        lpspi4: instances.LPSPI4,
-<a href=#673 id=673 data-nosnippet>673</a>        lpuart6: instances.LPUART6,
-<a href=#674 id=674 data-nosnippet>674</a>        lpuart4: instances.LPUART4,
-<a href=#675 id=675 data-nosnippet>675</a>        lpuart2: instances.LPUART2,
-<a href=#676 id=676 data-nosnippet>676</a>        lpuart3: instances.LPUART3,
-<a href=#677 id=677 data-nosnippet>677</a>        lpuart8: instances.LPUART8,
-<a href=#678 id=678 data-nosnippet>678</a>        lpuart1: instances.LPUART1,
-<a href=#679 id=679 data-nosnippet>679</a>        lpuart7: instances.LPUART7,
-<a href=#680 id=680 data-nosnippet>680</a>        lpuart5: instances.LPUART5,
-<a href=#681 id=681 data-nosnippet>681</a>        flexio1: instances.FLEXIO1,
-<a href=#682 id=682 data-nosnippet>682</a>        flexio2: instances.FLEXIO2,
-<a href=#683 id=683 data-nosnippet>683</a>        flexio3: instances.FLEXIO3,
-<a href=#684 id=684 data-nosnippet>684</a>        flexpwm1: hal::flexpwm::new(instances.PWM1),
-<a href=#685 id=685 data-nosnippet>685</a>        flexpwm2: hal::flexpwm::new(instances.PWM2),
-<a href=#686 id=686 data-nosnippet>686</a>        flexpwm3: hal::flexpwm::new(instances.PWM3),
-<a href=#687 id=687 data-nosnippet>687</a>        flexpwm4: hal::flexpwm::new(instances.PWM4),
-<a href=#688 id=688 data-nosnippet>688</a>        adc1,
-<a href=#689 id=689 data-nosnippet>689</a>        adc2,
-<a href=#690 id=690 data-nosnippet>690</a>        trng,
-<a href=#691 id=691 data-nosnippet>691</a>        tempmon,
-<a href=#692 id=692 data-nosnippet>692</a>        sai1: instances.SAI1,
-<a href=#693 id=693 data-nosnippet>693</a>        sai2: instances.SAI2,
-<a href=#694 id=694 data-nosnippet>694</a>        sai3: instances.SAI3,
-<a href=#695 id=695 data-nosnippet>695</a>        iomuxc_gpr: instances.IOMUXC_GPR,
-<a href=#696 id=696 data-nosnippet>696</a>        usdhc1: instances.USDHC1,
-<a href=#697 id=697 data-nosnippet>697</a>        flexspi2: instances.FLEXSPI2,
-<a href=#698 id=698 data-nosnippet>698</a>    }
-<a href=#699 id=699 data-nosnippet>699</a>}
-<a href=#700 id=700 data-nosnippet>700</a>
-<a href=#701 id=701 data-nosnippet>701</a><span class="doccomment">/// Create resources for the Teensy 4.0 board.
-<a href=#702 id=702 data-nosnippet>702</a>///
-<a href=#703 id=703 data-nosnippet>703</a>/// Note that the peripheral instances acquired by RTIC -- named `device` in the
-<a href=#704 id=704 data-nosnippet>704</a>/// `init::Context` object -- can be used as the argument to this function.
-<a href=#705 id=705 data-nosnippet>705</a></span><span class="kw">pub fn </span>t40(instances: <span class="kw">impl </span>Into&lt;Instances&gt;) -&gt; T40Resources {
-<a href=#706 id=706 data-nosnippet>706</a>    prepare_resources(instances.into(), pins::t40::from_pads)
-<a href=#707 id=707 data-nosnippet>707</a>}
-<a href=#708 id=708 data-nosnippet>708</a>
-<a href=#709 id=709 data-nosnippet>709</a><span class="doccomment">/// Create resources for the Teensy 4.1 board.
-<a href=#710 id=710 data-nosnippet>710</a>///
-<a href=#711 id=711 data-nosnippet>711</a>/// Note that the peripheral instances acquired by RTIC -- named `device` in the
-<a href=#712 id=712 data-nosnippet>712</a>/// `init::Context` object -- can be used as the argument to this function.
-<a href=#713 id=713 data-nosnippet>713</a></span><span class="kw">pub fn </span>t41(instances: <span class="kw">impl </span>Into&lt;Instances&gt;) -&gt; T41Resources {
-<a href=#714 id=714 data-nosnippet>714</a>    prepare_resources(instances.into(), pins::t41::from_pads)
-<a href=#715 id=715 data-nosnippet>715</a>}
-<a href=#716 id=716 data-nosnippet>716</a>
-<a href=#717 id=717 data-nosnippet>717</a><span class="doccomment">/// Create resources for the Teensy MicroMod board.
-<a href=#718 id=718 data-nosnippet>718</a>///
-<a href=#719 id=719 data-nosnippet>719</a>/// Note that the peripheral instances acquired by RTIC -- named `device` in the
-<a href=#720 id=720 data-nosnippet>720</a>/// `init::Context` object -- can be used as the argument to this function.
-<a href=#721 id=721 data-nosnippet>721</a></span><span class="kw">pub fn </span>tmm(instances: <span class="kw">impl </span>Into&lt;Instances&gt;) -&gt; TMMResources {
-<a href=#722 id=722 data-nosnippet>722</a>    prepare_resources(instances.into(), pins::tmm::from_pads)
-<a href=#723 id=723 data-nosnippet>723</a>}
+<a href=#398 id=398 data-nosnippet>398</a>/// - the type of `instance`.
+<a href=#399 id=399 data-nosnippet>399</a>/// - the TX and RX pins.
+<a href=#400 id=400 data-nosnippet>400</a>/// - the return type, which can be explicitly annotated.
+<a href=#401 id=401 data-nosnippet>401</a>///
+<a href=#402 id=402 data-nosnippet>402</a>/// Consider using an explicit type annotation to help catch any
+<a href=#403 id=403 data-nosnippet>403</a>/// programming errors.
+<a href=#404 id=404 data-nosnippet>404</a>///
+<a href=#405 id=405 data-nosnippet>405</a>/// This helper assumes that the UART clock frequency equals [`UART_FREQUENCY`].
+<a href=#406 id=406 data-nosnippet>406</a>///
+<a href=#407 id=407 data-nosnippet>407</a>/// ```no_run
+<a href=#408 id=408 data-nosnippet>408</a>/// use teensy4_bsp as bsp;
+<a href=#409 id=409 data-nosnippet>409</a>/// use bsp::board;
+<a href=#410 id=410 data-nosnippet>410</a>///
+<a href=#411 id=411 data-nosnippet>411</a>/// let board::T40Resources { lpuart6, lpuart2, pins, .. }
+<a href=#412 id=412 data-nosnippet>412</a>///     = board::t40(board::instances());
+<a href=#413 id=413 data-nosnippet>413</a>///
+<a href=#414 id=414 data-nosnippet>414</a>/// // Explicit type:
+<a href=#415 id=415 data-nosnippet>415</a>/// let mut lpuart6: board::Lpuart = board::lpuart(
+<a href=#416 id=416 data-nosnippet>416</a>///     lpuart6,
+<a href=#417 id=417 data-nosnippet>417</a>///     pins.p1,
+<a href=#418 id=418 data-nosnippet>418</a>///     pins.p0,
+<a href=#419 id=419 data-nosnippet>419</a>///     115200,
+<a href=#420 id=420 data-nosnippet>420</a>/// );
+<a href=#421 id=421 data-nosnippet>421</a>///
+<a href=#422 id=422 data-nosnippet>422</a>/// // Implicit type:
+<a href=#423 id=423 data-nosnippet>423</a>/// let mut lpuart2 = board::lpuart(lpuart2, pins.p14, pins.p15, 9600);
+<a href=#424 id=424 data-nosnippet>424</a>/// ```
+<a href=#425 id=425 data-nosnippet>425</a></span><span class="kw">pub fn </span>lpuart&lt;Tx, Rx, <span class="kw">const </span>N: u8&gt;(
+<a href=#426 id=426 data-nosnippet>426</a>    instance: ral::lpuart::Instance&lt;N&gt;,
+<a href=#427 id=427 data-nosnippet>427</a>    tx: Tx,
+<a href=#428 id=428 data-nosnippet>428</a>    rx: Rx,
+<a href=#429 id=429 data-nosnippet>429</a>    baud: u32,
+<a href=#430 id=430 data-nosnippet>430</a>) -&gt; hal::lpuart::Lpuart
+<a href=#431 id=431 data-nosnippet>431</a><span class="kw">where
+<a href=#432 id=432 data-nosnippet>432</a>    </span>Tx: hal::iomuxc::lpuart::Pin&lt;
+<a href=#433 id=433 data-nosnippet>433</a>            Direction = hal::iomuxc::lpuart::Tx,
+<a href=#434 id=434 data-nosnippet>434</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#435 id=435 data-nosnippet>435</a>        &gt;,
+<a href=#436 id=436 data-nosnippet>436</a>    Rx: hal::iomuxc::lpuart::Pin&lt;
+<a href=#437 id=437 data-nosnippet>437</a>            Direction = hal::iomuxc::lpuart::Rx,
+<a href=#438 id=438 data-nosnippet>438</a>            Module = hal::iomuxc::consts::Const&lt;N&gt;,
+<a href=#439 id=439 data-nosnippet>439</a>        &gt;,
+<a href=#440 id=440 data-nosnippet>440</a>{
+<a href=#441 id=441 data-nosnippet>441</a>    <span class="kw">let </span><span class="kw-2">mut </span>uart = hal::lpuart::Lpuart::with_pins(instance, hal::lpuart::Pins { tx, rx });
+<a href=#442 id=442 data-nosnippet>442</a>    uart.disable(|uart| uart.set_baud(<span class="kw-2">&amp;</span>lpuart_baud(baud)));
+<a href=#443 id=443 data-nosnippet>443</a>    uart
+<a href=#444 id=444 data-nosnippet>444</a>}
+<a href=#445 id=445 data-nosnippet>445</a>
+<a href=#446 id=446 data-nosnippet>446</a><span class="kw">fn </span>prepare_resources&lt;Pins&gt;(
+<a href=#447 id=447 data-nosnippet>447</a>    <span class="kw-2">mut </span>instances: Instances,
+<a href=#448 id=448 data-nosnippet>448</a>    from_pads: <span class="kw">impl </span>FnOnce(hal::iomuxc::pads::Pads) -&gt; Pins,
+<a href=#449 id=449 data-nosnippet>449</a>) -&gt; Resources&lt;Pins&gt; {
+<a href=#450 id=450 data-nosnippet>450</a>    prepare_clocks_and_power(
+<a href=#451 id=451 data-nosnippet>451</a>        <span class="kw-2">&amp;mut </span>instances.CCM,
+<a href=#452 id=452 data-nosnippet>452</a>        <span class="kw-2">&amp;mut </span>instances.CCM_ANALOG,
+<a href=#453 id=453 data-nosnippet>453</a>        <span class="kw-2">&amp;mut </span>instances.DCDC,
+<a href=#454 id=454 data-nosnippet>454</a>    );
+<a href=#455 id=455 data-nosnippet>455</a>    <span class="kw">let </span>iomuxc = hal::iomuxc::into_pads(instances.IOMUXC);
+<a href=#456 id=456 data-nosnippet>456</a>    <span class="kw">let </span>pins = from_pads(iomuxc);
+<a href=#457 id=457 data-nosnippet>457</a>
+<a href=#458 id=458 data-nosnippet>458</a>    <span class="comment">// Stop timers in debug mode.
+<a href=#459 id=459 data-nosnippet>459</a>    </span><span class="macro">ral::modify_reg!</span>(ral::pit, instances.PIT, MCR, FRZ: FRZ_1);
+<a href=#460 id=460 data-nosnippet>460</a>    <span class="kw">let </span>pit = hal::pit::Pit::new(instances.PIT);
+<a href=#461 id=461 data-nosnippet>461</a>
+<a href=#462 id=462 data-nosnippet>462</a>    <span class="kw">let </span><span class="kw-2">mut </span>gpt1 = hal::gpt::Gpt::new(instances.GPT1);
+<a href=#463 id=463 data-nosnippet>463</a>    gpt1.disable();
+<a href=#464 id=464 data-nosnippet>464</a>
+<a href=#465 id=465 data-nosnippet>465</a>    <span class="kw">let </span><span class="kw-2">mut </span>gpt2 = hal::gpt::Gpt::new(instances.GPT2);
+<a href=#466 id=466 data-nosnippet>466</a>    gpt2.disable();
+<a href=#467 id=467 data-nosnippet>467</a>
+<a href=#468 id=468 data-nosnippet>468</a>    <span class="kw">let </span>hal::snvs::Snvs {
+<a href=#469 id=469 data-nosnippet>469</a>        low_power:
+<a href=#470 id=470 data-nosnippet>470</a>            hal::snvs::LowPower {
+<a href=#471 id=471 data-nosnippet>471</a>                core: snvs_lp_core,
+<a href=#472 id=472 data-nosnippet>472</a>                srtc,
+<a href=#473 id=473 data-nosnippet>473</a>                ..
+<a href=#474 id=474 data-nosnippet>474</a>            },
+<a href=#475 id=475 data-nosnippet>475</a>        ..
+<a href=#476 id=476 data-nosnippet>476</a>    } = hal::snvs::new(instances.SNVS);
+<a href=#477 id=477 data-nosnippet>477</a>
+<a href=#478 id=478 data-nosnippet>478</a>    <span class="kw">let </span>adc1 = hal::adc::Adc::new(
+<a href=#479 id=479 data-nosnippet>479</a>        instances.ADC1,
+<a href=#480 id=480 data-nosnippet>480</a>        hal::adc::ClockSelect::ADACK,
+<a href=#481 id=481 data-nosnippet>481</a>        hal::adc::ClockDivision::Div8,
+<a href=#482 id=482 data-nosnippet>482</a>    );
+<a href=#483 id=483 data-nosnippet>483</a>    <span class="kw">let </span>adc2 = hal::adc::Adc::new(
+<a href=#484 id=484 data-nosnippet>484</a>        instances.ADC2,
+<a href=#485 id=485 data-nosnippet>485</a>        hal::adc::ClockSelect::ADACK,
+<a href=#486 id=486 data-nosnippet>486</a>        hal::adc::ClockDivision::Div8,
+<a href=#487 id=487 data-nosnippet>487</a>    );
+<a href=#488 id=488 data-nosnippet>488</a>
+<a href=#489 id=489 data-nosnippet>489</a>    <span class="kw">let </span>trng = hal::trng::Trng::new(instances.TRNG, Default::default(), Default::default());
+<a href=#490 id=490 data-nosnippet>490</a>    <span class="kw">let </span>tempmon = hal::tempmon::TempMon::with_measure_freq(instances.TEMPMON, <span class="number">0x1000</span>);
+<a href=#491 id=491 data-nosnippet>491</a>
+<a href=#492 id=492 data-nosnippet>492</a>    Resources {
+<a href=#493 id=493 data-nosnippet>493</a>        pit,
+<a href=#494 id=494 data-nosnippet>494</a>        gpt1,
+<a href=#495 id=495 data-nosnippet>495</a>        gpt2,
+<a href=#496 id=496 data-nosnippet>496</a>        gpio1: hal::gpio::Port::new(instances.GPIO1),
+<a href=#497 id=497 data-nosnippet>497</a>        gpio2: hal::gpio::Port::new(instances.GPIO2),
+<a href=#498 id=498 data-nosnippet>498</a>        gpio3: hal::gpio::Port::new(instances.GPIO3),
+<a href=#499 id=499 data-nosnippet>499</a>        gpio4: hal::gpio::Port::new(instances.GPIO4),
+<a href=#500 id=500 data-nosnippet>500</a>        usb: <span class="kw">crate</span>::usbd::Instances {
+<a href=#501 id=501 data-nosnippet>501</a>            usb: instances.USB1,
+<a href=#502 id=502 data-nosnippet>502</a>            usbphy: instances.USBPHY1,
+<a href=#503 id=503 data-nosnippet>503</a>            usbnc: instances.USBNC1,
+<a href=#504 id=504 data-nosnippet>504</a>        },
+<a href=#505 id=505 data-nosnippet>505</a>        dma: hal::dma::channels(instances.DMA, instances.DMAMUX),
+<a href=#506 id=506 data-nosnippet>506</a>        srtc,
+<a href=#507 id=507 data-nosnippet>507</a>        snvs_lp_core,
+<a href=#508 id=508 data-nosnippet>508</a>        ccm: instances.CCM,
+<a href=#509 id=509 data-nosnippet>509</a>        ccm_analog: instances.CCM_ANALOG,
+<a href=#510 id=510 data-nosnippet>510</a>        dcdc: instances.DCDC,
+<a href=#511 id=511 data-nosnippet>511</a>        pins,
+<a href=#512 id=512 data-nosnippet>512</a>        lpi2c1: instances.LPI2C1,
+<a href=#513 id=513 data-nosnippet>513</a>        lpi2c3: instances.LPI2C3,
+<a href=#514 id=514 data-nosnippet>514</a>        lpspi1: instances.LPSPI1,
+<a href=#515 id=515 data-nosnippet>515</a>        lpspi2: instances.LPSPI2,
+<a href=#516 id=516 data-nosnippet>516</a>        lpspi3: instances.LPSPI3,
+<a href=#517 id=517 data-nosnippet>517</a>        lpspi4: instances.LPSPI4,
+<a href=#518 id=518 data-nosnippet>518</a>        lpuart6: instances.LPUART6,
+<a href=#519 id=519 data-nosnippet>519</a>        lpuart4: instances.LPUART4,
+<a href=#520 id=520 data-nosnippet>520</a>        lpuart2: instances.LPUART2,
+<a href=#521 id=521 data-nosnippet>521</a>        lpuart3: instances.LPUART3,
+<a href=#522 id=522 data-nosnippet>522</a>        lpuart8: instances.LPUART8,
+<a href=#523 id=523 data-nosnippet>523</a>        lpuart1: instances.LPUART1,
+<a href=#524 id=524 data-nosnippet>524</a>        lpuart7: instances.LPUART7,
+<a href=#525 id=525 data-nosnippet>525</a>        lpuart5: instances.LPUART5,
+<a href=#526 id=526 data-nosnippet>526</a>        flexio1: instances.FLEXIO1,
+<a href=#527 id=527 data-nosnippet>527</a>        flexio2: instances.FLEXIO2,
+<a href=#528 id=528 data-nosnippet>528</a>        flexio3: instances.FLEXIO3,
+<a href=#529 id=529 data-nosnippet>529</a>        flexpwm1: hal::flexpwm::Pwm::new(instances.PWM1),
+<a href=#530 id=530 data-nosnippet>530</a>        flexpwm2: hal::flexpwm::Pwm::new(instances.PWM2),
+<a href=#531 id=531 data-nosnippet>531</a>        flexpwm3: hal::flexpwm::Pwm::new(instances.PWM3),
+<a href=#532 id=532 data-nosnippet>532</a>        flexpwm4: hal::flexpwm::Pwm::new(instances.PWM4),
+<a href=#533 id=533 data-nosnippet>533</a>        adc1,
+<a href=#534 id=534 data-nosnippet>534</a>        adc2,
+<a href=#535 id=535 data-nosnippet>535</a>        trng,
+<a href=#536 id=536 data-nosnippet>536</a>        tempmon,
+<a href=#537 id=537 data-nosnippet>537</a>        sai1: instances.SAI1,
+<a href=#538 id=538 data-nosnippet>538</a>        sai2: instances.SAI2,
+<a href=#539 id=539 data-nosnippet>539</a>        sai3: instances.SAI3,
+<a href=#540 id=540 data-nosnippet>540</a>        iomuxc_gpr: instances.IOMUXC_GPR,
+<a href=#541 id=541 data-nosnippet>541</a>        usdhc1: instances.USDHC1,
+<a href=#542 id=542 data-nosnippet>542</a>        flexspi2: instances.FLEXSPI2,
+<a href=#543 id=543 data-nosnippet>543</a>    }
+<a href=#544 id=544 data-nosnippet>544</a>}
+<a href=#545 id=545 data-nosnippet>545</a>
+<a href=#546 id=546 data-nosnippet>546</a><span class="doccomment">/// Create resources for the Teensy 4.0 board.
+<a href=#547 id=547 data-nosnippet>547</a>///
+<a href=#548 id=548 data-nosnippet>548</a>/// Note that the peripheral instances acquired by RTIC -- named `device` in the
+<a href=#549 id=549 data-nosnippet>549</a>/// `init::Context` object -- can be used as the argument to this function.
+<a href=#550 id=550 data-nosnippet>550</a></span><span class="kw">pub fn </span>t40(instances: <span class="kw">impl </span>Into&lt;Instances&gt;) -&gt; T40Resources {
+<a href=#551 id=551 data-nosnippet>551</a>    prepare_resources(instances.into(), pins::t40::from_pads)
+<a href=#552 id=552 data-nosnippet>552</a>}
+<a href=#553 id=553 data-nosnippet>553</a>
+<a href=#554 id=554 data-nosnippet>554</a><span class="doccomment">/// Create resources for the Teensy 4.1 board.
+<a href=#555 id=555 data-nosnippet>555</a>///
+<a href=#556 id=556 data-nosnippet>556</a>/// Note that the peripheral instances acquired by RTIC -- named `device` in the
+<a href=#557 id=557 data-nosnippet>557</a>/// `init::Context` object -- can be used as the argument to this function.
+<a href=#558 id=558 data-nosnippet>558</a></span><span class="kw">pub fn </span>t41(instances: <span class="kw">impl </span>Into&lt;Instances&gt;) -&gt; T41Resources {
+<a href=#559 id=559 data-nosnippet>559</a>    prepare_resources(instances.into(), pins::t41::from_pads)
+<a href=#560 id=560 data-nosnippet>560</a>}
+<a href=#561 id=561 data-nosnippet>561</a>
+<a href=#562 id=562 data-nosnippet>562</a><span class="doccomment">/// Create resources for the Teensy MicroMod board.
+<a href=#563 id=563 data-nosnippet>563</a>///
+<a href=#564 id=564 data-nosnippet>564</a>/// Note that the peripheral instances acquired by RTIC -- named `device` in the
+<a href=#565 id=565 data-nosnippet>565</a>/// `init::Context` object -- can be used as the argument to this function.
+<a href=#566 id=566 data-nosnippet>566</a></span><span class="kw">pub fn </span>tmm(instances: <span class="kw">impl </span>Into&lt;Instances&gt;) -&gt; TMMResources {
+<a href=#567 id=567 data-nosnippet>567</a>    prepare_resources(instances.into(), pins::tmm::from_pads)
+<a href=#568 id=568 data-nosnippet>568</a>}
 </code></pre></div></section></main></body></html>

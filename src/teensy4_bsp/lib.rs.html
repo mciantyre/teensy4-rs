@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (02c7f9bec 2026-04-10)" data-channel="nightly" data-search-js="search-b5634cc7.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A Rust board support package (BSP) for the Teensy 4.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-74eb0058.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="teensy4_bsp" data-themes="" data-resource-suffix="" data-rustdoc-version="1.98.0-nightly (beae78130 2026-06-09)" data-channel="nightly" data-search-js="search-fd9372ac.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../static.files/storage-41dd4d93.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fcd733ba.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">teensy4_bsp/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A Rust board support package (BSP) for the Teensy 4.
 <a href=#2 id=2 data-nosnippet>2</a>//!
 <a href=#3 id=3 data-nosnippet>3</a>//! `teensy4-bsp` supports the following boards:
 <a href=#4 id=4 data-nosnippet>4</a>//!
@@ -10,7 +10,7 @@
 <a href=#10 id=10 data-nosnippet>10</a>//! a look at [the `board` module](crate::board). This module provides pre-configured drivers
 <a href=#11 id=11 data-nosnippet>11</a>//! and helper functions to define hardware drivers.
 <a href=#12 id=12 data-nosnippet>12</a>//!
-<a href=#13 id=13 data-nosnippet>13</a>//! Peripherals are re-exported from the [`imxrt-hal`](crate::hal)
+<a href=#13 id=13 data-nosnippet>13</a>//! Most peripherals are re-exported from the [`imxrt-hal`](crate::hal)
 <a href=#14 id=14 data-nosnippet>14</a>//! hardware abstraction layer. For more information on drivers, consult the `imxrt-hal` documentation.
 <a href=#15 id=15 data-nosnippet>15</a>//! Note that `imxrt-hal` drivers depend on low-level resources from `imxrt-ral`. For convenience,
 <a href=#16 id=16 data-nosnippet>16</a>//! the BSP also exposes [`imxrt-ral`](crate::ral). Combine `imxrt-hal` and `imxrt-ral` to have full
@@ -79,45 +79,46 @@
 <a href=#79 id=79 data-nosnippet>79</a><span class="attr">#[cfg(all(feature = <span class="string">"rt"</span>, target_arch = <span class="string">"arm"</span>, target_os = <span class="string">"none"</span>))]
 <a href=#80 id=80 data-nosnippet>80</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"rt"</span>)))]
 <a href=#81 id=81 data-nosnippet>81</a></span><span class="kw">pub use </span>imxrt_rt <span class="kw">as </span>rt;
-<a href=#82 id=82 data-nosnippet>82</a>
-<a href=#83 id=83 data-nosnippet>83</a><span class="kw">pub use </span>teensy4_pins <span class="kw">as </span>pins;
-<a href=#84 id=84 data-nosnippet>84</a>
-<a href=#85 id=85 data-nosnippet>85</a><span class="comment">// Need to reference this so that it doesn't get stripped out
-<a href=#86 id=86 data-nosnippet>86</a></span><span class="kw">use </span>teensy4_fcb <span class="kw">as _</span>;
-<a href=#87 id=87 data-nosnippet>87</a>
-<a href=#88 id=88 data-nosnippet>88</a><span class="doccomment">/// Exported for RTIC. Do not use.
-<a href=#89 id=89 data-nosnippet>89</a></span><span class="attr">#[doc(hidden)]
-<a href=#90 id=90 data-nosnippet>90</a></span><span class="kw">pub struct </span>Peripherals(ral::Instances);
-<a href=#91 id=91 data-nosnippet>91</a>
-<a href=#92 id=92 data-nosnippet>92</a><span class="attr">#[doc(hidden)]
-<a href=#93 id=93 data-nosnippet>93</a></span><span class="kw">impl </span>Peripherals {
-<a href=#94 id=94 data-nosnippet>94</a>    <span class="attr">#[inline]
-<a href=#95 id=95 data-nosnippet>95</a>    </span><span class="kw">pub unsafe fn </span>steal() -&gt; <span class="self">Self </span>{
-<a href=#96 id=96 data-nosnippet>96</a>        <span class="self">Self</span>(board::instances())
-<a href=#97 id=97 data-nosnippet>97</a>    }
-<a href=#98 id=98 data-nosnippet>98</a>}
-<a href=#99 id=99 data-nosnippet>99</a>
-<a href=#100 id=100 data-nosnippet>100</a><span class="attr">#[doc(hidden)]
-<a href=#101 id=101 data-nosnippet>101</a></span><span class="kw">impl </span>From&lt;Peripherals&gt; <span class="kw">for </span>ral::Instances {
-<a href=#102 id=102 data-nosnippet>102</a>    <span class="attr">#[inline]
-<a href=#103 id=103 data-nosnippet>103</a>    </span><span class="kw">fn </span>from(periphs: Peripherals) -&gt; <span class="self">Self </span>{
-<a href=#104 id=104 data-nosnippet>104</a>        periphs.<span class="number">0
-<a href=#105 id=105 data-nosnippet>105</a>    </span>}
-<a href=#106 id=106 data-nosnippet>106</a>}
-<a href=#107 id=107 data-nosnippet>107</a>
-<a href=#108 id=108 data-nosnippet>108</a><span class="doccomment">/// Exported for RTIC. Do not use.
-<a href=#109 id=109 data-nosnippet>109</a></span><span class="attr">#[doc(hidden)]
-<a href=#110 id=110 data-nosnippet>110</a></span><span class="kw">pub use </span>ral::{interrupt, Interrupt, NVIC_PRIO_BITS};
-<a href=#111 id=111 data-nosnippet>111</a>
-<a href=#112 id=112 data-nosnippet>112</a><span class="kw">pub mod </span>board;
-<a href=#113 id=113 data-nosnippet>113</a><span class="kw">mod </span>clock_power;
-<a href=#114 id=114 data-nosnippet>114</a>
-<a href=#115 id=115 data-nosnippet>115</a><span class="doccomment">/// SYSTICK external clock frequency.
-<a href=#116 id=116 data-nosnippet>116</a>///
-<a href=#117 id=117 data-nosnippet>117</a>/// This represents the frequency (Hz) of the external clock
-<a href=#118 id=118 data-nosnippet>118</a>/// that can supply SYSTICK.
-<a href=#119 id=119 data-nosnippet>119</a></span><span class="comment">// See Section 12.3.2.1 of the reference manual. The note
-<a href=#120 id=120 data-nosnippet>120</a>// explains that the 24MHz clock is divided down to 100KHz
-<a href=#121 id=121 data-nosnippet>121</a>// before reaching SYSTICK.
-<a href=#122 id=122 data-nosnippet>122</a></span><span class="kw">pub const </span>EXT_SYSTICK_HZ: u32 = <span class="number">100_000</span>;
+<a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub use </span>imxrt_usbd <span class="kw">as </span>usbd;
+<a href=#83 id=83 data-nosnippet>83</a>
+<a href=#84 id=84 data-nosnippet>84</a><span class="kw">pub use </span>teensy4_pins <span class="kw">as </span>pins;
+<a href=#85 id=85 data-nosnippet>85</a>
+<a href=#86 id=86 data-nosnippet>86</a><span class="comment">// Need to reference this so that it doesn't get stripped out
+<a href=#87 id=87 data-nosnippet>87</a></span><span class="kw">use </span>teensy4_fcb <span class="kw">as _</span>;
+<a href=#88 id=88 data-nosnippet>88</a>
+<a href=#89 id=89 data-nosnippet>89</a><span class="doccomment">/// Exported for RTIC. Do not use.
+<a href=#90 id=90 data-nosnippet>90</a></span><span class="attr">#[doc(hidden)]
+<a href=#91 id=91 data-nosnippet>91</a></span><span class="kw">pub struct </span>Peripherals(ral::Instances);
+<a href=#92 id=92 data-nosnippet>92</a>
+<a href=#93 id=93 data-nosnippet>93</a><span class="attr">#[doc(hidden)]
+<a href=#94 id=94 data-nosnippet>94</a></span><span class="kw">impl </span>Peripherals {
+<a href=#95 id=95 data-nosnippet>95</a>    <span class="attr">#[inline]
+<a href=#96 id=96 data-nosnippet>96</a>    </span><span class="kw">pub unsafe fn </span>steal() -&gt; <span class="self">Self </span>{
+<a href=#97 id=97 data-nosnippet>97</a>        <span class="self">Self</span>(board::instances())
+<a href=#98 id=98 data-nosnippet>98</a>    }
+<a href=#99 id=99 data-nosnippet>99</a>}
+<a href=#100 id=100 data-nosnippet>100</a>
+<a href=#101 id=101 data-nosnippet>101</a><span class="attr">#[doc(hidden)]
+<a href=#102 id=102 data-nosnippet>102</a></span><span class="kw">impl </span>From&lt;Peripherals&gt; <span class="kw">for </span>ral::Instances {
+<a href=#103 id=103 data-nosnippet>103</a>    <span class="attr">#[inline]
+<a href=#104 id=104 data-nosnippet>104</a>    </span><span class="kw">fn </span>from(periphs: Peripherals) -&gt; <span class="self">Self </span>{
+<a href=#105 id=105 data-nosnippet>105</a>        periphs.<span class="number">0
+<a href=#106 id=106 data-nosnippet>106</a>    </span>}
+<a href=#107 id=107 data-nosnippet>107</a>}
+<a href=#108 id=108 data-nosnippet>108</a>
+<a href=#109 id=109 data-nosnippet>109</a><span class="doccomment">/// Exported for RTIC. Do not use.
+<a href=#110 id=110 data-nosnippet>110</a></span><span class="attr">#[doc(hidden)]
+<a href=#111 id=111 data-nosnippet>111</a></span><span class="kw">pub use </span>ral::{Interrupt, NVIC_PRIO_BITS, interrupt};
+<a href=#112 id=112 data-nosnippet>112</a>
+<a href=#113 id=113 data-nosnippet>113</a><span class="kw">pub mod </span>board;
+<a href=#114 id=114 data-nosnippet>114</a><span class="kw">mod </span>clock_power;
+<a href=#115 id=115 data-nosnippet>115</a>
+<a href=#116 id=116 data-nosnippet>116</a><span class="doccomment">/// SYSTICK external clock frequency.
+<a href=#117 id=117 data-nosnippet>117</a>///
+<a href=#118 id=118 data-nosnippet>118</a>/// This represents the frequency (Hz) of the external clock
+<a href=#119 id=119 data-nosnippet>119</a>/// that can supply SYSTICK.
+<a href=#120 id=120 data-nosnippet>120</a></span><span class="comment">// See Section 12.3.2.1 of the reference manual. The note
+<a href=#121 id=121 data-nosnippet>121</a>// explains that the 24MHz clock is divided down to 100KHz
+<a href=#122 id=122 data-nosnippet>122</a>// before reaching SYSTICK.
+<a href=#123 id=123 data-nosnippet>123</a></span><span class="kw">pub const </span>EXT_SYSTICK_HZ: u32 = <span class="number">100_000</span>;
 </code></pre></div></section></main></body></html>
