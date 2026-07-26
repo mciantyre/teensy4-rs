@@ -147,9 +147,3 @@ required-features = ["rt"]
 [[example]]
 name = "rtic_usb_log"
 required-features = ["rt"]
-
-[patch.crates-io.imxrt-hal]
-git = "https://github.com/imxrt-rs/imxrt-hal"
-
-[patch.crates-io.imxrt-log]
-git = "https://github.com/imxrt-rs/imxrt-hal"
