@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.6.0 - 2026-07-26
+
 **BREAKING** Adopt new imxrt-rs dependencies, including
 
 - imxrt-hal 0.6
