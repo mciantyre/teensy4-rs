@@ -147,3 +147,7 @@ required-features = ["rt"]
 [[example]]
 name = "rtic_usb_log"
 required-features = ["rt"]
+
+[patch.crates-io]
+cortex-m = { git = "https://github.com/rust-embedded/cortex-m", rev = "8c62cc47314445346851b0d0664f9cc34c50b24d" }
+imxrt-rt = { path = "../imxrt-rt" }

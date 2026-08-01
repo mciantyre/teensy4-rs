@@ -76,7 +76,11 @@
 
 pub use imxrt_hal as hal;
 pub use imxrt_ral as ral;
-#[cfg(all(feature = "rt", target_arch = "arm", target_os = "none"))]
+#[cfg(all(
+    feature = "rt",
+    target_arch = "arm",
+    any(target_os = "none", target_os = "threadx")
+))]
 #[cfg_attr(docsrs, doc(cfg(feature = "rt")))]
 pub use imxrt_rt as rt;
 pub use imxrt_usbd as usbd;

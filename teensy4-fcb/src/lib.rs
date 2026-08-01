@@ -137,7 +137,7 @@ pub const SERIAL_NOR_CONFIGURATION_BLOCK: nor::ConfigurationBlock =
 /// your Teensy 4.
 #[unsafe(no_mangle)]
 #[cfg_attr(
-    all(target_arch = "arm", target_os = "none"),
+    all(target_arch = "arm", any(target_os = "none", target_os = "threadx")),
     unsafe(link_section = ".fcb")
 )]
 pub static FLEXSPI_CONFIGURATION_BLOCK: nor::ConfigurationBlock = SERIAL_NOR_CONFIGURATION_BLOCK;
